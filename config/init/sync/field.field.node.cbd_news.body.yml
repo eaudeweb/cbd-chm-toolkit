@@ -1,0 +1,24 @@
+uuid: 4ae61e01-3a72-458e-8304-4b1c4f72f431
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.cbd_news
+  module:
+    - text
+_core:
+  default_config_hash: iUCeQqrNyEpr6QlEfV49mowENgovfAEmG26RSzvzzgU
+id: node.cbd_news.body
+field_name: body
+entity_type: node
+bundle: cbd_news
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary
