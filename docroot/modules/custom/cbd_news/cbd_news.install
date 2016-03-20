@@ -13,7 +13,7 @@
 function cbd_news_install() {
   // Do not allow the locked content type to be deleted.
   $locked = Drupal::state()->get('node.type.locked');
-  $locked['locked_content_type'] = 'locked_content_type';
+  $locked['cbd_news'] = 'cbd_news';
   Drupal::state()->set('node.type.locked', $locked);
 }
 
@@ -25,6 +25,6 @@ function cbd_news_install() {
 function cbd_news_uninstall() {
   // Allow locked_content_type to be deleted.
   $locked = Drupal::state()->get('node.type.locked');
-  unset($locked['locked_content_type']);
+  unset($locked['dbd_news']);
   Drupal::state()->set('node.type.locked', $locked);
 }
