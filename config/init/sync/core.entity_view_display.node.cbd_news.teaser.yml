@@ -28,3 +28,4 @@ content:
     weight: 100
 hidden:
   field_tags: true
+  langcode: true
