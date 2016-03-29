@@ -1,0 +1,5 @@
+type: module
+name: CHM comment
+description: 'Functionality form comments.'
+package: CHM
+core: 8.x

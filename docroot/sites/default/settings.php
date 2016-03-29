@@ -717,5 +717,5 @@ $settings['container_yamls'][] = __DIR__ . '/services.yml';
 if (file_exists(__DIR__ . '/settings.local.php')) {
    include __DIR__ . '/settings.local.php';
 }
-$settings['install_profile'] = 'standard';
+$settings['install_profile'] = 'chm';
 $config_directories['sync'] = 'sites/default/files/config_FO8AZLorBeQRzEqCufwfPtLpLaAsqtbRneNF6S5k6-g99UI94EkO2PMiniJT9BaUGHAiq_kIjQ/sync';
