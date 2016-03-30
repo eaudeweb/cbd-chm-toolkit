@@ -1,0 +1,20 @@
+uuid: df0e57e4-9e6f-47b7-8b00-b75da875750a
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - calendar
+    - calendar_datetime
+    - datetime
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Events
+type: events
+description: ''
+help: ''
+new_revision: false
+preview_mode: 2
+display_submitted: false
