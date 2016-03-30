@@ -1,0 +1,8 @@
+name: EU CAPTCHA
+description: Verifies if user is a human without necessity to solve a captcha
+type: module
+package: Spam control
+core: 8.x
+version: 8.x-1.x-dev
+dependencies:
+  - captcha

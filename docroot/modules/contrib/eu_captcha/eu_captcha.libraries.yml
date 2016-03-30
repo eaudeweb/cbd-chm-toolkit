@@ -1,0 +1,4 @@
+eu_captcha:
+  version: 1.x
+  js:
+    js/captcha.js: {defer: true, async: true, preprocess: false}

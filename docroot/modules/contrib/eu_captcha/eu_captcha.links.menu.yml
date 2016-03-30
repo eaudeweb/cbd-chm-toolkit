@@ -1,0 +1,6 @@
+eu_captcha.admin_settings_form:
+  title: 'EU-CAPTCHA'
+  parent: captcha.settings
+  description: 'Administer the EU-Captcha settings.'
+  route_name: eu_captcha.admin_settings_form
+  weight: 1

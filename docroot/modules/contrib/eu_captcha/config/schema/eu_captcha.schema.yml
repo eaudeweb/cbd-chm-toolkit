@@ -1,0 +1,43 @@
+eu_captcha.settings:
+  type: config_object
+  label: 'EU Captcha settings'
+  mapping:
+    type:
+      type: string
+      label: 'Type'
+    length:
+      type: integer
+      label: 'Length'
+    case_sensitive:
+      type: boolean
+      label: 'Case sensitive'
+    autodetect_protocol:
+      type: boolean
+      label: 'Autodetect protocol'
+    perturbation:
+      type: float
+      label: 'Perturbation'
+    num_lines:
+      type: integer
+      label: 'Number of lines'
+    noise_level:
+      type: float
+      label: 'Noise level'
+    image_bg_color:
+      type: string
+      label: 'Image background color'
+    text_color:
+      type: string
+      label: 'Text color'
+    line_color:
+      type: string
+      label: 'Line color'
+    noise_color:
+      type: string
+      label: 'Noise color'
+    use_transparent_text:
+      type: boolean
+      label: 'Enable text transparency'
+    text_transparency_percentage:
+      type: float
+      label: 'Text transparency percentage'

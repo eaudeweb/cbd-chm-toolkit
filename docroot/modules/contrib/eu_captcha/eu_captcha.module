@@ -1,0 +1,90 @@
+<?php
+
+/**
+ * Implements hook_captcha().
+ */
+function eu_captcha_captcha($op, $captcha_type = '') {
+  switch ($op) {
+    case 'list':
+      return ['EUCAPTCHA'];
+
+    case 'generate':
+      if ($captcha_type == 'EUCAPTCHA') {
+        require_once 'captchalib.php';
+
+        $captcha = [];
+        $config = \Drupal::config('eu_captcha.settings');
+        $eu_captcha_type = $config->get('type');
+        $use_transparent_text = $config->get('use_transparent_text') ? 'true' : 'false';
+        $case_sensitive = $config->get('case_sensitive') ? 'true' : 'false';
+        $autodetect_protocol = $config->get('autodetect_protocol') ? 'true' : 'false';
+
+        $lang = \Drupal::service('language_manager')->getCurrentLanguage()->getId();
+
+        $create_captcha
+          = '<SPAN class="captcha"><!--
+          {
+              "lang":"' . $lang . '",
+              "type":"' . $eu_captcha_type . '",
+              "length":' . $config->get('length') . ',
+              "case_sensitive":' . $case_sensitive . ',
+              "autodetect_protocol":"' . $autodetect_protocol . '",
+              "perturbation":' . $config->get('perturbation') . ',
+              "num_lines":' . $config->get('num_lines') . ',
+              "noise_level":' . $config->get('noise_level') . ',
+              "image_bg_color":"' . str_replace('#', '', $config->get('image_bg_color')) . '",
+              "text_color":"' . str_replace('#', '', $config->get('text_color')) . '",
+              "line_color":"' . str_replace('#', '', $config->get('line_color')) . '",
+              "noise_color":"' . str_replace('#', '', $config->get('noise_color')) . '",
+              "use_transparent_text":' . $use_transparent_text . ',
+              "text_transparency_percentage":' . $config->get('text_transparency_percentage') . '
+          }
+          //--></SPAN>';
+
+        $captcha['form']['captcha_image'] = array(
+          '#type' => 'markup',
+          '#markup' => $create_captcha,
+          '#weight' => -1,
+        );
+        if ($eu_captcha_type == 'string') {
+          $title = t('What code is in the image?');
+          $description = t('Enter the characters shown in the image.');
+        }
+        else {
+          $title = t('Answer the math problem:');
+          $description = t('Solve the problem and write the answer.');
+        }
+        $captcha['form']['captcha_response'] = array(
+          '#type' => 'textfield',
+          '#title' => $title,
+          '#description' => $description,
+          '#name' => 'security_code',
+          '#id' => 'security_code',
+          '#weight' => 0,
+          '#size' => 15,
+          '#attributes' => ['autocomplete' => 'off'],
+          '#cache' => ['max-age' => 0],
+        );
+        $captcha['captcha_validate'] = 'eu_captcha_captcha_validation';
+        $captcha['solution'] = '';
+
+        $captcha['form']['#attached']['library'][] = 'eu_captcha/eu_captcha';
+
+        // If module configuration changes the form cache need to be refreshed.
+        \Drupal::service('page_cache_kill_switch')->trigger();
+
+        return $captcha;
+      }
+      break;
+
+  }
+}
+
+/**
+ * Implements hook_validate().
+ */
+function eu_captcha_captcha_validation() {
+  require_once 'captchalib.php';
+  $check = captcha_check_answer();
+  return $check->is_valid;
+}

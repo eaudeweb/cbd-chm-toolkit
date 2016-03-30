@@ -1,0 +1,13 @@
+type: 'string'
+length: 6
+case_sensitive: 0
+autodetect_protocol: 1
+perturbation: 0.6
+num_lines: 8
+noise_level: 0
+image_bg_color: ''
+text_color: ''
+line_color: ''
+noise_color: ''
+use_transparent_text: 0
+text_transparency_percentage: 0
