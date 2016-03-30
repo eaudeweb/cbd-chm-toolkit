@@ -100,7 +100,11 @@ class Theme {
 
     // Only install the theme if there is no schema version currently set.
     if (!$this->getSetting('schema')) {
-      $this->install();
+      try {
+        $this->install();
+      } catch(\Exception $e) {
+        watchdog_exception('bootstrap.theme', $e);
+      }
     }
   }
 
