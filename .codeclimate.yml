@@ -8,6 +8,7 @@ exclude_paths:
   - config/**/*
   - docroot/core/**/*
   - docroot/modules/contrib/**/*
+  - docroot/themes/bootstrap/**/*
   - docroot/vendor/**/*
   - patches/**/*
   - reports/**/*
