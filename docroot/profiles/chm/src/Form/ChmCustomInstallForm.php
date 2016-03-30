@@ -30,8 +30,8 @@ class ChmCustomInstallForm extends FormBase {
     $modules = self::getModules();
     $form['#title'] = 'CHM toolkit custom configuration';
     $form['modules'] = array(
-      '#title' => 'CHM Modules',
-      '#description' => 'Select which CHM modules would you like to install.',
+      '#title' => 'Select functionality',
+      '#description' => 'Select the functionality you would like to have available after install. You can enable later the ones that are left unchecked now.',
       '#type' => 'checkboxes',
       '#options' => $modules,
       '#default_value' => array_combine(array_keys($modules), array_keys($modules)),
