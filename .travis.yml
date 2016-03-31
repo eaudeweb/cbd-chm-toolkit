@@ -1,0 +1,54 @@
+language: php
+sudo: false
+
+addons:
+  code_climate:
+    repo_token: 52167f76ae2d33ce1c4c3343705a2ad424dc79dec8348acf7f2ed954cc27afa9
+
+notifications:
+  slack:
+    secure: GOE+MzjK/JRQrnAS5CXq/E2suRaZFOZCSgA1qYn0ScXvuR3BF8RYa8z927q574CSxDjHl5T+Xs+J+Q94KXzu8oiOvye1ehD2jFwWgm0QB7gXh99B9pTC69ZlQr9vMcn++36kzqEu24BjQKR3KwgL1Oh1GpLCjoNcLi2E46Yhnq/hzNB4NcYl/aT1JJSe/UtkysiybhziS244oR1rhYmFzyJPM+7bhKktDVkv8RYfZPxb1TZ0OcJkmQSGsNO7zcaFPXfKg2yd5eQocY8PhpNk70/7stlTsSBEicpKTmr5H2eeJZsUaMogESa4uPVwWikOO+yFENmq/dVrIwFXW2QK7Y0aEtul+OBGpG8eOoD9TcjzqILEpey9obAfogKPBI26U/LRb0Hh0vYNiiWailHQPivFUi3w7zT/QxgfPu/tCQq4htGpYefnhR3Uj4dhqg3jm/diP+jMJ/ccnXeuyly8WusvWHn0tq+x8C/5BbKIrHkQyVumnaAHdBLU2QUZ/96utGKVAToQPHT9vo9gwa1Yo5IQKG/ovCypg8VD64tbSHlfidc9/qp1oJpJge3ew7AqSX0HG+Kw5VMUZW260WSDiE6mT6rBN3v9lWWkDFLD7pHQcjbKAOdBtvbv31szAvqYcEazdzJY0eVolEZ+9udwe86yyFNTh6KjDFUx2A7eIXc=
+
+php:
+  - 5.5
+
+matrix:
+  # Don't wait for the allowed failures to build.
+  fast_finish: true
+
+mysql:
+  database: drupal
+  username: root
+  encoding: utf8
+
+before_install:
+  # remove Xdebug as we don't need it and it causes
+  # PHP Fatal error:  Maximum function nesting level of '256' reached
+  - phpenv config-rm xdebug.ini || true
+  - phpenv config-add .travis.php.ini
+  - phpenv rehash
+  - composer self-update
+
+install:
+  # Disable sendmail
+  - echo sendmail_path=`which true` >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  # Forward the errors to the syslog so we can print them
+  - echo "error_log=syslog" >> `php --ini | grep "Loaded Configuration" | awk '{print $4}'`
+  # Make sure we don't fail when checking out projects
+  - echo "StrictHostKeyChecking no" > ~/.ssh/config
+  - composer global require drush/drush:8.0.5
+  # add composer's global bin directory to the path see: https://github.com/drush-ops/drush#install---composer
+  - export PATH="$HOME/.composer/vendor/bin:$PATH"
+  - cd docroot
+  - drush si -y --db-url=mysql://root@127.0.0.1/drupal chm install_configure_form.update_status_module='array(FALSE, FALSE)'
+  - drush en -y simpletest
+  - drush runserver -y 8080 &
+
+before_script:
+  - mysql -e 'SET @@GLOBAL.wait_timeout=1200'
+
+script:
+  - php core/scripts/run-tests.sh --php `which php` --verbose --non-html --keep-results --url http://localhost:8080/ chm
+
+after_script:
+  - drush status

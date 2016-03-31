@@ -2,3 +2,5 @@
 docroot/modules/examples
 docroot/sites/default/files
 docroot/sites/default/settings.local.php
+docroot/sites/default/settings.php
+docroot/sites/simpletest/
