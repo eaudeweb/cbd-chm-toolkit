@@ -10,7 +10,7 @@ third_party_settings:
       - main
     parent: 'main:'
 name: 'News item'
-type: cbd_news
+type: chm_news
 description: 'Create a news item'
 help: ''
 new_revision: false

@@ -2,11 +2,11 @@
 
 /**
  * @file
- * cbd_news module file.
+ * chm_news module file.
  */
 
 /**
- * @defgroup cbd_news
+ * @defgroup chm_news
  * @ingroup CBD
  * @{
  * Definition of the news content type through configuration YAML files.

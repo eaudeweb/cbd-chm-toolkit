@@ -4,14 +4,14 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.cbd_news.body
-    - node.type.cbd_news
+    - field.field.node.chm_news.body
+    - node.type.chm_news
   module:
     - text
     - user
-id: node.cbd_news.teaser
+id: node.chm_news.teaser
 targetEntityType: node
-bundle: cbd_news
+bundle: chm_news
 mode: teaser
 content:
   body:

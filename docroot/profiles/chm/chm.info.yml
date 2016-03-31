@@ -29,6 +29,7 @@ dependencies:
   - system
   - search
   - shortcut
+  - taxonomy
   - toolbar
   - field_ui
   - file

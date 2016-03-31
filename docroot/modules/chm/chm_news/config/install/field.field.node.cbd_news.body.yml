@@ -4,13 +4,13 @@ status: true
 dependencies:
   config:
     - field.storage.node.body
-    - node.type.cbd_news
+    - node.type.chm_news
   module:
     - text
-id: node.cbd_news.body
+id: node.chm_news.body
 field_name: body
 entity_type: node
-bundle: cbd_news
+bundle: chm_news
 label: Body
 description: ''
 required: false

@@ -1,0 +1,6 @@
+config_chm_news.description:
+  path: 'system/cbd/news'
+  defaults:
+    _controller: '\Drupal\chm_news\Controller\CBDNewsController::description'
+  requirements:
+    _permission: 'access content'

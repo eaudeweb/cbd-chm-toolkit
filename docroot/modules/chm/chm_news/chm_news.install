@@ -2,27 +2,27 @@
 
 /**
  * @file
- * Install file for cbd_news.
+ * Install file for chm_news.
  */
 
 /**
  * Implements hook_install().
  *
- * @ingroup cbd_news
+ * @ingroup chm_news
  */
-function cbd_news_install() {
+function chm_news_install() {
   // Do not allow the locked content type to be deleted.
   $locked = Drupal::state()->get('node.type.locked');
-  $locked['cbd_news'] = 'cbd_news';
+  $locked['chm_news'] = 'chm_news';
   Drupal::state()->set('node.type.locked', $locked);
 }
 
 /**
  * Implements hook_uninstall().
  *
- * @ingroup cbd_news
+ * @ingroup chm_news
  */
-function cbd_news_uninstall() {
+function chm_news_uninstall() {
   // Allow locked_content_type to be deleted.
   $locked = Drupal::state()->get('node.type.locked');
   unset($locked['dbd_news']);

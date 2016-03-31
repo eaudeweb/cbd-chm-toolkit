@@ -3,15 +3,15 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.cbd_news.body
-    - field.field.node.cbd_news.field_tags
-    - node.type.cbd_news
+    - field.field.node.chm_news.body
+    - field.field.node.chm_news.field_tags
+    - node.type.chm_news
   module:
     - text
     - user
-id: node.cbd_news.default
+id: node.chm_news.default
 targetEntityType: node
-bundle: cbd_news
+bundle: chm_news
 mode: default
 content:
   body:

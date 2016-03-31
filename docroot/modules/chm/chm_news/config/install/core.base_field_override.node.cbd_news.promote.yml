@@ -3,11 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - node.type.cbd_news
-id: node.cbd_news.promote
+    - node.type.chm_news
+id: node.chm_news.promote
 field_name: promote
 entity_type: node
-bundle: cbd_news
+bundle: chm_news
 label: 'Promoted to front page'
 description: ''
 required: false

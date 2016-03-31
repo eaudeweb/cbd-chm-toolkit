@@ -4,12 +4,12 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_tags
-    - node.type.cbd_news
+    - node.type.chm_news
     - taxonomy.vocabulary.tags
-id: node.cbd_news.field_tags
+id: node.chm_news.field_tags
 field_name: field_tags
 entity_type: node
-bundle: cbd_news
+bundle: chm_news
 label: Tags
 description: ''
 required: false

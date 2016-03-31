@@ -2,12 +2,12 @@
 
 /**
  * @file
- * Contains Drupal\cbd_news\Tests\CBDNewsTest.
+ * Contains Drupal\chm_news\Tests\CBDNewsTest.
  *
- * Test cases for testing the cbd_news module.
+ * Test cases for testing the chm_news module.
  */
 
-namespace Drupal\cbd_news\Tests;
+namespace Drupal\chm_news\Tests;
 
 use Drupal\simpletest\WebTestBase;
 use Drupal\node\Entity\NodeType;
@@ -16,8 +16,8 @@ use Drupal\node\NodeTypeInterface;
 /**
  * Test that our content types are successfully created.
  *
- * @ingroup cbd_news
- * @group cbd_news
+ * @ingroup chm_news
+ * @group chm_news
  */
 class CBDNewsTest extends WebTestBase {
 
@@ -26,7 +26,7 @@ class CBDNewsTest extends WebTestBase {
    *
    * @var array
    */
-  public static $modules = array('node', 'cbd_news');
+  public static $modules = array('node', 'chm_news');
 
   /**
    * The installation profile to use with this test.
@@ -90,21 +90,21 @@ class CBDNewsTest extends WebTestBase {
 
     // Check for the locked status of our content types.
     /** @var NodeTypeInterface $node_type */
-    $node_type = NodeType::load('cbd_news');
-    $this->assertTrue($node_type, 'cbd_news exists.');
+    $node_type = NodeType::load('chm_news');
+    $this->assertTrue($node_type, 'chm_news exists.');
     if ($node_type) {
-      $this->assertTrue($node_type->isLocked(), 'cbd_news is not locked.');
+      $this->assertTrue($node_type->isLocked(), 'chm_news is not locked.');
     }
 
     // Log in a content creator.
-    $creator_user = $this->drupalCreateUser(array('create cbd_news content'));
+    $creator_user = $this->drupalCreateUser(array('create chm_news content'));
     $this->drupalLogin($creator_user);
 
     // Create a node.
     $edit = array();
     $edit['title[0][value]'] = $this->randomMachineName(8);
     $edit['body[0][value]'] = $this->randomMachineName(16);
-    $this->drupalPostForm('/node/add/cbd_news', $edit, t('Save'));
+    $this->drupalPostForm('/node/add/chm_news', $edit, t('Save'));
 
     // Check that the Basic page has been created.
     $this->assertText(t('@post @title has been created.', array(

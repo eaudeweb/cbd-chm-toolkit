@@ -2,17 +2,17 @@
 
 /**
  * @file
- * Contains \Drupal\cbd_news\Controller\CBDNewsController.
+ * Contains \Drupal\chm_news\Controller\CBDNewsController.
  */
 
-namespace Drupal\cbd_news\Controller;
+namespace Drupal\chm_news\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 
 /**
- * Controller routines for cbd_news.
+ * Controller routines for chm_news.
  *
- * @ingroup cbd_news
+ * @ingroup chm_news
  */
 class CBDNewsController extends ControllerBase {
 

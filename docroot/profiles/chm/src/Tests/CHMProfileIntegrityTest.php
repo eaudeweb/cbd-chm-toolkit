@@ -17,4 +17,9 @@ class CHMProfileIntegrityTest extends \Drupal\simpletest\WebTestBase {
     // Check the bootstrap theme has been loaded.
     $this->assertRaw('bootstrap.css');
   }
+
+  function testTaxonomyTags() {
+    $vocabularies = \Drupal\taxonomy\Entity\Vocabulary::loadMultiple();
+    $this->assertTrue(array_key_exists('tags', $vocabularies), 'Taxonomy "tags" exists');
+  }
 }
