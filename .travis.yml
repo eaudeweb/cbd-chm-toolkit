@@ -8,6 +8,7 @@ addons:
 notifications:
   slack:
     secure: GOE+MzjK/JRQrnAS5CXq/E2suRaZFOZCSgA1qYn0ScXvuR3BF8RYa8z927q574CSxDjHl5T+Xs+J+Q94KXzu8oiOvye1ehD2jFwWgm0QB7gXh99B9pTC69ZlQr9vMcn++36kzqEu24BjQKR3KwgL1Oh1GpLCjoNcLi2E46Yhnq/hzNB4NcYl/aT1JJSe/UtkysiybhziS244oR1rhYmFzyJPM+7bhKktDVkv8RYfZPxb1TZ0OcJkmQSGsNO7zcaFPXfKg2yd5eQocY8PhpNk70/7stlTsSBEicpKTmr5H2eeJZsUaMogESa4uPVwWikOO+yFENmq/dVrIwFXW2QK7Y0aEtul+OBGpG8eOoD9TcjzqILEpey9obAfogKPBI26U/LRb0Hh0vYNiiWailHQPivFUi3w7zT/QxgfPu/tCQq4htGpYefnhR3Uj4dhqg3jm/diP+jMJ/ccnXeuyly8WusvWHn0tq+x8C/5BbKIrHkQyVumnaAHdBLU2QUZ/96utGKVAToQPHT9vo9gwa1Yo5IQKG/ovCypg8VD64tbSHlfidc9/qp1oJpJge3ew7AqSX0HG+Kw5VMUZW260WSDiE6mT6rBN3v9lWWkDFLD7pHQcjbKAOdBtvbv31szAvqYcEazdzJY0eVolEZ+9udwe86yyFNTh6KjDFUx2A7eIXc=
+    on_success: change
 
 php:
   - 5.5
