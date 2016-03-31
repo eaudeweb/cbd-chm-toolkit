@@ -40,12 +40,12 @@ function chm_install_tasks(&$install_state) {
 function chm_install_profile_modules() {
   $modules = \Drupal::state()->get('chm_profile_modules');
   if (empty($modules)) {
-    $modules = Drupal\Chm\Form\ChmCustomInstallForm::getModules();
+    $modules = array();
   }
+  $operations = array();
   \Drupal::state()->delete('chm_profile_modules');
   foreach ($modules as $module) {
-    $operations[] = array('_chm_install_module_batch',
-      array($module));
+    $operations[] = array('_chm_install_module_batch', array($module));
   }
   $batch = array(
     'operations' => $operations,
