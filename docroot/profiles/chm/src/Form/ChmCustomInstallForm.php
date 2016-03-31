@@ -17,8 +17,8 @@ class ChmCustomInstallForm extends FormBase {
   public static function getModules() {
     // TODO return by Group CHM.
     return array(
-      'chm_comment' => 'Comments',
-      'chm_events' => 'Events',
+      'chm_comment' => 'Allow people to add comments on content',
+      'chm_events' => 'Events (events, calendar widgets, iCal etc.)',
     );
   }
 
@@ -28,18 +28,44 @@ class ChmCustomInstallForm extends FormBase {
 
   public function buildForm(array $form, FormStateInterface $form_state) {
     $modules = self::getModules();
-    $form['#title'] = 'CHM toolkit custom configuration';
-    $form['modules'] = array(
-      '#title' => 'Select functionality',
-      '#description' => 'Select the functionality you would like to have available after install. You can enable later the ones that are left unchecked now.',
+    $form = array(
+      '#tree' => TRUE,
+      '#title' => $this->t('Configure CHM toolkit')
+    );
+    $form['features'] = array(
+      '#type' => 'fieldset',
+      '#title' => $this->t('Functionalities')
+    );
+    $form['features']['modules'] = array(
       '#type' => 'checkboxes',
       '#options' => $modules,
       '#default_value' => array_combine(array_keys($modules), array_keys($modules)),
     );
+
+    $modules = array(
+      'google_analytics' => $this->t('Google Analytics'),
+      'piwik' => $this->t('Piwik')
+    );
+    $form['analytics'] = array(
+      '#type' => 'fieldset',
+      '#title' => $this->t('Visitor tracking'),
+      '#default_value' => array(),
+    );
+    $form['analytics']['modules'] = array(
+      '#type' => 'checkboxes',
+      '#options' => $modules,
+      '#default_value' => array(),
+    );
+
+
     $existing_default = \Drupal::state()->get('chm_profile_modules');
     if (!empty($existing_default)) {
       $form['modules']['#default_value'] = $existing_default;
     }
+    $form['notice'] = array(
+      '#type' => 'item',
+      '#markup' => $this->t('Select the items you wish to start with. Those left unchecked can be enabled later on.'),
+    );
     $form['op'] = array(
       '#type' => 'submit',
       '#value' => 'Submit',
@@ -51,8 +77,13 @@ class ChmCustomInstallForm extends FormBase {
   }
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $modules = $form_state->getValue('modules');
-    $modules = array_filter($modules);
-    \Drupal::state()->set('chm_profile_modules', $modules);
+    $all = array();
+    $modules = $form_state->getValue('features');
+    $all += array_filter($modules['modules']);
+
+    $modules = $form_state->getValue('analytics');
+    $all += array_filter($modules['modules']);
+
+    \Drupal::state()->set('chm_profile_modules', $all);
   }
 }
