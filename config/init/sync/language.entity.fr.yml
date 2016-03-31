@@ -1,9 +1,0 @@
-uuid: 9d28becb-1143-4607-b203-03150c0e091d
-langcode: en
-status: true
-dependencies: {  }
-id: fr
-label: French
-direction: ltr
-weight: 1
-locked: false
