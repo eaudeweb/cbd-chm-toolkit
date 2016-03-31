@@ -1,13 +1,13 @@
-uuid: 821d9424-e2df-4925-8a00-de3961271088
+uuid: a78deea5-a7b9-4331-b760-96ec62658c5f
 langcode: en
 status: true
 dependencies:
   config:
-    - node.type.chm_news
-id: node.chm_news.promote
+    - node.type.news
+id: node.news.promote
 field_name: promote
 entity_type: node
-bundle: chm_news
+bundle: news
 label: 'Promoted to front page'
 description: ''
 required: false

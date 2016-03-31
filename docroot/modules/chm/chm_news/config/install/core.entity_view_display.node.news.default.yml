@@ -1,17 +1,17 @@
-uuid: b08e8b5c-d51c-42e2-9400-f5e8b28aa711
+uuid: 56fa8262-139e-475b-b500-b3e22da911b1
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.chm_news.body
-    - field.field.node.chm_news.field_tags
-    - node.type.chm_news
+    - field.field.node.news.body
+    - field.field.node.news.field_tags
+    - node.type.news
   module:
     - text
     - user
-id: node.chm_news.default
+id: node.news.default
 targetEntityType: node
-bundle: chm_news
+bundle: news
 mode: default
 content:
   body:
@@ -22,11 +22,13 @@ content:
     third_party_settings: {  }
   field_tags:
     weight: 102
-    label: above
+    label: inline
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
   links:
     weight: 100
+    settings: {  }
+    third_party_settings: {  }
 hidden: {  }

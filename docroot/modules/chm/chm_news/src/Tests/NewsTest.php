@@ -16,10 +16,10 @@ use Drupal\node\NodeTypeInterface;
 /**
  * Test that our content types are successfully created.
  *
- * @ingroup chm_news
- * @group chm_news
+ * @ingroup chm
+ * @group chm
  */
-class CBDNewsTest extends WebTestBase {
+class NewsTest extends WebTestBase {
 
   /**
    * Modules to enable.
@@ -86,29 +86,29 @@ class CBDNewsTest extends WebTestBase {
 
     // Get a list of content types.
     $this->drupalGet('/admin/structure/types');
-    $this->assertRaw('News item', 'News item content type found.');
+    $this->assertRaw('Content type to add news in the website', 'News item content type found.');
 
     // Check for the locked status of our content types.
     /** @var NodeTypeInterface $node_type */
-    $node_type = NodeType::load('chm_news');
-    $this->assertTrue($node_type, 'chm_news exists.');
+    $node_type = NodeType::load('news');
+    $this->assertTrue($node_type, 'news exists.');
     if ($node_type) {
-      $this->assertTrue($node_type->isLocked(), 'chm_news is not locked.');
+      $this->assertTrue($node_type->isLocked(), 'news is not locked.');
     }
 
     // Log in a content creator.
-    $creator_user = $this->drupalCreateUser(array('create chm_news content'));
+    $creator_user = $this->drupalCreateUser(array('create news content'));
     $this->drupalLogin($creator_user);
 
     // Create a node.
     $edit = array();
     $edit['title[0][value]'] = $this->randomMachineName(8);
     $edit['body[0][value]'] = $this->randomMachineName(16);
-    $this->drupalPostForm('/node/add/chm_news', $edit, t('Save'));
+    $this->drupalPostForm('/node/add/news', $edit, t('Save'));
 
     // Check that the Basic page has been created.
     $this->assertText(t('@post @title has been created.', array(
-      '@post' => 'News item',
+      '@post' => 'News',
       '@title' => $edit['title[0][value]'],
     )), 'News item created.');
 

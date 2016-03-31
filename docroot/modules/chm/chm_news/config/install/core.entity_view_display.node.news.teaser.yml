@@ -1,17 +1,18 @@
-uuid: fb5d3cbb-bd36-4fb5-8700-a30668b6ce6d
+uuid: 4358cfbb-1b83-4a26-9400-c7f16766bc31
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.chm_news.body
-    - node.type.chm_news
+    - field.field.node.news.body
+    - field.field.node.news.field_tags
+    - node.type.news
   module:
     - text
     - user
-id: node.chm_news.teaser
+id: node.news.teaser
 targetEntityType: node
-bundle: chm_news
+bundle: news
 mode: teaser
 content:
   body:
@@ -23,4 +24,5 @@ content:
     third_party_settings: {  }
   links:
     weight: 100
-hidden: {  }
+hidden:
+  field_tags: true

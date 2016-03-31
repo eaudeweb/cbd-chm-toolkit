@@ -1,16 +1,16 @@
-uuid: 4ae61e01-3a72-458e-8304-4b1c4f72f431
+uuid: aed711c4-4556-463b-be4e-789ac730f98d
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.body
-    - node.type.chm_news
+    - node.type.news
   module:
     - text
-id: node.chm_news.body
+id: node.news.body
 field_name: body
 entity_type: node
-bundle: chm_news
+bundle: news
 label: Body
 description: ''
 required: false

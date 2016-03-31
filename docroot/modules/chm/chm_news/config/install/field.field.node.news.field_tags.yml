@@ -1,19 +1,19 @@
-uuid: eb4f4c88-8535-4507-9d00-f2c93b8bffa3
+uuid: 6cb05b1e-f576-4dbc-a607-7de76fc9bd2e
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_tags
-    - node.type.chm_news
+    - node.type.news
     - taxonomy.vocabulary.tags
-id: node.chm_news.field_tags
+id: node.news.field_tags
 field_name: field_tags
 entity_type: node
-bundle: chm_news
+bundle: news
 label: Tags
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:

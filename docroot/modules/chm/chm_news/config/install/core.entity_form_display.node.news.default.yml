@@ -1,17 +1,17 @@
-uuid: e55d9441-5934-4f01-8700-e2b26f3236ed
+uuid: 65578ba4-5535-48f9-ab20-32143c81dbb7
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.chm_news.body
-    - field.field.node.chm_news.field_tags
-    - node.type.chm_news
+    - field.field.node.news.body
+    - field.field.node.news.field_tags
+    - node.type.news
   module:
     - path
     - text
-id: node.chm_news.default
+id: node.news.default
 targetEntityType: node
-bundle: chm_news
+bundle: news
 mode: default
 content:
   body:

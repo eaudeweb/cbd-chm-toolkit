@@ -1,4 +1,4 @@
-uuid: 5bf54a16-9abd-4760-ab21-33ec3f4b326f
+uuid: 3e9828f6-5df7-416b-9f1e-309dca316a79
 langcode: en
 status: true
 dependencies:
@@ -9,10 +9,10 @@ third_party_settings:
     available_menus:
       - main
     parent: 'main:'
-name: 'News item'
-type: chm_news
-description: 'Create a news item'
+name: News
+type: news
+description: 'Content type to add news in the website'
 help: ''
 new_revision: false
-preview_mode: 1
+preview_mode: 0
 display_submitted: false
