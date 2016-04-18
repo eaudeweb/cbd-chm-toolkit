@@ -1,0 +1,9 @@
+uuid: 18f2756e-67b0-41e9-b308-8bdcf8567e14
+langcode: en
+status: true
+dependencies: {  }
+name: Region
+vid: region
+description: 'Geographical or geopolitical region'
+hierarchy: 0
+weight: 0

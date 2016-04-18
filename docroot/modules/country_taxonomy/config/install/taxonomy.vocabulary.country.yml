@@ -1,0 +1,9 @@
+uuid: 908ab14a-106e-4d3a-9102-2ea9c52e2b74
+langcode: en
+status: true
+dependencies: {  }
+name: Country
+vid: country
+description: 'List of countries implemented as taxonomy'
+hierarchy: 0
+weight: 0

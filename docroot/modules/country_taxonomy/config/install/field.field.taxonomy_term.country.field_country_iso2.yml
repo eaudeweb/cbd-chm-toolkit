@@ -1,0 +1,19 @@
+uuid: 208a97d1-9d12-49fd-9619-258f6b1ed4ae
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_country_iso2
+    - taxonomy.vocabulary.country
+id: taxonomy_term.country.field_country_iso2
+field_name: field_country_iso2
+entity_type: taxonomy_term
+bundle: country
+label: 'ISO 2-letter code'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

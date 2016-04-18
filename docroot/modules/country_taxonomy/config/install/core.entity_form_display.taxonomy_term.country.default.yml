@@ -1,0 +1,77 @@
+uuid: 4601ca6e-7b9f-4a67-a500-ffb2106e2130
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.country.field_country_eu
+    - field.field.taxonomy_term.country.field_country_flag
+    - field.field.taxonomy_term.country.field_country_iso2
+    - field.field.taxonomy_term.country.field_country_iso3
+    - field.field.taxonomy_term.country.field_country_official_name
+    - field.field.taxonomy_term.country.field_region
+    - image.style.thumbnail
+    - taxonomy.vocabulary.country
+  module:
+    - image
+    - path
+id: taxonomy_term.country.default
+targetEntityType: taxonomy_term
+bundle: country
+mode: default
+content:
+  field_country_eu:
+    weight: 5
+    settings:
+      display_label: false
+    third_party_settings: {  }
+    type: boolean_checkbox
+  field_country_flag:
+    weight: 4
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+  field_country_iso2:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_country_iso3:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_country_official_name:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_region:
+    weight: 7
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  name:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  description: true
