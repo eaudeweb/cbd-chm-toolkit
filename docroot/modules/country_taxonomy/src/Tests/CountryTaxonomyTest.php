@@ -2,9 +2,9 @@
 
 /**
  * @file
- * Contains Drupal\chm_news\Tests\CBDNewsTest.
+ * Contains Drupal\country_taxonomy\Tests\CountryTaxonomyTest.
  *
- * Test cases for testing the chm_news module.
+ * Test cases for testing the country_taxonomy module.
  */
 
 namespace Drupal\country_taxonomy\Tests;
@@ -14,7 +14,7 @@ use Drupal\node\Entity\NodeType;
 use Drupal\node\NodeTypeInterface;
 
 /**
- * Test that our content types are successfully created.
+ * Test that our structures are successfully created.
  *
  * @ingroup country_taxonomy
  * @group country_taxonomy
