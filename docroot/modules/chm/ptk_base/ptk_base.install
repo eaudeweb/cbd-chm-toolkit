@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function ptk_base_install() {
+  // Create the 20 Aichi targets and 5 strategic goals
+  $data = [
+    'Aichi Strategic Goal A' => [
+      'Aichi Target 1' => 1,
+      'Aichi Target 2' => 1,
+      'Aichi Target 3' => 1,
+      'Aichi Target 4' => 1,
+    ],
+    'Aichi Strategic Goal B' => [
+      'Aichi Target 5' => 1,
+      'Aichi Target 6' => 1,
+      'Aichi Target 7' => 1,
+      'Aichi Target 8' => 1,
+      'Aichi Target 9' => 1,
+      'Aichi Target 10' => 1,
+    ],
+    'Aichi Strategic Goal C' => [
+      'Aichi Target 11' => 1,
+      'Aichi Target 12' => 1,
+      'Aichi Target 13' => 1,
+    ],
+    'Aichi Strategic Goal D' => [
+      'Aichi Target 14' => 1,
+      'Aichi Target 15' => 1,
+      'Aichi Target 16' => 1,
+    ],
+    'Aichi Strategic Goal E' => [
+      'Aichi Target 17' => 1,
+      'Aichi Target 18' => 1,
+      'Aichi Target 19' => 1,
+      'Aichi Target 20' => 1,
+    ],
+  ];
+
+  foreach ($data as $strategic_goal_name => $targets) {
+    $sg = \Drupal\taxonomy\Entity\Term::create(array(
+      'vid' => 'aichi_target',
+      'name' => $strategic_goal_name,
+      'parent' => array(),
+    ));
+    $sg->save();
+    foreach ($targets as $name => $v) {
+      $target = \Drupal\taxonomy\Entity\Term::create(array(
+        'vid' => 'aichi_target',
+        'name' => $name,
+        'parent' => array($sg->id()),
+      ));
+      $target->save();
+    }
+  }
+}
