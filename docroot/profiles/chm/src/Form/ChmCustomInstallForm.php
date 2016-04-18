@@ -77,7 +77,7 @@ class ChmCustomInstallForm extends FormBase {
   }
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $all = array('country_taxonomy');
+    $all = array('country_taxonomy', 'ptk_base');
     $modules = $form_state->getValue('features');
     $all += array_filter($modules['modules']);
 
