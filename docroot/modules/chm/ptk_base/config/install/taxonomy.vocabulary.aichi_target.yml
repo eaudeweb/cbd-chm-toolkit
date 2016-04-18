@@ -1,0 +1,9 @@
+uuid: 47eef0c4-2a4a-40b3-9008-8f08fafe0f9f
+langcode: en
+status: true
+dependencies: {  }
+name: 'Aichi biodiversity target'
+vid: aichi_target
+description: ''
+hierarchy: 0
+weight: 0
