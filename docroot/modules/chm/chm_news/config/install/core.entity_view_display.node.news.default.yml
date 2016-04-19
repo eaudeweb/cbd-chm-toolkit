@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.field.node.news.body
-    - field.field.node.news.field_tags
     - node.type.news
   module:
     - text
@@ -20,13 +19,6 @@ content:
     weight: 101
     settings: {  }
     third_party_settings: {  }
-  field_tags:
-    weight: 102
-    label: inline
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
   links:
     weight: 100
     settings: {  }

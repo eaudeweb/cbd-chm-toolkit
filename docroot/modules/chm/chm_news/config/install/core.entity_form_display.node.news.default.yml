@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.field.node.news.body
-    - field.field.node.news.field_tags
     - node.type.news
   module:
     - path
@@ -27,14 +26,6 @@ content:
     weight: 10
     settings: {  }
     third_party_settings: {  }
-  field_tags:
-    weight: 32
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
   path:
     type: path
     weight: 30
