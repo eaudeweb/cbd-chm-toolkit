@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function country_taxonomy_install() {
+  $data = file_get_contents(drupal_get_path('module', 'country_taxonomy') . '/data/countries.json');
+  if ($countries = json_decode($data)) {
+    foreach($countries as $country) {
+      $term = \Drupal\taxonomy\Entity\Term::create([
+        'vid' => 'country',
+        'name' => $country->name,
+        'parent' => [],
+      ]);
+      $term->field_country_official_name->setValue($country->name_official);
+      $term->field_country_iso2->setValue($country->code2l);
+      $term->field_country_iso3->setValue($country->code3l);
+      $term->save();
+    }
+  }
+  else {
+    throw new \Exception('Could not decode the JSON countries from the data file: countries.json');
+  }
+}
