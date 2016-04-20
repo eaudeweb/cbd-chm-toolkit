@@ -1,0 +1,19 @@
+uuid: 78e73692-9861-41da-ae61-97a2252d47f4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_phone_numbers
+    - node.type.contact
+id: node.contact.field_phone_numbers
+field_name: field_phone_numbers
+entity_type: node
+bundle: contact
+label: 'Phone numbers'
+description: 'Enter one or several telephone numbers. The most relevant number should be first'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

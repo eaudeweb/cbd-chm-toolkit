@@ -1,0 +1,139 @@
+uuid: 6a8915bf-8e00-4038-9900-edce22c270ea
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.contact.body
+    - field.field.node.contact.field_address
+    - field.field.node.contact.field_address_country
+    - field.field.node.contact.field_city
+    - field.field.node.contact.field_contact_type
+    - field.field.node.contact.field_country
+    - field.field.node.contact.field_email
+    - field.field.node.contact.field_facebook
+    - field.field.node.contact.field_google_plus
+    - field.field.node.contact.field_job_title
+    - field.field.node.contact.field_linkedin
+    - field.field.node.contact.field_organisations
+    - field.field.node.contact.field_phone_numbers
+    - field.field.node.contact.field_skype
+    - node.type.contact
+  module:
+    - link
+    - text
+    - user
+id: node.contact.default
+targetEntityType: node
+bundle: contact
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+  field_address:
+    weight: 104
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+  field_address_country:
+    weight: 106
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_city:
+    weight: 105
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_contact_type:
+    weight: 114
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_country:
+    weight: 102
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_email:
+    weight: 109
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+  field_facebook:
+    weight: 111
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+  field_google_plus:
+    weight: 112
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+  field_job_title:
+    weight: 108
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_linkedin:
+    weight: 110
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+  field_organisations:
+    weight: 107
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_phone_numbers:
+    weight: 103
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_skype:
+    weight: 113
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  links:
+    weight: 100
+hidden: {  }

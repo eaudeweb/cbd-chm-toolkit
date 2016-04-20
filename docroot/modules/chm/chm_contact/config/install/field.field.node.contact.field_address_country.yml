@@ -1,0 +1,27 @@
+uuid: 8a91f43e-d4fd-4cc3-8c03-3fc743114817
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_address_country
+    - node.type.contact
+    - taxonomy.vocabulary.country
+id: node.contact.field_address_country
+field_name: field_address_country
+entity_type: node
+bundle: contact
+label: 'Address country'
+description: 'Country the address can be found into'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      country: country
+    sort:
+      field: _none
+    auto_create: false
+field_type: entity_reference

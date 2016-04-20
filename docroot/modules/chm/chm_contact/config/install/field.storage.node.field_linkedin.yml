@@ -1,0 +1,19 @@
+uuid: fba6788f-c7d1-49a1-b700-b172b4a51260
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+    - node
+id: node.field_linkedin
+field_name: field_linkedin
+entity_type: node
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

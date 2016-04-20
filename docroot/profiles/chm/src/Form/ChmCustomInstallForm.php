@@ -20,6 +20,7 @@ class ChmCustomInstallForm extends FormBase {
       'chm_comment' => 'Allow people to add comments on content',
       'chm_events' => 'Events (events, calendar widgets, iCal etc.)',
       'chm_news' => 'News (content and related views, blocks etc.)',
+      'chm_contact' => 'Contacts (content and related views, blocks etc.)',
     );
   }
 

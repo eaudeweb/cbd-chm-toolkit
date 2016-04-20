@@ -1,0 +1,9 @@
+uuid: 0772080a-a685-4a11-8006-6b558526d8c7
+langcode: en
+status: true
+dependencies: {  }
+name: 'Contact type'
+vid: contact_type
+description: 'Type of contact (e.g. National Focal Point, Expert etc.)'
+hierarchy: 0
+weight: 0

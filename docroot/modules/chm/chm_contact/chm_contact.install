@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function chm_contact_install() {
+  $data = [
+    'National Focal Point' => 1,
+    'Expert' => 1,
+    'Author' => 1,
+    'VIP' => 1,
+  ];
+  foreach ($data as $name => $v) {
+    $term = \Drupal\taxonomy\Entity\Term::create(array(
+      'vid' => 'contact_type',
+      'name' => $name,
+      'parent' => array(),
+    ));
+    $term->save();
+  }
+}

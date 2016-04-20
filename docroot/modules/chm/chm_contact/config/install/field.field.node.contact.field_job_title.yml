@@ -1,0 +1,19 @@
+uuid: 46a17d3d-5ee4-468e-8600-eb56fa8e33aa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_job_title
+    - node.type.contact
+id: node.contact.field_job_title
+field_name: field_job_title
+entity_type: node
+bundle: contact
+label: 'Job title'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

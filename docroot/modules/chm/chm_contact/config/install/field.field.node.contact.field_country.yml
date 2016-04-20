@@ -1,0 +1,27 @@
+uuid: a7729c47-7ac0-49bc-9800-bfb7df1cc499
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_country
+    - node.type.contact
+    - taxonomy.vocabulary.country
+id: node.contact.field_country
+field_name: field_country
+entity_type: node
+bundle: contact
+label: 'Representing country'
+description: 'The country or countries this contact is officially representing'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      country: country
+    sort:
+      field: _none
+    auto_create: false
+field_type: entity_reference
