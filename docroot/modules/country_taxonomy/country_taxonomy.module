@@ -11,11 +11,39 @@ function country_taxonomy_load_multiple() {
   /** @var \Drupal\taxonomy\TermStorageInterface $ts */
   $ts = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
   $terms = $ts->loadTree('country');
+  /** @var stdClass $tob */
   foreach ($terms as $tob) {
     $ret[] = $tob->tid;
   }
   return $ts->loadMultiple($ret);
 }
+
+
+/**
+ * Retrieve a country by ISO 2-letter or 3-letter code
+ *
+ * @param $iso
+ * @return \Drupal\taxonomy\Entity\Term
+ */
+function country_taxonomy_load_by_iso($iso) {
+  $ret = NULL;
+  $q = \Drupal\Core\Database\Database::getConnection()->select('taxonomy_term__field_country_iso2');
+  $q->fields(NULL, array('entity_id'));
+  $q->condition('field_country_iso2_value', $iso);
+  if ($tid = $q->execute()->fetchField()) {
+    $ret = \Drupal\taxonomy\Entity\Term::load($tid);
+  }
+  else {
+    $q = \Drupal\Core\Database\Database::getConnection()->select('taxonomy_term__field_country_iso3');
+    $q->fields(NULL, array('entity_id'));
+    $q->condition('field_country_iso3_value', $iso);
+    if ($tid = $q->execute()->fetchField()) {
+      $ret = \Drupal\taxonomy\Entity\Term::load($tid);
+    }
+  }
+  return $ret;
+}
+
 
 /**
  * Retrieve an array of countries for use on select form elements.
