@@ -1,0 +1,36 @@
+<?php
+
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+
+/**
+ * Alter the cardinality of field_country to 1.
+ *
+ * @inheritdoc
+ */
+function chm_contact_form_node_contact_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  $form['field_country']['widget']['#cardinality'] = 1;
+  $form['field_country']['widget']['#cardinality_multiple'] = '';
+  unset($form['field_country']['widget']['add_more']);
+  unset($form['field_country']['widget'][0]['_weight']);
+
+  $form['field_country']['widget'][0]['target_id']['#title_display'] = 'before';
+  $title = $form['field_country']['widget'][0]['target_id']['#title'];
+  $form['field_country']['widget'][0]['target_id']['#title'] = new TranslatableMarkup('@title', $title->getArguments());
+}
+
+/**
+ * Alter the cardinality of field_country to 1.
+ *
+ * @inheritdoc
+ */
+function chm_contact_form_node_contact_edit_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  $form['field_country']['widget']['#cardinality'] = 1;
+  $form['field_country']['widget']['#cardinality_multiple'] = '';
+  unset($form['field_country']['widget']['add_more']);
+  unset($form['field_country']['widget'][0]['_weight']);
+  unset($form['field_country']['widget'][1]);
+
+  $form['field_country']['widget'][0]['target_id']['#title_display'] = 'before';
+  $title = $form['field_country']['widget'][0]['target_id']['#title'];
+  $form['field_country']['widget'][0]['target_id']['#title'] = new TranslatableMarkup('@title', $title->getArguments());
+}
