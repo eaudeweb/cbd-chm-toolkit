@@ -9,11 +9,12 @@ Technical information
 
 # Developer notes
 
-1. Use the `chm.ptk` injected service to access global functionality. Also add new functionality to this service.
+- Create your own aliases by adding a file `drush/aliases/aliases.local.php`
 
-  To access this service:
+- Use the `chm.ptk` injected service to access global functionality. Also add new functionality to this service. To access this service:
 
   ```
   $chm = \Drupal::service('chm.ptk');
   $example = $chm->getExampleConfiguration();
   ```
+
