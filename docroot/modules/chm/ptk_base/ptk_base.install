@@ -55,3 +55,21 @@ function ptk_base_install() {
     }
   }
 }
+
+/**
+ * Implements hook_requirements().
+ */
+function ptk_base_requirements($phase) {
+  $requirements = [];
+  if ($phase == 'runtime' && ! $country = \Drupal::service('chm.ptk')->getCountry()) {
+    $url = \Drupal\Core\Url::fromUserInput('/admin/config/system/site-information');
+    $link = \Drupal\Core\Link::createFromRoute('Please click here to configure', $url->getRouteName());
+    $requirements['chm_ptk_country'] = [
+      'title' => t('Country'),
+      'description' => t('CHM Portal country not set. ' . $link->toString()),
+      'severity' => REQUIREMENT_ERROR,
+    ];
+  }
+  return $requirements;
+}
+

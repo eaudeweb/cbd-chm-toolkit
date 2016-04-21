@@ -8,3 +8,4 @@ dependencies:
   - image
   - path
   - taxonomy
+  - country_taxonomy

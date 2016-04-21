@@ -1,0 +1,8 @@
+# Schema for the configuration files of the ptk_base module.
+chm.ptk:
+  type: config_object
+  label: 'CHM portal toolkit configuration'
+  mapping:
+    country:
+      type: string
+      label: 'ISO country code of this portal instance'

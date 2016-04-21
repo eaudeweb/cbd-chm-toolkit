@@ -7,3 +7,13 @@ Technical information
 
 
 
+# Developer notes
+
+1. Use the `chm.ptk` injected service to access global functionality. Also add new functionality to this service.
+
+  To access this service:
+
+  ```
+  $chm = \Drupal::service('chm.ptk');
+  $example = $chm->getExampleConfiguration();
+  ```
