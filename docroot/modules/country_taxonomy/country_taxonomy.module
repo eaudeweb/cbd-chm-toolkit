@@ -1,0 +1,46 @@
+<?php
+
+/**
+ * Retrieve the list of countries as entities.
+ *
+ * @return array
+ *     Array of Term entities
+ */
+function country_taxonomy_load_multiple() {
+  $ret = array();
+  /** @var \Drupal\taxonomy\TermStorageInterface $ts */
+  $ts = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  $terms = $ts->loadTree('country');
+  foreach ($terms as $tob) {
+    $ret[] = $tob->tid;
+  }
+  return $ts->loadMultiple($ret);
+}
+
+/**
+ * Retrieve an array of countries for use on select form elements.
+ *
+ * @param string $key
+ *    The array will be keyed by this field. Possible values: iso2 or iso3
+ *
+ * @return array
+ *     Array of strings
+ */
+function country_taxonomy_get_countries_as_options($key = 'iso2') {
+  $ret = array();
+  if (!in_array(strtolower($key), array('iso2', 'iso3'))) {
+    return $ret;
+  }
+  $field = 'field_country_' . $key;
+  $terms = country_taxonomy_load_multiple();
+  foreach ($terms as $term) {
+    try {
+      $k = $term->{$field}->getValue();
+      if (!empty($k[0]['value'])) {
+        $key = $k[0]['value'];
+        $ret[$key] = $term->label();
+      }
+    } catch (\Exception $e) {  }
+  }
+  return $ret;
+}
