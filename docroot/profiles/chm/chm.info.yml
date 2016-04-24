@@ -39,6 +39,8 @@ dependencies:
   - tour
   - user
   - automated_cron
+  - libraries
+  - phpexcel
 themes:
   - seven
   - chm_frontend
