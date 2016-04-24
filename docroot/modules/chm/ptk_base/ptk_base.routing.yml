@@ -5,3 +5,11 @@ ptk_base.admin.content_types_overview:
     _title: 'Content types overview'
   requirements:
     _permission: 'view the administration theme'
+
+ptk_base.admin.content_types_overview.export:
+  path: '/admin/reports/content_types_overview/export'
+  defaults:
+    _controller: '\Drupal\ptk_base\Controller\ContentTypesOverviewController::export'
+    _title: 'Export content type information in MS Excel'
+  requirements:
+    _permission: 'view the administration theme'
