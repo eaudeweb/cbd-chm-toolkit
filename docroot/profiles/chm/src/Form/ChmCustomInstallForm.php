@@ -15,7 +15,6 @@ use Drupal\Core\Form\FormStateInterface;
 class ChmCustomInstallForm extends FormBase {
 
   public static function getModules() {
-    // TODO return by Group CHM.
     return array(
       'chm_comment' => 'Allow people to add comments on content',
       'chm_events' => 'Events (events, calendar widgets, iCal etc.)',
@@ -44,22 +43,6 @@ class ChmCustomInstallForm extends FormBase {
       '#default_value' => array_combine(array_keys($modules), array_keys($modules)),
     );
 
-    $modules = array(
-      'google_analytics' => $this->t('Google Analytics'),
-      'piwik' => $this->t('Piwik')
-    );
-    $form['analytics'] = array(
-      '#type' => 'fieldset',
-      '#title' => $this->t('Visitor tracking'),
-      '#default_value' => array(),
-    );
-    $form['analytics']['modules'] = array(
-      '#type' => 'checkboxes',
-      '#options' => $modules,
-      '#default_value' => array(),
-    );
-
-
     $existing_default = \Drupal::state()->get('chm_profile_modules');
     if (!empty($existing_default)) {
       $form['modules']['#default_value'] = $existing_default;
@@ -79,7 +62,11 @@ class ChmCustomInstallForm extends FormBase {
   }
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $all = array('country_taxonomy', 'ptk_base');
+    $all = array(
+      'google_analytics',
+      'country_taxonomy',
+      'ptk_base'
+    );
     $modules = $form_state->getValue('features');
     $all += array_filter($modules['modules']);
 
