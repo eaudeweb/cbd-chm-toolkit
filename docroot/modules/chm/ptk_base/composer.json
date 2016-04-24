@@ -1,0 +1,9 @@
+{
+  "name": "drupal/ptk_base",
+  "description": "CHM portal toolkit base module",
+  "type": "drupal-module",
+  "license": "GPL-2.0+",
+  "require": {
+      "phpoffice/phpexcel": "1.8.1"
+  }
+}

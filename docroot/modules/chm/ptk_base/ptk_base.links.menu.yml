@@ -1,0 +1,8 @@
+ptk_base.admin.content_types_overview_menu_item:
+  title: 'Content types overview'
+  description: 'Show an overview of content types structure'
+  parent: system.admin_reports
+  route_name: ptk_base.admin.content_types_overview
+  weight: 100
+  #If menu_name is omitted, the "Tools" menu will be used.
+  menu_name: admin

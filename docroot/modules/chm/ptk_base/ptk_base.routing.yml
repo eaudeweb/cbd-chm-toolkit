@@ -1,0 +1,7 @@
+ptk_base.admin.content_types_overview:
+  path: '/admin/reports/content_types_overview'
+  defaults:
+    _controller: '\Drupal\ptk_base\Controller\ContentTypesOverviewController::content'
+    _title: 'Content types overview'
+  requirements:
+    _permission: 'view the administration theme'
