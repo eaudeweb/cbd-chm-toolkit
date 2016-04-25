@@ -1,0 +1,31 @@
+Domain Locale 7.x-1.0-beta3, 2013-05-06
+----------------------------------------
+- by Mac_Weber: new instructions at README.txt
+- by Mac_Weber, joebest: Provide 'Language neutral' as an available option.
+
+Domain Locale 7.x-1.0-beta2, 2013-03-05
+----------------------------------------
+- by Mac_Weber, louisnagtegaal: critical fix to drush integration
+
+Domain Locale 7.x-1.0-beta1, 2013-30-04
+----------------------------------------
+- by Mac_Weber: changed instructions on README.txt
+- by Mac_Weber, FGM: many code improvements. Huge code rewrite.git
+- by benoit.pointet: add drush commands
+
+Domain Locale 7.x-1.0-alpha4, 2012-12-09
+----------------------------------------
+- by fgm: fix security on FAPI. Fix coding standards
+
+Domain Locale 7.x-1.0-alpha3, 2012-12-08
+----------------------------------------
+- by Mac_Weber: fix code standards
+- by Mac_Weber: fix deleting a language
+
+Domain Locale 7.x-1.0-alpha2, 2012-12-05
+----------------------------------------
+- by Mac_Weber: fix coding standards
+
+Domain Locale 7.x-1.0-alpha1, 2011-12-29
+----------------------------------------
+- D7 port by emilkarl, lennartvv, Laurent_, make77

@@ -1,0 +1,742 @@
+<?php
+/**
+ * @file
+ * Provides domain specific language settings.
+ *
+ * Notes:
+ * - This module forces all declared languages to be enabled in {languages} and
+ *   applies domain-based filtering on top of core.
+ */
+
+/**
+ * Helper function to retrieve domains that have a specific language enabled
+ *
+ * @param string $langcode
+ *
+ * @return array
+ *   List of domain ids
+ */
+function _domain_locale_get_language_domains($langcode) {
+  $args[] = $langcode;
+  $sql = <<<SQL
+    SELECT domain_id
+    FROM {domain_locale}
+    WHERE language = :langcode
+    ORDER BY domain_id
+SQL;
+
+  $result = db_query($sql, array(':langcode' => $langcode));
+  $domains = array();
+  foreach ($result as $row) {
+    $domains[] = $row->domain_id;
+  }
+  return $domains;
+}
+
+/**
+ * Implements hook_domainlinks().
+ *
+ * FIXME. On Domain 7.2, the description for this hook said:
+ * Returns links to additional functions for the Domain Access module's admin screen
+ *
+ * Note that if your page requires a user_access check other than 'administer domains'
+ * you should explictly check permissions before returning the array.
+ *
+ * @param $domain
+ *   An array of data for the active domain, taken from the {domain} table.
+ *   - domain_id -- the unique identifier of this domain
+ *   - subdomain -- the host path of the url for this domain
+ *   - sitename -- the human-readable name of this domain
+ *
+ * @return
+ *   An array of links to append to the admin screen, in the format:
+ *   - title -- the link title
+ *   - path -- the link path (a Drupal-formatted path)
+ *   The data returned by this function will be passed through the l() function.
+ *
+ *  If you do not provide a link for a specific domain, return FALSE.
+ *
+ */
+function domain_locale_FIXME_domainlinks($domain) {
+  if (isset($domain['domain_id'])) {
+    $links[] = array(
+      'title' => t('languages'),
+      'path' => 'admin/structure/domain/view/' . $domain['domain_id'] . '/language',
+    );
+    return $links;
+  }
+  return FALSE;
+}
+
+/**
+ * Remove all language settings from {domain_locale} for a domain.
+ *
+ * @param int $domain_id
+ */
+function domain_locale_delete_domain($domain_id) {
+  db_delete('domain_locale')
+    ->condition('domain_id', $domain_id)
+    ->execute();
+}
+
+/**
+ * Remove a single language setting from {domain_locale}
+ *
+ * @param int $domain_id
+ * @param string $langcode
+ */
+function domain_locale_delete_domain_language($domain_id, $langcode) {
+  db_delete('domain_locale')
+    ->condition('domain_id', $domain_id)
+    ->condition('language', $langcode)
+    ->execute();
+}
+
+/**
+ * Implements hook_domain_delete().
+ *
+ * - Delete domain locale entries for the deleted domain.
+ */
+function domain_locale_domain_delete($domain, $form_values = array()) {
+  domain_locale_delete_domain($domain['domain_id']);
+}
+
+/**
+ * Implements hook_domain_insert().
+ *
+ * - Insert domain locale entries for the newly inserted domain.
+ */
+function domain_locale_domain_insert($domain) {
+  domain_locale_restore_default($domain['domain_id']);
+}
+
+/**
+ * Implements hook_domain_warnings_alter().
+ *
+ * Remove warning message from module Domain. Improved message is provided by
+ * the module Domain Locale for this the form locale_languages_overview_form.
+ */
+function domain_locale_domain_warnings_alter(&$forms) {
+  unset($forms['locale_languages_overview_form']);
+}
+
+/**
+ * Implements hook_form_alter().
+ *
+ * - add validation on language deletion form
+ * - limit language selection to the enabled languages on domain_conf form
+ * - allow enabling/disabling languages only for specific domains
+ */
+function domain_locale_form_alter(&$form, $form_state, $form_id) {
+  switch ($form_id) {
+    case 'locale_languages_delete_form':
+      $form['#submit'][] = 'domain_locale_languages_delete_submit';
+      break;
+
+    // Only allow to select one of the enabled languages as default language.
+    case 'domain_conf_form':
+      $domain_id = $form['domain_id']['#value'];
+      $languages = domain_locale_lookup($domain_id);
+      if (count($languages) > 0) {
+        $default_options = $form[t('Language settings')]['language_default']['#options'];
+        $options = $default_options;
+        foreach ($default_options as $key => $lang) {
+          if (!array_key_exists($key, $languages) && drupal_strlen($key) > 0) {
+            unset($options[$key]);
+          }
+        }
+        $form[t('Language settings')]['language_default']['#options'] = $options;
+      }
+      break;
+
+    case 'domain_batch_form':
+      if ($form['batch_item']['#value'] == 'language_default') {
+        foreach ($form['domain_batch'] as $key => $value) {
+          if (is_int($key)) {
+            $languages = domain_locale_lookup($key);
+            if (count($languages) > 0) {
+              $default_options = $form['domain_batch'][$key]['#options'];
+              $options = $default_options;
+              foreach ($default_options as $langcode => $language) {
+                if (!array_key_exists($langcode, $languages) && drupal_strlen($langcode) > 0) {
+                  unset($options[$langcode]);
+                }
+              }
+              $form['domain_batch'][$key]['#options'] = $options;
+            }
+          }
+        }
+      }
+      break;
+
+    case 'locale_languages_overview_form':
+      global $_domain;
+      // Disable form elements in order to not allow changes from this form, as
+      // it would break other domains.
+      $form['enabled']['#disabled'] = TRUE;
+      $form['site_default']['#disabled'] = TRUE;
+      $form['actions']['submit']['#type'] = 'hidden';
+      // Build the correct link to where languages are enabled/disabled.
+      $link = 'admin/structure/domain/view/' . $_domain['domain_id'] .'/language';
+      // Warn admin how to enable/disable for the current domain.
+      drupal_set_message(
+        t('By using the module <em>Domain Locale</em> you must set default and enabled languages for each individual domain. Go to the page !link to make changes for this domain. You can still add new languages here.',
+          array('!link' => l($link, $link))),
+        'warning');
+      break;
+  }
+}
+
+/**
+ * Helper function to retrieve list of languages available as form options
+ *
+ * It is useful, for example, on node edit to limit number of language options.
+ *
+ * @see domain_locale_form_node_form_alter()
+ *
+ * @return
+ *   Array language names indexed by language code. This array does not include
+ *  'und' (LANGUAGE_NONE).
+ */
+function domain_locale_get_domain_languages() {
+  global $_domain;
+
+  $sql = <<<SQL
+    SELECT
+      dl.language,
+      l.native
+    FROM {domain_locale} dl
+      INNER JOIN {languages} l ON dl.language = l.language
+    WHERE domain_id = :domain_id
+    ORDER BY dl.weight, language ASC
+SQL;
+
+  $result = db_query($sql, array(':domain_id' => $_domain['domain_id']));
+  // Fetch results as an array 'language code' => 'native'.
+  $languages = $result->fetchAllKeyed(0, 1);
+  return $languages;
+}
+
+/**
+ * Implements hook_help().
+ */
+function domain_locale_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#domain_locale':
+      $ret = t('Domain Locale');
+      break;
+
+    default:
+      $ret = NULL;
+  }
+
+  return $ret;
+}
+
+/**
+ * Implements hook_init().
+ *
+ * - Switch the current language to the site default is user language is not
+ *   supported on the current domain
+ * - In that case, redirect to the root in the default language
+ */
+function domain_locale_init() {
+  global $language, $_domain;
+
+  $enabled_domain_langs = domain_locale_lookup($_domain['domain_id']);
+  // If the user lang is not supported.
+  if ($enabled_domain_langs && !isset($enabled_domain_langs[$language->language])) {
+    $language_default = domain_locale_language_default();
+    if ($language_default) {
+      $languages = language_list();
+      // Set the current language to the default language.
+      $language = $languages[$language_default->language];
+      // Check if we are on a secure connection.
+      if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) {
+        $http = 'https://';
+      }
+      else {
+        $http = 'http://';
+      }
+      // Set URL suffix to the language prefix, if available.
+      if (isset($language_default->prefix)) {
+        $url_suffix = '/' . $language_default->prefix;
+      }
+      else {
+        $url_suffix = '';
+      }
+
+      drupal_goto($http . $_domain['subdomain'] . $url_suffix);
+    }
+  }
+}
+
+/**
+ * Save language settings for a single domain
+ *
+ * @param int $domain_id
+ * @param array $params
+ *   Multidimensional array of language elements where language, weight and
+ *   default are array keys.
+ */
+function domain_locale_insert_domain($domain_id, $params = array()) {
+  foreach ($params as $setting) {
+    // Setting must have at least language defined, weight and default can
+    // have default values.
+    if (isset($setting['language'])) {
+      $setting['domain_id'] = $domain_id;
+      drupal_write_record('domain_locale', $setting);
+    }
+  }
+
+  // Make all languages enabled under the hood
+  db_update('languages')
+    ->fields(array(
+      'enabled' => 1,
+    ))
+    -> execute();
+}
+
+/**
+ * Retrieves default language for currently active domain
+ *
+ * @return object
+ *   Provides output similar to language_default() in bootstrap process.
+ */
+function domain_locale_language_default() {
+
+  global $_domain;
+
+  $domain_language_default = domain_conf_variable_get($_domain['domain_id'], 'language_default');
+
+  // Domain Conf stores simple values (strings) so populate language object.
+  $language_default = isset($domain_language_default)
+    ? domain_locale_language_load($domain_language_default)
+    : language_default();
+
+  return $language_default;
+}
+
+/**
+ * Additional submit handler for locale_languages_overview_form().
+ *
+ * Removes disabled languages from domain_locale table.
+ *
+ * @see domain_locale_form_alter()
+ */
+function domain_locale_languages_delete_submit($form, &$form_state) {
+  $langcode = db_escape_table($form_state['values']['langcode']);
+  $active_domains = _domain_locale_get_language_domains($langcode);
+
+  foreach ($active_domains as $key => $domain_id) {
+    domain_locale_delete_domain_language($domain_id, $langcode);
+    $domain = domain_lookup($domain_id);
+    watchdog('domain_locale', 'Removed deleted language code %langcode from %sitename.', array(
+      '%langcode' => $langcode,
+      '%sitename' => $domain['sitename'],
+    ), WATCHDOG_NOTICE);
+  }
+}
+
+/**
+ * Filter a langcode-indexed hash of languages by domain availability.
+ *
+ * @param array $language_names
+ *
+ * @return array
+ */
+function domain_locale_language_list($language_names) {
+
+  global $_domain;
+
+  $domain_languages = domain_locale_lookup($_domain['domain_id']);
+
+  $ret = array_intersect_key($language_names, $domain_languages);
+  return $ret;
+}
+
+/**
+ * Helper function to retrieve a single language from site's enabled languages list.
+ *
+ * Added here since locale module does not expose this kind of functionality.
+ *
+ * @see domain_locale_language_default()
+ *
+ * @param string $langcode
+ *
+ * @return object
+ *   Provides output similar to language_default() in bootstrap process.
+ */
+function domain_locale_language_load($langcode) {
+  $sql = <<<SQL
+    SELECT
+      language, name, native, direction, enabled, plurals, formula, domain,
+      prefix, javascript, weight
+    FROM {languages}
+    WHERE enabled = 1 AND language = :lang
+SQL;
+
+  $lang = db_query($sql, array(':lang' => $langcode))
+    ->fetchObject();
+  return $lang;
+}
+
+/**
+ * Retrieves an array of domains and languages enabled on those domains.
+ *
+ * @return array
+ *   A domain-ID keyed hash of languages
+ *
+ * TODO this should probably use a drupal_static().
+ */
+function domain_locale_list($reset = FALSE) {
+  static $list;
+
+  if (!isset($list) || $reset) {
+    $list = _domain_locale_get_domains_languages();
+  }
+
+  return $list;
+}
+
+/**
+ * Retrieves a list of languages enabled on given domain
+ *
+ * @param int $domain_id
+ * @param boolean $reset
+ *   Reset the locale_list() cache.
+ *
+ * @return
+ *   An langcode-indexed hash of language weights. Example:
+ *   array('en' => array('weight' => '0'), 'fr' => array('weight' => '0'))).
+ */
+function domain_locale_lookup($domain_id, $reset = FALSE) {
+  $languages = domain_locale_list($reset);
+  $domain_locale = isset($languages[$domain_id])
+    ? $languages[$domain_id]
+    : array();
+
+  return $domain_locale;
+}
+
+/**
+ * Implements hook_menu().
+ *
+ * Domain Locale only provides administrative menu items.
+ */
+function domain_locale_menu() {
+  $items = array();
+
+  $admin_file = 'domain_locale.admin.inc';
+  $admin_access_args = array('administer domains');
+
+  // Menu items for configuring languages.
+  $items['admin/structure/domain/view/%domain/language'] = array(
+    'title' => 'Languages',
+    'type' => MENU_LOCAL_TASK,
+    'page callback' => 'domain_locale',
+    'page arguments' => array(4),
+    'access arguments' => $admin_access_args,
+    'file' => $admin_file,
+  );
+
+  $items['admin/structure/domain/view/%domain/language-reset'] = array(
+    'title' => 'Domain language settings',
+    'type' => MENU_VISIBLE_IN_BREADCRUMB,
+    'page callback' => 'domain_locale_reset',
+    'page arguments' => array(4),
+    'access arguments' => $admin_access_args,
+    'file' => $admin_file,
+  );
+  return $items;
+}
+
+/**
+ * Reset Domain Locale settings to site language settings.
+ *
+ * @param int $domain_id
+ */
+function domain_locale_restore_default($domain_id) {
+  $enabled_languages = db_query('SELECT language, weight FROM {languages} WHERE enabled = 1');
+  db_delete('domain_locale')
+    ->condition('domain_id', $domain_id)
+    ->execute();
+  foreach ($enabled_languages as $lang) {
+    db_insert('domain_locale')
+      ->fields(array(
+        'language' => $lang->language,
+        'domain_id' => $domain_id,
+        'weight' => $lang->weight,
+      ))
+      ->execute();
+  }
+}
+
+/**
+ * Implements hook_theme().
+ *
+ * Theme functions
+ */
+function domain_locale_theme($existing, $type, $theme, $path) {
+
+  $admin_file = 'domain_locale.admin.inc';
+
+  $themes = array(
+    'domain_locale_form' => array(
+      'render element' => 'form',
+    ),
+    'domain_locale_reset' => array(
+      'arguments' => array('domain' => array()),
+    ),
+  );
+
+  foreach ($themes as $element => $info) {
+    $info['file'] = $admin_file;
+  }
+  return $themes;
+}
+
+/**
+ * Perform alterations on language switcher links.
+ *
+ * A language switcher link may need to point to a different path or use a
+ * translated link text before going through l(), which will just handle the
+ * path aliases.
+ *
+ * @param $links
+ *   Nested array of links keyed by language code.
+ * @param $type
+ *   The language type the links will switch.
+ * @param $path
+ *   The current path.
+ */
+function domain_locale_language_switch_links_alter(array &$links, $type, $path) {
+  global $_domain;
+  $languages = domain_locale_lookup($_domain['domain_id']);
+  $links = array_intersect_key($links, $languages);
+}
+
+
+/**
+ * Helper function to retrieve enabled languages for each domain
+ *
+ * @return
+ *   Array language list indexed by domain_id
+ */
+function _domain_locale_get_domains_languages() {
+  $result = db_query("SELECT domain_id, language, weight FROM {domain_locale} ORDER BY domain_id, weight, language ASC");
+  $domains = array();
+  foreach ($result as $row) {
+    $domains[$row->domain_id][$row->language] = array(
+      'weight' => $row->weight,
+    );
+  }
+  return $domains;
+}
+
+/**
+ * Implements hook_features_api().
+ */
+function domain_locale_features_api() {
+  $components = array(
+    'domain_locale' => array(
+      'name' => t('Domain locales'),
+      'default_hook' => 'domain_locale_default_locales',
+      'default_file' => FEATURES_DEFAULTS_CUSTOM,
+      'default_filename' => 'locales',
+      'features_source' => TRUE,
+      'file' => drupal_get_path('module', 'domain_locale') . '/domain_locale.features.inc',
+    ),
+  );
+  return $components;
+}
+
+/**
+ * Implements hook_hook_info().
+ *
+ * Allows the use of $module.domain.inc files.
+ */
+function domain_locale_hook_info() {
+  $hooks = array(
+    'delete_domain',
+    'delete_domain_language',
+    'features_export',
+    'features_export_options',
+    'features_export_render',
+    'features_rebuild',
+    'features_revert',
+    'insert_domain',
+    'install',
+    'languages_delete_submit',
+    'language_list',
+    'list',
+    'restore_default',
+  );
+
+  $module = 'domain_locale';
+  foreach ($hooks as $hook) {
+    $ret["{$module}_$hook"] = $module;
+  }
+  return $ret;
+}
+
+/**
+ * Features doesn't know how to load custom includes.
+ *
+ * @param $module
+ *  The name of the feature to load.
+ * @param $hook
+ *  The name of the Domain Locale hook.
+ * @param $return
+ *  Boolean indicator to return the results of the function.
+ *
+ * @return
+ *  The results of the $hook implemenation, if requested.
+ */
+function domain_locale_features_load($module, $hook, $return = TRUE) {
+  // Features does not handle module loading of custom files.
+  module_load_include('inc', $module, $module . '.locales');
+  $function = $module . '_' . $hook;
+  if ($return && function_exists($function)) {
+    return $function();
+  }
+}
+
+/**
+ * Sets domain export options consistently.
+ *
+ * @return
+ *  An array of form options. Not that we cannot use _ in keys.
+ */
+function domain_locale_features_get_options() {
+  $options = array(
+    'wipe-domain-locale-tables' => t('Wipe tables on revert/rebuild'),
+    'all-locales' => t('Export all domain locales'),
+  );
+  foreach (domain_locale_list(FALSE) as $domain_id => $languages) {
+    $this_domain = domain_lookup($domain_id);
+    foreach ($languages as $language => $weight) {
+      $options[$this_domain['machine_name'] . '__locale-placeholder__' . $language] = $this_domain['subdomain'] . '/' . $language;
+    }
+  }
+  return $options;
+}
+
+/**
+ * Processes export data selections consistently.
+ *
+ * @param $data
+ *  Array of selections from the features component form.
+ *
+ * @return
+ *  An array of domains, keyed by machine_name.
+ */
+function domain_locale_features_selection($data) {
+  if (!empty($data['all-locales'])) {
+    $data = array();
+    // list all domain locales
+    foreach (domain_locale_list(FALSE) as $domain_id => $languages) {
+      $this_domain = domain_lookup($domain_id);
+      foreach ($languages as $language => $weight) {
+        $data[$this_domain['machine_name'] . '__locale-placeholder__' . $language] = $this_domain['machine_name'] . '__locale-placeholder__' . $language;
+      }
+    }
+  }
+  return $data;
+}
+
+/**
+ * Tells Features revert whether to perform a wipe/rebuild.
+ *
+ * @param &$defaults
+ *  The default values from the feature, passed by reference.
+ *
+ * @return boolean
+ */
+function domain_locale_features_wipe_tables(&$defaults) {
+  if (!empty($defaults['wipe-domain-locale-tables'])) {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/**
+ * Tells Features export how to process a wipe/rebuild statement to code.
+ *
+ * @param &$data
+ *  The data for the feature, passed by reference.
+ * @param $code
+ *  The code array to export, passed by reference.
+ * @param $export
+ *  Boolean indicator that we are generator (exporting) or testing code.
+ * @param $type
+ *  A string indicating the type of domain data to export.
+ *
+ * @return boolean
+ */
+function domain_locale_features_export_wipe_tables_code(&$data, &$code, $export, $type) {
+  if ((!empty($export) && !empty($data['wipe-domain-locale-tables'])) || in_array('wipe-domain-locale-tables', $data)) {
+    $code[] = "  \${$type}['wipe-domain-locale-tables'] = 'wipe-domain-locale-tables';";
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/**
+ * Tells Features export how to set a wipe/rebuild statement in the $data.
+ *
+ * @param &$export
+ *  The feature component $export array, passed by reference.
+ * @param $data
+ *  The data for the feature.
+ * @param $type
+ *  A string indicating the type of domain data to export.
+ */
+function domain_locale_features_export_set_wipe_tables(&$export, $data, $type) {
+  if (in_array('wipe-domain-locale-tables', $data)) {
+    $export['features'][$type]['wipe-domain-locale-tables'] = 'wipe-domain-locale-tables';
+  }
+}
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function domain_locale_form_node_form_alter(&$form, $form_state) {
+  /**
+   * Domain Locale has to override i18n_node.module
+   * drupal_alter() fails to order modules correctly in some cases
+   * for example specific hooks like hook_form_BASE_FORM_ID_alter()
+   *
+   * its not possible to reorder hook_form_BASE_FORM_ID_alter with
+   * hook_module_implements_alter()
+   *
+   * @see http://drupal.org/node/765860
+  */
+
+  // call a 'private' implemenation of domain_locale_form_node_form_alter()
+  $form['#after_build'][] = '_domain_locale_form_node_form_alter';
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ * Called by domain_locale_form_node_form_alter
+ */
+function _domain_locale_form_node_form_alter($form, &$form_state) {
+  global $user;
+
+  // Check if user is admin. If so, then change nothing.
+  if (in_array(variable_get('user_admin_role'), array_keys($user->roles))) {
+    return $form;
+  }
+
+  // Check if there is there is to option of 'Language neutral' and keep it.
+  if (isset($form['language']['#options'][LANGUAGE_NONE])) {
+    $tip[LANGUAGE_NONE] = $form['language']['#options'][LANGUAGE_NONE];
+  }
+  else {
+    $tip = array();
+  }
+  // Build a new options list eliminating the languages that don't belong to
+  // this domain
+  $form['language']['#options'] = $tip + domain_locale_get_domain_languages();
+  return $form;
+}

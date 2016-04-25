@@ -1,0 +1,14 @@
+name = Domain Locale
+description = Adds language handling functionality per domain basis.
+package = Domain Access
+core = 7.x
+dependencies[] = domain
+dependencies[] = domain_conf
+dependencies[] = locale
+
+; Information added by Drupal.org packaging script on 2015-05-11
+version = "7.x-1.0-beta5"
+core = "7.x"
+project = "domain_locale"
+datestamp = "1431368284"
+

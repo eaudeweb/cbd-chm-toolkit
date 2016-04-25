@@ -1,0 +1,90 @@
+<?php
+
+/**
+ * @file
+ * Provides domain specific locale settings
+ */
+/**
+ * Implements hook_install().
+ */
+function domain_locale_install() {
+  // Make all enabled languages available on all domains by default
+  $enabled_languages = db_query('SELECT language, weight FROM {languages} WHERE enabled=1');
+  module_load_include('module', 'domain');
+  $existing_domains = domain_domains();
+  foreach ($enabled_languages as $lang) {
+    $current_language = $lang->language;
+    $language_weight = $lang->weight;
+
+    foreach ($existing_domains as $current_domain) {
+      if ($current_domain['domain_id'] > 0) {
+        db_insert('domain_locale')
+          ->fields(array(
+            'language' => $current_language,
+            'domain_id' => $current_domain['domain_id'],
+            'weight' => $language_weight,
+          ))
+          ->execute();
+      }
+    }
+  }
+
+  // Make all languages enabled under the hood
+  db_update('languages')
+    ->fields(array(
+      'enabled' => 1,
+    ))
+    -> execute();
+
+  // Set domain_locale higher than i18n if it exists
+  $result = db_query("SELECT weight FROM {system} WHERE name = 'i18n'")->fetch();
+  if ($result) {
+    $weight = $result->weight + 1;
+    $ret[] = db_update('system')
+      ->fields(array('weight' => $weight))
+      ->condition('name', 'domain_locale')
+      ->execute();
+  }
+}
+
+/**
+ * Implement hook_uninstall().
+ */
+function domain_locale_uninstall() {
+}
+/**
+ * Implements hook_schema().
+ */
+function domain_locale_schema() {
+  $schema['domain_locale'] = array(
+    'description' => t('Domain Access specific language settings'),
+    'fields' => array(
+      'language' => array(
+        'type' => 'varchar',
+        'length' => 12,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'domain_id' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'description' => t("Domain id"),
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'weight' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => t("Language weight"),
+      ),
+    ),
+    'primary key' => array('domain_id', 'language'),
+    'indexes' => array(
+      'domain_id' => array('domain_id'),
+      'domain_language' => array('domain_id', 'language'),
+      'domain_language_weight' => array('domain_id', 'language', 'weight'),
+    ),
+  );
+  return $schema;
+}
