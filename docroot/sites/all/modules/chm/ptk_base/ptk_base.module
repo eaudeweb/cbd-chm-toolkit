@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function ptk_base_menu() {
+  $items = [
+    'admin/reports/content_types_overview' => [
+      'title' => 'Content types overview',
+      'description' => 'Overview and export structure of the entities',
+      'page callback' => 'ptk_base_admin_page_content_types_overview',
+      'file' => 'ptk_base.admin.inc',
+      'access arguments' => ['view the administration theme'],
+      'menu_name' => 'management',
+      'plid' => '19',
+      'type' => MENU_NORMAL_ITEM,
+    ],
+    'admin/reports/content_types_overview/export' => [
+      'title' => 'Export content type information in MS Excel',
+      'page callback' => 'ptk_base_admin_page_export_content_types_overview',
+      'file' => 'ptk_base.admin.inc',
+      'access arguments' => ['view the administration theme'],
+      'type' => MENU_CALLBACK,
+    ]
+  ];
+  return $items;
+}
