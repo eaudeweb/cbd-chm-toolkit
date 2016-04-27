@@ -22,16 +22,19 @@ function ptk_base_admin_page_content_types_overview() {
         [ 'data' => t('Machine name') ],
         [ 'data' => t('Description') ],
         [ 'data' => t('Data type') ],
+        [ 'data' => t('Cardinality') ],
       ],
       '#rows' => []
     ];
     foreach ($fields as $field_name => $field_data) {
       $fi = field_info_field($field_name);
+      $cardinality = $fi['cardinality'] == -1 ? 'unlimited' : format_plural($fi['cardinality'], '@count value', '@count values');
       $row = [
         [ 'data' => $field_data['label'] ],
         [ 'data' => $field_name ],
         [ 'data' => $field_data['description'] ],
         [ 'data' => $fi['type'] ],
+        [ 'data' => $cardinality ],
       ];
       $table['#rows'][] = $row;
     }
@@ -70,11 +73,13 @@ function ptk_base_admin_page_export_content_types_overview() {
     $sheet->setTitle($machine_name);
     foreach ($fields as $field_name => $field_data) {
       $fi = field_info_field($field_name);
+      $cardinality = $fi['cardinality'] == -1 ? 'unlimited' : format_plural($fi['cardinality'], '@count value', '@count values');
       if ($j == 1) {
-        $sheet->setCellValue('A1', 'Field name');
-        $sheet->setCellValue('B1', 'Machine name');
-        $sheet->setCellValue('C1', 'Description');
-        $sheet->setCellValue('D1', 'Data type');
+        $sheet->setCellValue('A1', t('Field name'));
+        $sheet->setCellValue('B1', t('Machine name'));
+        $sheet->setCellValue('C1', t('Description'));
+        $sheet->setCellValue('D1', t('Data type'));
+        $sheet->setCellValue('E1', t('Cardinality'));
       }
       if (!empty($field_data['label'])) {
         $sheet->setCellValue('A' . $j, $field_data['label']);
@@ -87,6 +92,9 @@ function ptk_base_admin_page_export_content_types_overview() {
       }
       if (!empty($fi['type'])) {
         $sheet->setCellValue('D' . $j, $fi['type']);
+      }
+      if ($j > 1) {
+        $sheet->setCellValue('E' . $j, $cardinality);
       }
       $j++;
     }
