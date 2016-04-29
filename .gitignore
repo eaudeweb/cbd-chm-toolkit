@@ -1,3 +1,4 @@
 .idea/
+conf/apache.conf
 drush/aliases/aliases.local.php
 files/
