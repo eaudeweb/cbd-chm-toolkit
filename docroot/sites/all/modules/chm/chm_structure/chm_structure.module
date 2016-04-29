@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the CHM Structure feature.
+ */
+
+include_once 'chm_structure.features.inc';
