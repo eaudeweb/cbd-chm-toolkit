@@ -12,3 +12,21 @@ function chm_structure_ctools_plugin_api($module = NULL, $api = NULL) {
     return array("version" => "1");
   }
 }
+
+/**
+ * Implements hook_node_info().
+ */
+function chm_structure_node_info() {
+  $items = array(
+    'cbd_nfp' => array(
+      'name' => t('CBD National Focal Point'),
+      'base' => 'node_content',
+      'description' => t('CBD National Focal Point automatically imported from the CBD REST API'),
+      'has_title' => '1',
+      'title_label' => t('Name'),
+      'help' => '',
+    ),
+  );
+  drupal_alter('node_info', $items);
+  return $items;
+}
