@@ -54,8 +54,8 @@ function chm_structure_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-cbd_nfp-field_adress'.
-  $field_instances['node-cbd_nfp-field_adress'] = array(
+  // Exported field_instance: 'node-cbd_nfp-field_address'.
+  $field_instances['node-cbd_nfp-field_address'] = array(
     'bundle' => 'cbd_nfp',
     'default_value' => NULL,
     'deleted' => 0,
@@ -66,7 +66,7 @@ function chm_structure_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 10,
+        'weight' => 18,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -77,8 +77,8 @@ function chm_structure_field_default_field_instances() {
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
-    'field_name' => 'field_adress',
-    'label' => 'Adress',
+    'field_name' => 'field_address',
+    'label' => 'Address',
     'required' => 0,
     'settings' => array(
       'text_processing' => 0,
@@ -91,7 +91,7 @@ function chm_structure_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 18,
+      'weight' => 16,
     ),
   );
 
@@ -131,7 +131,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 255,
       ),
       'type' => 'email_textfield',
-      'weight' => 10,
+      'weight' => 9,
     ),
   );
 
@@ -172,7 +172,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 17,
+      'weight' => 15,
     ),
   );
 
@@ -210,7 +210,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 14,
+      'weight' => 12,
     ),
   );
 
@@ -251,7 +251,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 21,
+      'weight' => 18,
     ),
   );
 
@@ -291,7 +291,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 255,
       ),
       'type' => 'email_textfield',
-      'weight' => 9,
+      'weight' => 8,
     ),
   );
 
@@ -332,7 +332,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 11,
+      'weight' => 10,
     ),
   );
 
@@ -373,7 +373,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 23,
+      'weight' => 20,
     ),
   );
 
@@ -414,7 +414,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 24,
+      'weight' => 21,
     ),
   );
 
@@ -455,7 +455,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 22,
+      'weight' => 19,
     ),
   );
 
@@ -496,7 +496,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 26,
+      'weight' => 23,
     ),
   );
 
@@ -537,7 +537,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 20,
+      'weight' => 17,
     ),
   );
 
@@ -578,7 +578,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 12,
+      'weight' => 11,
     ),
   );
 
@@ -619,7 +619,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 15,
+      'weight' => 13,
     ),
   );
 
@@ -660,7 +660,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 25,
+      'weight' => 22,
     ),
   );
 
@@ -701,7 +701,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 16,
+      'weight' => 14,
     ),
   );
 
@@ -922,7 +922,7 @@ function chm_structure_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Adress');
+  t('Address');
   t('Alternative emails');
   t('Body');
   t('CBD GUID');
