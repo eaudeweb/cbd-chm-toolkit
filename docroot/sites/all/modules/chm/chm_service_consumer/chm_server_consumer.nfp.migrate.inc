@@ -24,7 +24,8 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
     $this->addFieldMapping('field_alternative_emails', 'emailAlts');
     $this->addFieldMapping('field_fax_numbers', 'faxes');
     $this->addFieldMapping('field_phone_numbers', 'phones');
-    $this->addFieldMapping('field_country', 'country');
+    $this->addFieldMapping('field_country', 'government');
+    $this->addFieldMapping('field_country:source_type')->defaultValue('tid');
     $this->addFieldMapping('field_postal_code', 'postalCode');
     $this->addFieldMapping('field_state', 'state');
     $this->addFieldMapping('field_city', 'city');
@@ -37,6 +38,10 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
     $this->addFieldMapping('field_last_name', 'lastName');
     $this->addFieldMapping('field_salutation', 'salutation');
     // $this->addFieldMapping('field_nfp_type', 'types');
+
+    $this->addUnmigratedDestinations([
+      'field_country:create_term', 'field_country:ignore_case'
+    ]);
   }
 
 
@@ -61,6 +66,18 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
       $this->log(sprintf("Contact %s does not have a title", $row->{$f}));
       return FALSE;
     }
+
+    // Country
+    if (!empty($row->government)) {
+      /** @var stdClass $country */
+      if ($country = PTK::getCountryByCode($row->government)) {
+        $row->government = $country->tid;
+      }
+      else {
+        $row->government = NULL;
+      }
+    }
+
     return TRUE;
   }
 }

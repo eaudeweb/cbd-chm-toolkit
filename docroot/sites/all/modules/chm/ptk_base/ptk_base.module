@@ -1,5 +1,7 @@
 <?php
 
+require_once dirname(__FILE__) . '/include/PTK.php';
+
 /**
  * Implements hook_menu().
  */
