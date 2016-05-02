@@ -1,0 +1,145 @@
+<?php
+
+
+/**
+ * Implements hook_migrate_api().
+ */
+function chm_service_consumer_migrate_api() {
+  return [
+    'api' => 2,
+    'groups' => [
+      'cbd' => [ 'title' => t('CBD API migrations'), ],
+    ],
+    'migrations' => [
+      'nfp' => [
+        'class_name' => 'CHMServerConsumerNFPMigration',
+        'group_name' => 'cbd',
+        'urlPattern' => 'https://api.cbd.int/api/v2015/national-focal-points?s={"_id":1}',
+      ]
+    ],
+  ];
+}
+
+
+abstract class CHMServerConsumerMigrateSource extends MigrateSource {
+
+  protected $urlPattern = NULL;
+  protected $count = NULL;
+  protected $data = array();
+  protected $currentPage = 0;
+  protected $currentCount = 0;
+  protected $pageSize = 100;
+
+
+  public function __construct($urlPattern) {
+    parent::__construct(array());
+    $this->urlPattern = $urlPattern;
+  }
+
+
+  public function __toString() {
+    return sprintf('Extract data from the API');
+  }
+
+
+  public function count($refresh = FALSE) {
+    if (empty($this->count) || $refresh) {
+      $url = $this->urlPattern . '&c=1';
+      if ($response = self::http_request($url)) {
+        $p = json_decode($response);
+        $this->count = $p->count;
+      }
+    }
+    return $this->count;
+  }
+
+
+  /**
+   * Fetch the next row of data, returning it as an object.
+   *
+   * @return object
+   *   FALSE data as stdClass, FALSE when there is no more data available.
+   */
+  public function getNextRow() {
+    $next_call_count = $this->currentPage * $this->pageSize;
+    if ($this->currentCount == $this->count()) {
+      return NULL;
+    }
+    if ($this->currentCount == $next_call_count && $next_call_count < $this->count()) {
+      $start = $this->currentPage * $this->pageSize;
+      if ($str = self::http_request($this->urlPattern . '&rows=' . $this->pageSize . '&start=' . $start, array('Accept' => 'application/json'))) {
+        if ($json = json_decode($str)) {
+          $this->data = $json->response->docs;
+          $this->currentPage++;
+        }
+      }
+    }
+    $item = NULL;
+    if (count($this->data)) {
+      $item = current($this->data);
+      next($this->data);
+      $this->currentCount++;
+    }
+    return $item;
+  }
+
+
+  /**
+   * Do whatever needs to be done to start a fresh traversal of the source data.
+   *
+   * This is always called at the start of an import, so tasks such as opening
+   * file handles, running queries, and so on should be performed here.
+   */
+  public function performRewind() {
+    $this->data = array();
+    $this->currentPage = 0;
+    $this->currentCount = 0;
+  }
+
+  static function http_request($url, $headers = array()) {
+    migrate_instrument_start(__CLASS__ . ' http_request');
+    self::log(__METHOD__ . ": $url", MigrationBase::MESSAGE_INFORMATIONAL);
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_NOBODY, 0);
+    $ret = curl_exec($ch);
+    $info = curl_getinfo($ch);
+    if ($info['http_code'] != 200) {
+      $code = $info['http_code'];
+      self::log(__METHOD__ . ": Failure ({$code}) for URL: $url", MigrationBase::MESSAGE_ERROR);
+      $ret = NULL;
+    }
+    curl_close($ch);
+    migrate_instrument_stop(__CLASS__ . ' http_request');
+    return $ret;
+  }
+
+  /**
+   * Log system for the ws_consumer_odata migrations.
+   *
+   * @param string $message
+   *   Log message
+   * @param int $severity
+   *    See MigrationBase::MESSAGE_* constants
+   */
+  static function log($message, $severity = MigrationBase::MESSAGE_INFORMATIONAL) {
+    if (function_exists('drush_log')) {
+      $status = 'status';
+      switch($severity) {
+        case MigrationBase::MESSAGE_ERROR:
+          $status = 'error';
+          break;
+        case MigrationBase::MESSAGE_WARNING:
+          $status = 'warning';
+          break;
+        case MigrationBase::MESSAGE_NOTICE:
+          $status = 'notice';
+          break;
+      }
+      drush_log($message, $status);
+    }
+  }
+}
