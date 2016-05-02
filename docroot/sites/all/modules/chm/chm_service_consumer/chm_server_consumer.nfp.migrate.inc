@@ -149,7 +149,7 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
     if (empty($row->title) && !empty($row->organization)) {
       $row->title = $row->organization;
     }
-
+    $row->title = trim($row->title);
     if (empty($row->title)) {
       $f = '_id';
       $this->log(sprintf("Contact %s does not have a title", $row->{$f}));
