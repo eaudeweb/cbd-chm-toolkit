@@ -1,6 +1,8 @@
 <?php
 
-
+/**
+ * Class for the nfp_type migration populating taxonomy_nfp_type taxonomy.
+ */
 class CHMServerConsumerNFPTypeMigration extends CHMServerConsumerMigration {
 
 
@@ -22,10 +24,26 @@ class CHMServerConsumerNFPTypeMigration extends CHMServerConsumerMigration {
 
     $this->addFieldMapping('name', 'name');
     $this->addFieldMapping('field_original_id', 'code');
+
+    $this->addUnmigratedDestinations([
+      'path', 'pathauto', 'weight', 'format', 'parent_name', 'parent', 'description',
+
+      'metatag_title', 'metatag_description', 'metatag_abstract', 'metatag_keywords',
+      'metatag_robots', 'metatag_news_keywords', 'metatag_standout', 'metatag_rating',
+      'metatag_referrer', 'metatag_generator', 'metatag_rights', 'metatag_image_src',
+      'metatag_canonical', 'metatag_shortlink', 'metatag_publisher', 'metatag_author',
+      'metatag_original-source', 'metatag_prev', 'metatag_next', 'metatag_content-language',
+      'metatag_geo.position', 'metatag_geo.placename', 'metatag_geo.region',
+      'metatag_icbm', 'metatag_refresh', 'metatag_revisit-after', 'metatag_pragma',
+      'metatag_cache-control', 'metatag_expires',
+    ]);
   }
 }
 
 
+/**
+ * Migration source class for the nfp_type migration.
+ */
 class CHMServerConsumerNFPTypeMigrateSource extends CHMServerConsumerMigrateSource {
 
   /**
@@ -43,6 +61,9 @@ class CHMServerConsumerNFPTypeMigrateSource extends CHMServerConsumerMigrateSour
 }
 
 
+/**
+ * Class for the nfp migration populating cbd_nfp node type.
+ */
 class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
 
   public function __construct($arguments) {
@@ -82,9 +103,36 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
     $this->addFieldMapping('field_salutation', 'salutation');
     $this->addFieldMapping('field_nfp_type', 'types');
     $this->addFieldMapping('field_nfp_type:source_type')->defaultValue('tid');
+    $this->addFieldMapping('language')->defaultValue('en');
+
+    /*@TODO
+      domain_site	Domain: all affiliates
+      domains	Domain: assigned domains
+      domain_source	Domain: Domain Source
+    */
+
 
     $this->addUnmigratedDestinations([
-      'field_country:create_term', 'field_country:ignore_case'
+      'uid', 'created', 'changed', 'status', 'promote', 'sticky', 'revision',
+      'log', 'tnid', 'translate', 'revision_uid', 'is_new', 'path', 'pathauto',
+      'comment',
+      'body', 'body:summary', 'body:format',
+      'field_url:title', 'field_url:attributes', 'field_url:language',
+      'field_nfp_type:create_term', 'field_nfp_type:ignore_case',
+      'field_country:create_term', 'field_country:ignore_case',
+
+      'metatag_title', 'metatag_description', 'metatag_abstract', 'metatag_keywords',
+      'metatag_robots', 'metatag_news_keywords', 'metatag_standout', 'metatag_rating',
+      'metatag_referrer', 'metatag_generator', 'metatag_rights', 'metatag_image_src',
+      'metatag_canonical', 'metatag_shortlink', 'metatag_publisher', 'metatag_author',
+      'metatag_original-source', 'metatag_prev', 'metatag_next', 'metatag_content-language',
+      'metatag_geo.position', 'metatag_geo.placename', 'metatag_geo.region',
+      'metatag_icbm', 'metatag_refresh', 'metatag_revisit-after', 'metatag_pragma',
+      'metatag_cache-control', 'metatag_expires',
+    ]);
+
+    $this->addUnmigratedSources([
+      '__v',
     ]);
   }
 
@@ -139,6 +187,9 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
 }
 
 
+/**
+ * Migration source class for the nfp migration.
+ */
 class CHMServerConsumerNFPMigrateSource extends CHMServerConsumerMigrateSource {
 
   /**

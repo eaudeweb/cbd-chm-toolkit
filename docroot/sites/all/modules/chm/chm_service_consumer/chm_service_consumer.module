@@ -27,11 +27,16 @@ function chm_service_consumer_migrate_api() {
 }
 
 
+/**
+ * Base class for migrations.
+ */
 class CHMServerConsumerMigration extends Migration {
+
 
   public function __construct($arguments) {
     parent::__construct($arguments);
   }
+
 
   function log($message) {
     $this->currentMigration()->saveMessage($message);
@@ -40,6 +45,9 @@ class CHMServerConsumerMigration extends Migration {
 }
 
 
+/**
+ * Base class for migration source classes.
+ */
 abstract class CHMServerConsumerMigrateSource extends MigrateSource {
 
   protected $urlPattern = NULL;

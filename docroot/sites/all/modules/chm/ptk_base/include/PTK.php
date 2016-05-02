@@ -3,6 +3,14 @@
 
 class PTK {
 
+  /**
+   * Retrieve a country by its code.
+   *
+   * @param string $iso
+   *   ISO 2L code.
+   * @return stdClass|NULL
+   *   Country object
+   */
   static function getCountryByCode($iso) {
     $items = drupal_static(__METHOD__);
     if (!isset($items)) {
@@ -22,6 +30,15 @@ class PTK {
     return NULL;
   }
 
+
+  /**
+   * Retrieve a NFP Type term by its code.
+   *
+   * @param string $acronym
+   *   Acronym for the term
+   * @return stdClass|NULL
+   *   The corrersponding taxonomy term
+   */
   static function getNFPTypeByAcronym($acronym) {
     $items = drupal_static(__METHOD__);
     if (!isset($items)) {
