@@ -1,5 +1,48 @@
 <?php
 
+
+class CHMServerConsumerNFPTypeMigration extends CHMServerConsumerMigration {
+
+
+  public function __construct($arguments) {
+    parent::__construct($arguments);
+    $this->map = new MigrateSQLMap($this->machineName,
+      array(
+        '_id' => array(
+          'type' => 'varchar',
+          'length' => 255,
+          'not null' => TRUE,
+          'description' => 'Entity original ID',
+        ),
+      ),
+      MigrateDestinationNode::getKeySchema()
+    );
+    $this->source = new CHMServerConsumerNFPTypeMigrateSource($arguments['urlPattern']);
+    $this->destination = new MigrateDestinationTerm('taxonomy_nfp_type');
+
+    $this->addFieldMapping('name', 'name');
+    $this->addFieldMapping('field_original_id', 'code');
+  }
+}
+
+
+class CHMServerConsumerNFPTypeMigrateSource extends CHMServerConsumerMigrateSource {
+
+  /**
+   * @inheritdoc
+   */
+  public function fields() {
+    return [
+      '_id'     => 'Remote record ID',
+      'code'    => '@fake field to keep computed title',
+      'treaty'  => 'Website',
+      'name'    => 'Remote record ID',
+      'acronym' => 'Alternative e-mails',
+    ];
+  }
+}
+
+
 class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
 
   public function __construct($arguments) {
@@ -37,7 +80,8 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
     $this->addFieldMapping('field_first_name', 'firstName');
     $this->addFieldMapping('field_last_name', 'lastName');
     $this->addFieldMapping('field_salutation', 'salutation');
-    // $this->addFieldMapping('field_nfp_type', 'types');
+    $this->addFieldMapping('field_nfp_type', 'types');
+    $this->addFieldMapping('field_nfp_type:source_type')->defaultValue('tid');
 
     $this->addUnmigratedDestinations([
       'field_country:create_term', 'field_country:ignore_case'
@@ -77,6 +121,18 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
         $row->government = NULL;
       }
     }
+
+    // Type
+    $types = array();
+    if (!empty($row->types)) {
+      foreach ($row->types as $type) {
+        /** @var stdClass $type */
+        if ($type = PTK::getNFPTypeByAcronym($type)) {
+          $types[] = $type->tid;
+        }
+      }
+    }
+    $row->types = $types;
 
     return TRUE;
   }
