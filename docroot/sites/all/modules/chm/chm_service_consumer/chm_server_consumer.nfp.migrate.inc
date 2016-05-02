@@ -1,12 +1,12 @@
 <?php
 
-class CHMServerConsumerNFPMigration extends Migration {
+class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
 
   public function __construct($arguments) {
     parent::__construct($arguments);
     $this->map = new MigrateSQLMap($this->machineName,
       array(
-        'id' => array(
+        '_id' => array(
           'type' => 'varchar',
           'length' => 255,
           'not null' => TRUE,
@@ -18,6 +18,7 @@ class CHMServerConsumerNFPMigration extends Migration {
     $this->source = new CHMServerConsumerNFPMigrateSource($arguments['urlPattern']);
     $this->destination = new MigrateDestinationNode('cbd_nfp');
 
+    $this->addFieldMapping('title', 'title');
     $this->addFieldMapping('field_url', 'website');
     $this->addFieldMapping('field_email', 'email');
     $this->addFieldMapping('field_alternative_emails', 'emailAlts');
@@ -35,7 +36,32 @@ class CHMServerConsumerNFPMigration extends Migration {
     $this->addFieldMapping('field_first_name', 'firstName');
     $this->addFieldMapping('field_last_name', 'lastName');
     $this->addFieldMapping('field_salutation', 'salutation');
-    $this->addFieldMapping('field_nfp_type', 'types');
+    // $this->addFieldMapping('field_nfp_type', 'types');
+  }
+
+
+  public function prepareRow($row) {
+    $row->title = NULL;
+    if (!empty($row->firstName)) {
+      $row->title = $row->firstName;
+    }
+    if (!empty($row->lastName)) {
+      if (!empty($row->firstName)) {
+        $row->title .= ' ';
+      }
+      $row->title .= $row->lastName;
+    }
+
+    if (empty($row->title) && !empty($row->organization)) {
+      $row->title = $row->organization;
+    }
+
+    if (empty($row->title)) {
+      $f = '_id';
+      $this->log(sprintf("Contact %s does not have a title", $row->{$f}));
+      return FALSE;
+    }
+    return TRUE;
   }
 }
 
@@ -48,6 +74,7 @@ class CHMServerConsumerNFPMigrateSource extends CHMServerConsumerMigrateSource {
   public function fields() {
     return [
       '_id'                 => 'Remote record ID',
+      'title'               => '@fake field to keep computed title',
       'website'             => 'Website',
       'emailAlts'           => 'Alternative e-mails',
       "email"               => 'Email',

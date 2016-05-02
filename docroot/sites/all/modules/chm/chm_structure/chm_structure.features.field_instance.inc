@@ -961,6 +961,42 @@ function chm_structure_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance:
+  // 'taxonomy_term-taxonomy_nfp_type-field_original_id'.
+  $field_instances['taxonomy_term-taxonomy_nfp_type-field_original_id'] = array(
+    'bundle' => 'taxonomy_nfp_type',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_original_id',
+    'label' => 'Original ID',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 41,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Address');
@@ -979,6 +1015,7 @@ function chm_structure_field_default_field_instances() {
   t('Last name');
   t('Organization acronym');
   t('Organization name');
+  t('Original ID');
   t('Phone numbers');
   t('Postal code');
   t('Protected Planet ID');

@@ -21,6 +21,19 @@ function chm_service_consumer_migrate_api() {
 }
 
 
+class CHMServerConsumerMigration extends Migration {
+
+  public function __construct($arguments) {
+    parent::__construct($arguments);
+  }
+
+  function log($message) {
+    $this->currentMigration()->saveMessage($message);
+    $this->currentMigration()->displayMessage($message);
+  }
+}
+
+
 abstract class CHMServerConsumerMigrateSource extends MigrateSource {
 
   protected $urlPattern = NULL;
@@ -67,9 +80,8 @@ abstract class CHMServerConsumerMigrateSource extends MigrateSource {
     }
     if ($this->currentCount == $next_call_count && $next_call_count < $this->count()) {
       $start = $this->currentPage * $this->pageSize;
-      if ($str = self::http_request($this->urlPattern . '&rows=' . $this->pageSize . '&start=' . $start, array('Accept' => 'application/json'))) {
-        if ($json = json_decode($str)) {
-          $this->data = $json->response->docs;
+      if ($str = self::http_request($this->urlPattern . '&l=' . $this->pageSize . '&sk=' . $start, array('Accept' => 'application/json'))) {
+        if ($this->data = json_decode($str, FALSE)) {
           $this->currentPage++;
         }
       }
