@@ -3,5 +3,6 @@ description = Consume external services and import into the instance
 package = CHM
 version = 7.x-1.0
 dependencies[] = migrate
+dependencies[] = ptk_base
 core = 7.x
 files[] = chm_server_consumer.nfp.migrate.inc
