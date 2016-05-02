@@ -105,12 +105,9 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
     $this->addFieldMapping('field_nfp_type:source_type')->defaultValue('tid');
     $this->addFieldMapping('language')->defaultValue('en');
 
-    /*@TODO
-      domain_site	Domain: all affiliates
-      domains	Domain: assigned domains
-      domain_source	Domain: Domain Source
-    */
-
+    $this->addFieldMapping('domain_site')->defaultValue(FALSE);
+    $this->addFieldMapping('domain_source', 'domain_source');
+    $this->addFieldMapping('domains', 'domains');
 
     $this->addUnmigratedDestinations([
       'uid', 'created', 'changed', 'status', 'promote', 'sticky', 'revision',
@@ -163,7 +160,12 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
     if (!empty($row->government)) {
       /** @var stdClass $country */
       if ($country = PTK::getCountryByCode($row->government)) {
+        $iso = $row->government;
         $row->government = $country->tid;
+
+        $domain = PTK::getDomainByCountryISO($iso);
+        $row->domain_source = $domain['domain_id'];
+        $row->domains = array($domain['domain_id']);
       }
       else {
         $row->government = NULL;

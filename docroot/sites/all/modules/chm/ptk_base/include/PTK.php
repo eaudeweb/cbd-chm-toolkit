@@ -3,6 +3,29 @@
 
 class PTK {
 
+  /**
+   * Retrieve the domain object corresponding to a country ISO code.
+   */
+  public static function getDomainByCountryISO($iso) {
+    $all = domain_domains();
+    foreach ($all as $domain_id => $config) {
+      $realm_key = _domain_variable_realm_key($config['machine_name']);
+      if ($code = variable_realm_get('domain', $realm_key, 'country')) {
+        if ($iso == $code) {
+          return $config;
+        }
+      }
+    }
+    return NULL;
+  }
+
+
+  /**
+   * Get the Country of the current portal.
+   *
+   * @return null|\stdClass
+   *   Taxonomy term from 'countries' taxonomy for the current country
+   */
   public static function getPortalCountry() {
     $domain = domain_get_domain();
     $realm_key = _domain_variable_realm_key($domain['machine_name']);
