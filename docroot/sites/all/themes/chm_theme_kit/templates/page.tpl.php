@@ -1,4 +1,5 @@
 <a href="#main" class="element-invisible element-focusable"><?php print t('Skip to content'); ?></a>
+<?php if (variable_get('environment') == 'test'):?><div style="font-size: 25px; font-weight: bold; text-align: center; background: red; color: white; height: 30px; padding-top: 10px;">TEST ENVIRONMENT</div><?php endif; ?>
 <?php if ($main_menu): ?>
 <a href="#main-nav" class="element-invisible element-focusable" data-target=".nav-collapse" data-toggle="collapse"><?php print t('Skip to navigation'); ?></a>
 <?php endif; ?>
