@@ -64,6 +64,12 @@ function _drush_devify() {
   domain_save($domain);
 
   variable_set('environment', 'devel');
+
+  if (module_exists('devel')) {
+    drush_log('Assign devel access to everyone');
+    user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access devel information'));
+    user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access devel information'));
+  }
 }
 
 function _drush_prepare_test() {
