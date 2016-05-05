@@ -42,39 +42,48 @@ function _drush_devify() {
     module_disable(['overlay']);
   }
 
-  $bioland = domain_load(18);
-  $bioland['subdomain'] = 'chm7.local.ro';
-  $bioland['path'] = 'http://chm7.local.ro/';
-  $bioland['scheme'] = 'http';
-  drush_log('Configuring `www` domain: ' . $bioland['subdomain'], 'ok');
-  domain_save($bioland);
+  $domain = domain_load(18);
+  $domain['subdomain'] = 'chm7.local.ro';
+  $domain['path'] = 'http://chm7.local.ro/';
+  $domain['scheme'] = 'http';
+  drush_log('Configuring `www` domain: ' . $domain['subdomain'], 'ok');
+  domain_save($domain);
 
-  $bioland = domain_load(1);
-  $bioland['subdomain'] = 'demo.chm7.local.ro';
-  $bioland['path'] = 'http://demo.chm7.local.ro/';
-  $bioland['scheme'] = 'http';
-  drush_log('Configuring `bioland` domain: ' . $bioland['subdomain'], 'ok');
-  domain_save($bioland);
+  $domain = domain_load(1);
+  $domain['subdomain'] = 'chm7-demo.local.ro';
+  $domain['path'] = 'http://demo.chm7.local.ro/';
+  $domain['scheme'] = 'http';
+  drush_log('Configuring `bioland` domain: ' . $domain['subdomain'], 'ok');
+  domain_save($domain);
+
+  $domain = domain_load(2);
+  $domain['subdomain'] = 'chm7-al.local.ro';
+  $domain['path'] = 'https://chm7-al.local.ro/';
+  $domain['scheme'] = 'http';
+  drush_log('Configuring `Albania` domain: ' . $domain['subdomain'], 'ok');
+  domain_save($domain);
+
+  variable_set('environment', 'devel');
 }
 
 function _drush_prepare_test() {
-  $bioland = domain_load(18);
-  $bioland['subdomain'] = 'test7.chm-cbd.net';
-  $bioland['path'] = 'https://test7.chm-cbd.net';
-  drush_log('Configuring `www` domain: ' . $bioland['subdomain'], 'ok');
-  domain_save($bioland);
+  $domain = domain_load(18);
+  $domain['subdomain'] = 'test7.chm-cbd.net';
+  $domain['path'] = 'https://test7.chm-cbd.net';
+  drush_log('Configuring `www` domain: ' . $domain['subdomain'], 'ok');
+  domain_save($domain);
 
-  $bioland = domain_load(1);
-  $bioland['subdomain'] = 'test7-demo.chm-cbd.net';
-  $bioland['path'] = 'https://test7-demo.chm-cbd.net/';
-  drush_log('Configuring `bioland` domain: ' . $bioland['subdomain'], 'ok');
-  domain_save($bioland);
+  $domain = domain_load(1);
+  $domain['subdomain'] = 'test7-demo.chm-cbd.net';
+  $domain['path'] = 'https://test7-demo.chm-cbd.net/';
+  drush_log('Configuring `bioland` domain: ' . $domain['subdomain'], 'ok');
+  domain_save($domain);
 
-  $bioland = domain_load(2);
-  $bioland['subdomain'] = 'test7-al.chm-cbd.net';
-  $bioland['path'] = 'https://test7-al.chm-cbd.net/';
-  drush_log('Configuring `Albania` domain: ' . $bioland['subdomain'], 'ok');
-  domain_save($bioland);
+  $domain = domain_load(2);
+  $domain['subdomain'] = 'test7-al.chm-cbd.net';
+  $domain['path'] = 'https://test7-al.chm-cbd.net/';
+  drush_log('Configuring `Albania` domain: ' . $domain['subdomain'], 'ok');
+  domain_save($domain);
 
   variable_set('environment', 'test');
 }
