@@ -5,3 +5,61 @@
  */
 
 include_once 'chm_views.features.inc';
+
+/**
+ * Implements hook_block_info().
+ */
+function chm_views_block_info() {
+  $blocks['chm_network_sites'] = [
+    'info' => t('National CHM Training Sites'),
+    'status' => TRUE,
+    'region' => 'content',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => 'chm-network',
+    'weight' => 1,
+  ];
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function chm_views_block_view($delta = '') {
+  switch ($delta) {
+    case 'chm_network_sites':
+      return chm_views_block_chm_network_sites_view();
+  }
+  return FALSE;
+}
+
+
+function chm_views_block_chm_network_sites_view() {
+  $content = [
+    'empty' => 'There are no domains defined',
+    'header' => ['', t('National CHM Site'), t('URL') ],
+    'rows' => [],
+  ];
+  $domains = domain_domains();
+  foreach ($domains as $id => $domain) {
+    $flag_image = '';
+    $label = str_replace(array('https://', 'http://', '/'), '', $domain['path']);
+    if (!empty($domain['valid']) && $id != 18) {
+      if ($country = PTK::getPortalCountry($domain)) {
+        if ($flag = PTK::getCountryFlagURL($country)) {
+          $flag_image = theme('image', array('path' => $flag, 'width' => 30));
+        }
+      }
+      $content['rows'][] = [
+        $flag_image,
+        $domain['sitename'],
+        l($label, $domain['path']),
+      ];
+    }
+  }
+  $ret = array(
+    'subject' => t('National CHM Training Sites'),
+    'content' => theme('table', $content),
+  );
+  return $ret;
+}

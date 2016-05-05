@@ -23,11 +23,16 @@ class PTK {
   /**
    * Get the Country of the current portal.
    *
+   * @param array $domain
+   *   A domain, if NULL the current domain (or default domain) is returned
+   *
    * @return null|\stdClass
    *   Taxonomy term from 'countries' taxonomy for the current country
    */
-  public static function getPortalCountry() {
-    $domain = domain_get_domain();
+  public static function getPortalCountry($domain = NULL) {
+    if (empty($domain)) {
+      $domain = domain_get_domain();
+    }
     $realm_key = _domain_variable_realm_key($domain['machine_name']);
     if ($iso = variable_realm_get('domain', $realm_key, 'country')) {
       return self::getCountryByCode($iso);
@@ -108,6 +113,21 @@ class PTK {
     $k = strtoupper(trim($acronym));
     if (!empty($items[$k])) {
       return $items[$k];
+    }
+    return NULL;
+  }
+
+  public static function getCountryFlagURL($country) {
+    try {
+      $w = entity_metadata_wrapper('taxonomy_term', $country);
+      if ($iso = $w->field_country_code->value()) {
+        return url(
+          sprintf('/sites/all/files/flags/%s.png', strtolower($iso)),
+          array('absolute' => 1, 'language' => (object)array('language' => LANGUAGE_NONE))
+        );
+      }
+    } catch (Exception $e) {
+      watchdog_exception('ptk', $e);
     }
     return NULL;
   }

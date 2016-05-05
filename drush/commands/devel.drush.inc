@@ -32,6 +32,7 @@ function _drush_prepare_dev() {
   if (module_exists('overlay')) {
     module_disable(['overlay']);
   }
+  module_enable(['devel']);
   foreach (domain_domains() as $id => $domain) {
     switch ($id) {
       case 18:
