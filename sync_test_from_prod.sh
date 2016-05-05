@@ -12,4 +12,5 @@ echo ""
 cd docroot/
 drush @test sql-drop -y
 drush sql-sync @prod @test -y
+drush vset environment test
 drush @test prepare-test -y
