@@ -2,6 +2,19 @@
 
 require_once dirname(__FILE__) . '/include/PTK.php';
 require_once dirname(__FILE__) . '/include/forms.inc';
+require_once dirname(__FILE__) . '/include/blocks.inc';
+
+/**
+ * Implements hook_permission().
+ */
+function ptk_base_permission() {
+  return [
+    'configure portal global settings' => [
+      'title' => t('Configure portal global settings'),
+      'description' => t('Allow configuring global variables such as block links, social media accounts etc.')
+    ]
+  ];
+}
 
 /**
  * Implements hook_menu().
@@ -24,7 +37,76 @@ function ptk_base_menu() {
       'file' => 'ptk_base.admin.inc',
       'access arguments' => ['view the administration theme'],
       'type' => MENU_CALLBACK,
+    ],
+    'admin/config/portal' => [
+      'title' => 'Configure your portal',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => ['ptk_base_admin_page_configure_portal_global_settings'],
+      'file' => 'ptk_base.admin.inc',
+      'access arguments' => ['configure portal global settings'],
+      'type' => MENU_CALLBACK,
     ]
   ];
   return $items;
+}
+
+
+/**
+ * Implements hook_block_info().
+ */
+function ptk_base_block_info() {
+  $blocks['chm_network_sites'] = [
+    'info' => t('National CHM Training Sites'),
+    'status' => TRUE,
+    'region' => 'content',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => 'chm-network',
+    'weight' => 1,
+  ];
+  $blocks['chm_footer_quick_links_root'] = [
+    'info' => t('Footer quick links for root domain'),
+    'status' => TRUE,
+    'region' => 'footer_col_1',
+    'cache' => DRUPAL_NO_CACHE,
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'pages' => '',
+    'weight' => 1,
+  ];
+  $blocks['chm_footer_quick_links'] = [
+    'info' => t('Footer quick links'),
+    'status' => TRUE,
+    'region' => 'footer_col_1',
+    'cache' => DRUPAL_NO_CACHE,
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'pages' => '',
+    'weight' => 1,
+  ];
+  $blocks['chm_footer_follow_us'] = [
+    'info' => t('Follow Us'),
+    'status' => TRUE,
+    'region' => 'footer_col_4',
+    'cache' => DRUPAL_NO_CACHE,
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'pages' => '',
+    'weight' => 1,
+  ];
+  $blocks['chm_footer_country_links'] = [
+    'info' => t('Country links'),
+    'status' => TRUE,
+    'region' => 'footer_col_3',
+    'cache' => DRUPAL_NO_CACHE,
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'pages' => '',
+    'weight' => 1,
+  ];
+  return $blocks;
+}
+
+
+/**
+ * Implements hook_block_view().
+ */
+function ptk_base_block_view($delta = '') {
+  return PTKBlocks::render($delta);
 }

@@ -3,6 +3,8 @@
 
 class PTK {
 
+  public static $PTK_ROOT_DOMAIN_ID = 18;
+
   /**
    * Retrieve the domain object corresponding to a country ISO code.
    */
@@ -79,7 +81,10 @@ class PTK {
       $q->condition('bundle', 'countries');
       $rows = $q->execute()->fetchAllKeyed();
       foreach ($rows as $k => $code) {
-        $items[$code] = taxonomy_term_load($k);
+        $term = taxonomy_term_load($k);
+        $w = entity_metadata_wrapper('taxonomy_term', $term);
+        $term->iso2l = $w->field_country_code->value();
+        $items[$code] = $term;
       }
     }
     $k = strtoupper(trim($iso));
@@ -130,5 +135,23 @@ class PTK {
       watchdog_exception('ptk', $e);
     }
     return NULL;
+  }
+
+  public static function variable_realm_get($name, $domain = NULL) {
+    $realm_name = 'domain';
+    if (empty($domain)) {
+      $domain = domain_get_domain();
+    }
+    $realm_key = $domain['machine_name'];
+    return variable_realm_get($realm_name, $realm_key, $name);
+  }
+
+  public static function variable_realm_set($name, $value, $domain = NULL) {
+    $realm_name = 'domain';
+    if (empty($domain)) {
+      $domain = domain_get_domain();
+    }
+    $realm_key = $domain['machine_name'];
+    variable_realm_set($realm_name, $realm_key, $name, $value);
   }
 }
