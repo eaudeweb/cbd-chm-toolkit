@@ -1,19 +1,26 @@
 <?php
 
-
 /**
- * Implements hook_form_BASE_FORM_ID_alter().
+ * Implements hook_form_FORM_ID_alter().
  */
-function ptk_base_form_variable_realm_edit_variables_form_alter(&$form, &$form_state) {
+function ptk_base_form_domain_form_alter(&$form, &$form_state, $form_id) {
   $countries = PTK::getCountryListAsOptions();
-  $realm_name = $form_state['build_info']['args'][0];
-  $realm_key = $form_state['build_info']['args'][1];
-  $form['variables']['regional_settings']['country'] = [
+  $form['country'] = [
     '#title' => t('Country'),
     '#description' => t('Designate the country for this CHM portal'),
     '#type' => 'select',
     '#options' => $countries,
-    '#default_value' => variable_realm_get($realm_name, $realm_key, 'country'),
+    '#default_value' => PTK::variable_realm_get('country', $form['#domain']),
+    '#required' => TRUE,
     '#weight' => -10,
   ];
+  $form['#submit'][] = 'ptk_base_form_domain_form_submit';
+}
+
+function ptk_base_form_domain_form_submit($form, &$form_state) {
+  $current = PTK::variable_realm_get('country', $form['#domain']);
+  $value = $form_state['values']['country'];
+  if ($current !== $value) {
+    PTK::variable_realm_set('country', $value, $form['#domain']);
+  }
 }
