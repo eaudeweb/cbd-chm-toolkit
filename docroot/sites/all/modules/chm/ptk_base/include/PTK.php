@@ -159,6 +159,7 @@ class PTK {
     $menu = array(
       'menu_name' => "menu-country-links-{$country}",
       'title' => "Country Links ({$country})",
+      'description' => "Main menu for {$country} country.",
     );
     $exists = menu_load($menu['menu_name']);
     if (!$exists) {
@@ -168,6 +169,58 @@ class PTK {
   }
 
   public static function initializeCountryDomain($values) {
+    global $user;
+    $domain = domain_load(domain_load_domain_id($values['machine_name']));
+    $country = self::getCountryByCode($values['country']);
     $menu = self::createCountryMainMenu($values['country']);
+    $page_default_attributes = array(
+      'type' => 'page',
+      'status' => '1',
+      'uid' => $user->uid,
+      'name' => $user->name,
+      'language' => 'en',
+      'field_country' => array(
+        LANGUAGE_NONE => array(
+          '0' => array(
+            'tid' => $country->tid,
+          ),
+        )
+      ),
+      'menu' => array(
+        'enabled' => 1,
+        'mlid' => 0,
+        'module' => 'menu',
+        'hidden' => 0,
+        'has_children' => 0,
+        'customized' => 0,
+        'options' => array(),
+        'expanded' => 0,
+        'parent_depth_limit' => 8,
+        'description' => '',
+        'parent' => "{$menu['menu_name']}:0",
+        'weight' => 0,
+        'plid' => 0,
+        'menu_name' => $menu['menu_name'],
+      ),
+      'domains' => array($domain['domain_id'] => $domain['domain_id']),
+      'domain_site' => 0,
+    );
+    $pages = array(
+      'Home',
+      'Biodiversity',
+      'Strategy',
+      'Implementation',
+      'Information',
+      'Participate',
+      'About us',
+    );
+    $weight = 0;
+    foreach ($pages as $page) {
+      $node = $page_default_attributes;
+      $node['title'] = $node['menu']['link_title'] = $page;
+      $node['menu']['weight'] = $weight++;
+      $node = (object) $node;
+      node_save($node);
+    }
   }
 }
