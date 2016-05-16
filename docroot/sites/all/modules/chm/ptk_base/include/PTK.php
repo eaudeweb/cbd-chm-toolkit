@@ -154,4 +154,20 @@ class PTK {
     $realm_key = $domain['machine_name'];
     variable_realm_set($realm_name, $realm_key, $name, $value);
   }
+
+  public static function createCountryMainMenu($country) {
+    $menu = array(
+      'menu_name' => "menu-country-links-{$country}",
+      'title' => "Country Links ({$country})",
+    );
+    $exists = menu_load($menu['menu_name']);
+    if (!$exists) {
+      menu_save($menu);
+    }
+    return $menu;
+  }
+
+  public static function initializeCountryDomain($values) {
+    $menu = self::createCountryMainMenu($values['country']);
+  }
 }

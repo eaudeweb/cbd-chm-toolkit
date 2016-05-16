@@ -23,6 +23,7 @@ function ptk_base_form_domain_form_submit($form, &$form_state) {
   $domain = $form['#domain'];
   if (empty($domain['machine_name'])) {
     $domain['machine_name'] = $form_state['values']['machine_name'];
+    PTK::initializeCountryDomain($form_state['values']);
   }
   if ($current !== $value) {
     PTK::variable_realm_set('country', $value, $domain);
