@@ -157,8 +157,8 @@ class PTK {
 
   public static function createCountryMainMenu($country) {
     $menu = array(
-      'menu_name' => "menu-country-links-{$country}",
-      'title' => "Country Links ({$country})",
+      'menu_name' => "menu-main-menu-{$country}",
+      'title' => "Main menu ({$country})",
       'description' => "Main menu for {$country} country.",
     );
     $exists = menu_load($menu['menu_name']);
@@ -221,6 +221,14 @@ class PTK {
       $node['menu']['weight'] = $weight++;
       $node = (object) $node;
       node_save($node);
+      if ($page == 'Home') {
+        self::variable_realm_set('site_frontpage', "node/{$node->nid}", $domain);
+      }
     }
+
+    self::variable_realm_set('menu_main_links_source', $menu['menu_name'], $domain);
+    self::variable_realm_set('site_name', "Biodiversity {$country->name}", $domain);
+    self::variable_realm_set('site_slogan', '', $domain);
+
   }
 }
