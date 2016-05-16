@@ -227,7 +227,7 @@ class PTK {
     }
 
     self::variable_realm_set('menu_main_links_source', $menu['menu_name'], $domain);
-    self::variable_realm_set('site_name', "Biodiversity {$country->name}", $domain);
+    self::variable_realm_set('site_name', $values['sitename'], $domain);
     self::variable_realm_set('site_slogan', '', $domain);
 
   }
