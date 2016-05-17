@@ -229,7 +229,8 @@ class PTK {
     self::variable_realm_set('menu_main_links_source', $menu['menu_name'], $domain);
     self::variable_realm_set('site_name', $values['sitename'], $domain);
     self::variable_realm_set('site_slogan', '', $domain);
-    $languages = array_map(function () { return NULL; }, variable_get('language_list', language_list()));
+    drupal_static_reset('language_list');
+    $languages = array_map(function () { return NULL; }, language_list());
     //Enable english
     $languages['en'] = 'en';
     self::variable_realm_set('language_list', $languages, $domain);
