@@ -235,5 +235,39 @@ class PTK {
     $languages['en'] = 'en';
     self::variable_realm_set('language_list', $languages, $domain);
 
+    $flagname = strtolower($values['country']);
+    $settings = [
+      'logo_path' => "flags/{$flagname}.png",
+    ];
+    $theme = 'chm_theme_kit';
+    $check = domain_theme_lookup($values['domain_id'], $theme);
+    if ($check != -1) {
+      $existing = db_select('domain_theme', 't')
+        ->fields('t', ['settings'])
+        ->condition('t.domain_id', $values['domain_id'])
+        ->condition('t.theme', $theme)
+        ->execute()->fetchField();
+      $existing = unserialize($existing);
+      $settings = array_merge($existing, $settings);
+      $settings = serialize($settings);
+      db_update('domain_theme')
+        ->fields(array(
+          'settings' => $settings,
+        ))
+        ->condition('domain_id', $values['domain_id'])
+        ->condition('theme', $theme)
+        ->execute();
+    }
+    else {
+      $settings = serialize($settings);
+      db_insert('domain_theme')
+        ->fields(array(
+          'domain_id' => $values['domain_id'],
+          'theme' => $theme,
+          'settings' => $settings,
+          'status' => 0,
+        ))
+        ->execute();
+    }
   }
 }
