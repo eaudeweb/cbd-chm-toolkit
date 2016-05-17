@@ -168,8 +168,30 @@ class PTK {
     return $menu;
   }
 
+  protected static function addBlocksToNode($blocks, $nid, $theme = 'chm_theme_kit') {
+    if (!is_array($blocks)) {
+      $blocks = [$blocks];
+    }
+    foreach ($blocks as $block) {
+      $q = db_select('block', 'b')
+        ->condition('b.delta', $block)
+        ->condition('b.theme', $theme)
+        ->fields('b', ['pages']);
+      $pages = $q->execute()->fetchField();
+      $pages .= "\nnode/{$nid}";
+      db_update('block')
+        ->condition('delta', $block)
+        ->condition('theme', $theme)
+        ->fields([
+          'pages' => $pages,
+        ])
+        ->execute();
+    }
+  }
+
   public static function initializeCountryDomain($values) {
     global $user;
+    $theme = 'chm_theme_kit';
     $domain = domain_load(domain_load_domain_id($values['machine_name']));
     $country = self::getCountryByCode($values['country']);
     $menu = self::createCountryMainMenu($values['country']);
@@ -232,8 +254,14 @@ class PTK {
           'entity_id' => $node->nid,
         ))
         ->execute();
-      if ($page == 'Home') {
-        self::variable_realm_set('site_frontpage', "node/{$node->nid}", $domain);
+      switch ($page) {
+        case 'Home':
+          self::variable_realm_set('site_frontpage', "node/{$node->nid}", $domain);
+          self::addBlocksToNode(['home_page_slider-block', 'latest_updates-block', 'statistics-block_1'], $node->nid);
+          break;
+        case 'Biodiversity':
+          self::addBlocksToNode(['ecosystems-block'], $node->nid);
+          break;
       }
     }
 
@@ -250,7 +278,6 @@ class PTK {
     $settings = [
       'logo_path' => "public://flags/{$flagname}.png",
     ];
-    $theme = 'chm_theme_kit';
     $check = domain_theme_lookup($values['domain_id'], $theme);
     if ($check != -1) {
       $existing = db_select('domain_theme', 't')
