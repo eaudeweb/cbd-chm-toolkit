@@ -221,6 +221,17 @@ class PTK {
       $node['menu']['weight'] = $weight++;
       $node = (object) $node;
       node_save($node);
+      $slug = str_replace(" ", "-", strtolower($page));
+      db_insert('domain_path')
+        ->fields(array(
+          'domain_id' => $domain['domain_id'],
+          'source' => 'node/' . $node->nid,
+          'alias' => $slug,
+          'language' => 'en',
+          'entity_type' => 'node',
+          'entity_id' => $node->nid,
+        ))
+        ->execute();
       if ($page == 'Home') {
         self::variable_realm_set('site_frontpage', "node/{$node->nid}", $domain);
       }
