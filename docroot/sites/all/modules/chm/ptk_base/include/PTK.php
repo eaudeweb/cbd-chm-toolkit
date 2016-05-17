@@ -297,7 +297,7 @@ class PTK {
 
     $flagname = strtolower($values['country']);
     $settings = [
-      'logo_path' => "public://flags/{$flagname}.png",
+      'logo_path' => "sites/all/themes/chm_theme_kit/flags/{$flagname}.png",
     ];
     $check = domain_theme_lookup($values['domain_id'], $theme);
     if ($check != -1) {
