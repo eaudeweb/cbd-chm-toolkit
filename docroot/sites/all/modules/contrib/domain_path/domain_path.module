@@ -268,7 +268,12 @@ function domain_path_form_node_form_alter(&$form, $form_state) {
   // If the user doesn't have access to the domain form element then we will
   // create a domain id setting for the js so that it will know which path
   // field to display.
-  if (!user_access('publish to any assigned domain') && !user_access('set domain access')) {
+
+
+  // We remove this condition until someone explains us WHY is it here
+  // https://www.drupal.org/node/2727643
+  //if (!user_access('publish to any assigned domain') && !user_access('set domain access')) {
+  if (TRUE) {
     $domain_id = FALSE;
 
     // Only set the default domain id as the js domain id when the user can
