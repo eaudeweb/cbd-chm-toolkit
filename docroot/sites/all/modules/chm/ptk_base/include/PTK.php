@@ -247,9 +247,18 @@ class PTK {
         ->condition('t.domain_id', $values['domain_id'])
         ->condition('t.theme', $theme)
         ->execute()->fetchField();
-      $existing = unserialize($existing);
-      $settings = array_merge($existing, $settings);
-      $settings = serialize($settings);
+    }
+    else {
+      $existing = db_select('domain_theme', 't')
+        ->fields('t', ['settings'])
+        ->condition('t.theme', $theme)
+        ->execute()->fetchField();
+    }
+    $existing = unserialize($existing);
+    $settings = array_merge($existing, $settings);
+    $settings = serialize($settings);
+
+    if ($check != -1) {
       db_update('domain_theme')
         ->fields(array(
           'settings' => $settings,
@@ -259,7 +268,6 @@ class PTK {
         ->execute();
     }
     else {
-      $settings = serialize($settings);
       db_insert('domain_theme')
         ->fields(array(
           'domain_id' => $values['domain_id'],
