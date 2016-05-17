@@ -265,7 +265,7 @@ class PTK {
           'domain_id' => $values['domain_id'],
           'theme' => $theme,
           'settings' => $settings,
-          'status' => 0,
+          'status' => 1,
         ))
         ->execute();
     }
