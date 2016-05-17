@@ -262,6 +262,27 @@ class PTK {
         case 'Biodiversity':
           self::addBlocksToNode(['ecosystems-block'], $node->nid);
           break;
+        case 'Strategy':
+          self::addBlocksToNode(['nbsap-block', 'national_targets-block'], $node->nid);
+          break;
+        case 'Implementation':
+          self::addBlocksToNode(['projects-block'], $node->nid);
+          break;
+        case 'Information':
+          $default_node = node_load(4);
+          $node->body = $default_node->body;
+          node_save($node);
+          break;
+        case 'Participate':
+          $default_node = node_load(5);
+          $node->body = $default_node->body;
+          node_save($node);
+          break;
+        case 'About us':
+          $default_node = node_load(6);
+          $node->body = $default_node->body;
+          node_save($node);
+          break;
       }
     }
 
