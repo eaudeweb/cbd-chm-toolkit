@@ -341,6 +341,7 @@ class PTK {
         }
       }
       self::variable_realm_set('menu_main_links_source', $menu['menu_name'], $domain);
+      self::variable_realm_set('create_main_menu', TRUE, $domain);
     }
 
     if (!empty($values['create_sample_content'])) {
@@ -381,6 +382,7 @@ class PTK {
           node_save($node);
         }
       }
+      self::variable_realm_set('create_sample_content', TRUE, $domain);
     }
     return TRUE;
   }

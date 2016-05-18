@@ -47,10 +47,12 @@ function ptk_base_domain_content_config_form($form, &$form_state, $domain) {
     'create_main_menu' => [
       '#type' => 'checkbox',
       '#title' => t('Create main menu & basic pages'),
+      '#disabled' => !empty(PTK::variable_realm_get('create_main_menu', $domain)) ? TRUE : FALSE,
     ],
     'create_sample_content' => [
       '#type' => 'checkbox',
       '#title' => t('Create sample content'),
+      '#disabled' => !empty(PTK::variable_realm_get('create_sample_content', $domain)) ? TRUE : FALSE,
     ],
     'submit' => [
       '#type' => 'submit',
