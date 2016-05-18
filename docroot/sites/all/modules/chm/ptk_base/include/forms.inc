@@ -33,7 +33,7 @@ function ptk_base_form_domain_form_submit($form, &$form_state) {
 function ptk_base_domain_content_config_form($form, &$form_state, $domain) {
   $realm_key = _domain_variable_realm_key($domain);
   $countries = PTK::getCountryListAsOptions();
-  return [
+  $form = [
     'domain' => [
       '#type' => 'value',
       '#value' => $domain,
@@ -42,7 +42,6 @@ function ptk_base_domain_content_config_form($form, &$form_state, $domain) {
       '#title' => t('Country'),
       '#type' => 'select',
       '#options' => $countries,
-      '#default_value' => PTK::variable_realm_get('country', $domain),
       '#required' => TRUE,
     ],
     'create_main_menu' => [
@@ -59,6 +58,10 @@ function ptk_base_domain_content_config_form($form, &$form_state, $domain) {
       '#submit' => ['ptk_base_domain_content_config_form_submit'],
     ],
   ];
+  if (!empty($country = PTK::variable_realm_get('country', $domain))) {
+    $form['country']['#default_value'] = $country;
+  }
+  return $form;
 }
 
 function ptk_base_domain_content_config_form_submit($form, &$form_state) {
