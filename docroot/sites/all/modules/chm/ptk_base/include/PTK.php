@@ -380,6 +380,28 @@ class PTK {
             'domain_site' => 0,
           );
           $node = (object) $node_attributes;
+          if ($ct == 'carousel_slider') {
+            $node->field_slider_image = [
+              LANGUAGE_NONE => [
+                0 => (array) file_load(77),
+              ],
+            ];
+            $node->field_slider_link = [
+              LANGUAGE_NONE => [
+                0 => [
+                  'url' => 'http://example.com',
+                  'title' => "{$ct} node {$i}",
+                ],
+              ],
+            ];
+            $node->field_slider_text = $node->field_slider_link_text = $node->field_weight = [
+              LANGUAGE_NONE => [
+                0 => [
+                  'value' => $i,
+                ],
+              ],
+            ];
+          }
           node_save($node);
         }
       }
