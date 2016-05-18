@@ -160,6 +160,7 @@ class PTK {
       'menu_name' => "menu-main-menu-{$country}",
       'title' => "Main menu ({$country})",
       'description' => "Main menu for {$country} country.",
+      'i18n_mode' => I18N_MODE_MULTIPLE,
     );
     $exists = menu_load($menu['menu_name']);
     if (!$exists) {
