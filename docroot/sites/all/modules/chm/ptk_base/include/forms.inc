@@ -21,10 +21,6 @@ function ptk_base_form_domain_form_submit($form, &$form_state) {
   $current = PTK::variable_realm_get('country', $form['#domain']);
   $value = $form_state['values']['country'];
   $domain = $form['#domain'];
-  if (empty($domain['machine_name'])) {
-    $domain['machine_name'] = $form_state['values']['machine_name'];
-    PTK::initializeCountryDomain($form_state['values']);
-  }
   if ($current !== $value) {
     PTK::variable_realm_set('country', $value, $domain);
   }
@@ -34,6 +30,10 @@ function ptk_base_domain_content_config_form($form, &$form_state, $domain) {
   $realm_key = _domain_variable_realm_key($domain);
   $countries = PTK::getCountryListAsOptions();
   return [
+    'domain' => [
+      '#type' => 'value',
+      '#value' => $domain,
+    ],
     'country' => [
       '#title' => t('Country'),
       '#type' => 'select',
@@ -41,11 +41,11 @@ function ptk_base_domain_content_config_form($form, &$form_state, $domain) {
       '#default_value' => PTK::variable_realm_get('country', $domain),
       '#required' => TRUE,
     ],
-    'main_menu' => [
+    'create_main_menu' => [
       '#type' => 'checkbox',
       '#title' => t('Create main menu & basic pages'),
     ],
-    'sample_content' => [
+    'create_sample_content' => [
       '#type' => 'checkbox',
       '#title' => t('Create sample content'),
     ],
@@ -58,4 +58,11 @@ function ptk_base_domain_content_config_form($form, &$form_state, $domain) {
 }
 
 function ptk_base_domain_content_config_form_submit($form, &$form_state) {
+  $success = PTK::initializeCountryDomain($form_state['values']);
+  if (!$success) {
+    drupal_set_message('An error occurred.', 'error');
+  }
+  else {
+    drupal_set_message('Succesfully populated domain.');
+  }
 }

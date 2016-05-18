@@ -191,104 +191,15 @@ class PTK {
 
   public static function initializeCountryDomain($values) {
     global $user;
-    $theme = 'chm_theme_kit';
-    $domain = domain_load(domain_load_domain_id($values['machine_name']));
-    $country = self::getCountryByCode($values['country']);
-    $menu = self::createCountryMainMenu($values['country']);
-    $page_default_attributes = array(
-      'type' => 'page',
-      'status' => '1',
-      'uid' => $user->uid,
-      'name' => $user->name,
-      'language' => 'en',
-      'field_country' => array(
-        LANGUAGE_NONE => array(
-          '0' => array(
-            'tid' => $country->tid,
-          ),
-        )
-      ),
-      'menu' => array(
-        'enabled' => 1,
-        'mlid' => 0,
-        'module' => 'menu',
-        'hidden' => 0,
-        'has_children' => 0,
-        'customized' => 0,
-        'options' => array(),
-        'expanded' => 0,
-        'parent_depth_limit' => 8,
-        'description' => '',
-        'parent' => "{$menu['menu_name']}:0",
-        'weight' => 0,
-        'plid' => 0,
-        'menu_name' => $menu['menu_name'],
-      ),
-      'domains' => array($domain['domain_id'] => $domain['domain_id']),
-      'domain_site' => 0,
-    );
-    $pages = array(
-      'Home',
-      'Biodiversity',
-      'Strategy',
-      'Implementation',
-      'Information',
-      'Participate',
-      'About us',
-    );
-    $weight = 0;
-    foreach ($pages as $page) {
-      $node = $page_default_attributes;
-      $node['title'] = $node['menu']['link_title'] = $page;
-      $node['menu']['weight'] = $weight++;
-      $node = (object) $node;
-      node_save($node);
-      $slug = str_replace(" ", "-", strtolower($page));
-      db_insert('domain_path')
-        ->fields(array(
-          'domain_id' => $domain['domain_id'],
-          'source' => 'node/' . $node->nid,
-          'alias' => $slug,
-          'language' => 'en',
-          'entity_type' => 'node',
-          'entity_id' => $node->nid,
-        ))
-        ->execute();
-      switch ($page) {
-        case 'Home':
-          self::variable_realm_set('site_frontpage', "node/{$node->nid}", $domain);
-          self::addBlocksToNode(['home_page_slider-block', 'latest_updates-block', 'statistics-block_1'], $node->nid);
-          break;
-        case 'Biodiversity':
-          self::addBlocksToNode(['ecosystems-block'], $node->nid);
-          break;
-        case 'Strategy':
-          self::addBlocksToNode(['nbsap-block', 'national_targets-block'], $node->nid);
-          break;
-        case 'Implementation':
-          self::addBlocksToNode(['projects-block'], $node->nid);
-          break;
-        case 'Information':
-          $default_node = node_load(4);
-          $node->body = $default_node->body;
-          node_save($node);
-          break;
-        case 'Participate':
-          $default_node = node_load(5);
-          $node->body = $default_node->body;
-          node_save($node);
-          break;
-        case 'About us':
-          $default_node = node_load(6);
-          $node->body = $default_node->body;
-          node_save($node);
-          break;
-      }
+    if (empty($values['domain'])) {
+      return FALSE;
     }
+    $domain = $values['domain'];
+    $theme = 'chm_theme_kit';
+    $country = self::getCountryByCode($values['country']);
 
-    self::variable_realm_set('menu_main_links_source', $menu['menu_name'], $domain);
-    self::variable_realm_set('site_name', $values['sitename'], $domain);
-    self::variable_realm_set('site_slogan', '', $domain);
+    self::variable_realm_set('site_name', "Biodiversity {$country->name}", $domain);
+    self::variable_realm_set('site_slogan', 'National Clearing-House Mechanism Training Website', $domain);
     drupal_static_reset('language_list');
     $languages = array_map(function () { return NULL; }, language_list());
     //Enable english
@@ -299,11 +210,11 @@ class PTK {
     $settings = [
       'logo_path' => "sites/all/themes/chm_theme_kit/flags/{$flagname}.png",
     ];
-    $check = domain_theme_lookup($values['domain_id'], $theme);
+    $check = domain_theme_lookup($domain['domain_id'], $theme);
     if ($check != -1) {
       $existing = db_select('domain_theme', 't')
         ->fields('t', ['settings'])
-        ->condition('t.domain_id', $values['domain_id'])
+        ->condition('t.domain_id', $domain['domain_id'])
         ->condition('t.theme', $theme)
         ->execute()->fetchField();
     }
@@ -322,19 +233,139 @@ class PTK {
         ->fields(array(
           'settings' => $settings,
         ))
-        ->condition('domain_id', $values['domain_id'])
+        ->condition('domain_id', $domain['domain_id'])
         ->condition('theme', $theme)
         ->execute();
     }
     else {
       db_insert('domain_theme')
         ->fields(array(
-          'domain_id' => $values['domain_id'],
+          'domain_id' => $domain['domain_id'],
           'theme' => $theme,
           'settings' => $settings,
           'status' => 1,
         ))
         ->execute();
     }
+
+    if (!empty($values['create_main_menu'])) {
+      $menu = self::createCountryMainMenu($values['country']);
+      $page_default_attributes = array(
+        'type' => 'page',
+        'status' => '1',
+        'uid' => $user->uid,
+        'name' => $user->name,
+        'language' => 'en',
+        'field_country' => array(
+          LANGUAGE_NONE => array(
+            '0' => array(
+              'tid' => $country->tid,
+            ),
+          )
+        ),
+        'menu' => array(
+          'enabled' => 1,
+          'mlid' => 0,
+          'module' => 'menu',
+          'hidden' => 0,
+          'has_children' => 0,
+          'customized' => 0,
+          'options' => array(),
+          'expanded' => 0,
+          'parent_depth_limit' => 8,
+          'description' => '',
+          'parent' => "{$menu['menu_name']}:0",
+          'weight' => 0,
+          'plid' => 0,
+          'menu_name' => $menu['menu_name'],
+        ),
+        'domains' => array($domain['domain_id'] => $domain['domain_id']),
+        'domain_site' => 0,
+      );
+      $pages = array(
+        'Home',
+        'Biodiversity',
+        'Strategy',
+        'Implementation',
+        'Information',
+        'Participate',
+        'About us',
+      );
+      $weight = 0;
+      foreach ($pages as $page) {
+        $node = $page_default_attributes;
+        $node['title'] = $node['menu']['link_title'] = $page;
+        $node['menu']['weight'] = $weight++;
+        $node = (object) $node;
+        node_save($node);
+        $slug = str_replace(" ", "-", strtolower($page));
+        db_insert('domain_path')
+          ->fields(array(
+            'domain_id' => $domain['domain_id'],
+            'source' => 'node/' . $node->nid,
+            'alias' => $slug,
+            'language' => 'en',
+            'entity_type' => 'node',
+            'entity_id' => $node->nid,
+          ))
+          ->execute();
+        switch ($page) {
+          case 'Home':
+            self::variable_realm_set('site_frontpage', "node/{$node->nid}", $domain);
+            self::addBlocksToNode(['home_page_slider-block', 'latest_updates-block', 'statistics-block_1'], $node->nid);
+            break;
+          case 'Biodiversity':
+            self::addBlocksToNode(['ecosystems-block'], $node->nid);
+            break;
+          case 'Strategy':
+            self::addBlocksToNode(['nbsap-block', 'national_targets-block'], $node->nid);
+            break;
+          case 'Implementation':
+            self::addBlocksToNode(['projects-block'], $node->nid);
+            break;
+          case 'Information':
+            $default_node = node_load(4);
+            $node->body = $default_node->body;
+            node_save($node);
+            break;
+          case 'Participate':
+            $default_node = node_load(5);
+            $node->body = $default_node->body;
+            node_save($node);
+            break;
+          case 'About us':
+            $default_node = node_load(6);
+            $node->body = $default_node->body;
+            node_save($node);
+            break;
+        }
+      }
+      self::variable_realm_set('menu_main_links_source', $menu['menu_name'], $domain);
+    }
+
+    if (!empty($values['create_sample_content'])) {
+      $content_types = [
+        'best_practice',
+        'cbd_nfp',
+        'carousel_slider',
+        'document',
+        'ecosystem',
+        'event',
+        'biodiversity_fact',
+        'nbsap',
+        'national_focal_point',
+        'target',
+        'need',
+        'article',
+        'organization',
+        'person',
+        'project',
+        'protected_area',
+        'resource',
+        'species',
+      ];
+      $number_of_nodes = 2;
+    }
+    return TRUE;
   }
 }
