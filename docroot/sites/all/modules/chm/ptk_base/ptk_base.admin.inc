@@ -174,3 +174,12 @@ function ptk_base_admin_page_configure_portal_global_settings_submit($form, $for
   }
   PTK::variable_realm_set('ptk_protected_planet_id', $values['ptk']['protected_planet_id']);
 }
+
+/**
+ * Populate new domain with sample content and menus
+ */
+function ptk_base_domain_content_config($domain) {
+  module_load_include('inc', 'ptk_base', 'include/forms');
+  drupal_set_title('Populate domain with sample content and menus');
+  return drupal_get_form('ptk_base_domain_content_config_form', $domain);
+}

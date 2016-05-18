@@ -29,3 +29,33 @@ function ptk_base_form_domain_form_submit($form, &$form_state) {
     PTK::variable_realm_set('country', $value, $domain);
   }
 }
+
+function ptk_base_domain_content_config_form($form, &$form_state, $domain) {
+  $realm_key = _domain_variable_realm_key($domain);
+  $countries = PTK::getCountryListAsOptions();
+  return [
+    'country' => [
+      '#title' => t('Country'),
+      '#type' => 'select',
+      '#options' => $countries,
+      '#default_value' => PTK::variable_realm_get('country', $domain),
+      '#required' => TRUE,
+    ],
+    'main_menu' => [
+      '#type' => 'checkbox',
+      '#title' => t('Create main menu & basic pages'),
+    ],
+    'sample_content' => [
+      '#type' => 'checkbox',
+      '#title' => t('Create sample content'),
+    ],
+    'submit' => [
+      '#type' => 'submit',
+      '#value' => t('Submit'),
+      '#submit' => ['ptk_base_domain_content_config_form_submit'],
+    ],
+  ];
+}
+
+function ptk_base_domain_content_config_form_submit($form, &$form_state) {
+}
