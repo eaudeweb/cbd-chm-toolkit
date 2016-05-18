@@ -365,6 +365,22 @@ class PTK {
         'species',
       ];
       $number_of_nodes = 2;
+      foreach ($content_types as $ct) {
+        for ($i = 1 ; $i <= $number_of_nodes ; $i++) {
+          $node_attributes = array(
+            'type' => $ct,
+            'title' => "{$ct} node {$i}",
+            'status' => '1',
+            'uid' => $user->uid,
+            'name' => $user->name,
+            'language' => 'en',
+            'domains' => array($domain['domain_id'] => $domain['domain_id']),
+            'domain_site' => 0,
+          );
+          $node = (object) $node_attributes;
+          node_save($node);
+        }
+      }
     }
     return TRUE;
   }
