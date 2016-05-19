@@ -118,3 +118,37 @@ function ptk_base_block_info() {
 function ptk_base_block_view($delta = '') {
   return PTKBlocks::render($delta);
 }
+
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function ptk_base_field_formatter_info() {
+  var_dump(1);
+  return array(
+    'event_date_formatter' => array(
+      'label' => t('Flexible event date'),
+      'field types' => array('date', 'datestamp', 'datetime'),
+      'settings' => array(
+        /* No settings for now */
+      ),
+    )
+  );
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ *
+ * @inheritdoc
+ */
+function ptk_base_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array(); // Initialize the var
+  $settings = $display['settings']; // get the settings
+  foreach ($items as $delta => $item) {
+    $f = !empty($item['value']) ? strtotime($item['value']) : NULL;
+    $t = !empty($item['value2']) ? strtotime($item['value2']) : NULL;
+    $value = PTK::dateIntervalString($f, $t);
+    $element[$delta] = array('#type' => 'item', '#markup' => $value);
+  }
+  return $element;
+}

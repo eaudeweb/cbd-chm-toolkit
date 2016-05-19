@@ -409,4 +409,60 @@ class PTK {
     }
     return TRUE;
   }
+
+
+  /**
+   * @param integer $from
+   *   Start timestamp
+   * @param integer $to
+   *   End timestamp
+   *
+   * @return array
+   *   Array with two elements, first is the start date, second is the end
+   *   date representation or NULL. If input is invalid yields (NULL, NULL)
+   */
+  static function dateInterval($from, $to, $config = array()) {
+    if (empty($from)) {
+      return array(NULL, NULL);
+    }
+    $cfg = array_merge(array(
+      'to_format' => 'j F Y',
+      'from_day' => 'j',
+      'from_day_month' => 'j F',
+      'from_full' => 'j F Y'
+    ), $config);
+    $f_year = date('Y', $from);
+    $t_year = !empty($to) ? date('Y', $to) : NULL;
+    $f_month = date('F', $from);
+    $t_month = !empty($to) ? date('F', $to) : NULL;
+    $f_day = date('j', $from);
+    $t_day = !empty($to) ? date('j', $to) : NULL;
+    $to_str = !empty($to) ? date($cfg['to_format'], $to) : NULL;
+
+    if ($f_year != $t_year) {
+      // Go full date
+      return array(date($cfg['from_full'], $from), $to_str);
+    }
+    else {
+      if ($f_month != $t_month) {
+        return array(date($cfg['from_day_month'], $from), $to_str);
+      }
+      else {
+        if ($f_day != $t_day) {
+          return array(date($cfg['from_day'], $from), $to_str);
+        }
+      }
+    }
+    return array(NULL, NULL);
+  }
+
+  static function dateIntervalString($from, $to) {
+    list($start, $end) = self::dateInterval($from, $to);
+    if (empty($end)) {
+      return $start;
+    }
+    else {
+      return t('!start_date to !end_date', array('!start_date' => $start, '!end_date' => $end));
+    }
+  }
 }
