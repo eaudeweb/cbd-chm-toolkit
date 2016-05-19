@@ -1,0 +1,14 @@
+@media print {
+
+  h1 { font-size: 20px; }
+  h2 { font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif; margin-top: 30px; }
+  body { font-size: 12px; }
+  fieldset { border: 0; }
+
+  div.breadcrumb,
+  fieldset legend,
+  .hidden-print,
+  .messages {
+    display: none;
+  }
+}

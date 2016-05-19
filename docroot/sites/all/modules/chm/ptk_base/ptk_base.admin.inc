@@ -4,7 +4,7 @@ function ptk_base_admin_page_content_types_overview() {
   $ret = [
     'download' => [
       '#type' => 'markup',
-      '#markup' => l(t('Download Excel report'), 'admin/reports/content_types_overview/export')
+      '#markup' => l(t('Download Excel report'), 'admin/reports/content_types_overview/export', ['attributes' => ['class' => ['hidden-print']]]),
     ],
   ];
   $types = node_type_get_types();
@@ -45,6 +45,9 @@ function ptk_base_admin_page_content_types_overview() {
       '#collapsed' => TRUE,
     ];
     $ret[$machine_name]['fieldset']['table'] = $table;
+    $ret['#attached']['css'] = [
+      'content_types_report' => drupal_get_path('module', 'ptk_base') . '/css/content_types_report.css',
+    ];
   }
   return $ret;
 }
