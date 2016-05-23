@@ -15,6 +15,38 @@ function ptk_base_form_domain_form_alter(&$form, &$form_state, $form_id) {
     '#required' => FALSE,
     '#weight' => -10,
   ];
+  module_load_include('inc', 'domain_variable_locale', 'domain_variable_locale.variable');
+  $languages = PTK::variable_realm_get('language_list', $form['#domain']);
+  $languages = !empty($languages) ? array_values($languages) : array();
+  $form['languages'] = [
+    '#type' => 'fieldset',
+    '#title' => t('List of active languages'),
+    '#weight' => 40,
+  ];
+  $form['languages']['language_list'] = [
+    '#title' => t('Select the languages to be available on this website'),
+    '#type' => 'checkboxes',
+    '#options' => domain_variable_locale_language_list([],[]),
+    '#default_value' => $languages,
+    '#required' => TRUE,
+  ];
+  $form['ptk'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Initialize domain content'),
+    '#weight' => 50,
+  ];
+  $form['ptk']['create_main_menu'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Create main menu & static pages'),
+  ];
+  $form['ptk']['create_sample_content'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Create sample content (i.e. project, species etc.)'),
+  ];
+
+  $form['is_default']['#access'] = FALSE;
+  $form['weight']['#access'] = FALSE;
+  $form['submit']['#weight'] = 100;
   $form['#submit'][] = 'ptk_base_form_domain_form_submit';
 }
 
@@ -28,50 +60,10 @@ function ptk_base_form_domain_form_submit($form, &$form_state) {
   if ($current !== $value) {
     PTK::variable_realm_set('country', $value, $domain);
   }
-}
-
-function ptk_base_domain_content_config_form($form, &$form_state, $domain) {
-  $realm_key = _domain_variable_realm_key($domain);
-  $countries = PTK::getCountryListAsOptions();
-  $form = [
-    'domain' => [
-      '#type' => 'value',
-      '#value' => $domain,
-    ],
-    'country' => [
-      '#title' => t('Country'),
-      '#type' => 'select',
-      '#options' => $countries,
-      '#required' => TRUE,
-    ],
-    'create_main_menu' => [
-      '#type' => 'checkbox',
-      '#title' => t('Create main menu & basic pages'),
-      '#disabled' => !empty(PTK::variable_realm_get('create_main_menu', $domain)) ? TRUE : FALSE,
-    ],
-    'create_sample_content' => [
-      '#type' => 'checkbox',
-      '#title' => t('Create sample content'),
-      '#disabled' => !empty(PTK::variable_realm_get('create_sample_content', $domain)) ? TRUE : FALSE,
-    ],
-    'submit' => [
-      '#type' => 'submit',
-      '#value' => t('Submit'),
-      '#submit' => ['ptk_base_domain_content_config_form_submit'],
-    ],
-  ];
-  if (!empty($country = PTK::variable_realm_get('country', $domain))) {
-    $form['country']['#default_value'] = $country;
-  }
-  return $form;
-}
-
-function ptk_base_domain_content_config_form_submit($form, &$form_state) {
-  $success = PTK::initializeCountryDomain($form_state['values']);
-  if (!$success) {
-    drupal_set_message('An error occurred.', 'error');
-  }
-  else {
-    drupal_set_message('Succesfully populated domain.');
-  }
+  cache_clear_all();
+  $machine_name = $form_state['values']['machine_name'];
+  $domain_id = domain_load_domain_id($machine_name);
+  $domain = domain_load($domain_id);
+  PTK::initializeCountryDomain($domain, $form_state['values']);
+  cache_clear_all();
 }

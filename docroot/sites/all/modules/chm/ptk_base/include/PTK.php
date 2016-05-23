@@ -190,21 +190,25 @@ class PTK {
     }
   }
 
-  public static function initializeCountryDomain($values) {
+  public static function initializeCountryDomain($domain, $values) {
     global $user;
-    if (empty($values['domain'])) {
+    if (empty($domain)) {
       return FALSE;
     }
-    $domain = $values['domain'];
     $theme = 'chm_theme_kit';
     $country = self::getCountryByCode($values['country']);
+    $create_main_menu = !empty($values['create_main_menu']);
+    $create_sample_content = !empty($values['create_sample_content']);
 
-    self::variable_realm_set('site_name', "Biodiversity {$country->name}", $domain);
+    if ($country) {
+      self::variable_realm_set('site_name', "Biodiversity {$country->name}", $domain);
+    }
+    else {
+      self::variable_realm_set('site_name', "Biodiversity website", $domain);
+    }
     self::variable_realm_set('site_slogan', 'National Clearing-House Mechanism Training Website', $domain);
     drupal_static_reset('language_list');
-    $languages = array_map(function () { return NULL; }, language_list());
-    //Enable english
-    $languages['en'] = 'en';
+    $languages = $values['language_list'];
     self::variable_realm_set('language_list', $languages, $domain);
 
     $flagname = strtolower($values['country']);
@@ -249,7 +253,7 @@ class PTK {
         ->execute();
     }
 
-    if (!empty($values['create_main_menu'])) {
+    if ($create_main_menu) {
       $menu = self::createCountryMainMenu($values['country']);
       $page_default_attributes = array(
         'type' => 'page',
@@ -257,6 +261,7 @@ class PTK {
         'uid' => $user->uid,
         'name' => $user->name,
         'language' => 'en',
+        // @todo: what to add here when there's no country selected?
         'field_country' => array(
           LANGUAGE_NONE => array(
             '0' => array(
@@ -345,7 +350,7 @@ class PTK {
       self::variable_realm_set('create_main_menu', TRUE, $domain);
     }
 
-    if (!empty($values['create_sample_content'])) {
+    if ($create_sample_content) {
       $content_types = [
         'best_practice',
         'cbd_nfp',

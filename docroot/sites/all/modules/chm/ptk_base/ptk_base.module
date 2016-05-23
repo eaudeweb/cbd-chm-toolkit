@@ -46,15 +46,6 @@ function ptk_base_menu() {
       'access arguments' => ['configure portal global settings'],
       'type' => MENU_CALLBACK,
     ],
-    'admin/structure/domain/view/%domain/content' => [
-      'title' => 'Content',
-      'description' => 'Populate new domain with sample content and menus',
-      'type' => MENU_LOCAL_TASK,
-      'access arguments' => array('administer domains'),
-      'page callback' => 'ptk_base_domain_content_config',
-      'page arguments' => array(4),
-      'file' => 'ptk_base.admin.inc',
-    ],
   ];
   return $items;
 }
