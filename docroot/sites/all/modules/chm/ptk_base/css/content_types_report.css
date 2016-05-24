@@ -11,4 +11,16 @@
   .messages {
     display: none;
   }
+
+  table { width: 100%; }
+  th.col-1 { width: 10%; }
+  th.col-2 { width: 10%; }
+  th.col-4 { width: 15%; }
+  th.col-5 { width: 10%; }
 }
+
+table { width: 100%; }
+th.col-1 { width: 10% }
+th.col-2 { width: 10% }
+th.col-4 { width: 15%; }
+th.col-5 { width: 10%; }
