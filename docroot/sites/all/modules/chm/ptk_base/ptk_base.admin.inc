@@ -124,35 +124,7 @@ function ptk_base_admin_page_configure_portal_global_settings() {
     '#type' => 'item',
     '#markup' => t('Configuration for <strong>!portal_name</strong>', array('!portal_name' => $domain['sitename']))
   ];
-  $form['ptk']['social'] = [
-    '#type' => 'fieldset',
-    '#title' => t('Social media'),
-  ];
-  $form['ptk']['social']['facebook'] = [
-    '#type' => 'textfield',
-    '#title' => t('Facebook account'),
-    '#default_value' => PTK::variable_realm_get('ptk_social_facebook'),
-  ];
-  $form['ptk']['social']['linkedin'] = [
-    '#type' => 'textfield',
-    '#title' => t('LinkedIn account'),
-    '#default_value' => PTK::variable_realm_get('ptk_social_linkedin'),
-  ];
-  $form['ptk']['social']['twitter'] = [
-    '#type' => 'textfield',
-    '#title' => t('Twitter account'),
-    '#default_value' => PTK::variable_realm_get('ptk_social_twitter'),
-  ];
-  $form['ptk']['social']['youtube'] = [
-    '#type' => 'textfield',
-    '#title' => t('Youtube account'),
-    '#default_value' => PTK::variable_realm_get('ptk_social_youtube'),
-  ];
-  $form['ptk']['social']['connect_with_us'] = [
-    '#type' => 'textfield',
-    '#title' => t('Connect with us'),
-    '#default_value' => PTK::variable_realm_get('ptk_social_connect_with_us'),
-  ];
+  $form += PTKForm::socialMediaForm($form, array());
   $form['ptk']['protected_planet_id'] = [
     '#type' => 'textfield',
     '#title' => t('Protected planet country ID'),
@@ -170,11 +142,7 @@ function ptk_base_admin_page_configure_portal_global_settings_validate($form, $f
 
 function ptk_base_admin_page_configure_portal_global_settings_submit($form, $form_state) {
   $values = $form_state['values'];
-  foreach (element_children($values['ptk']['social']) as $key) {
-    if (!empty($values['ptk']['social'][$key])) {
-      PTK::variable_realm_set('ptk_social_' . $key, $values['ptk']['social'][$key]);
-    }
-  }
+  PTKForm::socialMediaFormSubmit($form, $form_state, domain_get_domain());
   PTK::variable_realm_set('ptk_protected_planet_id', $values['ptk']['protected_planet_id']);
 }
 

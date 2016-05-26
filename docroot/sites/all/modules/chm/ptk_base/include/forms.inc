@@ -49,6 +49,9 @@ function ptk_base_form_domain_form_alter(&$form, &$form_state, $form_id) {
       '#type' => 'checkbox',
       '#title' => t('Create sample content (i.e. project, species etc.)'),
     ];
+    $social = PTKForm::socialMediaForm($form, $form_state);
+    $form['ptk']['social'] = $social['ptk']['social'];
+
     $form['weight']['#access'] = FALSE;
     $form['submit']['#weight'] = 100;
     $form['#submit'][] = 'ptk_base_form_domain_form_submit';
@@ -71,5 +74,57 @@ function ptk_base_form_domain_form_submit($form, &$form_state) {
   $domain_id = domain_load_domain_id($machine_name);
   $domain = domain_load($domain_id);
   PTK::initializeCountryDomain($domain, $form_state['values']);
+  PTKForm::socialMediaFormSubmit($form, $form_state, $domain);
   cache_clear_all();
+}
+
+
+class PTKForm {
+
+  public static function socialMediaForm($form, $form_state) {
+    $ret['ptk']['social'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Social media'),
+    ];
+    $ret['ptk']['social']['facebook'] = [
+      '#type' => 'textfield',
+      '#title' => t('Facebook account'),
+      '#default_value' => PTK::variable_realm_get('ptk_social_facebook'),
+    ];
+    $ret['ptk']['social']['linkedin'] = [
+      '#type' => 'textfield',
+      '#title' => t('LinkedIn account'),
+      '#default_value' => PTK::variable_realm_get('ptk_social_linkedin'),
+    ];
+    $ret['ptk']['social']['twitter'] = [
+      '#type' => 'textfield',
+      '#title' => t('Twitter account'),
+      '#default_value' => PTK::variable_realm_get('ptk_social_twitter'),
+    ];
+    $ret['ptk']['social']['youtube'] = [
+      '#type' => 'textfield',
+      '#title' => t('Youtube account'),
+      '#default_value' => PTK::variable_realm_get('ptk_social_youtube'),
+    ];
+    $ret['ptk']['social']['connect_with_us'] = [
+      '#type' => 'textfield',
+      '#title' => t('Connect with us'),
+      '#default_value' => PTK::variable_realm_get('ptk_social_connect_with_us'),
+    ];
+    return $ret;
+  }
+
+  public static function socialMediaFormSubmit($form, $form_state, $domain) {
+    $values = $form_state['values'];
+    $frm = self::socialMediaForm($form, $form_state);
+    foreach (array_keys($frm['ptk']['social']) as $key) {
+      // $form['#tree']
+      if (!empty($values['ptk']['social'][$key])) {
+        PTK::variable_realm_set('ptk_social_' . $key, $values['ptk']['social'][$key], $domain);
+      }
+      else if (!empty($values[$key])) {
+        PTK::variable_realm_set('ptk_social_' . $key, $values[$key], $domain);
+      }
+    }
+  }
 }
