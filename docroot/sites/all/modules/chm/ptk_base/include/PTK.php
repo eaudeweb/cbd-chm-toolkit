@@ -205,6 +205,15 @@ class PTK {
 
     if ($country) {
       self::variable_realm_set('site_name', "Biodiversity {$country->name}", $domain);
+      $wrapper = entity_metadata_wrapper('taxonomy_term', $country);
+      try {
+        if ($ppid = $wrapper->field_protected_planet_id->value()) {
+          PTK::variable_realm_set('ptk_protected_planet_id', $ppid, $domain);
+        }
+      } catch (Exception $e) {
+        drupal_set_message('Could not set ProtectedPlanet ID automatically');
+        watchdog_exception('ptk', $e);
+      }
     }
     else {
       self::variable_realm_set('site_name', "Biodiversity website", $domain);

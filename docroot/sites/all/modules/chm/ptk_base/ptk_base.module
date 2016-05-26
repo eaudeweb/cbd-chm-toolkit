@@ -115,7 +115,6 @@ function ptk_base_block_view($delta = '') {
  * Implements hook_field_formatter_info().
  */
 function ptk_base_field_formatter_info() {
-  var_dump(1);
   return array(
     'event_date_formatter' => array(
       'label' => t('Flexible event date'),
