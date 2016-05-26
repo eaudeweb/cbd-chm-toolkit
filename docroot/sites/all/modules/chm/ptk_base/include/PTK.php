@@ -48,7 +48,7 @@ class PTK {
     foreach ($countries as $country) {
       $w = entity_metadata_wrapper('taxonomy_term', $country);
       $code = $w->field_country_code->value();
-      $ret[$code] = $w->label();
+      $ret[strtolower($code)] = $w->label();
     }
     return $ret;
   }
@@ -156,10 +156,13 @@ class PTK {
   }
 
   public static function createCountryMainMenu($country) {
+    $code = strtolower($country);
+    $countries = self::getCountryListAsOptions();
+    $name = $countries[$code];
     $menu = array(
-      'menu_name' => "menu-main-menu-{$country}",
-      'title' => "Main menu ({$country})",
-      'description' => "Main menu for {$country} country.",
+      'menu_name' => "menu-main-menu-{$code}",
+      'title' => "Main menu ({$code})",
+      'description' => "Main menu for $name website",
       'i18n_mode' => I18N_MODE_MULTIPLE,
     );
     $exists = menu_load($menu['menu_name']);

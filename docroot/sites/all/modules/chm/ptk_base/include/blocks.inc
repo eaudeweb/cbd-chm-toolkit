@@ -69,7 +69,7 @@ class PTKBlocks {
         'items' => $items,
       ];
       $ret = [
-        'subject' => t('Quick links'),
+        'subject' => t('Quick Links'),
         'content' => theme('item_list', $config),
       ];
       return $ret;
@@ -107,7 +107,7 @@ class PTKBlocks {
         'items' => $items,
       ];
       $ret = [
-        'subject' => t('Quick links'),
+        'subject' => t('Quick Links'),
         'content' => theme('item_list', $config),
       ];
       return $ret;
@@ -152,7 +152,7 @@ class PTKBlocks {
       'items' => $items,
     ];
     $ret = [
-      'subject' => t('Follow Us'),
+      'subject' => t('Social Media'),
       'content' => theme('item_list', $config),
     ];
     return $ret;
