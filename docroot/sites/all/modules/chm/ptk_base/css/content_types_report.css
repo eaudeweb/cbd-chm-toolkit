@@ -13,14 +13,17 @@
   }
 
   table { width: 100%; }
-  th.col-1 { width: 10%; }
-  th.col-2 { width: 10%; }
-  th.col-4 { width: 15%; }
-  th.col-5 { width: 10%; }
+  th.col-1 { width: 15%; }
+  th.col-2 { width: 15%; }
+  th.col-4 { width: 20%; }
+  th.col-5 { width: 15%; }
 }
 
-table { width: 100%; }
-th.col-1 { width: 10% }
-th.col-2 { width: 10% }
-th.col-4 { width: 15%; }
-th.col-5 { width: 10%; }
+
+@media screen {
+  table { width: 100%; margin-bottom: 40px !important; }
+  th.col-1 { width: 15% }
+  th.col-2 { width: 15% }
+  th.col-4 { width: 20%; }
+  th.col-5 { width: 15%; }
+}

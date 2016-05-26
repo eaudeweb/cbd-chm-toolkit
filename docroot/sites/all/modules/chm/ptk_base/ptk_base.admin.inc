@@ -38,13 +38,7 @@ function ptk_base_admin_page_content_types_overview() {
       ];
       $table['#rows'][] = $row;
     }
-    $ret[$machine_name]['fieldset'] = [
-      '#type' => 'fieldset',
-      '#title' => t('Information'),
-      '#collapsible' => TRUE,
-      '#collapsed' => TRUE,
-    ];
-    $ret[$machine_name]['fieldset']['table'] = $table;
+    $ret[$machine_name]['table'] = $table;
     $ret['#attached']['css'] = [
       'content_types_report' => drupal_get_path('module', 'ptk_base') . '/css/content_types_report.css',
     ];
