@@ -141,16 +141,20 @@ class PTKBlocks {
         ['attributes' => ['class' => ['fa', 'fa-youtube']]]
       );
     }
-    $config = [
-      'type' => 'ul',
-      'attributes' => array('class' => ['menu', 'nav']),
-      'items' => $items,
-    ];
-    $ret = [
-      'subject' => t('Social Media'),
-      'content' => theme('item_list', $config),
-    ];
-    return $ret;
+    if (!empty($items)) {
+      $config = [
+        'type' => 'ul',
+        'attributes' => array('class' => ['menu', 'nav']),
+        'items' => $items,
+      ];
+      return [
+        'subject' => t('Social Media'),
+        'content' => theme('item_list', $config),
+      ];
+    }
+    else {
+      return NULL;
+    }
   }
 
   public static function chm_footer_country_links() {
