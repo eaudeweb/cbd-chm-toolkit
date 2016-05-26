@@ -141,11 +141,6 @@ class PTKBlocks {
         ['attributes' => ['class' => ['fa', 'fa-youtube']]]
       );
     }
-    if ($link = variable_realm_get($realm_name, $realm_key, 'ptk_social_connect_with_us')) {
-      $items[] = l(t('Connect with us'), $link,
-        ['attributes' => ['class' => ['fa', 'fa-connectdevelop']]]
-      );
-    }
     $config = [
       'type' => 'ul',
       'attributes' => array('class' => ['menu', 'nav']),

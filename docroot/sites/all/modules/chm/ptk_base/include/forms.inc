@@ -88,28 +88,23 @@ class PTKForm {
     ];
     $ret['ptk']['social']['facebook'] = [
       '#type' => 'textfield',
-      '#title' => t('Facebook account'),
+      '#title' => t('Facebook link'),
       '#default_value' => PTK::variable_realm_get('ptk_social_facebook'),
     ];
     $ret['ptk']['social']['linkedin'] = [
       '#type' => 'textfield',
-      '#title' => t('LinkedIn account'),
+      '#title' => t('LinkedIn link'),
       '#default_value' => PTK::variable_realm_get('ptk_social_linkedin'),
     ];
     $ret['ptk']['social']['twitter'] = [
       '#type' => 'textfield',
-      '#title' => t('Twitter account'),
+      '#title' => t('Twitter link'),
       '#default_value' => PTK::variable_realm_get('ptk_social_twitter'),
     ];
     $ret['ptk']['social']['youtube'] = [
       '#type' => 'textfield',
-      '#title' => t('Youtube account'),
+      '#title' => t('Youtube link'),
       '#default_value' => PTK::variable_realm_get('ptk_social_youtube'),
-    ];
-    $ret['ptk']['social']['connect_with_us'] = [
-      '#type' => 'textfield',
-      '#title' => t('Connect with us'),
-      '#default_value' => PTK::variable_realm_get('ptk_social_connect_with_us'),
     ];
     return $ret;
   }
