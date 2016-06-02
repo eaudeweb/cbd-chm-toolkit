@@ -21,8 +21,18 @@ function ptk_base_permission() {
  */
 function ptk_base_menu() {
   $items = [
-    'admin/reports/content_types_overview' => [
-      'title' => 'Content types overview',
+    'admin/reports/system' => [
+      'title' => 'System report',
+      'description' => 'System configuration reports',
+      'page callback' => 'ptk_base_admin_page_system_report',
+      'file' => 'ptk_base.admin.inc',
+      'access arguments' => ['view the administration theme'],
+      'menu_name' => 'management',
+      'plid' => '19',
+      'type' => MENU_NORMAL_ITEM,
+    ],
+    'admin/reports/system/types' => [
+      'title' => 'Content types structure',
       'description' => 'Overview and export structure of the entities',
       'page callback' => 'ptk_base_admin_page_content_types_overview',
       'file' => 'ptk_base.admin.inc',
@@ -31,9 +41,26 @@ function ptk_base_menu() {
       'plid' => '19',
       'type' => MENU_NORMAL_ITEM,
     ],
-    'admin/reports/content_types_overview/export' => [
+    'admin/reports/system/taxonomy' => [
+      'title' => 'Taxonomies structure',
+      'description' => 'Overview and export structure of taxoomies',
+      'page callback' => 'ptk_base_admin_page_taxonomies_overview',
+      'file' => 'ptk_base.admin.inc',
+      'access arguments' => ['view the administration theme'],
+      'menu_name' => 'management',
+      'plid' => '19',
+      'type' => MENU_NORMAL_ITEM,
+    ],
+    'admin/reports/system/types/export' => [
       'title' => 'Export content type information in MS Excel',
       'page callback' => 'ptk_base_admin_page_export_content_types_overview',
+      'file' => 'ptk_base.admin.inc',
+      'access arguments' => ['view the administration theme'],
+      'type' => MENU_CALLBACK,
+    ],
+    'admin/reports/system/taxonomy/export' => [
+      'title' => 'Export taxonomies information in MS Excel',
+      'page callback' => 'ptk_base_admin_page_export_taxonomies_overview',
       'file' => 'ptk_base.admin.inc',
       'access arguments' => ['view the administration theme'],
       'type' => MENU_CALLBACK,

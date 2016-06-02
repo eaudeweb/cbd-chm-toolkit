@@ -1,10 +1,19 @@
 <?php
 
+function ptk_base_admin_page_system_report() {
+  $attributes = array('class' => array('links', 'site-menu'));
+  $ret = theme('links', array('links' => menu_navigation_links('management', 3), 'attributes' => $attributes));
+  if (empty($ret)) {
+    $ret = 'No system report available';
+  }
+  return $ret;
+}
+
 function ptk_base_admin_page_content_types_overview() {
   $ret = [
     'download' => [
       '#type' => 'markup',
-      '#markup' => l(t('Download Excel report'), 'admin/reports/content_types_overview/export', ['attributes' => ['class' => ['hidden-print']]]),
+      '#markup' => l(t('Download Excel report'), 'admin/reports/system/types/export', ['attributes' => ['class' => ['hidden-print']]]),
     ],
   ];
   $types = node_type_get_types();
@@ -41,6 +50,50 @@ function ptk_base_admin_page_content_types_overview() {
     $ret[$machine_name]['table'] = $table;
     $ret['#attached']['css'] = [
       'content_types_report' => drupal_get_path('module', 'ptk_base') . '/css/content_types_report.css',
+    ];
+  }
+  return $ret;
+}
+
+function ptk_base_admin_page_taxonomies_overview() {
+  $ret = [
+    'download' => [
+      '#type' => 'markup',
+      '#markup' => l(t('Download Excel report'), 'admin/reports/system/taxonomy/export', ['attributes' => ['class' => ['hidden-print']]]),
+    ],
+  ];
+  $vocabularies = taxonomy_get_vocabularies();
+  uasort($vocabularies, function($a, $b) { return strcmp($a->name, $b->name); });
+
+  foreach ($vocabularies as $vid => $voc) {
+    $ret['voc_' . $vid]['title'] = [
+      '#type' => 'markup',
+      '#markup' => '<h2>' . $voc->name . ' (' . $voc->machine_name . ')</h2>' ,
+    ];
+    $table = [
+      '#theme' => 'table',
+      '#header' => [
+        [ 'data' => 'Term', 'class' => 'col-1' ],
+        [ 'data' => 'Description', 'class' => 'col-2' ],
+      ],
+      '#rows' => []
+    ];
+    if ($terms = taxonomy_get_tree($vid)) {
+      uasort($terms, function($a, $b) { return strcmp($a->name, $b->name);});
+      foreach ($terms as $term) {
+        $row = [
+          ['data' => $term->name],
+          ['data' => $term->description],
+        ];
+        $table['#rows'][] = $row;
+      }
+      $ret['tbl_' . $vid]['table'] = $table;
+    }
+    else {
+      $ret['tbl_' . $vid]['table'] = array('#type' => 'markup', '#markup' => 'No terms in this vocabulary');
+    }
+    $ret['#attached']['css'] = [
+      'content_types_report' => drupal_get_path('module', 'ptk_base') . '/css/taxonomies_report.css',
     ];
   }
   return $ret;
@@ -104,6 +157,60 @@ function ptk_base_admin_page_export_content_types_overview() {
   // Redirect output to a client’s web browser (Excel2007)
   header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
   header('Content-Disposition: attachment;filename="content_types_overview.xlsx"');
+  header('Cache-Control: max-age=0');
+  $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+  $objWriter->save('php://output');
+  die();
+}
+
+
+function ptk_base_admin_page_export_taxonomies_overview() {
+  module_load_include('inc', 'phpexcel');
+  libraries_load('PHPExcel');
+
+  // Create new PHPExcel object
+  $objPHPExcel = new \PHPExcel();
+  // Set document properties
+  $objPHPExcel->getProperties()->setCreator("CHM portal")
+    ->setLastModifiedBy("CHM portal")
+    ->setTitle("Taxonomies overview")
+    ->setSubject("Taxonomies overview")
+    ->setDescription("Export of the taxonomy content defined in the CHM portal")
+    ->setKeywords("drupal taxonomy");
+
+  $vocabularies = taxonomy_get_vocabularies();
+  uasort($vocabularies, function($a, $b) { return strcmp($a->name, $b->name); });
+  foreach ($vocabularies as $vid => $voc) {
+    $j = 1;
+    $sheet = new \PHPExcel_Worksheet();
+    $sheet->setTitle($voc->name);
+    if ($terms = taxonomy_get_tree($vid)) {
+      uasort($terms, function ($a, $b) {
+        return strcmp($a->name, $b->name);
+      });
+      //@todo: Add translations if available
+      foreach ($terms as $term) {
+        if ($j == 1) {
+          $sheet->setCellValue('A1', t('Term'));
+          $sheet->setCellValue('B1', t('Description'));
+        }
+        else {
+          $sheet->setCellValue('A' . $j, $term->name);
+          if (!empty($term->description)) {
+            $sheet->setCellValue('B' . $j, $term->description);
+          }
+        }
+        $j++;
+      }
+      $objPHPExcel->addSheet($sheet);
+    }
+  }
+  $objPHPExcel->removeSheetByIndex(0);
+  // Set active sheet index to the first sheet, so Excel opens this as the first sheet
+  $objPHPExcel->setActiveSheetIndex(0);
+  // Redirect output to a client’s web browser (Excel2007)
+  header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+  header('Content-Disposition: attachment;filename="taxonomies_overview.xlsx"');
   header('Cache-Control: max-age=0');
   $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
   $objWriter->save('php://output');

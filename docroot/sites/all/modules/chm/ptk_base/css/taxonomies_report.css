@@ -1,9 +1,6 @@
 @media screen {
   table { width: 100%; margin-bottom: 40px !important; }
-  th.col-1 { width: 15% }
-  th.col-2 { width: 15% }
-  th.col-4 { width: 20%; }
-  th.col-5 { width: 15%; }
+  th.col-1 { width: 25% }
 }
 
 @media print {
@@ -22,10 +19,7 @@
   }
 
   table { width: 100%; }
-  th.col-1 { width: 15%; }
-  th.col-2 { width: 15%; }
-  th.col-4 { width: 20%; }
-  th.col-5 { width: 15%; }
+  th.col-1 { width: 25%; }
   th { color: black !important; background-color: #e1e2dc !important; border: 0 !important; }
   td { background-color: white !important; border: 0 !important; }
 }
