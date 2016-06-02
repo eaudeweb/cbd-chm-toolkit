@@ -205,6 +205,7 @@ class PTK {
 
     if ($country) {
       self::variable_realm_set('site_name', "Biodiversity {$country->name}", $domain);
+      /** @var stdClass $wrapper */
       $wrapper = entity_metadata_wrapper('taxonomy_term', $country);
       try {
         if ($ppid = $wrapper->field_protected_planet_id->value()) {
