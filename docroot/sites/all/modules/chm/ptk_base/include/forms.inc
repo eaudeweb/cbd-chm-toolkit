@@ -84,10 +84,11 @@ class PTKForm {
 
       $form['weight']['#access'] = FALSE;
       $form['submit']['#weight'] = 100;
-      $form['#submit'][] = array('PTKForm', 'domainFormSubmit');
-      $form['#validate'][] = array('PTKForm', 'domainFormValidate');
       $form['submit']['#value'] = t('Create domain record');
     }
+    $form['#is_new'] = $is_new;
+    $form['#submit'][] = array('PTKForm', 'domainFormSubmit');
+    $form['#validate'][] = array('PTKForm', 'domainFormValidate');
   }
 
   public static function domainFormValidate($form, $form_state) {
@@ -118,12 +119,14 @@ class PTKForm {
       PTK::variable_realm_set('country', $value, $domain);
     }
     cache_clear_all();
-    $machine_name = $form_state['values']['machine_name'];
-    $domain_id = domain_load_domain_id($machine_name);
-    $domain = domain_load($domain_id);
-    PTK::initializeCountryDomain($domain, $form_state['values']);
-    PTKForm::socialMediaFormSubmit($form, $form_state, $domain);
-    cache_clear_all();
+    if (!empty($form['#is_new'])) {
+      $machine_name = $form_state['values']['machine_name'];
+      $domain_id = domain_load_domain_id($machine_name);
+      $domain = domain_load($domain_id);
+      PTK::initializeCountryDomain($domain, $form_state['values']);
+      PTKForm::socialMediaFormSubmit($form, $form_state, $domain);
+      cache_clear_all();
+    }
   }
 
 
