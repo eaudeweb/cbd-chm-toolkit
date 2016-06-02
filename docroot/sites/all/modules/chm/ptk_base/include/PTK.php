@@ -84,7 +84,7 @@ class PTK {
         $term = taxonomy_term_load($k);
         $w = entity_metadata_wrapper('taxonomy_term', $term);
         $term->iso2l = $w->field_country_code->value();
-        $items[$code] = $term;
+        $items[strtoupper($code)] = $term;
       }
     }
     $k = strtoupper(trim($iso));
