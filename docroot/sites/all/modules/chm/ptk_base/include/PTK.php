@@ -10,11 +10,10 @@ class PTK {
    */
   public static function getDomainByCountryISO($iso) {
     $all = domain_domains();
-    foreach ($all as $domain_id => $config) {
-      $realm_key = _domain_variable_realm_key($config['machine_name']);
-      if ($code = variable_realm_get('domain', $realm_key, 'country')) {
-        if ($iso == $code) {
-          return $config;
+    foreach ($all as $domain_id => $domain) {
+      if ($value = PTK::variable_realm_get('country', $domain)) {
+        if (strtoupper($iso) == strtoupper($value)) {
+          return $domain;
         }
       }
     }
