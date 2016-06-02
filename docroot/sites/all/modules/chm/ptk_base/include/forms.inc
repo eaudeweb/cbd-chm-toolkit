@@ -7,8 +7,31 @@ function ptk_base_form_domain_form_alter(&$form, &$form_state, $form_id) {
   PTKForm::domainFormAlter($form, $form_state);
 }
 
+/**
+ * Implements hook_form_alter().
+ * @inheritdoc
+ */
+function ptk_base_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-admin-views-node-system-1') {
+    PTKForm::adminContentFormAlter($form, $form_state);
+  }
+}
 
 class PTKForm {
+
+  public static function adminContentFormAlter(&$form, $form_state) {
+    if (!empty($form['sitename'])) {
+      $domains = domain_domains();
+      $options = array('' => t('-- All sites --'));
+      foreach ($domains as $domain) {
+        $options[$domain['sitename']] = $domain['sitename'];
+      }
+      $form['sitename']['#type'] = 'select';
+      $form['sitename']['#options'] = $options;
+      $form['sitename']['#default_value'] = '';
+      unset($form['sitename']['#size']);
+    }
+  }
 
   public static function domainFormAlter(&$form, &$form_state) {
     $form['is_default']['#access'] = FALSE;
