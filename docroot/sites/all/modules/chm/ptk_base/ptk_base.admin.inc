@@ -18,11 +18,11 @@ function ptk_base_admin_page_content_types_overview() {
     $table = [
       '#theme' => 'table',
       '#header' => [
-        [ 'data' => t('Field name'), 'class' => 'col-1' ],
-        [ 'data' => t('Machine name'), 'class' => 'col-2' ],
-        [ 'data' => t('Description'), 'class' => 'col-3' ],
-        [ 'data' => t('Data type'), 'class' => 'col-4' ],
-        [ 'data' => t('Cardinality'), 'class' => 'col-5' ],
+        [ 'data' => 'FIELD NAME', 'class' => 'col-1' ],
+        [ 'data' => 'MACHINE NAME', 'class' => 'col-2' ],
+        [ 'data' => 'DESCRIPTION', 'class' => 'col-3' ],
+        [ 'data' => 'DATA TYPE', 'class' => 'col-4' ],
+        [ 'data' => 'CARDINALITY', 'class' => 'col-5' ],
       ],
       '#rows' => []
     ];
