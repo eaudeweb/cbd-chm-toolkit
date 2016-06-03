@@ -9,7 +9,7 @@ echo " \___|_| |_|_| |_| |_|\__\___/ \___/|_|_|\_\_|\__|"
 echo "                        kool stuff is happenning..."
 echo ""
 
-cd docroot/
+cd ../docroot/
 drush @test sql-drop -y
 drush sql-sync @prod @test -y
 drush vset environment test
