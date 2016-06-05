@@ -34,38 +34,12 @@ function _drush_prepare_dev() {
   }
   module_enable(['devel']);
   foreach (domain_domains() as $id => $domain) {
-    switch ($id) {
-      case 18:
-        // Configure the domains
-        $domain = domain_load($id);
-        $domain['subdomain'] = 'chm7.local.ro';
-        $domain['path'] = 'http://chm7.local.ro/';
-        $domain['scheme'] = 'http';
-        drush_log('Configuring `www` domain: ' . $domain['subdomain'], 'ok');
-        domain_save($domain);
-        break;
-      case 1:
-        $domain = domain_load($id);
-        $domain['subdomain'] = 'chm7-demo.local.ro';
-        $domain['path'] = 'http://demo.chm7.local.ro/';
-        $domain['scheme'] = 'http';
-        drush_log('Configuring `bioland` domain: ' . $domain['subdomain'], 'ok');
-        domain_save($domain);
-        break;
-      case 2:
-        $domain = domain_load($id);
-        $domain['subdomain'] = 'chm7-al.local.ro';
-        $domain['path'] = 'https://chm7-al.local.ro/';
-        $domain['scheme'] = 'http';
-        drush_log('Configuring `Albania` domain: ' . $domain['subdomain'], 'ok');
-        domain_save($domain);
-        break;
-      default:
-        drush_log('Disabling: ' . $domain['subdomain'], 'ok');
-        $domain = domain_load($id);
-        $domain['valid'] = 0;
-        domain_save($domain);
-    }
+    $domain = domain_load($id);
+    $domain['subdomain'] = _drush_prepare_local_domain_name($domain['subdomain']);
+    $domain['path'] = _drush_prepare_local_domain_name($domain['path']);
+    $domain['scheme'] = 'http';
+    drush_log('Configuring ' . $domain['scheme'] . '://' . $domain['subdomain'], 'ok');
+    domain_save($domain);
   }
   //
   if (module_exists('devel')) {
@@ -115,4 +89,8 @@ function _drush_prepare_test() {
         domain_save($domain);
     }
   }
+}
+
+function _drush_prepare_local_domain_name($name) {
+  return str_replace(array('new-', 'test7', 'chm-cbd.net'), array('chm7-', 'chm7', 'local.ro'), $name);
 }
