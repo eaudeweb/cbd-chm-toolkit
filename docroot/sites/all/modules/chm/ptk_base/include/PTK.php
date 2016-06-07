@@ -227,42 +227,45 @@ class PTK {
     $settings = [
       'logo_path' => "sites/all/themes/chm_theme_kit/flags/{$flagname}.png",
     ];
-    $check = domain_theme_lookup($domain['domain_id'], $theme);
-    if ($check != -1) {
-      $existing = db_select('domain_theme', 't')
-        ->fields('t', ['settings'])
-        ->condition('t.domain_id', $domain['domain_id'])
-        ->condition('t.theme', $theme)
-        ->execute()->fetchField();
-    }
-    else {
-      $existing = db_select('domain_theme', 't')
-        ->fields('t', ['settings'])
-        ->condition('t.theme', $theme)
-        ->execute()->fetchField();
-    }
-    $existing = unserialize($existing);
-    $settings = array_merge($existing, $settings);
-    $settings = serialize($settings);
 
-    if ($check != -1) {
-      db_update('domain_theme')
-        ->fields(array(
-          'settings' => $settings,
-        ))
-        ->condition('domain_id', $domain['domain_id'])
-        ->condition('theme', $theme)
-        ->execute();
-    }
-    else {
-      db_insert('domain_theme')
-        ->fields(array(
-          'domain_id' => $domain['domain_id'],
-          'theme' => $theme,
-          'settings' => $settings,
-          'status' => 1,
-        ))
-        ->execute();
+    if (module_exists('domain_theme') && function_exists('domain_theme_lookup')) {
+      $check = domain_theme_lookup($domain['domain_id'], $theme);
+      if ($check != -1) {
+        $existing = db_select('domain_theme', 't')
+          ->fields('t', ['settings'])
+          ->condition('t.domain_id', $domain['domain_id'])
+          ->condition('t.theme', $theme)
+          ->execute()->fetchField();
+      }
+      else {
+        $existing = db_select('domain_theme', 't')
+          ->fields('t', ['settings'])
+          ->condition('t.theme', $theme)
+          ->execute()->fetchField();
+      }
+      $existing = unserialize($existing);
+      $settings = array_merge($existing, $settings);
+      $settings = serialize($settings);
+
+      if ($check != -1) {
+        db_update('domain_theme')
+          ->fields(array(
+            'settings' => $settings,
+          ))
+          ->condition('domain_id', $domain['domain_id'])
+          ->condition('theme', $theme)
+          ->execute();
+      }
+      else {
+        db_insert('domain_theme')
+          ->fields(array(
+            'domain_id' => $domain['domain_id'],
+            'theme' => $theme,
+            'settings' => $settings,
+            'status' => 1,
+          ))
+          ->execute();
+      }
     }
 
     if ($create_main_menu) {
