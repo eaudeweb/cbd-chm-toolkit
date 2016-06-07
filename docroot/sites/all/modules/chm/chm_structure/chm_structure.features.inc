@@ -26,6 +26,14 @@ function chm_structure_node_info() {
       'title_label' => t('Name'),
       'help' => '',
     ),
+    'page' => array(
+      'name' => t('Page'),
+      'base' => 'node_content',
+      'description' => t('Simple content page'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
   );
   drupal_alter('node_info', $items);
   return $items;

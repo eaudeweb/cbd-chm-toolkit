@@ -37,13 +37,15 @@ function chm_structure_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'body',
     'label' => 'Body',
-    'required' => FALSE,
+    'required' => 0,
     'settings' => array(
-      'display_summary' => TRUE,
+      'display_summary' => 1,
+      'entity_translation_sync' => FALSE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'text',
       'settings' => array(
         'rows' => 20,
@@ -81,6 +83,7 @@ function chm_structure_field_default_field_instances() {
     'label' => 'Address',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -122,6 +125,7 @@ function chm_structure_field_default_field_instances() {
     'label' => 'Alternative emails',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -162,6 +166,7 @@ function chm_structure_field_default_field_instances() {
     'label' => 'City',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -203,6 +208,7 @@ function chm_structure_field_default_field_instances() {
     'label' => 'Country',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -241,6 +247,7 @@ function chm_structure_field_default_field_instances() {
     'label' => 'Department',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -282,6 +289,7 @@ function chm_structure_field_default_field_instances() {
     'label' => 'Email',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -322,6 +330,7 @@ function chm_structure_field_default_field_instances() {
     'label' => 'Fax numbers',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -363,6 +372,7 @@ function chm_structure_field_default_field_instances() {
     'label' => 'First name',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -404,6 +414,7 @@ function chm_structure_field_default_field_instances() {
     'label' => 'Last name',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -445,6 +456,7 @@ function chm_structure_field_default_field_instances() {
     'label' => 'Designation',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -486,6 +498,7 @@ function chm_structure_field_default_field_instances() {
     'label' => 'Type',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -527,6 +540,7 @@ function chm_structure_field_default_field_instances() {
     'label' => 'Organization acronym',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -568,6 +582,7 @@ function chm_structure_field_default_field_instances() {
     'label' => 'Organization name',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -609,6 +624,7 @@ function chm_structure_field_default_field_instances() {
     'label' => 'Phone numbers',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -650,6 +666,7 @@ function chm_structure_field_default_field_instances() {
     'label' => 'Postal code',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -691,6 +708,7 @@ function chm_structure_field_default_field_instances() {
     'label' => 'Salutation',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -732,6 +750,7 @@ function chm_structure_field_default_field_instances() {
     'label' => 'State',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -786,6 +805,7 @@ function chm_structure_field_default_field_instances() {
         'url_cutoff' => 80,
       ),
       'enable_tokens' => 0,
+      'entity_translation_sync' => FALSE,
       'rel_remove' => 'default',
       'title' => 'none',
       'title_label_use_field_label' => 0,
@@ -801,6 +821,96 @@ function chm_structure_field_default_field_instances() {
       'settings' => array(),
       'type' => 'link_field',
       'weight' => 7,
+    ),
+  );
+
+  // Exported field_instance: 'node-page-body'.
+  $field_instances['node-page-body'] = array(
+    'bundle' => 'page',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 600,
+        ),
+        'type' => 'text_summary_or_trimmed',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'body',
+    'label' => 'Body',
+    'required' => 0,
+    'settings' => array(
+      'display_summary' => 1,
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 20,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'node-page-title_field'.
+  $field_instances['node-page-title_field'] = array(
+    'bundle' => 'page',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'title_field',
+    'label' => 'Title',
+    'required' => 1,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => 0,
+        'page' => 0,
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 0,
     ),
   );
 
@@ -828,6 +938,7 @@ function chm_structure_field_default_field_instances() {
       'context' => 'title',
       'context_default' => 'sdl_editor_representation',
       'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
       'mee_enabled' => 0,
       'text_processing' => 0,
       'user_register_form' => FALSE,
@@ -867,6 +978,7 @@ function chm_structure_field_default_field_instances() {
       'context' => 'title',
       'context_default' => 'sdl_editor_representation',
       'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
       'mee_enabled' => 0,
       'text_processing' => 0,
       'user_register_form' => FALSE,
@@ -906,6 +1018,7 @@ function chm_structure_field_default_field_instances() {
       'context' => 'title',
       'context_default' => 'sdl_editor_representation',
       'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
       'mee_enabled' => 0,
       'text_processing' => 0,
       'user_register_form' => FALSE,
@@ -946,6 +1059,7 @@ function chm_structure_field_default_field_instances() {
       'context' => 'title',
       'context_default' => 'sdl_editor_representation',
       'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
       'mee_enabled' => 0,
       'text_processing' => 0,
       'user_register_form' => FALSE,
@@ -983,6 +1097,7 @@ function chm_structure_field_default_field_instances() {
     'label' => 'Original ID',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -1021,6 +1136,7 @@ function chm_structure_field_default_field_instances() {
   t('Protected Planet ID');
   t('Salutation');
   t('State');
+  t('Title');
   t('To find this country\'s protected areas on the Protected Planet website (www.protectedplanet.net)');
   t('Type');
   t('Website');
