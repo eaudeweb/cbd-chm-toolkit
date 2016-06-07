@@ -153,6 +153,19 @@ function ptk_base_field_formatter_info() {
   );
 }
 
+function ptk_base_language_switch_links_alter(array &$links, $type, $path) {
+  $node = menu_get_object();
+  if ($node) {
+    // Unset lang-switcher links for non-existent translations
+    foreach ($links as $langcode => &$link) {
+      if (!isset($node->translations->data[$langcode])) {
+        unset($links[$langcode]);
+      }
+      $link['attributes']['hreflang'] = $langcode;
+    }
+  }
+}
+
 /**
  * Implements hook_field_formatter_view().
  *
