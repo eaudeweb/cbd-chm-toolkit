@@ -83,7 +83,7 @@ a:hover {
 	box-shadow: 0px 0px 5px 4px rgba(204,204,204,1);
 }
 
-.domain-www-chm-cbd-net .header .site-logo img {
+div#logo.site-logo img {
     max-height: none;
 }
 
@@ -161,11 +161,11 @@ input.search-query {
 }
 
 #block-system-user-menu,
-#block-locale-language {
+#block-locale-language-content {
 		float:left;
 }
 
-#block-locale-language ul:before {
+#block-locale-language-content ul:before {
 	content: "\f0ac";
 	font-size: 20px;
 	font-family: FontAwesome;
