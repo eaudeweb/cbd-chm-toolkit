@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the country_taxonomy feature.
+ */
+
+include_once 'country_taxonomy.features.inc';
