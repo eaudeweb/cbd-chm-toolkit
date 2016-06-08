@@ -485,4 +485,37 @@ class PTK {
       return t('!start_date to !end_date', array('!start_date' => $start, '!end_date' => $end));
     }
   }
+
+  /**
+   * Log a message.
+   *
+   * @param string $message
+   */
+  static function log_debug($message) {
+    if (function_exists('drush_log')) {
+      drush_log($message, \Drush\Log\LogLevel::NOTICE);
+    }
+  }
+
+  /**
+   * Log a message.
+   *
+   * @param string $message
+   */
+  static function log_warning($message) {
+    if (function_exists('drush_log')) {
+      drush_log($message, \Drush\Log\LogLevel::WARNING);
+    }
+  }
+
+  /**
+   * Log a message.
+   *
+   * @param string $message
+   */
+  static function log_error($message) {
+    if (function_exists('drush_log')) {
+      drush_log($message, \Drush\Log\LogLevel::ERROR);
+    }
+  }
 }

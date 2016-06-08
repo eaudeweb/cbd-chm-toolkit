@@ -15,16 +15,17 @@ function chm_sdg_post_features_rebuild($component) {
     if (!$tree = taxonomy_get_tree($voc->vid) && file_exists($base_path . '/data/goals.yml')) {
       libraries_load('spyc');
       $dest_path = file_default_scheme() . '://images/sdg/';
-      if (file_prepare_directory($dest_path) === FALSE) {
+      if (file_prepare_directory($dest_path, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS) === FALSE) {
         $dest_path = NULL;
+        PTK::log_warning('Cannot prepare destination directory: ' . $dest_path);
       }
       $goals = spyc_load_file(drupal_get_path('module', 'chm_sdg') . '/data/goals.yml');
       if (!empty($goals)) {
         foreach ($goals as $idx => $goal) {
           $file_ob = NULL;
-          $source_image = $base_path . sprintf('/data/images/sdg-%02d-en.png', $idx);
+          $source_image = realpath($base_path . sprintf('/data/images/sdg-%02d-en.png', $idx));
+          $destination = $dest_path . basename($source_image);
           if ($dest_path && file_exists($source_image)) {
-            $destination = $dest_path . basename($source_image);
             $file = (object) array(
               'uid' => 1, 'filename' => basename($source_image),
               'uri' => $source_image, 'filemime' => file_get_mimetype($source_image),
@@ -41,6 +42,9 @@ function chm_sdg_post_features_rebuild($component) {
           $term->weight = $idx;
           if (!empty($file_ob)) {
             $term->field_image[LANGUAGE_NONE][0]['fid'] = $file_ob->fid;
+          }
+          else {
+            PTK::log_warning('Could not copy image file: ' . $source_image . ' => ' . $destination);
           }
           taxonomy_term_save($term);
         }
