@@ -131,6 +131,45 @@ function ptk_base_block_info() {
 
 
 /**
+ * Implements hook_schema_alter()
+ */
+function ptk_base_schema_alter(&$schema) {
+  $column = 'title_field_value';
+  $new_spec = array(
+    'type' => 'varchar', 'length' => 2048, 'not null' => TRUE, 'default' => '',
+  );
+  $table = 'field_data_title_field';
+  if (isset($schema[$table])) {
+    $schema[$table]['fields'][$column] = $new_spec;
+  }
+  $table = 'field_revision_title_field';
+  if (isset($schema[$table])) {
+    $schema[$table]['fields'][$column] = $new_spec;
+  }
+
+  $column = 'name_field_value';
+  $table = 'field_data_name_field';
+  if (isset($schema[$table])) {
+    $schema[$table]['fields'][$column] = $new_spec;
+  }
+  $table = 'field_revision_name_field';
+  if (isset($schema[$table])) {
+    $schema[$table]['fields'][$column] = $new_spec;
+  }
+
+  $table = 'node';
+  $column = 'title';
+  if (isset($schema[$table])) {
+    $schema[$table]['fields'][$column] = $new_spec;
+  }
+  $table = 'node_revision';
+  if (isset($schema[$table])) {
+    $schema[$table]['fields'][$column] = $new_spec;
+  }
+}
+
+
+/**
  * Implements hook_block_view().
  */
 function ptk_base_block_view($delta = '') {
