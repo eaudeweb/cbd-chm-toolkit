@@ -1,0 +1,54 @@
+<?php
+/**
+ * @file
+ * Code for the CHM SDG feature.
+ */
+
+include_once 'chm_sdg.features.inc';
+
+/**
+ * Implements hook_features_post_rebuild().
+ */
+function chm_sdg_post_features_rebuild($component) {
+  if ($voc = taxonomy_vocabulary_machine_name_load('sdg')) {
+    $base_path = drupal_get_path('module', 'chm_sdg');
+    if (!$tree = taxonomy_get_tree($voc->vid) && file_exists($base_path . '/data/goals.yml')) {
+      libraries_load('spyc');
+      $dest_path = file_default_scheme() . '://images/sdg/';
+      if (file_prepare_directory($dest_path, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS) === FALSE) {
+        $dest_path = NULL;
+        PTK::log_warning('Cannot prepare destination directory: ' . $dest_path);
+      }
+      $goals = spyc_load_file(drupal_get_path('module', 'chm_sdg') . '/data/goals.yml');
+      if (!empty($goals)) {
+        foreach ($goals as $idx => $goal) {
+          $file_ob = NULL;
+          $source_image = realpath($base_path . sprintf('/data/images/sdg-%02d-en.png', $idx));
+          $destination = $dest_path . basename($source_image);
+          if ($dest_path && file_exists($source_image)) {
+            $file = (object) array(
+              'uid' => 1, 'filename' => basename($source_image),
+              'uri' => $source_image, 'filemime' => file_get_mimetype($source_image),
+              'status' => FILE_STATUS_PERMANENT,
+            );
+            $file_ob = file_copy($file, $destination, FILE_EXISTS_REPLACE);
+          }
+          $term = new stdClass();
+          $term->language = 'en';
+          $term->name = 'Goal ' . $idx . '. ' . $goal['en'];
+          $term->vocabulary_machine_name = 'sdg';
+          $term->vid = $voc->vid;
+          $term->field_sdg_index[LANGUAGE_NONE][0]['value'] = $idx;
+          $term->weight = $idx;
+          if (!empty($file_ob)) {
+            $term->field_image[LANGUAGE_NONE][0]['fid'] = $file_ob->fid;
+          }
+          else {
+            PTK::log_warning('Could not copy image file: ' . $source_image . ' => ' . $destination);
+          }
+          taxonomy_term_save($term);
+        }
+      }
+    }
+  }
+}
