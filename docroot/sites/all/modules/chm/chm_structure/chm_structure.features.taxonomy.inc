@@ -12,12 +12,12 @@ function chm_structure_taxonomy_default_vocabularies() {
     'countries' => array(
       'name' => 'Countries',
       'machine_name' => 'countries',
-      'description' => '',
+      'description' => 'List of countries',
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
       'language' => 'und',
-      'i18n_mode' => 0,
+      'i18n_mode' => 1,
     ),
     'taxonomy_nfp_type' => array(
       'name' => 'National Focal Point Type',

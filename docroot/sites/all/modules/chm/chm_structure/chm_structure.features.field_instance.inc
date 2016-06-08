@@ -914,6 +914,45 @@ function chm_structure_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'taxonomy_term-countries-description_field'.
+  $field_instances['taxonomy_term-countries-description_field'] = array(
+    'bundle' => 'countries',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'description_field',
+    'label' => 'Description',
+    'required' => FALSE,
+    'settings' => array(
+      'display_summary' => 0,
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 20,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => -5,
+    ),
+  );
+
   // Exported field_instance: 'taxonomy_term-countries-field_cbd_id'.
   $field_instances['taxonomy_term-countries-field_cbd_id'] = array(
     'bundle' => 'countries',
@@ -1075,6 +1114,43 @@ function chm_structure_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'taxonomy_term-countries-name_field'.
+  $field_instances['taxonomy_term-countries-name_field'] = array(
+    'bundle' => 'countries',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'name_field',
+    'label' => 'Name',
+    'required' => TRUE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -5,
+    ),
+  );
+
   // Exported field_instance:
   // 'taxonomy_term-taxonomy_nfp_type-field_original_id'.
   $field_instances['taxonomy_term-taxonomy_nfp_type-field_original_id'] = array(
@@ -1123,11 +1199,13 @@ function chm_structure_field_default_field_instances() {
   t('Country');
   t('Country Code');
   t('Department');
+  t('Description');
   t('Designation');
   t('Email');
   t('Fax numbers');
   t('First name');
   t('Last name');
+  t('Name');
   t('Organization acronym');
   t('Organization name');
   t('Original ID');
