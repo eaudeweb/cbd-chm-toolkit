@@ -5,3 +5,62 @@
  */
 
 include_once 'country_taxonomy.features.inc';
+
+function country_taxonomy_post_features_rebuild($component) {
+  if ($voc = taxonomy_vocabulary_machine_name_load('countries')) {
+    $base_path = drupal_get_path('module', 'country_taxonomy');
+    $json = json_decode(
+      file_get_contents(
+        $base_path . '/data/countries.json'
+      )
+    );
+    if (!empty($json)) {
+      foreach ($json as $row) {
+        $q = db_select('field_data_field_iso_code', 'a');
+        $q->fields('a', array('entity_id'));
+        $q->condition('entity_type', 'taxonomy_term');
+        $q->condition('bundle', 'countries');
+        $q->condition('field_iso_code_value', $row->code2l);
+        if ($tid = $q->execute()->fetchField()) {
+          $term = taxonomy_term_load($tid);
+        }
+        else {
+          $term = new stdClass();
+          $term->language = 'en';
+        }
+        $term->name = $row->name;
+        $term->name_field['en'][0]['value'] = $row->name;
+        $term->field_official_name['en'][0]['value'] = $row->name_official;
+        $term->field_iso_code[LANGUAGE_NONE][0]['value'] = strtoupper($row->code2l);
+        $term->field_iso3l_code[LANGUAGE_NONE][0]['value'] = strtoupper($row->code3l);
+        $term->vid = $voc->vid;
+
+        if (empty($term->field_image)) {
+          $dest_path = file_default_scheme() . '://images/flags';
+          if (file_prepare_directory($dest_path, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS) === FALSE) {
+            $dest_path = NULL;
+            PTK::log_warning('Cannot prepare destination directory: ' . $dest_path);
+          }
+          $source_image = realpath($base_path . sprintf('/data/flags/flag-%s.png', strtolower($row->code2l)));
+          $destination = $dest_path . '/' . basename($source_image);
+          if ($dest_path && file_exists($source_image)) {
+            $file = (object) array(
+              'uid' => 1,
+              'filename' => basename($source_image),
+              'uri' => $source_image,
+              'filemime' => file_get_mimetype($source_image),
+              'status' => FILE_STATUS_PERMANENT,
+            );
+            if ($file_ob = file_copy($file, $destination, FILE_EXISTS_REPLACE)) {
+              $term->field_image[LANGUAGE_NONE][0]['fid'] = $file_ob->fid;
+            }
+            else {
+              PTK::log_warning('Could not copy image file: ' . $source_image . ' => ' . $destination);
+            }
+          }
+        }
+        taxonomy_term_save($term);
+      }
+    }
+  }
+}
