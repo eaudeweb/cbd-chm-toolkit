@@ -20,6 +20,7 @@ features[field_base][] = field_protected_planet_id
 features[field_instance][] = taxonomy_term-countries-description_field
 features[field_instance][] = taxonomy_term-countries-field_cbd_id
 features[field_instance][] = taxonomy_term-countries-field_country_cbd_guid
+features[field_instance][] = taxonomy_term-countries-field_image
 features[field_instance][] = taxonomy_term-countries-field_iso3l_code
 features[field_instance][] = taxonomy_term-countries-field_iso_code
 features[field_instance][] = taxonomy_term-countries-field_official_name
