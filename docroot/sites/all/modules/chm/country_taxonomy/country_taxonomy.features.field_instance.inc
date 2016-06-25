@@ -129,8 +129,8 @@ function country_taxonomy_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-countries-field_country_code'.
-  $field_instances['taxonomy_term-countries-field_country_code'] = array(
+  // Exported field_instance: 'taxonomy_term-countries-field_iso_code'.
+  $field_instances['taxonomy_term-countries-field_iso_code'] = array(
     'bundle' => 'countries',
     'default_value' => NULL,
     'deleted' => 0,
@@ -146,8 +146,8 @@ function country_taxonomy_field_default_field_instances() {
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'taxonomy_term',
-    'field_name' => 'field_country_code',
-    'label' => 'Country Code',
+    'field_name' => 'field_iso_code',
+    'label' => 'Country ISO 2-letter Code',
     'required' => 0,
     'settings' => array(
       'context' => 'title',
@@ -163,6 +163,46 @@ function country_taxonomy_field_default_field_instances() {
       'module' => 'text',
       'settings' => array(
         'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-countries-field_iso3l_code'.
+  $field_instances['taxonomy_term-countries-field_iso3l_code'] = array(
+    'bundle' => 'countries',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_iso3l_code',
+    'label' => 'Country ISO 3-letter Code',
+    'required' => 0,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 3,
       ),
       'type' => 'text_textfield',
       'weight' => 5,
