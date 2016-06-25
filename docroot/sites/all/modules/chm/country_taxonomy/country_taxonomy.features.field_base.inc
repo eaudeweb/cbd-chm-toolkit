@@ -54,6 +54,28 @@ function country_taxonomy_field_default_field_bases() {
     'type' => 'text',
   );
 
+  // Exported field_base: 'field_iso3l_code'.
+  $field_bases['field_iso3l_code'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_iso3l_code',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'max_length' => 3,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
   // Exported field_base: 'field_iso_code'.
   $field_bases['field_iso_code'] = array(
     'active' => 1,
@@ -76,13 +98,13 @@ function country_taxonomy_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_iso3l_code'.
-  $field_bases['field_iso3l_code'] = array(
+  // Exported field_base: 'field_official_name'.
+  $field_bases['field_official_name'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_iso3l_code',
+    'field_name' => 'field_official_name',
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -92,9 +114,9 @@ function country_taxonomy_field_default_field_bases() {
     'module' => 'text',
     'settings' => array(
       'entity_translation_sync' => FALSE,
-      'max_length' => 3,
+      'max_length' => 255,
     ),
-    'translatable' => 0,
+    'translatable' => 1,
     'type' => 'text',
   );
 
