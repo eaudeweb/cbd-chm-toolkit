@@ -17,6 +17,7 @@ class PTKBlocks {
       'rows' => [],
     ];
     $domains = domain_domains();
+    $default_did = PTK::getDefaultDomainId();
     foreach ($domains as $id => $domain) {
       $flag_image = '';
       $label = str_replace(array(
@@ -24,7 +25,7 @@ class PTKBlocks {
         'http://',
         '/'
       ), '', $domain['path']);
-      if (!empty($domain['valid']) && $id != PTK::$PTK_ROOT_DOMAIN_ID) {
+      if (!empty($domain['valid']) && $id != $default_did) {
         if ($country = PTK::getPortalCountry($domain)) {
           if ($flag = PTK::getCountryFlagURL($country)) {
             $flag_image = theme('image', array('path' => $flag, 'width' => 30));
@@ -47,7 +48,7 @@ class PTKBlocks {
 
   public static function chm_footer_quick_links_root() {
     $domain = domain_get_domain();
-    if ($domain['domain_id'] == PTK::$PTK_ROOT_DOMAIN_ID) {
+    if ($domain['domain_id'] == PTK::getDefaultDomainId()) {
       $items = [];
       $link_home = domain_get_uri($domain);
       $items[] = l(t('Home'), $link_home);
@@ -79,7 +80,7 @@ class PTKBlocks {
 
   public static function chm_footer_quick_links() {
     $domain = domain_get_domain();
-    if ($domain['domain_id'] != PTK::$PTK_ROOT_DOMAIN_ID) {
+    if ($domain['domain_id'] != PTK::getDefaultDomainId()) {
       $items = [];
       $link_home = domain_get_uri($domain);
       $items[] = l(t('Home'), $link_home);
@@ -159,7 +160,7 @@ class PTKBlocks {
 
   public static function chm_footer_country_links() {
     $domain = domain_get_domain();
-    if ($domain['domain_id'] != PTK::$PTK_ROOT_DOMAIN_ID) {
+    if ($domain['domain_id'] != PTK::getDefaultDomainId()) {
       $country = PTK::getPortalCountry($domain);
       $realm_name = 'domain';
       $realm_key = $domain['machine_name'];

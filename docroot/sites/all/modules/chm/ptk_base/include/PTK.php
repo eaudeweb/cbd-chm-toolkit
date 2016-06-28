@@ -3,7 +3,21 @@
 
 class PTK {
 
-  public static $PTK_ROOT_DOMAIN_ID = 18;
+  /**
+   * Get the ID of default domain
+   *
+   * @return integer
+   *   ID of the default domain
+   */
+  public static function getDefaultDomainId() {
+    $all = domain_domains();
+    foreach ($all as $domain) {
+      if (!empty($domain['is_default']) && $domain['is_default'] == 1) {
+        return $domain['domain_id'];
+      }
+    }
+    return NULL;
+  }
 
   /**
    * Retrieve the domain object corresponding to a country ISO code.
