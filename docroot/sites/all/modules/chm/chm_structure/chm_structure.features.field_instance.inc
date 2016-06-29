@@ -869,6 +869,62 @@ function chm_structure_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-news-field_expire'.
+  $field_instances['node-news-field_expire'] = array(
+    'bundle' => 'news',
+    'deleted' => 0,
+    'description' => 'Date when the news is set to expire, after this date the content is removed from listings, front-page etc.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => FALSE,
+        ),
+        'type' => 'date_default',
+        'weight' => 3,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_expire',
+    'label' => 'Expire',
+    'required' => 0,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 15,
+        'input_format' => 'm/d/Y - H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'no_fieldset' => 0,
+        'text_parts' => array(),
+        'year_range' => '-3:+3',
+      ),
+      'type' => 'date_popup',
+      'weight' => 3,
+    ),
+  );
+
   // Exported field_instance: 'node-news-field_image'.
   $field_instances['node-news-field_image'] = array(
     'bundle' => 'news',
@@ -1095,30 +1151,25 @@ function chm_structure_field_default_field_instances() {
   t('Address');
   t('Alternative emails');
   t('Body');
-  t('CBD GUID');
-  t('CBD ID');
   t('City');
   t('Country');
-  t('Country Code');
+  t('Date when the news is set to expire, after this date the content is removed from listings, front-page etc.');
   t('Department');
-  t('Description');
   t('Designation');
   t('Email');
+  t('Expire');
   t('Fax numbers');
   t('First name');
   t('Image');
   t('Last name');
-  t('Name');
   t('Organization acronym');
   t('Organization name');
   t('Original ID');
   t('Phone numbers');
   t('Postal code');
-  t('Protected Planet ID');
   t('Salutation');
   t('State');
   t('Title');
-  t('To find this country\'s protected areas on the Protected Planet website (www.protectedplanet.net)');
   t('Type');
   t('Website');
 
