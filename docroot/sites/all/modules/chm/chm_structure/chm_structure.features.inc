@@ -29,7 +29,7 @@ function chm_structure_node_info() {
     'news' => array(
       'name' => t('News'),
       'base' => 'node_content',
-      'description' => '',
+      'description' => t('Use <i>news</i> for time-sensitive content like news, press releases, alerts etc.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
@@ -37,7 +37,7 @@ function chm_structure_node_info() {
     'page' => array(
       'name' => t('Page'),
       'base' => 'node_content',
-      'description' => t('Simple content page'),
+      'description' => t('Use <i>page</i> for the static content of your national CHM website, such as the <b>About Us</b> page.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
