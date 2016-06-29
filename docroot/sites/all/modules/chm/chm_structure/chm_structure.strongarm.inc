@@ -290,25 +290,25 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '7',
+          'weight' => '8',
         ),
         'domain_path' => array(
-          'weight' => '11',
+          'weight' => '12',
         ),
         'locations' => array(
-          'weight' => '10',
+          'weight' => '11',
         ),
         'metatags' => array(
-          'weight' => '12',
+          'weight' => '13',
         ),
         'title' => array(
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '9',
+          'weight' => '10',
         ),
         'language' => array(
-          'weight' => '8',
+          'weight' => '9',
         ),
       ),
       'display' => array(),

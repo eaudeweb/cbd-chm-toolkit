@@ -19,6 +19,16 @@ function chm_structure_taxonomy_default_vocabularies() {
       'language' => 'und',
       'i18n_mode' => 1,
     ),
+    'event_type' => array(
+      'name' => 'Event type',
+      'machine_name' => 'event_type',
+      'description' => 'Type of event (ex. workshop, converence)',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
+    ),
     'taxonomy_nfp_type' => array(
       'name' => 'National Focal Point Type',
       'machine_name' => 'taxonomy_nfp_type',
