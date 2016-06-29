@@ -877,17 +877,9 @@ function chm_structure_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'long',
-          'fromto' => 'both',
-          'multiple_from' => '',
-          'multiple_number' => '',
-          'multiple_to' => '',
-          'show_remaining_days' => FALSE,
-        ),
-        'type' => 'date_default',
-        'weight' => 3,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -976,6 +968,179 @@ function chm_structure_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-news-field_location'.
+  $field_instances['node-news-field_location'] = array(
+    'bundle' => 'news',
+    'default_value' => array(
+      0 => array(
+        'location_settings' => array(
+          'display' => array(
+            'hide' => array(
+              'additional' => 'additional',
+              'city' => 0,
+              'coords' => 0,
+              'country' => 0,
+              'country_name' => 0,
+              'locpick' => 0,
+              'map_link' => 0,
+              'name' => 0,
+              'postal_code' => 0,
+              'province' => 0,
+              'province_name' => 'province_name',
+              'street' => 0,
+            ),
+          ),
+          'form' => array(
+            'fields' => array(
+              'additional' => array(
+                'collect' => 0,
+                'default' => '',
+                'weight' => 6,
+              ),
+              'city' => array(
+                '#parents' => array(
+                  0 => 'field_location',
+                  1 => 'und',
+                  2 => 0,
+                ),
+                'collect' => 1,
+                'default' => '',
+                'weight' => 8,
+              ),
+              'country' => array(
+                '#parents' => array(
+                  0 => 'field_location',
+                  1 => 'und',
+                  2 => 0,
+                ),
+                'collect' => 1,
+                'default' => 'us',
+                'weight' => 14,
+              ),
+              'delete_location' => array(
+                'default' => FALSE,
+                'nodiff' => TRUE,
+              ),
+              'is_primary' => array(
+                'default' => 0,
+              ),
+              'latitude' => array(
+                'default' => 0,
+              ),
+              'lid' => array(
+                'default' => FALSE,
+              ),
+              'locpick' => array(
+                '#parents' => array(
+                  0 => 'field_location',
+                  1 => 'und',
+                  2 => 0,
+                ),
+                'collect' => 1,
+                'default' => FALSE,
+                'nodiff' => TRUE,
+                'weight' => 20,
+              ),
+              'longitude' => array(
+                'default' => 0,
+              ),
+              'name' => array(
+                '#parents' => array(
+                  0 => 'field_location',
+                  1 => 'und',
+                  2 => 0,
+                ),
+                'collect' => 1,
+                'default' => '',
+                'weight' => 2,
+              ),
+              'postal_code' => array(
+                '#parents' => array(
+                  0 => 'field_location',
+                  1 => 'und',
+                  2 => 0,
+                ),
+                'collect' => 1,
+                'default' => '',
+                'weight' => 12,
+              ),
+              'province' => array(
+                '#parents' => array(
+                  0 => 'field_location',
+                  1 => 'und',
+                  2 => 0,
+                ),
+                'collect' => 1,
+                'default' => '',
+                'weight' => 10,
+                'widget' => 'autocomplete',
+              ),
+              're_geocode_location' => array(
+                'default' => FALSE,
+                'nodiff' => TRUE,
+              ),
+              'source' => array(
+                'default' => 0,
+              ),
+              'street' => array(
+                '#parents' => array(
+                  0 => 'field_location',
+                  1 => 'und',
+                  2 => 0,
+                ),
+                'collect' => 1,
+                'default' => '',
+                'weight' => 4,
+              ),
+            ),
+          ),
+        ),
+        'name' => '',
+        'street' => '',
+        'city' => '',
+        'province' => '',
+        'postal_code' => '',
+        'country' => '',
+        'locpick' => array(
+          'user_latitude' => '',
+          'user_longitude' => '',
+        ),
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'Location of interest, if available',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'location_cck',
+        'settings' => array(),
+        'type' => 'location_all',
+        'weight' => 3,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_location',
+    'label' => 'Location',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'location_cck',
+      'settings' => array(),
+      'type' => 'location',
+      'weight' => 31,
+    ),
+  );
+
   // Exported field_instance: 'node-news-title_field'.
   $field_instances['node-news-title_field'] = array(
     'bundle' => 'news',
@@ -987,7 +1152,7 @@ function chm_structure_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 1,
+        'weight' => 5,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1162,6 +1327,8 @@ function chm_structure_field_default_field_instances() {
   t('First name');
   t('Image');
   t('Last name');
+  t('Location');
+  t('Location of interest, if available');
   t('Organization acronym');
   t('Organization name');
   t('Original ID');
