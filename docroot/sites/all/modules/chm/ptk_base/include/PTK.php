@@ -60,7 +60,7 @@ class PTK {
     $countries = self::getCountryList();
     foreach ($countries as $country) {
       $w = entity_metadata_wrapper('taxonomy_term', $country);
-      $code = $w->field_country_code->value();
+      $code = $w->field_iso_code->value();
       $ret[strtolower($code)] = $w->label();
     }
     return $ret;
