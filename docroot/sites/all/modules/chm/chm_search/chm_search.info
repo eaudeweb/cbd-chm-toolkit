@@ -1,0 +1,16 @@
+name = chm_search
+description = The search functionality
+core = 7.x
+package = CHM
+version = 7.x-1.0
+dependencies[] = search_api
+dependencies[] = search_api_et
+dependencies[] = search_api_solr
+dependencies[] = views
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[search_api_index][] = default_multilingual_node_index
+features[search_api_server][] = solr_4_server
+features[views_view][] = the_search_view
+features_exclude[dependencies][ctools] = ctools
+features_exclude[dependencies][entity] = entity
