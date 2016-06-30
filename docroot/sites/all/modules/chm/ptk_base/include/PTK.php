@@ -88,8 +88,8 @@ class PTK {
   public static function getCountryByCode($iso) {
     $items = drupal_static(__METHOD__);
     if (!isset($items)) {
-      $q = db_select('field_data_field_country_code');
-      $q->fields(NULL, array('entity_id', 'field_country_code_value'));
+      $q = db_select('field_data_field_iso_code');
+      $q->fields(NULL, array('entity_id', 'field_iso_code_value'));
       $q->condition('entity_type', 'taxonomy_term');
       $q->condition('bundle', 'countries');
       $rows = $q->execute()->fetchAllKeyed();
@@ -139,9 +139,8 @@ class PTK {
   public static function getCountryFlagURL($country) {
     try {
       $w = entity_metadata_wrapper('taxonomy_term', $country);
-      if ($iso = $w->field_country_code->value()) {
-        return url(
-          sprintf('/sites/all/files/flags/%s.png', strtolower($iso)),
+      if ($iso = $w->field_iso_code->value() && $image = $w->field_image->value()) {
+        return url(file_create_url($image['uri']),
           array('absolute' => 1, 'language' => (object)array('language' => LANGUAGE_NONE))
         );
       }
