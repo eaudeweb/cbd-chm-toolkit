@@ -96,7 +96,8 @@ class PTK {
       foreach ($rows as $k => $code) {
         $term = taxonomy_term_load($k);
         $w = entity_metadata_wrapper('taxonomy_term', $term);
-        $term->iso2l = $w->field_country_code->value();
+        $term->iso2l = $w->field_iso_code->value();
+        $term->iso3l = $w->field_iso3l_code->value();
         $items[strtoupper($code)] = $term;
       }
     }
@@ -290,14 +291,6 @@ class PTK {
         'uid' => $user->uid,
         'name' => $user->name,
         'language' => 'en',
-        // @todo: what to add here when there's no country selected?
-        'field_country' => array(
-          LANGUAGE_NONE => array(
-            '0' => array(
-              'tid' => $country->tid,
-            ),
-          )
-        ),
         'menu' => array(
           'enabled' => 1,
           'mlid' => 0,
