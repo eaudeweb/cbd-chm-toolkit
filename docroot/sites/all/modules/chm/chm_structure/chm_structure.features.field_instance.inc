@@ -2074,6 +2074,44 @@ function chm_structure_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'taxonomy_term-document_type-field_in_use'.
+  $field_instances['taxonomy_term-document_type-field_in_use'] = array(
+    'bundle' => 'document_type',
+    'default_value' => array(
+      0 => array(
+        'value' => 1,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'If checked, this value will be available in drop-downs',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_in_use',
+    'label' => 'In use',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 2,
+    ),
+  );
+
   // Exported field_instance: 'taxonomy_term-event_status-description_field'.
   $field_instances['taxonomy_term-event_status-description_field'] = array(
     'bundle' => 'event_status',
@@ -2362,7 +2400,9 @@ function chm_structure_field_default_field_instances() {
   t('Fax numbers');
   t('Files');
   t('First name');
+  t('If checked, this value will be available in drop-downs');
   t('Image');
+  t('In use');
   t('Last name');
   t('Location');
   t('Location of interest, if available');
