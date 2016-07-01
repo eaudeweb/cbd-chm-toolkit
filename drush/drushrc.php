@@ -177,6 +177,10 @@
  */
 # $options['skip-tables']['common'] = array('migration_data1', 'migration_data2');
 
+$command_specific['sql-sync'] = array(
+  'structure-tables-list' => 'cache*,history,sessions,watchdog,ctools_css_cache,ctools_object_cache',
+);
+
 /**
  * Override specific entries in Drupal's 'variable' table or settings.php
  */
