@@ -439,7 +439,7 @@ class PTK {
     }
 
     // Create entityqueue for slideshow.
-    $default_queue = entityqueue_queue_load('slideshow_www_chm_cbd_net');
+    $default_queue = entityqueue_queue_load('slideshow_www');
     if (!empty($default_queue)) {
       $new_queue = (array) $default_queue;
       unset($new_queue['export_type']);
