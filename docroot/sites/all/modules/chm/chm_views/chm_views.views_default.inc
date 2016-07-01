@@ -70,7 +70,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_image']['settings'] = array(
-    'image_style' => 'front_page_slide',
+    'image_style' => 'slider_image',
     'image_link' => '',
   );
   $handler->display->display_options['fields']['field_image']['field_api_classes'] = TRUE;
