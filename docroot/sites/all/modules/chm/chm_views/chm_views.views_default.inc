@@ -34,9 +34,14 @@ function chm_views_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'slick';
   $handler->display->display_options['style_options']['slide_field_wrapper'] = 0;
   $handler->display->display_options['style_options']['asnavfor_auto'] = 0;
+  $handler->display->display_options['style_options']['optionset'] = 'home_slider';
   $handler->display->display_options['style_options']['skin'] = 'default';
   $handler->display->display_options['style_options']['slide_caption'] = array(
-    'title' => 0,
+    'field_image' => 0,
+    'title_field' => 0,
+    'view_node' => 0,
+    'body' => 0,
+    'nothing' => 0,
   );
   $handler->display->display_options['style_options']['slide_overlay'] = '';
   $handler->display->display_options['style_options']['preserve_keys'] = 0;
@@ -57,9 +62,6 @@ function chm_views_views_default_views() {
   $handler->display->display_options['relationships']['entityqueue_relationship']['queues'] = array(
     'slideshow_www_chm_cbd_net' => 'slideshow_www_chm_cbd_net',
   );
-  /* Field: Field: Flag */
-  $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['row_plugin'] = 'fields';
   /* Field: Field: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';

@@ -14,8 +14,51 @@ function chm_views_entityqueue_api($module = NULL, $api = NULL) {
 }
 
 /**
+ * Implements hook_ctools_plugin_api().
+ */
+function chm_views_ctools_plugin_api($module = NULL, $api = NULL) {
+  if ($module == "slick" && $api == "slick_default_preset") {
+    return array("version" => "1");
+  }
+}
+
+/**
  * Implements hook_views_api().
  */
 function chm_views_views_api($module = NULL, $api = NULL) {
   return array("api" => "3.0");
+}
+
+/**
+ * Implements hook_image_default_styles().
+ */
+function chm_views_image_default_styles() {
+  $styles = array();
+
+  // Exported image style: slider_image.
+  $styles['slider_image'] = array(
+    'label' => 'Slider image',
+    'effects' => array(
+      1 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 1200,
+          'height' => '',
+          'upscale' => 1,
+        ),
+        'weight' => 1,
+      ),
+      2 => array(
+        'name' => 'image_crop',
+        'data' => array(
+          'width' => 1200,
+          'height' => 400,
+          'anchor' => 'center-top',
+        ),
+        'weight' => 2,
+      ),
+    ),
+  );
+
+  return $styles;
 }
