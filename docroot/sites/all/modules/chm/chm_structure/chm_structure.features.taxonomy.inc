@@ -9,6 +9,16 @@
  */
 function chm_structure_taxonomy_default_vocabularies() {
   return array(
+    'aichi_biodiversity_targets' => array(
+      'name' => 'Aichi Biodiversity Targets',
+      'machine_name' => 'aichi_biodiversity_targets',
+      'description' => 'The 20 Aichi biodiversity targets and grouped in 5 strategic goals',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
+    ),
     'document_type' => array(
       'name' => 'Document type',
       'machine_name' => 'document_type',
