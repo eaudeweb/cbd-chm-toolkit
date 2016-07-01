@@ -1958,6 +1958,39 @@ function chm_structure_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'taxonomy_term-aichi_biodiversity_targets-field_biodiversity_term_type'.
+  $field_instances['taxonomy_term-aichi_biodiversity_targets-field_biodiversity_term_type'] = array(
+    'bundle' => 'aichi_biodiversity_targets',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_biodiversity_term_type',
+    'label' => 'Biodiversity term type',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance:
   // 'taxonomy_term-aichi_biodiversity_targets-field_image'.
   $field_instances['taxonomy_term-aichi_biodiversity_targets-field_image'] = array(
     'bundle' => 'aichi_biodiversity_targets',
@@ -2311,6 +2344,7 @@ function chm_structure_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Address');
   t('Alternative emails');
+  t('Biodiversity term type');
   t('Body');
   t('City');
   t('Countries');

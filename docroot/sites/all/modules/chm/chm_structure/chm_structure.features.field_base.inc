@@ -92,6 +92,33 @@ function chm_structure_field_default_field_bases() {
     'type' => 'email',
   );
 
+  // Exported field_base: 'field_biodiversity_term_type'.
+  $field_bases['field_biodiversity_term_type'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_biodiversity_term_type',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'goal' => 'Goal',
+        'target' => 'Target',
+        'indocator' => 'Indicator',
+      ),
+      'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
   // Exported field_base: 'field_city'.
   $field_bases['field_city'] = array(
     'active' => 1,
