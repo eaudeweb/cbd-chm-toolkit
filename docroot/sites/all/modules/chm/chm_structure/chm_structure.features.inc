@@ -26,6 +26,14 @@ function chm_structure_node_info() {
       'title_label' => t('Name'),
       'help' => '',
     ),
+    'document' => array(
+      'name' => t('Document'),
+      'base' => 'node_content',
+      'description' => t('Use a Document to describe a publication or any other relevant document on biodiversity in your country.'),
+      'has_title' => '1',
+      'title_label' => t('Name'),
+      'help' => '',
+    ),
     'event' => array(
       'name' => t('Event'),
       'base' => 'node_content',

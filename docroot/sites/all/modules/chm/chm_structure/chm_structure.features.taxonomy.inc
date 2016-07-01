@@ -9,6 +9,16 @@
  */
 function chm_structure_taxonomy_default_vocabularies() {
   return array(
+    'document_type' => array(
+      'name' => 'Document type',
+      'machine_name' => 'document_type',
+      'description' => 'Category of document.',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
+    ),
     'event_status' => array(
       'name' => 'Event status',
       'machine_name' => 'event_status',
