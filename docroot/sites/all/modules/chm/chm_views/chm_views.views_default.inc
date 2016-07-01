@@ -60,7 +60,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['relationships']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
   $handler->display->display_options['relationships']['entityqueue_relationship']['limit'] = 1;
   $handler->display->display_options['relationships']['entityqueue_relationship']['queues'] = array(
-    'slideshow_www_chm_cbd_net' => 'slideshow_www_chm_cbd_net',
+    'slideshow_www' => 'slideshow_www',
   );
   /* Field: Field: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
