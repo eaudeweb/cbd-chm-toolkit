@@ -35,6 +35,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['style_options']['slide_field_wrapper'] = 0;
   $handler->display->display_options['style_options']['asnavfor_auto'] = 0;
   $handler->display->display_options['style_options']['optionset'] = 'home_slider';
+  $handler->display->display_options['style_options']['skin'] = 'default';
   $handler->display->display_options['style_options']['slide_caption'] = array(
     'field_image' => 0,
     'title_field' => 0,
