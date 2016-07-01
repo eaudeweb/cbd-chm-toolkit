@@ -441,6 +441,17 @@ class PTK {
       }
       self::variable_realm_set('create_sample_content', TRUE, $domain);
     }
+
+    // Create entityqueue for slideshow.
+    $default_queue = entityqueue_queue_load('slideshow_www_chm_cbd_net');
+    if (!empty($default_queue)) {
+      $new_queue = (array) $default_queue;
+      unset($new_queue['export_type']);
+      $new_queue['name'] = $new_queue['label'] = 'slideshow_' . $domain['machine_name'];
+      $new_queue['is_new'] = TRUE;
+      $new_queue = new EntityQueue($new_queue);
+      entityqueue_queue_save($new_queue);
+    }
     return TRUE;
   }
 
