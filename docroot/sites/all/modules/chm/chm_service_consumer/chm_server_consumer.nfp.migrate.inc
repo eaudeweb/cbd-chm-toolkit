@@ -10,7 +10,7 @@ class CHMServerConsumerNFPTypeMigration extends CHMServerConsumerMigration {
     parent::__construct($arguments);
     $this->map = new MigrateSQLMap($this->machineName,
       array(
-        '_id' => array(
+        'id' => array(
           'type' => 'varchar',
           'length' => 255,
           'not null' => TRUE,
@@ -83,26 +83,26 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
     $this->destination = new MigrateDestinationNode('cbd_nfp');
 
     $this->addFieldMapping('title', 'title');
-    $this->addFieldMapping('field_url', 'website');
+//    $this->addFieldMapping('field_url', 'website');
     $this->addFieldMapping('field_email', 'email');
-    $this->addFieldMapping('field_alternative_emails', 'emailAlts');
-    $this->addFieldMapping('field_fax_numbers', 'faxes');
-    $this->addFieldMapping('field_phone_numbers', 'phones');
-    $this->addFieldMapping('field_country', 'government');
+//    $this->addFieldMapping('field_alternative_emails', 'emailAlts');
+    $this->addFieldMapping('field_fax_numbers', 'fax');
+//    $this->addFieldMapping('field_phone_numbers', 'phones');
+    $this->addFieldMapping('field_country', 'country');
     $this->addFieldMapping('field_country:source_type')->defaultValue('tid');
-    $this->addFieldMapping('field_postal_code', 'postalCode');
-    $this->addFieldMapping('field_state', 'state');
-    $this->addFieldMapping('field_city', 'city');
+//    $this->addFieldMapping('field_postal_code', 'postalCode');
+//    $this->addFieldMapping('field_state', 'state');
+//    $this->addFieldMapping('field_city', 'city');
     $this->addFieldMapping('field_address', 'address');
-    $this->addFieldMapping('field_organization_name', 'organization');
-    $this->addFieldMapping('field_organization_acronym', 'organizationAcronym');
+    $this->addFieldMapping('field_organization_name', 'institution');
+//    $this->addFieldMapping('field_organization_acronym', 'organizationAcronym');
     $this->addFieldMapping('field_department', 'department');
-    $this->addFieldMapping('field_nfp_designation', 'designation');
+//    $this->addFieldMapping('field_nfp_designation', 'designation');
     $this->addFieldMapping('field_first_name', 'firstName');
     $this->addFieldMapping('field_last_name', 'lastName');
-    $this->addFieldMapping('field_salutation', 'salutation');
-    $this->addFieldMapping('field_nfp_type', 'types');
-    $this->addFieldMapping('field_nfp_type:source_type')->defaultValue('tid');
+    $this->addFieldMapping('field_salutation', 'prefix');
+//    $this->addFieldMapping('field_nfp_type', 'types');
+//    $this->addFieldMapping('field_nfp_type:source_type')->defaultValue('tid');
     $this->addFieldMapping('language')->defaultValue('en');
 
     $this->addFieldMapping('domain_site')->defaultValue(FALSE);
@@ -157,32 +157,20 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
     }
 
     // Country
-    if (!empty($row->government)) {
+    if (!empty($row->country)) {
       /** @var stdClass $country */
-      if ($country = PTK::getCountryByCode($row->government)) {
-        $iso = $row->government;
-        $row->government = $country->tid;
+      if ($country = PTK::getCountryByCode($row->country)) {
+        $iso = $row->country;
+        $row->country = $country->tid;
 
         $domain = PTK::getDomainByCountryISO($iso);
         $row->domain_source = $domain['domain_id'];
         $row->domains = array($domain['domain_id']);
       }
       else {
-        $row->government = NULL;
+        $row->country = NULL;
       }
     }
-
-    // Type
-    $types = array();
-    if (!empty($row->types)) {
-      foreach ($row->types as $type) {
-        /** @var stdClass $type */
-        if ($type = PTK::getNFPTypeByAcronym($type)) {
-          $types[] = $type->tid;
-        }
-      }
-    }
-    $row->types = $types;
 
     return TRUE;
   }
@@ -201,25 +189,25 @@ class CHMServerConsumerNFPMigrateSource extends CHMServerConsumerMigrateSource {
     return [
       '_id'                 => 'Remote record ID',
       'title'               => '@fake field to keep computed title',
-      'website'             => 'Website',
-      'emailAlts'           => 'Alternative e-mails',
+//      'website'             => 'Website',
+//      'emailAlts'           => 'Alternative e-mails',
       "email"               => 'Email',
-      "faxes"               => 'One or more fax numbers',
-      "phones"              => 'One or more phone numbers',
+      "fax"               => 'One or more fax numbers',
+//      "phones"              => 'One or more phone numbers',
       "country"             => 'Country',
-      "postalCode"          => 'Postal code',
-      "state"               => 'State',
-      "city"                => 'City',
+//      "postalCode"          => 'Postal code',
+//      "state"               => 'State',
+//      "city"                => 'City',
       "address"             => 'Address',
-      "organizationAcronym" => 'Organisation acronym',
-      "organization"        => 'Organisation name',
+//      "organizationAcronym" => 'Organisation acronym',
+      "institution"        => 'Organisation name',
       "department"          => 'Department',
-      "designation"         => 'Designation',
+//      "designation"         => 'Designation',
       "lastName"            => 'Last name',
       "firstName"           => 'First name',
-      "salutation"          => 'Salutation',
-      "types"               => 'Focal point roles',
-      "government"          => 'Government ISO code',
+      "prefix"          => 'Salutation',
+//      "types"               => 'Focal point roles',
+      "country"          => 'Government ISO code',
       "__v"                 => 'Version',
     ];
   }
