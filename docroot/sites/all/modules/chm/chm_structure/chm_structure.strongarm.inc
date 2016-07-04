@@ -76,6 +76,13 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'diff_enable_revisions_page_node_ecosystem';
+  $strongarm->value = 0;
+  $export['diff_enable_revisions_page_node_ecosystem'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'diff_enable_revisions_page_node_event';
   $strongarm->value = 0;
   $export['diff_enable_revisions_page_node_event'] = $strongarm;
@@ -97,6 +104,13 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'diff_show_preview_changes_node_ecosystem';
+  $strongarm->value = 0;
+  $export['diff_show_preview_changes_node_ecosystem'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'diff_show_preview_changes_node_event';
   $strongarm->value = 0;
   $export['diff_show_preview_changes_node_event'] = $strongarm;
@@ -114,6 +128,13 @@ function chm_structure_strongarm() {
   $strongarm->name = 'diff_view_mode_preview_node_document';
   $strongarm->value = 'full';
   $export['diff_view_mode_preview_node_document'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_view_mode_preview_node_ecosystem';
+  $strongarm->value = 'full';
+  $export['diff_view_mode_preview_node_ecosystem'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -146,6 +167,15 @@ function chm_structure_strongarm() {
     0 => 'DOMAIN_ACTIVE',
   );
   $export['domain_node_document'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'domain_node_ecosystem';
+  $strongarm->value = array(
+    0 => 'DOMAIN_ACTIVE',
+  );
+  $export['domain_node_ecosystem'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -193,6 +223,13 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_hide_translation_links_ecosystem';
+  $strongarm->value = 0;
+  $export['entity_translation_hide_translation_links_ecosystem'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_hide_translation_links_event';
   $strongarm->value = 1;
   $export['entity_translation_hide_translation_links_event'] = $strongarm;
@@ -217,6 +254,13 @@ function chm_structure_strongarm() {
   $strongarm->name = 'entity_translation_node_metadata_document';
   $strongarm->value = '0';
   $export['entity_translation_node_metadata_document'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_node_metadata_ecosystem';
+  $strongarm->value = '0';
+  $export['entity_translation_node_metadata_ecosystem'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -480,6 +524,38 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_node__ecosystem';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'domain' => array(
+          'weight' => '4',
+        ),
+        'domain_path' => array(
+          'weight' => '7',
+        ),
+        'locations' => array(
+          'weight' => '8',
+        ),
+        'metatags' => array(
+          'weight' => '9',
+        ),
+        'path' => array(
+          'weight' => '6',
+        ),
+        'language' => array(
+          'weight' => '5',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_node__ecosystem'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__event';
   $strongarm->value = array(
     'view_modes' => array(),
@@ -654,6 +730,13 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_ecosystem';
+  $strongarm->value = '4';
+  $export['language_content_type_ecosystem'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'language_content_type_event';
   $strongarm->value = '4';
   $export['language_content_type_event'] = $strongarm;
@@ -689,6 +772,15 @@ function chm_structure_strongarm() {
     0 => 'main-menu',
   );
   $export['menu_options_document'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_options_ecosystem';
+  $strongarm->value = array(
+    0 => 'main-menu',
+  );
+  $export['menu_options_ecosystem'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -734,6 +826,13 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_parent_ecosystem';
+  $strongarm->value = 'main-menu:0';
+  $export['menu_parent_ecosystem'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_parent_event';
   $strongarm->value = 'main-menu:0';
   $export['menu_parent_event'] = $strongarm;
@@ -765,6 +864,13 @@ function chm_structure_strongarm() {
   $strongarm->name = 'metatag_enable_node__document';
   $strongarm->value = TRUE;
   $export['metatag_enable_node__document'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'metatag_enable_node__ecosystem';
+  $strongarm->value = TRUE;
+  $export['metatag_enable_node__ecosystem'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -822,6 +928,15 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_ecosystem';
+  $strongarm->value = array(
+    0 => 'status',
+  );
+  $export['node_options_ecosystem'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_options_event';
   $strongarm->value = array(
     0 => 'status',
@@ -861,6 +976,13 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_preview_ecosystem';
+  $strongarm->value = '0';
+  $export['node_preview_ecosystem'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_event';
   $strongarm->value = '0';
   $export['node_preview_event'] = $strongarm;
@@ -892,6 +1014,13 @@ function chm_structure_strongarm() {
   $strongarm->name = 'node_submitted_document';
   $strongarm->value = 0;
   $export['node_submitted_document'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_submitted_ecosystem';
+  $strongarm->value = 0;
+  $export['node_submitted_ecosystem'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

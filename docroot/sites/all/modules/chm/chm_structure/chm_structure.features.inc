@@ -34,6 +34,14 @@ function chm_structure_node_info() {
       'title_label' => t('Name'),
       'help' => '',
     ),
+    'ecosystem' => array(
+      'name' => t('Ecosystem'),
+      'base' => 'node_content',
+      'description' => t('Use an ecosystem to briefly describe a major ecosystem of your country.'),
+      'has_title' => '1',
+      'title_label' => t('Name'),
+      'help' => '',
+    ),
     'event' => array(
       'name' => t('Event'),
       'base' => 'node_content',
