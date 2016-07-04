@@ -38,5 +38,28 @@ function chm_views_default_fe_block_settings() {
     'visibility' => 1,
   );
 
+  $export['views-statistics-block'] = array(
+    'cache' => -1,
+    'delta' => 'statistics-block',
+    'module' => 'views',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => 0,
+      ),
+      'chm_theme_kit' => array(
+        'region' => 'content_col2-2',
+        'status' => 1,
+        'theme' => 'chm_theme_kit',
+        'weight' => 0,
+      ),
+    ),
+  );
+
   return $export;
 }
