@@ -40,10 +40,11 @@ function chm_views_default_fe_block_settings() {
 
   $export['views-statistics-block'] = array(
     'cache' => -1,
+    'custom' => 0,
     'delta' => 'statistics-block',
     'module' => 'views',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => '<front>',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -59,6 +60,8 @@ function chm_views_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
+    'title' => '',
+    'visibility' => 0,
   );
 
   return $export;
