@@ -29,6 +29,16 @@ function chm_structure_taxonomy_default_vocabularies() {
       'language' => 'und',
       'i18n_mode' => 1,
     ),
+    'eu_targets' => array(
+      'name' => 'EU Targets',
+      'machine_name' => 'eu_targets',
+      'description' => 'European Union reference targets',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
+    ),
     'event_status' => array(
       'name' => 'Event status',
       'machine_name' => 'event_status',

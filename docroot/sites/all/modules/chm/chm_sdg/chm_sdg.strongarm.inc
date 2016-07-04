@@ -26,16 +26,19 @@ function chm_sdg_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '40',
+          'weight' => '6',
         ),
         'path' => array(
-          'weight' => '30',
+          'weight' => '5',
         ),
         'name' => array(
           'weight' => '-5',
         ),
         'description' => array(
           'weight' => '0',
+        ),
+        'language' => array(
+          'weight' => '4',
         ),
       ),
       'display' => array(

@@ -10,13 +10,13 @@
 function chm_sdg_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_sdg_index'.
-  $field_bases['field_sdg_index'] = array(
+  // Exported field_base: 'field_index'.
+  $field_bases['field_index'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_sdg_index',
+    'field_name' => 'field_index',
     'indexes' => array(),
     'locked' => 0,
     'module' => 'number',

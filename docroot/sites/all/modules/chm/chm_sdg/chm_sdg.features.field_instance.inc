@@ -45,7 +45,7 @@ function chm_sdg_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => -5,
+      'weight' => 3,
     ),
   );
 
@@ -91,12 +91,12 @@ function chm_sdg_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 43,
+      'weight' => 2,
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-sdg-field_sdg_index'.
-  $field_instances['taxonomy_term-sdg-field_sdg_index'] = array(
+  // Exported field_instance: 'taxonomy_term-sdg-field_index'.
+  $field_instances['taxonomy_term-sdg-field_index'] = array(
     'bundle' => 'sdg',
     'default_value' => NULL,
     'deleted' => 0,
@@ -104,16 +104,21 @@ function chm_sdg_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 1,
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 5,
       ),
     ),
-    'ds_extras_field_template' => '',
     'entity_type' => 'taxonomy_term',
-    'field_name' => 'field_sdg_index',
-    'label' => 'SDG index',
-    'required' => 1,
+    'field_name' => 'field_index',
+    'label' => 'SDG number',
+    'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'max' => '',
@@ -127,7 +132,7 @@ function chm_sdg_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 41,
+      'weight' => 1,
     ),
   );
 
@@ -164,7 +169,7 @@ function chm_sdg_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => -5,
+      'weight' => 0,
     ),
   );
 
@@ -173,7 +178,7 @@ function chm_sdg_field_default_field_instances() {
   t('Description');
   t('Image');
   t('Name');
-  t('SDG index');
+  t('SDG number');
 
   return $field_instances;
 }
