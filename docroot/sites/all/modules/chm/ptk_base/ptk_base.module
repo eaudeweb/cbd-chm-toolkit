@@ -126,6 +126,15 @@ function ptk_base_block_info() {
     'pages' => '',
     'weight' => 1,
   ];
+  $blocks['chm_content_statistics'] = [
+    'info' => t('Content Statistics'),
+    'status' => TRUE,
+    'region' => 'content_col2-2',
+    'cache' => DRUPAL_NO_CACHE,
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => '<front>',
+    'weight' => 1,
+  ];
   return $blocks;
 }
 
@@ -176,6 +185,66 @@ function ptk_base_block_view($delta = '') {
   return PTKBlocks::render($delta);
 }
 
+/**
+ * Implements hook_block_configure().
+ */
+function ptk_base_block_configure($delta = '') {
+  // After code refactoring, this logic should be moved to a PTKBlocks class
+  $form = [];
+  if ($delta == 'chm_content_statistics') {
+    $types = node_type_get_types();
+    $form['content_types_settings'] = [
+      '#type' => 'fieldset',
+      '#title' => 'Content types settings',
+      '#collapsible' => FALSE,
+    ];
+    foreach ($types as $machine_name => $type) {
+      $form['content_types_settings'][$machine_name] = [
+        '#type' => 'fieldset',
+        '#title' => $type->name,
+        '#collapsible' => TRUE,
+        '#collapsed' => TRUE,
+        "content_statistics_block_{$machine_name}_display" => [
+          '#type' => 'checkbox',
+          '#title' => 'Hide',
+          '#default_value' => variable_get("content_statistics_block_{$machine_name}_display", 0),
+        ],
+        "content_statistics_block_{$machine_name}_url" => [
+          '#type' => 'textfield',
+          '#title' => 'Page url',
+          '#default_value' => variable_get("content_statistics_block_{$machine_name}_url", ''),
+          '#size' => 60,
+          '#maxlength' => 128,
+        ],
+        "content_statistics_block_{$machine_name}_icon" => [
+          '#type' => 'textfield',
+          '#title' => 'Icon url',
+          '#default_value' => variable_get("content_statistics_block_{$machine_name}_icon", ''),
+          '#size' => 60,
+          '#maxlength' => 128,
+        ],
+      ];
+    }
+  }
+  return $form;
+}
+
+/**
+ * Implements hook_block_save().
+ */
+function ptk_base_block_save($delta = '', $edit = array()) {
+  // After code refactoring, this logic should be moved to a PTKBlocks class
+  if ($delta == 'chm_content_statistics') {
+    $types = node_type_get_types();
+    $settings = ['display', 'url', 'icon'];
+    foreach ($types as $machine_name => $type) {
+      foreach ($settings as $setting) {
+        $sname = "content_statistics_block_{$machine_name}_{$setting}";
+        variable_set($sname, $edit[$sname]);
+      }
+    }
+  }
+}
 
 /**
  * Implements hook_field_formatter_info().
