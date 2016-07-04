@@ -185,6 +185,50 @@ function ptk_base_block_view($delta = '') {
   return PTKBlocks::render($delta);
 }
 
+/**
+ * Implements hook_block_configure().
+ */
+function ptk_base_block_configure($delta = '') {
+  // After code refactoring, this logic should be moved to a PTKBlocks class
+  $form = [];
+  if ($delta == 'chm_content_statistics') {
+    $types = node_type_get_types();
+    $form['content_types_settings'] = [
+      '#type' => 'fieldset',
+      '#title' => 'Content types settings',
+      '#collapsible' => FALSE,
+    ];
+    foreach ($types as $machine_name => $type) {
+      $form['content_types_settings'][$machine_name] = [
+        '#type' => 'fieldset',
+        '#title' => $type->name,
+        '#collapsible' => TRUE,
+        '#collapsed' => TRUE,
+        "{$machine_name}_display" => [
+          '#type' => 'checkbox',
+          '#title' => 'Hide',
+        ],
+        "{$machine_name}_url" => [
+          '#type' => 'textfield',
+          '#title' => 'Page url',
+          // ToDo: show default value
+          '#default_value' => '',
+          '#size' => 60,
+          '#maxlength' => 128,
+        ],
+        "{$machine_name}_icon" => [
+          '#type' => 'textfield',
+          '#title' => 'Icon url',
+          // ToDo: show default value
+          '#default_value' => '',
+          '#size' => 60,
+          '#maxlength' => 128,
+        ],
+      ];
+    }
+  }
+  return $form;
+}
 
 /**
  * Implements hook_field_formatter_info().
