@@ -24,8 +24,8 @@ function osha_gallery_menu() {
     'access arguments' => array(1),
   );
   $items['admin/config/content/osha_gallery'] = array(
-    'title' => 'Gallery Configuration',
-    'description' => 'Configure parameters for the HWC website',
+    'title' => 'OSHA Gallery Configuration',
+    'description' => 'Configure parameters for the OSHA gallery',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('osha_gallery_config_form'),
     'access arguments' => array('administer site configuration'),
