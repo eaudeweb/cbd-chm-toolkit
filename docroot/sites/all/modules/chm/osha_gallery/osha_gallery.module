@@ -604,7 +604,7 @@ function osha_gallery_reorder_files_form_reorder_validate($form, &$form_state) {
  * @see manualcrop_field_widget_form_alter
  */
 function osha_gallery_field_widget_form_alter(&$element, &$form_state, $context) {
-  if (user_access('use manualcrop')) {
+  if (module_exists('manualcrop') && user_access('use manualcrop')) {
     $widget = $context['instance']['widget'];
     if (manualcrop_supported_widgets($widget['type'])) {
       if (!empty($widget['settings']['manualcrop_enable'])) {
