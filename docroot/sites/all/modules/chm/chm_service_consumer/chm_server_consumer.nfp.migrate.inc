@@ -51,7 +51,7 @@ class CHMServerConsumerNFPTypeMigrateSource extends CHMServerConsumerMigrateSour
    */
   public function fields() {
     return [
-      '_id'     => 'Remote record ID',
+      'id'     => 'Remote record ID',
       'code'    => '@fake field to keep computed title',
       'treaty'  => 'Website',
       'name'    => 'Remote record ID',
@@ -70,7 +70,7 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
     parent::__construct($arguments);
     $this->map = new MigrateSQLMap($this->machineName,
       array(
-        '_id' => array(
+        'id' => array(
           'type' => 'varchar',
           'length' => 255,
           'not null' => TRUE,
@@ -151,14 +151,14 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
     }
     $row->title = trim($row->title);
     if (empty($row->title)) {
-      $f = '_id';
+      $f = 'id';
       $this->log(sprintf("Contact %s does not have a title", $row->{$f}));
       return FALSE;
     }
 
-    // Country
+    // Country.
     if (!empty($row->country)) {
-      /** @var stdClass $country */
+      // @var stdClass $country
       if ($country = PTK::getCountryByCode($row->country)) {
         $iso = $row->country;
         $row->country = $country->tid;
@@ -174,6 +174,79 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
 
     return TRUE;
   }
+
+  public function complete($entity, $row) {
+    // Remove existing field collections roles.
+    $fc_item_values = array();
+    if (!empty($entity->field_nfp_roles)) {
+      foreach ($entity->field_nfp_roles as $lang => $values) {
+        foreach ($values as $idx => $value) {
+          $fc_item_values[] = $value['value'];
+          unset($entity->field_nfp_roles[$lang][$idx]);
+        }
+      }
+    }
+    entity_delete_multiple('field_collection_item', $fc_item_values);
+
+    // Attach field collection roles.
+    $voc_roles = taxonomy_vocabulary_machine_name_load('taxonomy_nfp_type');
+    $voc_treaties = taxonomy_vocabulary_machine_name_load('treaties');
+    if (is_array($row->roles)) {
+      foreach ($row->roles as $role) {
+        $item = array(
+          'field_name' => 'field_nfp_roles',
+        );
+        if (!empty($role->treaty)) {
+          $term = $this->termLoadFieldValue('treaties', 'field_informea_machine_name', $role->treaty);
+          if (empty($term)) {
+            $term = new stdClass();
+            $term->vid = $voc_treaties->vid;
+            $term->name = $role->treaty;
+            $term->field_informea_machine_name[LANGUAGE_NONE][] = array('value' => $role->treaty);
+            taxonomy_term_save($term);
+          }
+          else {
+            $term = current($term);
+          }
+          $item['field_treaty'][LANGUAGE_NONE][] = array('tid' => $term->tid);
+        }
+        foreach ($role->roles as $role_name) {
+          $term = taxonomy_get_term_by_name($role_name, 'taxonomy_nfp_type');
+          if (empty($term)) {
+            $term = new stdClass();
+            $term->vid = $voc_roles->vid;
+            $term->name = $role_name;
+            taxonomy_term_save($term);
+          }
+          else {
+            $term = current($term);
+          }
+          $item['field_nfp_type'][LANGUAGE_NONE][] = array(
+            'tid' => $term->tid,
+          );
+        }
+        $item = entity_create('field_collection_item', $item);
+        $item->setHostEntity('node', $entity);
+      }
+    }
+    node_save($entity);
+  }
+  
+  public function termLoadFieldValue($vocabulary_name, $entity_field, $entity_value) {
+    $tid = 0;
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'taxonomy_term')
+      ->entityCondition('bundle', array($vocabulary_name))
+      ->fieldCondition($entity_field, 'value', $entity_value, '=');
+    $result = $query->execute();
+
+    if ($result) {
+      $terms = array_keys($result['taxonomy_term']);
+      $tid = $terms[0];
+    }
+
+    return $tid;
+  }
 }
 
 
@@ -187,7 +260,7 @@ class CHMServerConsumerNFPMigrateSource extends CHMServerConsumerMigrateSource {
    */
   public function fields() {
     return [
-      '_id'                 => 'Remote record ID',
+      'id'                 => 'Remote record ID',
       'title'               => '@fake field to keep computed title',
 //      'website'             => 'Website',
 //      'emailAlts'           => 'Alternative e-mails',
