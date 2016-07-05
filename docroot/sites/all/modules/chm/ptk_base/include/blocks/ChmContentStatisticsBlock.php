@@ -4,8 +4,18 @@ namespace Drupal\ptk_base\blocks;
 
 class ChmContentStatisticsBlock extends AbstractBlock {
 
-  public function getDelta() {
-    return 'chm_content_statistics';
+  public function info() {
+    return [
+      'chm_content_statistics' => [
+        'info' => t('Content Statistics'),
+        'status' => TRUE,
+        'region' => 'content_col2-2',
+        'cache' => DRUPAL_NO_CACHE,
+        'visibility' => BLOCK_VISIBILITY_LISTED,
+        'pages' => '<front>',
+        'weight' => 1,
+      ],
+    ];
   }
 
   public function view() {

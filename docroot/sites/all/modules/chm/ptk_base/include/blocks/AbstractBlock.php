@@ -7,16 +7,14 @@ abstract class AbstractBlock {
   protected $delta;
 
   public function __construct() {
-    // ToDo: this logic can be improved. I think we don't need a getDelta method.
-    $this->delta = $this->getDelta();
+    $info = $this->info();
+    $this->delta = key($info);
   }
 
   /**
-   * Returns the machine name of the block.
-   *
-   * @return string
+   * Implements hook_block_info().
    */
-  abstract public function getDelta();
+  abstract public function info();
 
   /**
    * Implements hook_block_view().

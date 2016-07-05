@@ -128,15 +128,17 @@ function ptk_base_block_info() {
     'pages' => '',
     'weight' => 1,
   ];
-  $blocks['chm_content_statistics'] = [
-    'info' => t('Content Statistics'),
-    'status' => TRUE,
-    'region' => 'content_col2-2',
-    'cache' => DRUPAL_NO_CACHE,
-    'visibility' => BLOCK_VISIBILITY_LISTED,
-    'pages' => '<front>',
-    'weight' => 1,
-  ];
+  $declaredClasses = get_declared_classes();
+  foreach ($declaredClasses as $class) {
+    if (strpos($class, 'Drupal\\ptk_base\\blocks\\') === 0) {
+      $testClass = new \ReflectionClass($class);
+      if ($testClass->isAbstract() === false) {
+        /** @var Drupal\ptk_base\blocks\AbstractBlock $block */
+        $block = new $class();
+        $blocks += $block->info();
+      }
+    }
+  }
   return $blocks;
 }
 
