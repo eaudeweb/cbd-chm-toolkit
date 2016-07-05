@@ -83,15 +83,6 @@ function ptk_base_menu() {
  * Implements hook_block_info().
  */
 function ptk_base_block_info() {
-  $blocks['chm_network_sites'] = [
-    'info' => t('National CHM Training Sites'),
-    'status' => TRUE,
-    'region' => 'content',
-    'cache' => DRUPAL_CACHE_GLOBAL,
-    'visibility' => BLOCK_VISIBILITY_LISTED,
-    'pages' => 'chm-network',
-    'weight' => 1,
-  ];
   $blocks['chm_footer_quick_links_root'] = [
     'info' => t('Footer quick links for root domain'),
     'status' => TRUE,
