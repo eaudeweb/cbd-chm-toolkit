@@ -53,5 +53,12 @@ function chm_sdg_strongarm() {
   );
   $export['field_bundle_settings_taxonomy_term__sdg'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_sdg_pattern';
+  $strongarm->value = '[term:vocabulary]/[term:field_index]';
+  $export['pathauto_taxonomy_term_sdg_pattern'] = $strongarm;
+
   return $export;
 }
