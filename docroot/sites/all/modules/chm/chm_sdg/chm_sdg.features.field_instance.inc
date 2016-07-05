@@ -45,7 +45,39 @@ function chm_sdg_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 3,
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-sdg-field_biodiversity_item_type'.
+  $field_instances['taxonomy_term-sdg-field_biodiversity_item_type'] = array(
+    'bundle' => 'sdg',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 6,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_biodiversity_item_type',
+    'label' => 'Type',
+    'required' => 1,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 2,
     ),
   );
 
@@ -91,7 +123,7 @@ function chm_sdg_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 2,
+      'weight' => 4,
     ),
   );
 
@@ -132,6 +164,41 @@ function chm_sdg_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-sdg-field_official_name'.
+  $field_instances['taxonomy_term-sdg-field_official_name'] = array(
+    'bundle' => 'sdg',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Name without the ordering index',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 7,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_official_name',
+    'label' => 'Official name',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
       'weight' => 1,
     ),
   );
@@ -178,7 +245,10 @@ function chm_sdg_field_default_field_instances() {
   t('Description');
   t('Image');
   t('Name');
+  t('Name without the ordering index');
+  t('Official name');
   t('SDG number');
+  t('Type');
 
   return $field_instances;
 }

@@ -2462,13 +2462,13 @@ function chm_structure_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
   // Exported field_instance:
-  // 'taxonomy_term-aichi_biodiversity_targets-field_biodiversity_term_type'.
-  $field_instances['taxonomy_term-aichi_biodiversity_targets-field_biodiversity_term_type'] = array(
+  // 'taxonomy_term-aichi_biodiversity_targets-field_biodiversity_item_type'.
+  $field_instances['taxonomy_term-aichi_biodiversity_targets-field_biodiversity_item_type'] = array(
     'bundle' => 'aichi_biodiversity_targets',
     'default_value' => NULL,
     'deleted' => 0,
@@ -2476,16 +2476,16 @@ function chm_structure_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'list',
+        'module' => 'i18n_taxonomy',
         'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 3,
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 5,
       ),
     ),
     'entity_type' => 'taxonomy_term',
-    'field_name' => 'field_biodiversity_term_type',
-    'label' => 'Biodiversity term type',
-    'required' => 0,
+    'field_name' => 'field_biodiversity_item_type',
+    'label' => 'Type',
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
@@ -2541,7 +2541,7 @@ function chm_structure_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
@@ -2583,6 +2583,42 @@ function chm_structure_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'taxonomy_term-aichi_biodiversity_targets-field_official_name'.
+  $field_instances['taxonomy_term-aichi_biodiversity_targets-field_official_name'] = array(
+    'bundle' => 'aichi_biodiversity_targets',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Name without the ordering index',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 6,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_official_name',
+    'label' => 'Official name',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
       'weight' => 1,
     ),
   );
@@ -2661,7 +2697,43 @@ function chm_structure_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => -5,
+      'weight' => 0,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'taxonomy_term-biodiversity_item_type-field_machine_name'.
+  $field_instances['taxonomy_term-biodiversity_item_type-field_machine_name'] = array(
+    'bundle' => 'biodiversity_item_type',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Unique internal identifier for this item',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_machine_name',
+    'label' => 'Machine name',
+    'required' => 1,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 2,
     ),
   );
 
@@ -2698,7 +2770,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => -5,
+      'weight' => 1,
     ),
   );
 
@@ -2775,7 +2847,40 @@ function chm_structure_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 3,
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'taxonomy_term-eu_targets-field_biodiversity_item_type'.
+  $field_instances['taxonomy_term-eu_targets-field_biodiversity_item_type'] = array(
+    'bundle' => 'eu_targets',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_biodiversity_item_type',
+    'label' => 'Type',
+    'required' => 1,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 2,
     ),
   );
 
@@ -2820,7 +2925,7 @@ function chm_structure_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 2,
+      'weight' => 4,
     ),
   );
 
@@ -2861,6 +2966,41 @@ function chm_structure_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-eu_targets-field_official_name'.
+  $field_instances['taxonomy_term-eu_targets-field_official_name'] = array(
+    'bundle' => 'eu_targets',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Name without the ordering index',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 5,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_official_name',
+    'label' => 'Official name',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
       'weight' => 1,
     ),
   );
@@ -3173,7 +3313,6 @@ function chm_structure_field_default_field_instances() {
   t('Address');
   t('Aichi number');
   t('Alternative emails');
-  t('Biodiversity term type');
   t('Body');
   t('City');
   t('Countries');
@@ -3198,7 +3337,10 @@ function chm_structure_field_default_field_instances() {
   t('Last name');
   t('Location');
   t('Location of interest, if available');
+  t('Machine name');
   t('Name');
+  t('Name without the ordering index');
+  t('Official name');
   t('Organization acronym');
   t('Organization name');
   t('Original ID');
@@ -3212,6 +3354,7 @@ function chm_structure_field_default_field_instances() {
   t('Status');
   t('Title');
   t('Type');
+  t('Unique internal identifier for this item');
   t('Website');
 
   return $field_instances;

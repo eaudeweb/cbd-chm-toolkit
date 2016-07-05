@@ -92,31 +92,32 @@ function chm_structure_field_default_field_bases() {
     'type' => 'email',
   );
 
-  // Exported field_base: 'field_biodiversity_term_type'.
-  $field_bases['field_biodiversity_term_type'] = array(
+  // Exported field_base: 'field_biodiversity_item_type'.
+  $field_bases['field_biodiversity_item_type'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_biodiversity_term_type',
+    'field_name' => 'field_biodiversity_item_type',
     'indexes' => array(
-      'value' => array(
-        0 => 'value',
+      'tid' => array(
+        0 => 'tid',
       ),
     ),
     'locked' => 0,
-    'module' => 'list',
+    'module' => 'taxonomy',
     'settings' => array(
       'allowed_values' => array(
-        'goal' => 'Goal',
-        'target' => 'Target',
-        'indocator' => 'Indicator',
+        0 => array(
+          'vocabulary' => 'biodiversity_item_type',
+          'parent' => 0,
+        ),
       ),
-      'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,
+      'options_list_callback' => 'i18n_taxonomy_allowed_values',
     ),
     'translatable' => 0,
-    'type' => 'list_text',
+    'type' => 'taxonomy_term_reference',
   );
 
   // Exported field_base: 'field_city'.
@@ -606,6 +607,28 @@ function chm_structure_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'location',
+  );
+
+  // Exported field_base: 'field_machine_name'.
+  $field_bases['field_machine_name'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_machine_name',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
   );
 
   // Exported field_base: 'field_nfp_designation'.
