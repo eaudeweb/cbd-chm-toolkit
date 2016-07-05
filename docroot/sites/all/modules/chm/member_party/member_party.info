@@ -1,0 +1,8 @@
+name = Party to a legal instrument
+description = Basic toolkit functionality
+package = CHM
+type = module
+version = 7.x-1.x
+core = 7.x
+files[] = ptk_base.admin.inc
+dependencies[] = phpexcel

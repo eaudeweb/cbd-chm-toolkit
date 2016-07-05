@@ -38,7 +38,7 @@ function chm_sdg_strongarm() {
           'weight' => '0',
         ),
         'language' => array(
-          'weight' => '6',
+          'weight' => '0',
         ),
       ),
       'display' => array(
