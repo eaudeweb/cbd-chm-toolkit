@@ -77,7 +77,7 @@ function chm_sdg_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
@@ -132,39 +132,33 @@ function chm_sdg_field_default_field_instances() {
     'bundle' => 'sdg',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Item order (1, 2.1, 3.2.1 etc.)',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => '',
-        ),
-        'type' => 'number_integer',
-        'weight' => 5,
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 8,
       ),
     ),
     'entity_type' => 'taxonomy_term',
     'field_name' => 'field_index',
-    'label' => 'SDG number',
+    'label' => 'Item index',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
-      'max' => '',
-      'min' => 1,
-      'prefix' => '',
-      'suffix' => '',
+      'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
-      'weight' => 4,
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 2,
     ),
   );
 
@@ -199,7 +193,7 @@ function chm_sdg_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
@@ -244,10 +238,11 @@ function chm_sdg_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Description');
   t('Image');
+  t('Item index');
+  t('Item order (1, 2.1, 3.2.1 etc.)');
   t('Name');
   t('Name without the ordering index');
   t('Official name');
-  t('SDG number');
   t('Type');
 
   return $field_instances;
