@@ -644,8 +644,8 @@ function osha_gallery_reorder_files_form_reorder_submit($form, &$form_state) {
 function _osha_gallery_get_display_settings_field($file, $field_instance, $node) {
   // @TODO handle other types of files and settings.
   $html = array();
-  if (!empty($field_instance['display']['default']['settings']['colorbox_node_style'])) {
-    $img_style = $field_instance['display']['default']['settings']['colorbox_node_style'];
+  if (!empty($field_instance['widget']['settings']['preview_image_style'])) {
+    $img_style = $field_instance['widget']['settings']['preview_image_style'];
     $html['image'] = array(
       '#type' => 'item',
       '#theme' => 'image',
