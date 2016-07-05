@@ -182,6 +182,17 @@ function ptk_base_schema_alter(&$schema) {
  * Implements hook_block_view().
  */
 function ptk_base_block_view($delta = '') {
+  /*
+   * If the delta is chm_content_statistics the class name should be
+   * ChmContentStatisticsBlock.
+   */
+  $className = str_replace(' ', '', ucwords(str_replace('_', ' ', $delta))) . 'Block';
+  $fullClassName = '\\Drupal\\ptk_base\\blocks\\' . $className;
+  if (class_exists($fullClassName)) {
+    /** @var Drupal\ptk_base\blocks\AbstractBlock $block */
+    $block = new $fullClassName();
+    return $block->view();
+  }
   return PTKBlocks::render($delta);
 }
 
