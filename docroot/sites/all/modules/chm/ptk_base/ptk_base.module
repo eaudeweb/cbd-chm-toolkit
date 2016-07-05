@@ -187,11 +187,14 @@ function ptk_base_block_view($delta = '') {
    * ChmContentStatisticsBlock.
    */
   $className = str_replace(' ', '', ucwords(str_replace('_', ' ', $delta))) . 'Block';
-  $fullClassName = '\\Drupal\\ptk_base\\blocks\\' . $className;
+  $fullClassName = 'Drupal\\ptk_base\\blocks\\' . $className;
   if (class_exists($fullClassName)) {
     /** @var Drupal\ptk_base\blocks\AbstractBlock $block */
     $block = new $fullClassName();
     return $block->view();
+  }
+  else {
+    drupal_set_message(t('Class !method does not exist within Drupal\ptk_base\blocks namespace', ['!method' => $className]), 'error');
   }
   return PTKBlocks::render($delta);
 }
