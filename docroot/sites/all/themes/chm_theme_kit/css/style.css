@@ -1089,6 +1089,10 @@ th.views-field-type, th.views-field-title {
 	width: 100%;
 }
 
+#block-ptk-base-chm-content-statistics table tr.odd {
+	background-color: #ededed;
+}
+
 #block-ptk-base-chm-content-statistics table td {
 	border-color: #ffffff;
 	font-size: 20px;
