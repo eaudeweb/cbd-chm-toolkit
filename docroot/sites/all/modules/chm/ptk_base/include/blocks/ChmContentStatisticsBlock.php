@@ -65,19 +65,20 @@ class ChmContentStatisticsBlock extends AbstractBlock {
     foreach ($types as $machine_name => $type) {
       $array["{$machine_name}_hide"] = [
         '#type' => 'checkbox',
-        '#title' => 'Hide',
+        '#title' => 'Hide ' . $type->name,
       ];
       $array["{$machine_name}_url"] = [
         '#type' => 'textfield',
-        '#title' => 'Page url',
+        '#title' => $type->name . ' page url',
         '#size' => 60,
         '#maxlength' => 128,
       ];
       $array["{$machine_name}_icon"] = [
         '#type' => 'textfield',
-        '#title' => 'Icon url',
+        '#title' => $type->name . ' icon',
         '#size' => 60,
         '#maxlength' => 128,
+        '#description' => t("HTML can be entered here."),
       ];
     }
     return $array;
@@ -115,7 +116,7 @@ class ChmContentStatisticsBlock extends AbstractBlock {
           '#default_value' => variable_get("{$this->delta}_{$machine_name}_icon", ''),
           '#size' => 60,
           '#maxlength' => 128,
-          '#description' => t("HTML can be entered here.")
+          '#description' => t("HTML can be entered here."),
         ],
       ];
     }
