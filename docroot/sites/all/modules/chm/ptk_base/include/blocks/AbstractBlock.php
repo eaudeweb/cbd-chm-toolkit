@@ -7,6 +7,7 @@ abstract class AbstractBlock {
   protected $delta;
 
   public function __construct() {
+    // ToDo: this logic can be improved. I think we don't need a getDelta method.
     $this->delta = $this->getDelta();
   }
 
