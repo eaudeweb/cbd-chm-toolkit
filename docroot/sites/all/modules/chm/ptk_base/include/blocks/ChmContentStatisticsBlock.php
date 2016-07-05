@@ -37,11 +37,13 @@ class ChmContentStatisticsBlock extends AbstractBlock {
       'rows' => [],
     ];
     foreach ($types as $machine_name => $type) {
-      if (!empty($count[$machine_name])) {
-        $content['rows'][] = [
-          $count[$machine_name],
-          $type->name,
-        ];
+      if (variable_get("{$this->delta}_{$machine_name}_hide", 0) == 0) {
+        if (!empty($count[$machine_name])) {
+          $content['rows'][] = [
+            $count[$machine_name],
+            $type->name,
+          ];
+        }
       }
     }
     $ret = [
@@ -55,7 +57,7 @@ class ChmContentStatisticsBlock extends AbstractBlock {
     $array = [];
     $types = node_type_get_types();
     foreach ($types as $machine_name => $type) {
-      $array["{$machine_name}_display"] = [
+      $array["{$machine_name}_hide"] = [
         '#type' => 'checkbox',
         '#title' => 'Hide',
       ];
@@ -89,10 +91,10 @@ class ChmContentStatisticsBlock extends AbstractBlock {
         '#title' => $type->name,
         '#collapsible' => TRUE,
         '#collapsed' => TRUE,
-        "{$this->delta}_{$machine_name}_display" => [
+        "{$this->delta}_{$machine_name}_hide" => [
           '#type' => 'checkbox',
           '#title' => 'Hide',
-          '#default_value' => variable_get("{$this->delta}_{$machine_name}_display", 0),
+          '#default_value' => variable_get("{$this->delta}_{$machine_name}_hide", 0),
         ],
         "{$this->delta}_{$machine_name}_url" => [
           '#type' => 'textfield',
