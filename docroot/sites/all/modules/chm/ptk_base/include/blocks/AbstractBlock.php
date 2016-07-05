@@ -56,8 +56,10 @@ abstract class AbstractBlock {
 
   /**
    * Implements hook_block_save().
+
+   * @param array $edit
    */
-  public function save($edit = array()) {
+  public function save($edit) {
     foreach ($this->settings() as $name => $setting) {
       $name = $this->delta . '_' . $name;
       variable_set($name, $edit[$name]);

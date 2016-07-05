@@ -140,6 +140,66 @@ function ptk_base_block_info() {
   return $blocks;
 }
 
+function _ptk_base_get_block_class_Name($delta = '') {
+  /*
+   * If the delta is chm_content_statistics the class name should be
+   * ChmContentStatisticsBlock.
+   */
+  $className = str_replace(' ', '', ucwords(str_replace('_', ' ', $delta))) . 'Block';
+  $fullClassName = 'Drupal\\ptk_base\\blocks\\' . $className;
+  return $fullClassName;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function ptk_base_block_view($delta = '') {
+  $return = [];
+  $fullClassName = _ptk_base_get_block_class_Name($delta);
+  if (class_exists($fullClassName)) {
+    /** @var Drupal\ptk_base\blocks\AbstractBlock $block */
+    $block = new $fullClassName();
+    $return = $block->view();
+  }
+  else {
+    drupal_set_message(t('Class !method does not exist.', ['!method' => $fullClassName]), 'error');
+    // ToDo: remove this line after migrating all blocks
+    $return = PTKBlocks::render($delta);
+  }
+  return $return;
+}
+
+/**
+ * Implements hook_block_configure().
+ */
+function ptk_base_block_configure($delta = '') {
+  $return = [];
+  $fullClassName = _ptk_base_get_block_class_Name($delta);
+  if (class_exists($fullClassName)) {
+    /** @var Drupal\ptk_base\blocks\AbstractBlock $block */
+    $block = new $fullClassName();
+    $return = $block->configure();
+  }
+  else {
+    drupal_set_message(t('Class !method does not exist.', ['!method' => $fullClassName]), 'error');
+  }
+  return $return;
+}
+
+/**
+ * Implements hook_block_save().
+ */
+function ptk_base_block_save($delta = '', $edit = array()) {
+  $fullClassName = _ptk_base_get_block_class_Name($delta);
+  if (class_exists($fullClassName)) {
+    /** @var Drupal\ptk_base\blocks\AbstractBlock $block */
+    $block = new $fullClassName();
+    $block->save($edit);
+  }
+  else {
+    drupal_set_message(t('Class !method does not exist.', ['!method' => $fullClassName]), 'error');
+  }
+}
 
 /**
  * Implements hook_schema_alter()
@@ -176,89 +236,6 @@ function ptk_base_schema_alter(&$schema) {
   $table = 'node_revision';
   if (isset($schema[$table])) {
     $schema[$table]['fields'][$column] = $new_spec;
-  }
-}
-
-
-/**
- * Implements hook_block_view().
- */
-function ptk_base_block_view($delta = '') {
-  /*
-   * If the delta is chm_content_statistics the class name should be
-   * ChmContentStatisticsBlock.
-   */
-  $className = str_replace(' ', '', ucwords(str_replace('_', ' ', $delta))) . 'Block';
-  $fullClassName = 'Drupal\\ptk_base\\blocks\\' . $className;
-  if (class_exists($fullClassName)) {
-    /** @var Drupal\ptk_base\blocks\AbstractBlock $block */
-    $block = new $fullClassName();
-    return $block->view();
-  }
-  else {
-    drupal_set_message(t('Class !method does not exist within Drupal\ptk_base\blocks namespace', ['!method' => $className]), 'error');
-  }
-  return PTKBlocks::render($delta);
-}
-
-/**
- * Implements hook_block_configure().
- */
-function ptk_base_block_configure($delta = '') {
-  // After code refactoring, this logic should be moved to a PTKBlocks class
-  $form = [];
-  if ($delta == 'chm_content_statistics') {
-    $types = node_type_get_types();
-    $form['content_types_settings'] = [
-      '#type' => 'fieldset',
-      '#title' => 'Content types settings',
-      '#collapsible' => FALSE,
-    ];
-    foreach ($types as $machine_name => $type) {
-      $form['content_types_settings'][$machine_name] = [
-        '#type' => 'fieldset',
-        '#title' => $type->name,
-        '#collapsible' => TRUE,
-        '#collapsed' => TRUE,
-        "content_statistics_block_{$machine_name}_display" => [
-          '#type' => 'checkbox',
-          '#title' => 'Hide',
-          '#default_value' => variable_get("content_statistics_block_{$machine_name}_display", 0),
-        ],
-        "content_statistics_block_{$machine_name}_url" => [
-          '#type' => 'textfield',
-          '#title' => 'Page url',
-          '#default_value' => variable_get("content_statistics_block_{$machine_name}_url", ''),
-          '#size' => 60,
-          '#maxlength' => 128,
-        ],
-        "content_statistics_block_{$machine_name}_icon" => [
-          '#type' => 'textfield',
-          '#title' => 'Icon url',
-          '#default_value' => variable_get("content_statistics_block_{$machine_name}_icon", ''),
-          '#size' => 60,
-          '#maxlength' => 128,
-        ],
-      ];
-    }
-  }
-  return $form;
-}
-
-/**
- * Implements hook_block_save().
- */
-function ptk_base_block_save($delta = '', $edit = array()) {
-  // After code refactoring, this logic should be moved to a PTKBlocks class
-  if ($delta == 'chm_content_statistics') {
-    $types = node_type_get_types();
-    $settings = ['display', 'url', 'icon'];
-    foreach ($types as $machine_name => $type) {
-      foreach ($settings as $setting) {
-        $sname = "content_statistics_block_{$machine_name}_{$setting}";
-        variable_set($sname, $edit[$sname]);
-      }
-    }
   }
 }
 

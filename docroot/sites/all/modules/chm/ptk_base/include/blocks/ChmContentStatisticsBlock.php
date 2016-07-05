@@ -42,7 +42,65 @@ class ChmContentStatisticsBlock extends AbstractBlock {
   }
 
   protected function settings() {
-    return [];
+    $array = [];
+    $types = node_type_get_types();
+    foreach ($types as $machine_name => $type) {
+      $array["{$machine_name}_display"] = [
+        '#type' => 'checkbox',
+        '#title' => 'Hide',
+      ];
+      $array["{$machine_name}_url"] = [
+        '#type' => 'textfield',
+        '#title' => 'Page url',
+        '#size' => 60,
+        '#maxlength' => 128,
+      ];
+      $array["{$machine_name}_icon"] = [
+        '#type' => 'textfield',
+        '#title' => 'Icon url',
+        '#size' => 60,
+        '#maxlength' => 128,
+      ];
+    }
+    return $array;
+  }
+
+  public function configure() {
+    $form = [];
+    $types = node_type_get_types();
+    $form['content_types_settings'] = [
+      '#type' => 'fieldset',
+      '#title' => 'Content types settings',
+      '#collapsible' => FALSE,
+    ];
+    foreach ($types as $machine_name => $type) {
+      $form['content_types_settings'][$machine_name] = [
+        '#type' => 'fieldset',
+        '#title' => $type->name,
+        '#collapsible' => TRUE,
+        '#collapsed' => TRUE,
+        "{$this->delta}_{$machine_name}_display" => [
+          '#type' => 'checkbox',
+          '#title' => 'Hide',
+          '#default_value' => variable_get("{$this->delta}_{$machine_name}_display", 0),
+        ],
+        "{$this->delta}_{$machine_name}_url" => [
+          '#type' => 'textfield',
+          '#title' => 'Page url',
+          '#default_value' => variable_get("{$this->delta}_{$machine_name}_url", ''),
+          '#size' => 60,
+          '#maxlength' => 128,
+        ],
+        "{$this->delta}_{$machine_name}_icon" => [
+          '#type' => 'textfield',
+          '#title' => 'Icon url',
+          '#default_value' => variable_get("{$this->delta}_{$machine_name}_icon", ''),
+          '#size' => 60,
+          '#maxlength' => 128,
+        ],
+      ];
+    }
+    return $form;
   }
 
 }
