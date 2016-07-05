@@ -105,10 +105,11 @@ class ChmContentStatisticsBlock extends AbstractBlock {
         ],
         "{$this->delta}_{$machine_name}_icon" => [
           '#type' => 'textfield',
-          '#title' => 'Icon url',
+          '#title' => 'Icon',
           '#default_value' => variable_get("{$this->delta}_{$machine_name}_icon", ''),
           '#size' => 60,
           '#maxlength' => 128,
+          '#description' => t("HTML can be entered here.")
         ],
       ];
     }
