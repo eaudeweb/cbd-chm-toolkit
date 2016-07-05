@@ -178,15 +178,13 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
   public function complete($entity, $row) {
     // Remove existing field collections roles.
     $fc_item_values = array();
-    if (!empty($entity->field_nfp_roles)) {
-      foreach ($entity->field_nfp_roles as $lang => $values) {
-        foreach ($values as $idx => $value) {
-          $fc_item_values[] = $value['value'];
-          unset($entity->field_nfp_roles[$lang][$idx]);
-        }
+    if (!empty($entity->field_nfp_roles[LANGUAGE_NONE])) {
+      foreach ($entity->field_nfp_roles[LANGUAGE_NONE] as $idx => $value) {
+        $fc_item_values[] = $value['value'];
       }
     }
     entity_delete_multiple('field_collection_item', $fc_item_values);
+    $entity->field_nfp_roles = array();
 
     // Attach field collection roles.
     $voc_roles = taxonomy_vocabulary_machine_name_load('taxonomy_nfp_type');
@@ -206,7 +204,7 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
             taxonomy_term_save($term);
           }
           else {
-            $term = current($term);
+            $term = taxonomy_term_load($term);
           }
           $item['field_treaty'][LANGUAGE_NONE][] = array('tid' => $term->tid);
         }
