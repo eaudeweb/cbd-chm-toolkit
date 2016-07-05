@@ -2,7 +2,13 @@
 
 require_once dirname(__FILE__) . '/include/PTK.php';
 require_once dirname(__FILE__) . '/include/forms.inc';
-require_once dirname(__FILE__) . '/include/blocks.inc';
+require_once dirname(__FILE__) . '/include/blocks/AbstractBlock.php';
+require_once dirname(__FILE__) . '/include/blocks/ChmContentStatisticsBlock.php';
+require_once dirname(__FILE__) . '/include/blocks/ChmNetworkSitesBlock.php';
+require_once dirname(__FILE__) . '/include/blocks/ChmFooterQuickLinksRootBlock.php';
+require_once dirname(__FILE__) . '/include/blocks/ChmFooterQuickLinksBlock.php';
+require_once dirname(__FILE__) . '/include/blocks/ChmFooterFollowUsBlock.php';
+require_once dirname(__FILE__) . '/include/blocks/ChmFooterCountryLinksBlock.php';
 
 /**
  * Implements hook_permission().
@@ -81,63 +87,79 @@ function ptk_base_menu() {
  * Implements hook_block_info().
  */
 function ptk_base_block_info() {
-  $blocks['chm_network_sites'] = [
-    'info' => t('National CHM Training Sites'),
-    'status' => TRUE,
-    'region' => 'content',
-    'cache' => DRUPAL_CACHE_GLOBAL,
-    'visibility' => BLOCK_VISIBILITY_LISTED,
-    'pages' => 'chm-network',
-    'weight' => 1,
-  ];
-  $blocks['chm_footer_quick_links_root'] = [
-    'info' => t('Footer quick links for root domain'),
-    'status' => TRUE,
-    'region' => 'footer_col_1',
-    'cache' => DRUPAL_NO_CACHE,
-    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
-    'pages' => '',
-    'weight' => 1,
-  ];
-  $blocks['chm_footer_quick_links'] = [
-    'info' => t('Footer quick links'),
-    'status' => TRUE,
-    'region' => 'footer_col_1',
-    'cache' => DRUPAL_NO_CACHE,
-    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
-    'pages' => '',
-    'weight' => 1,
-  ];
-  $blocks['chm_footer_follow_us'] = [
-    'info' => t('Follow Us'),
-    'status' => TRUE,
-    'region' => 'footer_col_4',
-    'cache' => DRUPAL_NO_CACHE,
-    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
-    'pages' => '',
-    'weight' => 1,
-  ];
-  $blocks['chm_footer_country_links'] = [
-    'info' => t('Country links'),
-    'status' => TRUE,
-    'region' => 'footer_col_3',
-    'cache' => DRUPAL_NO_CACHE,
-    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
-    'pages' => '',
-    'weight' => 1,
-  ];
-  $blocks['chm_content_statistics'] = [
-    'info' => t('Content Statistics'),
-    'status' => TRUE,
-    'region' => 'content_col2-2',
-    'cache' => DRUPAL_NO_CACHE,
-    'visibility' => BLOCK_VISIBILITY_LISTED,
-    'pages' => '<front>',
-    'weight' => 1,
-  ];
+  $blocks = [];
+  $declaredClasses = get_declared_classes();
+  foreach ($declaredClasses as $class) {
+    if (strpos($class, 'Drupal\\ptk_base\\blocks\\') === 0) {
+      $testClass = new \ReflectionClass($class);
+      if ($testClass->isAbstract() === false) {
+        /** @var Drupal\ptk_base\blocks\AbstractBlock $block */
+        $block = new $class();
+        $blocks += $block->info();
+      }
+    }
+  }
   return $blocks;
 }
 
+function _ptk_base_get_block_class_Name($delta = '') {
+  /*
+   * If the delta is chm_content_statistics the class name should be
+   * ChmContentStatisticsBlock.
+   */
+  $className = str_replace(' ', '', ucwords(str_replace('_', ' ', $delta))) . 'Block';
+  $fullClassName = 'Drupal\\ptk_base\\blocks\\' . $className;
+  return $fullClassName;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function ptk_base_block_view($delta = '') {
+  $return = [];
+  $fullClassName = _ptk_base_get_block_class_Name($delta);
+  if (class_exists($fullClassName)) {
+    /** @var Drupal\ptk_base\blocks\AbstractBlock $block */
+    $block = new $fullClassName();
+    $return = $block->view();
+  }
+  else {
+    drupal_set_message(t('Class !class does not exist.', ['!class' => $fullClassName]), 'error');
+  }
+  return $return;
+}
+
+/**
+ * Implements hook_block_configure().
+ */
+function ptk_base_block_configure($delta = '') {
+  $return = [];
+  $fullClassName = _ptk_base_get_block_class_Name($delta);
+  if (class_exists($fullClassName)) {
+    /** @var Drupal\ptk_base\blocks\AbstractBlock $block */
+    $block = new $fullClassName();
+    $return = $block->configure();
+  }
+  else {
+    drupal_set_message(t('Class !class does not exist.', ['!class' => $fullClassName]), 'error');
+  }
+  return $return;
+}
+
+/**
+ * Implements hook_block_save().
+ */
+function ptk_base_block_save($delta = '', $edit = array()) {
+  $fullClassName = _ptk_base_get_block_class_Name($delta);
+  if (class_exists($fullClassName)) {
+    /** @var Drupal\ptk_base\blocks\AbstractBlock $block */
+    $block = new $fullClassName();
+    $block->save($edit);
+  }
+  else {
+    drupal_set_message(t('Class !class does not exist.', ['!class' => $fullClassName]), 'error');
+  }
+}
 
 /**
  * Implements hook_schema_alter()
@@ -174,75 +196,6 @@ function ptk_base_schema_alter(&$schema) {
   $table = 'node_revision';
   if (isset($schema[$table])) {
     $schema[$table]['fields'][$column] = $new_spec;
-  }
-}
-
-
-/**
- * Implements hook_block_view().
- */
-function ptk_base_block_view($delta = '') {
-  return PTKBlocks::render($delta);
-}
-
-/**
- * Implements hook_block_configure().
- */
-function ptk_base_block_configure($delta = '') {
-  // After code refactoring, this logic should be moved to a PTKBlocks class
-  $form = [];
-  if ($delta == 'chm_content_statistics') {
-    $types = node_type_get_types();
-    $form['content_types_settings'] = [
-      '#type' => 'fieldset',
-      '#title' => 'Content types settings',
-      '#collapsible' => FALSE,
-    ];
-    foreach ($types as $machine_name => $type) {
-      $form['content_types_settings'][$machine_name] = [
-        '#type' => 'fieldset',
-        '#title' => $type->name,
-        '#collapsible' => TRUE,
-        '#collapsed' => TRUE,
-        "content_statistics_block_{$machine_name}_display" => [
-          '#type' => 'checkbox',
-          '#title' => 'Hide',
-          '#default_value' => variable_get("content_statistics_block_{$machine_name}_display", 0),
-        ],
-        "content_statistics_block_{$machine_name}_url" => [
-          '#type' => 'textfield',
-          '#title' => 'Page url',
-          '#default_value' => variable_get("content_statistics_block_{$machine_name}_url", ''),
-          '#size' => 60,
-          '#maxlength' => 128,
-        ],
-        "content_statistics_block_{$machine_name}_icon" => [
-          '#type' => 'textfield',
-          '#title' => 'Icon url',
-          '#default_value' => variable_get("content_statistics_block_{$machine_name}_icon", ''),
-          '#size' => 60,
-          '#maxlength' => 128,
-        ],
-      ];
-    }
-  }
-  return $form;
-}
-
-/**
- * Implements hook_block_save().
- */
-function ptk_base_block_save($delta = '', $edit = array()) {
-  // After code refactoring, this logic should be moved to a PTKBlocks class
-  if ($delta == 'chm_content_statistics') {
-    $types = node_type_get_types();
-    $settings = ['display', 'url', 'icon'];
-    foreach ($types as $machine_name => $type) {
-      foreach ($settings as $setting) {
-        $sname = "content_statistics_block_{$machine_name}_{$setting}";
-        variable_set($sname, $edit[$sname]);
-      }
-    }
   }
 }
 
