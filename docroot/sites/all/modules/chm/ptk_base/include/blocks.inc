@@ -22,44 +22,6 @@ class PTKBlocks {
 
 
   public static function chm_footer_follow_us() {
-    $domain = domain_get_domain();
-    $realm_name = 'domain';
-    $realm_key = $domain['machine_name'];
-    $items = [];
-    if ($link = variable_realm_get($realm_name, $realm_key, 'ptk_social_facebook')) {
-      $items[] = l(t('Facebook'), $link,
-        ['attributes' => ['target' => '_blank', 'class' => ['fa', 'fa-facebook']]]
-      );
-    }
-    if ($link = variable_realm_get($realm_name, $realm_key, 'ptk_social_linkedin')) {
-      $items[] = l(t('LinkedIn'), $link,
-        ['attributes' => ['class' => ['fa', 'fa-linkedin']]]
-      );
-    }
-    if ($link = variable_realm_get($realm_name, $realm_key, 'ptk_social_twitter')) {
-      $items[] = l(t('Twitter'), $link,
-        ['attributes' => ['class' => ['fa', 'fa-twitter']]]
-      );
-    }
-    if ($link = variable_realm_get($realm_name, $realm_key, 'ptk_social_youtube')) {
-      $items[] = l(t('Youtube'), $link,
-        ['attributes' => ['class' => ['fa', 'fa-youtube']]]
-      );
-    }
-    if (!empty($items)) {
-      $config = [
-        'type' => 'ul',
-        'attributes' => array('class' => ['menu', 'nav']),
-        'items' => $items,
-      ];
-      return [
-        'subject' => t('Social Media'),
-        'content' => theme('item_list', $config),
-      ];
-    }
-    else {
-      return NULL;
-    }
   }
 
   public static function chm_footer_country_links() {

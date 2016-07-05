@@ -8,6 +8,7 @@ require_once dirname(__FILE__) . '/include/blocks/ChmContentStatisticsBlock.php'
 require_once dirname(__FILE__) . '/include/blocks/ChmNetworkSitesBlock.php';
 require_once dirname(__FILE__) . '/include/blocks/ChmFooterQuickLinksRootBlock.php';
 require_once dirname(__FILE__) . '/include/blocks/ChmFooterQuickLinksBlock.php';
+require_once dirname(__FILE__) . '/include/blocks/ChmFooterFollowUsBlock.php';
 
 /**
  * Implements hook_permission().
@@ -86,15 +87,6 @@ function ptk_base_menu() {
  * Implements hook_block_info().
  */
 function ptk_base_block_info() {
-  $blocks['chm_footer_follow_us'] = [
-    'info' => t('Follow Us'),
-    'status' => TRUE,
-    'region' => 'footer_col_4',
-    'cache' => DRUPAL_NO_CACHE,
-    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
-    'pages' => '',
-    'weight' => 1,
-  ];
   $blocks['chm_footer_country_links'] = [
     'info' => t('Country links'),
     'status' => TRUE,
@@ -140,9 +132,7 @@ function ptk_base_block_view($delta = '') {
     $return = $block->view();
   }
   else {
-    drupal_set_message(t('Class !method does not exist.', ['!method' => $fullClassName]), 'error');
-    // ToDo: remove this line after migrating all blocks
-    $return = PTKBlocks::render($delta);
+    drupal_set_message(t('Class !class does not exist.', ['!class' => $fullClassName]), 'error');
   }
   return $return;
 }
@@ -159,7 +149,7 @@ function ptk_base_block_configure($delta = '') {
     $return = $block->configure();
   }
   else {
-    drupal_set_message(t('Class !method does not exist.', ['!method' => $fullClassName]), 'error');
+    drupal_set_message(t('Class !class does not exist.', ['!class' => $fullClassName]), 'error');
   }
   return $return;
 }
@@ -175,7 +165,7 @@ function ptk_base_block_save($delta = '', $edit = array()) {
     $block->save($edit);
   }
   else {
-    drupal_set_message(t('Class !method does not exist.', ['!method' => $fullClassName]), 'error');
+    drupal_set_message(t('Class !class does not exist.', ['!class' => $fullClassName]), 'error');
   }
 }
 
