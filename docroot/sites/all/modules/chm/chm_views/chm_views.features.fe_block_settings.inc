@@ -21,12 +21,6 @@ function chm_views_default_fe_block_settings() {
     'pages' => '<front>',
     'roles' => array(),
     'themes' => array(
-      'bartik' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'bartik',
-        'weight' => 0,
-      ),
       'chm_theme_kit' => array(
         'region' => 'main_top',
         'status' => 1,
