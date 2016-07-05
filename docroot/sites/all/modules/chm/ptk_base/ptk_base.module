@@ -7,6 +7,7 @@ require_once dirname(__FILE__) . '/include/blocks/AbstractBlock.php';
 require_once dirname(__FILE__) . '/include/blocks/ChmContentStatisticsBlock.php';
 require_once dirname(__FILE__) . '/include/blocks/ChmNetworkSitesBlock.php';
 require_once dirname(__FILE__) . '/include/blocks/ChmFooterQuickLinksRootBlock.php';
+require_once dirname(__FILE__) . '/include/blocks/ChmFooterQuickLinksBlock.php';
 
 /**
  * Implements hook_permission().
@@ -85,15 +86,6 @@ function ptk_base_menu() {
  * Implements hook_block_info().
  */
 function ptk_base_block_info() {
-  $blocks['chm_footer_quick_links'] = [
-    'info' => t('Footer quick links'),
-    'status' => TRUE,
-    'region' => 'footer_col_1',
-    'cache' => DRUPAL_NO_CACHE,
-    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
-    'pages' => '',
-    'weight' => 1,
-  ];
   $blocks['chm_footer_follow_us'] = [
     'info' => t('Follow Us'),
     'status' => TRUE,
