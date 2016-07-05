@@ -176,6 +176,7 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
   }
 
   public function complete($entity, $row) {
+    // TODO Improvement - Remove only if changed.
     // Remove existing field collections roles.
     $fc_item_values = array();
     if (!empty($entity->field_nfp_roles[LANGUAGE_NONE])) {

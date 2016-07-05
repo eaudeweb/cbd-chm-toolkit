@@ -1,5 +1,32 @@
 <?php
 
+/**
+ * Implements Elysia hook_cronapi().
+ */
+function chm_service_consumer_cronapi() {
+  return array(
+    'chm_service_consumer_cron' => array(
+      'description' => 'Import NFP from Informea',
+      'rule' => '0 0 * * *',
+    ),
+  );
+}
+
+/**
+ * Implements hook_cron().
+ */
+function chm_service_consumer_cron() {
+  module_load_include('inc', 'migrate_ui', 'migrate_ui.pages');
+  $machine_name = 'nfp';
+  // Update Focal Point Migration.
+  $migration = Migration::getInstance($machine_name);
+  $migration->prepareUpdate();
+  watchdog('chm_service_consumer', 'Starting Import @migration',
+    array('@migration' => $machine_name), WATCHDOG_INFO);
+  $result = $migration->processImport(array('update' => TRUE));
+  watchdog('chm_service_consumer', 'Imported @migration with result: @result',
+    array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);
+}
 
 /**
  * Implements hook_migrate_api().
