@@ -41,10 +41,10 @@ class ChmContentStatisticsBlock extends AbstractBlock {
         if (!empty($count[$machine_name])) {
           $url = variable_get("{$this->delta}_{$machine_name}_url");
           $icon = variable_get("{$this->delta}_{$machine_name}_icon");
-          $name = !empty($url) ? l($type->name, $url) : $type->name;
           if (!empty($icon)) {
-            $name = $icon . $name;
+            $type->name = $icon . $type->name;
           }
+          $name = !empty($url) ? l($type->name, $url, ['html' => TRUE]) : $type->name;
           $content['rows'][] = [
             $count[$machine_name],
             $name,
