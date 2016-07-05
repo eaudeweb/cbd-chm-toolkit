@@ -43,7 +43,7 @@ function chm_structure_taxonomy_default_vocabularies() {
       'name' => 'EU Targets',
       'machine_name' => 'eu_targets',
       'description' => 'European Union reference targets',
-      'hierarchy' => 0,
+      'hierarchy' => 1,
       'module' => 'taxonomy',
       'weight' => 0,
       'language' => 'und',

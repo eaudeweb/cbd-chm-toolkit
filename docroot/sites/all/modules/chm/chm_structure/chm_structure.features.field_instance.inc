@@ -3136,7 +3136,7 @@ function chm_structure_field_default_field_instances() {
     ),
     'entity_type' => 'taxonomy_term',
     'field_name' => 'name_field',
-    'label' => 'Item index',
+    'label' => 'Name',
     'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
