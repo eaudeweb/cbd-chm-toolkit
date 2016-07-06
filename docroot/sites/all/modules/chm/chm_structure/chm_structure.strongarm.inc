@@ -104,6 +104,13 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'diff_enable_revisions_page_node_species';
+  $strongarm->value = 0;
+  $export['diff_enable_revisions_page_node_species'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'diff_show_preview_changes_node_document';
   $strongarm->value = 0;
   $export['diff_show_preview_changes_node_document'] = $strongarm;
@@ -139,6 +146,13 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'diff_show_preview_changes_node_species';
+  $strongarm->value = 0;
+  $export['diff_show_preview_changes_node_species'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'diff_view_mode_preview_node_document';
   $strongarm->value = 'full';
   $export['diff_view_mode_preview_node_document'] = $strongarm;
@@ -170,6 +184,13 @@ function chm_structure_strongarm() {
   $strongarm->name = 'diff_view_mode_preview_node_news';
   $strongarm->value = 'full';
   $export['diff_view_mode_preview_node_news'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_view_mode_preview_node_species';
+  $strongarm->value = 'full';
+  $export['diff_view_mode_preview_node_species'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -288,6 +309,13 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_hide_translation_links_species';
+  $strongarm->value = 1;
+  $export['entity_translation_hide_translation_links_species'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_node_metadata_document';
   $strongarm->value = '0';
   $export['entity_translation_node_metadata_document'] = $strongarm;
@@ -326,6 +354,13 @@ function chm_structure_strongarm() {
   $strongarm->name = 'entity_translation_node_metadata_page';
   $strongarm->value = '0';
   $export['entity_translation_node_metadata_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_node_metadata_species';
+  $strongarm->value = '0';
+  $export['entity_translation_node_metadata_species'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -411,6 +446,19 @@ function chm_structure_strongarm() {
     'shared_fields_original_only' => 1,
   );
   $export['entity_translation_settings_node__page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_node__species';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 1,
+  );
+  $export['entity_translation_settings_node__species'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -515,6 +563,97 @@ function chm_structure_strongarm() {
     'shared_fields_original_only' => 1,
   );
   $export['entity_translation_settings_taxonomy_term__sdg'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__species_authority';
+  $strongarm->value = array(
+    'default_language' => 'und',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 0,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 1,
+  );
+  $export['entity_translation_settings_taxonomy_term__species_authority'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__species_class';
+  $strongarm->value = array(
+    'default_language' => 'und',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 0,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 1,
+  );
+  $export['entity_translation_settings_taxonomy_term__species_class'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__species_family';
+  $strongarm->value = array(
+    'default_language' => 'und',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 0,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 1,
+  );
+  $export['entity_translation_settings_taxonomy_term__species_family'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__species_kingdom';
+  $strongarm->value = array(
+    'default_language' => 'und',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 0,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 1,
+  );
+  $export['entity_translation_settings_taxonomy_term__species_kingdom'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__species_order';
+  $strongarm->value = array(
+    'default_language' => 'und',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 0,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 1,
+  );
+  $export['entity_translation_settings_taxonomy_term__species_order'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__species_phylum';
+  $strongarm->value = array(
+    'default_language' => 'und',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 0,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 1,
+  );
+  $export['entity_translation_settings_taxonomy_term__species_phylum'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__species_redlist_status';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-current',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__species_redlist_status'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -822,6 +961,41 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_node__species';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'domain' => array(
+          'weight' => '2',
+        ),
+        'domain_path' => array(
+          'weight' => '5',
+        ),
+        'locations' => array(
+          'weight' => '4',
+        ),
+        'metatags' => array(
+          'weight' => '7',
+        ),
+        'title' => array(
+          'weight' => '-5',
+        ),
+        'path' => array(
+          'weight' => '3',
+        ),
+        'language' => array(
+          'weight' => '5',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_node__species'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_taxonomy_term__aichi_biodiversity_targets';
   $strongarm->value = array(
     'view_modes' => array(),
@@ -864,6 +1038,32 @@ function chm_structure_strongarm() {
     ),
   );
   $export['field_bundle_settings_taxonomy_term__biodiversity_item_type'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_taxonomy_term__species_redlist_status';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'metatags' => array(
+          'weight' => '40',
+        ),
+        'path' => array(
+          'weight' => '30',
+        ),
+        'name' => array(
+          'weight' => '-5',
+        ),
+        'description' => array(
+          'weight' => '0',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_taxonomy_term__species_redlist_status'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -952,6 +1152,13 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_species';
+  $strongarm->value = '4';
+  $export['language_content_type_species'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_cbd_nfp';
   $strongarm->value = array(
     0 => 'main-menu',
@@ -1015,6 +1222,15 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_options_species';
+  $strongarm->value = array(
+    0 => 'main-menu',
+  );
+  $export['menu_options_species'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_parent_cbd_nfp';
   $strongarm->value = 'main-menu:0';
   $export['menu_parent_cbd_nfp'] = $strongarm;
@@ -1064,6 +1280,13 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_parent_species';
+  $strongarm->value = 'main-menu:0';
+  $export['menu_parent_species'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_node__cbd_nfp';
   $strongarm->value = TRUE;
   $export['metatag_enable_node__cbd_nfp'] = $strongarm;
@@ -1102,6 +1325,13 @@ function chm_structure_strongarm() {
   $strongarm->name = 'metatag_enable_node__news';
   $strongarm->value = TRUE;
   $export['metatag_enable_node__news'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'metatag_enable_node__species';
+  $strongarm->value = TRUE;
+  $export['metatag_enable_node__species'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1165,6 +1395,55 @@ function chm_structure_strongarm() {
   $strongarm->name = 'metatag_enable_taxonomy_term__sdg';
   $strongarm->value = TRUE;
   $export['metatag_enable_taxonomy_term__sdg'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'metatag_enable_taxonomy_term__species_authority';
+  $strongarm->value = TRUE;
+  $export['metatag_enable_taxonomy_term__species_authority'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'metatag_enable_taxonomy_term__species_class';
+  $strongarm->value = TRUE;
+  $export['metatag_enable_taxonomy_term__species_class'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'metatag_enable_taxonomy_term__species_family';
+  $strongarm->value = TRUE;
+  $export['metatag_enable_taxonomy_term__species_family'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'metatag_enable_taxonomy_term__species_kingdom';
+  $strongarm->value = TRUE;
+  $export['metatag_enable_taxonomy_term__species_kingdom'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'metatag_enable_taxonomy_term__species_order';
+  $strongarm->value = TRUE;
+  $export['metatag_enable_taxonomy_term__species_order'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'metatag_enable_taxonomy_term__species_phylum';
+  $strongarm->value = TRUE;
+  $export['metatag_enable_taxonomy_term__species_phylum'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'metatag_enable_taxonomy_term__species_redlist_status';
+  $strongarm->value = TRUE;
+  $export['metatag_enable_taxonomy_term__species_redlist_status'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1237,6 +1516,15 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_species';
+  $strongarm->value = array(
+    0 => 'status',
+  );
+  $export['node_options_species'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_cbd_nfp';
   $strongarm->value = '0';
   $export['node_preview_cbd_nfp'] = $strongarm;
@@ -1286,6 +1574,13 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_preview_species';
+  $strongarm->value = '0';
+  $export['node_preview_species'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_submitted_cbd_nfp';
   $strongarm->value = 0;
   $export['node_submitted_cbd_nfp'] = $strongarm;
@@ -1331,6 +1626,13 @@ function chm_structure_strongarm() {
   $strongarm->name = 'node_submitted_page';
   $strongarm->value = 0;
   $export['node_submitted_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_submitted_species';
+  $strongarm->value = 0;
+  $export['node_submitted_species'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
