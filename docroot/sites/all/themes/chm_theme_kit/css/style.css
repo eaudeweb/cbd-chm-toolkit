@@ -8165,11 +8165,6 @@ a.more-link:hover,
 /* ----- User Block ------------------ */
 /* MEDIA QUERIES ************************* */
 /* ----- Responsive ------------------ */
-@media (max-width: 1125px) {
-  html body.admin-menu {
-    margin-top: 54px !important;
-  }
-}
 .view-ecosystems .span4 img,
 .view-ecosystems .span3 img {
   border: 5% solid white;
@@ -8478,6 +8473,19 @@ a.more-link:hover,
 }
 #block-ptk-base-chm-content-statistics table td .fa {
   margin-right: 5px;
+}
+html body.admin-menu-with-shortcuts {
+  margin-top: 64px !important;
+}
+.region-admin-shortcuts #block-system-user-menu .menu:before {
+  display: inline-block;
+}
+.region-admin-shortcuts #block-system-user-menu .menu li {
+  display: inline-block;
+  padding: 0 10px;
+}
+.region-admin-shortcuts #block-system-user-menu .menu li a {
+  padding: 0;
 }
 .navbar-container {
   background-color: #02783a;
