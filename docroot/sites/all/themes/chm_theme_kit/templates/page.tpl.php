@@ -10,25 +10,33 @@
 
 <div class="<?php print $container_class; ?>">
   <header role="banner" id="page-header">
-    <?php if ($logo): ?>
-      <a class="logo navbar-btn pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
-        <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-      </a>
-    <?php endif; ?>
+    <div class="row">
+      <div class="col-xs-12">
+        <?php if ($logo): ?>
+          <a class="logo navbar-btn pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
+            <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+          </a>
+        <?php endif; ?>
 
-    <?php if (!empty($site_name)): ?>
-      <a class="name navbar-brand" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a>
-    <?php endif; ?>
+        <?php if (!empty($site_name)): ?>
+          <a class="name navbar-brand" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a>
+        <?php endif; ?>
 
-    <?php if (!empty($site_slogan)): ?>
-      <p class="lead"><?php print $site_slogan; ?></p>
-    <?php endif; ?>
+        <?php if (!empty($site_slogan)): ?>
+          <p class="lead"><?php print $site_slogan; ?></p>
+        <?php endif; ?>
 
-    <?php if ($page['search_box']): ?>
-      <div id="nav-search" class="nav-search"> <?php print render($page['search_box']); ?> </div>
-    <?php endif; ?>
+        <?php if ($page['search_box']): ?>
+          <div id="nav-search" class="nav-search"> <?php print render($page['search_box']); ?> </div>
+        <?php endif; ?>
+      </div>
+    </div>
 
-    <?php print render($page['header']); ?>
+    <div class="row">
+      <div class="col-xs-12">
+        <?php print render($page['header']); ?>
+      </div>
+    </div>
   </header> <!-- /#page-header -->
 </div>
 
