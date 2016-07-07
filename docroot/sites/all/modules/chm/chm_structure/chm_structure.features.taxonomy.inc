@@ -157,7 +157,7 @@ function chm_structure_taxonomy_default_vocabularies() {
       'module' => 'taxonomy',
       'weight' => 0,
       'language' => 'und',
-      'i18n_mode' => 0,
+      'i18n_mode' => 1,
     ),
   );
 }
