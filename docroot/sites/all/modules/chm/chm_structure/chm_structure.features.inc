@@ -50,6 +50,14 @@ function chm_structure_node_info() {
       'title_label' => t('Title'),
       'help' => '',
     ),
+    'fact' => array(
+      'name' => t('Biodiversity fact'),
+      'base' => 'node_content',
+      'description' => t('Use a biodiversity fact to describe a particular fact related to biodiversity in your country.'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
     'news' => array(
       'name' => t('News'),
       'base' => 'node_content',
@@ -64,6 +72,14 @@ function chm_structure_node_info() {
       'description' => t('Use <i>page</i> for the static content of your national CHM website, such as the <b>About Us</b> page.'),
       'has_title' => '1',
       'title_label' => t('Title'),
+      'help' => '',
+    ),
+    'species' => array(
+      'name' => t('Species'),
+      'base' => 'node_content',
+      'description' => t('Contains species data'),
+      'has_title' => '1',
+      'title_label' => t('Scientific name'),
       'help' => '',
     ),
   );

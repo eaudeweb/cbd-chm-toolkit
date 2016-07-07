@@ -45,7 +45,39 @@ function chm_sdg_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => -5,
+      'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-sdg-field_biodiversity_item_type'.
+  $field_instances['taxonomy_term-sdg-field_biodiversity_item_type'] = array(
+    'bundle' => 'sdg',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 6,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_biodiversity_item_type',
+    'label' => 'Type',
+    'required' => 1,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 4,
     ),
   );
 
@@ -91,43 +123,77 @@ function chm_sdg_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 43,
+      'weight' => 5,
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-sdg-field_sdg_index'.
-  $field_instances['taxonomy_term-sdg-field_sdg_index'] = array(
+  // Exported field_instance: 'taxonomy_term-sdg-field_index'.
+  $field_instances['taxonomy_term-sdg-field_index'] = array(
     'bundle' => 'sdg',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Item order (1, 2.1, 3.2.1 etc.)',
     'display' => array(
       'default' => array(
         'label' => 'above',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 1,
+        'type' => 'text_default',
+        'weight' => 8,
       ),
     ),
-    'ds_extras_field_template' => '',
     'entity_type' => 'taxonomy_term',
-    'field_name' => 'field_sdg_index',
-    'label' => 'SDG index',
-    'required' => 1,
+    'field_name' => 'field_index',
+    'label' => 'Item index',
+    'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
-      'max' => '',
-      'min' => 1,
-      'prefix' => '',
-      'suffix' => '',
+      'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
-      'weight' => 41,
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-sdg-field_official_name'.
+  $field_instances['taxonomy_term-sdg-field_official_name'] = array(
+    'bundle' => 'sdg',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Name without the ordering index',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 7,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_official_name',
+    'label' => 'Official name',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 2,
     ),
   );
 
@@ -164,7 +230,7 @@ function chm_sdg_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => -5,
+      'weight' => 1,
     ),
   );
 
@@ -172,8 +238,12 @@ function chm_sdg_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Description');
   t('Image');
+  t('Item index');
+  t('Item order (1, 2.1, 3.2.1 etc.)');
   t('Name');
-  t('SDG index');
+  t('Name without the ordering index');
+  t('Official name');
+  t('Type');
 
   return $field_instances;
 }
