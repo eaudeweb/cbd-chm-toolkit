@@ -4,6 +4,7 @@ core = 7.x
 package = CHM
 version = 7.x-1.0
 dependencies[] = chm_sdg
+dependencies[] = colorbox
 dependencies[] = country_taxonomy
 dependencies[] = ctools
 dependencies[] = date
