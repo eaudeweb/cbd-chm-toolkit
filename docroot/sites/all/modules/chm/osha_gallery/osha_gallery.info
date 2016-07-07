@@ -3,4 +3,6 @@ core = 7.x
 package = OSHA
 dependencies[] = plupload
 dependencies[] = field_formatter_settings
+dependencies[] = colorbox
+dependencies[] = galleryformatter
 configure = admin/config/content/osha_gallery
