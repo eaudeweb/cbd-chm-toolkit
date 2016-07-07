@@ -1,0 +1,16 @@
+{
+  "name": "chm_theme_kit",
+  "version": "1.0.0",
+  "description": "Front-end theme for CHM website.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eau de Web",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-less": "^1.3.0",
+    "grunt-contrib-watch": "^1.0.0"
+  }
+}
