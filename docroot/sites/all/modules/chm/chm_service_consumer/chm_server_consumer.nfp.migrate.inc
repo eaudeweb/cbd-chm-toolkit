@@ -121,12 +121,12 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
           'field_name' => 'field_nfp_roles',
         );
         if (!empty($role->treaty)) {
-          $term = $this->termLoadFieldValue('treaties', 'field_informea_machine_name', $role->treaty);
+          $term = $this->termLoadFieldValue('treaties', 'field_machine_name', $role->treaty);
           if (empty($term)) {
             $term = new stdClass();
             $term->vid = $voc_treaties->vid;
             $term->name = $role->treaty;
-            $term->field_informea_machine_name[LANGUAGE_NONE][] = array('value' => $role->treaty);
+            $term->field_machine_name[LANGUAGE_NONE][] = array('value' => $role->treaty);
             taxonomy_term_save($term);
           }
           else {
