@@ -86,12 +86,10 @@
       <?php endif; ?>
 
       <?php if ($page['main_top']): ?>
-        <div id="main-top" class="row main-top"> <?php print render($page['main_top']); ?> </div>
+        <div id="main-top" class="main-top"> <?php print render($page['main_top']); ?> </div>
       <?php endif; ?>
 
-      <div class="row">
-        <?php print render($page['content']); ?>
-      </div>
+      <?php print render($page['content']); ?>
 
       <?php if (($page['content_col2-1']) || ($page['content_col2-2'])): ?>
         <div id="content-col2" class="row content-col2">
@@ -109,7 +107,7 @@
       <?php endif; ?>
 
       <?php if ($page['content_bottom']): ?>
-        <div id="content-bottom" class="row content-bottom"> <?php print render($page['content_bottom']); ?> </div>
+        <div id="content-bottom" class="content-bottom"> <?php print render($page['content_bottom']); ?> </div>
       <?php endif; ?>
 
     </section>

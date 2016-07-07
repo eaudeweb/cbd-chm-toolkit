@@ -4,8 +4,10 @@
     background: none;
     border: none;
     min-height: 40px;
-    padding-left: 0;
-    padding-right: 0;
+    @media all and (min-width: @screen-sm-min) {
+      padding-left: 0;
+      padding-right: 0;
+    }
     .navbar-header {
       .navbar-toggle {
         float: left;
@@ -19,8 +21,10 @@
       }
     }
     .navbar-collapse {
-      padding-left: 0;
-      padding-right: 0;
+      @media all and (min-width: @screen-sm-min) {
+        padding-left: 0;
+        padding-right: 0;
+      }
       .nav {
         li {
           &.active {
