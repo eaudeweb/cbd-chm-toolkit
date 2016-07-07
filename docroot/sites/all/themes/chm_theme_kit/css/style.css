@@ -8482,3 +8482,17 @@ a.more-link:hover,
 .navbar-container {
   background-color: #02783a;
 }
+.navbar-container #navbar {
+  background: none;
+  border: none;
+}
+.navbar-container #navbar .navbar-header .navbar-toggle {
+  float: left;
+  border: none;
+}
+.navbar-container #navbar .navbar-header .navbar-toggle .icon-bar {
+  background-color: #ffffff;
+}
+.navbar-container #navbar .navbar-header .navbar-toggle:hover {
+  background: none;
+}

@@ -1,3 +1,19 @@
 .navbar-container {
   background-color: @green-color;
+  #navbar {
+    background: none;
+    border: none;
+    .navbar-header {
+      .navbar-toggle {
+        float: left;
+        border: none;
+        .icon-bar {
+          background-color: #ffffff;
+        }
+        &:hover {
+          background: none;
+        }
+      }
+    }
+  }
 }
