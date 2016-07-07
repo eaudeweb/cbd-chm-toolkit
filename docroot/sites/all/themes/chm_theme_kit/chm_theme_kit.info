@@ -1,5 +1,5 @@
-name = Open Framework CHM Subtheme
-base theme = open_framework
+name = CHM bootstrap subtheme
+base theme = bootstrap
 description = Tableless, multi-column subtheme provided by <a href="http://webservices.stanford.edu">Stanford Web Services</a> as a subtheme of the <a href="http://openframework.stanford.edu">Open Framework theme</a>.
 core = 7.x
 version = 1.0
@@ -48,15 +48,22 @@ regions[footer_col_2] = Footer Column 2
 regions[footer_col_3] = Footer Column 3
 regions[footer_col_4] = Footer Column 4
 
-; Settings
-settings[content_order_classes] = ''
-settings[global_site_classes] = ''
-settings[front_heading_classes] = ''
-settings[breadcrumb_classes] = ''
-settings[body_bg_type] = ''
-settings[body_bg_classes] = ''
-settings[body_bg_path] = ''
-settings[body_bg_preview] = ''
-settings[body_bg_upload] = ''
-settings[border_classes] = ''
-settings[corner_classes] = ''
+;;;;;;;;;;;;;;;;;;;;;
+;; Scripts
+;;;;;;;;;;;;;;;;;;;;;
+
+scripts[] = 'bootstrap/js/affix.js'
+scripts[] = 'bootstrap/js/alert.js'
+scripts[] = 'bootstrap/js/button.js'
+scripts[] = 'bootstrap/js/carousel.js'
+scripts[] = 'bootstrap/js/collapse.js'
+scripts[] = 'bootstrap/js/dropdown.js'
+scripts[] = 'bootstrap/js/modal.js'
+scripts[] = 'bootstrap/js/tooltip.js'
+scripts[] = 'bootstrap/js/popover.js'
+scripts[] = 'bootstrap/js/scrollspy.js'
+scripts[] = 'bootstrap/js/tab.js'
+scripts[] = 'bootstrap/js/transition.js'
+
+; Disable BootstrapCDN so the compiled LESS source files can be used.
+settings[bootstrap_cdn] = ''
