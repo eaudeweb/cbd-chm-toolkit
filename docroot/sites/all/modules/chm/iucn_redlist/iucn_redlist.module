@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function iucn_redlist_menu() {
+  $items = array();
+  $items['admin/config/services/iucn-redlist'] = array(
+    'title' => t('IUCN Redlist API'),
+    'description' => t('Manage configuration for the IUCN Redlist API access'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('iucn_redlist_config_form'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'iucn_redlist.admin.inc',
+    'type' => MENU_NORMAL_ITEM,
+    'menu_name' => 'management',
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_migrate_api().
+ */
+function iucn_redlist_migrate_api() {
+  return [
+    'api' => 2,
+    'groups' => [
+      'iucn_redlist' => [ 'title' => t('IUCN RedList API data migrations'), ],
+    ],
+    'migrations' => [
+      'species' => [
+        'class_name' => 'IUCNRedListSpeciesMigration',
+        'group_name' => 'iucn_redlist',
+      ],
+    ],
+  ];
+}

@@ -1,0 +1,49 @@
+<?php
+
+function iucn_redlist_uninstall() {
+  db_drop_table('iucn_redlist_species');
+  db_drop_table('iucn_redlist_species_country');
+}
+
+/**
+ * Implements hook_schema().
+ */
+function iucn_redlist_schema() {
+  $schema = array();
+  $schema['iucn_redlist_species'] = array(
+    'description' => t('Store the RedList IDs of the species to be migrated'),
+    'fields' => array(
+      'taxonid' => array(
+        'description' => t('RedList taxonomic ID'),
+        'type' => 'int',
+        'size' => 'normal',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      )
+    ),
+    'primary key' => array('taxonid'),
+  );
+  $schema['iucn_redlist_species_country'] = array(
+    'description' => t('Distribution of RedList species per country'),
+    'fields' => array(
+      'taxonid' => array(
+        'description' => t('RedList taxonomic ID'),
+        'type' => 'int',
+        'size' => 'normal',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ),
+      'iso' => array(
+        'description' => t('Country ISO 2-letter code'),
+        'type' => 'varchar',
+        'length' => '2',
+        'not null' => TRUE
+      )
+    ),
+    'unique keys' => array(
+      'taxonid_iso' => array('taxonid', 'iso'),
+    ),
+    'primary key' => array('taxonid', 'iso'),
+  );
+  return $schema;
+}
