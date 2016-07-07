@@ -85,13 +85,11 @@
         <ul class="action-links"><?php print render($action_links); ?></ul>
       <?php endif; ?>
 
-
       <?php if ($page['main_top']): ?>
         <div id="main-top" class="row main-top"> <?php print render($page['main_top']); ?> </div>
       <?php endif; ?>
 
       <?php print render($page['content']); ?>
-
 
       <?php if (($page['content_col2-1']) || ($page['content_col2-2'])): ?>
         <div id="content-col2" class="row content-col2">
@@ -108,6 +106,10 @@
         </div>
       <?php endif; ?>
     </section>
+
+    <?php if ($page['content_bottom']): ?>
+      <div id="content-bottom" class="row content-bottom"> <?php print render($page['content_bottom']); ?> </div>
+    <?php endif; ?>
 
     <?php if (!empty($page['sidebar_second'])): ?>
       <aside class="col-sm-3" role="complementary">

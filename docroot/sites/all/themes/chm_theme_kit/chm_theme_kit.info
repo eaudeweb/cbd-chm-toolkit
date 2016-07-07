@@ -21,14 +21,11 @@ regions[content_col2-1] = Content: 2-column stacked (1)
 regions[content_col2-2] = Content: 2-column stacked (2)
 regions[content_bottom] = Content: Bottom
 regions[sidebar_second] = Second sidebar
-regions[main_lower] = Main: Lower
-regions[main_bottom] = Main: Bottom
-regions[footer] = Footer
-regions[footer_row3] = Footer Content: 3-column flow
 regions[footer_col_1] = Footer Column 1
 regions[footer_col_2] = Footer Column 2
 regions[footer_col_3] = Footer Column 3
 regions[footer_col_4] = Footer Column 4
+regions[footer] = Footer
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Scripts
