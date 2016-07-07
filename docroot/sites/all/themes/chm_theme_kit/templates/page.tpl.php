@@ -84,7 +84,29 @@
       <?php if (!empty($action_links)): ?>
         <ul class="action-links"><?php print render($action_links); ?></ul>
       <?php endif; ?>
+
+
+      <?php if ($page['main_top']): ?>
+        <div id="main-top" class="row main-top"> <?php print render($page['main_top']); ?> </div>
+      <?php endif; ?>
+
       <?php print render($page['content']); ?>
+
+
+      <?php if (($page['content_col2-1']) || ($page['content_col2-2'])): ?>
+        <div id="content-col2" class="row content-col2">
+          <?php if ($page['content_col2-1']): ?>
+            <div class="col-xs-12 col-sm-6">
+              <div id="content-col2-1"> <?php print render($page['content_col2-1']); ?> </div>
+            </div>
+          <?php endif; ?>
+          <?php if ($page['content_col2-2']): ?>
+            <div class="col-xs-12 col-sm-6">
+              <div id="content-col2-2"> <?php print render($page['content_col2-2']); ?> </div>
+            </div>
+          <?php endif; ?>
+        </div>
+      <?php endif; ?>
     </section>
 
     <?php if (!empty($page['sidebar_second'])): ?>
