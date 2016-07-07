@@ -4146,44 +4146,7 @@ function chm_structure_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 2,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'taxonomy_term-taxonomy_nfp_type-field_original_id'.
-  $field_instances['taxonomy_term-taxonomy_nfp_type-field_original_id'] = array(
-    'bundle' => 'taxonomy_nfp_type',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 0,
-      ),
-    ),
-    'ds_extras_field_template' => '',
-    'entity_type' => 'taxonomy_term',
-    'field_name' => 'field_original_id',
-    'label' => 'Original ID',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 5,
+      'weight' => 1,
     ),
   );
 
@@ -4220,7 +4183,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => -5,
+      'weight' => 0,
     ),
   );
 
@@ -4381,7 +4344,6 @@ function chm_structure_field_default_field_instances() {
   t('Order');
   t('Organization acronym');
   t('Organization name');
-  t('Original ID');
   t('Phone numbers');
   t('Phylum');
   t('Postal code');

@@ -164,7 +164,6 @@ features[field_instance][] = taxonomy_term-event_type-description_field
 features[field_instance][] = taxonomy_term-event_type-name_field
 features[field_instance][] = taxonomy_term-species_redlist_status-field_machine_name
 features[field_instance][] = taxonomy_term-taxonomy_nfp_type-description_field
-features[field_instance][] = taxonomy_term-taxonomy_nfp_type-field_original_id
 features[field_instance][] = taxonomy_term-taxonomy_nfp_type-name_field
 features[field_instance][] = taxonomy_term-treaties-description_field
 features[field_instance][] = taxonomy_term-treaties-field_machine_name
