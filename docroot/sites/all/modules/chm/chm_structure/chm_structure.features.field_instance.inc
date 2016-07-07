@@ -28,7 +28,7 @@ function chm_structure_field_default_field_instances() {
     ),
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_nfp_type',
-    'label' => 'Roles',
+    'label' => 'Role',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1287,7 +1287,7 @@ function chm_structure_field_default_field_instances() {
     'settings' => array(
       'alt_field' => 1,
       'default_image' => 0,
-      'entity_translation_sync' => FALSE,
+      'entity_translation_sync' => 0,
       'file_directory' => '[current-domain:machine-name]/images/ecosystems',
       'file_extensions' => 'png gif jpg jpeg',
       'max_filesize' => '',
@@ -4312,6 +4312,7 @@ function chm_structure_field_default_field_instances() {
   t('Publication date');
   t('Published year');
   t('Related website');
+  t('Role');
   t('Roles');
   t('Salutation');
   t('Select the appropriate type for this document');
