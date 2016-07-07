@@ -8487,6 +8487,31 @@ html body.admin-menu-with-shortcuts {
 .region-admin-shortcuts #block-system-user-menu .menu li a {
   padding: 0;
 }
+#page-header {
+  display: block;
+}
+#page-header .logo {
+  display: block;
+  float: left;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+#page-header .navbar-brand {
+  display: block;
+  float: left;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 30px;
+  color: #000000;
+  font-weight: bold;
+}
+#page-header #nav-search {
+  display: inline-block;
+  float: right;
+  margin: 0;
+}
 .navbar-container {
   background-color: #02783a;
 }
@@ -8494,6 +8519,8 @@ html body.admin-menu-with-shortcuts {
   background: none;
   border: none;
   min-height: 40px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 @media all and (min-width: 768px) {
   .navbar-container #navbar {
@@ -8508,8 +8535,12 @@ html body.admin-menu-with-shortcuts {
 .navbar-container #navbar .navbar-header .navbar-toggle .icon-bar {
   background-color: #ffffff;
 }
-.navbar-container #navbar .navbar-header .navbar-toggle:hover {
+.navbar-container #navbar .navbar-header .navbar-toggle:hover,
+.navbar-container #navbar .navbar-header .navbar-toggle:focus {
   background: none;
+}
+.navbar-container #navbar .navbar-collapse {
+  border: none;
 }
 @media all and (min-width: 768px) {
   .navbar-container #navbar .navbar-collapse {

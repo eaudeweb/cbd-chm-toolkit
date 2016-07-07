@@ -24,6 +24,10 @@
       <p class="lead"><?php print $site_slogan; ?></p>
     <?php endif; ?>
 
+    <?php if ($page['search_box']): ?>
+      <div id="nav-search" class="nav-search hidden-xs hidden-sm"> <?php print render($page['search_box']); ?> </div>
+    <?php endif; ?>
+
     <?php print render($page['header']); ?>
   </header> <!-- /#page-header -->
 </div>
@@ -39,6 +43,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+        <?php endif; ?>
+
+        <?php if ($page['search_box']): ?>
+          <div id="nav-search" class="nav-search hidden-md hidden-lg"> <?php print render($page['search_box']); ?> </div>
         <?php endif; ?>
       </div>
 

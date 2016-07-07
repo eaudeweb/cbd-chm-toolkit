@@ -14,12 +14,41 @@
     }
   }
 }
+
+#page-header {
+  display: block;
+  .logo {
+    display: block;
+    float: left;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .navbar-brand {
+    display: block;
+    float: left;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 30px;
+    color: #000000;
+    font-weight: bold;
+  }
+  #nav-search {
+    display: inline-block;
+    float: right;
+    margin: 0;
+  }
+}
+
 .navbar-container {
   background-color: @green-color;
   #navbar {
     background: none;
     border: none;
     min-height: 40px;
+    margin-top: 0;
+    margin-bottom: 0;
     @media all and (min-width: @screen-sm-min) {
       padding-left: 0;
       padding-right: 0;
@@ -31,12 +60,13 @@
         .icon-bar {
           background-color: #ffffff;
         }
-        &:hover {
+        &:hover, &:focus {
           background: none;
         }
       }
     }
     .navbar-collapse {
+      border: none;
       @media all and (min-width: @screen-sm-min) {
         padding-left: 0;
         padding-right: 0;
