@@ -7511,12 +7511,6 @@ body.navbar-tray-open.navbar-vertical.navbar-fixed {
 #navbar-administration.navbar-oriented .navbar-tray-vertical {
   width: 24rem;
 }
-/**
- * Variable Overrides.
- *
- * Modify this file to override the Bootstrap Framework variables. You can copy
- * these variables directly from ../bootstrap/less/variables.less to this file.
- */
 /* THEME OPTIONS ************************** */
 /* GLOBAL ********************************* */
 /* ----- Body ------------------------ */
@@ -8484,4 +8478,7 @@ a.more-link:hover,
 }
 #block-ptk-base-chm-content-statistics table td .fa {
   margin-right: 5px;
+}
+.navbar-container {
+  background-color: #02783a;
 }
