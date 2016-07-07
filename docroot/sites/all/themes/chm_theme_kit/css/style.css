@@ -8513,7 +8513,7 @@ html body.admin-menu-with-shortcuts {
   margin: 0;
 }
 .navbar-container {
-  background-color: #02783a;
+  background-color: #039749;
 }
 .navbar-container #navbar {
   background: none;
@@ -8552,12 +8552,12 @@ html body.admin-menu-with-shortcuts {
   background-color: #ffffff;
 }
 .navbar-container #navbar .navbar-collapse .nav li.active a {
-  color: #02783a;
+  color: #039749;
 }
 .navbar-container #navbar .navbar-collapse .nav li a {
   color: #ffffff;
   border: none;
 }
 .navbar-container #navbar .navbar-collapse .nav li:hover {
-  background-color: #026933;
+  background-color: #038842;
 }
