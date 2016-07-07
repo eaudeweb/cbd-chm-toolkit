@@ -3,6 +3,9 @@
   #navbar {
     background: none;
     border: none;
+    min-height: 40px;
+    padding-left: 0;
+    padding-right: 0;
     .navbar-header {
       .navbar-toggle {
         float: left;
@@ -12,6 +15,27 @@
         }
         &:hover {
           background: none;
+        }
+      }
+    }
+    .navbar-collapse {
+      padding-left: 0;
+      padding-right: 0;
+      .nav {
+        li {
+          &.active {
+            background-color: #ffffff;
+            a {
+              color: @green-color;
+            }
+          }
+          a {
+            color: #ffffff;
+            border: none;
+          }
+          &:hover {
+            background-color: darken(@green-color, 3%);
+          }
         }
       }
     }

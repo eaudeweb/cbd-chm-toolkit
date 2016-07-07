@@ -8485,6 +8485,9 @@ a.more-link:hover,
 .navbar-container #navbar {
   background: none;
   border: none;
+  min-height: 40px;
+  padding-left: 0;
+  padding-right: 0;
 }
 .navbar-container #navbar .navbar-header .navbar-toggle {
   float: left;
@@ -8495,4 +8498,21 @@ a.more-link:hover,
 }
 .navbar-container #navbar .navbar-header .navbar-toggle:hover {
   background: none;
+}
+.navbar-container #navbar .navbar-collapse {
+  padding-left: 0;
+  padding-right: 0;
+}
+.navbar-container #navbar .navbar-collapse .nav li.active {
+  background-color: #ffffff;
+}
+.navbar-container #navbar .navbar-collapse .nav li.active a {
+  color: #02783a;
+}
+.navbar-container #navbar .navbar-collapse .nav li a {
+  color: #ffffff;
+  border: none;
+}
+.navbar-container #navbar .navbar-collapse .nav li:hover {
+  background-color: #026933;
 }
