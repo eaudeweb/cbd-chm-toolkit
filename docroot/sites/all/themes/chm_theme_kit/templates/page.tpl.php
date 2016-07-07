@@ -25,7 +25,7 @@
     <?php endif; ?>
 
     <?php if ($page['search_box']): ?>
-      <div id="nav-search" class="nav-search hidden-xs hidden-sm"> <?php print render($page['search_box']); ?> </div>
+      <div id="nav-search" class="nav-search"> <?php print render($page['search_box']); ?> </div>
     <?php endif; ?>
 
     <?php print render($page['header']); ?>
@@ -46,7 +46,7 @@
         <?php endif; ?>
 
         <?php if ($page['search_box']): ?>
-          <div id="nav-search" class="nav-search hidden-md hidden-lg"> <?php print render($page['search_box']); ?> </div>
+          <div id="nav-search" class="nav-search"> <?php print render($page['search_box']); ?> </div>
         <?php endif; ?>
       </div>
 
