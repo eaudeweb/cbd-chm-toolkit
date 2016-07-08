@@ -4,6 +4,7 @@ class IUCNRedListAPI {
 
   private $serviceUrl = NULL;
   private $apiToken= NULL;
+  private static $DEFAULT_REMOTE_CALL_DELAY = 300;
 
   static function instance() {
     $url = variable_get('iucnredlist_url');
@@ -33,8 +34,20 @@ class IUCNRedListAPI {
     return $ret;
   }
 
-
   function getRemoteData($url, $headers) {
+    echo "getRemoteData:" . $url . "\n";
+    // Check the delay between calls
+    $delay = variable_get('iucnredlist_calldelay', 300);
+    if (empty($delay) || $delay < self::$DEFAULT_REMOTE_CALL_DELAY) {
+      $delay = self::$DEFAULT_REMOTE_CALL_DELAY;
+    }
+    $delay = $delay * 1000; // microseconds
+    $last_call = variable_get('iucnredlist_lastcalltimestamp', microtime(TRUE));
+    $now = microtime(TRUE);
+    if (($now - $last_call) < $delay) {
+      usleep($delay);
+    }
+
     $default_headers = array('Accept' => 'application/json');
     if (empty($headers)) {
       $headers = $default_headers;
@@ -54,9 +67,9 @@ class IUCNRedListAPI {
       $ret = NULL;
     }
     curl_close($ch);
+    variable_set('iucnredlist_lastcalltimestamp', microtime(TRUE));
     return $ret;
   }
-
 
   function getEndpointUrl() {
     return $this->serviceUrl;
