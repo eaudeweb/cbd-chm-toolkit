@@ -268,3 +268,10 @@ function ptk_base_domain_update($domain, $form_values = array()) {
     $iucn->populateCountrySpecies($iso);
   }
 }
+
+/**
+ * Implements hook_iucn_redlist_log().
+ */
+function ptk_base_iucn_redlist_log($message, $variables, $severity) {
+  watchdog('iucn_redlist', $message, $variables, $severity);
+}
