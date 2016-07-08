@@ -101,6 +101,16 @@ class IUCNRedListAPI {
   }
 
 
+  /**
+   * @param string $iso
+   *   Country ISO code
+   * @return int
+   *   Number of records retrieved from the remote API
+   * @throws \Exception
+   *   Database Exception
+   * @throws \InvalidMergeQueryException
+   *   Database Exception
+   */
   function populateCountrySpecies($iso) {
     $species = $this->getRemoteSpeciesTaxonomicIDsForCountry($iso);
     db_delete('iucn_redlist_species_country')->condition('iso', $iso)->execute();
@@ -110,6 +120,7 @@ class IUCNRedListAPI {
       $record = array('taxonid' => $row->taxonid, 'iso' => $iso);
       db_merge('iucn_redlist_species_country')->key($record)->fields($record)->execute();
     }
+    return count($species);
   }
 
   function getLocalSpeciesIDs() {

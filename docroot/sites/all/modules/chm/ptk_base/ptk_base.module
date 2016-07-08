@@ -244,31 +244,6 @@ function ptk_base_field_formatter_view($entity_type, $entity, $field, $instance,
   return $element;
 }
 
-
-/**
- * Implements hook_domain_insert().
- */
-function ptk_base_domain_insert($domain, $form_values = array()) {
-  if ($country = PTK::getPortalCountry($domain)) {
-    /** @see PTK::getCountryByCode() **/
-    $iso = $country->iso2l;
-    $iucn = IUCNRedListAPI::instance();
-    $iucn->populateCountrySpecies($iso);
-  }
-}
-
-/**
- * Implements hook_domain_update().
- */
-function ptk_base_domain_update($domain, $form_values = array()) {
-  if ($country = PTK::getPortalCountry($domain)) {
-    /** @see PTK::getCountryByCode() **/
-    $iso = $country->iso2l;
-    $iucn = IUCNRedListAPI::instance();
-    $iucn->populateCountrySpecies($iso);
-  }
-}
-
 /**
  * Implements hook_iucn_redlist_log().
  */

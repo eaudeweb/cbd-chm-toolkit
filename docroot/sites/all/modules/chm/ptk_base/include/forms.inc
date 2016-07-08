@@ -141,9 +141,9 @@ class PTKForm {
     if (empty($domain['machine_name'])) {
       $domain['machine_name'] = $form_state['values']['machine_name'];
     }
-    $value = $form_state['values']['country'];
-    if ($current !== $value) {
-      PTK::variable_realm_set('country', $value, $domain);
+    $countryIsoCode = $form_state['values']['country'];
+    if ($current !== $countryIsoCode) {
+      PTK::variable_realm_set('country', $countryIsoCode, $domain);
     }
     cache_clear_all();
     if (!empty($form['#is_new'])) {
@@ -154,6 +154,35 @@ class PTKForm {
       PTKForm::socialMediaFormSubmit($form, $form_state, $domain);
       cache_clear_all();
     }
+
+    // Add the species import batch
+    $batch = array(
+      'title' => t('Invoking IUCN RedList API species data, please be patient ...'),
+      'operations' => array(
+        array(
+          array('PTKForm', 'importSpeciesCountry'),
+          array($countryIsoCode)
+        ),
+      ),
+      'finished' => array('PTKForm', 'importSpeciesCountryFinished')
+    );
+    batch_set($batch);
+  }
+
+  public static function importSpeciesCountry($iso, &$context) {
+    $iucn = IUCNRedListAPI::instance();
+    $count = $iucn->populateCountrySpecies($iso);
+    $context['results'] = $count;
+  }
+
+  public static function importSpeciesCountryFinished($success, $results) {
+    if ($success) {
+      $message = "$results species processed from IUCN RedList API.";
+    }
+    else {
+      $message = t('Species synchronisation finished with an error.');
+    }
+    drupal_set_message($message);
   }
 
 
