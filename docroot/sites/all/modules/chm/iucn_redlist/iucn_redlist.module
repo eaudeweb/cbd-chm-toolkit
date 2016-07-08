@@ -35,3 +35,30 @@ function iucn_redlist_migrate_api() {
     ],
   ];
 }
+
+/**
+ * Implements Elysia hook_cronapi().
+ */
+function iucn_redlist_consumer_cronapi() {
+  return array(
+    'iucn_redlist_consumer_cron' => array(
+      'description' => 'Import RedList species from API',
+      'rule' => '*/15 * * * *',
+    ),
+  );
+}
+
+
+/**
+ * Implements hook_cron().
+ */
+function iucn_redlist_consumer_cron() {
+  module_load_include('inc', 'migrate_ui', 'migrate_ui.pages');
+  $machine_name = 'iucn_species';
+  // Update Focal Point Migration.
+  $migration = Migration::getInstance($machine_name);
+  $migration->prepareUpdate();
+  watchdog('iucn_redlist', 'Starting Import @migration', array('@migration' => $machine_name), WATCHDOG_INFO);
+  $result = $migration->processImport(array('update' => TRUE, 'limit' => '25 items'));
+  watchdog('iucn_redlist', 'Imported @migration with result: @result', array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);
+}

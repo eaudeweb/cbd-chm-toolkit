@@ -2,6 +2,8 @@
 
 class IUCNRedListSpeciesMigration extends Migration {
 
+  private $service;
+
   public function __construct($arguments) {
     parent::__construct($arguments);
     $this->map = new MigrateSQLMap($this->machineName,
@@ -15,7 +17,8 @@ class IUCNRedListSpeciesMigration extends Migration {
       ),
       MigrateDestinationNode::getKeySchema()
     );
-    $this->source = new IUCNRedListSpeciesSource(IUCNRedListAPI::instance());
+    $this->service = IUCNRedListAPI::instance();
+    $this->source = new IUCNRedListSpeciesSource($this->service);
     $this->destination = new MigrateDestinationNode('species', array('language' => 'en'));
 
     $this->addFieldMapping('field_original_id', 'taxonid');
@@ -49,6 +52,10 @@ class IUCNRedListSpeciesMigration extends Migration {
   }
 
   public function prepareRow($row) {
+    if (empty($row->taxonid)) {
+      return FALSE;
+    }
+    $row = $this->service->getRemoteSpeciesRecord($row->taxonid);
     $row->kingdom = $this->getOrCreateTermByName($row->kingdom, 'species_kingdom');
     $row->phylum = $this->getOrCreateTermByName($row->phylum, 'species_phylum');
     $row->class = $this->getOrCreateTermByName($row->class, 'species_class');
@@ -166,7 +173,10 @@ class IUCNRedListSpeciesSource extends MigrateSource {
       $taxonid = current($this->data);
       next($this->data);
       if ($taxonid) {
-        return $this->service->getRemoteSpeciesRecord($taxonid);
+        // Deffer record-loading to prepareRow to avoid making calls during source enumeration
+        $ob = new stdClass();
+        $ob->taxonid = $taxonid;
+        return $ob;
       }
     }
     return FALSE;
