@@ -100,76 +100,112 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
     return TRUE;
   }
 
-  public function complete($entity, $row) {
-    // TODO Improvement - Remove only if changed.
-    // Remove existing field collections roles.
+  public function prepare($entity, $row) {
+    if (!empty($entity->nid)) {
+      $node = node_load($entity->nid);
+      $entity->field_nfp_roles = $node->field_nfp_roles;
+    }
+    $existing = $this->getContactRoles($entity);
+    // Attach new roles
+    if (is_array($row->roles)) {
+      foreach ($row->roles as $role) {
+        if (empty($role->treaty)) {
+          continue;
+        }
+        $treatyId = $this->getTreaty($role->treaty);
+        $item = array(
+          'field_name' => 'field_nfp_roles',
+          'field_treaty' => array(LANGUAGE_NONE => array(0 => array('tid' => $treatyId))),
+          'field_nfp_type' => array(LANGUAGE_NONE => array())
+        );
+        $roles = array();
+        foreach ($role->roles as $role_name) {
+          $rid = $this->getRoleId($role_name);
+          $roles[] = $rid;
+          $item['field_nfp_type'][LANGUAGE_NONE][] = array('tid' => $rid);
+        }
+        if (!$this->roleExists($treatyId, $roles, $existing)) {
+          $item = entity_create('field_collection_item', $item);
+          $item->setHostEntity('node', $entity);
+        }
+      }
+    }
+    // Remove revoked roles
+    foreach ($entity->field_nfp_roles[LANGUAGE_NONE] as $i => $v) {
+      $key = $v['value'];
+      if (array_key_exists($key, $existing)) {
+        unset($entity->field_nfp_roles[LANGUAGE_NONE][$i]);
+      }
+    }
+    entity_delete_multiple('field_collection_item', array_keys($existing));
+    node_save($entity);
+  }
+
+
+  public function roleExists($treatyId, $roles, &$existing) {
+    foreach ($existing as $id => $v) {
+      if ($v['treatyId'] == $treatyId && (!array_diff($v['roles'], $roles) && !array_diff($roles, $v['roles']))) {
+        unset($existing[$id]);
+        return $id;
+      }
+    }
+    return FALSE;
+  }
+
+  public function getContactRoles($entity) {
     $fc_item_values = array();
     if (!empty($entity->field_nfp_roles[LANGUAGE_NONE])) {
       foreach ($entity->field_nfp_roles[LANGUAGE_NONE] as $idx => $value) {
         $fc_item_values[] = $value['value'];
       }
     }
-    entity_delete_multiple('field_collection_item', $fc_item_values);
-    $entity->field_nfp_roles = array();
-
-    // Attach field collection roles.
-    $voc_roles = taxonomy_vocabulary_machine_name_load('taxonomy_nfp_type');
-    $voc_treaties = taxonomy_vocabulary_machine_name_load('treaties');
-    if (is_array($row->roles)) {
-      foreach ($row->roles as $role) {
-        $item = array(
-          'field_name' => 'field_nfp_roles',
-        );
-        if (!empty($role->treaty)) {
-          $term = $this->termLoadFieldValue('treaties', 'field_machine_name', $role->treaty);
-          if (empty($term)) {
-            $term = new stdClass();
-            $term->vid = $voc_treaties->vid;
-            $term->name = $role->treaty;
-            $term->field_machine_name[LANGUAGE_NONE][] = array('value' => $role->treaty);
-            taxonomy_term_save($term);
-          }
-          else {
-            $term = taxonomy_term_load($term);
-          }
-          $item['field_treaty'][LANGUAGE_NONE][] = array('tid' => $term->tid);
-        }
-        foreach ($role->roles as $role_name) {
-          $term = taxonomy_get_term_by_name($role_name, 'taxonomy_nfp_type');
-          if (empty($term)) {
-            $term = new stdClass();
-            $term->vid = $voc_roles->vid;
-            $term->name = $role_name;
-            taxonomy_term_save($term);
-          }
-          else {
-            $term = current($term);
-          }
-          $item['field_nfp_type'][LANGUAGE_NONE][] = array(
-            'tid' => $term->tid,
-          );
-        }
-        $item = entity_create('field_collection_item', $item);
-        $item->setHostEntity('node', $entity);
+    $existing = array();
+    $rows = entity_load('field_collection_item', $fc_item_values);
+    foreach ($rows as $row) {
+      $roles = array();
+      foreach ($row->field_nfp_type[LANGUAGE_NONE] as $r) {
+        $roles[] = $r['tid'];
       }
+      $existing[$row->item_id] = array('treatyId' => $row->field_treaty[LANGUAGE_NONE][0]['tid'], 'roles' => $roles);
     }
-    node_save($entity);
+    return $existing;
   }
   
-  public function termLoadFieldValue($vocabulary_name, $entity_field, $entity_value) {
-    $tid = 0;
+  public function getTreaty($entity_value) {
     $query = new EntityFieldQuery();
     $query->entityCondition('entity_type', 'taxonomy_term')
-      ->entityCondition('bundle', array($vocabulary_name))
-      ->fieldCondition($entity_field, 'value', $entity_value, '=');
-    $result = $query->execute();
-
-    if ($result) {
+      ->entityCondition('bundle', array('treaties'))
+      ->fieldCondition('field_machine_name', 'value', $entity_value, '=');
+    if ($result = $query->execute()) {
       $terms = array_keys($result['taxonomy_term']);
       $tid = $terms[0];
+    } else {
+      $voc_treaties = taxonomy_vocabulary_machine_name_load('treaties');
+      $term = new stdClass();
+      $term->vid = $voc_treaties->vid;
+      $term->name =$entity_value;
+      $term->language = 'en';
+      $term->field_machine_name[LANGUAGE_NONE][] = array('value' => $entity_value);
+      $term->name_field['en'][0]['value'] = $entity_value;
+      taxonomy_term_save($term);
+      $tid = $term->tid;
     }
-
     return $tid;
+  }
+
+  public function getRoleId($value) {
+    if ($ret = taxonomy_get_term_by_name($value, 'taxonomy_nfp_type')) {
+      $ret = current($ret);
+    } else {
+      $voc_roles = taxonomy_vocabulary_machine_name_load('taxonomy_nfp_type');
+      $ret = new stdClass();
+      $ret->vid = $voc_roles->vid;
+      $ret->language = 'en';
+      $ret->name = $value;
+      $ret->name_field['en'][0]['value'] = $value;
+      taxonomy_term_save($ret);
+    }
+    return $ret->tid;
   }
 }
 
