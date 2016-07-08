@@ -20,10 +20,27 @@ class IUCNRedListAPI {
     $this->apiToken = $apiToken;
   }
 
-  function getSpeciesTaxonomicIDsForCountry($iso) {
+  function getRemoteSpeciesTaxonomicIDsForCountry($iso) {
     $url = $this->getEndpointUrl() . '/country/getspecies/' . strtoupper($iso) . '?token=' . $this->getApiToken();
     $data = $this->getRemoteJSON($url);
     return !empty($data->result) && is_array($data->result) ? $data->result : array();
+  }
+
+  /**
+   * Retrieve remote species record.
+   *
+   * Example: http://apiv3.iucnredlist.org/api/v3/species/id/12392?token=XXXX
+   *
+   * @param integer $taxonid
+   *   Species unique taxonomic ID
+   *
+   * @return object
+   *   Species record from the remote service
+   */
+  function getRemoteSpeciesRecord($taxonid) {
+    $url = sprintf('%s/species/id/%s?token=%s', $this->getEndpointUrl() , $taxonid, $this->getApiToken());
+    $data = $this->getRemoteJSON($url);
+    return !empty($data->result) && is_array($data->result) ? $data->result[0] : NULL;
   }
 
   function getRemoteJSON($url, $headers = array()) {
@@ -81,7 +98,7 @@ class IUCNRedListAPI {
 
 
   function populateCountrySpecies($iso) {
-    $species = $this->getSpeciesTaxonomicIDsForCountry($iso);
+    $species = $this->getRemoteSpeciesTaxonomicIDsForCountry($iso);
     db_delete('iucn_redlist_species_country')->condition('iso', $iso)->execute();
     foreach ($species as $row) {
       $record = array('taxonid' => $row->taxonid);
@@ -89,5 +106,10 @@ class IUCNRedListAPI {
       $record = array('taxonid' => $row->taxonid, 'iso' => $iso);
       db_merge('iucn_redlist_species_country')->key($record)->fields($record)->execute();
     }
+  }
+
+  function getLocalSpeciesIDs() {
+    $q = db_select('iucn_redlist_species', 'a')->fields('a', array('taxonid'));
+    return $q->execute()->fetchCol();
   }
 }

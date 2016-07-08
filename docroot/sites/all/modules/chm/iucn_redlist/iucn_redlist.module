@@ -28,7 +28,7 @@ function iucn_redlist_migrate_api() {
       'iucn_redlist' => [ 'title' => t('IUCN RedList API data migrations'), ],
     ],
     'migrations' => [
-      'species' => [
+      'iucn_species' => [
         'class_name' => 'IUCNRedListSpeciesMigration',
         'group_name' => 'iucn_redlist',
       ],

@@ -5,3 +5,4 @@ type = module
 version = 7.x-1.x
 core = 7.x
 files[] = iucn_redlist.inc
+files[] = iucn_redlist.species.migrate.inc
