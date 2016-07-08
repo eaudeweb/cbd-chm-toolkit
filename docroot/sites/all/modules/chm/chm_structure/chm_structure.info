@@ -129,6 +129,7 @@ features[field_instance][] = node-page-body
 features[field_instance][] = node-page-title_field
 features[field_instance][] = node-species-body
 features[field_instance][] = node-species-field_date
+features[field_instance][] = node-species-field_images
 features[field_instance][] = node-species-field_original_id
 features[field_instance][] = node-species-field_redlist_status
 features[field_instance][] = node-species-field_species_authority
