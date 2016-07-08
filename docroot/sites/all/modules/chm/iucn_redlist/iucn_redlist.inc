@@ -52,7 +52,6 @@ class IUCNRedListAPI {
   }
 
   function getRemoteData($url, $headers) {
-    module_invoke_all('iucn_redlist_log', 'Loading data from @url', array('@url' => $url), WATCHDOG_DEBUG);
     // Check the delay between calls
     $delay = variable_get('iucnredlist_calldelay', 300);
     if (empty($delay) || $delay < self::$DEFAULT_REMOTE_CALL_DELAY) {
@@ -76,6 +75,11 @@ class IUCNRedListAPI {
     curl_setopt($ch, CURLOPT_TIMEOUT, 400);
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_NOBODY, 0);
+    if (function_exists('drush_log')) {
+      drush_log(strtr('Loading data from @url', array('@url' => $url)), \Drush\Log\LogLevel::INFO);
+    } else {
+      watchdog('iucn_redlist', 'Loading data from @url', array('@url' => $url), WATCHDOG_INFO);
+    }
     $ret = curl_exec($ch);
     $info = curl_getinfo($ch);
     if ($info['http_code'] != 200) {
