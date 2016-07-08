@@ -935,7 +935,9 @@ function search_api_node_access_records_alter(&$grants, $node) {
     $item_ids = array();
     if (!empty($index->options['data_alter_callbacks']['search_api_alter_node_access']['status'])) {
       $item_id = $index->datasource()->getItemId($node);
-      $item_ids = array($item_id);
+      if ($item_id !== NULL) {
+        $item_ids = array($item_id);
+      }
     }
     elseif (!empty($index->options['data_alter_callbacks']['search_api_alter_comment_access']['status'])) {
       if (!isset($comments)) {
@@ -945,7 +947,7 @@ function search_api_node_access_records_alter(&$grants, $node) {
         $item_ids[] = $index->datasource()->getItemId($comment);
       }
     }
-
+    eval(\Psy\sh());
     if ($item_ids) {
       $indexes = array($index->machine_name => $index);
       search_api_track_item_change_for_indexes($index->item_type, $item_ids, $indexes);
