@@ -13,6 +13,64 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'chosen_disabled_themes';
+  $strongarm->value = array(
+    'chm_theme_kit' => 0,
+  );
+  $export['chosen_disabled_themes'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'chosen_disable_search';
+  $strongarm->value = 0;
+  $export['chosen_disable_search'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'chosen_disable_search_threshold';
+  $strongarm->value = '0';
+  $export['chosen_disable_search_threshold'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'chosen_jquery_selector';
+  $strongarm->value = '#field-nfp-roles-values select, #edit-field-location-und-0-country';
+  $export['chosen_jquery_selector'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'chosen_minimum_multiple';
+  $strongarm->value = '0';
+  $export['chosen_minimum_multiple'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'chosen_minimum_single';
+  $strongarm->value = '0';
+  $export['chosen_minimum_single'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'chosen_minimum_width';
+  $strongarm->value = '300';
+  $export['chosen_minimum_width'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'chosen_search_contains';
+  $strongarm->value = 0;
+  $export['chosen_search_contains'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_anonymous_cbd_nfp';
   $strongarm->value = 0;
   $export['comment_anonymous_cbd_nfp'] = $strongarm;
@@ -378,7 +436,7 @@ function chm_structure_strongarm() {
     'hide_language_selector' => 0,
     'exclude_language_none' => 1,
     'lock_language' => 1,
-    'shared_fields_original_only' => 1,
+    'shared_fields_original_only' => 0,
   );
   $export['entity_translation_settings_node__document'] = $strongarm;
 
@@ -404,7 +462,7 @@ function chm_structure_strongarm() {
     'hide_language_selector' => 0,
     'exclude_language_none' => 1,
     'lock_language' => 1,
-    'shared_fields_original_only' => 1,
+    'shared_fields_original_only' => 0,
   );
   $export['entity_translation_settings_node__event'] = $strongarm;
 
@@ -430,7 +488,7 @@ function chm_structure_strongarm() {
     'hide_language_selector' => 0,
     'exclude_language_none' => 1,
     'lock_language' => 1,
-    'shared_fields_original_only' => 1,
+    'shared_fields_original_only' => 0,
   );
   $export['entity_translation_settings_node__news'] = $strongarm;
 
@@ -443,7 +501,7 @@ function chm_structure_strongarm() {
     'hide_language_selector' => 0,
     'exclude_language_none' => 1,
     'lock_language' => 1,
-    'shared_fields_original_only' => 1,
+    'shared_fields_original_only' => 0,
   );
   $export['entity_translation_settings_node__page'] = $strongarm;
 
@@ -495,7 +553,7 @@ function chm_structure_strongarm() {
     'hide_language_selector' => 0,
     'exclude_language_none' => 1,
     'lock_language' => 1,
-    'shared_fields_original_only' => 1,
+    'shared_fields_original_only' => 0,
   );
   $export['entity_translation_settings_taxonomy_term__countries'] = $strongarm;
 
@@ -508,7 +566,7 @@ function chm_structure_strongarm() {
     'hide_language_selector' => 0,
     'exclude_language_none' => 1,
     'lock_language' => 1,
-    'shared_fields_original_only' => 1,
+    'shared_fields_original_only' => 0,
   );
   $export['entity_translation_settings_taxonomy_term__document_type'] = $strongarm;
 
@@ -534,7 +592,7 @@ function chm_structure_strongarm() {
     'hide_language_selector' => 0,
     'exclude_language_none' => 1,
     'lock_language' => 1,
-    'shared_fields_original_only' => 1,
+    'shared_fields_original_only' => 0,
   );
   $export['entity_translation_settings_taxonomy_term__event_status'] = $strongarm;
 
@@ -547,7 +605,7 @@ function chm_structure_strongarm() {
     'hide_language_selector' => 0,
     'exclude_language_none' => 1,
     'lock_language' => 1,
-    'shared_fields_original_only' => 1,
+    'shared_fields_original_only' => 0,
   );
   $export['entity_translation_settings_taxonomy_term__event_type'] = $strongarm;
 
@@ -560,7 +618,7 @@ function chm_structure_strongarm() {
     'hide_language_selector' => 0,
     'exclude_language_none' => 1,
     'lock_language' => 1,
-    'shared_fields_original_only' => 1,
+    'shared_fields_original_only' => 0,
   );
   $export['entity_translation_settings_taxonomy_term__sdg'] = $strongarm;
 
@@ -664,7 +722,7 @@ function chm_structure_strongarm() {
     'hide_language_selector' => 0,
     'exclude_language_none' => 1,
     'lock_language' => 1,
-    'shared_fields_original_only' => 1,
+    'shared_fields_original_only' => 0,
   );
   $export['entity_translation_settings_taxonomy_term__taxonomy_nfp_type'] = $strongarm;
 

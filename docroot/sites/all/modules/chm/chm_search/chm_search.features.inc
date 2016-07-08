@@ -191,7 +191,7 @@ function chm_search_default_search_api_index() {
         "field_first_name" : { "type" : "text" },
         "field_last_name" : { "type" : "text" },
         "field_nfp_designation" : { "type" : "text" },
-        "field_nfp_type" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "field_nfp_type" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "promote" : { "type" : "boolean" },
         "search_api_access_node" : { "type" : "list\\u003Cstring\\u003E" },
         "search_api_language" : { "type" : "string" },

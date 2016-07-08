@@ -149,5 +149,15 @@ function chm_structure_taxonomy_default_vocabularies() {
       'language' => 'und',
       'i18n_mode' => 1,
     ),
+    'treaties' => array(
+      'name' => 'Treaties',
+      'machine_name' => 'treaties',
+      'description' => '',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
+    ),
   );
 }
