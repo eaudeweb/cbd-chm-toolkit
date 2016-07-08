@@ -28,7 +28,7 @@ function chm_structure_field_default_field_instances() {
     ),
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_nfp_type',
-    'label' => 'Role',
+    'label' => 'Role(s)',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -4350,7 +4350,7 @@ function chm_structure_field_default_field_instances() {
   t('Publication date');
   t('Published year');
   t('Related website');
-  t('Role');
+  t('Role(s)');
   t('Roles');
   t('Salutation');
   t('Select the appropriate type for this document');
