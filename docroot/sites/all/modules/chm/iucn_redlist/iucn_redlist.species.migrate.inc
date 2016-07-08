@@ -41,6 +41,11 @@ class IUCNRedListSpeciesMigration extends Migration {
     $this->addFieldMapping('field_redlist_status', 'category');
     $this->addFieldMapping('field_redlist_status:source_type')->defaultValue('tid');
 
+
+    $this->addFieldMapping('domain_site')->defaultValue(FALSE);
+    $this->addFieldMapping('domain_source', 'domain_source');
+    $this->addFieldMapping('domains', 'domains');
+
     $this->addUnmigratedDestinations([
 
     ]);
@@ -55,7 +60,6 @@ class IUCNRedListSpeciesMigration extends Migration {
     if (empty($row->taxonid)) {
       return FALSE;
     }
-    $row = $this->service->getRemoteSpeciesRecord($row->taxonid);
     $row->kingdom = $this->getOrCreateTermByName($row->kingdom, 'species_kingdom');
     $row->phylum = $this->getOrCreateTermByName($row->phylum, 'species_phylum');
     $row->class = $this->getOrCreateTermByName($row->class, 'species_class');
@@ -64,6 +68,16 @@ class IUCNRedListSpeciesMigration extends Migration {
     $row->authority = $this->getOrCreateTermByName($row->authority, 'species_authority');
     $row->category = $this->getOrCreateTermByMachineName($row->category, 'species_redlist_status');
 
+    // Handle domain assignment
+    $countries = $this->service->getLocalSpeciesCountries($row->taxonid);
+    $domains = array();
+    $row->domain_source = PTK::getDefaultDomainId();
+    foreach($countries as $iso) {
+      if ($domain = PTK::getDomainByCountryISO($iso)) {
+        $domains[] = $domain['domain_id'];
+      }
+    }
+    $row->domains = $domains;
     return TRUE;
   }
 
@@ -173,10 +187,8 @@ class IUCNRedListSpeciesSource extends MigrateSource {
       $taxonid = current($this->data);
       next($this->data);
       if ($taxonid) {
-        // Deffer record-loading to prepareRow to avoid making calls during source enumeration
-        $ob = new stdClass();
-        $ob->taxonid = $taxonid;
-        return $ob;
+        echo "$taxonid\n";
+        return $this->service->getRemoteSpeciesRecord($taxonid);
       }
     }
     return FALSE;

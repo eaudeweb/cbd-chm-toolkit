@@ -116,4 +116,9 @@ class IUCNRedListAPI {
     $q = db_select('iucn_redlist_species', 'a')->fields('a', array('taxonid'));
     return $q->execute()->fetchCol();
   }
+
+  function getLocalSpeciesCountries($taxonid) {
+    $q = db_select('iucn_redlist_species_country', 'a')->fields('a', array('iso'))->condition('taxonid', $taxonid);
+    return $q->execute()->fetchCol();
+  }
 }
