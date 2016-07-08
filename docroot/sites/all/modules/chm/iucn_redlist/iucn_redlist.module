@@ -57,7 +57,6 @@ function iucn_redlist_cron() {
   $machine_name = 'iucn_species';
   // Update Focal Point Migration.
   $migration = Migration::getInstance($machine_name);
-  $migration->prepareUpdate();
   watchdog('iucn_redlist', 'Starting Import @migration', array('@migration' => $machine_name), WATCHDOG_INFO);
   $result = $migration->processImport(array('update' => TRUE, 'limit' => array('value' => 25, 'unit' => 'items')));
   watchdog('iucn_redlist', 'Imported @migration with result: @result', array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);

@@ -187,7 +187,6 @@ class IUCNRedListSpeciesSource extends MigrateSource {
       $taxonid = current($this->data);
       next($this->data);
       if ($taxonid) {
-        echo "$taxonid\n";
         return $this->service->getRemoteSpeciesRecord($taxonid);
       }
     }
