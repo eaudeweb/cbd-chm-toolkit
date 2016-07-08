@@ -947,7 +947,6 @@ function search_api_node_access_records_alter(&$grants, $node) {
         $item_ids[] = $index->datasource()->getItemId($comment);
       }
     }
-    eval(\Psy\sh());
     if ($item_ids) {
       $indexes = array($index->machine_name => $index);
       search_api_track_item_change_for_indexes($index->item_type, $item_ids, $indexes);
