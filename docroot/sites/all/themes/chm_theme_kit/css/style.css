@@ -7868,22 +7868,6 @@ div#logo.site-logo img {
 /* ----- Pager Nav ------------------- */
 /* SIDEBARS ******************************* */
 /* FOOTER ********************************* */
-.site-footer {
-  background: #02783a;
-  color: white;
-  margin-bottom: 0px;
-  font-size: 11px;
-  padding-bottom: 60px;
-  padding-top: 30px;
-}
-.site-footer img {
-  x-webkit-box-shadow: 0 4px 6px -6px #888;
-  x-moz-box-shadow: 0 4px 6px -6px #888;
-  xbox-shadow: 0 4px 6px -6px #888;
-}
-.site-footer a {
-  color: white;
-}
 .site-footer .nav > li > a {
   font-size: 14px;
   color: white;
@@ -8612,8 +8596,14 @@ html body.admin-menu-with-shortcuts {
   margin-top: 0;
 }
 #footer {
+  padding-top: 40px;
+  padding-bottom: 40px;
   background-color: #02783a;
+  color: #ffffff;
 }
 #footer .nav li a {
   padding: 0;
+}
+#footer .nav li a:hover {
+  color: #cdcdcd;
 }

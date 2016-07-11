@@ -163,7 +163,12 @@
 </div>
 <div id="footer2" class="clearfix site-footer" role="contentinfo">
   <div class="container">
-	 <div id="footer-content" class="row footer-content"> <?php print render($page['footer']); ?> </div>
+	 <div id="footer-content" class="row footer-content">
+       <div class="footer-logo">
+         <img src="<?php print $logo; ?>" alt="<?php print $site_name; ?>" />
+       </div>
+       <?php print render($page['footer']); ?>
+     </div>
   </div>
 </div>
 <!-- /#footer -->
