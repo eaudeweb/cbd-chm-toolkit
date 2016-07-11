@@ -107,11 +107,15 @@
       <?php endif; ?>
 
       <?php if ($page['main_top']): ?>
-        <div id="main-top" class="main-top"> <?php print render($page['main_top']); ?> </div>
+        <div class="row">
+            <div id="main-top" class="col-xs-12 main-top"> <?php print render($page['main_top']); ?> </div>
+        </div>
       <?php endif; ?>
-
-      <?php print render($page['content']); ?>
-
+      <div class="row">
+        <div class="col-xs-12">
+          <?php print render($page['content']); ?>
+        </div>
+      </div>
       <?php if (($page['content_col2-1']) || ($page['content_col2-2'])): ?>
         <div id="content-col2" class="row content-col2">
           <?php if ($page['content_col2-1']): ?>
@@ -126,11 +130,11 @@
           <?php endif; ?>
         </div>
       <?php endif; ?>
-
       <?php if ($page['content_bottom']): ?>
-        <div id="content-bottom" class="content-bottom"> <?php print render($page['content_bottom']); ?> </div>
+        <div class="row">
+          <div id="content-bottom" class="col-xs-12 content-bottom"> <?php print render($page['content_bottom']); ?> </div>
+        </div>
       <?php endif; ?>
-
     </section>
 
 

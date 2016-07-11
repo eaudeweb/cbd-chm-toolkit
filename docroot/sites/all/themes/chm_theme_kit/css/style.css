@@ -8540,8 +8540,10 @@ html body.admin-menu-with-shortcuts {
     padding-right: 0;
   }
 }
-.navbar-container #navbar .navbar-collapse .nav li {
-  float: left;
+@media all and (min-width: 768px) {
+  .navbar-container #navbar .navbar-collapse .nav li {
+    float: left;
+  }
 }
 .navbar-container #navbar .navbar-collapse .nav li.active {
   background-color: #ffffff;

@@ -106,7 +106,9 @@
       }
       .nav {
         li {
-          float: left;
+          @media all and (min-width: @screen-sm-min) {
+            float: left;
+          }
           &.active {
             background-color: #ffffff;
             a {
