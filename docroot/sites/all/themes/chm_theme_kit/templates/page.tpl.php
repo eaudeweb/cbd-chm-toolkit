@@ -4,7 +4,12 @@
 <?php endif; ?>
 <!-- /#skipnav -->
 <?php //if ((($user->uid) && ($page['admin_shortcuts'])) || (($user->uid) && ($secondary_nav))): ?>
-<div id="admin-shortcuts" class="admin-shortcuts clearfix"><div class="container"> <?php //print render($secondary_nav); ?> <?php print render($page['admin_shortcuts']); ?> </div></div>
+<div id="admin-shortcuts" class="admin-shortcuts clearfix">
+  <div class="container">
+    <?php //print render($secondary_nav); ?>
+    <?php print render($page['admin_shortcuts']); ?>
+  </div>
+</div>
 <?php //endif; ?>
 <!-- /#admin-shortcuts -->
 
@@ -58,11 +63,11 @@
         <?php endif; ?>
       </div>
 
-      <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['navigation'])): ?>
+      <?php if (!empty($page['navigation'])): ?>
         <div class="navbar-collapse collapse">
           <nav role="navigation">
-            <?php if (!empty($primary_nav)): ?>
-              <?php print render($primary_nav); ?>
+            <?php if (!empty($page['navigation'])): ?>
+              <?php print render($page['navigation']); ?>
             <?php endif; ?>
           </nav>
         </div>
