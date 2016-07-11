@@ -117,6 +117,34 @@
           &:hover {
             background-color: darken(@navbar-color, 3%);
           }
+          &.open {
+            >a {
+              background-color: darken(@navbar-color, 3%);
+              color: #ffffff;
+            }
+            .caret {
+              border-top-color: #ffffff;
+            }
+          }
+        }
+
+        .dropdown {
+          &:hover {
+            .dropdown-menu {
+              display: block;
+            }
+          }
+          .dropdown-menu {
+            margin-top: 0;
+            min-width: 150px;
+            border-radius: 0;
+            li {
+              width: 100%;
+              a {
+                color: #000000;
+              }
+            }
+          }
         }
       }
     }

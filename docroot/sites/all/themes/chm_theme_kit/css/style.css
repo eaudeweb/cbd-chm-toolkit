@@ -8577,3 +8577,24 @@ html body.admin-menu-with-shortcuts {
 .navbar-container #navbar .navbar-collapse .nav li:hover {
   background-color: #038842;
 }
+.navbar-container #navbar .navbar-collapse .nav li.open > a {
+  background-color: #038842;
+  color: #ffffff;
+}
+.navbar-container #navbar .navbar-collapse .nav li.open .caret {
+  border-top-color: #ffffff;
+}
+.navbar-container #navbar .navbar-collapse .nav .dropdown:hover .dropdown-menu {
+  display: block;
+}
+.navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu {
+  margin-top: 0;
+  min-width: 150px;
+  border-radius: 0;
+}
+.navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu li {
+  width: 100%;
+}
+.navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu li a {
+  color: #000000;
+}
