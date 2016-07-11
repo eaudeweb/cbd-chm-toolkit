@@ -8590,6 +8590,7 @@ html body.admin-menu-with-shortcuts {
 .navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu {
   margin-top: 0;
   min-width: 150px;
+  border-top: none;
   border-radius: 0;
 }
 .navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu li {
@@ -8597,4 +8598,12 @@ html body.admin-menu-with-shortcuts {
 }
 .navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu li a {
   color: #000000;
+}
+.navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu li a:hover {
+  background-color: #039749;
+  color: #ffffff;
+}
+.navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu .active a {
+  background-color: #039749;
+  color: #ffffff;
 }
