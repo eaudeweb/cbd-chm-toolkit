@@ -7518,14 +7518,12 @@ body.navbar-tray-open.navbar-vertical.navbar-fixed {
 body {
   font-family: "Open Sans";
 }
+h1,
 h2,
-h1 {
-  font-family: "PT Serif";
+h3,
+h4,
+h5 {
   position: relative;
-}
-.views-field-title {
-  font-family: "PT Serif";
-  font-size: 20px;
 }
 .views-field-title a {
   color: #000;
@@ -7929,7 +7927,6 @@ ul.menu li.leaf {
   float: left;
 }
 .information-section h2 {
-  font-family: "PT Sans";
   font-size: 20px;
 }
 .information-section a {
