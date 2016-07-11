@@ -8561,6 +8561,9 @@ html body.admin-menu-with-shortcuts {
     padding-right: 0;
   }
 }
+.navbar-container #navbar .navbar-collapse .nav li {
+  display: inline-block;
+}
 .navbar-container #navbar .navbar-collapse .nav li.active {
   background-color: #ffffff;
 }
