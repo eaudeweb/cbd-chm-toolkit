@@ -8604,3 +8604,16 @@ html body.admin-menu-with-shortcuts {
   background-color: #039749;
   color: #ffffff;
 }
+.main-container {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+#page-title {
+  margin-top: 0;
+}
+#footer {
+  background-color: #02783a;
+}
+#footer .nav li a {
+  padding: 0;
+}
