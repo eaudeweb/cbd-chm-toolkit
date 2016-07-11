@@ -8611,8 +8611,7 @@ html body.admin-menu-with-shortcuts {
   float: left;
 }
 #footer2 .footer-logo img {
-  margin-top: 20px;
-  max-height: 100px;
+  max-height: 120px;
 }
 #footer2 .footer-support {
   float: right;
