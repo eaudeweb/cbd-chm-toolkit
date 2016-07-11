@@ -8452,7 +8452,10 @@ html body.admin-menu-with-shortcuts {
 .region-admin-shortcuts #block-system-user-menu .menu li a {
   padding: 0;
 }
-#block-chm-search-chm-search input[type="text"] {
+#block-chm-search-chm-search form {
+  position: relative;
+}
+#block-chm-search-chm-search form input[type="text"] {
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -8463,7 +8466,7 @@ html body.admin-menu-with-shortcuts {
   color: #555;
   vertical-align: middle;
 }
-#block-chm-search-chm-search .btn-search {
+#block-chm-search-chm-search form .btn-search {
   position: absolute;
   top: 1px;
   right: 10px;

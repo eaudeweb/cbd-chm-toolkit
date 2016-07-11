@@ -16,23 +16,26 @@
 }
 
 #block-chm-search-chm-search {
-  input {
-    &[type="text"] {
-      display: inline-block;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      height: 30px;
-      padding: 4px 6px;
-      font-size: 14px;
-      line-height: 30px;
-      color: #555;
-      vertical-align: middle;
+  form {
+    position: relative;
+    input {
+      &[type="text"] {
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        height: 30px;
+        padding: 4px 6px;
+        font-size: 14px;
+        line-height: 30px;
+        color: #555;
+        vertical-align: middle;
+      }
     }
-  }
-  .btn-search {
-    position: absolute;
-    top: 1px;
-    right: 10px;
+    .btn-search {
+      position: absolute;
+      top: 1px;
+      right: 10px;
+    }
   }
 }
 
