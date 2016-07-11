@@ -7885,11 +7885,6 @@ div#logo.site-logo img {
 ul.menu li.leaf {
   list-style: none;
 }
-#footer2.site-footer {
-  background: white;
-  color: inherit;
-  padding-top: 0px;
-}
 #footer-content .menu .fa {
   font-family: 'Open Sans';
 }
@@ -8598,9 +8593,11 @@ html body.admin-menu-with-shortcuts {
 #page-title {
   margin-top: 0;
 }
-#footer {
+.site-footer {
   padding-top: 40px;
   padding-bottom: 40px;
+}
+#footer {
   background-color: #02783a;
   color: #ffffff;
 }
@@ -8609,4 +8606,18 @@ html body.admin-menu-with-shortcuts {
 }
 #footer .nav li a:hover {
   color: #cdcdcd;
+}
+#footer2 .footer-logo {
+  float: left;
+}
+#footer2 .footer-logo img {
+  margin-top: 20px;
+  max-height: 100px;
+}
+#footer2 .footer-support {
+  float: right;
+  text-align: center;
+}
+#footer2 .footer-support img {
+  max-height: 100px;
 }
