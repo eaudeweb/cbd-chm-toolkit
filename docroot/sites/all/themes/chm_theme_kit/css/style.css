@@ -8442,7 +8442,7 @@ html body.admin-menu-with-shortcuts {
 }
 .field-slideshow-wrapper .field-slideshow {
   position: relative;
-  width: 100%;
+  width: 100%!important;
 }
 .field-slideshow-wrapper .field-slideshow .field-slideshow-slide {
   position: relative!important;
@@ -8468,8 +8468,12 @@ html body.admin-menu-with-shortcuts {
   font-size: 0;
   border: 1px solid #026531;
   border-radius: 2px;
+  opacity: 0.8;
 }
-.field-slideshow-wrapper .field-slideshow-controls a:hover,
+.field-slideshow-wrapper .field-slideshow-controls a:hover {
+  text-decoration: none;
+  background-color: #026531;
+}
 .field-slideshow-wrapper .field-slideshow-controls a:focus {
   text-decoration: none;
 }

@@ -8,7 +8,7 @@ html {
   position: relative;
   .field-slideshow {
     position: relative;
-    width: 100%;
+    width: 100%!important;
     .field-slideshow-slide {
       position: relative!important;
       margin: 0 auto;
@@ -33,7 +33,12 @@ html {
       font-size: 0;
       border: 1px solid darken(@navbar-color, 10%);
       border-radius: 2px;
-      &:hover, &:focus {
+      opacity: 0.8;
+      &:hover {
+        text-decoration: none;
+        background-color: darken(@navbar-color, 10%);
+      }
+      &:focus {
         text-decoration: none;
       }
       &:before {
