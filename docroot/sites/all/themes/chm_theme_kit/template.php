@@ -15,6 +15,13 @@ function chm_theme_kit_preprocess_html(&$variables) {
   }
 }
 
+function chm_theme_kit_css_alter(&$css) {
+  $path = drupal_get_path('module', 'addressfield');
+  if (!empty($path) && isset($css[$path . '/addressfield.css'])) {
+    unset($css[$path . '/addressfield.css']);
+  }
+}
+
 /**
  * Theme flexible layout of panels.
  * Copied the panels function and removed the css files.

@@ -70,17 +70,20 @@ body.node-type-species {
     }
   }
 
-  .field-name-field-location {
+  .field-name-field-event-address {
     color: #039749;
     font-size: 1.2em;
     text-align: center;
-    > div {
-      display: inline;
-      float: none;
-    }
-    .location.vcard {
+    .field-item {
       div, span {
-        display: inline-block;
+        display: inline;
+        float: none;
+      }
+      > div:after, > span:after {
+        content: ", ";
+      }
+      > div:last-child:after, > span:last-child:after {
+        content: "";
       }
     }
   }

@@ -8706,18 +8706,23 @@ body.node-type-species .panels-flexible-column-inside .panels-flexible-region-1-
   display: inline;
   float: none;
 }
-.node-event-detail .field-name-field-location {
+.node-event-detail .field-name-field-event-address {
   color: #039749;
   font-size: 1.2em;
   text-align: center;
 }
-.node-event-detail .field-name-field-location > div {
+.node-event-detail .field-name-field-event-address .field-item div,
+.node-event-detail .field-name-field-event-address .field-item span {
   display: inline;
   float: none;
 }
-.node-event-detail .field-name-field-location .location.vcard div,
-.node-event-detail .field-name-field-location .location.vcard span {
-  display: inline-block;
+.node-event-detail .field-name-field-event-address .field-item > div:after,
+.node-event-detail .field-name-field-event-address .field-item > span:after {
+  content: ", ";
+}
+.node-event-detail .field-name-field-event-address .field-item > div:last-child:after,
+.node-event-detail .field-name-field-event-address .field-item > span:last-child:after {
+  content: "";
 }
 .node-event-detail .field-name-field-event-status > div,
 .node-event-detail .field-name-field-event-type > div,

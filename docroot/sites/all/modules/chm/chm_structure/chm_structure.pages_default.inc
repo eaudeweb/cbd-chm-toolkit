@@ -108,7 +108,7 @@ function chm_structure_default_page_manager_handlers() {
           1 => 9,
           2 => 10,
         ),
-        'class' => 'col-sm-9',
+        'class' => 'col-sm-8',
         'hide_empty' => 1,
       ),
       6 => array(
@@ -129,7 +129,7 @@ function chm_structure_default_page_manager_handlers() {
         'children' => array(
           0 => 8,
         ),
-        'class' => 'col-sm-3',
+        'class' => 'col-sm-4',
         'hide_empty' => 0,
       ),
       8 => array(
@@ -339,19 +339,24 @@ function chm_structure_default_page_manager_handlers() {
     $display->content['new-ba03ef63-23d2-40eb-8de4-98e2627ccf91'] = $pane;
     $display->panels['left'][0] = 'new-ba03ef63-23d2-40eb-8de4-98e2627ccf91';
     $pane = new stdClass();
-    $pane->pid = 'new-ccb23963-b71d-4c1d-9aef-908e7e8276e1';
+    $pane->pid = 'new-0f51bfc0-bc14-4c58-9a52-218c98755fe5';
     $pane->panel = 'left';
     $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_location';
+    $pane->subtype = 'node:field_event_address';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'label' => 'inline',
-      'formatter' => 'location_default',
+      'label' => 'above',
+      'formatter' => 'addressfield_default',
       'delta_limit' => 0,
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
-      'formatter_settings' => array(),
+      'formatter_settings' => array(
+        'use_widget_handlers' => 1,
+        'format_handlers' => array(
+          'address' => 'address',
+        ),
+      ),
       'context' => 'argument_entity_id:node_1',
       'override_title' => 0,
       'override_title_text' => '',
@@ -365,9 +370,9 @@ function chm_structure_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $pane->uuid = 'ccb23963-b71d-4c1d-9aef-908e7e8276e1';
-    $display->content['new-ccb23963-b71d-4c1d-9aef-908e7e8276e1'] = $pane;
-    $display->panels['left'][1] = 'new-ccb23963-b71d-4c1d-9aef-908e7e8276e1';
+    $pane->uuid = '0f51bfc0-bc14-4c58-9a52-218c98755fe5';
+    $display->content['new-0f51bfc0-bc14-4c58-9a52-218c98755fe5'] = $pane;
+    $display->panels['left'][1] = 'new-0f51bfc0-bc14-4c58-9a52-218c98755fe5';
     $pane = new stdClass();
     $pane->pid = 'new-29469a76-96d8-48e0-81db-3cc98a66408b';
     $pane->panel = 'left_2___left';
@@ -522,19 +527,45 @@ function chm_structure_default_page_manager_handlers() {
     $display->content['new-dc4a0d57-0beb-4edf-8458-e75058a39845'] = $pane;
     $display->panels['right'][0] = 'new-dc4a0d57-0beb-4edf-8458-e75058a39845';
     $pane = new stdClass();
-    $pane->pid = 'new-04f1cb21-0542-4ccf-94a6-08c1640cb2f4';
+    $pane->pid = 'new-eeafd3d1-31de-4167-9166-dabe53c87cc5';
     $pane->panel = 'right';
     $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_location';
+    $pane->subtype = 'node:field_geolocation';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
       'label' => 'hidden',
-      'formatter' => 'location_map',
+      'formatter' => 'geofield_map_map',
       'delta_limit' => 0,
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
-      'formatter_settings' => array(),
+      'formatter_settings' => array(
+        'data' => 'full',
+        'geofield_map_width' => '100%',
+        'geofield_map_height' => '300px',
+        'geofield_map_zoom' => '8',
+        'geofield_map_min_zoom' => '0',
+        'geofield_map_max_zoom' => '0',
+        'geofield_map_controltype' => 'default',
+        'geofield_map_mtc' => 'standard',
+        'geofield_map_pancontrol' => 1,
+        'geofield_map_maptype' => 'map',
+        'geofield_map_baselayers_map' => 1,
+        'geofield_map_baselayers_satellite' => 1,
+        'geofield_map_baselayers_hybrid' => 1,
+        'geofield_map_baselayers_physical' => 0,
+        'geofield_map_scale' => 0,
+        'geofield_map_overview' => 0,
+        'geofield_map_overview_opened' => 0,
+        'geofield_map_scrollwheel' => 0,
+        'geofield_map_draggable' => 0,
+        'geofield_map_streetview_show' => 0,
+        'geofield_map_center' => array(
+          'lat' => '',
+          'lon' => '',
+          'geocode' => 'Find my location',
+        ),
+      ),
       'context' => 'argument_entity_id:node_1',
       'override_title' => 0,
       'override_title_text' => '',
@@ -548,9 +579,9 @@ function chm_structure_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $pane->uuid = '04f1cb21-0542-4ccf-94a6-08c1640cb2f4';
-    $display->content['new-04f1cb21-0542-4ccf-94a6-08c1640cb2f4'] = $pane;
-    $display->panels['right'][1] = 'new-04f1cb21-0542-4ccf-94a6-08c1640cb2f4';
+    $pane->uuid = 'eeafd3d1-31de-4167-9166-dabe53c87cc5';
+    $display->content['new-eeafd3d1-31de-4167-9166-dabe53c87cc5'] = $pane;
+    $display->panels['right'][1] = 'new-eeafd3d1-31de-4167-9166-dabe53c87cc5';
     $pane = new stdClass();
     $pane->pid = 'new-7609b3ca-2216-49e4-ad71-71db394504a8';
     $pane->panel = 'right';
