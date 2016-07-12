@@ -18,6 +18,7 @@ features[fe_block_settings][] = views-home_page_image_slider-block
 features[features_api][] = api:2
 features[image][] = slider_image
 features[slick_optionset][] = home_slider
+features[views_view][] = events
 features[views_view][] = home_page_image_slider
 features[views_view][] = latest_updates
 features[views_view][] = national_focal_points
