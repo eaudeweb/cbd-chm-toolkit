@@ -8437,6 +8437,63 @@ a.more-link:hover,
 html body.admin-menu-with-shortcuts {
   margin-top: 64px !important;
 }
+.field-slideshow-wrapper {
+  position: relative;
+}
+.field-slideshow-wrapper .field-slideshow {
+  position: relative;
+  width: 100%!important;
+}
+.field-slideshow-wrapper .field-slideshow .field-slideshow-slide {
+  position: absolute;
+  left: 50%!important;
+  overflow: visible;
+}
+.field-slideshow-wrapper .field-slideshow .field-slideshow-slide img {
+  position: relative;
+  left: -50%;
+}
+.field-slideshow-wrapper .field-slideshow-controls {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  width: 100%;
+}
+.field-slideshow-wrapper .field-slideshow-controls a {
+  background-color: #039749;
+  color: #ffffff;
+  padding: 6px;
+  margin-top: -17px;
+  font-size: 0;
+  border: 1px solid #026531;
+  border-radius: 2px;
+}
+.field-slideshow-wrapper .field-slideshow-controls a:hover,
+.field-slideshow-wrapper .field-slideshow-controls a:focus {
+  text-decoration: none;
+}
+.field-slideshow-wrapper .field-slideshow-controls a:before {
+  display: block;
+  text-align: center;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  width: 17px;
+  height: 17px;
+}
+.field-slideshow-wrapper .field-slideshow-controls a.prev {
+  float: left;
+}
+.field-slideshow-wrapper .field-slideshow-controls a.prev:before {
+  content: "\e079";
+}
+.field-slideshow-wrapper .field-slideshow-controls a.next {
+  float: right;
+}
+.field-slideshow-wrapper .field-slideshow-controls a.next:before {
+  content: "\e080";
+}
 .region-admin-shortcuts #block-system-user-menu .menu:before {
   display: inline-block;
 }
