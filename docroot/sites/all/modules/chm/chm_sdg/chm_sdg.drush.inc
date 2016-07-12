@@ -61,7 +61,8 @@ function drush_chm_sdg_full_import() {
       $term->vid = $voc->vid;
       $term->language = 'en';
     }
-    $term->name = substr($row[$columns['en']] . ' ' . $row[$columns['en'] + 1], 0, 255);
+    $name = $row[$columns['en']] . ' ' . $row[$columns['en'] + 1];
+    $term->name = strlen($name) > 255 ? substr($name, 0, 252) . '...' : $name;
     $term->name_field = [];
     $term->field_official_name = [];
     $term->field_index = [
