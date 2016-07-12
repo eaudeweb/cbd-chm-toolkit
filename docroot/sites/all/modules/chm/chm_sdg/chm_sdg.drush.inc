@@ -20,11 +20,11 @@ function drush_chm_sdg_full_import() {
   $voc = taxonomy_vocabulary_machine_name_load('sdg');
   $columns = [
     'en' => 0,
-    'fr' => 3,
-    'es' => 5,
-    'ar' => 7,
-    'ru' => 9,
-    'zh-hans' => 11,
+    'fr' => 2,
+    'es' => 4,
+    'ar' => 6,
+    'ru' => 8,
+    'zh-hans' => 10,
   ];
   module_load_include('inc', 'phpexcel');
   $path = drupal_get_path('module', 'chm_sdg') . '/data/SDGs.xlsx';
@@ -54,19 +54,43 @@ function drush_chm_sdg_full_import() {
       $parent = explode('.', $id)[0];
     }
     if (!empty($existing_goals[$id])) {
-      $term = taxonomy_term_load($existing_goals[$id]);
+      $term = is_numeric($existing_goals[$id]) ? taxonomy_term_load($existing_goals[$id]) : $existing_goals[$id];
     }
     else {
       $term = new stdClass();
       $term->vid = $voc->vid;
       $term->language = 'en';
     }
-    $term->name_field = [
-      'ar' => [
+    $term->name = substr($row[$columns['en']] . ' ' . $row[$columns['en'] + 1], 0, 255);
+    $term->name_field = [];
+    $term->field_official_name = [];
+    $term->field_index = [
+      LANGUAGE_NONE => [
         0 => [
-          'value' => '',
+          'value' => $id,
         ],
       ],
     ];
+    foreach ($columns as $lang => $colNum) {
+      $name_field = $row[$columns[$lang]] . ' ' . $row[$columns[$lang] + 1];
+      if ($lang == 'ar') {
+        $name_field = $row[$columns[$lang] + 1] . ' ' . $row[$columns[$lang]];
+      }
+      $term->name_field[$lang] = [
+        0 => [
+          'value' => $name_field,
+        ],
+      ];
+      $term->field_official_name[$lang] = [
+        0 => [
+          'value' => $row[$columns[$lang] + 1],
+        ],
+      ];
+    }
+    if (!empty($parent)) {
+      $term->parent = $parent;
+    }
+    taxonomy_term_save($term);
+    $existing_goals[$id] = $term;
   }
 }
