@@ -8606,7 +8606,16 @@ html body.admin-menu-with-shortcuts {
 #block-views-species-block-1 .content .views-table {
   margin-bottom: 0;
 }
-#block-views-species-block-1 .content .views-table thead img {
+#block-views-species-block-1 .content .views-table thead th {
+  padding: 0;
+}
+#block-views-species-block-1 .content .views-table thead th a {
+  padding: 8px;
+  display: block;
+  width: 100%;
+  color: #333333;
+}
+#block-views-species-block-1 .content .views-table thead th img {
   display: inline-block;
   margin-top: -3px;
   margin-left: 5px;
