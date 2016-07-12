@@ -19,3 +19,10 @@ function ptk_base_update_7001() {
   db_change_field('field_data_name_field', 'name_field_value', 'name_field_value', array('type' => 'varchar','length' => $column_size));
   db_change_field('field_revision_name_field', 'name_field_value', 'name_field_value', array('type' => 'varchar','length' => $column_size));
 }
+
+/**
+ * Increase term.name column size.
+ */
+function ptk_base_update_7002() {
+  db_change_field('taxonomy_term_data', 'name', 'name', array('type' => 'varchar','length' => 2048));
+}
