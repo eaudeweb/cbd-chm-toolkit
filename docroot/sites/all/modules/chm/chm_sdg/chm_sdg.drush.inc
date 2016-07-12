@@ -90,6 +90,26 @@ function drush_chm_sdg_full_import() {
       $term->parent = $parent;
     }
     taxonomy_term_save($term);
+
+    $handler = entity_translation_get_handler('taxonomy_term', $term);
+    $handler->setOriginalLanguage('en');
+    $handler->initTranslations();
+    foreach ($columns as $lang => $colNum) {
+      if ($lang == 'en') {
+        continue;
+      }
+      $handler->setTranslation([
+        'translate' => 0,
+        'status' => 1,
+        'uid' => 1,
+        'language' => $lang,
+        'source' => 'en',
+      ]);
+    }
+    taxonomy_term_save($term);
+
+    drush_log('Imported: ' . $row[$columns['en']], 'success');
+
     $existing_goals[$id] = $term;
   }
 }
