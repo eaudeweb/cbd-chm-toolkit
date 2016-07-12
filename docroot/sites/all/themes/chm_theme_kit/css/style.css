@@ -8595,6 +8595,22 @@ html body.admin-menu-with-shortcuts {
 #page-title {
   margin-top: 0;
 }
+/* Species listing */
+#block-views-species-block-1 .content {
+  margin-top: 0;
+}
+#block-views-species-block-1 .content form #edit-submit-species {
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+#block-views-species-block-1 .content .views-table {
+  margin-bottom: 0;
+}
+#block-views-species-block-1 .content .views-table thead img {
+  display: inline-block;
+  margin-top: -3px;
+  margin-left: 5px;
+}
 .site-footer {
   padding-top: 40px;
   padding-bottom: 40px;
