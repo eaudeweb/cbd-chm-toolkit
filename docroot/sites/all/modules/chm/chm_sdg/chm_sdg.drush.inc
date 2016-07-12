@@ -55,6 +55,9 @@ function drush_chm_sdg_full_import() {
       $parent = explode('.', $id)[0];
       $type = $target_term->tid;
     }
+    if (strlen($id) > 4) {
+      $row[$columns['en']] = $id = number_format(round($id, 1), 1, '.', '');
+    }
     if (!empty($existing_goals[$id])) {
       $term = is_numeric($existing_goals[$id]) ? taxonomy_term_load($existing_goals[$id]) : $existing_goals[$id];
     }
