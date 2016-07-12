@@ -8677,6 +8677,17 @@ html body.admin-menu-with-shortcuts {
   margin-top: -3px;
   margin-left: 5px;
 }
+/* Species details page */
+body.node-type-species .panels-flexible-column.well-sm {
+  padding: 9px;
+}
+body.node-type-species .panels-flexible-column-inside {
+  padding-left: 0;
+}
+body.node-type-species .panels-flexible-column-inside .panels-flexible-region-1-sidebar {
+  padding: 0;
+  width: 100%;
+}
 .site-footer {
   padding-top: 40px;
   padding-bottom: 40px;
