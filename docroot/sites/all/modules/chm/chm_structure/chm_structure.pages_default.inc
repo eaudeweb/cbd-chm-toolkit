@@ -543,7 +543,7 @@ function chm_structure_default_page_manager_handlers() {
         'data' => 'full',
         'geofield_map_width' => '100%',
         'geofield_map_height' => '300px',
-        'geofield_map_zoom' => '8',
+        'geofield_map_zoom' => '12',
         'geofield_map_min_zoom' => '0',
         'geofield_map_max_zoom' => '0',
         'geofield_map_controltype' => 'default',
