@@ -18,6 +18,8 @@ function chm_sdg_drush_command() {
  */
 function drush_chm_sdg_full_import() {
   $voc = taxonomy_vocabulary_machine_name_load('sdg');
+  $goal_term = reset(taxonomy_get_term_by_name('Goal', 'biodiversity_item_type'));
+  $target_term = reset(taxonomy_get_term_by_name('Target', 'biodiversity_item_type'));
   $columns = [
     'en' => 0,
     'fr' => 2,
@@ -47,9 +49,11 @@ function drush_chm_sdg_full_import() {
     }
     if (preg_match('/Goal (\d*).*/', $id, $matches)) {
       $id = $matches[1];
+      $type = $goal_term->tid;
     }
     else {
       $parent = explode('.', $id)[0];
+      $type = $target_term->tid;
     }
     if (!empty($existing_goals[$id])) {
       $term = is_numeric($existing_goals[$id]) ? taxonomy_term_load($existing_goals[$id]) : $existing_goals[$id];
@@ -63,6 +67,13 @@ function drush_chm_sdg_full_import() {
     $term->name = strlen($name) > 255 ? substr($name, 0, 252) . '...' : $name;
     $term->name_field = [];
     $term->field_official_name = [];
+    $term->field_biodiversity_item_type = [
+      LANGUAGE_NONE => [
+        0 => [
+          'tid' => $type,
+        ],
+      ],
+    ];
     $term->field_index = [
       LANGUAGE_NONE => [
         0 => [
