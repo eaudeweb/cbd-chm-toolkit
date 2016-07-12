@@ -8442,16 +8442,17 @@ html body.admin-menu-with-shortcuts {
 }
 .field-slideshow-wrapper .field-slideshow {
   position: relative;
-  width: 100%!important;
+  width: 100%;
 }
 .field-slideshow-wrapper .field-slideshow .field-slideshow-slide {
-  position: absolute;
-  left: 50%!important;
-  overflow: visible;
+  position: relative!important;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%!important;
 }
 .field-slideshow-wrapper .field-slideshow .field-slideshow-slide img {
   position: relative;
-  left: -50%;
+  margin: 0 auto;
 }
 .field-slideshow-wrapper .field-slideshow-controls {
   position: absolute;
