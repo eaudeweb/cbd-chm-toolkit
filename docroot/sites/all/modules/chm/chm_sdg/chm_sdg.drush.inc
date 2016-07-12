@@ -39,15 +39,13 @@ function drush_chm_sdg_full_import() {
     ->condition('i.bundle', 'sdg')
     ->execute()->fetchAllKeyed();
 
-  $goals = [];
-
   foreach ($data as $key => $row) {
     $id = $row[$columns['en']];
     $parent = NULL;
     if (empty($id)) {
       continue;
     }
-    if (preg_match('/Goal (\d).*/', $id, $matches)) {
+    if (preg_match('/Goal (\d*).*/', $id, $matches)) {
       $id = $matches[1];
     }
     else {
