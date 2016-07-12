@@ -76,7 +76,7 @@ function chm_structure_default_page_manager_handlers() {
           0 => 'main-row',
         ),
         'parent' => 'canvas',
-        'class' => 'col-sm-9',
+        'class' => 'col-sm-8',
         'hide_empty' => 0,
       ),
       'main-row' => array(
@@ -104,7 +104,7 @@ function chm_structure_default_page_manager_handlers() {
         'children' => array(
           0 => 2,
         ),
-        'class' => 'col-sm-3',
+        'class' => 'col-sm-4 well well-sm',
         'hide_empty' => 0,
       ),
       2 => array(
@@ -372,7 +372,7 @@ function chm_structure_default_page_manager_handlers() {
         'colorbox_caption' => 'auto',
         'colorbox_caption_custom' => '',
         'use_image_caption_field' => 0,
-        'slideshow_image_style' => 'medium',
+        'slideshow_image_style' => '',
         'slideshow_link' => '',
         'slideshow_colorbox_image_style' => '',
         'slideshow_colorbox_slideshow' => 'automatic',
@@ -393,7 +393,7 @@ function chm_structure_default_page_manager_handlers() {
         'slideshow_pager' => '',
         'slideshow_pager_position' => 'after',
         'slideshow_pager_image_style' => '',
-        'slideshow_carousel_image_style' => '',
+        'slideshow_carousel_image_style' => 'large',
         'slideshow_carousel_visible' => '3',
         'slideshow_carousel_scroll' => '1',
         'slideshow_carousel_speed' => '500',
