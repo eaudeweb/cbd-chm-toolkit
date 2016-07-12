@@ -8693,6 +8693,38 @@ body.node-type-species .panels-flexible-column-inside .panels-flexible-region-1-
   padding: 0;
   width: 100%;
 }
+/* Event detail page */
+.node-event-detail .field {
+  margin-bottom: 10px;
+}
+.node-event-detail .field-name-field-dates {
+  color: #039749;
+  font-size: 1.2em;
+  text-align: center;
+}
+.node-event-detail .field-name-field-dates > div {
+  display: inline;
+  float: none;
+}
+.node-event-detail .field-name-field-location {
+  color: #039749;
+  font-size: 1.2em;
+  text-align: center;
+}
+.node-event-detail .field-name-field-location > div {
+  display: inline;
+  float: none;
+}
+.node-event-detail .field-name-field-location .location.vcard div,
+.node-event-detail .field-name-field-location .location.vcard span {
+  display: inline-block;
+}
+.node-event-detail .field-name-field-event-status > div,
+.node-event-detail .field-name-field-event-type > div,
+.node-event-detail .field-name-field-url > div {
+  float: none;
+  text-align: center;
+}
 .site-footer {
   padding-top: 40px;
   padding-bottom: 40px;
