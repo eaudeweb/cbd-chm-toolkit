@@ -19,7 +19,6 @@ dependencies[] = i18n_taxonomy
 dependencies[] = image
 dependencies[] = link
 dependencies[] = list
-dependencies[] = location_cck
 dependencies[] = number
 dependencies[] = options
 dependencies[] = page_manager
