@@ -62,13 +62,10 @@
           <div id="nav-search" class="nav-search"> <?php print render($page['search_box']); ?> </div>
         <?php endif; ?>
       </div>
-
-      <?php if (!empty($page['navigation'])): ?>
+      <?php if (!empty($primary_nav)): ?>
         <div class="navbar-collapse collapse">
           <nav role="navigation">
-            <?php if (!empty($page['navigation'])): ?>
-              <?php print render($page['navigation']); ?>
-            <?php endif; ?>
+            <?php print render($primary_nav); ?>
           </nav>
         </div>
       <?php endif; ?>

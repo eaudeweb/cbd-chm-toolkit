@@ -1,6 +1,6 @@
-name = CHM bootstrap subtheme
+name = CHM Network theme
 base theme = bootstrap
-description = Tableless, multi-column subtheme provided by <a href="http://webservices.stanford.edu">Stanford Web Services</a> as a subtheme of the <a href="http://openframework.stanford.edu">Open Framework theme</a>.
+description = Theme based on Bootstrap 3.
 core = 7.x
 version = 1.0
 
@@ -11,7 +11,6 @@ scripts[] = js/script.js
 
 regions[admin_shortcuts] = Admin Shortcuts (Authenticated Users Only)
 regions[header] = Header
-regions[navigation] = Navigation
 regions[search_box] = Search Box
 regions[main_top] = Main: Top
 regions[sidebar_first] = First sidebar
