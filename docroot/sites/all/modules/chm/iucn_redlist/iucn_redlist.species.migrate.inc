@@ -187,7 +187,19 @@ class IUCNRedListSpeciesSource extends MigrateSource {
       $taxonid = current($this->data);
       next($this->data);
       if ($taxonid) {
-        return $this->service->getRemoteSpeciesRecord($taxonid);
+        $migrated_item = db_select('migrate_map_iucn_species')
+          ->fields(NULL, ['destid1', 'needs_update'])
+          ->condition('sourceid1', $taxonid)
+          ->execute()->fetchAssoc();
+        if (empty($migrated_item) || empty($migrated_item['destid1']) || !empty($migrated_item['needs_update'])) {
+          $return = $this->service->getRemoteSpeciesRecord($taxonid);
+        }
+        else {
+          $return = (object) [
+            'taxonid' => $taxonid,
+          ];
+        }
+        return $return;
       }
     }
     return FALSE;
