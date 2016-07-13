@@ -1,6 +1,7 @@
 <?php
 
 require_once dirname(__FILE__) . '/include/PTK.php';
+require_once dirname(__FILE__) . '/include/PTKDomain.php';
 require_once dirname(__FILE__) . '/include/blocks/AbstractBlock.php';
 require_once dirname(__FILE__) . '/include/blocks/ChmContentStatisticsBlock.php';
 require_once dirname(__FILE__) . '/include/blocks/ChmNetworkSitesBlock.php';

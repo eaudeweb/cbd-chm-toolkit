@@ -20,7 +20,7 @@ class ChmFooterQuickLinksRootBlock extends AbstractBlock {
 
   public function view() {
     $domain = domain_get_domain();
-    if ($domain['domain_id'] == \PTK::getDefaultDomainId()) {
+    if ($domain['domain_id'] == \PTKDomain::getDefaultDomainId()) {
       $items = [];
       $link_home = domain_get_uri($domain);
       $items[] = l(t('Home'), $link_home);

@@ -25,7 +25,7 @@ class ChmNetworkSitesBlock extends AbstractBlock {
       'rows' => [],
     ];
     $domains = domain_domains();
-    $default_did = \PTK::getDefaultDomainId();
+    $default_did = \PTKDomain::getDefaultDomainId();
     foreach ($domains as $id => $domain) {
       $flag_image = '';
       $label = str_replace(array(
@@ -34,7 +34,7 @@ class ChmNetworkSitesBlock extends AbstractBlock {
         '/'
       ), '', $domain['path']);
       if (!empty($domain['valid']) && $id != $default_did) {
-        if ($country = \PTK::getPortalCountry($domain)) {
+        if ($country = \PTKDomain::getPortalCountry($domain)) {
           if ($flag = \PTK::getCountryFlagURL($country)) {
             $flag_image = theme('image', array('path' => $flag, 'width' => 30));
           }

@@ -20,10 +20,8 @@ class ChmFooterCountryLinksBlock extends AbstractBlock {
 
   public function view() {
     $domain = domain_get_domain();
-    if ($domain['domain_id'] != \PTK::getDefaultDomainId()) {
-      $country = \PTK::getPortalCountry($domain);
-      $realm_name = 'domain';
-      $realm_key = $domain['machine_name'];
+    if ($domain['domain_id'] != \PTKDomain::getDefaultDomainId()) {
+      $country = \PTKDomain::getPortalCountry($domain);
       $items = [];
       // GEF
       if ($country) {
@@ -31,7 +29,7 @@ class ChmFooterCountryLinksBlock extends AbstractBlock {
         $items[] = l(t('GEF Projects'), $link, ['attributes' => ['target' => '_blank']]);
       }
       // Protected planet
-      if ($id = variable_realm_get($realm_name, $realm_key, 'ptk_protected_planet_id')) {
+      if ($id = \PTKDomain::variable_get('ptk_protected_planet_id')) {
         // @todo: Make this configurable form the back-end
         $link = 'http://www.protectedplanet.net/search?country=' . $id;
         $items[] = l(t('Protected areas (protectedplanet.net)'), $link,

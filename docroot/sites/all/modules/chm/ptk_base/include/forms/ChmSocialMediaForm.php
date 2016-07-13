@@ -10,22 +10,22 @@ class ChmSocialMediaForm {
     $ret['ptk']['social']['facebook'] = [
       '#type' => 'textfield',
       '#title' => t('Facebook link'),
-      '#default_value' => PTK::variable_realm_get('ptk_social_facebook'),
+      '#default_value' => PTKDomain::variable_get('ptk_social_facebook'),
     ];
     $ret['ptk']['social']['linkedin'] = [
       '#type' => 'textfield',
       '#title' => t('LinkedIn link'),
-      '#default_value' => PTK::variable_realm_get('ptk_social_linkedin'),
+      '#default_value' => PTKDomain::variable_get('ptk_social_linkedin'),
     ];
     $ret['ptk']['social']['twitter'] = [
       '#type' => 'textfield',
       '#title' => t('Twitter link'),
-      '#default_value' => PTK::variable_realm_get('ptk_social_twitter'),
+      '#default_value' => PTKDomain::variable_get('ptk_social_twitter'),
     ];
     $ret['ptk']['social']['youtube'] = [
       '#type' => 'textfield',
       '#title' => t('Youtube link'),
-      '#default_value' => PTK::variable_realm_get('ptk_social_youtube'),
+      '#default_value' => PTKDomain::variable_get('ptk_social_youtube'),
     ];
     return $ret;
   }
@@ -36,10 +36,10 @@ class ChmSocialMediaForm {
     foreach (array_keys($frm['ptk']['social']) as $key) {
       // $form['#tree']
       if (!empty($values['ptk']['social'][$key])) {
-        PTK::variable_realm_set('ptk_social_' . $key, $values['ptk']['social'][$key], $domain);
+        PTKDomain::variable_set('ptk_social_' . $key, $values['ptk']['social'][$key], $domain);
       }
       else if (!empty($values[$key])) {
-        PTK::variable_realm_set('ptk_social_' . $key, $values[$key], $domain);
+        PTKDomain::variable_set('ptk_social_' . $key, $values[$key], $domain);
       }
     }
   }

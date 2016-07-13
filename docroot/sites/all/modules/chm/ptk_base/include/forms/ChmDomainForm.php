@@ -12,19 +12,22 @@ class ChmDomainForm {
   static function alter(&$form, &$form_state) {
     $form['is_default']['#access'] = FALSE;
     $is_new = empty($form['#domain']['domain_id']);
-    $countries = PTK::getCountryListAsOptions();
-    $form['country'] = [
-      '#title' => t('Country'),
-      '#description' => t('Designate the country for this CHM portal'),
-      '#type' => 'select',
-      '#options' => $countries,
-      '#empty_option' => t('- Select -'),
-      '#default_value' => PTK::variable_realm_get('country', $form['#domain']),
-      '#required' => FALSE,
-      '#weight' => -10,
-    ];
+    $domain = $form['#domain'];
+    if (!PTKDomain::isDefaultDomain($domain)) {
+      $countries = PTK::getCountryListAsOptions();
+      $form['country'] = [
+        '#title' => t('Country'),
+        '#description' => t('Designate the country for this CHM portal'),
+        '#type' => 'select',
+        '#options' => $countries,
+        '#empty_option' => t('- Select -'),
+        '#default_value' => PTKDomain::variable_get('country', $form['#domain']),
+        '#required' => FALSE,
+        '#weight' => -10,
+      ];
+    }
     module_load_include('inc', 'domain_variable_locale', 'domain_variable_locale.variable');
-    $languages = PTK::variable_realm_get('language_list', $form['#domain']);
+    $languages = PTKDomain::variable_get('language_list', $form['#domain']);
     $languages = !empty($languages) ? array_values($languages) : array();
     if ($is_new && empty($languages)) {
       $languages = array('en');
@@ -85,21 +88,21 @@ class ChmDomainForm {
   }
 
   static function submit($form, $form_state) {
-    $current = PTK::variable_realm_get('country', $form['#domain']);
+    $current = PTKDomain::variable_get('country', $form['#domain']);
     $domain = $form['#domain'];
     if (empty($domain['machine_name'])) {
       $domain['machine_name'] = $form_state['values']['machine_name'];
     }
     $countryIsoCode = $form_state['values']['country'];
     if ($current !== $countryIsoCode) {
-      PTK::variable_realm_set('country', $countryIsoCode, $domain);
+      PTKDomain::variable_set('country', $countryIsoCode, $domain);
     }
     cache_clear_all();
     if (!empty($form['#is_new'])) {
       $machine_name = $form_state['values']['machine_name'];
       $domain_id = domain_load_domain_id($machine_name);
       $domain = domain_load($domain_id);
-      PTK::initializeCountryDomain($domain, $form_state['values']);
+      PTKDomain::initializeCountryDomain($domain, $form_state['values']);
       ChmSocialMediaForm::submit($form, $form_state, $domain);
       cache_clear_all();
     }

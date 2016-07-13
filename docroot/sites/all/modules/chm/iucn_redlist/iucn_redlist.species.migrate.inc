@@ -71,9 +71,9 @@ class IUCNRedListSpeciesMigration extends Migration {
     // Handle domain assignment
     $countries = $this->service->getLocalSpeciesCountries($row->taxonid);
     $domains = array();
-    $row->domain_source = PTK::getDefaultDomainId();
+    $row->domain_source = PTKDomain::getDefaultDomainId();
     foreach($countries as $iso) {
-      if ($domain = PTK::getDomainByCountryISO($iso)) {
+      if ($domain = PTKDomain::getDomainByCountryISO($iso)) {
         $domains[] = $domain['domain_id'];
       }
     }

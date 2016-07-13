@@ -88,7 +88,7 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
         $iso = $row->country;
         $row->country = $country->tid;
 
-        $domain = PTK::getDomainByCountryISO($iso);
+        $domain = PTKDomain::getDomainByCountryISO($iso);
         $row->domain_source = $domain['domain_id'];
         $row->domains = array($domain['domain_id']);
       }
