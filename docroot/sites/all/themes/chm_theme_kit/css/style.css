@@ -7680,78 +7680,6 @@ div#logo.site-logo img {
 .language-switcher-locale-url li.first {
   border-left: none;
 }
-.slick-content {
-  position: absolute;
-  right: 68px;
-  top: 23%;
-}
-/* Landscape phone to landscape tablet */
-@media (max-width: 979px) {
-  .slick-content {
-    position: absolute;
-    right: 15%;
-    top: 15%;
-    width: 70% !important;
-  }
-}
-@media (max-width: 767px) {
-  .slick-content {
-    position: absolute;
-    right: 10%;
-    top: 10%;
-    width: 80% !important;
-  }
-  .slick-content p {
-    display: none;
-  }
-  .slick-content h2 {
-    font-size: 20px;
-    margin-top: 0px;
-  }
-}
-.slick-prev::before,
-.slick-next::before {
-  color: #FFFFFF;
-}
-.slick-content.well {
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  text-align: center;
-  xheight: 50%;
-  vertical-align: middle;
-  width: 50%;
-  top: 25%;
-  right: 25%;
-  border: none;
-  -webkit-transition: all 0.27s cubic-bezier(0, 0, 0.58, 1);
-  -moz-transition: all 0.27s ease-in-out;
-  -o-transition: all 0.27s ease-in-out;
-  -ms-transition: all 0.27s ease-in-out;
-  transition: all 0.27s ease-in-out;
-}
-.slick-content.well:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-.slick-content a.more-link {
-  font-size: 11px;
-  text-transform: uppercase;
-  margin-top: 0px;
-  font-weight: bold;
-}
-.slick-content .btn {
-  background-color: transparent;
-  background-image: none;
-  border: 1px solid white;
-  box-shadow: none !important;
-}
-.slick-content .btn:hover {
-  background-color: #02823F;
-  background-image: none;
-  border: 1px solid #02823F;
-}
-.slide__content .span12 {
-  position: relative;
-}
 /* ----- Header Region --------------- */
 .header {
   padding: 0px;
@@ -8108,14 +8036,6 @@ a.more-link:hover,
   color: white;
   text-decoration: none;
 }
-.slick-prev::before,
-.slick-next::before {
-  font-size: 2.2rem;
-  -moz-transition: all 0.27s ease-in-out;
-  -o-transition: all 0.27s ease-in-out;
-  -ms-transition: all 0.27s ease-in-out;
-  transition: all 0.27s ease-in-out;
-}
 /* GENERAL OVERRIDES ********************* */
 /* ----- Bootstrap Overrides --------- */
 /* ----- Field Collection Overrides -- */
@@ -8260,21 +8180,6 @@ a.more-link:hover,
 }
 .front.green-theme .region-main-top .block-views .content {
   margin-top: 25px;
-}
-.green-theme .slick-slider {
-  margin-bottom: 0px;
-}
-.green-theme .main #block-views-home-page-slider-block {
-  margin-bottom: 0px;
-}
-.green-theme .slick-dots {
-  bottom: 0px;
-}
-.green-theme .slick-content a {
-  color: white;
-}
-.green-theme .slick-dots li button:before {
-  color: white;
 }
 .green-theme .navbar .nav > .active > a,
 .navbar .nav > .active > a:hover,
@@ -8436,68 +8341,6 @@ a.more-link:hover,
 }
 html body.admin-menu-with-shortcuts {
   margin-top: 64px !important;
-}
-.field-slideshow-wrapper {
-  position: relative;
-}
-.field-slideshow-wrapper .field-slideshow {
-  position: relative;
-  width: 100%!important;
-}
-.field-slideshow-wrapper .field-slideshow .field-slideshow-slide {
-  position: relative!important;
-  margin: 0 auto;
-  text-align: center;
-  width: 100%!important;
-}
-.field-slideshow-wrapper .field-slideshow .field-slideshow-slide img {
-  position: relative;
-  margin: 0 auto;
-}
-.field-slideshow-wrapper .field-slideshow-controls {
-  position: absolute;
-  top: 50%;
-  z-index: 10;
-  width: 100%;
-}
-.field-slideshow-wrapper .field-slideshow-controls a {
-  background-color: #039749;
-  color: #ffffff;
-  padding: 6px;
-  margin-top: -17px;
-  font-size: 0;
-  border: 1px solid #026531;
-  border-radius: 2px;
-  opacity: 0.8;
-}
-.field-slideshow-wrapper .field-slideshow-controls a:hover {
-  text-decoration: none;
-  background-color: #026531;
-}
-.field-slideshow-wrapper .field-slideshow-controls a:focus {
-  text-decoration: none;
-}
-.field-slideshow-wrapper .field-slideshow-controls a:before {
-  display: block;
-  text-align: center;
-  font-family: 'Glyphicons Halflings';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  width: 17px;
-  height: 17px;
-}
-.field-slideshow-wrapper .field-slideshow-controls a.prev {
-  float: left;
-}
-.field-slideshow-wrapper .field-slideshow-controls a.prev:before {
-  content: "\e079";
-}
-.field-slideshow-wrapper .field-slideshow-controls a.next {
-  float: right;
-}
-.field-slideshow-wrapper .field-slideshow-controls a.next:before {
-  content: "\e080";
 }
 .region-admin-shortcuts #block-system-user-menu .menu:before {
   display: inline-block;
@@ -8756,4 +8599,90 @@ body.node-type-species .panels-flexible-column-inside .panels-flexible-region-1-
 }
 #footer2 .footer-support img {
   max-height: 100px;
+}
+/* Styling related to slick slideshow */
+.slick-prev::before,
+.slick-next::before {
+  color: #FFFFFF;
+}
+.slick-prev::before,
+.slick-next::before {
+  font-size: 3.5rem;
+  -moz-transition: all 0.27s ease-in-out;
+  -o-transition: all 0.27s ease-in-out;
+  -ms-transition: all 0.27s ease-in-out;
+  transition: all 0.27s ease-in-out;
+}
+.slick-content {
+  position: absolute;
+  right: 68px;
+  top: 23%;
+}
+/* Landscape phone to landscape tablet */
+@media (max-width: 979px) {
+  .slick-content {
+    position: absolute;
+    right: 15%;
+    top: 15%;
+    width: 70% !important;
+  }
+}
+@media (max-width: 767px) {
+  .slick-content {
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    width: 80% !important;
+  }
+  .slick-content p {
+    display: none;
+  }
+  .slick-content h2 {
+    font-size: 20px;
+    margin-top: 0;
+  }
+}
+.slick-slide a {
+  color: white;
+}
+.slick-slide a:hover {
+  text-decoration: none;
+}
+.slick-slide a.more-link {
+  margin-top: 15px;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.slick-slide a.more-link::after {
+  content: " »";
+}
+.slick-slide .slick-content.well {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  text-align: center;
+  vertical-align: middle;
+  width: 70%;
+  top: 25%;
+  right: 15%;
+  -webkit-transition: all 0.27s cubic-bezier(0, 0, 0.58, 1);
+  -moz-transition: all 0.27s ease-in-out;
+  -o-transition: all 0.27s ease-in-out;
+  -ms-transition: all 0.27s ease-in-out;
+  transition: all 0.27s ease-in-out;
+}
+.slick-slide .slick-content.well:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.slick-slide .slick-content .btn {
+  background-color: transparent;
+  background-image: none;
+  border: 1px solid white;
+  box-shadow: none !important;
+}
+.slick-slide .slick-content .btn:hover {
+  background-color: #02823F;
+  background-image: none;
+  border: 1px solid #02823F;
 }

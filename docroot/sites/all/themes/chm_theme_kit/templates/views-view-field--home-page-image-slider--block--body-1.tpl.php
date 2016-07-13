@@ -23,9 +23,10 @@
  */
 ?>
 <?php
-dpm($output);
   print '<div class="slick-content well">'
-    //  . $output
+    . $output
+    . '<div>'
     . l(t('Read more'), $row->nid, array('attributes' => array('class' => array('more-link', 'btn'))))
+    . '</div>'
     . '</div>';
 ?>
