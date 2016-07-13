@@ -20,11 +20,12 @@ function chm_views_entityqueue_default_queues() {
   $queue->target_type = 'node';
   $queue->settings = array(
     'target_bundles' => array(
+      'event' => 'event',
       'news' => 'news',
     ),
     'min_size' => '0',
     'max_size' => '0',
-    'act_as_queue' => 0,
+    'act_as_queue' => 1,
   );
   $export['slideshow_www'] = $queue;
 
