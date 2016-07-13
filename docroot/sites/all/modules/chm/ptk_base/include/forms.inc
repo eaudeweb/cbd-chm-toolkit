@@ -15,6 +15,33 @@ function ptk_base_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-admin-views-node-system-1') {
     PTKForm::adminContentFormAlter($form, $form_state);
   }
+  PTKFormDocumentTypeField::alter($form);
+}
+
+
+/**
+ * Class PTKFormDocumentTypeField for alters the field_document_type to show
+ * only the active terms
+ */
+class PTKFormDocumentTypeField {
+
+  static function alter(&$form) {
+    if (isset($form['field_document_type'])) {
+      $allowed = db_select('field_data_field_in_use', 'a')
+        ->fields('a', array('entity_id'))
+        ->condition('entity_type', 'taxonomy_term')
+        ->condition('bundle', 'document_type')
+        ->condition('deleted', 0)->execute()->fetchCol();
+      $options = array();
+      foreach ($form['field_document_type'][LANGUAGE_NONE]['#options'] as $k => $v) {
+        if (in_array($k, $allowed) || $k == '_none') {
+          $options[$k] = $v;
+        }
+      }
+      $form['field_document_type'][LANGUAGE_NONE]['#options'] = $options;
+    }
+  }
+
 }
 
 class PTKForm {
@@ -114,9 +141,9 @@ class PTKForm {
     if (empty($domain['machine_name'])) {
       $domain['machine_name'] = $form_state['values']['machine_name'];
     }
-    $value = $form_state['values']['country'];
-    if ($current !== $value) {
-      PTK::variable_realm_set('country', $value, $domain);
+    $countryIsoCode = $form_state['values']['country'];
+    if ($current !== $countryIsoCode) {
+      PTK::variable_realm_set('country', $countryIsoCode, $domain);
     }
     cache_clear_all();
     if (!empty($form['#is_new'])) {
@@ -127,6 +154,35 @@ class PTKForm {
       PTKForm::socialMediaFormSubmit($form, $form_state, $domain);
       cache_clear_all();
     }
+
+    // Add the species import batch
+    $batch = array(
+      'title' => t('Invoking IUCN RedList API species data, please be patient ...'),
+      'operations' => array(
+        array(
+          array('PTKForm', 'importSpeciesCountry'),
+          array($countryIsoCode)
+        ),
+      ),
+      'finished' => array('PTKForm', 'importSpeciesCountryFinished')
+    );
+    batch_set($batch);
+  }
+
+  public static function importSpeciesCountry($iso, &$context) {
+    $iucn = IUCNRedListAPI::instance();
+    $count = $iucn->populateCountrySpecies($iso);
+    $context['results'] = $count;
+  }
+
+  public static function importSpeciesCountryFinished($success, $results) {
+    if ($success) {
+      $message = "$results species processed from IUCN RedList API.";
+    }
+    else {
+      $message = t('Species synchronisation finished with an error.');
+    }
+    drupal_set_message($message);
   }
 
 

@@ -1,0 +1,48 @@
+<?php
+/**
+ * @file
+ * Code for the chm_search feature.
+ */
+
+include_once 'chm_search.features.inc';
+
+/**
+ * Implements hook_block_info().
+ */
+function chm_search_block_info() {
+  $blocks = array();
+  $blocks['chm_search'] = [
+    'info' => t('CHM Search block'),
+    'status' => TRUE,
+    'region' => 'content',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'pages' => '',
+    'weight' => 1,
+  ];
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function chm_search_block_view($delta = '') {
+  if ($delta == 'chm_search') {
+    $val = '';
+    if (!empty($_GET['search_api_views_fulltext'])) {
+      $val = check_plain($_GET['search_api_views_fulltext']);
+    }
+    $ret = array(
+      'subject' => t('Search'),
+      'content' =>
+<<<EOT
+        <form method="GET" action="/search">
+          <input type="text" name="search_api_views_fulltext" value="$val">
+          <input class="btn-search form-submit" alt="Search" type="image" id="edit-submit" name="submit" src="/sites/all/themes/open_framework/images/searchbutton.png">
+        </form>
+EOT
+    );
+    return $ret;
+  }
+  return NULL;
+}

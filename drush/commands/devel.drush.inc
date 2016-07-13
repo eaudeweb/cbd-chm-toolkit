@@ -32,11 +32,20 @@ function _drush_prepare_dev() {
   if (module_exists('overlay')) {
     module_disable(['overlay']);
   }
+  module_disable(['memcache_storage']);
   module_enable(['devel']);
   foreach (domain_domains() as $id => $domain) {
     $domain = domain_load($id);
-    $domain['subdomain'] = _drush_prepare_local_domain_name($domain['subdomain']);
-    $domain['path'] = _drush_prepare_local_domain_name($domain['path']);
+    $subdomain = _drush_prepare_local_domain_name($domain['subdomain']);
+    if ($domain['machine_name'] == 'www') {
+      $subdomain = 'chm7.local.ro';
+    }
+    $domain['subdomain'] = $subdomain;
+    $path = _drush_prepare_local_domain_name($domain['path']);
+    if ($domain['machine_name'] == 'www') {
+      $path = 'http://chm7.local.ro';
+    }
+    $domain['path'] = $path;
     $domain['scheme'] = 'http';
     drush_log('Configuring ' . $domain['scheme'] . '://' . $domain['subdomain'], 'ok');
     domain_save($domain);

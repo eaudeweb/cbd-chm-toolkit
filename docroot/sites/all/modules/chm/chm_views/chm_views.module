@@ -5,3 +5,43 @@
  */
 
 include_once 'chm_views.features.inc';
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function chm_views_views_query_alter(&$view, &$query) {
+  switch ($view->name) {
+    case 'home_page_image_slider':
+      // NULLS last in homepage slider by entity queue order.
+      $order = array(
+        'field' => 'ISNULL(field_data_eq_node_delta)',
+        'direction' => 'ASC',
+      );
+      array_unshift($query->orderby, $order);
+      break;
+  }
+}
+
+/**
+ * Implements hook_views_pre_view().
+ */
+function chm_views_views_pre_view(&$view, &$display_id, &$args) {
+  switch ($view->name) {
+    case 'home_page_image_slider':
+      // Override relation with entityqueue of the curr domain.
+      $options = $view->display_handler->get_option('relationships');
+      $current_domain = domain_get_domain();
+      if (empty($current_domain['is_default']) && !empty($options['entityqueue_relationship'])) {
+        $q_name = 'slideshow_' . $current_domain['machine_name'];
+        $queue = entityqueue_queue_load($q_name);
+        if (!empty($queue)) {
+          $overrides['relationships'] = $options;
+          $overrides['relationships']['entityqueue_relationship']['queues'] = array($q_name => $q_name);
+          foreach ($overrides as $option => $definition) {
+            $view->display_handler->override_option($option, $definition);
+          }
+        }
+      }
+      break;
+  }
+}

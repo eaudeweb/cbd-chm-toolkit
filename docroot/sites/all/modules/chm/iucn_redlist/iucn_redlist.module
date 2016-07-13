@@ -1,0 +1,63 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function iucn_redlist_menu() {
+  $items = array();
+  $items['admin/config/services/iucn-redlist'] = array(
+    'title' => t('IUCN Redlist API'),
+    'description' => t('Manage configuration for the IUCN Redlist API access'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('iucn_redlist_config_form'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'iucn_redlist.admin.inc',
+    'type' => MENU_NORMAL_ITEM,
+    'menu_name' => 'management',
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_migrate_api().
+ */
+function iucn_redlist_migrate_api() {
+  return [
+    'api' => 2,
+    'groups' => [
+      'iucn_redlist' => [ 'title' => t('IUCN RedList API data migrations'), ],
+    ],
+    'migrations' => [
+      'iucn_species' => [
+        'class_name' => 'IUCNRedListSpeciesMigration',
+        'group_name' => 'iucn_redlist',
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements Elysia hook_cronapi().
+ */
+function iucn_redlist_cronapi() {
+  return array(
+    'iucn_redlist_cron' => array(
+      'description' => 'Import RedList species from API',
+      'rule' => '*/15 * * * *',
+    ),
+  );
+}
+
+
+/**
+ * Implements hook_cron().
+ */
+function iucn_redlist_cron() {
+  module_load_include('inc', 'migrate_ui', 'migrate_ui.pages');
+  $machine_name = 'iucn_species';
+  // Update Focal Point Migration.
+  $migration = Migration::getInstance($machine_name);
+  watchdog('iucn_redlist', 'Starting Import @migration', array('@migration' => $machine_name), WATCHDOG_INFO);
+  $result = $migration->processImport(array('update' => TRUE, 'limit' => array('value' => 25, 'unit' => 'items')));
+  watchdog('iucn_redlist', 'Imported @migration with result: @result', array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);
+}

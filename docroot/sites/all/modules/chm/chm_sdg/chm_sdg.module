@@ -20,31 +20,59 @@ function chm_sdg_post_features_rebuild($component) {
         PTK::log_warning('Cannot prepare destination directory: ' . $dest_path);
       }
       $goals = spyc_load_file(drupal_get_path('module', 'chm_sdg') . '/data/goals.yml');
+      $all_languages = array_keys(language_list());
       if (!empty($goals)) {
         foreach ($goals as $idx => $goal) {
-          $file_ob = NULL;
-          $source_image = realpath($base_path . sprintf('/data/images/sdg-%02d-en.png', $idx));
-          $destination = $dest_path . basename($source_image);
-          if ($dest_path && file_exists($source_image)) {
-            $file = (object) array(
-              'uid' => 1, 'filename' => basename($source_image),
-              'uri' => $source_image, 'filemime' => file_get_mimetype($source_image),
-              'status' => FILE_STATUS_PERMANENT,
-            );
-            $file_ob = file_copy($file, $destination, FILE_EXISTS_REPLACE);
-          }
           $term = new stdClass();
           $term->language = 'en';
           $term->name = 'Goal ' . $idx . '. ' . $goal['en'];
+          $file_ob = NULL;
+          foreach($all_languages as $l) {
+            $source_image = realpath($base_path . sprintf('/data/images/sdg-%02d-%s.png', $idx, $l));
+            $destination = $dest_path . basename($source_image);
+            if ($dest_path && file_exists($source_image)) {
+              $file = (object) array(
+                'uid' => 1,
+                'filename' => basename($source_image),
+                'uri' => $source_image,
+                'filemime' => file_get_mimetype($source_image),
+                'status' => FILE_STATUS_PERMANENT,
+              );
+              if ($file_ob = file_copy($file, $destination, FILE_EXISTS_REPLACE)) {
+                $term->field_image[$l][0]['fid'] = $file_ob->fid;
+              }
+              else {
+                PTK::log_warning('Could not copy image file: ' . $source_image . ' => ' . $destination);
+              }
+            }
+          }
+          $trans_languages = array();
+          foreach($all_languages as $l) {
+            if (!empty($goal[$l])) {
+              $trans_languages[] = $l;
+              $term->name_field[$l][0]['value'] = $goal[$l];
+            }
+          }
+
           $term->vocabulary_machine_name = 'sdg';
           $term->vid = $voc->vid;
           $term->field_sdg_index[LANGUAGE_NONE][0]['value'] = $idx;
           $term->weight = $idx;
-          if (!empty($file_ob)) {
-            $term->field_image[LANGUAGE_NONE][0]['fid'] = $file_ob->fid;
-          }
-          else {
-            PTK::log_warning('Could not copy image file: ' . $source_image . ' => ' . $destination);
+          taxonomy_term_save($term);
+          $translation_handler = entity_translation_get_handler('taxonomy_term', $term);
+          $translation_handler->initTranslations();
+          $translation_handler->setOriginalLanguage('en');
+          $term->translations = $translation_handler->getTranslations();
+          foreach ($trans_languages as $lang) {
+            if ($lang != 'en') {
+              $translation_handler->setTranslation(array(
+                'translate' => 0,
+                'status' => 1,
+                'uid' => 1,
+                'language' => $lang,
+                'source' => 'en',
+              ));
+            }
           }
           taxonomy_term_save($term);
         }

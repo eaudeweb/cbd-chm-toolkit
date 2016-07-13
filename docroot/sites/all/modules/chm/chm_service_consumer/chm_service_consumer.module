@@ -1,5 +1,32 @@
 <?php
 
+/**
+ * Implements Elysia hook_cronapi().
+ */
+function chm_service_consumer_cronapi() {
+  return array(
+    'chm_service_consumer_cron' => array(
+      'description' => 'Import NFP from Informea',
+      'rule' => '0 0 * * *',
+    ),
+  );
+}
+
+/**
+ * Implements hook_cron().
+ */
+function chm_service_consumer_cron() {
+  module_load_include('inc', 'migrate_ui', 'migrate_ui.pages');
+  $machine_name = 'nfp';
+  // Update Focal Point Migration.
+  $migration = Migration::getInstance($machine_name);
+  $migration->prepareUpdate();
+  watchdog('chm_service_consumer', 'Starting Import @migration',
+    array('@migration' => $machine_name), WATCHDOG_INFO);
+  $result = $migration->processImport(array('update' => TRUE));
+  watchdog('chm_service_consumer', 'Imported @migration with result: @result',
+    array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);
+}
 
 /**
  * Implements hook_migrate_api().
@@ -11,16 +38,10 @@ function chm_service_consumer_migrate_api() {
       'cbd' => [ 'title' => t('CBD API migrations'), ],
     ],
     'migrations' => [
-      'nfp_type' => [
-        'class_name' => 'CHMServerConsumerNFPTypeMigration',
-        'group_name' => 'cbd',
-        'urlPattern' => 'https://api.cbd.int/api/v2015/national-focal-point-types?s={"_id":1}',
-      ],
       'nfp' => [
         'class_name' => 'CHMServerConsumerNFPMigration',
         'group_name' => 'cbd',
-        'urlPattern' => 'https://api.cbd.int/api/v2015/national-focal-points?s={"_id":1}',
-        'dependencies' => [ 'nfp_type' ],
+        'urlPattern' => 'https://api.cbd.int/informea.svc/Contacts',
       ]
     ],
   ];
@@ -71,10 +92,9 @@ abstract class CHMServerConsumerMigrateSource extends MigrateSource {
 
   public function count($refresh = FALSE) {
     if (empty($this->count) || $refresh) {
-      $url = $this->urlPattern . '&c=1';
+      $url = $this->urlPattern . '/$count';
       if ($response = self::http_request($url)) {
-        $p = json_decode($response);
-        $this->count = $p->count;
+        $this->count = $response;
       }
     }
     return $this->count;
@@ -94,8 +114,10 @@ abstract class CHMServerConsumerMigrateSource extends MigrateSource {
     }
     if ($this->currentCount == $next_call_count && $next_call_count < $this->count()) {
       $start = $this->currentPage * $this->pageSize;
-      if ($str = self::http_request($this->urlPattern . '&l=' . $this->pageSize . '&sk=' . $start, array('Accept' => 'application/json'))) {
-        if ($this->data = json_decode($str, FALSE)) {
+      if ($str = self::http_request($this->urlPattern . '?$top=' . $this->pageSize . '&$skip=' . $start, array('Accept: application/json'))) {
+        $result = json_decode($str, FALSE);
+        if (!empty($result->d->results)) {
+          $this->data = $result->d->results;
           $this->currentPage++;
         }
       }

@@ -2,7 +2,13 @@
 
 require_once dirname(__FILE__) . '/include/PTK.php';
 require_once dirname(__FILE__) . '/include/forms.inc';
-require_once dirname(__FILE__) . '/include/blocks.inc';
+require_once dirname(__FILE__) . '/include/blocks/AbstractBlock.php';
+require_once dirname(__FILE__) . '/include/blocks/ChmContentStatisticsBlock.php';
+require_once dirname(__FILE__) . '/include/blocks/ChmNetworkSitesBlock.php';
+require_once dirname(__FILE__) . '/include/blocks/ChmFooterQuickLinksRootBlock.php';
+require_once dirname(__FILE__) . '/include/blocks/ChmFooterQuickLinksBlock.php';
+require_once dirname(__FILE__) . '/include/blocks/ChmFooterFollowUsBlock.php';
+require_once dirname(__FILE__) . '/include/blocks/ChmFooterCountryLinksBlock.php';
 
 /**
  * Implements hook_permission().
@@ -81,62 +87,117 @@ function ptk_base_menu() {
  * Implements hook_block_info().
  */
 function ptk_base_block_info() {
-  $blocks['chm_network_sites'] = [
-    'info' => t('National CHM Training Sites'),
-    'status' => TRUE,
-    'region' => 'content',
-    'cache' => DRUPAL_CACHE_GLOBAL,
-    'visibility' => BLOCK_VISIBILITY_LISTED,
-    'pages' => 'chm-network',
-    'weight' => 1,
-  ];
-  $blocks['chm_footer_quick_links_root'] = [
-    'info' => t('Footer quick links for root domain'),
-    'status' => TRUE,
-    'region' => 'footer_col_1',
-    'cache' => DRUPAL_NO_CACHE,
-    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
-    'pages' => '',
-    'weight' => 1,
-  ];
-  $blocks['chm_footer_quick_links'] = [
-    'info' => t('Footer quick links'),
-    'status' => TRUE,
-    'region' => 'footer_col_1',
-    'cache' => DRUPAL_NO_CACHE,
-    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
-    'pages' => '',
-    'weight' => 1,
-  ];
-  $blocks['chm_footer_follow_us'] = [
-    'info' => t('Follow Us'),
-    'status' => TRUE,
-    'region' => 'footer_col_4',
-    'cache' => DRUPAL_NO_CACHE,
-    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
-    'pages' => '',
-    'weight' => 1,
-  ];
-  $blocks['chm_footer_country_links'] = [
-    'info' => t('Country links'),
-    'status' => TRUE,
-    'region' => 'footer_col_3',
-    'cache' => DRUPAL_NO_CACHE,
-    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
-    'pages' => '',
-    'weight' => 1,
-  ];
+  $blocks = [];
+  $declaredClasses = get_declared_classes();
+  foreach ($declaredClasses as $class) {
+    if (strpos($class, 'Drupal\\ptk_base\\blocks\\') === 0) {
+      $testClass = new \ReflectionClass($class);
+      if ($testClass->isAbstract() === false) {
+        /** @var Drupal\ptk_base\blocks\AbstractBlock $block */
+        $block = new $class();
+        $blocks += $block->info();
+      }
+    }
+  }
   return $blocks;
 }
 
+function _ptk_base_get_block_class_Name($delta = '') {
+  /*
+   * If the delta is chm_content_statistics the class name should be
+   * ChmContentStatisticsBlock.
+   */
+  $className = str_replace(' ', '', ucwords(str_replace('_', ' ', $delta))) . 'Block';
+  $fullClassName = 'Drupal\\ptk_base\\blocks\\' . $className;
+  return $fullClassName;
+}
 
 /**
  * Implements hook_block_view().
  */
 function ptk_base_block_view($delta = '') {
-  return PTKBlocks::render($delta);
+  $return = [];
+  $fullClassName = _ptk_base_get_block_class_Name($delta);
+  if (class_exists($fullClassName)) {
+    /** @var Drupal\ptk_base\blocks\AbstractBlock $block */
+    $block = new $fullClassName();
+    $return = $block->view();
+  }
+  else {
+    drupal_set_message(t('Class !class does not exist.', ['!class' => $fullClassName]), 'error');
+  }
+  return $return;
 }
 
+/**
+ * Implements hook_block_configure().
+ */
+function ptk_base_block_configure($delta = '') {
+  $return = [];
+  $fullClassName = _ptk_base_get_block_class_Name($delta);
+  if (class_exists($fullClassName)) {
+    /** @var Drupal\ptk_base\blocks\AbstractBlock $block */
+    $block = new $fullClassName();
+    $return = $block->configure();
+  }
+  else {
+    drupal_set_message(t('Class !class does not exist.', ['!class' => $fullClassName]), 'error');
+  }
+  return $return;
+}
+
+/**
+ * Implements hook_block_save().
+ */
+function ptk_base_block_save($delta = '', $edit = array()) {
+  $fullClassName = _ptk_base_get_block_class_Name($delta);
+  if (class_exists($fullClassName)) {
+    /** @var Drupal\ptk_base\blocks\AbstractBlock $block */
+    $block = new $fullClassName();
+    $block->save($edit);
+  }
+  else {
+    drupal_set_message(t('Class !class does not exist.', ['!class' => $fullClassName]), 'error');
+  }
+}
+
+/**
+ * Implements hook_schema_alter()
+ */
+function ptk_base_schema_alter(&$schema) {
+  $column = 'title_field_value';
+  $new_spec = array(
+    'type' => 'varchar', 'length' => 2048, 'not null' => TRUE, 'default' => '',
+  );
+  $table = 'field_data_title_field';
+  if (isset($schema[$table])) {
+    $schema[$table]['fields'][$column] = $new_spec;
+  }
+  $table = 'field_revision_title_field';
+  if (isset($schema[$table])) {
+    $schema[$table]['fields'][$column] = $new_spec;
+  }
+
+  $column = 'name_field_value';
+  $table = 'field_data_name_field';
+  if (isset($schema[$table])) {
+    $schema[$table]['fields'][$column] = $new_spec;
+  }
+  $table = 'field_revision_name_field';
+  if (isset($schema[$table])) {
+    $schema[$table]['fields'][$column] = $new_spec;
+  }
+
+  $table = 'node';
+  $column = 'title';
+  if (isset($schema[$table])) {
+    $schema[$table]['fields'][$column] = $new_spec;
+  }
+  $table = 'node_revision';
+  if (isset($schema[$table])) {
+    $schema[$table]['fields'][$column] = $new_spec;
+  }
+}
 
 /**
  * Implements hook_field_formatter_info().
@@ -151,6 +212,19 @@ function ptk_base_field_formatter_info() {
       ),
     )
   );
+}
+
+function ptk_base_language_switch_links_alter(array &$links, $type, $path) {
+  $node = menu_get_object();
+  if ($node) {
+    // Unset lang-switcher links for non-existent translations
+    foreach ($links as $langcode => &$link) {
+      if (!isset($node->translations->data[$langcode])) {
+        unset($links[$langcode]);
+      }
+      $link['attributes']['hreflang'] = $langcode;
+    }
+  }
 }
 
 /**
@@ -168,4 +242,11 @@ function ptk_base_field_formatter_view($entity_type, $entity, $field, $instance,
     $element[$delta] = array('#type' => 'item', '#markup' => $value);
   }
   return $element;
+}
+
+/**
+ * Implements hook_iucn_redlist_log().
+ */
+function ptk_base_iucn_redlist_log($message, $variables, $severity) {
+  watchdog('iucn_redlist', $message, $variables, $severity);
 }

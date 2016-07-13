@@ -3,7 +3,34 @@
 
 class PTK {
 
-  public static $PTK_ROOT_DOMAIN_ID = 18;
+  /**
+   * Get the ID of default domain
+   *
+   * @return integer
+   *   ID of the default domain
+   */
+  public static function getDefaultDomainId() {
+    if ($domain = self::getDefaultDomain()) {
+      return $domain['domain_id'];
+    }
+    return NULL;
+  }
+
+  /**
+   * Get the ID of default domain
+   *
+   * @return integer
+   *   ID of the default domain
+   */
+  public static function getDefaultDomain() {
+    $all = domain_domains();
+    foreach ($all as $domain) {
+      if (!empty($domain['is_default']) && $domain['is_default'] == 1) {
+        return $domain;
+      }
+    }
+    return NULL;
+  }
 
   /**
    * Retrieve the domain object corresponding to a country ISO code.
@@ -20,6 +47,10 @@ class PTK {
     return NULL;
   }
 
+  public static function getIMCEUploadPath() {
+    $domain = domain_get_domain();
+    return 'uploads/' . $domain['machine_name'];
+  }
 
   /**
    * Get the Country of the current portal.
@@ -46,7 +77,7 @@ class PTK {
     $countries = self::getCountryList();
     foreach ($countries as $country) {
       $w = entity_metadata_wrapper('taxonomy_term', $country);
-      $code = $w->field_country_code->value();
+      $code = $w->field_iso_code->value();
       $ret[strtolower($code)] = $w->label();
     }
     return $ret;
@@ -74,15 +105,16 @@ class PTK {
   public static function getCountryByCode($iso) {
     $items = drupal_static(__METHOD__);
     if (!isset($items)) {
-      $q = db_select('field_data_field_country_code');
-      $q->fields(NULL, array('entity_id', 'field_country_code_value'));
+      $q = db_select('field_data_field_iso_code');
+      $q->fields(NULL, array('entity_id', 'field_iso_code_value'));
       $q->condition('entity_type', 'taxonomy_term');
       $q->condition('bundle', 'countries');
       $rows = $q->execute()->fetchAllKeyed();
       foreach ($rows as $k => $code) {
         $term = taxonomy_term_load($k);
         $w = entity_metadata_wrapper('taxonomy_term', $term);
-        $term->iso2l = $w->field_country_code->value();
+        $term->iso2l = $w->field_iso_code->value();
+        $term->iso3l = $w->field_iso3l_code->value();
         $items[strtoupper($code)] = $term;
       }
     }
@@ -124,9 +156,8 @@ class PTK {
   public static function getCountryFlagURL($country) {
     try {
       $w = entity_metadata_wrapper('taxonomy_term', $country);
-      if ($iso = $w->field_country_code->value()) {
-        return url(
-          sprintf('/sites/all/files/flags/%s.png', strtolower($iso)),
+      if ($iso = $w->field_iso_code->value() && $image = $w->field_image->value()) {
+        return url(file_create_url($image['uri']),
           array('absolute' => 1, 'language' => (object)array('language' => LANGUAGE_NONE))
         );
       }
@@ -276,14 +307,6 @@ class PTK {
         'uid' => $user->uid,
         'name' => $user->name,
         'language' => 'en',
-        // @todo: what to add here when there's no country selected?
-        'field_country' => array(
-          LANGUAGE_NONE => array(
-            '0' => array(
-              'tid' => $country->tid,
-            ),
-          )
-        ),
         'menu' => array(
           'enabled' => 1,
           'mlid' => 0,
@@ -426,6 +449,17 @@ class PTK {
         }
       }
       self::variable_realm_set('create_sample_content', TRUE, $domain);
+    }
+
+    // Create entityqueue for slideshow.
+    $default_queue = entityqueue_queue_load('slideshow_www');
+    if (!empty($default_queue)) {
+      $new_queue = (array) $default_queue;
+      unset($new_queue['export_type']);
+      $new_queue['name'] = $new_queue['label'] = 'slideshow_' . $domain['machine_name'];
+      $new_queue['is_new'] = TRUE;
+      $new_queue = new EntityQueue($new_queue);
+      entityqueue_queue_save($new_queue);
     }
     return TRUE;
   }
