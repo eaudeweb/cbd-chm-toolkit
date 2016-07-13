@@ -35,6 +35,7 @@ class ChmContentStatisticsBlock extends AbstractBlock {
     $content = [
       'empty' => t('No statistics available'),
       'rows' => [],
+      'header' => [],
     ];
     foreach ($types as $machine_name => $type) {
       if (variable_get("{$this->delta}_{$machine_name}_hide", 0) == 0) {
