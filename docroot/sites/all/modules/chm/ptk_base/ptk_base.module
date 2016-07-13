@@ -200,6 +200,11 @@ function ptk_base_schema_alter(&$schema) {
   if (isset($schema[$table])) {
     $schema[$table]['fields'][$column] = $new_spec;
   }
+
+  $table = 'taxonomy_term_data';
+  if (isset($schema[$table])) {
+    $schema[$table]['fields']['name']['length'] = 2048;
+  }
 }
 
 /**

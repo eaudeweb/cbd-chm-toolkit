@@ -1,8 +1,1 @@
 <?php
-
-/**
- * Attach icons to the SDGs
- */
-function chm_sdg_update_7001() {
-  
-}
