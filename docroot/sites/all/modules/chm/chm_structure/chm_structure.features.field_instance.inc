@@ -1264,6 +1264,113 @@ function chm_structure_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-ecosystem-field_event_address'.
+  $field_instances['node-ecosystem-field_event_address'] = array(
+    'bundle' => 'ecosystem',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'addressfield',
+        'settings' => array(
+          'format_handlers' => array(
+            0 => 'address',
+          ),
+          'use_widget_handlers' => 1,
+        ),
+        'type' => 'addressfield_default',
+        'weight' => 3,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_event_address',
+    'label' => 'Location',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'addressfield_autocomplete',
+      'settings' => array(
+        'available_countries' => array(),
+        'default_country' => '',
+        'draggable' => 1,
+        'format_handlers' => array(
+          'address' => 'address',
+          'address-hide-postal-code' => 0,
+          'address-hide-street' => 0,
+          'address-hide-country' => 0,
+          'organisation' => 0,
+          'name-full' => 0,
+          'name-oneline' => 0,
+          'address-optional' => 0,
+        ),
+        'geolocation' => TRUE,
+        'html5_geocode' => 1,
+        'manual_text' => 'Enter one manually',
+        'map' => 1,
+        'restrict_country' => array(),
+        'reveal' => 1,
+        'reverse_geocode' => 0,
+        'types' => 'geocode',
+        'visible_markers' => 1,
+      ),
+      'type' => 'addressfield_autocomplete',
+      'weight' => 11,
+    ),
+  );
+
+  // Exported field_instance: 'node-ecosystem-field_geolocation'.
+  $field_instances['node-ecosystem-field_geolocation'] = array(
+    'bundle' => 'ecosystem',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'geofield',
+        'settings' => array(
+          'data' => 'full',
+        ),
+        'type' => 'geofield_wkt',
+        'weight' => 4,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_geolocation',
+    'label' => 'Geolocation',
+    'required' => FALSE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'addressfield_autocomplete',
+      'settings' => array(
+        'addressfield_autocomplete_field' => '',
+        'delta_handling' => 'default',
+      ),
+      'type' => 'addressfield_autocomplete_latlng',
+      'weight' => 13,
+    ),
+  );
+
   // Exported field_instance: 'node-ecosystem-field_image'.
   $field_instances['node-ecosystem-field_image'] = array(
     'bundle' => 'ecosystem',
@@ -1312,179 +1419,6 @@ function chm_structure_field_default_field_instances() {
       ),
       'type' => 'image_image',
       'weight' => 2,
-    ),
-  );
-
-  // Exported field_instance: 'node-ecosystem-field_location'.
-  $field_instances['node-ecosystem-field_location'] = array(
-    'bundle' => 'ecosystem',
-    'default_value' => array(
-      0 => array(
-        'location_settings' => array(
-          'display' => array(
-            'hide' => array(
-              'additional' => 'additional',
-              'city' => 0,
-              'coords' => 0,
-              'country' => 0,
-              'country_name' => 0,
-              'locpick' => 0,
-              'map_link' => 0,
-              'name' => 0,
-              'postal_code' => 0,
-              'province' => 0,
-              'province_name' => 'province_name',
-              'street' => 0,
-            ),
-          ),
-          'form' => array(
-            'fields' => array(
-              'additional' => array(
-                'collect' => 0,
-                'default' => '',
-                'weight' => 6,
-              ),
-              'city' => array(
-                '#parents' => array(
-                  0 => 'field_location',
-                  1 => 'und',
-                  2 => 0,
-                ),
-                'collect' => 1,
-                'default' => '',
-                'weight' => 8,
-              ),
-              'country' => array(
-                '#parents' => array(
-                  0 => 'field_location',
-                  1 => 'und',
-                  2 => 0,
-                ),
-                'collect' => 1,
-                'default' => 'us',
-                'weight' => 14,
-              ),
-              'delete_location' => array(
-                'default' => FALSE,
-                'nodiff' => TRUE,
-              ),
-              'is_primary' => array(
-                'default' => 0,
-              ),
-              'latitude' => array(
-                'default' => 0,
-              ),
-              'lid' => array(
-                'default' => FALSE,
-              ),
-              'locpick' => array(
-                '#parents' => array(
-                  0 => 'field_location',
-                  1 => 'und',
-                  2 => 0,
-                ),
-                'collect' => 1,
-                'default' => FALSE,
-                'nodiff' => TRUE,
-                'weight' => 20,
-              ),
-              'longitude' => array(
-                'default' => 0,
-              ),
-              'name' => array(
-                '#parents' => array(
-                  0 => 'field_location',
-                  1 => 'und',
-                  2 => 0,
-                ),
-                'collect' => 1,
-                'default' => '',
-                'weight' => 2,
-              ),
-              'postal_code' => array(
-                '#parents' => array(
-                  0 => 'field_location',
-                  1 => 'und',
-                  2 => 0,
-                ),
-                'collect' => 1,
-                'default' => '',
-                'weight' => 12,
-              ),
-              'province' => array(
-                '#parents' => array(
-                  0 => 'field_location',
-                  1 => 'und',
-                  2 => 0,
-                ),
-                'collect' => 1,
-                'default' => '',
-                'weight' => 10,
-                'widget' => 'autocomplete',
-              ),
-              're_geocode_location' => array(
-                'default' => FALSE,
-                'nodiff' => TRUE,
-              ),
-              'source' => array(
-                'default' => 0,
-              ),
-              'street' => array(
-                '#parents' => array(
-                  0 => 'field_location',
-                  1 => 'und',
-                  2 => 0,
-                ),
-                'collect' => 1,
-                'default' => '',
-                'weight' => 4,
-              ),
-            ),
-          ),
-        ),
-        'name' => '',
-        'street' => '',
-        'city' => '',
-        'province' => '',
-        'postal_code' => '',
-        'country' => '',
-        'locpick' => array(
-          'user_latitude' => '',
-          'user_longitude' => '',
-        ),
-      ),
-    ),
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'location_cck',
-        'settings' => array(),
-        'type' => 'location_default',
-        'weight' => 3,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_location',
-    'label' => 'Location',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'location_cck',
-      'settings' => array(),
-      'type' => 'location',
-      'weight' => 3,
     ),
   );
 
@@ -2318,6 +2252,72 @@ function chm_structure_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-news-field_event_address'.
+  $field_instances['node-news-field_event_address'] = array(
+    'bundle' => 'news',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'addressfield',
+        'settings' => array(
+          'format_handlers' => array(
+            0 => 'address',
+          ),
+          'use_widget_handlers' => 1,
+        ),
+        'type' => 'addressfield_default',
+        'weight' => 6,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_event_address',
+    'label' => 'Location',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'addressfield_autocomplete',
+      'settings' => array(
+        'available_countries' => array(),
+        'default_country' => '',
+        'draggable' => 1,
+        'format_handlers' => array(
+          'address' => 'address',
+          'address-hide-postal-code' => 0,
+          'address-hide-street' => 0,
+          'address-hide-country' => 0,
+          'organisation' => 0,
+          'name-full' => 0,
+          'name-oneline' => 0,
+          'address-optional' => 0,
+        ),
+        'geolocation' => TRUE,
+        'html5_geocode' => 1,
+        'manual_text' => 'Enter one manually',
+        'map' => 1,
+        'restrict_country' => array(),
+        'reveal' => 1,
+        'reverse_geocode' => 0,
+        'types' => 'geocode',
+        'visible_markers' => 1,
+      ),
+      'type' => 'addressfield_autocomplete',
+      'weight' => 11,
+    ),
+  );
+
   // Exported field_instance: 'node-news-field_expire'.
   $field_instances['node-news-field_expire'] = array(
     'bundle' => 'news',
@@ -2363,6 +2363,47 @@ function chm_structure_field_default_field_instances() {
       ),
       'type' => 'date_popup',
       'weight' => 4,
+    ),
+  );
+
+  // Exported field_instance: 'node-news-field_geolocation'.
+  $field_instances['node-news-field_geolocation'] = array(
+    'bundle' => 'news',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'geofield',
+        'settings' => array(
+          'data' => 'full',
+        ),
+        'type' => 'geofield_wkt',
+        'weight' => 7,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_geolocation',
+    'label' => 'Geolocation',
+    'required' => FALSE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'addressfield_autocomplete',
+      'settings' => array(
+        'addressfield_autocomplete_field' => '',
+        'delta_handling' => 'default',
+      ),
+      'type' => 'addressfield_autocomplete_latlng',
+      'weight' => 13,
     ),
   );
 
@@ -2414,179 +2455,6 @@ function chm_structure_field_default_field_instances() {
       ),
       'type' => 'image_image',
       'weight' => 2,
-    ),
-  );
-
-  // Exported field_instance: 'node-news-field_location'.
-  $field_instances['node-news-field_location'] = array(
-    'bundle' => 'news',
-    'default_value' => array(
-      0 => array(
-        'location_settings' => array(
-          'display' => array(
-            'hide' => array(
-              'additional' => 'additional',
-              'city' => 0,
-              'coords' => 0,
-              'country' => 0,
-              'country_name' => 0,
-              'locpick' => 0,
-              'map_link' => 0,
-              'name' => 0,
-              'postal_code' => 0,
-              'province' => 0,
-              'province_name' => 'province_name',
-              'street' => 0,
-            ),
-          ),
-          'form' => array(
-            'fields' => array(
-              'additional' => array(
-                'collect' => 0,
-                'default' => '',
-                'weight' => 6,
-              ),
-              'city' => array(
-                '#parents' => array(
-                  0 => 'field_location',
-                  1 => 'und',
-                  2 => 0,
-                ),
-                'collect' => 1,
-                'default' => '',
-                'weight' => 8,
-              ),
-              'country' => array(
-                '#parents' => array(
-                  0 => 'field_location',
-                  1 => 'und',
-                  2 => 0,
-                ),
-                'collect' => 1,
-                'default' => 'us',
-                'weight' => 14,
-              ),
-              'delete_location' => array(
-                'default' => FALSE,
-                'nodiff' => TRUE,
-              ),
-              'is_primary' => array(
-                'default' => 0,
-              ),
-              'latitude' => array(
-                'default' => 0,
-              ),
-              'lid' => array(
-                'default' => FALSE,
-              ),
-              'locpick' => array(
-                '#parents' => array(
-                  0 => 'field_location',
-                  1 => 'und',
-                  2 => 0,
-                ),
-                'collect' => 1,
-                'default' => FALSE,
-                'nodiff' => TRUE,
-                'weight' => 20,
-              ),
-              'longitude' => array(
-                'default' => 0,
-              ),
-              'name' => array(
-                '#parents' => array(
-                  0 => 'field_location',
-                  1 => 'und',
-                  2 => 0,
-                ),
-                'collect' => 1,
-                'default' => '',
-                'weight' => 2,
-              ),
-              'postal_code' => array(
-                '#parents' => array(
-                  0 => 'field_location',
-                  1 => 'und',
-                  2 => 0,
-                ),
-                'collect' => 1,
-                'default' => '',
-                'weight' => 12,
-              ),
-              'province' => array(
-                '#parents' => array(
-                  0 => 'field_location',
-                  1 => 'und',
-                  2 => 0,
-                ),
-                'collect' => 1,
-                'default' => '',
-                'weight' => 10,
-                'widget' => 'autocomplete',
-              ),
-              're_geocode_location' => array(
-                'default' => FALSE,
-                'nodiff' => TRUE,
-              ),
-              'source' => array(
-                'default' => 0,
-              ),
-              'street' => array(
-                '#parents' => array(
-                  0 => 'field_location',
-                  1 => 'und',
-                  2 => 0,
-                ),
-                'collect' => 1,
-                'default' => '',
-                'weight' => 4,
-              ),
-            ),
-          ),
-        ),
-        'name' => '',
-        'street' => '',
-        'city' => '',
-        'province' => '',
-        'postal_code' => '',
-        'country' => '',
-        'locpick' => array(
-          'user_latitude' => '',
-          'user_longitude' => '',
-        ),
-      ),
-    ),
-    'deleted' => 0,
-    'description' => 'Location of interest, if available',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'location_cck',
-        'settings' => array(),
-        'type' => 'location_all',
-        'weight' => 3,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_location',
-    'label' => 'Location',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'location_cck',
-      'settings' => array(),
-      'type' => 'location',
-      'weight' => 10,
     ),
   );
 
@@ -4473,7 +4341,6 @@ function chm_structure_field_default_field_instances() {
   t('Kingdom');
   t('Last name');
   t('Location');
-  t('Location of interest, if available');
   t('Machine name');
   t('Main common name');
   t('Name');

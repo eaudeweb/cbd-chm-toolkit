@@ -42,26 +42,3 @@ function chm_theme_kit_panels_flexible($vars) {
   $output .= "</div>\n</div>\n";
   return $output;
 }
-
-
-/**
- * Implements hook_preprocess_HOOK().
- */
-function chm_theme_kit_preprocess_location(&$variables) {
-  if (!empty($variables['map_link'])) {
-    $dom = new DOMDocument();
-    $dom->loadHTML($variables['map_link']);
-    $tags = $dom->getElementsByTagName('a');
-    if (!empty($tags)) {
-      $href = $tags[0]->getAttribute('href');
-      $span = '<span class="glyphicon glyphicon-globe" title="See map"></span>';
-      $variables['map_link'] = l($span, $href,
-        array(
-          'absolute' => TRUE,
-          'html' => TRUE,
-          'attributes' => array('target' => '_blank'),
-        )
-      );
-    }
-  }
-}
