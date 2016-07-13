@@ -38,7 +38,7 @@ function chm_search_block_view($delta = '') {
 <<<EOT
         <form method="GET" action="/search">
           <input type="text" name="search_api_views_fulltext" value="$val">
-          <input class="btn-search form-submit" alt="Search" type="image" id="edit-submit" name="submit" src="/sites/all/themes/open_framework/images/searchbutton.png">
+          <input class="btn-search form-submit" alt="Search" type="image" id="edit-submit" name="submit" src="/sites/all/themes/chm_theme_kit/img/searchbutton.png">
         </form>
 EOT
     );
