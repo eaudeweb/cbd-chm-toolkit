@@ -225,7 +225,7 @@ function ptk_base_admin_page_configure_portal_global_settings() {
     '#type' => 'item',
     '#markup' => t('Configuration for <strong>!portal_name</strong>', array('!portal_name' => $domain['sitename']))
   ];
-  $form += PTKForm::socialMediaForm($form, array());
+  $form += ChmSocialMediaForm::form($form);
   $form['ptk']['protected_planet_id'] = [
     '#type' => 'textfield',
     '#title' => t('Protected planet country ID'),
@@ -243,7 +243,7 @@ function ptk_base_admin_page_configure_portal_global_settings_validate($form, $f
 
 function ptk_base_admin_page_configure_portal_global_settings_submit($form, $form_state) {
   $values = $form_state['values'];
-  PTKForm::socialMediaFormSubmit($form, $form_state, domain_get_domain());
+  ChmSocialMediaForm::submit($form, $form_state, domain_get_domain());
   PTK::variable_realm_set('ptk_protected_planet_id', $values['ptk']['protected_planet_id']);
 }
 

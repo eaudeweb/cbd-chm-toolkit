@@ -1,7 +1,6 @@
 <?php
 
 require_once dirname(__FILE__) . '/include/PTK.php';
-require_once dirname(__FILE__) . '/include/forms.inc';
 require_once dirname(__FILE__) . '/include/blocks/AbstractBlock.php';
 require_once dirname(__FILE__) . '/include/blocks/ChmContentStatisticsBlock.php';
 require_once dirname(__FILE__) . '/include/blocks/ChmNetworkSitesBlock.php';
@@ -9,6 +8,9 @@ require_once dirname(__FILE__) . '/include/blocks/ChmFooterQuickLinksRootBlock.p
 require_once dirname(__FILE__) . '/include/blocks/ChmFooterQuickLinksBlock.php';
 require_once dirname(__FILE__) . '/include/blocks/ChmFooterFollowUsBlock.php';
 require_once dirname(__FILE__) . '/include/blocks/ChmFooterCountryLinksBlock.php';
+require_once dirname(__FILE__) . '/include/forms/base.inc';
+require_once dirname(__FILE__) . '/include/forms/ChmDomainForm.php';
+require_once dirname(__FILE__) . '/include/forms/ChmSocialMediaForm.php';
 
 /**
  * Implements hook_permission().
