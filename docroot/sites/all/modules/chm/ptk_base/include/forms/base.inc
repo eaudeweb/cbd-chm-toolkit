@@ -7,7 +7,7 @@
  * @inheritdoc
  */
 function ptk_base_form_alter(&$form, &$form_state, $form_id) {
-  if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-admin-views-node-system-1') {
+  if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-administrative-content-page') {
     PTKForm::adminContentFormAlter($form, $form_state);
   }
   PTKFormDocumentTypeField::alter($form);
