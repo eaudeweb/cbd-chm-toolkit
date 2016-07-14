@@ -33,7 +33,7 @@ class ChmFooterQuickLinksRootBlock extends AbstractBlock {
       if ($link = l(t('Tools'), 'tools')) {
         $items[] = $link;
       }
-      if ($link = l(t('About Us'), 'about-us-0')) {
+      if ($link = l(t('About Us'), 'about')) {
         $items[] = $link;
       }
       $config = [

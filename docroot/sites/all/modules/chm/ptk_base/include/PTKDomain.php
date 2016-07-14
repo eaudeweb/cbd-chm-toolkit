@@ -207,27 +207,27 @@ class PTKDomain {
         'domain_site' => 0,
       );
       $pages = array(
-        'Home',
-        'Biodiversity',
-        'Strategy',
-        'Implementation',
-        'Information',
-        'Participate',
-        'About us',
+        'Home' => '<front>',
+        'Biodiversity' => 'biodiversity',
+        'Strategy' => 'strategy',
+        'Implementation' => 'implementation',
+        'Information' => 'information',
+        'Participate' => 'participate',
+        'About us' => 'about',
       );
       $weight = 0;
-      foreach ($pages as $page) {
+      foreach ($pages as $page => $path) {
         $node = $page_default_attributes;
         $node['title'] = $node['menu']['link_title'] = $page;
         $node['menu']['weight'] = $weight++;
         $node = (object) $node;
+        $node->path = array('pathauto' => 0, 'alias' => 'about');
         node_save($node);
-        $slug = str_replace(" ", "-", strtolower($page));
         db_insert('domain_path')
           ->fields(array(
             'domain_id' => $domain['domain_id'],
             'source' => 'node/' . $node->nid,
-            'alias' => $slug,
+            'alias' => $path,
             'language' => 'en',
             'entity_type' => 'node',
             'entity_id' => $node->nid,
@@ -248,18 +248,20 @@ class PTKDomain {
             PTK::addBlocksToNode(['projects-block'], $node->nid);
             break;
           case 'Information':
-            $default_node = node_load(4);
-            $node->body = $default_node->body;
+            $node->title = $page;
+            $node->type = 'page';
+            node_object_prepare($node);
+            $node->uid = 1;
             node_save($node);
             break;
           case 'Participate':
-            $default_node = node_load(5);
-            $node->body = $default_node->body;
             node_save($node);
             break;
           case 'About us':
-            $default_node = node_load(6);
+            $node->title = $page;
+            $default_node = node_load(1);
             $node->body = $default_node->body;
+            $node->title_field = $default_node->title_field;
             node_save($node);
             break;
         }

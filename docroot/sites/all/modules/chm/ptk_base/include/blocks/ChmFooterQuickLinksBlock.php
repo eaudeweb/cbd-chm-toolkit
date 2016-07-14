@@ -39,7 +39,7 @@ class ChmFooterQuickLinksBlock extends AbstractBlock {
       if ($link = l(t('Participate'), 'participate')) {
         $items[] = $link;
       }
-      if ($link = l(t('About Us'), 'about-us')) {
+      if ($link = l(t('About Us'), 'about')) {
         $items[] = $link;
       }
       $config = [
