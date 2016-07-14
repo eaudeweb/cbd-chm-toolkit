@@ -7,12 +7,27 @@ function ptk_base_form_domain_form_alter(&$form, &$form_state, $form_id) {
   ChmDomainForm::alter($form, $form_state);
 }
 
+
+function ptk_base_domain_form_ajax_country($form, $form_state) {
+  $control = $form['sitename'];
+  if (!empty($form_state['values']['country']) &&
+    $country = PTK::getCountryByCode($form_state['values']['country'])
+  ) {
+    $control['#value'] = 'CHM ' . $country->name;
+  }
+  $ret[] = ajax_command_replace('sitename-wrapper', $control);
+  return $ret;
+}
+
 class ChmDomainForm {
 
   static function alter(&$form, &$form_state) {
     $form['is_default']['#access'] = FALSE;
     $is_new = empty($form['#domain']['domain_id']);
     $domain = $form['#domain'];
+
+    $form['sitename']['#prefix'] = '<div id="sitename-wrapper">';
+    $form['sitename']['#suffix'] = '</div>';
     if (!PTKDomain::isDefaultDomain($domain)) {
       $countries = PTK::getCountryListAsOptions();
       $form['country'] = [
@@ -24,6 +39,12 @@ class ChmDomainForm {
         '#default_value' => PTKDomain::variable_get('country', $form['#domain']),
         '#required' => FALSE,
         '#weight' => -10,
+        '#ajax' => array(
+          'callback' => 'ptk_base_domain_form_ajax_country',
+          'wrapper' => 'sitename-wrapper',
+          'method' => 'replace',
+          'effect' => 'fade',
+        ),
       ];
     }
     module_load_include('inc', 'domain_variable_locale', 'domain_variable_locale.variable');
