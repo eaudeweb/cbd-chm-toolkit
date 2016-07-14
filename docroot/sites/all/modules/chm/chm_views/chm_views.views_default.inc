@@ -258,6 +258,11 @@ function chm_views_views_default_views() {
     3 => 0,
     4 => 0,
   );
+  /* Filter criterion: Domain Access: Node assigned to domains user is editor (PTK) */
+  $handler->display->display_options['filters']['current_user_is_editor']['id'] = 'current_user_is_editor';
+  $handler->display->display_options['filters']['current_user_is_editor']['table'] = 'domain_access';
+  $handler->display->display_options['filters']['current_user_is_editor']['field'] = 'current_user_is_editor';
+  $handler->display->display_options['filters']['current_user_is_editor']['value'] = '1';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');

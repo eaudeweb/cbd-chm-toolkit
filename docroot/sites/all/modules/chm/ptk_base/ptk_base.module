@@ -26,6 +26,15 @@ function ptk_base_permission() {
 }
 
 /**
+ * Implementation of hook_views_api().
+ */
+function ptk_base_views_api() {
+  return array(
+    'api' => 3.0
+  );
+}
+
+/**
  * Implements hook_menu().
  */
 function ptk_base_menu() {
