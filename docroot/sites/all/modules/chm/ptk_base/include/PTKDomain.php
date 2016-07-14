@@ -80,14 +80,19 @@ class PTKDomain {
   }
 
 
-  public static function createCountryMainMenu($country) {
+  public static function createCountryMainMenu($country, $domain) {
     $code = strtolower($country);
     $countries = PTK::getCountryListAsOptions();
-    $name = $countries[$code];
+    if (isset($countries[$code])) {
+      $name = $countries[$code];
+    }
+    else {
+      $name = $domain['subdomain'];
+    }
     $menu = array(
       'menu_name' => "menu-main-menu-{$code}",
       'title' => "Main menu ({$code})",
-      'description' => "Main menu for $name website",
+      'description' => "Main menu for $name portal",
       'i18n_mode' => I18N_MODE_MULTIPLE,
     );
     $exists = menu_load($menu['menu_name']);
@@ -175,7 +180,7 @@ class PTKDomain {
     }
 
     if ($create_main_menu) {
-      $menu = self::createCountryMainMenu($values['country']);
+      $menu = self::createCountryMainMenu($values['country'], $domain);
       $page_default_attributes = array(
         'type' => 'page',
         'status' => '1',
