@@ -302,6 +302,130 @@ function chm_views_views_default_views() {
   $export['administrative_content'] = $view;
 
   $view = new view();
+  $view->name = 'aichi_biodiversity_targets';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'taxonomy_term_data';
+  $view->human_name = 'Aichi biodiversity targets';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Aichi biodiversity targets';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'table';
+  /* Field: Entity translation: Image: translated */
+  $handler->display->display_options['fields']['field_image_et']['id'] = 'field_image_et';
+  $handler->display->display_options['fields']['field_image_et']['table'] = 'field_data_field_image';
+  $handler->display->display_options['fields']['field_image_et']['field'] = 'field_image_et';
+  $handler->display->display_options['fields']['field_image_et']['label'] = '';
+  $handler->display->display_options['fields']['field_image_et']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_image_et']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_image_et']['settings'] = array(
+    'image_style' => 'thumbnail',
+    'image_link' => '',
+  );
+  /* Field: Taxonomy term: Name */
+  $handler->display->display_options['fields']['name_field']['id'] = 'name_field';
+  $handler->display->display_options['fields']['name_field']['table'] = 'field_data_name_field';
+  $handler->display->display_options['fields']['name_field']['field'] = 'name_field';
+  $handler->display->display_options['fields']['name_field']['label'] = '';
+  $handler->display->display_options['fields']['name_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['name_field']['link_to_entity'] = 0;
+  /* Sort criterion: Taxonomy term: Weight */
+  $handler->display->display_options['sorts']['weight']['id'] = 'weight';
+  $handler->display->display_options['sorts']['weight']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['sorts']['weight']['field'] = 'weight';
+  /* Filter criterion: Taxonomy vocabulary: Machine name */
+  $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
+  $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
+  $handler->display->display_options['filters']['machine_name']['field'] = 'machine_name';
+  $handler->display->display_options['filters']['machine_name']['value'] = array(
+    'aichi_biodiversity_targets' => 'aichi_biodiversity_targets',
+  );
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['path'] = 'tools/abt';
+  $translatables['aichi_biodiversity_targets'] = array(
+    t('Master'),
+    t('Aichi biodiversity targets'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Page'),
+  );
+  $export['aichi_biodiversity_targets'] = $view;
+
+  $view = new view();
+  $view->name = 'eu_targets';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'taxonomy_term_data';
+  $view->human_name = 'EU Targets';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'EU Targets';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'table';
+  /* Field: Taxonomy term: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['name']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['name']['link_to_taxonomy'] = TRUE;
+  /* Sort criterion: Taxonomy term: Weight */
+  $handler->display->display_options['sorts']['weight']['id'] = 'weight';
+  $handler->display->display_options['sorts']['weight']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['sorts']['weight']['field'] = 'weight';
+  /* Filter criterion: Taxonomy vocabulary: Machine name */
+  $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
+  $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
+  $handler->display->display_options['filters']['machine_name']['field'] = 'machine_name';
+  $handler->display->display_options['filters']['machine_name']['value'] = array(
+    'eu_targets' => 'eu_targets',
+  );
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['path'] = 'tools/eu-targets';
+  $translatables['eu_targets'] = array(
+    t('Master'),
+    t('EU Targets'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Name'),
+    t('Page'),
+  );
+  $export['eu_targets'] = $view;
+
+  $view = new view();
   $view->name = 'events';
   $view->description = '';
   $view->tag = 'default';
@@ -1125,6 +1249,73 @@ function chm_views_views_default_views() {
     t('Block'),
   );
   $export['species'] = $view;
+
+  $view = new view();
+  $view->name = 'sustainable_development_goals';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'taxonomy_term_data';
+  $view->human_name = 'Sustainable Development Goals';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Sustainable Development Goals';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'table';
+  /* Field: Entity translation: Image: translated */
+  $handler->display->display_options['fields']['field_image_et']['id'] = 'field_image_et';
+  $handler->display->display_options['fields']['field_image_et']['table'] = 'field_data_field_image';
+  $handler->display->display_options['fields']['field_image_et']['field'] = 'field_image_et';
+  $handler->display->display_options['fields']['field_image_et']['label'] = '';
+  $handler->display->display_options['fields']['field_image_et']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_image_et']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_image_et']['settings'] = array(
+    'image_style' => 'thumbnail',
+    'image_link' => '',
+  );
+  /* Field: Taxonomy term: Name */
+  $handler->display->display_options['fields']['name_field']['id'] = 'name_field';
+  $handler->display->display_options['fields']['name_field']['table'] = 'field_data_name_field';
+  $handler->display->display_options['fields']['name_field']['field'] = 'name_field';
+  $handler->display->display_options['fields']['name_field']['label'] = '';
+  $handler->display->display_options['fields']['name_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['name_field']['link_to_entity'] = 0;
+  /* Sort criterion: Taxonomy term: Weight */
+  $handler->display->display_options['sorts']['weight']['id'] = 'weight';
+  $handler->display->display_options['sorts']['weight']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['sorts']['weight']['field'] = 'weight';
+  /* Filter criterion: Taxonomy vocabulary: Machine name */
+  $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
+  $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
+  $handler->display->display_options['filters']['machine_name']['field'] = 'machine_name';
+  $handler->display->display_options['filters']['machine_name']['value'] = array(
+    'sdg' => 'sdg',
+  );
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['path'] = 'tools/sdg';
+  $translatables['sustainable_development_goals'] = array(
+    t('Master'),
+    t('Sustainable Development Goals'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Page'),
+  );
+  $export['sustainable_development_goals'] = $view;
 
   return $export;
 }
