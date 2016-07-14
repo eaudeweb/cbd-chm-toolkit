@@ -217,36 +217,6 @@ function ptk_base_admin_page_export_taxonomies_overview() {
   die();
 }
 
-
-function ptk_base_admin_page_configure_portal_global_settings() {
-  $domain = domain_get_domain();
-  $form = [ '#tree' => TRUE, ];
-  $form['warning'] = [
-    '#type' => 'item',
-    '#markup' => t('Configuration for <strong>!portal_name</strong>', array('!portal_name' => $domain['sitename']))
-  ];
-  $form += ChmSocialMediaForm::form($form);
-  $form['ptk']['protected_planet_id'] = [
-    '#type' => 'textfield',
-    '#title' => t('Protected planet country ID'),
-    '#default_value' => PTKDomain::variable_get('ptk_protected_planet_id'),
-  ];
-  $form['actions']['submit'] = [
-    '#type' => 'submit',
-    '#value' => 'Save'
-  ];
-  return $form;
-}
-
-function ptk_base_admin_page_configure_portal_global_settings_validate($form, $form_state) {
-}
-
-function ptk_base_admin_page_configure_portal_global_settings_submit($form, $form_state) {
-  $values = $form_state['values'];
-  ChmSocialMediaForm::submit($form, $form_state, domain_get_domain());
-  PTKDomain::variable_set('ptk_protected_planet_id', $values['ptk']['protected_planet_id']);
-}
-
 /**
  * Populate new domain with sample content and menus
  */

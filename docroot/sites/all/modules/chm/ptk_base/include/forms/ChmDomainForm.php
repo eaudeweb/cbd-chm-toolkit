@@ -58,13 +58,13 @@ class ChmDomainForm {
         '#type' => 'checkbox',
         '#title' => t('Create sample content (i.e. project, species etc.)'),
       ];
-      $social = ChmSocialMediaForm::form($form);
-      $form['ptk']['social'] = $social['ptk']['social'];
-
       $form['weight']['#access'] = FALSE;
-      $form['submit']['#weight'] = 100;
       $form['submit']['#value'] = t('Create domain record');
     }
+    $social = ChmSocialMediaForm::form($form, $domain);
+    $form['ptk']['social'] = $social['ptk']['social'];
+    $form['submit']['#weight'] = 100;
+
     $form['#is_new'] = $is_new;
     $form['#submit'][] = array('ChmDomainForm', 'submit');
     $form['#validate'][] = array('ChmDomainForm', 'validate');
@@ -88,24 +88,21 @@ class ChmDomainForm {
   }
 
   static function submit($form, $form_state) {
-    $current = PTKDomain::variable_get('country', $form['#domain']);
     $domain = $form['#domain'];
     if (empty($domain['machine_name'])) {
       $domain['machine_name'] = $form_state['values']['machine_name'];
     }
     $countryIsoCode = $form_state['values']['country'];
-    if ($current !== $countryIsoCode) {
-      PTKDomain::variable_set('country', $countryIsoCode, $domain);
-    }
+    PTKDomain::variable_set('country', $countryIsoCode, $domain);
     cache_clear_all();
     if (!empty($form['#is_new'])) {
       $machine_name = $form_state['values']['machine_name'];
       $domain_id = domain_load_domain_id($machine_name);
       $domain = domain_load($domain_id);
       PTKDomain::initializeCountryDomain($domain, $form_state['values']);
-      ChmSocialMediaForm::submit($form, $form_state, $domain);
       cache_clear_all();
     }
+    ChmSocialMediaForm::submit($form, $form_state, $domain);
 
     // Add the species import batch
     $batch = array(

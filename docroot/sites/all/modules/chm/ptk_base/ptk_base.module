@@ -74,14 +74,6 @@ function ptk_base_menu() {
       'access arguments' => ['view the administration theme'],
       'type' => MENU_CALLBACK,
     ],
-    'admin/config/portal' => [
-      'title' => 'Configure your portal',
-      'page callback' => 'drupal_get_form',
-      'page arguments' => ['ptk_base_admin_page_configure_portal_global_settings'],
-      'file' => 'ptk_base.admin.inc',
-      'access arguments' => ['configure portal global settings'],
-      'type' => MENU_CALLBACK,
-    ],
   ];
   return $items;
 }
