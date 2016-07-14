@@ -7,7 +7,7 @@ class ChmNetworkSitesBlock extends AbstractBlock {
   public function info() {
     return [
       'chm_network_sites' => [
-        'info' => t('National CHM Training Sites'),
+        'info' => t('National CHM Sites'),
         'status' => TRUE,
         'region' => 'content',
         'cache' => DRUPAL_CACHE_GLOBAL,
@@ -47,7 +47,7 @@ class ChmNetworkSitesBlock extends AbstractBlock {
       }
     }
     $ret = array(
-      'subject' => t('National CHM Training Sites'),
+      'subject' => t('National CHM Sites'),
       'content' => theme('table', $content),
     );
     return $ret;
