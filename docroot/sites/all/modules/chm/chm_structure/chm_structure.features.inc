@@ -64,10 +64,10 @@ function chm_structure_node_info() {
     'gallery' => array(
       'name' => t('Gallery'),
       'base' => 'node_content',
-      'description' => '',
+      'description' => t('Group multiple images into a nice gallery'),
       'has_title' => '1',
-      'title_label' => t('Title'),
-      'help' => '',
+      'title_label' => t('Name'),
+      'help' => t('Create a gallery with description and after saving, use drag and drop to upload files from your computer. Images can be ordered, cropped etc.'),
     ),
     'news' => array(
       'name' => t('News'),

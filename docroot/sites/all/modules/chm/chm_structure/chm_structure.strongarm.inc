@@ -1204,6 +1204,13 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_extended_gallery';
+  $strongarm->value = 1;
+  $export['i18n_node_extended_gallery'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'i18n_node_extended_news';
   $strongarm->value = 1;
   $export['i18n_node_extended_news'] = $strongarm;
@@ -1214,6 +1221,13 @@ function chm_structure_strongarm() {
   $strongarm->name = 'i18n_node_extended_page';
   $strongarm->value = 1;
   $export['i18n_node_extended_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_options_gallery';
+  $strongarm->value = array();
+  $export['i18n_node_options_gallery'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1729,7 +1743,7 @@ function chm_structure_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_gallery';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['node_preview_gallery'] = $strongarm;
 
   $strongarm = new stdClass();
