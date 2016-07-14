@@ -1,17 +1,17 @@
 <?php
 
-require_once dirname(__FILE__) . '/include/PTK.php';
-require_once dirname(__FILE__) . '/include/PTKDomain.php';
-require_once dirname(__FILE__) . '/include/blocks/AbstractBlock.php';
-require_once dirname(__FILE__) . '/include/blocks/ChmContentStatisticsBlock.php';
-require_once dirname(__FILE__) . '/include/blocks/ChmNetworkSitesBlock.php';
-require_once dirname(__FILE__) . '/include/blocks/ChmFooterQuickLinksRootBlock.php';
-require_once dirname(__FILE__) . '/include/blocks/ChmFooterQuickLinksBlock.php';
-require_once dirname(__FILE__) . '/include/blocks/ChmFooterFollowUsBlock.php';
-require_once dirname(__FILE__) . '/include/blocks/ChmFooterCountryLinksBlock.php';
-require_once dirname(__FILE__) . '/include/forms/base.inc';
-require_once dirname(__FILE__) . '/include/forms/ChmDomainForm.php';
-require_once dirname(__FILE__) . '/include/forms/ChmSocialMediaForm.php';
+require_once dirname(__FILE__) . '/ptk_base.inc';
+require_once dirname(__FILE__) . '/ptk_base.domain.inc';
+require_once dirname(__FILE__) . '/blocks/AbstractBlock.php';
+require_once dirname(__FILE__) . '/blocks/ChmContentStatisticsBlock.php';
+require_once dirname(__FILE__) . '/blocks/ChmNetworkSitesBlock.php';
+require_once dirname(__FILE__) . '/blocks/ChmFooterQuickLinksRootBlock.php';
+require_once dirname(__FILE__) . '/blocks/ChmFooterQuickLinksBlock.php';
+require_once dirname(__FILE__) . '/blocks/ChmFooterFollowUsBlock.php';
+require_once dirname(__FILE__) . '/blocks/ChmFooterCountryLinksBlock.php';
+require_once dirname(__FILE__) . '/forms/base.inc';
+require_once dirname(__FILE__) . '/forms/ChmDomainForm.php';
+require_once dirname(__FILE__) . '/forms/ChmSocialMediaForm.php';
 
 /**
  * Implements hook_permission().
