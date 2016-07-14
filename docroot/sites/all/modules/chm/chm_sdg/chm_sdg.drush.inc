@@ -41,22 +41,20 @@ function drush_chm_sdg_full_import() {
     ->condition('i.bundle', 'sdg')
     ->execute()->fetchAllKeyed();
 
+  $weight = 0;
   foreach ($data as $key => $row) {
-    $id = $row[$columns['en']];
+    $id = (string)$row[$columns['en']];
     $parent = NULL;
     if (empty($id)) {
       continue;
     }
     if (preg_match('/Goal (\d*).*/', $id, $matches)) {
-      $id = $matches[1];
+      $id = (string)$matches[1];
       $type = $goal_term->tid;
     }
     else {
       $parent = explode('.', $id)[0];
       $type = $target_term->tid;
-    }
-    if (strlen($id) > 4) {
-      $row[$columns['en']] = $id = number_format(round($id, 1), 1, '.', '');
     }
     if (!empty($existing_goals[$id])) {
       $term = is_numeric($existing_goals[$id]) ? taxonomy_term_load($existing_goals[$id]) : $existing_goals[$id];
@@ -69,25 +67,10 @@ function drush_chm_sdg_full_import() {
     $term->name = $row[$columns['en']] . ' ' . $row[$columns['en'] + 1];
     $term->name_field = [];
     $term->field_official_name = [];
-    $term->field_biodiversity_item_type = [
-      LANGUAGE_NONE => [
-        0 => [
-          'tid' => $type,
-        ],
-      ],
-    ];
-    $term->field_index = [
-      LANGUAGE_NONE => [
-        0 => [
-          'value' => $id,
-        ],
-      ],
-    ];
+    $term->field_biodiversity_item_type = [LANGUAGE_NONE => [0 => ['tid' => $type]]];
+    $term->field_index = [LANGUAGE_NONE => [0 => ['value' => $id]]];
     foreach ($columns as $lang => $colNum) {
       $name_field = $row[$columns[$lang]] . ' ' . $row[$columns[$lang] + 1];
-      if ($lang == 'ar') {
-        $name_field = $row[$columns[$lang] + 1] . ' ' . $row[$columns[$lang]];
-      }
       $term->name_field[$lang] = [
         0 => [
           'value' => $name_field,
@@ -102,6 +85,7 @@ function drush_chm_sdg_full_import() {
     if (!empty($parent)) {
       $term->parent = $parent;
     }
+    $term->weight = $weight++;
     taxonomy_term_save($term);
 
     $handler = entity_translation_get_handler('taxonomy_term', $term);
@@ -121,7 +105,7 @@ function drush_chm_sdg_full_import() {
     }
     taxonomy_term_save($term);
 
-    drush_log('Imported: ' . $row[$columns['en']], 'success');
+    drush_log('Imported: ' . $id, 'success');
 
     $existing_goals[$id] = $term;
   }
