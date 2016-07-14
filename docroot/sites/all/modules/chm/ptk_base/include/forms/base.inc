@@ -41,6 +41,13 @@ class PTKFormDocumentTypeField {
 
 class PTKForm {
   public static function adminContentFormAlter(&$form, $form_state) {
+    if (!PTK::userIsAdministrator()) {
+      unset($form['#info']['filter-sitename']);
+      $form['#info']['#access'] = FALSE;
+      $form['sitename']['#access'] = FALSE;
+      hide($form['sitename']);
+      return;
+    }
     if (!empty($form['sitename'])) {
       $domains = domain_domains();
       $options = array('' => t('-- All sites --'));

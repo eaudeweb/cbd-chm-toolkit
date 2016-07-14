@@ -1,5 +1,6 @@
 <?php
 
+define ('ADMINISTATOR_ROLE', 'administrator');
 
 class PTK {
 
@@ -210,5 +211,26 @@ class PTK {
     if (function_exists('drush_log')) {
       drush_log($message, \Drush\Log\LogLevel::ERROR);
     }
+  }
+
+  /**
+   * Check if the given user has been granted administrator role.
+   *
+   * @param stdClass $account
+   *   Account to check
+   *
+   * @return bool
+   *   TRUE if the user is administrator
+   */
+  static function userIsAdministrator($account = NULL) {
+    $subject = $account;
+    if (empty($account)) {
+      global $user;
+      $subject = $user;
+    }
+    if ($subject->uid == 1) {
+      return TRUE;
+    }
+    return in_array(ADMINISTATOR_ROLE, $subject->roles);
   }
 }
