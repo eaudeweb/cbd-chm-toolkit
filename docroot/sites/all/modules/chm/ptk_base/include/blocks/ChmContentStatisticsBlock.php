@@ -26,9 +26,12 @@ class ChmContentStatisticsBlock extends AbstractBlock {
       ->condition('realm', 'domain_id')
       ->condition('da.gid', $_domain['domain_id'])
       ->execute()->fetchCol();
-    $q = db_select('node', 'n')
-      ->condition('n.nid', $domain_nids, 'IN')
-      ->fields('n', ['type']);
+    $q = db_select('node', 'n')->fields('n', ['type']);
+    if (!empty($domain_nids)) {
+      $q->condition('n.nid', $domain_nids, 'IN');
+    } else {
+      $q->condition('n.nid', -1);
+    }
     $q->groupBy('n.type');
     $q->addExpression('COUNT(*)', 'count');
     $count = $q->execute()->fetchAllKeyed();
