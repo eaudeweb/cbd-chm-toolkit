@@ -92,18 +92,19 @@ class ChmDomainForm {
   }
 
   static function validate($form, $form_state) {
-    $iso = $form_state['values']['country'];
-    if ($iso && $country = PTK::getCountryByCode($form_state['values']['country'])) {
-      // Do not allow to set a country without having Protected Planet ID set
-      /** @var stdClass $wrapper */
-      $wrapper = entity_metadata_wrapper('taxonomy_term', $country);
-      $ppid = $wrapper->field_protected_planet_id->value();
-      if (empty($ppid)) {
-        form_set_error(
-          'country',
-          t('Cannot use this country because is missing the <b>Protected Planet</b> ID, configure it !here',
-            array('!here' => l(t('here'), 'taxonomy/term/' . $country->tid . '/edit', array('attributes' => array('target' => '_blank')))))
-        );
+    if (!empty($form_state['values']['country']) && $iso = $form_state['values']['country']) {
+      if ($country = PTK::getCountryByCode($form_state['values']['country'])) {
+        // Do not allow to set a country without having Protected Planet ID set
+        /** @var stdClass $wrapper */
+        $wrapper = entity_metadata_wrapper('taxonomy_term', $country);
+        $ppid = $wrapper->field_protected_planet_id->value();
+        if (empty($ppid)) {
+          form_set_error(
+            'country',
+            t('Cannot use this country because is missing the <b>Protected Planet</b> ID, configure it !here',
+              array('!here' => l(t('here'), 'taxonomy/term/' . $country->tid . '/edit', array('attributes' => array('target' => '_blank')))))
+          );
+        }
       }
     }
   }
@@ -113,8 +114,9 @@ class ChmDomainForm {
     if (empty($domain['machine_name'])) {
       $domain['machine_name'] = $form_state['values']['machine_name'];
     }
-    $countryIsoCode = $form_state['values']['country'];
-    PTKDomain::variable_set('country', $countryIsoCode, $domain);
+    if ($countryIsoCode = $form_state['values']['country']) {
+      PTKDomain::variable_set('country', $countryIsoCode, $domain);
+    }
     cache_clear_all();
     if (!empty($form['#is_new'])) {
       $machine_name = $form_state['values']['machine_name'];
@@ -126,17 +128,19 @@ class ChmDomainForm {
     ChmSocialMediaForm::submit($form, $form_state, $domain);
 
     // Add the species import batch
-    $batch = array(
-      'title' => t('Invoking IUCN RedList API species data, please be patient ...'),
-      'operations' => array(
-        array(
-          array('ChmDomainForm', 'importSpeciesForCountry'),
-          array($countryIsoCode)
+    if ($countryIsoCode) {
+      $batch = array(
+        'title' => t('Invoking IUCN RedList API species data, please be patient ...'),
+        'operations' => array(
+          array(
+            array('ChmDomainForm', 'importSpeciesForCountry'),
+            array($countryIsoCode)
+          ),
         ),
-      ),
-      'finished' => array('ChmDomainForm', 'importSpeciesForCountryFinished')
-    );
-    batch_set($batch);
+        'finished' => array('ChmDomainForm', 'importSpeciesForCountryFinished')
+      );
+      batch_set($batch);
+    }
   }
 
 
