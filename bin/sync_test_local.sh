@@ -14,3 +14,4 @@ drush sql-drop -y
 drush sql-sync @test @self -y
 drush vset environment dev
 drush prepare-dev -y
+drush cc all
