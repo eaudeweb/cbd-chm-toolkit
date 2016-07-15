@@ -972,7 +972,13 @@ function chm_structure_strongarm() {
       'display' => array(
         'domain' => array(
           'default' => array(
-            'weight' => '1',
+            'weight' => '3',
+            'visible' => TRUE,
+          ),
+        ),
+        'gallery_cover_image' => array(
+          'default' => array(
+            'weight' => '0',
             'visible' => TRUE,
           ),
         ),
