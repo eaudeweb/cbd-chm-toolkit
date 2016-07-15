@@ -263,6 +263,14 @@ function chm_views_views_default_views() {
   $handler->display->display_options['filters']['current_user_is_editor']['table'] = 'domain_access';
   $handler->display->display_options['filters']['current_user_is_editor']['field'] = 'current_user_is_editor';
   $handler->display->display_options['filters']['current_user_is_editor']['value'] = '1';
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
+  $handler->display->display_options['filters']['type_1']['table'] = 'node';
+  $handler->display->display_options['filters']['type_1']['field'] = 'type';
+  $handler->display->display_options['filters']['type_1']['operator'] = 'not in';
+  $handler->display->display_options['filters']['type_1']['value'] = array(
+    'book' => 'book',
+  );
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');

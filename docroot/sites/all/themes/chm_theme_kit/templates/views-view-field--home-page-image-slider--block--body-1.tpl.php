@@ -26,7 +26,7 @@
   print '<div class="slick-content well">'
     . $output
     . '<div>'
-    . l(t('Read more'), $row->nid, array('attributes' => array('class' => array('more-link', 'btn'))))
+    . l(t('Read more'), 'node/' . $row->nid, array('attributes' => array('class' => array('more-link', 'btn'))))
     . '</div>'
     . '</div>';
 ?>
