@@ -233,4 +233,33 @@ class PTK {
     }
     return in_array(ADMINISTATOR_ROLE, $subject->roles);
   }
+
+
+  static function stringEndsWith($string, $test) {
+    $strlen = strlen($string);
+    $testlen = strlen($test);
+    if ($testlen > $strlen) return false;
+    return substr_compare($string, $test, $strlen - $testlen, $testlen) === 0;
+  }
+
+
+  static function entityQueueAccess($op, $entity = NULL, $account = NULL, $entity_type = NULL) {
+    if (PTK::userIsAdministrator()) {
+      return entityqueue_access($op, $entity, $account, $entity_type);
+    }
+    else {
+      if ($op == 'update') {
+        global $user;
+        domain_user_load(array($user));
+        $queue_name = $entity->queue;
+        foreach ($user->domain_user as $domain_id) {
+          $domain = domain_load($domain_id);
+          if (PTK::stringEndsWith($queue_name, '_' . $domain['machine_name'])) {
+            return TRUE;
+          }
+        }
+      }
+      return FALSE;
+    }
+  }
 }

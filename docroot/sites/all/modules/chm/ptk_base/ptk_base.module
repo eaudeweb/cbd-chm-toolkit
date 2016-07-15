@@ -259,3 +259,11 @@ function ptk_base_field_formatter_view($entity_type, $entity, $field, $instance,
 function ptk_base_iucn_redlist_log($message, $variables, $severity) {
   watchdog('iucn_redlist', $message, $variables, $severity);
 }
+
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function ptk_base_entity_info_alter(&$entity_info) {
+  $entity_info['entityqueue_subqueue']['access callback'] = array('PTK', 'entityQueueAccess');
+}
