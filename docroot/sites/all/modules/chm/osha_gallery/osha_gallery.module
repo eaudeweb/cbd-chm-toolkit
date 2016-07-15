@@ -1,4 +1,10 @@
 <?php
+/**
+ * @file
+ * Code for the OSHA gallery feature.
+ */
+
+include_once 'osha_gallery.features.inc';
 
 /**
  * Implements hook_menu().
@@ -45,6 +51,83 @@ function osha_gallery_permission() {
     ),
   );
 }
+
+
+/**
+ * Implements hook_field_extra_fields().
+ */
+function osha_gallery_field_extra_fields() {
+  $extra = array();
+  $fields = osha_gallery_get_usable_bundle_fields();
+  if (!empty($fields)) {
+    $gallery_cover_image = array(
+      'display' => array(
+        'gallery_cover_image' => array(
+          'label' => t('Gallery cover image'),
+          'description' => t('Shows the first image of the field as cover image.'),
+          'extra field type' => 'gallery_cover_image',
+          'weight' => 0,
+        ),
+      ),
+    );
+
+    foreach ($fields as $type => $field) {
+      $extra['node'][$type] = $gallery_cover_image;
+    }
+  }
+  return $extra;
+}
+
+
+/**
+ * Implements hook_node_view().
+ */
+function osha_gallery_node_view($node, $view_mode, $langcode) {
+  $fields = osha_gallery_get_usable_bundle_fields();
+  if (array_key_exists($node->type, $fields)) {
+    $gallery_field = current(array_keys($fields[$node->type]));
+    $extra_fields = field_info_extra_fields('node', $node->type, 'display');
+    $extra_field_pc = $extra_fields['gallery_cover_image'];
+    if (!empty($extra_field_pc['display'][$view_mode]['visible'])) {
+      $wrapper = entity_metadata_wrapper('node', $node);
+      $first_image = $wrapper->{$gallery_field}->value()[0];
+      if (!empty($first_image)) {
+        // TODO Create a formatter for field to select an image style.
+        $image_vars = array(
+          'style_name' => 'gallery_cover_image',
+          'path' => $first_image['uri'],
+          'alt' => $node->title,
+        );
+        $field_selector = '.field-name-' . str_replace('_', '-', $gallery_field);
+        // Cover image will open first image of gallery.
+        $link = '<a href="javascript:void(0);" onclick="jQuery(\'' . $field_selector . ' a \').eq(0).trigger(\'click\')">' . theme('image_style', $image_vars) . '</a>';
+        $node->content['gallery_cover_image'] = array('#markup' => $link);
+        if (!empty($node->content[$gallery_field])) {
+          $image_deltas = element_children($node->content[$gallery_field]);
+          $total = count($image_deltas);
+          $per_page = 6;
+          if ($total > $per_page) {
+            $page = pager_default_initialize($total, $per_page);
+            if ($page > 0) {
+              if (!empty($node->content['body'])) {
+                hide($node->content['body']);
+              }
+              hide($node->content['gallery_cover_image']);
+            }
+            $offset = $per_page * $page;
+            $showing_deltas = range($offset, $offset + $per_page - 1);
+            $remove_deltas = array_diff($image_deltas, $showing_deltas);
+            foreach ($remove_deltas as $delta) {
+              unset($node->content[$gallery_field][$delta]);
+            }
+            $node->content[$gallery_field]['#suffix'] = theme('pager');
+          }
+        }
+      }
+    }
+  }
+}
+
 
 /**
  * Implements hook_field_formatter_info_alter().
