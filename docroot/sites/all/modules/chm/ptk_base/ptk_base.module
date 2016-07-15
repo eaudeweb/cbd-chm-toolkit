@@ -267,3 +267,16 @@ function ptk_base_iucn_redlist_log($message, $variables, $severity) {
 function ptk_base_entity_info_alter(&$entity_info) {
   $entity_info['entityqueue_subqueue']['access callback'] = array('PTK', 'entityQueueAccess');
 }
+
+/**
+ * Implements hook_custom_theme().
+ *
+ * Render the book items with administrative theme (webmaster's manual)
+ */
+function ptk_base_custom_theme() {
+  if ($object = menu_get_object()) {
+    if ($object->type == 'book') {
+      return 'seven';
+    }
+  }
+}
