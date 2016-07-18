@@ -871,13 +871,13 @@ function chm_structure_strongarm() {
           'weight' => '9',
         ),
         'domain_path' => array(
-          'weight' => '12',
+          'weight' => '11',
         ),
         'locations' => array(
           'weight' => '11',
         ),
         'metatags' => array(
-          'weight' => '13',
+          'weight' => '12',
         ),
         'title' => array(
           'weight' => '0',
@@ -1467,168 +1467,168 @@ function chm_structure_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_node__cbd_nfp';
-  $strongarm->value = 0;
+  $strongarm->value = TRUE;
   $export['metatag_enable_node__cbd_nfp'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_node__document';
-  $strongarm->value = 1;
+  $strongarm->value = TRUE;
   $export['metatag_enable_node__document'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_node__ecosystem';
-  $strongarm->value = 1;
+  $strongarm->value = TRUE;
   $export['metatag_enable_node__ecosystem'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_node__event';
-  $strongarm->value = 1;
+  $strongarm->value = TRUE;
   $export['metatag_enable_node__event'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_node__fact';
-  $strongarm->value = 1;
+  $strongarm->value = TRUE;
   $export['metatag_enable_node__fact'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_node__news';
-  $strongarm->value = 1;
+  $strongarm->value = TRUE;
   $export['metatag_enable_node__news'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_node__species';
-  $strongarm->value = 1;
+  $strongarm->value = TRUE;
   $export['metatag_enable_node__species'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_taxonomy_term';
-  $strongarm->value = 1;
+  $strongarm->value = TRUE;
   $export['metatag_enable_taxonomy_term'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_taxonomy_term__aichi_biodiversity_targets';
-  $strongarm->value = 1;
+  $strongarm->value = TRUE;
   $export['metatag_enable_taxonomy_term__aichi_biodiversity_targets'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_taxonomy_term__biodiversity_item_type';
-  $strongarm->value = 1;
+  $strongarm->value = TRUE;
   $export['metatag_enable_taxonomy_term__biodiversity_item_type'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_taxonomy_term__countries';
-  $strongarm->value = 1;
+  $strongarm->value = TRUE;
   $export['metatag_enable_taxonomy_term__countries'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_taxonomy_term__document_type';
-  $strongarm->value = 1;
+  $strongarm->value = TRUE;
   $export['metatag_enable_taxonomy_term__document_type'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_taxonomy_term__eu_targets';
-  $strongarm->value = 1;
+  $strongarm->value = TRUE;
   $export['metatag_enable_taxonomy_term__eu_targets'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_taxonomy_term__event_status';
-  $strongarm->value = 1;
+  $strongarm->value = TRUE;
   $export['metatag_enable_taxonomy_term__event_status'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_taxonomy_term__event_type';
-  $strongarm->value = 1;
+  $strongarm->value = TRUE;
   $export['metatag_enable_taxonomy_term__event_type'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_taxonomy_term__sdg';
-  $strongarm->value = 1;
+  $strongarm->value = TRUE;
   $export['metatag_enable_taxonomy_term__sdg'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_taxonomy_term__species_authority';
-  $strongarm->value = 1;
+  $strongarm->value = TRUE;
   $export['metatag_enable_taxonomy_term__species_authority'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_taxonomy_term__species_class';
-  $strongarm->value = 1;
+  $strongarm->value = TRUE;
   $export['metatag_enable_taxonomy_term__species_class'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_taxonomy_term__species_family';
-  $strongarm->value = 1;
+  $strongarm->value = TRUE;
   $export['metatag_enable_taxonomy_term__species_family'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_taxonomy_term__species_kingdom';
-  $strongarm->value = 1;
+  $strongarm->value = TRUE;
   $export['metatag_enable_taxonomy_term__species_kingdom'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_taxonomy_term__species_order';
-  $strongarm->value = 1;
+  $strongarm->value = TRUE;
   $export['metatag_enable_taxonomy_term__species_order'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_taxonomy_term__species_phylum';
-  $strongarm->value = 1;
+  $strongarm->value = TRUE;
   $export['metatag_enable_taxonomy_term__species_phylum'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_taxonomy_term__species_redlist_status';
-  $strongarm->value = 1;
+  $strongarm->value = TRUE;
   $export['metatag_enable_taxonomy_term__species_redlist_status'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_taxonomy_term__taxonomy_nfp_type';
-  $strongarm->value = 1;
+  $strongarm->value = TRUE;
   $export['metatag_enable_taxonomy_term__taxonomy_nfp_type'] = $strongarm;
 
   $strongarm = new stdClass();

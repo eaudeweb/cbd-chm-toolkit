@@ -6,6 +6,7 @@ version = 7.x-1.0
 dependencies[] = chm_structure
 dependencies[] = ctools
 dependencies[] = features
+dependencies[] = image
 dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = text
