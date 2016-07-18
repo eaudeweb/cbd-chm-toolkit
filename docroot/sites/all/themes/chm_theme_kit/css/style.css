@@ -7511,6 +7511,16 @@ body.navbar-tray-open.navbar-vertical.navbar-fixed {
 #navbar-administration.navbar-oriented .navbar-tray-vertical {
   width: 24rem;
 }
+/* Login/Authentication form */
+#user-login #edit-name {
+  width: 50%;
+}
+#user-login #edit-pass {
+  width: 50%;
+}
+#user-pass #edit-name {
+  width: 50%;
+}
 /* THEME OPTIONS ************************** */
 /* GLOBAL ********************************* */
 /* ----- Body ------------------------ */
