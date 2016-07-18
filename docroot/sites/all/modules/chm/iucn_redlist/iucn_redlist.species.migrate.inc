@@ -70,7 +70,8 @@ class IUCNRedListSpeciesMigration extends Migration {
 
     // Handle domain assignment
     $countries = $this->service->getLocalSpeciesCountries($row->taxonid);
-    $domains = array();
+    // Assign all the species to the demo domain by default
+    $domains = array(PTKDomain::$DEMO_DOMAIN_ID);
     $row->domain_source = PTKDomain::getDefaultDomainId();
     foreach($countries as $iso) {
       if ($domain = PTKDomain::getDomainByCountryISO($iso)) {

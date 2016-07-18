@@ -2,6 +2,8 @@
 
 class PTKDomain {
 
+  public static $DEMO_DOMAIN_ID = 3;
+
   /**
    * Get the ID of default domain
    *
