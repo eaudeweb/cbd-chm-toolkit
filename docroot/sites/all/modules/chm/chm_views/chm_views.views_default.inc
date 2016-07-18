@@ -1296,6 +1296,217 @@ function chm_views_views_default_views() {
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block_1');
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page_1');
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'field_images' => 'field_images',
+    'title_field' => 'title_field',
+    'field_species_main_common_name' => 'field_species_main_common_name',
+    'field_species_class' => 'field_species_class',
+    'field_species_order' => 'field_species_order',
+    'field_species_family' => 'field_species_family',
+  );
+  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['info'] = array(
+    'field_images' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'title_field' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_species_main_common_name' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_species_class' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_species_order' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_species_family' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Images */
+  $handler->display->display_options['fields']['field_images']['id'] = 'field_images';
+  $handler->display->display_options['fields']['field_images']['table'] = 'field_data_field_images';
+  $handler->display->display_options['fields']['field_images']['field'] = 'field_images';
+  $handler->display->display_options['fields']['field_images']['label'] = '';
+  $handler->display->display_options['fields']['field_images']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_images']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_images']['settings'] = array(
+    'image_style' => 'thumbnail',
+    'image_link' => '',
+  );
+  $handler->display->display_options['fields']['field_images']['delta_offset'] = '0';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
+  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['label'] = 'Scientific name';
+  $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['settings'] = array(
+    'title_style' => '_none',
+    'title_link' => 'content',
+    'title_class' => '',
+  );
+  $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
+  /* Field: Content: Main common name */
+  $handler->display->display_options['fields']['field_species_main_common_name']['id'] = 'field_species_main_common_name';
+  $handler->display->display_options['fields']['field_species_main_common_name']['table'] = 'field_data_field_species_main_common_name';
+  $handler->display->display_options['fields']['field_species_main_common_name']['field'] = 'field_species_main_common_name';
+  $handler->display->display_options['fields']['field_species_main_common_name']['label'] = 'Common name';
+  $handler->display->display_options['fields']['field_species_main_common_name']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_species_main_common_name']['type'] = 'text_plain';
+  /* Field: Content: Class */
+  $handler->display->display_options['fields']['field_species_class']['id'] = 'field_species_class';
+  $handler->display->display_options['fields']['field_species_class']['table'] = 'field_data_field_species_class';
+  $handler->display->display_options['fields']['field_species_class']['field'] = 'field_species_class';
+  $handler->display->display_options['fields']['field_species_class']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_species_class']['type'] = 'taxonomy_term_reference_plain';
+  /* Field: Content: Order */
+  $handler->display->display_options['fields']['field_species_order']['id'] = 'field_species_order';
+  $handler->display->display_options['fields']['field_species_order']['table'] = 'field_data_field_species_order';
+  $handler->display->display_options['fields']['field_species_order']['field'] = 'field_species_order';
+  $handler->display->display_options['fields']['field_species_order']['type'] = 'taxonomy_term_reference_plain';
+  /* Field: Content: Family */
+  $handler->display->display_options['fields']['field_species_family']['id'] = 'field_species_family';
+  $handler->display->display_options['fields']['field_species_family']['table'] = 'field_data_field_species_family';
+  $handler->display->display_options['fields']['field_species_family']['field'] = 'field_species_family';
+  $handler->display->display_options['fields']['field_species_family']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_species_family']['type'] = 'taxonomy_term_reference_plain';
+  /* Field: Content: Status */
+  $handler->display->display_options['fields']['field_redlist_status']['id'] = 'field_redlist_status';
+  $handler->display->display_options['fields']['field_redlist_status']['table'] = 'field_data_field_redlist_status';
+  $handler->display->display_options['fields']['field_redlist_status']['field'] = 'field_redlist_status';
+  $handler->display->display_options['fields']['field_redlist_status']['label'] = 'IUCN Status';
+  $handler->display->display_options['fields']['field_redlist_status']['type'] = 'i18n_taxonomy_term_reference_plain';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'species' => 'species',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Domain Access: Available on current domain */
+  $handler->display->display_options['filters']['current_all']['id'] = 'current_all';
+  $handler->display->display_options['filters']['current_all']['table'] = 'domain_access';
+  $handler->display->display_options['filters']['current_all']['field'] = 'current_all';
+  $handler->display->display_options['filters']['current_all']['value'] = '1';
+  $handler->display->display_options['filters']['current_all']['group'] = 1;
+  /* Filter criterion: Content: Class (field_species_class) */
+  $handler->display->display_options['filters']['field_species_class_tid']['id'] = 'field_species_class_tid';
+  $handler->display->display_options['filters']['field_species_class_tid']['table'] = 'field_data_field_species_class';
+  $handler->display->display_options['filters']['field_species_class_tid']['field'] = 'field_species_class_tid';
+  $handler->display->display_options['filters']['field_species_class_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_species_class_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_species_class_tid']['expose']['operator_id'] = 'field_species_class_tid_op';
+  $handler->display->display_options['filters']['field_species_class_tid']['expose']['label'] = 'Class';
+  $handler->display->display_options['filters']['field_species_class_tid']['expose']['operator'] = 'field_species_class_tid_op';
+  $handler->display->display_options['filters']['field_species_class_tid']['expose']['identifier'] = 'field_species_class_tid';
+  $handler->display->display_options['filters']['field_species_class_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+  );
+  $handler->display->display_options['filters']['field_species_class_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_species_class_tid']['vocabulary'] = 'species_class';
+  /* Filter criterion: Content: Order (field_species_order) */
+  $handler->display->display_options['filters']['field_species_order_tid']['id'] = 'field_species_order_tid';
+  $handler->display->display_options['filters']['field_species_order_tid']['table'] = 'field_data_field_species_order';
+  $handler->display->display_options['filters']['field_species_order_tid']['field'] = 'field_species_order_tid';
+  $handler->display->display_options['filters']['field_species_order_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_species_order_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_species_order_tid']['expose']['operator_id'] = 'field_species_order_tid_op';
+  $handler->display->display_options['filters']['field_species_order_tid']['expose']['label'] = 'Order';
+  $handler->display->display_options['filters']['field_species_order_tid']['expose']['operator'] = 'field_species_order_tid_op';
+  $handler->display->display_options['filters']['field_species_order_tid']['expose']['identifier'] = 'field_species_order_tid';
+  $handler->display->display_options['filters']['field_species_order_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+  );
+  $handler->display->display_options['filters']['field_species_order_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_species_order_tid']['vocabulary'] = 'species_order';
+  /* Filter criterion: Content: Family (field_species_family) */
+  $handler->display->display_options['filters']['field_species_family_tid']['id'] = 'field_species_family_tid';
+  $handler->display->display_options['filters']['field_species_family_tid']['table'] = 'field_data_field_species_family';
+  $handler->display->display_options['filters']['field_species_family_tid']['field'] = 'field_species_family_tid';
+  $handler->display->display_options['filters']['field_species_family_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_species_family_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_species_family_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_species_family_tid']['expose']['operator_id'] = 'field_species_family_tid_op';
+  $handler->display->display_options['filters']['field_species_family_tid']['expose']['label'] = 'Family';
+  $handler->display->display_options['filters']['field_species_family_tid']['expose']['operator'] = 'field_species_family_tid_op';
+  $handler->display->display_options['filters']['field_species_family_tid']['expose']['identifier'] = 'field_species_family_tid';
+  $handler->display->display_options['filters']['field_species_family_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+  );
+  $handler->display->display_options['filters']['field_species_family_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_species_family_tid']['vocabulary'] = 'species_family';
+  /* Filter criterion: Content: Status (field_redlist_status) */
+  $handler->display->display_options['filters']['field_redlist_status_tid']['id'] = 'field_redlist_status_tid';
+  $handler->display->display_options['filters']['field_redlist_status_tid']['table'] = 'field_data_field_redlist_status';
+  $handler->display->display_options['filters']['field_redlist_status_tid']['field'] = 'field_redlist_status_tid';
+  $handler->display->display_options['filters']['field_redlist_status_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_redlist_status_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_redlist_status_tid']['expose']['operator_id'] = 'field_redlist_status_tid_op';
+  $handler->display->display_options['filters']['field_redlist_status_tid']['expose']['label'] = 'IUCN status';
+  $handler->display->display_options['filters']['field_redlist_status_tid']['expose']['operator'] = 'field_redlist_status_tid_op';
+  $handler->display->display_options['filters']['field_redlist_status_tid']['expose']['identifier'] = 'field_redlist_status_tid';
+  $handler->display->display_options['filters']['field_redlist_status_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+  );
+  $handler->display->display_options['filters']['field_redlist_status_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_redlist_status_tid']['vocabulary'] = 'species_redlist_status';
+  $handler->display->display_options['path'] = 'species';
   $translatables['species'] = array(
     t('Master'),
     t('Species'),
@@ -1318,6 +1529,9 @@ function chm_views_views_default_views() {
     t('Family'),
     t('Order'),
     t('Block'),
+    t('Page'),
+    t('IUCN Status'),
+    t('IUCN status'),
   );
   $export['species'] = $view;
 

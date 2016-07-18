@@ -22,8 +22,8 @@ function chm_views_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'chm_theme_kit' => array(
-        'region' => 'main_top',
-        'status' => 1,
+        'region' => '',
+        'status' => 0,
         'theme' => 'chm_theme_kit',
         'weight' => 0,
       ),
