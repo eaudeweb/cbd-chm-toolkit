@@ -39,17 +39,29 @@
   .slick-content h2 { font-size: 20px; margin-top:0; }
 }
 
-.slick-slide {
-  a { color:white; }
-  a:hover { text-decoration: none; }
-  a.more-link { margin-top: 15px; font-size: 11px; text-transform: uppercase; font-weight: bold; }
-  a.more-link::after { content: " »"; }
-
+.view-home-page-image-slider {
+  .slick-slide, .slick-content.well {
+    a {
+      color: white;
+    }
+    a:hover {
+      text-decoration: none;
+    }
+    a.more-link {
+      margin-top: 15px;
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    a.more-link::after {
+      content: " »";
+    }
+  }
   .slick-content.well {
     background-color: rgba(0, 0, 0, 0.5);
-    color:#fff;
-    border:none;
-    text-align:center;
+    color: #fff;
+    border: none;
+    text-align: center;
     vertical-align: middle;
     width: 70%;
     top: 25%;
@@ -60,12 +72,14 @@
     -ms-transition: all 0.27s ease-in-out;
     transition: all 0.27s ease-in-out;
   }
-  .slick-content.well:hover { background-color: rgba(0, 0, 0, 0.8); }
+  .slick-content.well:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
   .slick-content .btn {
     background-color: transparent;
     background-image: none;
     border: 1px solid white;
-    box-shadow:none !important;
+    box-shadow: none !important;
   }
   .slick-content .btn:hover {
     background-color: #02823F;
