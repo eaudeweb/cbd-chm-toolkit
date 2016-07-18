@@ -10,6 +10,11 @@ function ptk_base_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-administrative-content-page') {
     PTKForm::adminContentFormAlter($form, $form_state);
   }
+  $klass = 'Chm' . str_replace(' ', '', ucwords(str_replace('_', ' ', $form_id))) . 'Form';
+  if (class_exists($klass) && method_exists($klass, 'alter')) {
+    $klass::alter($form, $form_state);
+  }
+  // Alter all forms where document type field appears
   PTKFormDocumentTypeField::alter($form);
 }
 
