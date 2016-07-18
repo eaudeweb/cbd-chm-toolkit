@@ -310,7 +310,7 @@ function chm_structure_default_page_manager_handlers() {
     $pane->access = array();
     $pane->configuration = array(
       'label' => 'inline',
-      'formatter' => 'date_default',
+      'formatter' => 'event_date_formatter',
       'delta_limit' => 0,
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
@@ -463,6 +463,36 @@ function chm_structure_default_page_manager_handlers() {
     $pane->uuid = '0e195d4e-168f-4220-85bd-4f7d51c778c2';
     $display->content['new-0e195d4e-168f-4220-85bd-4f7d51c778c2'] = $pane;
     $display->panels['left_3'][0] = 'new-0e195d4e-168f-4220-85bd-4f7d51c778c2';
+    $pane = new stdClass();
+    $pane->pid = 'new-18fe92ed-86ce-4b50-82cb-668d0e8177e0';
+    $pane->panel = 'left_3';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_aichi_targets';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'inline',
+      'formatter' => 'i18n_taxonomy_term_reference_plain',
+      'delta_limit' => '0',
+      'delta_offset' => '0',
+      'delta_reversed' => 0,
+      'formatter_settings' => array(),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '18fe92ed-86ce-4b50-82cb-668d0e8177e0';
+    $display->content['new-18fe92ed-86ce-4b50-82cb-668d0e8177e0'] = $pane;
+    $display->panels['left_3'][1] = 'new-18fe92ed-86ce-4b50-82cb-668d0e8177e0';
     $pane = new stdClass();
     $pane->pid = 'new-532b5895-367a-453f-b23c-28345b855f3c';
     $pane->panel = 'left__left_2';
@@ -625,7 +655,10 @@ function chm_structure_default_page_manager_pages() {
   $page->admin_title = 'Main home-page';
   $page->admin_description = '';
   $page->path = 'main-home-page';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
