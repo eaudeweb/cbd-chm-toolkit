@@ -223,7 +223,7 @@ class PTKDomain {
         $node['title'] = $node['menu']['link_title'] = $page;
         $node['menu']['weight'] = $weight++;
         $node = (object) $node;
-        $node->path = array('pathauto' => 0, 'alias' => 'about');
+        $node->path = array('pathauto' => 0, 'alias' => '');
         node_save($node);
         db_insert('domain_path')
           ->fields(array(
