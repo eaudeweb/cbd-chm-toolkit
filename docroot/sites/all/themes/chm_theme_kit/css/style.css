@@ -8536,16 +8536,6 @@ html body.admin-menu-with-shortcuts {
   margin-left: 5px;
 }
 /* Species details page */
-body.node-type-species .panels-flexible-column.well-sm {
-  padding: 9px;
-}
-body.node-type-species .panels-flexible-column-inside {
-  padding-left: 0;
-}
-body.node-type-species .panels-flexible-column-inside .panels-flexible-region-1-sidebar {
-  padding: 0;
-  width: 100%;
-}
 /* Event detail page */
 .node-event-detail .field {
   margin-bottom: 10px;
