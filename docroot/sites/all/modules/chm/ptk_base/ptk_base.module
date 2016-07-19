@@ -106,10 +106,12 @@ function ptk_base_block_info() {
   foreach ($declaredClasses as $class) {
     if (strpos($class, 'Drupal\\ptk_base\\blocks\\') === 0) {
       $testClass = new \ReflectionClass($class);
-      if ($testClass->isAbstract() === false) {
+      if ($testClass->isAbstract() === FALSE) {
         /** @var Drupal\ptk_base\blocks\AbstractBlock $block */
         $block = new $class();
-        $blocks += $block->info();
+        if (method_exists($block, 'info')) {
+          $blocks += $block->info();
+        }
       }
     }
   }
@@ -125,12 +127,28 @@ function ptk_base_block_view($delta = '') {
   if (class_exists($klass)) {
     /** @var Drupal\ptk_base\blocks\AbstractBlock $block */
     $block = new $klass();
-    $return = $block->view();
+    if (method_exists($block, 'view')) {
+      $return = $block->view();
+    }
   }
   else {
     drupal_set_message(t('Class !class does not exist.', ['!class' => $klass]), 'error');
   }
   return $return;
+}
+
+/**
+ * Implements hook_block_view_alter().
+ */
+function ptk_base_block_view_alter(&$data, $block) {
+  $klass = \Drupal\ptk_base\blocks\AbstractBlock::getBlockClassName($block->delta);
+  if (class_exists($klass)) {
+    /** @var \Drupal\ptk_base\blocks\AbstractBlock $block */
+    $block = new $klass();
+    if (method_exists($block, 'alter')) {
+      $block->alter($data, $block);
+    }
+  }
 }
 
 /**

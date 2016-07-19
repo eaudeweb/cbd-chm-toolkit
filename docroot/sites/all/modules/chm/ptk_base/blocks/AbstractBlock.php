@@ -40,8 +40,10 @@ abstract class AbstractBlock {
    *
    * @param array $data
    *   Block output
+   * @param object $block
+   *   Block object
    */
-  public function alter($data) {}
+  public function alter(&$data, $block) {}
 
   /**
    * An array containing the settings of the block.
