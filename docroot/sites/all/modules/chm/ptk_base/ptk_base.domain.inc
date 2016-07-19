@@ -268,6 +268,26 @@ class PTKDomain {
             break;
         }
       }
+
+      $links = menu_load_links($menu['menu_name']);
+      foreach ($links as $link) {
+        if ($link['link_title'] == 'Information') {
+          $link['expanded'] = 1;
+          $link['has_children'] = 1;
+          menu_link_save($link);
+          $new_link = [
+            'link_title' => 'Species',
+            'link_path' => 'species',
+            'menu_name' => $menu['menu_name'],
+            'weight' => 0,
+            'expanded' => 0,
+            'depth' => 2,
+            'plid' => $link['mlid'],
+          ];
+          menu_link_save($new_link);
+        }
+      }
+
       self::variable_set('menu_main_links_source', $menu['menu_name'], $domain);
       self::variable_set('create_main_menu', TRUE, $domain);
     }
