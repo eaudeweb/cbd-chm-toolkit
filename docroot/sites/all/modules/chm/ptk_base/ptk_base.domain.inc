@@ -41,6 +41,22 @@ class PTKDomain {
     return NULL;
   }
 
+  /**
+   * Retrieve the enabled languages
+   */
+  public static function getLanguages($domain = NULL) {
+    if (empty($domain)) {
+      $domain = domain_get_domain();
+    }
+    $ret = array('en' => 'en');
+    $enabled = self::variable_get('language_list', $domain);
+    if (!empty($enabled) && is_array($enabled)) {
+      $enabled = array_filter($enabled);
+      $ret += $enabled;
+      $ret = array_values($ret);
+    }
+    return $ret;
+  }
 
   /**
    * Retrieve the domain object corresponding to a country ISO code.
