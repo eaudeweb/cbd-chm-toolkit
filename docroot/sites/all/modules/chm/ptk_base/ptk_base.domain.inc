@@ -225,7 +225,6 @@ class PTKDomain {
         'domain_site' => 0,
       );
       $pages = array(
-        'Home' => '<front>',
         'Biodiversity' => 'biodiversity',
         'Strategy' => 'strategy',
         'Implementation' => 'implementation',
@@ -252,10 +251,6 @@ class PTKDomain {
           ))
           ->execute();
         switch ($page) {
-          case 'Home':
-            self::variable_set('site_frontpage', "node/{$node->nid}", $domain);
-            PTK::addBlocksToNode(['home_page_slider-block', 'latest_updates-block', 'statistics-block_1'], $node->nid);
-            break;
           case 'Biodiversity':
             PTK::addBlocksToNode(['ecosystems-block'], $node->nid);
             break;
