@@ -5,3 +5,42 @@
  */
 
 include_once 'chm_structure.features.inc';
+
+/**
+ * Implements hook_block_info().
+ */
+function chm_structure_block_info() {
+  $blocks['species_arkive'] = array(
+    'info' => t('Species Arkive'),
+    'cache' => DRUPAL_CACHE_PER_PAGE,
+  );
+  return $blocks;
+}
+
+function chm_structure_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'species_arkive':
+      // Add species arkive iframe when no field_images available.
+      $arkive_key = PTKDomain::variable_get('ptk_arkive_key', domain_get_domain());
+      $node = menu_get_object();
+      if (!empty($arkive_key) && !empty($node->nid) && $node->type == 'species' && empty($node->field_images)) {
+        $block['subject'] = t('Species Arkive');
+        drupal_add_js(
+          array(
+            'chm_structure' => array(
+              'species_arkive_key' => 'GeD0TksVjMOk8vxTX5gkI6dFRNM1H0yFRvbciFtivm81',
+              'species_arkive_name' => strtolower($node->title),
+            ),
+          ), 'setting');
+        drupal_add_js(drupal_get_path('module', 'chm_structure') .'/js/arkive.js', 'file');
+        $block['content'] = array(
+          '#type' => 'markup',
+          '#markup' => '<div id="arkiveIframe"></div>',
+        );
+      }
+
+      break;
+  }
+  return $block;
+}

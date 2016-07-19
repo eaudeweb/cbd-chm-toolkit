@@ -84,6 +84,10 @@ class ChmDomainForm {
     }
     $social = ChmSocialMediaForm::form($form, $domain);
     $form['ptk']['social'] = $social['ptk']['social'];
+
+    $miscellaneous = ChmMiscellaneousForm::form($form, $domain);
+    $form['ptk']['miscellaneous'] = $miscellaneous['ptk']['miscellaneous'];
+
     $form['submit']['#weight'] = 100;
 
     $form['#is_new'] = $is_new;
@@ -126,6 +130,7 @@ class ChmDomainForm {
       cache_clear_all();
     }
     ChmSocialMediaForm::submit($form, $form_state, $domain);
+    ChmMiscellaneousForm::submit($form, $form_state, $domain);
 
     // Add the species import batch
     if ($countryIsoCode) {

@@ -12,6 +12,7 @@ require_once dirname(__FILE__) . '/blocks/ChmFooterCountryLinksBlock.php';
 require_once dirname(__FILE__) . '/forms/base.inc';
 require_once dirname(__FILE__) . '/forms/ChmDomainForm.php';
 require_once dirname(__FILE__) . '/forms/ChmSocialMediaForm.php';
+require_once dirname(__FILE__) . '/forms/ChmMiscellaneousForm.php';
 require_once dirname(__FILE__) . '/forms/ChmUserLoginForm.php';
 
 /**
