@@ -332,6 +332,10 @@ class PTKDomain {
       $new_queue = new EntityQueue($new_queue);
       entityqueue_queue_save($new_queue);
     }
+
+    // Set treaty data
+    self::set_country_treaty_data($country, $domain);
+
     return TRUE;
   }
 
@@ -352,4 +356,140 @@ class PTKDomain {
     $realm_key = $domain['machine_name'];
     variable_realm_set('domain', $realm_key, $name, $value);
   }
+
+  public static function set_country_treaty_data($country, $domain = NULL) {
+    $treaties = ['cbd', 'nagoya', 'cartagena'];
+    foreach ($treaties as $treaty) {
+      if (!empty($url = variable_get($treaty . '_ratification_xml_url'))) {
+        $ratification = self::treaty_ratification_process_xml($url);
+        if (!empty($ratification) && !empty($ratification->ratification)) {
+          foreach ($ratification->ratification as $item) {
+            if ($item->country == $country->name) {
+              $value = serialize($item);
+              self::variable_set($treaty . '_ratification', $value, $domain);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /**
+   * @param string $url URL to the XML
+   * @return stdClass Object with data extracted from XML. Fields:
+   * - source_url - Original URL
+   * - ratification - array with ratification information (keys are country names in English)
+   */
+  public static function treaty_ratification_process_xml($url) {
+    $ret = new stdClass();
+    $ret->source_url = $url;
+    $ret->ratification = array();
+    $ret->entry_into_force = NULL;
+    $response = drupal_http_request($url, array(
+      'headers' =>  array('Accept' => 'text/xml'),
+    ));
+    if (!isset($response->error)) {
+      $xml_str = $response->data;
+      $xml = simplexml_load_string($xml_str, 'SimpleXMLElement', LIBXML_NOEMPTYTAG);
+      if ($xml === FALSE) {
+
+        return FALSE;
+      }
+      if ($eif = $xml->xpath('//EIF')) {
+        if (!empty($eif[0])) {
+          $eif = $eif[0];
+          $entry_into_force = (string)$eif->Labeltext;
+          if (!empty($entry_into_force)) {
+            if ($pos = strpos($entry_into_force, ',')) {
+              $entry_into_force = substr($entry_into_force, 0, $pos);
+            }
+            if ($date = DateTime::createFromFormat('d F Y', $entry_into_force)) {
+              $ret->entry_into_force = $date->getTimestamp();
+            }
+          }
+        }
+      }
+
+      $rows = $xml->xpath('//Participants/Table/TGroup/Tbody/Rows/Row');
+      if (empty($rows)) {
+        $rows = $xml->xpath('//Row');
+      }
+      if (!empty($rows)) {
+        foreach($rows as $row) {
+          $warnings = '';
+          $row = $row->children();
+          $new_row = array((string)$row[0], (string)$row[1], (string)$row[2]);
+          if (!empty($row[3])) {
+            $new_row[] = (string)$row[3];
+          }
+          $row = $new_row;
+          $country = $row[0];
+          if (!empty($country)) {
+            // Remove additional data from country name such as footnote references
+            $country = preg_replace('/\<superscript\>.*\<\/superscript\>/', '', $country);
+          }
+          else {
+            $warnings .= 'Could not reliably determine the country name;';
+          }
+
+          $date1 = '';
+          if (!empty($row[1]) && is_string($row[1])) {
+            $parsed = date_parse($row[1]);
+            if ($parsed !== FALSE) {
+              //@todo: Inspect error_count, errors, warning_count and warnings inside $date1p
+              $date1 = date('Y-m-d', mktime(0, 0, 0, $parsed['month'], $parsed['day'], $parsed['year']));
+            } else {
+              $warnings = sprintf('Canot parse date1: %s', $row[1]);
+            }
+          } else {
+            if (!empty($row[1])) {
+              $warnings = 'date1 is not a string. Removed';
+            }
+          }
+
+          $date2 = '';
+          if (!empty($row[2]) && is_string($row[2])) {
+            $parsed = date_parse($row[2]);
+            if ($parsed !== FALSE) {
+              //@todo: Inspect error_count, errors, warning_count and warnings inside $date2p
+              $date2 = date('Y-m-d', mktime(0, 0, 0, $parsed['month'], $parsed['day'], $parsed['year']));
+            } else {
+              $warnings = sprintf('Cannot parse date2: %s', $row[2]);
+            }
+          } else {
+            if (!empty($row[2])) {
+              $warnings = 'date2 is not a string. Setting to empty';
+            }
+          }
+          $status = NULL;
+          if (!empty($row[3])) {
+            $status = strtolower($row[3]);
+          } else if(preg_match('/\ a$/', $row[2])) { // a
+            $status = 'accession';
+          } elseif(preg_match('/\ AA$/', $row[2])) { // AA
+            $status = 'approval';
+          } elseif(preg_match('/\ A$/', $row[2])) { // A
+            $status = 'acceptance';
+          } elseif (!empty($date2)) {
+            $status = 'ratification';
+          } else {
+            $status = 'signatory';
+          }
+          $ob = new stdClass();
+          $ob->country = $country;
+          $ob->country_verbatim = $row[0];
+          $ob->date1 = $date1;
+          $ob->date1_verbatim = $row[1];
+          $ob->date2 = $date2;
+          $ob->date2_verbatim = $row[2];
+          $ob->status = $status;
+          $ob->warnings = $warnings;
+          $ob->errors = array();
+          $ret->ratification[] = $ob;
+        }
+      }
+    }
+    return $ret;
+  }
+
 }
