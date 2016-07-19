@@ -230,7 +230,7 @@ function ptk_base_portal_settings_form() {
   $form = [];
   $form['cbd_ratification_xml_url'] = [
     '#type' => 'textfield',
-    '#title' => t('CBD ratification xml url'),
+    '#title' => t('URL to CBD ratification XML file'),
     '#default_value' => variable_get('cbd_ratification_xml_url'),
     '#size' => 60,
     '#maxlength' => 128,
@@ -238,7 +238,7 @@ function ptk_base_portal_settings_form() {
   ];
   $form['cartagena_ratification_xml_url'] = [
     '#type' => 'textfield',
-    '#title' => t('The Cartagena Protocol on Biosafety ratification xml url'),
+    '#title' => t('URL to Cartagena Biosafety Protocol ratification XML file'),
     '#default_value' => variable_get('cartagena_ratification_xml_url'),
     '#size' => 60,
     '#maxlength' => 128,
@@ -246,7 +246,7 @@ function ptk_base_portal_settings_form() {
   ];
   $form['nagoya_ratification_xml_url'] = [
     '#type' => 'textfield',
-    '#title' => t('Nagoya Protocol ratification xml url'),
+    '#title' => t('URL to Nagoya Protocol ratification XML file'),
     '#default_value' => variable_get('nagoya_ratification_xml_url'),
     '#size' => 60,
     '#maxlength' => 128,
