@@ -19,9 +19,9 @@ require_once dirname(__FILE__) . '/forms/ChmUserLoginForm.php';
  */
 function ptk_base_permission() {
   return [
-    'configure portal global settings' => [
-      'title' => t('Configure portal global settings'),
-      'description' => t('Allow configuring global variables such as block links, social media accounts etc.')
+    'configure chm settings' => [
+      'title' => t('Configure global settings'),
+      'description' => t('Access global configuration common to all CHM network sites')
     ]
   ];
 }
@@ -89,7 +89,7 @@ function ptk_base_menu() {
       'page callback' => 'drupal_get_form',
       'page arguments' => array('ptk_base_portal_settings_form'),
       'file' => 'ptk_base.admin.inc',
-      'access arguments' => ['view the administration theme'],
+      'access arguments' => ['configure chm settings'],
       'type' => MENU_NORMAL_ITEM,
       'description' => 'General configuration for all domains.',
     ],

@@ -1,4 +1,5 @@
-name = PTK base module
+name = PTK
+project = ptk_base
 description = Basic toolkit functionality
 package = CHM
 type = module
