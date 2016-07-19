@@ -14,4 +14,5 @@ drush sql-drop -y
 drush sql-sync @prod @self -y
 drush vset environment dev
 drush prepare-dev -y
+drush rsync @prod:%files @self:%files -y
 drush cc all
