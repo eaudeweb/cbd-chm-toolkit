@@ -2834,17 +2834,8 @@ function chm_structure_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'galleryformatter',
-        'settings' => array(
-          'link_to_full' => 1,
-          'link_to_full_style' => 0,
-          'linking_method' => 'show_full_link',
-          'modal' => 'none',
-          'slide_style' => 'galleryformatter_slide',
-          'style' => 'Greenarrows',
-          'thumb_style' => 'galleryformatter_thumb',
-        ),
-        'type' => 'galleryformatter_default',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 0,
       ),
       'teaser' => array(

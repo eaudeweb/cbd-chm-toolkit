@@ -24,6 +24,7 @@ dependencies[] = link
 dependencies[] = list
 dependencies[] = number
 dependencies[] = options
+dependencies[] = osha_gallery
 dependencies[] = page_manager
 dependencies[] = slick
 dependencies[] = strongarm

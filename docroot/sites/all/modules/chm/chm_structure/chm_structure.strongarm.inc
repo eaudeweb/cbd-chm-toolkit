@@ -1098,6 +1098,9 @@ function chm_structure_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'print' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
