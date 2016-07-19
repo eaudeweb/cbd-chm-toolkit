@@ -129,6 +129,8 @@ class ChmDomainForm {
 
     // Add the species import batch
     if ($countryIsoCode) {
+      PTKDomain::set_country_treaty_data(NULL, $domain);
+
       $batch = array(
         'title' => t('Invoking IUCN RedList API species data, please be patient ...'),
         'operations' => array(

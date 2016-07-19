@@ -357,7 +357,13 @@ class PTKDomain {
     variable_realm_set('domain', $realm_key, $name, $value);
   }
 
-  public static function set_country_treaty_data($country, $domain = NULL) {
+  public static function set_country_treaty_data($country = NULL, $domain = NULL) {
+    if (empty($domain)) {
+      $domain = domain_get_domain();
+    }
+    if (empty($country)) {
+      $country =  PTK::getCountryByCode(self::variable_get('country', $domain));
+    }
     $treaties = ['cbd', 'nagoya', 'cartagena'];
     foreach ($treaties as $treaty) {
       if (!empty($url = variable_get($treaty . '_ratification_xml_url'))) {
