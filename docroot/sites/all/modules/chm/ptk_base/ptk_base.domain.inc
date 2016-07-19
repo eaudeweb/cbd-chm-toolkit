@@ -131,6 +131,8 @@ class PTKDomain {
     $create_main_menu = !empty($values['create_main_menu']);
     $create_sample_content = !empty($values['create_sample_content']);
 
+    self::variable_set('site_frontpage', "main-home-page", $domain);
+
     if ($country) {
       self::variable_set('site_name', "Biodiversity {$country->name}", $domain);
       /** @var stdClass $wrapper */
