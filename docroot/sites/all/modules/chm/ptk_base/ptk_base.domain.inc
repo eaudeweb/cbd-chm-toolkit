@@ -201,6 +201,16 @@ class PTKDomain {
 
     if ($create_main_menu) {
       $menu = self::createCountryMainMenu($values['country'], $domain);
+      $home_link = [
+        'link_title' => 'Home',
+        'link_path' => '<front>',
+        'menu_name' => $menu['menu_name'],
+        'weight' => 0,
+        'expanded' => 0,
+        'depth' => 1,
+      ];
+      menu_link_save($home_link);
+
       $page_default_attributes = array(
         'type' => 'page',
         'status' => '1',
@@ -219,7 +229,6 @@ class PTKDomain {
           'parent_depth_limit' => 8,
           'description' => '',
           'parent' => "{$menu['menu_name']}:0",
-          'weight' => 0,
           'plid' => 0,
           'menu_name' => $menu['menu_name'],
         ),
@@ -234,7 +243,7 @@ class PTKDomain {
         'Participate' => 'participate',
         'About us' => 'about',
       );
-      $weight = 0;
+      $weight = 1;
       foreach ($pages as $page => $path) {
         $node = $page_default_attributes;
         $node['title'] = $node['menu']['link_title'] = $page;
