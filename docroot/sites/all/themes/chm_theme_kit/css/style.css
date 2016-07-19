@@ -8293,8 +8293,54 @@ a.more-link:hover,
 #block-ptk-base-chm-content-statistics table td .fa {
   margin-right: 5px;
 }
+html {
+  height: 100%;
+}
+html body {
+  height: 100%;
+}
 html body.admin-menu-with-shortcuts {
   margin-top: 64px !important;
+}
+body.maintenance-page #page {
+  min-height: 100%;
+}
+body.maintenance-page #page #logo {
+  display: block;
+  text-align: center;
+}
+body.maintenance-page #page #name-and-slogan {
+  background-color: #039749;
+  text-align: center;
+  padding: 0;
+  float: none!important;
+}
+body.maintenance-page #page #name-and-slogan #site-name {
+  margin: 0;
+}
+body.maintenance-page #page #name-and-slogan #site-name a {
+  display: inline-block;
+  color: #ffffff;
+  font-size: 40px;
+  padding: 20px 0;
+  font-weight: bold;
+}
+body.maintenance-page #page #name-and-slogan #site-name a:hover {
+  text-decoration: none;
+}
+body.maintenance-page #page #container {
+  text-align: center;
+  padding: 100px 0;
+}
+body.maintenance-page #footer-container {
+  clear: both;
+  position: relative;
+  height: 360px;
+  margin-top: -360px;
+}
+body.maintenance-page #footer-container #footer {
+  padding-top: 80px;
+  padding-bottom: 80px;
 }
 .region-admin-shortcuts #block-system-user-menu .menu:before {
   display: inline-block;

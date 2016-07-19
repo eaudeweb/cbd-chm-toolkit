@@ -1,5 +1,52 @@
 html {
-  body.admin-menu-with-shortcuts {
-    margin-top: 64px !important;
+  height: 100%;
+  body {
+    height: 100%;
+    &.admin-menu-with-shortcuts {
+      margin-top: 64px !important;
+    }
+  }
+}
+
+body.maintenance-page {
+  #page {
+    min-height: 100%;
+    #logo {
+      display: block;
+      text-align: center;
+    }
+    #name-and-slogan {
+      background-color: @navbar-color;
+      text-align: center;
+      padding: 0;
+      float: none!important;
+      #site-name {
+        margin: 0;
+        a {
+          display: inline-block;
+          color: #ffffff;
+          font-size: 40px;
+          padding: 20px 0;
+          font-weight: bold;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+    #container {
+      text-align: center;
+      padding: 100px 0;
+    }
+  }
+  #footer-container {
+    clear: both;
+    position: relative;
+    height: 360px;
+    margin-top: -360px;
+    #footer {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
   }
 }
