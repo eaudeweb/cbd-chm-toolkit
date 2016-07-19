@@ -12,6 +12,20 @@ abstract class AbstractBlock {
   }
 
   /**
+   * If the delta is chm_content_statistics the class name should be
+   * ChmContentStatisticsBlock.
+  */
+  static function getBlockClassName($delta) {
+    $klass = str_replace(' ', '', ucwords(str_replace('_', ' ', $delta))) . 'Block';
+    if (strpos($klass, 'Chm') === FALSE) {
+      $klass = 'Chm' . $klass;
+    }
+    $klass = 'Drupal\\ptk_base\\blocks\\' . $klass;
+    return $klass;
+
+  }
+
+  /**
    * Implements hook_block_info().
    */
   abstract public function info();
@@ -20,6 +34,14 @@ abstract class AbstractBlock {
    * Implements hook_block_view().
    */
   abstract public function view();
+
+  /**
+   * Implementes hook_block_view_alter().
+   *
+   * @param array $data
+   *   Block output
+   */
+  public function alter($data) {}
 
   /**
    * An array containing the settings of the block.

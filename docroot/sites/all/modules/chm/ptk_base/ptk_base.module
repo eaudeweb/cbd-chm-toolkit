@@ -116,29 +116,19 @@ function ptk_base_block_info() {
   return $blocks;
 }
 
-function _ptk_base_get_block_class_Name($delta = '') {
-  /*
-   * If the delta is chm_content_statistics the class name should be
-   * ChmContentStatisticsBlock.
-   */
-  $className = str_replace(' ', '', ucwords(str_replace('_', ' ', $delta))) . 'Block';
-  $fullClassName = 'Drupal\\ptk_base\\blocks\\' . $className;
-  return $fullClassName;
-}
-
 /**
  * Implements hook_block_view().
  */
 function ptk_base_block_view($delta = '') {
   $return = [];
-  $fullClassName = _ptk_base_get_block_class_Name($delta);
-  if (class_exists($fullClassName)) {
+  $klass = \Drupal\ptk_base\blocks\AbstractBlock::getBlockClassName($delta);
+  if (class_exists($klass)) {
     /** @var Drupal\ptk_base\blocks\AbstractBlock $block */
-    $block = new $fullClassName();
+    $block = new $klass();
     $return = $block->view();
   }
   else {
-    drupal_set_message(t('Class !class does not exist.', ['!class' => $fullClassName]), 'error');
+    drupal_set_message(t('Class !class does not exist.', ['!class' => $klass]), 'error');
   }
   return $return;
 }
@@ -148,14 +138,14 @@ function ptk_base_block_view($delta = '') {
  */
 function ptk_base_block_configure($delta = '') {
   $return = [];
-  $fullClassName = _ptk_base_get_block_class_Name($delta);
-  if (class_exists($fullClassName)) {
+  $klass = \Drupal\ptk_base\blocks\AbstractBlock::getBlockClassName($delta);
+  if (class_exists($klass)) {
     /** @var Drupal\ptk_base\blocks\AbstractBlock $block */
-    $block = new $fullClassName();
+    $block = new $klass();
     $return = $block->configure();
   }
   else {
-    drupal_set_message(t('Class !class does not exist.', ['!class' => $fullClassName]), 'error');
+    drupal_set_message(t('Class !class does not exist.', ['!class' => $klass]), 'error');
   }
   return $return;
 }
@@ -164,14 +154,14 @@ function ptk_base_block_configure($delta = '') {
  * Implements hook_block_save().
  */
 function ptk_base_block_save($delta = '', $edit = array()) {
-  $fullClassName = _ptk_base_get_block_class_Name($delta);
-  if (class_exists($fullClassName)) {
+  $klass = \Drupal\ptk_base\blocks\AbstractBlock::getBlockClassName($delta);
+  if (class_exists($klass)) {
     /** @var Drupal\ptk_base\blocks\AbstractBlock $block */
-    $block = new $fullClassName();
+    $block = new $klass();
     $block->save($edit);
   }
   else {
-    drupal_set_message(t('Class !class does not exist.', ['!class' => $fullClassName]), 'error');
+    drupal_set_message(t('Class !class does not exist.', ['!class' => $klass]), 'error');
   }
 }
 
