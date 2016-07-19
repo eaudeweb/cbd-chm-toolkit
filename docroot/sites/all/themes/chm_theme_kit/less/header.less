@@ -166,3 +166,53 @@
     }
   }
 }
+
+
+#block-locale-language-content {
+  float: left;
+
+  ul.language-switcher-locale-url:before {
+    content: "\f0ac";
+    font-size: 20px;
+    font-family: FontAwesome;
+    position:relative;
+    top:2px;
+    left:-7px;
+    color:#ccc;
+  }
+  .language-switcher-locale-url {
+    margin: 0 20px 0 0;
+    list-style: none;
+  }
+  .language-switcher-locale-url li {
+    display:inline-block;
+    border-left: 1px solid #444;
+    padding:0 .5em;
+    border-left: none !important;
+  }
+  .language-switcher-locale-url li.active { background:#fff; }
+  .language-switcher-locale-url li.active a { color:#333; }
+  .language-switcher-locale-url li.first { border-left: none; }
+}
+
+
+#block-system-user-menu {
+  float: left;
+
+  li {
+    line-height:20px;
+    border-left: 1px solid #444;
+    margin-left: 0;
+    padding: 0 .5em;
+  }
+  li.first { border-left: none  }
+  ul.menu:before {
+    content: "\f013";
+    font-size: 20px;
+    font-family: FontAwesome;
+    position:relative;
+    top:2px;
+    left:3px;
+    color:#ccc;
+  }
+}

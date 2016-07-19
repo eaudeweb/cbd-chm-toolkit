@@ -7634,62 +7634,6 @@ div#logo.site-logo img {
   margin: 0;
   float: left;
 }
-.language-switcher-locale-url li.active {
-  background: #fff;
-}
-.language-switcher-locale-url li {
-  border-left: none !important;
-}
-#admin-shortcuts .language-switcher-locale-url li.active a {
-  color: #333;
-}
-#block-system-user-menu,
-#block-locale-language-content {
-  float: left;
-}
-#block-locale-language-content ul:before {
-  content: "\f0ac";
-  font-size: 20px;
-  font-family: FontAwesome;
-  position: relative;
-  top: 2px;
-  left: -7px;
-  color: #ccc;
-}
-#block-system-user-menu li {
-  padding-top: 0px;
-  padding-bottom: 0px;
-  padding-left: 10px;
-  line-height: 20px;
-  border-left: 1px solid #444;
-  margin-left: 0px;
-  padding: 0 .5em;
-}
-#block-system-user-menu li.first {
-  border-left: none;
-}
-#block-system-user-menu ul:before {
-  content: "\f013";
-  font-size: 20px;
-  font-family: FontAwesome;
-  position: relative;
-  top: 2px;
-  xleft: 3px;
-  color: #ccc;
-}
-.language-switcher-locale-url {
-  xfloat: right;
-  margin: 0 20px 0 0;
-  list-style: none;
-}
-.language-switcher-locale-url li {
-  display: inline-block;
-  border-left: 1px solid #444;
-  padding: 0 .5em;
-}
-.language-switcher-locale-url li.first {
-  border-left: none;
-}
 /* ----- Header Region --------------- */
 .header {
   padding: 0px;
@@ -8502,6 +8446,58 @@ html body.admin-menu-with-shortcuts {
 .navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu .active a {
   background-color: #039749;
   color: #ffffff;
+}
+#block-locale-language-content {
+  float: left;
+}
+#block-locale-language-content ul.language-switcher-locale-url:before {
+  content: "\f0ac";
+  font-size: 20px;
+  font-family: FontAwesome;
+  position: relative;
+  top: 2px;
+  left: -7px;
+  color: #ccc;
+}
+#block-locale-language-content .language-switcher-locale-url {
+  margin: 0 20px 0 0;
+  list-style: none;
+}
+#block-locale-language-content .language-switcher-locale-url li {
+  display: inline-block;
+  border-left: 1px solid #444;
+  padding: 0 .5em;
+  border-left: none !important;
+}
+#block-locale-language-content .language-switcher-locale-url li.active {
+  background: #fff;
+}
+#block-locale-language-content .language-switcher-locale-url li.active a {
+  color: #333;
+}
+#block-locale-language-content .language-switcher-locale-url li.first {
+  border-left: none;
+}
+#block-system-user-menu {
+  float: left;
+}
+#block-system-user-menu li {
+  line-height: 20px;
+  border-left: 1px solid #444;
+  margin-left: 0;
+  padding: 0 .5em;
+}
+#block-system-user-menu li.first {
+  border-left: none;
+}
+#block-system-user-menu ul.menu:before {
+  content: "\f013";
+  font-size: 20px;
+  font-family: FontAwesome;
+  position: relative;
+  top: 2px;
+  left: 3px;
+  color: #ccc;
 }
 .main-container {
   padding-top: 40px;
