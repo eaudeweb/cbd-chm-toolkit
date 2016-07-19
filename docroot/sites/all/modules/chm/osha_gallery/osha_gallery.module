@@ -88,7 +88,7 @@ function osha_gallery_node_view($node, $view_mode, $langcode) {
     $gallery_field = current(array_keys($fields[$node->type]));
     $extra_fields = field_info_extra_fields('node', $node->type, 'display');
     $extra_field_pc = $extra_fields['gallery_cover_image'];
-    if (!empty($extra_field_pc['display'][$view_mode]['visible'])) {
+    if (!empty($extra_field_pc['display'][$view_mode]['visible']) && !empty($node->{$gallery_field})) {
       $wrapper = entity_metadata_wrapper('node', $node);
       $first_image = $wrapper->{$gallery_field}->value()[0];
       if (!empty($first_image)) {
