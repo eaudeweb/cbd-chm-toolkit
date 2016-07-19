@@ -283,6 +283,7 @@ class PTKDomain {
             'expanded' => 0,
             'depth' => 2,
             'plid' => $link['mlid'],
+            'p1' => $link['mlid'],
           ];
           menu_link_save($new_link);
         }
