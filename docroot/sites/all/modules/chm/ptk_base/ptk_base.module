@@ -277,6 +277,7 @@ function ptk_base_entity_info_alter(&$entity_info) {
 function ptk_base_custom_theme() {
   if ($object = menu_get_object()) {
     if ($object->type == 'book') {
+      drupal_add_css(drupal_get_path('module', 'ptk_base') . '/css/book.css', array('weight' => -100));
       return 'seven';
     }
   }

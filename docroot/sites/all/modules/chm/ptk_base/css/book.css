@@ -1,0 +1,24 @@
+div#content {
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+}
+div#help {
+  border-radius: 5px;
+  background-color: #e0e0d8;
+  max-width: 350px;
+  position: fixed;
+  padding-left: 10px;
+}
+div.region-content {
+  margin-left: 350px;
+  float: left;
+}
+ul.links {
+  display: block !important;
+  margin-top: 25px !important;
+  border: 3px solid blue;
+}
+
+div.page-links { margin-top: 25px; display: block !important; }
+div.page-links a { margin-right: 50px; }
