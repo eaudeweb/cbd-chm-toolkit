@@ -225,3 +225,47 @@ function ptk_base_domain_content_config($domain) {
   drupal_set_title('Populate domain with sample content and menus');
   return drupal_get_form('ptk_base_domain_content_config_form', $domain);
 }
+
+function ptk_base_portal_settings_form() {
+  $form = [];
+  $form['cbd_ratification_xml_url'] = [
+    '#type' => 'textfield',
+    '#title' => t('CBD ratification xml url'),
+    '#default_value' => variable_get('cbd_ratification_xml_url'),
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#required' => FALSE,
+  ];
+  $form['cartagena_ratification_xml_url'] = [
+    '#type' => 'textfield',
+    '#title' => t('The Cartagena Protocol on Biosafety ratification xml url'),
+    '#default_value' => variable_get('cartagena_ratification_xml_url'),
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#required' => FALSE,
+  ];
+  $form['nagoya_ratification_xml_url'] = [
+    '#type' => 'textfield',
+    '#title' => t('Nagoya Protocol ratification xml url'),
+    '#default_value' => variable_get('nagoya_ratification_xml_url'),
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#required' => FALSE,
+  ];
+  $form['actions']['save'] = array(
+    '#type' => 'submit',
+    '#value' => t('Save configuration'),
+  );
+  return $form;
+}
+
+function ptk_base_portal_settings_form_submit($form, $form_state) {
+  $variables = [
+    'cbd_ratification_xml_url',
+    'cartagena_ratification_xml_url',
+    'nagoya_ratification_xml_url',
+  ];
+  foreach ($variables as $variable) {
+    variable_set($variable, $form_state['values'][$variable]);
+  }
+}
