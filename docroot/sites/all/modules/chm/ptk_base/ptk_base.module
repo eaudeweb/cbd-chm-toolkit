@@ -84,6 +84,15 @@ function ptk_base_menu() {
       'access arguments' => ['view the administration theme'],
       'type' => MENU_CALLBACK,
     ],
+    'admin/config/system/portal_settings' => [
+      'title' => 'CHM Portal Settings',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('ptk_base_portal_settings_form'),
+      'file' => 'ptk_base.admin.inc',
+      'access arguments' => ['view the administration theme'],
+      'type' => MENU_NORMAL_ITEM,
+      'description' => 'General configuration for all domains.',
+    ],
   ];
   return $items;
 }
