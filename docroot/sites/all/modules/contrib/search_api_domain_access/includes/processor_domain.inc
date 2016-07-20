@@ -18,8 +18,13 @@ class SearchApiDomainFilter extends SearchApiAbstractProcessor {
   }
 
   public function configurationForm() {
-    $form = parent::configurationForm();
-    
+    $form = [
+      'fields' => [
+        '#type' => 'hidden',
+        '#value' => [],
+      ],
+    ];
+
     $options = array(
       'search_api_domain_active_domain' => t('Active domain'),
       'search_api_domain_user_domains' => t('User domains'),
