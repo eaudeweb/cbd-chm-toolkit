@@ -75,7 +75,10 @@ class SearchApiDomainFilter extends SearchApiAbstractProcessor {
         }
         elseif ($machine_name === 'search_api_domain_active_domain') {
           $domain = domain_get_domain();
-          $selected_domains[$domain['domain_id']] = $domain['domain_id'];
+          // Users on our main CHM Network domain can search for any data
+          if ($domain['domain_id'] != 1) {
+            $selected_domains[$domain['domain_id']] = $domain['domain_id'];
+          }
         }
         elseif ($machine_name === 'search_api_domain_user_domains') {
           global $user;

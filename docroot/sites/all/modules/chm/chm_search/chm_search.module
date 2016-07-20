@@ -46,15 +46,3 @@ EOT
   }
   return NULL;
 }
-
-/**
- * Implements hook_views_pre_view().
- */
-function chm_search_views_pre_view(&$view, &$display_id, &$args) {
-  if ($view->name == 'the_search_view' && $display_id == 'page') {
-    $domain = domain_get_domain();
-    if (($did = $domain['domain_id']) != 1) {
-      $view->display['default']->handler->options['filters']['domains']['value'] = $did;
-    }
-  }
-}

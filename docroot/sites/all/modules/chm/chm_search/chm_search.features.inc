@@ -46,6 +46,11 @@ function chm_search_default_search_api_index() {
           "weight" : "-10",
           "settings" : { "default" : "1", "bundles" : [] }
         },
+        "search_api_domain_alter_domain_filter" : {
+          "status" : 0,
+          "weight" : "-10",
+          "settings" : { "default" : "1", "domains" : [], "operator" : "OR" }
+        },
         "search_api_alter_node_access" : { "status" : 1, "weight" : "0", "settings" : [] },
         "search_api_alter_node_status" : { "status" : 1, "weight" : "0", "settings" : [] },
         "search_api_attachments_alter_settings" : {
@@ -63,13 +68,23 @@ function chm_search_default_search_api_index() {
           "weight" : "0",
           "settings" : { "lang_field" : "", "languages" : [] }
         },
-        "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "full" } },
+        "search_api_alter_add_hierarchy" : { "status" : 0, "weight" : "0", "settings" : { "fields" : [] } },
         "search_api_alter_add_url" : { "status" : 0, "weight" : "0", "settings" : [] },
         "search_api_alter_add_aggregation" : { "status" : 0, "weight" : "0", "settings" : [] },
-        "search_api_metatag_alter_callback" : { "status" : 0, "weight" : "0", "settings" : [] },
-        "search_api_alter_add_hierarchy" : { "status" : 0, "weight" : "0", "settings" : { "fields" : [] } }
+        "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "full" } },
+        "search_api_metatag_alter_callback" : { "status" : 0, "weight" : "0", "settings" : [] }
       },
       "processors" : {
+        "search_api_domain" : {
+          "status" : 1,
+          "weight" : "0",
+          "settings" : {
+            "default" : "1",
+            "domains" : { "search_api_domain_active_domain" : "search_api_domain_active_domain" },
+            "operator" : "OR",
+            "fields" : null
+          }
+        },
         "search_api_case_ignore" : {
           "status" : 1,
           "weight" : "0",
@@ -192,7 +207,7 @@ function chm_search_default_search_api_index() {
         "field_first_name" : { "type" : "text" },
         "field_last_name" : { "type" : "text" },
         "field_nfp_designation" : { "type" : "text" },
-        "field_nfp_type" : { "type" : "integer", "entity_type" : "taxonomy_term" },
+        "field_nfp_type" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "promote" : { "type" : "boolean" },
         "search_api_access_node" : { "type" : "list\\u003Cstring\\u003E" },
         "search_api_language" : { "type" : "string" },
