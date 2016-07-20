@@ -18,6 +18,8 @@ class SearchApiDomainFilter extends SearchApiAbstractProcessor {
   }
 
   public function configurationForm() {
+    $form = parent::configurationForm();
+    
     $options = array(
       'search_api_domain_active_domain' => t('Active domain'),
       'search_api_domain_user_domains' => t('User domains'),
@@ -26,7 +28,7 @@ class SearchApiDomainFilter extends SearchApiAbstractProcessor {
       $options[$value['machine_name']] = $value['sitename'];
     }
 
-    $form = array(
+    $form += array(
       'default' => array(
         '#type' => 'radios',
         '#title' => t('Which nodes should be included in the search results?'),
