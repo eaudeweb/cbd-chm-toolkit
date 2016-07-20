@@ -103,10 +103,10 @@ function addressfield_autocomplete_field_widget_settings_form($field, $instance)
 
   if ($widget['type'] == 'addressfield_autocomplete') {
     $types = array(
-      'geocode',
-      'establishment',
-      '(regions)',
-      '(cities)',
+      'geocode'=>'Geocode',
+      'establishment'=>'Establishment',
+      '(regions)'=>'(regions)',
+      '(cities)'=>'(cities)',
     );
     $form['available_countries'] = array(
       '#type' => 'select',
@@ -186,13 +186,17 @@ function addressfield_autocomplete_field_widget_settings_form($field, $instance)
       '#default_value' => $settings['html5_geocode'],
       '#weight' => 4,
     );
+
     $form['types'] = array(
       '#type' => 'select',
       '#title' => t('Place types'),
-      '#description' => t('The autocomplete service will return results that match any of the specified types, default is geocode.'),
-      '#options' => drupal_map_assoc($types),
+      '#description' => t('The autocomplete service will return results that match any of the specified types.  Selecting both "Geocode" & "Establishment" will find everything.'),
+      '#options' => $types,
       '#default_value' => $settings['types'],
       '#weight' => 4,
+      '#required' => true,
+      '#multiple' => true,
+      '#size' => 4,
     );
   }
   else {
@@ -294,6 +298,9 @@ function addressfield_autocomplete_field_widget_form(&$form, &$form_state, $fiel
     $form_ui = $form_state['build_info']['form_id'] == 'field_ui_field_edit_form';
     $fields = &drupal_static(__FUNCTION__, array());
     $settings = $instance['widget']['settings'];
+
+    // Prepare types array to be passed to javascript
+    $settings['types'] = implode(',', (array) $settings['types']);
 
     // This field name is updated after build with the complete field name.
     $fields[$field['field_name']] = $settings;

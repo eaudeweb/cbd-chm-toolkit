@@ -59,7 +59,7 @@
       },
       maxZoom: parseInt(gmapSettings.maxzoom),
       location: location ? location : gmapSettings.latlong.split(','),
-      types: [ settings.types ]
+      types: settings.types.split(','),
     };
 
     if (Object.size(settings.available_countries) == 1) {
@@ -443,7 +443,7 @@
       });
       /*
        * This allows the user to click a link inside the widget
-       * dropdown to enter an address manullay.
+       * dropdown to enter an address manually.
        */
       $(document).delegate('.addressfield-autocomplete-input', 'keydown', function() {
         $(".pac-container").find(".addressfield-autocomplete-reveal").remove();

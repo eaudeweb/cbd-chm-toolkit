@@ -1,0 +1,70 @@
+diff --git a/addressfield_autocomplete.js b/addressfield_autocomplete.js
+index 5623dba..1b5062b 100644
+--- a/addressfield_autocomplete.js
++++ b/addressfield_autocomplete.js
+@@ -59,7 +59,7 @@
+       },
+       maxZoom: parseInt(gmapSettings.maxzoom),
+       location: location ? location : gmapSettings.latlong.split(','),
+-      types: [ settings.types ]
++      types: settings.types.split(','),
+     };
+ 
+     if (Object.size(settings.available_countries) == 1) {
+@@ -449,7 +449,7 @@
+       });
+       /*
+        * This allows the user to click a link inside the widget
+-       * dropdown to enter an address manullay.
++       * dropdown to enter an address manually.
+        */
+       $(document).delegate('.addressfield-autocomplete-input', 'keydown', function() {
+         $(".pac-container").find(".addressfield-autocomplete-reveal").remove();
+diff --git a/addressfield_autocomplete.module b/addressfield_autocomplete.module
+index 619819b..60b5651 100644
+--- a/addressfield_autocomplete.module
++++ b/addressfield_autocomplete.module
+@@ -104,10 +104,10 @@ function addressfield_autocomplete_field_widget_settings_form($field, $instance)
+   if ($widget['type'] == 'addressfield_autocomplete') {
+     $settings = $widget['settings'];
+     $types = array(
+-      'geocode',
+-      'establishment',
+-      '(regions)',
+-      '(cities)',
++      'geocode'=>'Geocode',
++      'establishment'=>'Establishment',
++      '(regions)'=>'(regions)',
++      '(cities)'=>'(cities)',
+     );
+     $form['available_countries'] = array(
+       '#type' => 'select',
+@@ -187,13 +187,17 @@ function addressfield_autocomplete_field_widget_settings_form($field, $instance)
+       '#default_value' => $settings['html5_geocode'],
+       '#weight' => 4,
+     );
++
+     $form['types'] = array(
+       '#type' => 'select',
+       '#title' => t('Place types'),
+-      '#description' => t('The autocomplete service will return results that match any of the specified types, default is geocode.'),
+-      '#options' => drupal_map_assoc($types),
++      '#description' => t('The autocomplete service will return results that match any of the specified types.  Selecting both "Geocode" & "Establishment" will find everything.'),
++      '#options' => $types,
+       '#default_value' => $settings['types'],
+       '#weight' => 4,
++      '#required' => true,
++      '#multiple' => true,
++      '#size' => 4,
+     );
+     return $form;
+   }
+@@ -298,6 +302,8 @@ function addressfield_autocomplete_field_widget_form(&$form, &$form_state, $fiel
+   $form_ui = $form_state['build_info']['form_id'] == 'field_ui_field_edit_form';
+   $fields = &drupal_static(__FUNCTION__, array());
+   $settings = $instance['widget']['settings'];
++  // Prepare types array to be passed to javascript
++  $settings['types'] = implode(',', (array)$settings['types']);
+ 
+   // This field name is updated after build with the complete field name.
+   $fields[$field['field_name']] = $settings;
