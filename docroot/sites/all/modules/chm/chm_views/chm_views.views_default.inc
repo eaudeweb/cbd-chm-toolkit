@@ -526,6 +526,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['label'] = '';
   $handler->display->display_options['fields']['field_dates']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_dates']['type'] = 'event_date_formatter';
   $handler->display->display_options['fields']['field_dates']['settings'] = array(
     'format_type' => 'european',
     'fromto' => 'both',
