@@ -179,6 +179,7 @@ function chm_search_default_search_api_index() {
         "body:value" : { "type" : "text" },
         "changed" : { "type" : "date" },
         "created" : { "type" : "date" },
+        "domains" : { "type" : "list\\u003Cinteger\\u003E" },
         "field_address" : { "type" : "text" },
         "field_alternative_emails" : { "type" : "list\\u003Ctext\\u003E" },
         "field_city" : { "type" : "text" },
