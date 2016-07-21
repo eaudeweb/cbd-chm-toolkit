@@ -24,6 +24,38 @@ function chm_search_block_info() {
 }
 
 /**
+ * Implements hook_block_configure().
+ */
+function chm_search_block_configure($delta = '') {
+  if ($delta == 'chm_search') {
+    $form = array();
+    $form['chm_search_block_input_placeholder'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Search input placeholder'),
+      '#default_value' => variable_get('chm_search_block_input_placeholder'),
+    );
+    $form['chm_search_block_input_size'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Search input size'),
+      '#default_value' => variable_get('chm_search_block_input_size'),
+    );
+    return $form;
+  }
+}
+
+/**
+ * Implements hook_block_save().
+ */
+function chm_search_block_save($delta = '', $edit = array()) {
+  if ($delta == 'chm_search') {
+    $value = isset($edit['chm_search_block_input_placeholder']) ? $edit['chm_search_block_input_placeholder'] : '';
+    variable_set('chm_search_block_input_placeholder', $value);
+    $value = isset($edit['chm_search_block_input_size']) ? $edit['chm_search_block_input_size'] : '';
+    variable_set('chm_search_block_input_size', $value);
+  }
+}
+
+/**
  * Implements hook_block_view().
  */
 function chm_search_block_view($delta = '') {
@@ -32,12 +64,14 @@ function chm_search_block_view($delta = '') {
     if (!empty($_GET['search_api_views_fulltext'])) {
       $val = check_plain($_GET['search_api_views_fulltext']);
     }
+    // Translate the placeholder
+    $placeholder = t(variable_get('chm_search_block_input_placeholder'));
     $ret = array(
       'subject' => t('Search'),
       'content' =>
 <<<EOT
         <form method="GET" action="/search">
-          <input type="text" name="search_api_views_fulltext" value="$val">
+          <input type="text" name="search_api_views_fulltext" placeholder="$placeholder" value="$val">
           <input class="btn-search form-submit" alt="Search" type="image" id="edit-submit" name="submit" src="/sites/all/themes/chm_theme_kit/img/searchbutton.png">
         </form>
 EOT
