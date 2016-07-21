@@ -29,7 +29,7 @@ function chm_structure_block_view($delta = '') {
         drupal_add_js(
           array(
             'chm_structure' => array(
-              'species_arkive_key' => 'GeD0TksVjMOk8vxTX5gkI6dFRNM1H0yFRvbciFtivm81',
+              'species_arkive_key' => $arkive_key,
               'species_arkive_name' => strtolower($node->title),
             ),
           ), 'setting');
