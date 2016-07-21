@@ -1,0 +1,4 @@
+name = CHM Social media
+description = Offers integration with social media websites such as Facebook, Twitter, G+ etc.
+core = 7.x
+package = CHM

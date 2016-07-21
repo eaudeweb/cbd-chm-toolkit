@@ -1,0 +1,176 @@
+<?php
+
+/**
+ * Implements hook_block_info().
+ */
+function chm_social_plugin_block_info() {
+  $blocks = array();
+  $blocks['chm_social_plugin'] = [
+    'info' => t('CHM Social plugin'),
+    'status' => TRUE,
+    'region' => 'content',
+    'cache' => DRUPAL_NO_CACHE,
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'pages' => '',
+    'weight' => 1,
+  ];
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_configure().
+ */
+function chm_social_plugin_block_configure($delta = '') {
+  if ($delta == 'chm_social_plugin') {
+    $form = array();
+    $form['chm_social_plugin_use_domain'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Customize for each domain'),
+      '#default_value' => variable_get('chm_social_plugin_use_domain'),
+      '#description' => t('You must enter on each domain and configure the block (this checkbox is global though)')
+    );
+
+    $form['chm_social_plugin_use_facebook_share'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Use Facebook share feature'),
+      '#default_value' => chm_social_plugin_variable_get('chm_social_plugin_use_facebook_share'),
+    );
+    $form['chm_social_plugin_use_twitter'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Use Twitter share feature'),
+      '#default_value' => chm_social_plugin_variable_get('chm_social_plugin_use_twitter'),
+    );
+    return $form;
+  }
+  return NULL;
+}
+
+/**
+ * Implements hook_block_save().
+ */
+function chm_social_plugin_block_save($delta = '', $edit = array()) {
+  if ($delta == 'chm_social_plugin') {
+    $value = isset($edit['chm_social_plugin_use_domain']) ? $edit['chm_social_plugin_use_domain'] : '';
+    variable_set('chm_social_plugin_use_domain', $value);
+
+    $value = isset($edit['chm_social_plugin_use_facebook_share']) ? $edit['chm_social_plugin_use_facebook_share'] : '';
+    chm_social_plugin_variable_set('chm_social_plugin_use_facebook_share', $value);
+
+    $value = isset($edit['chm_social_plugin_use_twitter']) ? $edit['chm_social_plugin_use_twitter'] : '';
+    chm_social_plugin_variable_set('chm_social_plugin_use_twitter', $value);
+  }
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function chm_social_plugin_block_view($delta = '') {
+  if ($delta == 'chm_social_plugin') {
+    $url = url(current_path(), array('absolute' => 1));
+    $title = drupal_get_title();
+    $ret = array(
+      'subject' => t('Social media'),
+      'content' => theme('chm_social_plugin', array('url' => $url, 'title' => $title))
+    );
+    return $ret;
+  }
+  return NULL;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function chm_social_plugin_theme($existing, $type, $theme, $path) {
+  return array(
+    'chm_social_plugin' => array(
+      'variables' => array('url' => NULL, 'title' => NULL),
+    )
+  );
+}
+
+/**
+ * Theme function for the sharing block
+ *
+ * @param array $variables
+ *   Theme variables
+ * @return array
+ *   Renderable array
+ */
+function theme_chm_social_plugin($variables) {
+  $url = !empty($variables['url']) ? $variables['url'] : FALSE;
+  $title = !empty($variables['title']) ? $variables['title'] : FALSE;
+  $ret = array();
+  if ($url && chm_social_plugin_variable_get('chm_social_plugin_use_facebook_share')) {
+    $ret['facebook-share'] = array(
+      '#theme' => 'link',
+      '#text' => 'Facebook',
+      '#path' => 'https://www.facebook.com/sharer/sharer.php?u=' . filter_xss($url),
+      '#attributes' => array(),
+      '#options' => array(
+        'attributes' => array(
+          'id' => 'facebook-share-link',
+          'onclick' => "window.open(this.href, 'hwc-share', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        ),
+        'html' => FALSE)
+    );
+  }
+  if ($url && chm_social_plugin_variable_get('chm_social_plugin_use_twitter')) {
+    $ret['twitter-share'] = array(
+      '#theme' => 'link',
+      '#text' => 'Twitter',
+      '#path' => 'https://twitter.com/intent/tweet?url=' . filter_xss($url) . '&text=' . filter_xss($title),
+      '#attributes' => array(),
+      '#options' => array(
+        'attributes' => array(
+          'id' => 'twitter-link',
+          'onclick' => "window.open(this.href, 'hwc-share', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        ),
+        'html' => FALSE)
+    );
+  }
+  return $ret;
+}
+
+/**
+ * Retrieve configuration parameter
+ *
+ * @param string $name
+ *   Parameter name
+ * @param string $default
+ *   Default value
+ * @return string
+ *   Variable value or $default if undefined
+ */
+function chm_social_plugin_variable_get($name, $default = NULL) {
+  $use_domain = variable_get('chm_social_plugin_use_domain');
+  if ($use_domain && function_exists('domain_variable_get')&& function_exists('domain_get_domain')) {
+    $domain = domain_get_domain();
+    $ret = domain_variable_get($domain['domain_id'], $name);
+    if ($ret === NULL) {
+      $ret = $default;
+    }
+  } else {
+    $ret = variable_get($name, $default);
+  }
+  return $ret;
+}
+
+/**
+ * Set configuration parameter
+ *
+ * @param string $name
+ *   Parameter name
+ * @param string $value
+ *   Parameter value
+ */
+function chm_social_plugin_variable_set($name, $value) {
+  $use_domain = variable_get('chm_social_plugin_use_domain');
+  if ($use_domain && function_exists('domain_get_domain')) {
+    $domain = domain_get_domain();
+    $realm_key = $domain['machine_name'];
+    variable_realm_set('domain', $realm_key, $name, $value);
+  } else {
+    variable_set($name, $value);
+  }
+}
+
