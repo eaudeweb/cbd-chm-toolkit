@@ -74,6 +74,10 @@ function chm_search_views_default_views() {
     1 => 0,
   );
   $handler->display->display_options['filters']['search_api_views_fulltext']['min_length'] = '3';
+  /* Filter criterion: Indexed Multilingual Node: Domains */
+  $handler->display->display_options['filters']['domains']['id'] = 'domains';
+  $handler->display->display_options['filters']['domains']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['domains']['field'] = 'domains';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');

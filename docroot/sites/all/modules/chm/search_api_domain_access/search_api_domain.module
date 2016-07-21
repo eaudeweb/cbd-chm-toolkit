@@ -1,0 +1,84 @@
+<?php
+
+/**
+ * Search API Domain Access filter.
+ */
+
+/**
+ * Implements hook_search_api_alter_callback_info().
+ */
+function search_api_domain_search_api_alter_callback_info() {
+  $callbacks = array();
+
+  $callbacks['search_api_domain_alter_domain_filter'] = array(
+    'name' => t('Domain filter'),
+    'description' => t('Exclude nodes from being indexed based on their assigned domain(s).'),
+    'class' => 'SearchApiAlterDomainFilter',
+    // Filters should be executed first.
+    'weight' => -10,
+  );
+
+  return $callbacks;
+}
+
+/**
+ * Implements hook_search_api_processor_info().
+ */
+function search_api_domain_search_api_processor_info() {
+  $processors = array();
+
+  $processors['search_api_domain'] = array(
+    'name' => t('Domain filter'),
+    'description' => t('Exclude nodes from search results based on their assigned domain(s).'),
+    'class' => 'SearchApiDomainFilter',
+  );
+
+  return $processors;
+}
+
+/**
+ * Implements hook_entity_property_info_alter().
+ */
+function search_api_domain_entity_property_info_alter(&$info) {
+  // Add an entity property for the domain access of the node.
+  if (isset($info['node'])) {
+    $info['node']['properties']['domains'] = array(
+      'type' => 'list<integer>',
+      'label' => t('Domains'),
+      'computed' => TRUE,
+      'getter callback' => 'search_api_domain_get_domain_info',
+    );
+  }
+}
+
+/**
+ * Entity property getter callback for a node's domain(s).
+ */
+function search_api_domain_get_domain_info($data, array $options, $name, $type, $info) {
+  return (!empty($data->domains) ? $data->domains : NULL);
+}
+
+/**
+ * Implements hook_facetapi_facet_info_alter().
+ */
+function search_api_domain_facetapi_facet_info_alter(array &$facet_info, array $searcher_info) {
+  // Add a mapping callback to the domains facet.
+  if ($searcher_info['adapter'] === 'search_api' && isset($facet_info['domains'])) {
+    $facet_info['domains']['map callback'] = 'search_api_domain_facet_domains_map_callback';
+  }
+}
+
+/**
+ * Facet API map callback for domains.
+ */
+function search_api_domain_facet_domains_map_callback($values, $options) {
+  $map = array();
+
+  // Map the domain ids to their sitenames.
+  $domains = domain_domains();
+  foreach ($values as $key) {
+    $map[$key] = isset($domains[$key]) ? $domains[$key]['sitename'] : $key;
+  }
+
+  return $map;
+}

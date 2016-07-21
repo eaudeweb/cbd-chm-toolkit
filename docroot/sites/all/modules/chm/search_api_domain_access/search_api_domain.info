@@ -1,0 +1,9 @@
+name = Search API Domain Access filter
+description = Filter Search API search results based on Domain Access settings
+core = 7.x
+package = Domain Access
+dependencies[] = domain
+dependencies[] = search_api
+
+files[] = includes/callback_domain_filter.inc
+files[] = includes/processor_domain.inc
