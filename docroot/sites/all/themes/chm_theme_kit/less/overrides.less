@@ -441,12 +441,27 @@ ul li.leaf {
 }
 
 // Views AJAX pager.
+ul.pagination li.active > span{
+  background-color: @navbar-color;
+  border-color: @navbar-color;
+  &:hover{
+    background-color: @navbar-color;
+    border-color: @navbar-color;
+  }
+}
+
 ul.pagination li > a {
+  color: #02823F !important;
+  &:hover{
+    color:#02823F; 
+  }
   &.progress-disabled {
     float: left;
   }
 }
-
+// .ajax-progress.ajax-progress-throbber{
+//   color: #02823F;
+// }
 // Autocomplete and throbber
 .form-autocomplete {
   .glyphicon {

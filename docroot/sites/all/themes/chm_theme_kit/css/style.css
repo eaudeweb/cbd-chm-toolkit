@@ -7151,6 +7151,20 @@ ul li.leaf {
 .form-type-password-confirm .help-block {
   clear: both;
 }
+ul.pagination li.active > span {
+  background-color: #039749;
+  border-color: #039749;
+}
+ul.pagination li.active > span:hover {
+  background-color: #039749;
+  border-color: #039749;
+}
+ul.pagination li > a {
+  color: #02823F !important;
+}
+ul.pagination li > a:hover {
+  color: #02823F;
+}
 ul.pagination li > a.progress-disabled {
   float: left;
 }
