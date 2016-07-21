@@ -18,6 +18,17 @@ class ChmFooterFollowUsBlock extends AbstractBlock {
     ];
   }
 
+  public function configure() {
+    if (user_access('configure chm website settings')) {
+      return array(
+        'info' => array(
+          '#type' => 'item',
+          '#markup' => t('To configure this website\'s social media links !click_here.', array('!click_here' => l(t('click here'), 'admin/config/system/chm_website_settings')))
+        ),
+      );
+    }
+  }
+
   public function view() {
     $domain = domain_get_domain();
     $realm_name = 'domain';
