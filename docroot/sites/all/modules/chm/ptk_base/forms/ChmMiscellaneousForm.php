@@ -1,22 +1,34 @@
 <?php
 
-class ChmMiscellaneousForm{
+class ChmMiscellaneousForm {
 
   static function form($form, $domain) {
-    $ret['ptk']['miscellaneous'] = [
+    if (empty($form['#domain'])) {
+      $form['#domain'] = $domain;
+    }
+    $form['ptk']['miscellaneous'] = [
       '#type' => 'fieldset',
       '#title' => t('Miscellaneous'),
     ];
-    $ret['ptk']['miscellaneous']['ptk_arkive_key'] = [
+    $form['ptk']['miscellaneous']['ptk_arkive_key'] = [
       '#type' => 'textfield',
       '#title' => t('Arkive key'),
       '#default_value' => PTKDomain::variable_get('ptk_arkive_key', $domain),
     ];
-
-    return $ret;
+    $form['#submit'][] = array('ChmMiscellaneousForm', 'submit');
+    return $form;
   }
 
-  static function submit($form, $form_state, $domain) {
+  static function submit($form, $form_state) {
+    $domain = $form['#domain'];
+    // New domains
+    if (empty($domain['domain_id'])) {
+      $domain = $form_state['values'];
+    }
+    if (empty($domain['domain_id'])) {
+      drupal_set_message('Cannot miscellaneous settings, please contact technical support and describe your action', 'error');
+      return;
+    }
     $values = $form_state['values'];
     $keys = array(
       'ptk_arkive_key',

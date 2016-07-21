@@ -226,7 +226,7 @@ function ptk_base_domain_content_config($domain) {
   return drupal_get_form('ptk_base_domain_content_config_form', $domain);
 }
 
-function ptk_base_portal_settings_form() {
+function ptk_base_chm_global_settings_form() {
   $form = [];
   $form['cbd_ratification_xml_url'] = [
     '#type' => 'textfield',
@@ -259,7 +259,7 @@ function ptk_base_portal_settings_form() {
   return $form;
 }
 
-function ptk_base_portal_settings_form_submit($form, $form_state) {
+function ptk_base_chm_global_settings_form_submit($form, $form_state) {
   $variables = [
     'cbd_ratification_xml_url',
     'cartagena_ratification_xml_url',
@@ -268,4 +268,16 @@ function ptk_base_portal_settings_form_submit($form, $form_state) {
   foreach ($variables as $variable) {
     variable_set($variable, $form_state['values'][$variable]);
   }
+}
+
+function ptk_base_chm_website_settings_form() {
+  $form = array(
+    'introduction' => array(
+      '#type' => 'item',
+      '#markup' => t('Use this screen to configure parameters to your running portal. When you are satisfied with the parameters, press the <strong>Save configuration</strong> button below.')
+    )
+  );
+  $form = ChmSocialMediaForm::form($form, domain_get_domain());
+  $form = ChmMiscellaneousForm::form($form, domain_get_domain());
+  return system_settings_form($form);
 }

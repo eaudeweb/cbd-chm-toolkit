@@ -23,6 +23,10 @@ function ptk_base_permission() {
     'configure chm settings' => [
       'title' => t('Configure global settings'),
       'description' => t('Access global configuration common to all CHM network sites')
+    ],
+    'configure chm website settings' => [
+      'title' => t('Configure website settings'),
+      'description' => t('Access CHM website configuration')
     ]
   ];
 }
@@ -85,14 +89,23 @@ function ptk_base_menu() {
       'access arguments' => ['view the administration theme'],
       'type' => MENU_CALLBACK,
     ],
-    'admin/config/system/portal_settings' => [
-      'title' => 'CHM Portal Settings',
+    'admin/config/system/chm_global_settings' => [
+      'title' => 'CHM Global settings',
       'page callback' => 'drupal_get_form',
-      'page arguments' => array('ptk_base_portal_settings_form'),
+      'page arguments' => array('ptk_base_chm_global_settings_form'),
       'file' => 'ptk_base.admin.inc',
       'access arguments' => ['configure chm settings'],
       'type' => MENU_NORMAL_ITEM,
-      'description' => 'General configuration for all domains.',
+      'description' => 'General configuration for all websites.',
+    ],
+    'admin/config/system/chm_website_settings' => [
+      'title' => 'CHM website settings',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('ptk_base_chm_website_settings_form'),
+      'file' => 'ptk_base.admin.inc',
+      'access arguments' => ['configure chm website settings'],
+      'type' => MENU_NORMAL_ITEM,
+      'description' => 'Configure parameters specific to this website.',
     ],
   ];
   return $items;
