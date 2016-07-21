@@ -11,7 +11,7 @@ function chm_social_plugin_block_info() {
     'region' => 'content',
     'cache' => DRUPAL_NO_CACHE,
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
-    'pages' => '',
+    'pages' => '<front>',
     'weight' => 1,
   ];
   return $blocks;
