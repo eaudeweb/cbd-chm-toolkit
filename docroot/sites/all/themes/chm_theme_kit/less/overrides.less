@@ -441,7 +441,20 @@ ul li.leaf {
 }
 
 // Views AJAX pager.
+ul.pagination li.active > span{
+  background-color: @navbar-color;
+  border-color: @navbar-color;
+  &:hover{
+    background-color: @navbar-color;
+    border-color: @navbar-color;
+  }
+}
+
 ul.pagination li > a {
+  color: @text-color-green !important;
+  &:hover{
+    color:@text-color-green; 
+  }
   &.progress-disabled {
     float: left;
   }

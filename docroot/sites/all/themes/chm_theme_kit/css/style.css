@@ -7151,6 +7151,20 @@ ul li.leaf {
 .form-type-password-confirm .help-block {
   clear: both;
 }
+ul.pagination li.active > span {
+  background-color: #039749;
+  border-color: #039749;
+}
+ul.pagination li.active > span:hover {
+  background-color: #039749;
+  border-color: #039749;
+}
+ul.pagination li > a {
+  color: #02823F !important;
+}
+ul.pagination li > a:hover {
+  color: #02823F;
+}
 ul.pagination li > a.progress-disabled {
   float: left;
 }
@@ -7654,7 +7668,7 @@ div#logo.site-logo img {
   background-image: none;
   /* background-image: linear-gradient(to bottom,#fff,#f2f2f2); */
   /* background-repeat: repeat-x; */
-  /* border-top: 3px solid #02823F; */
+  /* border-top: 3px solid @text-color-green; */
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
@@ -7662,7 +7676,7 @@ div#logo.site-logo img {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   /* box-shadow: 0 1px 4px rgba(0,0,0,0.065); */
-  /* border-bottom: 3px solid #02823F; */
+  /* border-bottom: 3px solid @text-color-green; */
 }
 .navbar .nav > li > a {
   float: none;
@@ -7870,6 +7884,9 @@ ul.menu li.leaf {
 /* ----- Sizing ---------------------- */
 .views-exposed-form .views-exposed-widget .form-submit {
   margin-top: 25px;
+}
+.views-exposed-form .views-exposed-widget .form-submit#edit-submit-species[disabled]:hover {
+  background-color: #02823F;
 }
 input.form-submit {
   height: 30px;
