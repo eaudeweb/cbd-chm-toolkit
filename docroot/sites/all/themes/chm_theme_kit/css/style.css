@@ -7885,6 +7885,9 @@ ul.menu li.leaf {
 .views-exposed-form .views-exposed-widget .form-submit {
   margin-top: 25px;
 }
+.views-exposed-form .views-exposed-widget .form-submit#edit-submit-species[disabled]:hover {
+  background-color: #02823F;
+}
 input.form-submit {
   height: 30px;
 }
