@@ -8562,12 +8562,21 @@ body.maintenance-page #footer-container #footer {
   left: 3px;
   color: #ccc;
 }
+/* global styles*/
 .main-container {
   padding-top: 40px;
   padding-bottom: 40px;
 }
 #page-title {
   margin-top: 0;
+}
+.views-exposed-form .views-exposed-widget .form-submit:hover,
+.views-exposed-form .views-exposed-widget .form-submit:active,
+.views-exposed-form .views-exposed-widget .form-submit:focus,
+.views-exposed-form .views-exposed-widget .form-submit[disabled]:hover,
+.views-exposed-form .views-exposed-widget .form-submit[disabled]:active,
+.views-exposed-form .views-exposed-widget .form-submit[disabled]:focus {
+  background-color: #02823F;
 }
 /* Species listing */
 #block-views-species-block-1 .content {
