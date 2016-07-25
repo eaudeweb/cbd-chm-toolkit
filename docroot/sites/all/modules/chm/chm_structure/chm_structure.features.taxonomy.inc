@@ -69,6 +69,16 @@ function chm_structure_taxonomy_default_vocabularies() {
       'language' => 'und',
       'i18n_mode' => 1,
     ),
+    'page_type' => array(
+      'name' => 'Page type',
+      'machine_name' => 'page_type',
+      'description' => 'Type of website pages',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
+    ),
     'species_authority' => array(
       'name' => 'Species authority',
       'machine_name' => 'species_authority',
