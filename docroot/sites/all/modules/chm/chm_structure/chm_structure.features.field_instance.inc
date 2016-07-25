@@ -1231,6 +1231,50 @@ function chm_structure_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-document-field_reference'.
+  $field_instances['node-document-field_reference'] = array(
+    'bundle' => 'document',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Use this field to add reference to other parts of your website. Type to search for content',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 6,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_reference',
+    'label' => 'Reference to content',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 8,
+    ),
+  );
+
   // Exported field_instance: 'node-ecosystem-body'.
   $field_instances['node-ecosystem-body'] = array(
     'bundle' => 'ecosystem',
@@ -1338,7 +1382,7 @@ function chm_structure_field_default_field_instances() {
         'visible_markers' => 1,
       ),
       'type' => 'addressfield_autocomplete',
-      'weight' => 11,
+      'weight' => 3,
     ),
   );
 
@@ -1379,7 +1423,7 @@ function chm_structure_field_default_field_instances() {
         'delta_handling' => 'default',
       ),
       'type' => 'addressfield_autocomplete_latlng',
-      'weight' => 13,
+      'weight' => 4,
     ),
   );
 
@@ -1443,6 +1487,50 @@ function chm_structure_field_default_field_instances() {
       ),
       'type' => 'image_image',
       'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'node-ecosystem-field_reference'.
+  $field_instances['node-ecosystem-field_reference'] = array(
+    'bundle' => 'ecosystem',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Use this field to add reference to other parts of your website. Type to search for content',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 5,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_reference',
+    'label' => 'Reference to content',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 5,
     ),
   );
 
@@ -1696,7 +1784,7 @@ function chm_structure_field_default_field_instances() {
         'visible_markers' => 1,
       ),
       'type' => 'addressfield_autocomplete',
-      'weight' => 13,
+      'weight' => 9,
     ),
   );
 
@@ -1818,7 +1906,7 @@ function chm_structure_field_default_field_instances() {
         'delta_handling' => 'default',
       ),
       'type' => 'addressfield_autocomplete_latlng',
-      'weight' => 14,
+      'weight' => 10,
     ),
   );
 
@@ -1882,6 +1970,50 @@ function chm_structure_field_default_field_instances() {
       ),
       'type' => 'image_image',
       'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance: 'node-event-field_reference'.
+  $field_instances['node-event-field_reference'] = array(
+    'bundle' => 'event',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Use this field to add reference to other parts of your website. Type to search for content',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 11,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_reference',
+    'label' => 'Reference to content',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 11,
     ),
   );
 
@@ -2091,6 +2223,50 @@ function chm_structure_field_default_field_instances() {
       ),
       'type' => 'image_image',
       'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'node-fact-field_reference'.
+  $field_instances['node-fact-field_reference'] = array(
+    'bundle' => 'fact',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Use this field to add reference to other parts of your website. Type to search for content',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 4,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_reference',
+    'label' => 'Reference to content',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 4,
     ),
   );
 
@@ -2443,7 +2619,7 @@ function chm_structure_field_default_field_instances() {
         'visible_markers' => 1,
       ),
       'type' => 'addressfield_autocomplete',
-      'weight' => 11,
+      'weight' => 5,
     ),
   );
 
@@ -2532,7 +2708,7 @@ function chm_structure_field_default_field_instances() {
         'delta_handling' => 'default',
       ),
       'type' => 'addressfield_autocomplete_latlng',
-      'weight' => 13,
+      'weight' => 6,
     ),
   );
 
@@ -2596,6 +2772,50 @@ function chm_structure_field_default_field_instances() {
       ),
       'type' => 'image_image',
       'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'node-news-field_reference'.
+  $field_instances['node-news-field_reference'] = array(
+    'bundle' => 'news',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Use this field to add reference to other parts of your website. Type to search for content',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 8,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_reference',
+    'label' => 'Reference to content',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 9,
     ),
   );
 
@@ -2685,6 +2905,50 @@ function chm_structure_field_default_field_instances() {
       ),
       'type' => 'text_textarea_with_summary',
       'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'node-page-field_reference'.
+  $field_instances['node-page-field_reference'] = array(
+    'bundle' => 'page',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Use this field to add reference to other parts of your website. Type to search for content',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 2,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_reference',
+    'label' => 'Reference to content',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 3,
     ),
   );
 
@@ -4528,6 +4792,7 @@ function chm_structure_field_default_field_instances() {
   t('Postal code');
   t('Publication date');
   t('Published year');
+  t('Reference to content');
   t('Related website');
   t('Role(s)');
   t('Roles');
@@ -4539,6 +4804,7 @@ function chm_structure_field_default_field_instances() {
   t('Treaty');
   t('Type');
   t('Unique internal identifier for this item');
+  t('Use this field to add reference to other parts of your website. Type to search for content');
   t('Website');
 
   return $field_instances;

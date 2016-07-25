@@ -801,7 +801,7 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '8',
+          'weight' => '9',
         ),
         'domain_path' => array(
           'weight' => '11',
@@ -816,7 +816,7 @@ function chm_structure_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '9',
+          'weight' => '10',
         ),
         'language' => array(
           'weight' => '1',
@@ -836,22 +836,22 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '4',
+          'weight' => '6',
         ),
         'domain_path' => array(
-          'weight' => '7',
+          'weight' => '9',
         ),
         'locations' => array(
           'weight' => '8',
         ),
         'metatags' => array(
-          'weight' => '9',
+          'weight' => '10',
         ),
         'path' => array(
-          'weight' => '6',
+          'weight' => '8',
         ),
         'language' => array(
-          'weight' => '5',
+          'weight' => '7',
         ),
       ),
       'display' => array(),
@@ -868,22 +868,22 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '9',
+          'weight' => '12',
         ),
         'domain_path' => array(
-          'weight' => '11',
+          'weight' => '14',
         ),
         'locations' => array(
           'weight' => '11',
         ),
         'metatags' => array(
-          'weight' => '12',
+          'weight' => '15',
         ),
         'title' => array(
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '10',
+          'weight' => '13',
         ),
         'language' => array(
           'weight' => '0',
@@ -903,10 +903,10 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '4',
+          'weight' => '5',
         ),
         'domain_path' => array(
-          'weight' => '7',
+          'weight' => '8',
         ),
         'locations' => array(
           'weight' => '8',
@@ -915,10 +915,10 @@ function chm_structure_strongarm() {
           'weight' => '9',
         ),
         'path' => array(
-          'weight' => '6',
+          'weight' => '7',
         ),
         'language' => array(
-          'weight' => '5',
+          'weight' => '6',
         ),
       ),
       'display' => array(),
@@ -1012,19 +1012,19 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '5',
+          'weight' => '8',
         ),
         'domain_path' => array(
-          'weight' => '7',
+          'weight' => '11',
         ),
         'metatags' => array(
-          'weight' => '8',
+          'weight' => '10',
         ),
         'title' => array(
           'weight' => '1',
         ),
         'path' => array(
-          'weight' => '6',
+          'weight' => '12',
         ),
         'language' => array(
           'weight' => '0',
@@ -1054,16 +1054,16 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'path' => array(
-          'weight' => '4',
+          'weight' => '5',
         ),
         'language' => array(
           'weight' => '0',
         ),
         'domain' => array(
-          'weight' => '3',
+          'weight' => '4',
         ),
         'domain_path' => array(
-          'weight' => '5',
+          'weight' => '6',
         ),
         'locations' => array(
           'weight' => '6',
