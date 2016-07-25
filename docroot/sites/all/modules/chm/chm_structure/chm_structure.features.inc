@@ -72,6 +72,14 @@ function chm_structure_node_info() {
       'title_label' => t('Name'),
       'help' => t('Create a gallery with description and after saving, use drag and drop to upload files from your computer. Images can be ordered, cropped etc.'),
     ),
+    'link' => array(
+      'name' => t('Link'),
+      'base' => 'node_content',
+      'description' => t('Provide a link to a website or another online reference presenting relevant information about biodiversity in your country.'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
     'news' => array(
       'name' => t('News'),
       'base' => 'node_content',
