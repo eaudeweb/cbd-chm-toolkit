@@ -8397,16 +8397,33 @@ body.maintenance-page #footer-container #footer {
   margin-top: 0;
   margin-bottom: 0;
 }
+@media all and (max-width: 559px) {
+  #page-header .logo {
+    width: 100%;
+  }
+  #page-header .logo img {
+    margin: 0 auto;
+    display: block;
+  }
+}
 #page-header .navbar-brand {
   display: block;
   float: left;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  height: 24px;
-  line-height: 24px;
+  height: 124px;
+  padding: 0;
+  line-height: 124px;
   font-size: 30px;
   color: #000000;
   font-weight: bold;
+}
+@media all and (max-width: 559px) {
+  #page-header .navbar-brand {
+    padding-bottom: 25px;
+    line-height: 24px;
+    height: auto;
+    text-align: center;
+    width: 100%;
+  }
 }
 #page-header #nav-search {
   display: inline-block;
@@ -8579,23 +8596,23 @@ body.maintenance-page #footer-container #footer {
   background-color: #02823F;
 }
 /* front page styling*/
-.view-latest-updates ul {
+.view-latest-updates .view-content > .item-list > ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-.view-latest-updates ul .views-field.views-field-field-image .field-content {
+.view-latest-updates .view-content > .item-list > ul .views-field.views-field-field-image .field-content {
   float: left;
   margin-right: 20px;
 }
-.view-latest-updates ul .views-field.views-field-title-field {
+.view-latest-updates .view-content > .item-list > ul .views-field.views-field-title-field {
   font-size: 20px;
 }
-.view-latest-updates ul .views-field.views-field-field-dates {
+.view-latest-updates .view-content > .item-list > ul .views-field.views-field-field-dates {
   font-size: 12px;
   color: #999;
 }
-.view-latest-updates ul .views-field.views-field-body {
+.view-latest-updates .view-content > .item-list > ul .views-field.views-field-body {
   clear: both;
   margin-bottom: 1em;
 }

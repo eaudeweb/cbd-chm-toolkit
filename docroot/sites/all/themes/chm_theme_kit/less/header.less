@@ -46,17 +46,34 @@
     float: left;
     margin-top: 0;
     margin-bottom: 0;
+    @media all and (max-width: 559px){
+      width: 100%;
+      img{
+        margin: 0 auto;
+        display: block;
+      }
+    }
   }
   .navbar-brand {
     display: block;
     float: left;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    height: 24px;
-    line-height: 24px;
+    height: 124px;
+    padding: 0;
+    // padding-top: 50px;
+    // padding-bottom: 50px;
+    // height: 124px;
+    line-height: 124px;
     font-size: 30px;
     color: #000000;
     font-weight: bold;
+    @media all and (max-width: 559px){
+      // padding-top: 25px;
+      padding-bottom: 25px;
+      line-height: 24px;
+      height: auto;
+      text-align: center;
+      width: 100%;
+    }
   }
   #nav-search {
     display: inline-block;
