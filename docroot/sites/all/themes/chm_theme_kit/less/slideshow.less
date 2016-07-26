@@ -1,9 +1,8 @@
 /* Styling related to slick slideshow */
-.slick-prev::before, .slick-next::before {
-  color: #FFFFFF;
-}
 
 .slick-prev::before, .slick-next::before {
+  color: #bbb;
+
   font-size: 3.5rem;
   -moz-transition: all 0.27s ease-in-out;
   -o-transition: all 0.27s ease-in-out;
@@ -11,6 +10,10 @@
   transition: all 0.27s ease-in-out;
 }
 
+.slick-prev:hover::before,
+.slick-next:hover::before {
+  color:  lighten(#bbb,5%);
+}
 .slick-content {
   position:absolute;
   right: 68px;
@@ -52,6 +55,9 @@
       font-size: 11px;
       text-transform: uppercase;
       font-weight: bold;
+      @media (max-width: 767px){
+        margin-top: 1em;
+      }
     }
     a.more-link::after {
       content: " »";
@@ -62,15 +68,43 @@
     color: #fff;
     border: none;
     text-align: center;
-    vertical-align: middle;
+    // vertical-align: middle;
     width: 70%;
-    top: 25%;
-    right: 15%;
+    top: 50%;
+    left: 50%;
+    right: 0;
+    display: block;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
     -webkit-transition: all 0.27s cubic-bezier(0.000, 0.000, 0.580, 1.000);
     -moz-transition: all 0.27s ease-in-out;
     -o-transition: all 0.27s ease-in-out;
     -ms-transition: all 0.27s ease-in-out;
     transition: all 0.27s ease-in-out;
+    
+    @media all and (max-width: 767px){
+      h2 > a{
+        margin: 0;
+        font-size: 26px;
+      }
+      a.more-link{
+        display: none;
+      }
+      .form-item.form-type-item.form-group{
+        font-size: 12px;
+        margin: 0;
+      }
+    }
+    @media all and (max-width: 424px){
+      h2 > a{
+        margin: 0;
+        font-size: 18px;
+      }
+     
+      .form-item.form-type-item.form-group{
+        display: none;
+      }
+    }
   }
   .slick-content.well:hover {
     background-color: rgba(0, 0, 0, 0.8);
