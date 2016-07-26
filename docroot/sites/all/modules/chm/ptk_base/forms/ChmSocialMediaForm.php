@@ -2,36 +2,38 @@
 
 class ChmSocialMediaForm {
 
-  static function form($form, $domain) {
-    if (empty($form['#domain'])) {
-      $form['#domain'] = $domain;
-    }
-    $form['ptk']['social'] = [
+  static function form($domain, &$form = NULL) {
+    $ret = array();
+    $ret['ptk']['social'] = [
+      '#tree' => FALSE,
       '#type' => 'fieldset',
       '#title' => t('Social media'),
     ];
-    $form['ptk']['social']['ptk_social_facebook'] = [
+    $ret['ptk']['social']['ptk_social_facebook'] = [
       '#type' => 'textfield',
       '#title' => t('Facebook link'),
       '#default_value' => PTKDomain::variable_get('ptk_social_facebook', $domain),
     ];
-    $form['ptk']['social']['ptk_social_linkedin'] = [
+    $ret['ptk']['social']['ptk_social_linkedin'] = [
       '#type' => 'textfield',
       '#title' => t('LinkedIn link'),
       '#default_value' => PTKDomain::variable_get('ptk_social_linkedin', $domain),
     ];
-    $form['ptk']['social']['ptk_social_twitter'] = [
+    $ret['ptk']['social']['ptk_social_twitter'] = [
       '#type' => 'textfield',
       '#title' => t('Twitter link'),
       '#default_value' => PTKDomain::variable_get('ptk_social_twitter', $domain),
     ];
-    $form['ptk']['social']['ptk_social_youtube'] = [
+    $ret['ptk']['social']['ptk_social_youtube'] = [
       '#type' => 'textfield',
       '#title' => t('Youtube link'),
       '#default_value' => PTKDomain::variable_get('ptk_social_youtube', $domain),
     ];
-    $form['#submit'][] = array('ChmSocialMediaForm', 'submit');
-    return $form;
+    if ($form) {
+      $form['#submit'][] = array('ChmSocialMediaForm', 'submit');
+    }
+    $ret['#submit'][] = array('ChmSocialMediaForm', 'submit');
+    return $ret;
   }
 
   static function submit($form, $form_state) {

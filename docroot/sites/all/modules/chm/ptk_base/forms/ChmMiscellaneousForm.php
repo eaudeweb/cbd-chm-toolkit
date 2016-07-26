@@ -2,21 +2,24 @@
 
 class ChmMiscellaneousForm {
 
-  static function form($form, $domain) {
-    if (empty($form['#domain'])) {
-      $form['#domain'] = $domain;
-    }
-    $form['ptk']['miscellaneous'] = [
+  static function form($domain, &$form = NULL) {
+    $ret = array();
+    $ret['ptk']['miscellaneous'] = [
       '#type' => 'fieldset',
       '#title' => t('Miscellaneous'),
     ];
-    $form['ptk']['miscellaneous']['ptk_arkive_key'] = [
+    $ret['ptk']['miscellaneous']['ptk_arkive_key'] = [
+      '#tree' => FALSE,
       '#type' => 'textfield',
       '#title' => t('Arkive key'),
       '#default_value' => PTKDomain::variable_get('ptk_arkive_key', $domain),
+      '#description' => t('Visit the <a href="!url" target="_blank">Arkive.org</a> website to get your API access key', array('!url' => 'https://www.arkive.org/api/docs'))
     ];
-    $form['#submit'][] = array('ChmMiscellaneousForm', 'submit');
-    return $form;
+    if ($form) {
+      $form['#submit'][] = array('ChmMiscellaneousForm', 'submit');
+    }
+    $ret['#submit'][] = array('ChmMiscellaneousForm', 'submit');
+    return $ret;
   }
 
   static function submit($form, $form_state) {

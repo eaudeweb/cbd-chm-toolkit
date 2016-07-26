@@ -82,16 +82,13 @@ class ChmDomainForm {
       $form['weight']['#access'] = FALSE;
       $form['submit']['#value'] = t('Create domain record');
     }
-    $social = ChmSocialMediaForm::form($form, $domain);
+    $social = ChmSocialMediaForm::form($domain, $form);
     $form['ptk']['social'] = $social['ptk']['social'];
-    $form['#submit'] += $social['#submit'];
 
-    $miscellaneous = ChmMiscellaneousForm::form($form, $domain);
+    $miscellaneous = ChmMiscellaneousForm::form($domain, $form);
     $form['ptk']['miscellaneous'] = $miscellaneous['ptk']['miscellaneous'];
-    $form['#submit'] += $miscellaneous['#submit'];
 
     $form['submit']['#weight'] = 100;
-
     $form['#is_new'] = $is_new;
     $form['#submit'][] = array('ChmDomainForm', 'submit');
     $form['#validate'][] = array('ChmDomainForm', 'validate');
