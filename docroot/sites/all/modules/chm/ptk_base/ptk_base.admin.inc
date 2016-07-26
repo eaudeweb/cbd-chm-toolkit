@@ -271,30 +271,7 @@ function ptk_base_chm_global_settings_form_submit($form, $form_state) {
 }
 
 function ptk_base_chm_website_settings_form() {
-  $form = array('#tree' => TRUE, '#submit' => array(), '#domain' => domain_get_domain());
-  $form['tabs'] = array(
-    '#type' => 'vertical_tabs',
-  );
-  $form['introduction'] = array(
-    '#weight' => -10,
-    '#type' => 'item',
-    '#markup' => t('Use this screen to configure parameters to your running portal. When you are satisfied with the parameters, press the <strong>Save configuration</strong> button below.')
-  );
-  $form['social'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Social media links'),
-    '#collapsible' => TRUE,
-    '#description' => t('Configure your social media accounts'),
-    '#group' => 'tabs'
-  );
-  $form['social']['links'] = ChmSocialMediaForm::form(domain_get_domain(), $form);
-  $form['system'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('System'),
-    '#collapsible' => TRUE,
-    '#description' => t('Configure technical parameters for your website'),
-    '#group' => 'tabs'
-  );
-  $form['system']['misc'] = ChmMiscellaneousForm::form(domain_get_domain(), $form);
+  module_load_include('inc', 'domain_variable', 'domain_variable.admin');
+  $form = domain_variable_admin_variables(domain_get_domain());
   return system_settings_form($form);
 }
