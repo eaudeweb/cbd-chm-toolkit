@@ -8504,8 +8504,10 @@ body.maintenance-page #footer-container #footer {
 .navbar-container #navbar .navbar-collapse .nav li.open .caret {
   border-top-color: #ffffff;
 }
-.navbar-container #navbar .navbar-collapse .nav .dropdown:hover .dropdown-menu {
-  display: block;
+@media all and (min-width: 768px) {
+  .navbar-container #navbar .navbar-collapse .nav .dropdown:hover .dropdown-menu {
+    display: block;
+  }
 }
 .navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu {
   margin-top: 0;
@@ -8522,6 +8524,11 @@ body.maintenance-page #footer-container #footer {
 .navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu li a:hover {
   background-color: #039749;
   color: #ffffff;
+}
+@media all and (max-width: 768px) {
+  .navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu li a {
+    color: #fff;
+  }
 }
 .navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu .active a {
   background-color: #039749;
