@@ -8543,7 +8543,7 @@ body.maintenance-page #footer-container #footer {
   font-family: FontAwesome;
   position: relative;
   top: 2px;
-  left: -7px;
+  padding: 0 7px;
   color: #ccc;
 }
 #block-locale-language-content .language-switcher-locale-url {
@@ -8725,15 +8725,16 @@ body.maintenance-page #footer-container #footer {
 /* Styling related to slick slideshow */
 .slick-prev::before,
 .slick-next::before {
-  color: #FFFFFF;
-}
-.slick-prev::before,
-.slick-next::before {
+  color: #bbb;
   font-size: 3.5rem;
   -moz-transition: all 0.27s ease-in-out;
   -o-transition: all 0.27s ease-in-out;
   -ms-transition: all 0.27s ease-in-out;
   transition: all 0.27s ease-in-out;
+}
+.slick-prev:hover::before,
+.slick-next:hover::before {
+  color: #c8c8c8;
 }
 .slick-content {
   position: absolute;
@@ -8779,6 +8780,12 @@ body.maintenance-page #footer-container #footer {
   text-transform: uppercase;
   font-weight: bold;
 }
+@media (max-width: 767px) {
+  .view-home-page-image-slider .slick-slide a.more-link,
+  .view-home-page-image-slider .slick-content.well a.more-link {
+    margin-top: 1em;
+  }
+}
 .view-home-page-image-slider .slick-slide a.more-link::after,
 .view-home-page-image-slider .slick-content.well a.more-link::after {
   content: " »";
@@ -8788,15 +8795,40 @@ body.maintenance-page #footer-container #footer {
   color: #fff;
   border: none;
   text-align: center;
-  vertical-align: middle;
   width: 70%;
-  top: 25%;
-  right: 15%;
+  top: 50%;
+  left: 50%;
+  right: 0;
+  display: block;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
   -webkit-transition: all 0.27s cubic-bezier(0, 0, 0.58, 1);
   -moz-transition: all 0.27s ease-in-out;
   -o-transition: all 0.27s ease-in-out;
   -ms-transition: all 0.27s ease-in-out;
   transition: all 0.27s ease-in-out;
+}
+@media all and (max-width: 767px) {
+  .view-home-page-image-slider .slick-content.well h2 > a {
+    margin: 0;
+    font-size: 26px;
+  }
+  .view-home-page-image-slider .slick-content.well a.more-link {
+    display: none;
+  }
+  .view-home-page-image-slider .slick-content.well .form-item.form-type-item.form-group {
+    font-size: 12px;
+    margin: 0;
+  }
+}
+@media all and (max-width: 424px) {
+  .view-home-page-image-slider .slick-content.well h2 > a {
+    margin: 0;
+    font-size: 18px;
+  }
+  .view-home-page-image-slider .slick-content.well .form-item.form-type-item.form-group {
+    display: none;
+  }
 }
 .view-home-page-image-slider .slick-content.well:hover {
   background-color: rgba(0, 0, 0, 0.8);
