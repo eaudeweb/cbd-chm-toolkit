@@ -140,6 +140,11 @@
             background-color: darken(@navbar-color, 3%);
           }
           &.open {
+            // >ul{
+            //   @media all and (max-width: @screen-sm-min) {
+            //     display: block;
+            //   }
+            // }
             >a {
               background-color: darken(@navbar-color, 3%);
               color: #ffffff;
@@ -151,9 +156,11 @@
         }
 
         .dropdown {
-          &:hover {
-            .dropdown-menu {
-              display: block;
+          @media all and (min-width: @screen-sm-min){
+            &:hover {
+              .dropdown-menu {
+                display: block;
+              }
             }
           }
           .dropdown-menu {
@@ -168,6 +175,9 @@
                 &:hover {
                   background-color: @navbar-color;
                   color: #ffffff;
+                }
+                @media all and (max-width: @screen-sm-min) {
+                  color: #fff;
                 }
               }
             }
