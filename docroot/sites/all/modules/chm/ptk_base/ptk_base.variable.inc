@@ -61,3 +61,10 @@ function ptk_base_variable_info($options) {
   );
   return $variables;
 }
+
+/**
+ * Implements hook_variable_info_alter().
+ */
+function ptk_base_variable_group_info_alter(&$info) {
+  $info['site_information']['access'] = 'configure chm website settings';
+}
