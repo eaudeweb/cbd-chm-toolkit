@@ -96,6 +96,14 @@ function chm_structure_node_info() {
       'title_label' => t('Title'),
       'help' => '',
     ),
+    'project' => array(
+      'name' => t('Project'),
+      'base' => 'node_content',
+      'description' => t('Use a project to describe a biodiversity project or initiative in your country.'),
+      'has_title' => '1',
+      'title_label' => t('Name'),
+      'help' => '',
+    ),
     'species' => array(
       'name' => t('Species'),
       'base' => 'node_content',
