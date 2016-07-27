@@ -9,7 +9,9 @@
   -ms-transition: all 0.27s ease-in-out;
   transition: all 0.27s ease-in-out;
 }
-
+.slick-prev, .slick-next{
+  height: 20px;
+}
 .slick-prev:hover::before,
 .slick-next:hover::before {
   color:  lighten(#bbb,5%);
@@ -19,7 +21,6 @@
   right: 68px;
   top: 23%;
 }
-
 
 /* Landscape phone to landscape tablet */
 @media (max-width: 979px) {
@@ -34,9 +35,12 @@
 @media (max-width: 767px) {
   .slick-content {
     position:absolute;
-    right: 10%;
-    top: 10%;
-    width: 80% !important;
+    right: 0%;
+    top: 0%;
+    width: 100% !important;
+    padding: 300px 35px;
+    min-height: 100%;
+
   }
   .slick-content p { display:none; }
   .slick-content h2 { font-size: 20px; margin-top:0; }
@@ -47,6 +51,7 @@
     a {
       color: white;
     }
+
     a:hover {
       text-decoration: none;
     }
@@ -68,7 +73,6 @@
     color: #fff;
     border: none;
     text-align: center;
-    // vertical-align: middle;
     width: 70%;
     top: 50%;
     left: 50%;
@@ -81,26 +85,31 @@
     -o-transition: all 0.27s ease-in-out;
     -ms-transition: all 0.27s ease-in-out;
     transition: all 0.27s ease-in-out;
-    
+
     @media all and (max-width: 767px){
       h2 > a{
         margin: 0;
         font-size: 26px;
+
       }
       a.more-link{
-        display: none;
+        margin: 0;
       }
       .form-item.form-type-item.form-group{
         font-size: 12px;
-        margin: 0;
+        margin: 0 0 .5em 0;
+        text-overflow: ellipsis;
       }
     }
-    @media all and (max-width: 424px){
+    @media all and (max-width: 457px){
       h2 > a{
         margin: 0;
         font-size: 18px;
+        font-size: 6vw;
       }
-     
+      a.more-link{
+        display: none;      
+      }
       .form-item.form-type-item.form-group{
         display: none;
       }
