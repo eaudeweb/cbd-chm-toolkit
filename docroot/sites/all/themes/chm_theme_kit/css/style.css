@@ -7829,6 +7829,10 @@ ul.menu li.leaf {
   padding-bottom: 20px;
   border-bottom: 1px solid #dddddd;
 }
+[dir="rtl"] .front .views-row {
+  padding-left: 20px;
+  padding-right: 0px;
+}
 .views-field-body {
   padding-top: 7px;
   font-size: 13px;
@@ -8608,9 +8612,17 @@ body.maintenance-page #footer-container #footer {
   margin: 0;
   padding: 0;
 }
+[dir="rtl"] .view-latest-updates .view-content > .item-list > ul > li {
+  margin-right: 0;
+}
 .view-latest-updates .view-content > .item-list > ul .views-field.views-field-field-image .field-content {
   float: left;
   margin-right: 20px;
+}
+[dir="rtl"] .view-latest-updates .view-content > .item-list > ul .views-field.views-field-field-image .field-content {
+  float: right;
+  margin-right: auto;
+  margin-left: 20px;
 }
 .view-latest-updates .view-content > .item-list > ul .views-field.views-field-title-field {
   font-size: 20px;
@@ -8631,6 +8643,10 @@ body.maintenance-page #footer-container #footer {
   right: 100%;
   top: 50%;
   transform: translateY(-50%);
+}
+[dir="rtl"] .pane-ptk-base-chm-content-statistics table > tbody > tr > td:nth-child(2) span.fa {
+  right: auto;
+  left: 100%;
 }
 /* Species listing */
 #block-views-species-block-1 .content {
