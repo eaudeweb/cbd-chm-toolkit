@@ -9167,6 +9167,10 @@ body.maintenance-page #footer-container #footer {
   -ms-transition: all 0.27s ease-in-out;
   transition: all 0.27s ease-in-out;
 }
+.slick-prev,
+.slick-next {
+  height: 20px;
+}
 .slick-prev:hover::before,
 .slick-next:hover::before {
   color: #c8c8c8;
@@ -9188,9 +9192,11 @@ body.maintenance-page #footer-container #footer {
 @media (max-width: 767px) {
   .slick-content {
     position: absolute;
-    right: 10%;
-    top: 10%;
-    width: 80% !important;
+    right: 0%;
+    top: 0%;
+    width: 100% !important;
+    padding: 300px 35px;
+    min-height: 100%;
   }
   .slick-content p {
     display: none;
@@ -9249,17 +9255,22 @@ body.maintenance-page #footer-container #footer {
     font-size: 26px;
   }
   .view-home-page-image-slider .slick-content.well a.more-link {
-    display: none;
+    margin: 0;
   }
   .view-home-page-image-slider .slick-content.well .form-item.form-type-item.form-group {
     font-size: 12px;
-    margin: 0;
+    margin: 0 0 .5em 0;
+    text-overflow: ellipsis;
   }
 }
-@media all and (max-width: 424px) {
+@media all and (max-width: 457px) {
   .view-home-page-image-slider .slick-content.well h2 > a {
     margin: 0;
     font-size: 18px;
+    font-size: 6vw;
+  }
+  .view-home-page-image-slider .slick-content.well a.more-link {
+    display: none;
   }
   .view-home-page-image-slider .slick-content.well .form-item.form-type-item.form-group {
     display: none;
