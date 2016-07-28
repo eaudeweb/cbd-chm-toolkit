@@ -28,12 +28,12 @@
     
     .views-field.views-field-field-image .field-content{
       float:left;
-      margin-right: 20px; 
-    }
-    [dir="rtl"] & .views-field.views-field-field-image .field-content{
-      float:right;
+      margin-right: 20px;
+      [dir="rtl"] &{
+        float:right;
       margin-right: auto;
       margin-left: 20px; 
+      }
     }
     
     .views-field.views-field-title-field{
@@ -58,10 +58,10 @@
       right: 100%;
       top: 50%;
       transform: translateY(-50%);
-    }
-    [dir="rtl"] & span.fa{
-      right: auto;
+      [dir="rtl"] &{
+        right: auto;
       left: 100%;
+      }
     }
   }
 }
@@ -93,9 +93,9 @@
       & > .views-field.views-field-field-image-et{
         float: left; //LTR
         width: 5rem;
-      }
-      [dir="rtl"] & > .views-field.views-field-field-image-et{
-        float: right;
+        [dir="rtl"] &{
+          float: right;
+        }
       }
       & > .views-field.views-field-name-field{
         & > .field-content {
@@ -106,15 +106,16 @@
           text-transform: uppercase;
         }
       }
-      [dir="rtl"] & > ul {
-        margin-left: 2.5rem; 
-        margin-right: 3.5rem;
-      }
+      
       & > ul{ //1.1.
         clear: both;
         margin-top: .5em;
         margin-left: 3.5rem; //LTR
         margin-right: 2.5rem; //LTR
+        [dir="rtl"] &{
+          margin-left: 2.5rem; 
+          margin-right: 3.5rem;
+        }
         >li{
           position: relative;
           margin-bottom: 1em;
@@ -123,22 +124,22 @@
             text-decoration: none;
           }
           &::before{
-          content: '';
-          display: table-cell;
-          margin-top: .4em;
-          margin-right: .5em;
-          background-color: black;
-          width: .5em;
-          height: .5em;
-          position: absolute;
-          right: 100%;
-          transition: .2s;
-          }
-          [dir="rtl"] &::before{
-            right: auto;
-            left: 100%; 
-            margin-right: 0em;
-            margin-left: .5em;
+            content: '';
+            display: table-cell;
+            margin-top: .4em;
+            margin-right: .5em;
+            background-color: black;
+            width: .5em;
+            height: .5em;
+            position: absolute;
+            right: 100%;
+            transition: .2s;
+            [dir="rtl"] &{
+              right: auto;
+              left: 100%; 
+              margin-right: 0em;
+              margin-left: .5em;
+            }
           }
           &:hover::before{
             margin-top: 0;
@@ -196,10 +197,10 @@
       }
       & > ul{
         margin-left: 3rem; //LTR
-      }
-      [dir="rtl"] & > ul{
-        margin-left: 0;
-        margin-right: 3rem;
+        [dir="rtl"] &{
+          margin-left: 0;
+          margin-right: 3rem;
+        }
       }
       & > ul > li {//1.
         margin-top: 1.5em;
@@ -215,10 +216,10 @@
         }
         & > ul{ //1.1.
           margin-left: 4rem; //LTR
-        }
-        [dir="rtl"] & > ul{ //1.1.
-          margin-left: 0rem;
-          margin-right: 4rem;
+          [dir="rtl"] &{
+            margin-left: 0rem;
+            margin-right: 4rem;
+          }
         }
       }
     }  
@@ -231,10 +232,10 @@
       }
       & > ul{
         margin-left: 4rem; //LTR
-      }
-      [dir="rtl"] & > ul{
-        margin-left: 0rem;
-        margin-right: 4rem;
+        [dir="rtl"] &{
+          margin-left: 0rem;
+          margin-right: 4rem;
+        }
       }
       & > ul > li {//1.
         margin-top: 1.5em;
@@ -251,10 +252,10 @@
         & > ul{ //1.1.
           margin-left: 4.5rem; //LTR
           font-size: 16px;
-        }
-        [dir="rtl"] & > ul{ //1.1.
-          margin-left: 0rem;
-          margin-right: 4.5rem;
+          [dir="rtl"] &{ //1.1.
+            margin-left: 0rem;
+            margin-right: 4.5rem;
+          }
         }
       }
     }  
@@ -315,12 +316,12 @@
           position: absolute;
           right: 100%; //LTR
           transition: .2s;
-        }
-        [dir="rtl"] &::before{
-          margin-right: 0;
-          margin-left: .5em;
-          right: auto;
-          left: 100%;
+          [dir="rtl"] &{
+            margin-right: 0;
+            margin-left: .5em;
+            right: auto;
+            left: 100%;
+          }
         }
         &:hover::before{
           margin-top: 0;
@@ -449,15 +450,15 @@
         float: left; //LTR
         width: 8.5rem;
         margin-right: .5em;
+        [dir="rtl"] &{
+          float: right;
+          margin-right: 0;
+          margin-left: .5em;
+        }
         img{
           margin: 0;
           width: auto;
         }
-      }
-      [dir="rtl"] & > .views-field.views-field-field-image-et{
-        float: right;
-        margin-right: 0;
-        margin-left: .5em;
       }
       & > .views-field.views-field-name-field{
         & > .field-content {
@@ -472,10 +473,10 @@
         margin-top: 1.5em;
         margin-left: 3.75em; //LTR
         margin-right: 3.25em; //LTR
-      } 
-      [dir="rtl"] & > ul{ //1.1.
-        margin-right: 3.75em; 
-        margin-left: 3.25em;
+        [dir="rtl"] &{ //1.1.
+          margin-right: 3.75em; 
+          margin-left: 3.25em;
+        } 
       } 
     }
   }
@@ -485,10 +486,10 @@
       & > .views-field.views-field-field-image-et{
         width: 9rem;
         margin-right: .5em; //LTR
-      }
-      [dir="rtl"] & > .views-field.views-field-field-image-et{
-        margin-right: 0;
-        margin-left: .5em;
+        [dir="rtl"] &{
+          margin-right: 0;
+          margin-left: .5em;
+        }
       }
       & > .views-field.views-field-name-field{
         & > .field-content {
@@ -501,10 +502,10 @@
         margin-left: 5.5rem; //LTR
         margin-right: 5rem; //LTR
         font-size: 16px;
-      } 
-      [dir="rtl"] & > ul{ //1.1.
-        margin-right: 5.5rem;
-        margin-left: 5rem;
+        [dir="rtl"] &{ 
+          margin-right: 5.5rem;
+          margin-left: 5rem;
+        } 
       } 
     }
   }
@@ -515,11 +516,11 @@
         float: left; //LTR
         width: 10rem;
         margin-right: .5em; //LTR
-      }
-      [dir="rtl"] & > .views-field.views-field-field-image-et{
-        float: right;
-        margin-right: 0;
-        margin-left: .5em;
+        [dir="rtl"] &{
+          float: right;
+          margin-right: 0;
+          margin-left: .5em;
+        }
       }
       & > .views-field.views-field-name-field{
         & > .field-content {
@@ -532,10 +533,10 @@
         margin-left: 6rem; //LTR
         margin-right: 5.5rem; //LTR
         font-size: 16px;
-      } 
-      [dir="rtl"] & > ul{ //1.1.
-        margin-right: 5.5rem;
-        margin-left: 5rem;
+        [dir="rtl"] &{
+          margin-right: 5.5rem;
+          margin-left: 5rem;
+        }
       } 
     }
   }

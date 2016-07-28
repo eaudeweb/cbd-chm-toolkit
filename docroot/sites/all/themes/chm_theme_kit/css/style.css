@@ -8722,15 +8722,15 @@ body.maintenance-page #footer-container #footer {
   height: 5rem;
   text-transform: uppercase;
 }
-[dir="rtl"] .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > ul {
-  margin-left: 2.5rem;
-  margin-right: 3.5rem;
-}
 .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > ul {
   clear: both;
   margin-top: .5em;
   margin-left: 3.5rem;
   margin-right: 2.5rem;
+}
+[dir="rtl"] .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > ul {
+  margin-left: 2.5rem;
+  margin-right: 3.5rem;
 }
 .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > ul > li {
   position: relative;
@@ -9029,14 +9029,14 @@ body.maintenance-page #footer-container #footer {
     width: 8.5rem;
     margin-right: .5em;
   }
-  .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-field-image-et img {
-    margin: 0;
-    width: auto;
-  }
   [dir="rtl"] .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-field-image-et {
     float: right;
     margin-right: 0;
     margin-left: .5em;
+  }
+  .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-field-image-et img {
+    margin: 0;
+    width: auto;
   }
   .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-name-field > .field-content {
     display: table-cell;
