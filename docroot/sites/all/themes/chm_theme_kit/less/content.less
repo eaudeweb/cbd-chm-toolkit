@@ -17,15 +17,19 @@
 }
 
 /* front page styling*/
+[dir="rtl"] .latest-news-updates,.content-statistics{
+  float: right;
+}
 .view-latest-updates {
   .view-content > .item-list > ul{
     list-style-type: none;
     margin: 0;
     padding: 0;
+    
     [dir="rtl"] &>li{
       margin-right: 0;
     }
-    
+
     .views-field.views-field-field-image .field-content{
       float:left;
       margin-right: 20px;
@@ -35,7 +39,6 @@
       margin-left: 20px; 
       }
     }
-    
     .views-field.views-field-title-field{
       font-size: 20px;
     }
@@ -83,10 +86,8 @@
       margin-top: .5em;
       margin-bottom: 1em; 
       font-weight: bold;
+      text-decoration: underline;
     }
-    // & > ul{
-    //   margin-left: 2rem;
-    // }
     & > ul > li {//1.
       margin-top: 1em;
       margin-bottom: 1em;
@@ -141,6 +142,7 @@
               margin-left: .5em;
             }
           }
+          
           &:hover::before{
             margin-top: 0;
             height: 100%;
@@ -202,6 +204,7 @@
           margin-right: 3rem;
         }
       }
+      
       & > ul > li {//1.
         margin-top: 1.5em;
         margin-bottom: 1.5em;
@@ -221,6 +224,7 @@
             margin-right: 4rem;
           }
         }
+        
       }
     }  
   }
@@ -237,6 +241,7 @@
           margin-right: 4rem;
         }
       }
+      
       & > ul > li {//1.
         margin-top: 1.5em;
         margin-bottom: 1.5em;
@@ -257,6 +262,7 @@
             margin-right: 4.5rem;
           }
         }
+        
       }
     }  
   }
@@ -323,6 +329,7 @@
             left: 100%;
           }
         }
+        
         &:hover::before{
           margin-top: 0;
           height: 100%;
@@ -460,6 +467,7 @@
           width: auto;
         }
       }
+      
       & > .views-field.views-field-name-field{
         & > .field-content {
           display: table-cell;
@@ -478,6 +486,7 @@
           margin-left: 3.25em;
         } 
       } 
+      
     }
   }
   @media all and (min-width: 767px){
@@ -491,6 +500,7 @@
           margin-left: .5em;
         }
       }
+      
       & > .views-field.views-field-name-field{
         & > .field-content {
           font-size: 17px;
@@ -507,6 +517,7 @@
           margin-left: 5rem;
         } 
       } 
+      
     }
   }
   @media all and (min-width: 1023px){
@@ -522,6 +533,7 @@
           margin-left: .5em;
         }
       }
+      
       & > .views-field.views-field-name-field{
         & > .field-content {
           font-size: 18px;
@@ -538,6 +550,7 @@
           margin-left: 5rem;
         }
       } 
+       
     }
   }
 }
