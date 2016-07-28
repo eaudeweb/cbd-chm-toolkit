@@ -438,7 +438,7 @@ function osha_gallery_form_alter(&$form, &$form_state, $form_id) {
     if (array_key_exists($node->type, $fields)) {
       foreach($fields[$node->type] as $field_name => $label) {
         if (!empty($form[$field_name])) {
-          hide($form[$field_name]);
+          $form[$field_name]['#access'] = FALSE;
           $alter = TRUE;
         }
       }
