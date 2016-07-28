@@ -20,6 +20,30 @@ function chm_structure_ctools_plugin_api($module = NULL, $api = NULL) {
 }
 
 /**
+ * Implements hook_image_default_styles().
+ */
+function chm_structure_image_default_styles() {
+  $styles = array();
+
+  // Exported image style: extra_large.
+  $styles['extra_large'] = array(
+    'label' => 'Extra Large (1280X720)',
+    'effects' => array(
+      3 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 1280,
+          'height' => 720,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  return $styles;
+}
+
+/**
  * Implements hook_node_info().
  */
 function chm_structure_node_info() {

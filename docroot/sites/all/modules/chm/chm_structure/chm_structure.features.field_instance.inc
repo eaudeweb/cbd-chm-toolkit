@@ -1145,6 +1145,21 @@ function chm_structure_field_default_field_instances() {
       'entity_translation_sync' => FALSE,
       'file_directory' => '[current-domain:machine-name]/images/documents',
       'file_extensions' => 'png gif jpg jpeg',
+      'image_field_caption' => array(
+        'enabled' => 0,
+        'image_field_caption_wrapper' => array(
+          'image_field_caption_default' => array(
+            'format' => 'plain_text',
+            'value' => '',
+          ),
+        ),
+      ),
+      'image_field_caption_wrapper' => array(
+        'image_field_caption_default' => array(
+          'format' => 'plain_text',
+          'value' => '',
+        ),
+      ),
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
@@ -1460,6 +1475,21 @@ function chm_structure_field_default_field_instances() {
       'entity_translation_sync' => 0,
       'file_directory' => '[current-domain:machine-name]/images/ecosystems',
       'file_extensions' => 'png gif jpg jpeg',
+      'image_field_caption' => array(
+        'enabled' => 0,
+        'image_field_caption_wrapper' => array(
+          'image_field_caption_default' => array(
+            'format' => 'plain_text',
+            'value' => '',
+          ),
+        ),
+      ),
+      'image_field_caption_wrapper' => array(
+        'image_field_caption_default' => array(
+          'format' => 'plain_text',
+          'value' => '',
+        ),
+      ),
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
@@ -1943,6 +1973,21 @@ function chm_structure_field_default_field_instances() {
       'entity_translation_sync' => FALSE,
       'file_directory' => '[current-domain:machine-name]/images/events',
       'file_extensions' => 'png gif jpg jpeg',
+      'image_field_caption' => array(
+        'enabled' => 0,
+        'image_field_caption_wrapper' => array(
+          'image_field_caption_default' => array(
+            'format' => 'plain_text',
+            'value' => '',
+          ),
+        ),
+      ),
+      'image_field_caption_wrapper' => array(
+        'image_field_caption_default' => array(
+          'format' => 'plain_text',
+          'value' => '',
+        ),
+      ),
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
@@ -1970,6 +2015,99 @@ function chm_structure_field_default_field_instances() {
       ),
       'type' => 'image_image',
       'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance: 'node-event-field_images'.
+  $field_instances['node-event-field_images'] = array(
+    'bundle' => 'event',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'colorbox',
+        'settings' => array(
+          'colorbox_caption' => 'auto',
+          'colorbox_caption_custom' => '',
+          'colorbox_gallery' => 'post',
+          'colorbox_gallery_custom' => '',
+          'colorbox_image_style' => '',
+          'colorbox_multivalue_index' => NULL,
+          'colorbox_node_style' => '',
+          'colorbox_node_style_first' => '',
+          'image_class' => '',
+          'use_image_caption_field' => FALSE,
+        ),
+        'type' => 'colorbox',
+        'weight' => 12,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_images',
+    'label' => 'Gallery',
+    'required' => 0,
+    'settings' => array(
+      'alt_field' => 0,
+      'default_image' => 0,
+      'entity_translation_sync' => FALSE,
+      'file_directory' => '',
+      'file_extensions' => 'png gif jpg jpeg',
+      'filefield_paths' => array(
+        'active_updating' => 0,
+        'file_name' => array(
+          'options' => array(
+            'pathauto' => 0,
+            'slashes' => 0,
+            'transliterate' => 0,
+          ),
+          'value' => '[file:ffp-name-only-original].[file:ffp-extension-original]',
+        ),
+        'file_path' => array(
+          'options' => array(
+            'pathauto' => 0,
+            'slashes' => 0,
+            'transliterate' => 0,
+          ),
+          'value' => '',
+        ),
+        'redirect' => FALSE,
+        'retroactive_update' => 0,
+      ),
+      'filefield_paths_enabled' => 1,
+      'max_filesize' => '',
+      'max_resolution' => '',
+      'min_resolution' => '',
+      'title_field' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'image',
+      'settings' => array(
+        'manualcrop_crop_info' => 1,
+        'manualcrop_default_crop_area' => 1,
+        'manualcrop_enable' => 0,
+        'manualcrop_inline_crop' => 0,
+        'manualcrop_instant_crop' => 0,
+        'manualcrop_instant_preview' => 1,
+        'manualcrop_keyboard' => 1,
+        'manualcrop_maximize_default_crop_area' => 0,
+        'manualcrop_require_cropping' => array(),
+        'manualcrop_styles_list' => array(),
+        'manualcrop_styles_mode' => 'include',
+        'manualcrop_thumblist' => 0,
+        'preview_image_style' => 'thumbnail',
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'image_image',
+      'weight' => 17,
     ),
   );
 
@@ -2196,6 +2334,21 @@ function chm_structure_field_default_field_instances() {
       'entity_translation_sync' => FALSE,
       'file_directory' => '[current-domain:machine-name]/images/facts',
       'file_extensions' => 'png gif jpg jpeg',
+      'image_field_caption' => array(
+        'enabled' => 0,
+        'image_field_caption_wrapper' => array(
+          'image_field_caption_default' => array(
+            'format' => 'plain_text',
+            'value' => '',
+          ),
+        ),
+      ),
+      'image_field_caption_wrapper' => array(
+        'image_field_caption_default' => array(
+          'format' => 'plain_text',
+          'value' => '',
+        ),
+      ),
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
@@ -2436,6 +2589,7 @@ function chm_structure_field_default_field_instances() {
           'colorbox_multivalue_index' => NULL,
           'colorbox_node_style' => 'gallery_thumbnail',
           'colorbox_node_style_first' => '',
+          'image_class' => '',
           'use_image_caption_field' => 0,
         ),
         'type' => 'colorbox',
@@ -2480,6 +2634,21 @@ function chm_structure_field_default_field_instances() {
         'retroactive_update' => 0,
       ),
       'filefield_paths_enabled' => 1,
+      'image_field_caption' => array(
+        'enabled' => 0,
+        'image_field_caption_wrapper' => array(
+          'image_field_caption_default' => array(
+            'format' => 'plain_text',
+            'value' => '',
+          ),
+        ),
+      ),
+      'image_field_caption_wrapper' => array(
+        'image_field_caption_default' => array(
+          'format' => 'plain_text',
+          'value' => '',
+        ),
+      ),
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
@@ -2847,6 +3016,21 @@ function chm_structure_field_default_field_instances() {
       'entity_translation_sync' => FALSE,
       'file_directory' => '[current-domain:machine-name]/images/news',
       'file_extensions' => 'png gif jpg jpeg',
+      'image_field_caption' => array(
+        'enabled' => 0,
+        'image_field_caption_wrapper' => array(
+          'image_field_caption_default' => array(
+            'format' => 'plain_text',
+            'value' => '',
+          ),
+        ),
+      ),
+      'image_field_caption_wrapper' => array(
+        'image_field_caption_default' => array(
+          'format' => 'plain_text',
+          'value' => '',
+        ),
+      ),
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
@@ -3334,6 +3518,21 @@ function chm_structure_field_default_field_instances() {
         'retroactive_update' => 0,
       ),
       'filefield_paths_enabled' => 1,
+      'image_field_caption' => array(
+        'enabled' => 0,
+        'image_field_caption_wrapper' => array(
+          'image_field_caption_default' => array(
+            'format' => 'plain_text',
+            'value' => '',
+          ),
+        ),
+      ),
+      'image_field_caption_wrapper' => array(
+        'image_field_caption_default' => array(
+          'format' => 'plain_text',
+          'value' => '',
+        ),
+      ),
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
@@ -3639,6 +3838,21 @@ function chm_structure_field_default_field_instances() {
       'entity_translation_sync' => FALSE,
       'file_directory' => 'images/species',
       'file_extensions' => 'png gif jpg jpeg',
+      'image_field_caption' => array(
+        'enabled' => 0,
+        'image_field_caption_wrapper' => array(
+          'image_field_caption_default' => array(
+            'format' => 'plain_text',
+            'value' => '',
+          ),
+        ),
+      ),
+      'image_field_caption_wrapper' => array(
+        'image_field_caption_default' => array(
+          'format' => 'plain_text',
+          'value' => '',
+        ),
+      ),
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
@@ -4273,6 +4487,21 @@ function chm_structure_field_default_field_instances() {
       'entity_translation_sync' => FALSE,
       'file_directory' => 'images/aichi',
       'file_extensions' => 'png gif jpg jpeg',
+      'image_field_caption' => array(
+        'enabled' => 0,
+        'image_field_caption_wrapper' => array(
+          'image_field_caption_default' => array(
+            'format' => 'plain_text',
+            'value' => '',
+          ),
+        ),
+      ),
+      'image_field_caption_wrapper' => array(
+        'image_field_caption_default' => array(
+          'format' => 'plain_text',
+          'value' => '',
+        ),
+      ),
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
@@ -4741,6 +4970,21 @@ function chm_structure_field_default_field_instances() {
       'entity_translation_sync' => FALSE,
       'file_directory' => 'images/eu-target',
       'file_extensions' => 'png gif jpg jpeg',
+      'image_field_caption' => array(
+        'enabled' => 0,
+        'image_field_caption_wrapper' => array(
+          'image_field_caption_default' => array(
+            'format' => 'plain_text',
+            'value' => '',
+          ),
+        ),
+      ),
+      'image_field_caption_wrapper' => array(
+        'image_field_caption_default' => array(
+          'format' => 'plain_text',
+          'value' => '',
+        ),
+      ),
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
@@ -5357,6 +5601,7 @@ function chm_structure_field_default_field_instances() {
   t('Fax numbers');
   t('Files');
   t('First name');
+  t('Gallery');
   t('Genus');
   t('Geolocation');
   t('IUCN Code');
