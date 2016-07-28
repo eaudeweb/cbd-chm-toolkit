@@ -17,6 +17,22 @@ function chm_structure_block_info() {
   return $blocks;
 }
 
+/**
+ * Implements hook_menu_alter().
+ */
+function chm_structure_menu_alter(&$items) {
+  // Change permissions for some core/contrib administration menus.
+  if (isset($items['admin/config/regional/translate/import'])) {
+    $items['admin/config/regional/translate/import']['access arguments'] = array('bypass node access');
+  }
+  if (isset($items['admin/config/regional/translate/i18n_string'])) {
+    $items['admin/config/regional/translate/i18n_string']['access arguments'] = array('bypass node access');
+  }
+  if (isset($items['admin/config/regional/translate/export'])) {
+    $items['admin/config/regional/translate/export']['access arguments'] = array('bypass node access');
+  }
+}
+
 function chm_structure_block_view($delta = '') {
   $block = array();
   switch ($delta) {
@@ -43,4 +59,20 @@ function chm_structure_block_view($delta = '') {
       break;
   }
   return $block;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function chm_structure_form_locale_translation_filter_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
+  // Remove from select options inactive language for current domain.
+  if ($user->uid != 0) {
+    $variable = NULL;
+    $options = array();
+    module_load_include('inc', 'domain_variable_locale', 'domain_variable_locale.variable');
+    $avaialble_languages = domain_variable_locale_language_list_defaults($variable, $options);
+    $avaialble_languages = array_filter($avaialble_languages);
+    $form['filters']['status']['language']['#options'] = array_intersect_key($form['filters']['status']['language']['#options'], array_flip($avaialble_languages));
+  }
 }
