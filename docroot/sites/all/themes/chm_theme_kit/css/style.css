@@ -9347,6 +9347,9 @@ body.maintenance-page #footer-container #footer {
   }
 }
 @media all and (max-width: 457px) {
+  .view-home-page-image-slider .slick-content.well h2 {
+    margin-bottom: 0;
+  }
   .view-home-page-image-slider .slick-content.well h2 > a {
     margin: 0;
     font-size: 18px;
@@ -9354,6 +9357,9 @@ body.maintenance-page #footer-container #footer {
   }
   .view-home-page-image-slider .slick-content.well a.more-link {
     display: none;
+  }
+  .view-home-page-image-slider .slick-content.well .form-item.form-type-item.form-group {
+    font-size: 10px;
   }
 }
 .view-home-page-image-slider .slick-content.well:hover {
