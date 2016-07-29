@@ -9355,9 +9355,6 @@ body.maintenance-page #footer-container #footer {
   .view-home-page-image-slider .slick-content.well a.more-link {
     display: none;
   }
-  .view-home-page-image-slider .slick-content.well .form-item.form-type-item.form-group {
-    display: none;
-  }
 }
 .view-home-page-image-slider .slick-content.well:hover {
   background-color: rgba(0, 0, 0, 0.8);
