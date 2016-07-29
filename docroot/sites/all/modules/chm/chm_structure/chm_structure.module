@@ -68,10 +68,8 @@ function chm_structure_form_locale_translation_filter_form_alter(&$form, &$form_
   global $user;
   // Remove from select options inactive language for current domain.
   if ($user->uid != 0) {
-    $variable = NULL;
-    $options = array();
     module_load_include('inc', 'domain_variable_locale', 'domain_variable_locale.variable');
-    $avaialble_languages = domain_variable_locale_language_list_defaults($variable, $options);
+    $avaialble_languages = domain_variable_locale_language_list([], []);
     $avaialble_languages = array_filter($avaialble_languages);
     $form['filters']['status']['language']['#options'] = array_intersect_key($form['filters']['status']['language']['#options'], array_flip($avaialble_languages));
   }
