@@ -9332,6 +9332,11 @@ body.maintenance-page #footer-container #footer {
   -ms-transition: all 0.27s ease-in-out;
   transition: all 0.27s ease-in-out;
 }
+@media all and (max-width: 991px) {
+  .view-home-page-image-slider .slick-content.well > p {
+    display: none;
+  }
+}
 @media all and (max-width: 767px) {
   .view-home-page-image-slider .slick-content.well h2 > a {
     margin: 0;

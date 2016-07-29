@@ -102,12 +102,16 @@
     -o-transition: all 0.27s ease-in-out;
     -ms-transition: all 0.27s ease-in-out;
     transition: all 0.27s ease-in-out;
-
+    @media all and (max-width: 991px){
+      >p{
+        display: none;
+      }
+    }
     @media all and (max-width: 767px){
       h2 > a{
         margin: 0;
         font-size: 26px;
-
+        
       }
       a.more-link{
         margin: 0;
