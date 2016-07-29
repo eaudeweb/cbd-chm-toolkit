@@ -8,9 +8,9 @@ core = 7.x
 
 files[] = domain_variable.class.inc
 
-; Information added by Drupal.org packaging script on 2015-02-04
-version = "7.x-1.1"
+; Information added by Drupal.org packaging script on 2015-02-13
+version = "7.x-1.1+1-dev"
 core = "7.x"
 project = "domain_variable"
-datestamp = "1423068408"
+datestamp = "1423835881"
 
