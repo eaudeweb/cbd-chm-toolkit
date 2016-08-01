@@ -8623,23 +8623,31 @@ body.maintenance-page #footer-container #footer {
   background-color: #02823F;
 }
 /* front page styling*/
-.view-latest-updates ul {
+.view-latest-updates .view-content > .item-list > ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-.view-latest-updates ul .views-field.views-field-field-image .field-content {
+[dir="rtl"] .view-latest-updates .view-content > .item-list > ul > li {
+  margin-right: 0;
+}
+.view-latest-updates .view-content > .item-list > ul .views-field.views-field-field-image .field-content {
   float: left;
   margin-right: 20px;
 }
-.view-latest-updates ul .views-field.views-field-title-field {
+[dir="rtl"] .view-latest-updates .view-content > .item-list > ul .views-field.views-field-field-image .field-content {
+  float: right;
+  margin-right: auto;
+  margin-left: 20px;
+}
+.view-latest-updates .view-content > .item-list > ul .views-field.views-field-title-field {
   font-size: 20px;
 }
-.view-latest-updates ul .views-field.views-field-field-dates {
+.view-latest-updates .view-content > .item-list > ul .views-field.views-field-field-dates {
   font-size: 12px;
   color: #999;
 }
-.view-latest-updates ul .views-field.views-field-body {
+.view-latest-updates .view-content > .item-list > ul .views-field.views-field-body {
   clear: both;
   margin-bottom: 1em;
 }
@@ -8651,6 +8659,10 @@ body.maintenance-page #footer-container #footer {
   right: 100%;
   top: 50%;
   transform: translateY(-50%);
+}
+[dir="rtl"] .pane-ptk-base-chm-content-statistics table > tbody > tr > td:nth-child(2) span.fa {
+  right: auto;
+  left: 100%;
 }
 /* Species listing */
 #block-views-species-block-1 .content {
