@@ -17,17 +17,28 @@
 }
 
 /* front page styling*/
+[dir="rtl"] .latest-news-updates,.content-statistics{
+  float: right;
+}
 .view-latest-updates {
-  ul{
+  .view-content > .item-list > ul{
     list-style-type: none;
     margin: 0;
     padding: 0;
     
+    [dir="rtl"] &>li{
+      margin-right: 0;
+    }
+
     .views-field.views-field-field-image .field-content{
       float:left;
-      margin-right: 20px; 
+      margin-right: 20px;
+      [dir="rtl"] &{
+        float:right;
+      margin-right: auto;
+      margin-left: 20px; 
+      }
     }
-    
     .views-field.views-field-title-field{
       font-size: 20px;
     }
@@ -41,6 +52,7 @@
     }
   }
 }
+
 .pane-ptk-base-chm-content-statistics{
   table>tbody>tr>td:nth-child(2){
     position: relative;
@@ -49,6 +61,621 @@
       right: 100%;
       top: 50%;
       transform: translateY(-50%);
+      [dir="rtl"] &{
+        right: auto;
+      left: 100%;
+      }
+    }
+  }
+}
+
+/*Aichi biodiversity targets*/
+.view-aichi-biodiversity-targets .view-content {
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  a{
+    color: black;
+  }
+
+  & > ul > li {
+    & > .views-field.views-field-name-field{
+      font-size: 20px;
+      margin-top: .5em;
+      margin-bottom: 1em; 
+      font-weight: bold;
+      text-decoration: underline;
+    }
+    & > ul > li {//1.
+      margin-top: 1em;
+      margin-bottom: 1em;
+      & > .views-field.views-field-field-image-et{
+        float: left; //LTR
+        width: 5rem;
+        [dir="rtl"] &{
+          float: right;
+        }
+      }
+      & > .views-field.views-field-name-field{
+        & > .field-content {
+          display: table-cell;
+          vertical-align: middle;
+          font-size: 18px;
+          height: 5rem;
+          text-transform: uppercase;
+        }
+      }
+      
+      & > ul{ //1.1.
+        clear: both;
+        margin-top: .5em;
+        margin-left: 3.5rem; //LTR
+        margin-right: 2.5rem; //LTR
+        [dir="rtl"] &{
+          margin-left: 2.5rem; 
+          margin-right: 3.5rem;
+        }
+        >li{
+          position: relative;
+          margin-bottom: 1em;
+          cursor: pointer;
+          a{
+            text-decoration: none;
+          }
+          &::before{
+            content: '';
+            display: table-cell;
+            margin-top: .4em;
+            margin-right: .5em;
+            background-color: black;
+            width: .5em;
+            height: .5em;
+            position: absolute;
+            right: 100%;
+            transition: .2s;
+            [dir="rtl"] &{
+              right: auto;
+              left: 100%; 
+              margin-right: 0em;
+              margin-left: .5em;
+            }
+          }
+          
+          &:hover::before{
+            margin-top: 0;
+            height: 100%;
+
+          }
+        }
+      }
+    }
+    //hover effects 
+    &:nth-of-type(1) > .views-field.views-field-name-field > .field-content > a:hover,
+    &:nth-of-type(1) > ul > li > .views-field.views-field-name-field > .field-content > a:hover{
+      color: #BF1D2D; 
+    }
+    &:nth-of-type(2) > .views-field.views-field-name-field > .field-content > a:hover,
+    &:nth-of-type(2) > ul > li > .views-field.views-field-name-field > .field-content > a:hover{
+      color: #FBB040; 
+    }
+    &:nth-of-type(3) > .views-field.views-field-name-field > .field-content > a:hover,
+    &:nth-of-type(3) > ul > li > .views-field.views-field-name-field > .field-content > a:hover{
+      color: #652C91; 
+    }
+    &:nth-of-type(4) > .views-field.views-field-name-field > .field-content > a:hover,
+    &:nth-of-type(4) > ul > li > .views-field.views-field-name-field > .field-content > a:hover{
+      color: #00AEEF; 
+    }
+    &:nth-of-type(5) > .views-field.views-field-name-field > .field-content > a:hover,
+    &:nth-of-type(5) > ul > li > .views-field.views-field-name-field > .field-content > a:hover{
+      color: #8DC53E; 
+    }
+
+    //hover effects 1.1.
+    &:nth-of-type(1) > ul > li > ul > li:hover::before{
+      background-color: #BF1D2D; 
+    }
+    &:nth-of-type(2) > ul > li > ul > li:hover::before{
+      background-color: #FBB040; 
+    }
+    &:nth-of-type(3) > ul > li > ul > li:hover::before{
+      background-color: #652C91; 
+    }
+    &:nth-of-type(4) > ul > li > ul > li:hover::before{
+      background-color: #00AEEF; 
+    }
+    &:nth-of-type(5) > ul > li > ul > li:hover::before{
+      background-color: #8DC53E; 
+    }
+  }
+  //tablets
+  @media all and (min-width: 767px){
+
+    & > ul > li {
+      & > .views-field.views-field-name-field{
+        font-size: 24px;
+      }
+      & > ul{
+        margin-left: 3rem; //LTR
+        [dir="rtl"] &{
+          margin-left: 0;
+          margin-right: 3rem;
+        }
+      }
+      
+      & > ul > li {//1.
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
+        & > .views-field.views-field-field-image-et{
+          width: 6rem;
+        }
+        & > .views-field.views-field-name-field{
+          & > .field-content {
+            font-size: 20px;
+            height: 6rem;
+          }
+        }
+        & > ul{ //1.1.
+          margin-left: 4rem; //LTR
+          [dir="rtl"] &{
+            margin-left: 0rem;
+            margin-right: 4rem;
+          }
+        }
+        
+      }
+    }  
+  }
+  @media all and (min-width: 1023px){
+
+    & > ul > li {
+      & > .views-field.views-field-name-field{
+        font-size: 26px;
+      }
+      & > ul{
+        margin-left: 4rem; //LTR
+        [dir="rtl"] &{
+          margin-left: 0rem;
+          margin-right: 4rem;
+        }
+      }
+      
+      & > ul > li {//1.
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
+        & > .views-field.views-field-field-image-et{
+          width: 7rem;
+        }
+        & > .views-field.views-field-name-field{
+          & > .field-content {
+            font-size: 22px;
+            height: 7rem;
+          }
+        }
+        & > ul{ //1.1.
+          margin-left: 4.5rem; //LTR
+          font-size: 16px;
+          [dir="rtl"] &{ //1.1.
+            margin-left: 0rem;
+            margin-right: 4.5rem;
+          }
+        }
+        
+      }
+    }  
+  }
+}
+
+/*Sustainable Development Goals*/
+.view-sustainable-development-goals .view-content {
+  margin-top: 2em;
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  a{
+    color: black;
+  }
+
+  & > ul > li {
+    margin-bottom: 3em;
+    & > .views-field.views-field-field-image-et img{
+      // float: left;
+      width: 8rem;
+      margin: 1.5em auto;
+      // margin-right: .5em;
+    }
+
+    & > .views-field.views-field-name-field{
+      & > .field-content {
+        // display: table-cell;
+        // vertical-align: middle;
+        font-size: 16px;
+        // height: 8rem;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+    }
+    
+    & > ul{ //1.1.
+      clear: both;
+      margin-top: .5em;
+      margin-left: 2.5em;
+      margin-right: 2em;
+      // list-style-type: square;
+      // list-style-position: inside;
+      & > li{
+        
+        margin-bottom: 1em;
+        position: relative;
+        &::before{
+          content: '';
+          display: table-cell;
+          margin-top: .4em;
+          margin-right: .5em; //LTR
+          background-color: black;
+          width: .5em;
+          height: .5em;
+          position: absolute;
+          right: 100%; //LTR
+          transition: .2s;
+          [dir="rtl"] &{
+            margin-right: 0;
+            margin-left: .5em;
+            right: auto;
+            left: 100%;
+          }
+        }
+        
+        &:hover::before{
+          margin-top: 0;
+          height: 100%;
+        }
+        &:hover{
+          cursor: pointer; 
+          a{
+          text-decoration: none;
+          color: black;
+          }
+          
+        }
+      }
+    }
+    //hover goal title
+    &:nth-of-type(1) > .views-field.views-field-name-field > .field-content > a:hover{
+      color: #E5223C;
+    }
+    &:nth-of-type(2) > .views-field.views-field-name-field > .field-content > a:hover{
+      color: #DCA63A;
+    }
+    &:nth-of-type(3) > .views-field.views-field-name-field > .field-content > a:hover{
+      color: #4BA045;
+    }
+    &:nth-of-type(4) > .views-field.views-field-name-field > .field-content > a:hover{
+      color: #C6202F;
+    }
+    &:nth-of-type(5) > .views-field.views-field-name-field > .field-content > a:hover{
+      color: #EE402D;
+    }
+    &:nth-of-type(6) > .views-field.views-field-name-field > .field-content > a:hover{
+      color: #27BFE6;
+    }
+    &:nth-of-type(7) > .views-field.views-field-name-field > .field-content > a:hover{
+      color: #FAC412;
+    }
+    &:nth-of-type(8) > .views-field.views-field-name-field > .field-content > a:hover{
+      color: #A21B43;
+    }
+    &:nth-of-type(9) > .views-field.views-field-name-field > .field-content > a:hover{
+      color: #F1692D;
+    }
+    &:nth-of-type(10) > .views-field.views-field-name-field > .field-content > a:hover{
+      color: #DD1667;
+    }
+    &:nth-of-type(11) > .views-field.views-field-name-field > .field-content > a:hover{
+      color: #F79C2A;
+    }
+    &:nth-of-type(12) > .views-field.views-field-name-field > .field-content > a:hover{
+      color: #BE8C2C;
+    }
+    &:nth-of-type(13) > .views-field.views-field-name-field > .field-content > a:hover{
+      color: #407E46;
+    }
+    &:nth-of-type(14) > .views-field.views-field-name-field > .field-content > a:hover{
+      color: #1F96D4;
+    }
+    &:nth-of-type(15) > .views-field.views-field-name-field > .field-content > a:hover{
+      color: #58B947;
+    }
+    &:nth-of-type(16) > .views-field.views-field-name-field > .field-content > a:hover{
+      color: #12699E;
+    }
+    &:nth-of-type(17) > .views-field.views-field-name-field > .field-content > a:hover{
+      color: #13486A;
+    }
+    //hover effects sidebar element
+    &:nth-of-type(1) > ul > li:hover::before{
+      background-color: #E5223C;
+    }
+    &:nth-of-type(2) > ul > li:hover::before{
+      background-color: #DCA63A;
+    }
+    &:nth-of-type(3) > ul > li:hover::before{
+      background-color: #4BA045;
+    }
+    &:nth-of-type(4) > ul > li:hover::before{
+      background-color: #C6202F;
+    }
+    &:nth-of-type(5) > ul > li:hover::before{
+      background-color: #EE402D;
+    }
+    &:nth-of-type(6) > ul > li:hover::before{
+      background-color: #27BFE6;
+    }
+    &:nth-of-type(7) > ul > li:hover::before{
+      background-color: #FAC412;
+    }
+    &:nth-of-type(8) > ul > li:hover::before{
+      background-color: #A21B43;
+    }
+    &:nth-of-type(9) > ul > li:hover::before{
+      background-color: #F1692D;
+    }
+    &:nth-of-type(10) > ul > li:hover::before{
+      background-color: #DD1667;
+    }
+    &:nth-of-type(11) > ul > li:hover::before{
+      background-color: #F79C2A;
+    }
+    &:nth-of-type(12) > ul > li:hover::before{
+      background-color: #BE8C2C;
+    }
+    &:nth-of-type(13) > ul > li:hover::before{
+      background-color: #407E46;
+    }
+    &:nth-of-type(14) > ul > li:hover::before{
+      background-color: #1F96D4;
+    }
+    &:nth-of-type(15) > ul > li:hover::before{
+      background-color: #58B947;
+    }
+    &:nth-of-type(16) > ul > li:hover::before{
+      background-color: #12699E;
+    }
+    &:nth-of-type(17) > ul > li:hover::before{
+      background-color: #13486A;
+    }
+  }
+
+  //tablets
+  @media all and (min-width: 424px){
+    & > ul > li {
+      & > .views-field.views-field-field-image-et{
+        float: left; //LTR
+        width: 8.5rem;
+        margin-right: .5em;
+        [dir="rtl"] &{
+          float: right;
+          margin-right: 0;
+          margin-left: .5em;
+        }
+        img{
+          margin: 0;
+          width: auto;
+        }
+      }
+      
+      & > .views-field.views-field-name-field{
+        & > .field-content {
+          display: table-cell;
+          vertical-align: middle;
+          font-size: 16px;
+          height: 8.5rem;
+        }
+      }
+      
+      & > ul{ //1.1.
+        margin-top: 1.5em;
+        margin-left: 3.75em; //LTR
+        margin-right: 3.25em; //LTR
+        [dir="rtl"] &{ //1.1.
+          margin-right: 3.75em; 
+          margin-left: 3.25em;
+        } 
+      } 
+      
+    }
+  }
+  @media all and (min-width: 767px){
+    & > ul > li {
+      margin-bottom: 3em;
+      & > .views-field.views-field-field-image-et{
+        width: 9rem;
+        margin-right: .5em; //LTR
+        [dir="rtl"] &{
+          margin-right: 0;
+          margin-left: .5em;
+        }
+      }
+      
+      & > .views-field.views-field-name-field{
+        & > .field-content {
+          font-size: 17px;
+          height: 9rem;
+        }
+      }
+      
+      & > ul{ //1.1.
+        margin-left: 5.5rem; //LTR
+        margin-right: 5rem; //LTR
+        font-size: 16px;
+        [dir="rtl"] &{ 
+          margin-right: 5.5rem;
+          margin-left: 5rem;
+        } 
+      } 
+      
+    }
+  }
+  @media all and (min-width: 1023px){
+    & > ul > li {
+      margin-bottom: 3em;
+      & > .views-field.views-field-field-image-et{
+        float: left; //LTR
+        width: 10rem;
+        margin-right: .5em; //LTR
+        [dir="rtl"] &{
+          float: right;
+          margin-right: 0;
+          margin-left: .5em;
+        }
+      }
+      
+      & > .views-field.views-field-name-field{
+        & > .field-content {
+          font-size: 18px;
+          height: 10rem;
+        }
+      }
+      
+      & > ul{ //1.1.
+        margin-left: 6rem; //LTR
+        margin-right: 5.5rem; //LTR
+        font-size: 16px;
+        [dir="rtl"] &{
+          margin-right: 5.5rem;
+          margin-left: 5rem;
+        }
+      } 
+       
+    }
+  }
+}
+
+.view-eu-targets .view-content {
+  margin-top: 2em;
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  a{
+    color: black;
+  }
+
+  & > ul > li {
+    margin-bottom: 3em;
+    & > .views-field.views-field-name{
+      font-size: 16px;
+      text-transform: uppercase;
+      font-weight: bold;
+      a:hover{
+        color: @text-color-green;
+      }
+    }
+    
+    & > ul{ //1.1.
+      margin-top: .5em;
+      margin-left: 2.5em;
+      margin-right: 2em;
+      // list-style-type: square;
+      // list-style-position: inside;
+      & > li{
+        margin-bottom: 1em;
+        position: relative;
+        &::before{
+          content: '';
+          display: table-cell;
+          margin-top: .4em;
+          margin-right: .5em; //LTR
+          background-color: black;
+          width: .5em;
+          height: .5em;
+          position: absolute;
+          right: 100%; //LTR
+          transition: .2s;
+          [dir="rtl"] &{
+            margin-right: 0;
+            margin-left: .5em;
+            right: auto;
+            left: 100%;
+          }
+        }
+        
+        &:hover::before{
+          margin-top: 0;
+          height: 100%;
+        }
+        &:hover{
+          cursor: pointer; 
+          a{
+          text-decoration: none;
+          color: black;
+          }
+          
+        }
+      }
+    }
+  }
+
+
+  //tablets
+  @media all and (min-width: 424px){
+    & > ul > li {
+      & > .views-field.views-field-name{
+        font-size: 16px;
+      }
+      
+      & > ul{ //1.1.
+        margin-top: 1.5em;
+        margin-left: 3.75em; //LTR
+        margin-right: 3.25em; //LTR
+        [dir="rtl"] &{ //1.1.
+          margin-right: 3.75em; 
+          margin-left: 3.25em;
+        } 
+      } 
+    }
+  }
+  @media all and (min-width: 767px){
+    & > ul > li {
+      margin-bottom: 3em;
+      & > .views-field.views-field-name{
+        font-size: 17px;
+      }
+      
+      & > ul{ //1.1.
+        margin-left: 5.5rem; //LTR
+        margin-right: 5rem; //LTR
+        font-size: 16px;
+        [dir="rtl"] &{ 
+          margin-right: 5.5rem;
+          margin-left: 5rem;
+        } 
+      } 
+      
+    }
+  }
+  @media all and (min-width: 1023px){
+    & > ul > li {
+      margin-bottom: 3em;
+      & > .views-field.views-field-name{
+        font-size: 18px;
+      }
+      
+      & > ul{ //1.1.
+        margin-left: 6rem; //LTR
+        margin-right: 5.5rem; //LTR
+        font-size: 16px;
+        [dir="rtl"] &{
+          margin-right: 5.5rem;
+          margin-left: 5rem;
+        }
+      } 
+       
     }
   }
 }

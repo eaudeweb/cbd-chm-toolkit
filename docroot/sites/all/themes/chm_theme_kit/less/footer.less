@@ -6,7 +6,13 @@
 #footer {
   background-color: @footer-color;
   color: #ffffff;
+  [dir="rtl"] & #footer-content > .col-sm-3{
+    float: right;
+  }
   .nav {
+    [dir="rtl"] &{
+      padding-right: 0;
+    }
     li {
       a {
         padding: 0;
@@ -20,13 +26,39 @@
 
 #footer2 {
   .footer-logo {
-    float: left;
+    float: left; //LTR
+    [dir="rtl"] &{
+      float: right;
+      @media all and (max-width: 480px){
+        float: none;
+      }
+    }
+    @media all and (max-width: 480px){
+      float: none;
+      img{
+        margin: 0 auto;
+        display: block;
+      }
+    }
     img {
       max-height: 120px;
     }
   }
   .footer-support {
-    float: right;
+    float: right; //LTR
+    [dir="rtl"] &{
+      float: left;
+      @media all and (max-width: 480px){
+        float: none;
+      }
+    }
+    @media all and (max-width: 480px){
+      float: none;
+      img{
+        margin: 0 auto;
+        display: block;
+      }
+    }
     text-align: center;
     img {
       max-height: 100px;
