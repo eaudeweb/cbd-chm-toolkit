@@ -1,8 +1,17 @@
 /* Styling related to slick slideshow */
+//slide arrows
 .slick-prev::before, .slick-next::before {
   color: #FFFFFF;
 }
 
+[dir="rtl"] .slick-arrow{
+  &.slick-prev{
+    right: 0;
+  }
+  &.slick-next{
+    left: 0;
+  }
+}
 .slick-prev::before, .slick-next::before {
   font-size: 3.5rem;
   -moz-transition: all 0.27s ease-in-out;
@@ -11,6 +20,10 @@
   transition: all 0.27s ease-in-out;
 }
 
+//keeps slides from bouncing back from LTR - float: left
+[dir='rtl'] .slick-slide{
+  float: right !important;
+}
 .slick-content {
   position:absolute;
   right: 68px;
