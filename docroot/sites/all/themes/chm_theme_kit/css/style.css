@@ -8777,15 +8777,15 @@ body.maintenance-page #footer-container #footer {
   max-height: 100px;
 }
 /* Styling related to slick slideshow */
+.slick-prev::before,
+.slick-next::before {
+  color: #FFFFFF;
+}
 [dir="rtl"] .slick-arrow.slick-prev {
   right: 0;
 }
 [dir="rtl"] .slick-arrow.slick-next {
   left: 0;
-}
-.slick-prev::before,
-.slick-next::before {
-  color: #FFFFFF;
 }
 .slick-prev::before,
 .slick-next::before {
