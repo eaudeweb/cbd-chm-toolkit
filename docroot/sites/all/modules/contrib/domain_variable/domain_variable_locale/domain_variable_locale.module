@@ -24,7 +24,15 @@ function domain_variable_locale_init() {
   // Initialize the language list() function from Drupal Core's bootstrap.inc.
   // It will be cached by drupal_static(). We clone its results, alter it and
   // then overwrite the drupal_static() result.
-  language_list();
+  $existing_languages = language_list();
+
+  // When a new language is added, the key it's not available in language_list
+  // until the domain form is saved; so we mark it as disabled here.
+  $new_languages = array_diff_key($existing_languages, $language_list);
+  if (!empty($new_languages)) {
+    $new_language_list = array_fill_keys(array_keys($new_languages), 0);
+    $language_list += $new_language_list;
+  }
 
   // Clone drupal_static result and reset its cache.
   $language_list_static_clone = drupal_static("language_list");

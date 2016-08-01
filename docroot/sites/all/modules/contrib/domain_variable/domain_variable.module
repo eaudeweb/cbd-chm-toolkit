@@ -39,6 +39,12 @@ function domain_variable_language_init() {
   if (in_array('language_default', $realm->getEnabledVariables())) {
     $languages = language_list('language');
     $language_default = language_default();
+    // If the language is passed as array it is saved wrongly. Probably by
+    // Features.
+    if (is_array($language_default)) {
+      $language_default = (object) $language_default;
+      $store->variable_set('language_default', $language_default);
+    }
     // If the javascript hash has been changed in the language list, then we
     // update the runtime realm value with the new hash.
     if ($language_default->javascript != $languages[$language_default->language]->javascript) {

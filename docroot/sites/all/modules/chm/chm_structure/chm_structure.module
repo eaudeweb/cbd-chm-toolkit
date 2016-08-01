@@ -67,12 +67,15 @@ function chm_structure_block_view($delta = '') {
 function chm_structure_form_locale_translation_filter_form_alter(&$form, &$form_state, $form_id) {
   global $user;
   // Remove from select options inactive language for current domain.
-  if ($user->uid != 0) {
-    $variable = NULL;
-    $options = array();
+  if ($user->uid != 1) {
     module_load_include('inc', 'domain_variable_locale', 'domain_variable_locale.variable');
-    $avaialble_languages = domain_variable_locale_language_list_defaults($variable, $options);
-    $avaialble_languages = array_filter($avaialble_languages);
-    $form['filters']['status']['language']['#options'] = array_intersect_key($form['filters']['status']['language']['#options'], array_flip($avaialble_languages));
+    $available_languages = variable_get('language_list');
+    $available_languages = array_filter($available_languages);
+    $available_options = array_keys($available_languages) + array('all');
+    foreach ($form['filters']['status']['language']['#options'] as $key => $value) {
+      if (!in_array($key, $available_options)) {
+        unset($form['filters']['status']['language']['#options'][$key]);
+      }
+    }
   }
 }
