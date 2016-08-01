@@ -8608,6 +8608,176 @@ body.maintenance-page #footer-container #footer {
   top: 50%;
   transform: translateY(-50%);
 }
+/*Aichi biodiversity targets*/
+.view-aichi-biodiversity-targets .view-content ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.view-aichi-biodiversity-targets .view-content a {
+  color: black;
+}
+.view-aichi-biodiversity-targets .view-content > ul > li > .views-field.views-field-name-field {
+  font-size: 20px;
+  margin-top: .5em;
+  margin-bottom: 1em;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.view-aichi-biodiversity-targets .view-content > ul > li > ul > li {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.view-aichi-biodiversity-targets .view-content > ul > li > ul > li > .views-field.views-field-field-image-et {
+  float: left;
+  width: 5rem;
+}
+[dir="rtl"] .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > .views-field.views-field-field-image-et {
+  float: right;
+}
+.view-aichi-biodiversity-targets .view-content > ul > li > ul > li > .views-field.views-field-name-field > .field-content {
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 18px;
+  height: 5rem;
+  text-transform: uppercase;
+}
+.view-aichi-biodiversity-targets .view-content > ul > li > ul > li > ul {
+  clear: both;
+  margin-top: .5em;
+  margin-left: 3.5rem;
+  margin-right: 2.5rem;
+}
+[dir="rtl"] .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > ul {
+  margin-left: 2.5rem;
+  margin-right: 3.5rem;
+}
+.view-aichi-biodiversity-targets .view-content > ul > li > ul > li > ul > li {
+  position: relative;
+  margin-bottom: 1em;
+  cursor: pointer;
+}
+.view-aichi-biodiversity-targets .view-content > ul > li > ul > li > ul > li a {
+  text-decoration: none;
+}
+.view-aichi-biodiversity-targets .view-content > ul > li > ul > li > ul > li::before {
+  content: '';
+  display: table-cell;
+  margin-top: .4em;
+  margin-right: .5em;
+  background-color: black;
+  width: .5em;
+  height: .5em;
+  position: absolute;
+  right: 100%;
+  transition: .2s;
+}
+[dir="rtl"] .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > ul > li::before {
+  right: auto;
+  left: 100%;
+  margin-right: 0em;
+  margin-left: .5em;
+}
+.view-aichi-biodiversity-targets .view-content > ul > li > ul > li > ul > li:hover::before {
+  margin-top: 0;
+  height: 100%;
+}
+.view-aichi-biodiversity-targets .view-content > ul > li:nth-of-type(1) > .views-field.views-field-name-field > .field-content > a:hover,
+.view-aichi-biodiversity-targets .view-content > ul > li:nth-of-type(1) > ul > li > .views-field.views-field-name-field > .field-content > a:hover {
+  color: #BF1D2D;
+}
+.view-aichi-biodiversity-targets .view-content > ul > li:nth-of-type(2) > .views-field.views-field-name-field > .field-content > a:hover,
+.view-aichi-biodiversity-targets .view-content > ul > li:nth-of-type(2) > ul > li > .views-field.views-field-name-field > .field-content > a:hover {
+  color: #FBB040;
+}
+.view-aichi-biodiversity-targets .view-content > ul > li:nth-of-type(3) > .views-field.views-field-name-field > .field-content > a:hover,
+.view-aichi-biodiversity-targets .view-content > ul > li:nth-of-type(3) > ul > li > .views-field.views-field-name-field > .field-content > a:hover {
+  color: #652C91;
+}
+.view-aichi-biodiversity-targets .view-content > ul > li:nth-of-type(4) > .views-field.views-field-name-field > .field-content > a:hover,
+.view-aichi-biodiversity-targets .view-content > ul > li:nth-of-type(4) > ul > li > .views-field.views-field-name-field > .field-content > a:hover {
+  color: #00AEEF;
+}
+.view-aichi-biodiversity-targets .view-content > ul > li:nth-of-type(5) > .views-field.views-field-name-field > .field-content > a:hover,
+.view-aichi-biodiversity-targets .view-content > ul > li:nth-of-type(5) > ul > li > .views-field.views-field-name-field > .field-content > a:hover {
+  color: #8DC53E;
+}
+.view-aichi-biodiversity-targets .view-content > ul > li:nth-of-type(1) > ul > li > ul > li:hover::before {
+  background-color: #BF1D2D;
+}
+.view-aichi-biodiversity-targets .view-content > ul > li:nth-of-type(2) > ul > li > ul > li:hover::before {
+  background-color: #FBB040;
+}
+.view-aichi-biodiversity-targets .view-content > ul > li:nth-of-type(3) > ul > li > ul > li:hover::before {
+  background-color: #652C91;
+}
+.view-aichi-biodiversity-targets .view-content > ul > li:nth-of-type(4) > ul > li > ul > li:hover::before {
+  background-color: #00AEEF;
+}
+.view-aichi-biodiversity-targets .view-content > ul > li:nth-of-type(5) > ul > li > ul > li:hover::before {
+  background-color: #8DC53E;
+}
+@media all and (min-width: 767px) {
+  .view-aichi-biodiversity-targets .view-content > ul > li > .views-field.views-field-name-field {
+    font-size: 24px;
+  }
+  .view-aichi-biodiversity-targets .view-content > ul > li > ul {
+    margin-left: 3rem;
+  }
+  [dir="rtl"] .view-aichi-biodiversity-targets .view-content > ul > li > ul {
+    margin-left: 0;
+    margin-right: 3rem;
+  }
+  .view-aichi-biodiversity-targets .view-content > ul > li > ul > li {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+  }
+  .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > .views-field.views-field-field-image-et {
+    width: 6rem;
+  }
+  .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > .views-field.views-field-name-field > .field-content {
+    font-size: 20px;
+    height: 6rem;
+  }
+  .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > ul {
+    margin-left: 4rem;
+  }
+  [dir="rtl"] .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > ul {
+    margin-left: 0rem;
+    margin-right: 4rem;
+  }
+}
+@media all and (min-width: 1023px) {
+  .view-aichi-biodiversity-targets .view-content > ul > li > .views-field.views-field-name-field {
+    font-size: 26px;
+  }
+  .view-aichi-biodiversity-targets .view-content > ul > li > ul {
+    margin-left: 4rem;
+  }
+  [dir="rtl"] .view-aichi-biodiversity-targets .view-content > ul > li > ul {
+    margin-left: 0rem;
+    margin-right: 4rem;
+  }
+  .view-aichi-biodiversity-targets .view-content > ul > li > ul > li {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+  }
+  .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > .views-field.views-field-field-image-et {
+    width: 7rem;
+  }
+  .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > .views-field.views-field-name-field > .field-content {
+    font-size: 22px;
+    height: 7rem;
+  }
+  .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > ul {
+    margin-left: 4.5rem;
+    font-size: 16px;
+  }
+  [dir="rtl"] .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > ul {
+    margin-left: 0rem;
+    margin-right: 4.5rem;
+  }
+}
 /* Species listing */
 #block-views-species-block-1 .content {
   margin-top: 0;
