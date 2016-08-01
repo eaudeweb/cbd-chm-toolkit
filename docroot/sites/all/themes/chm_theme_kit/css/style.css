@@ -8777,6 +8777,12 @@ body.maintenance-page #footer-container #footer {
   max-height: 100px;
 }
 /* Styling related to slick slideshow */
+[dir="rtl"] .slick-arrow.slick-prev {
+  right: 0;
+}
+[dir="rtl"] .slick-arrow.slick-next {
+  left: 0;
+}
 .slick-prev::before,
 .slick-next::before {
   color: #FFFFFF;
@@ -8788,6 +8794,9 @@ body.maintenance-page #footer-container #footer {
   -o-transition: all 0.27s ease-in-out;
   -ms-transition: all 0.27s ease-in-out;
   transition: all 0.27s ease-in-out;
+}
+[dir='rtl'] .slick-slide {
+  float: right !important;
 }
 .slick-content {
   position: absolute;
