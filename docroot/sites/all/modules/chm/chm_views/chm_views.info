@@ -22,6 +22,7 @@ features[image][] = slider_image
 features[slick_optionset][] = home_slider
 features[views_view][] = administrative_content
 features[views_view][] = aichi_biodiversity_targets
+features[views_view][] = ecosystems
 features[views_view][] = eu_targets
 features[views_view][] = events
 features[views_view][] = home_page_image_slider
