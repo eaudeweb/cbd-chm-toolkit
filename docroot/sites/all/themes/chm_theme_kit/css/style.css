@@ -7829,6 +7829,10 @@ ul.menu li.leaf {
   padding-bottom: 20px;
   border-bottom: 1px solid #dddddd;
 }
+[dir="rtl"] .front .views-row {
+  padding-left: 20px;
+  padding-right: 0px;
+}
 .views-field-body {
   padding-top: 7px;
   font-size: 13px;
