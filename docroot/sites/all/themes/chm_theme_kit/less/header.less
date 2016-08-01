@@ -34,7 +34,11 @@
     .btn-search {
       position: absolute;
       top: 1px;
-      right: 10px;
+      right: 10px; //LTR
+      [dir="rtl"] &{
+        right: auto;
+        left: 10px;
+      }
     }
   }
 }
@@ -43,12 +47,19 @@
   display: block;
   .logo {
     display: block;
-    float: left;
+    float: left; //LTR
+    [dir="rtl"] &{
+      float:right !important;
+    }
     margin-top: 0;
     margin-bottom: 0;
   }
   .navbar-brand {
     display: block;
+    float: left; //LTR
+    [dir="rtl"] &{
+      float:right;
+    }
     float: left;
     padding-top: 50px;
     padding-bottom: 50px;
@@ -60,7 +71,10 @@
   }
   #nav-search {
     display: inline-block;
-    float: right;
+    float: right; //LTR
+    [dir="rtl"] &{
+      float: left;
+    }
     margin: 47px 0 0 0;
     @media all and (max-width: @screen-sm-min) {
       display: none;
@@ -83,6 +97,9 @@
     .navbar-header {
       .navbar-toggle {
         float: left;
+        [dir="rtl"] & {
+          float: right;
+        }
         border: none;
         .icon-bar {
           background-color: #ffffff;
@@ -93,6 +110,9 @@
       }
       #nav-search {
         margin-top: 9px;
+        [dir="rtl"] & {
+          float: left;
+        }
         @media all and (min-width: @screen-xs-max) {
           display: none;
         }
@@ -105,9 +125,23 @@
         padding-right: 0;
       }
       .nav {
+        [dir="rtl"] & {
+          float: right;
+          padding-right: 0;
+          @media all and (max-width: @screen-xs-max){
+            float: none;
+          }
+        }
         li {
+          [dir="rtl"] & {
+            padding: 0;
+            margin-right: 0;
+          }
           @media all and (min-width: @screen-sm-min) {
             float: left;
+            [dir="rtl"] & {
+              float: right;
+            }
           }
           &.active {
             background-color: #ffffff;
@@ -144,6 +178,11 @@
             min-width: 150px;
             border-top: none;
             border-radius: 0;
+            [dir="rtl"] &{
+              text-align: right;
+              left: auto;
+              right: 0;
+            }
             li {
               width: 100%;
               a {
@@ -177,7 +216,8 @@
     font-family: FontAwesome;
     position:relative;
     top:2px;
-    left:-7px;
+    // left:-7px;
+    padding: 0 7px;
     color:#ccc;
   }
   .language-switcher-locale-url {
