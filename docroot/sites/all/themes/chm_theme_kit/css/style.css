@@ -8688,6 +8688,114 @@ body.maintenance-page #footer-container #footer {
   right: auto;
   left: 100%;
 }
+.view-eu-targets .view-content {
+  margin-top: 2em;
+}
+.view-eu-targets .view-content ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.view-eu-targets .view-content a {
+  color: black;
+}
+.view-eu-targets .view-content > ul > li {
+  margin-bottom: 3em;
+}
+.view-eu-targets .view-content > ul > li > .views-field.views-field-name {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.view-eu-targets .view-content > ul > li > .views-field.views-field-name a:hover {
+  color: #02823F;
+}
+.view-eu-targets .view-content > ul > li > ul {
+  margin-top: .5em;
+  margin-left: 2.5em;
+  margin-right: 2em;
+}
+.view-eu-targets .view-content > ul > li > ul > li {
+  margin-bottom: 1em;
+  position: relative;
+}
+.view-eu-targets .view-content > ul > li > ul > li::before {
+  content: '';
+  display: table-cell;
+  margin-top: .4em;
+  margin-right: .5em;
+  background-color: black;
+  width: .5em;
+  height: .5em;
+  position: absolute;
+  right: 100%;
+  transition: .2s;
+}
+[dir="rtl"] .view-eu-targets .view-content > ul > li > ul > li::before {
+  margin-right: 0;
+  margin-left: .5em;
+  right: auto;
+  left: 100%;
+}
+.view-eu-targets .view-content > ul > li > ul > li:hover::before {
+  margin-top: 0;
+  height: 100%;
+}
+.view-eu-targets .view-content > ul > li > ul > li:hover {
+  cursor: pointer;
+}
+.view-eu-targets .view-content > ul > li > ul > li:hover a {
+  text-decoration: none;
+  color: black;
+}
+@media all and (min-width: 424px) {
+  .view-eu-targets .view-content > ul > li > .views-field.views-field-name {
+    font-size: 16px;
+  }
+  .view-eu-targets .view-content > ul > li > ul {
+    margin-top: 1.5em;
+    margin-left: 3.75em;
+    margin-right: 3.25em;
+  }
+  [dir="rtl"] .view-eu-targets .view-content > ul > li > ul {
+    margin-right: 3.75em;
+    margin-left: 3.25em;
+  }
+}
+@media all and (min-width: 767px) {
+  .view-eu-targets .view-content > ul > li {
+    margin-bottom: 3em;
+  }
+  .view-eu-targets .view-content > ul > li > .views-field.views-field-name {
+    font-size: 17px;
+  }
+  .view-eu-targets .view-content > ul > li > ul {
+    margin-left: 5.5rem;
+    margin-right: 5rem;
+    font-size: 16px;
+  }
+  [dir="rtl"] .view-eu-targets .view-content > ul > li > ul {
+    margin-right: 5.5rem;
+    margin-left: 5rem;
+  }
+}
+@media all and (min-width: 1023px) {
+  .view-eu-targets .view-content > ul > li {
+    margin-bottom: 3em;
+  }
+  .view-eu-targets .view-content > ul > li > .views-field.views-field-name {
+    font-size: 18px;
+  }
+  .view-eu-targets .view-content > ul > li > ul {
+    margin-left: 6rem;
+    margin-right: 5.5rem;
+    font-size: 16px;
+  }
+  [dir="rtl"] .view-eu-targets .view-content > ul > li > ul {
+    margin-right: 5.5rem;
+    margin-left: 5rem;
+  }
+}
 /* Species listing */
 #block-views-species-block-1 .content {
   margin-top: 0;

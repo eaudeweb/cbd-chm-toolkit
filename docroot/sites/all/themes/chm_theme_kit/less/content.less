@@ -64,6 +64,132 @@
     }
   }
 }
+
+.view-eu-targets .view-content {
+  margin-top: 2em;
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  a{
+    color: black;
+  }
+
+  & > ul > li {
+    margin-bottom: 3em;
+    & > .views-field.views-field-name{
+      font-size: 16px;
+      text-transform: uppercase;
+      font-weight: bold;
+      a:hover{
+        color: @text-color-green;
+      }
+    }
+    
+    & > ul{ //1.1.
+      margin-top: .5em;
+      margin-left: 2.5em;
+      margin-right: 2em;
+      // list-style-type: square;
+      // list-style-position: inside;
+      & > li{
+        margin-bottom: 1em;
+        position: relative;
+        &::before{
+          content: '';
+          display: table-cell;
+          margin-top: .4em;
+          margin-right: .5em; //LTR
+          background-color: black;
+          width: .5em;
+          height: .5em;
+          position: absolute;
+          right: 100%; //LTR
+          transition: .2s;
+          [dir="rtl"] &{
+            margin-right: 0;
+            margin-left: .5em;
+            right: auto;
+            left: 100%;
+          }
+        }
+        
+        &:hover::before{
+          margin-top: 0;
+          height: 100%;
+        }
+        &:hover{
+          cursor: pointer; 
+          a{
+          text-decoration: none;
+          color: black;
+          }
+          
+        }
+      }
+    }
+  }
+
+
+  //tablets
+  @media all and (min-width: 424px){
+    & > ul > li {
+      & > .views-field.views-field-name{
+        font-size: 16px;
+      }
+      
+      & > ul{ //1.1.
+        margin-top: 1.5em;
+        margin-left: 3.75em; //LTR
+        margin-right: 3.25em; //LTR
+        [dir="rtl"] &{ //1.1.
+          margin-right: 3.75em; 
+          margin-left: 3.25em;
+        } 
+      } 
+    }
+  }
+  @media all and (min-width: 767px){
+    & > ul > li {
+      margin-bottom: 3em;
+      & > .views-field.views-field-name{
+        font-size: 17px;
+      }
+      
+      & > ul{ //1.1.
+        margin-left: 5.5rem; //LTR
+        margin-right: 5rem; //LTR
+        font-size: 16px;
+        [dir="rtl"] &{ 
+          margin-right: 5.5rem;
+          margin-left: 5rem;
+        } 
+      } 
+      
+    }
+  }
+  @media all and (min-width: 1023px){
+    & > ul > li {
+      margin-bottom: 3em;
+      & > .views-field.views-field-name{
+        font-size: 18px;
+      }
+      
+      & > ul{ //1.1.
+        margin-left: 6rem; //LTR
+        margin-right: 5.5rem; //LTR
+        font-size: 16px;
+        [dir="rtl"] &{
+          margin-right: 5.5rem;
+          margin-left: 5rem;
+        }
+      } 
+       
+    }
+  }
+}
+
 /* Species listing */
 #block-views-species-block-1 {
   .content {
