@@ -11,6 +11,7 @@ dependencies[] = colorbox
 dependencies[] = country_taxonomy
 dependencies[] = ctools
 dependencies[] = date
+dependencies[] = domain_variable_locale
 dependencies[] = email
 dependencies[] = entityreference
 dependencies[] = features
