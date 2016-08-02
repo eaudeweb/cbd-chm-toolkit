@@ -37,9 +37,10 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
     $this->addFieldMapping('domain_site')->defaultValue(FALSE);
     $this->addFieldMapping('domain_source', 'domain_source');
     $this->addFieldMapping('domains', 'domains');
+    $this->addFieldMapping('uid')->defaultValue(USER_WALLE);
 
     $this->addUnmigratedDestinations([
-      'uid', 'created', 'changed', 'status', 'promote', 'sticky', 'revision',
+      'created', 'changed', 'status', 'promote', 'sticky', 'revision',
       'log', 'tnid', 'translate', 'revision_uid', 'is_new', 'path', 'pathauto',
       'comment',
       'body', 'body:summary', 'body:format',
