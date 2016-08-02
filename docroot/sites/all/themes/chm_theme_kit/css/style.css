@@ -8858,6 +8858,256 @@ body.maintenance-page #footer-container #footer {
     margin-right: 4.5rem;
   }
 }
+/*Sustainable Development Goals*/
+.view-sustainable-development-goals .view-content {
+  margin-top: 2em;
+}
+.view-sustainable-development-goals .view-content ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.view-sustainable-development-goals .view-content a {
+  color: black;
+}
+.view-sustainable-development-goals .view-content > ul > li {
+  margin-bottom: 3em;
+}
+.view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-field-image-et img {
+  width: 8rem;
+  margin: 1.5em auto;
+}
+.view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-name-field > .field-content {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.view-sustainable-development-goals .view-content > ul > li > ul {
+  clear: both;
+  margin-top: .5em;
+  margin-left: 2.5em;
+  margin-right: 2em;
+}
+.view-sustainable-development-goals .view-content > ul > li > ul > li {
+  margin-bottom: 1em;
+  position: relative;
+}
+.view-sustainable-development-goals .view-content > ul > li > ul > li::before {
+  content: '';
+  display: table-cell;
+  margin-top: .4em;
+  margin-right: .5em;
+  background-color: black;
+  width: .5em;
+  height: .5em;
+  position: absolute;
+  right: 100%;
+  transition: .2s;
+}
+[dir="rtl"] .view-sustainable-development-goals .view-content > ul > li > ul > li::before {
+  margin-right: 0;
+  margin-left: .5em;
+  right: auto;
+  left: 100%;
+}
+.view-sustainable-development-goals .view-content > ul > li > ul > li:hover::before {
+  margin-top: 0;
+  height: 100%;
+}
+.view-sustainable-development-goals .view-content > ul > li > ul > li:hover {
+  cursor: pointer;
+}
+.view-sustainable-development-goals .view-content > ul > li > ul > li:hover a {
+  text-decoration: none;
+  color: black;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(1) > .views-field.views-field-name-field > .field-content > a:hover {
+  color: #E5223C;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(2) > .views-field.views-field-name-field > .field-content > a:hover {
+  color: #DCA63A;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(3) > .views-field.views-field-name-field > .field-content > a:hover {
+  color: #4BA045;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(4) > .views-field.views-field-name-field > .field-content > a:hover {
+  color: #C6202F;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(5) > .views-field.views-field-name-field > .field-content > a:hover {
+  color: #EE402D;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(6) > .views-field.views-field-name-field > .field-content > a:hover {
+  color: #27BFE6;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(7) > .views-field.views-field-name-field > .field-content > a:hover {
+  color: #FAC412;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(8) > .views-field.views-field-name-field > .field-content > a:hover {
+  color: #A21B43;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(9) > .views-field.views-field-name-field > .field-content > a:hover {
+  color: #F1692D;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(10) > .views-field.views-field-name-field > .field-content > a:hover {
+  color: #DD1667;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(11) > .views-field.views-field-name-field > .field-content > a:hover {
+  color: #F79C2A;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(12) > .views-field.views-field-name-field > .field-content > a:hover {
+  color: #BE8C2C;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(13) > .views-field.views-field-name-field > .field-content > a:hover {
+  color: #407E46;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(14) > .views-field.views-field-name-field > .field-content > a:hover {
+  color: #1F96D4;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(15) > .views-field.views-field-name-field > .field-content > a:hover {
+  color: #58B947;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(16) > .views-field.views-field-name-field > .field-content > a:hover {
+  color: #12699E;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(17) > .views-field.views-field-name-field > .field-content > a:hover {
+  color: #13486A;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(1) > ul > li:hover::before {
+  background-color: #E5223C;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(2) > ul > li:hover::before {
+  background-color: #DCA63A;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(3) > ul > li:hover::before {
+  background-color: #4BA045;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(4) > ul > li:hover::before {
+  background-color: #C6202F;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(5) > ul > li:hover::before {
+  background-color: #EE402D;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(6) > ul > li:hover::before {
+  background-color: #27BFE6;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(7) > ul > li:hover::before {
+  background-color: #FAC412;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(8) > ul > li:hover::before {
+  background-color: #A21B43;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(9) > ul > li:hover::before {
+  background-color: #F1692D;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(10) > ul > li:hover::before {
+  background-color: #DD1667;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(11) > ul > li:hover::before {
+  background-color: #F79C2A;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(12) > ul > li:hover::before {
+  background-color: #BE8C2C;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(13) > ul > li:hover::before {
+  background-color: #407E46;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(14) > ul > li:hover::before {
+  background-color: #1F96D4;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(15) > ul > li:hover::before {
+  background-color: #58B947;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(16) > ul > li:hover::before {
+  background-color: #12699E;
+}
+.view-sustainable-development-goals .view-content > ul > li:nth-of-type(17) > ul > li:hover::before {
+  background-color: #13486A;
+}
+@media all and (min-width: 424px) {
+  .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-field-image-et {
+    float: left;
+    width: 8.5rem;
+    margin-right: .5em;
+  }
+  [dir="rtl"] .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-field-image-et {
+    float: right;
+    margin-right: 0;
+    margin-left: .5em;
+  }
+  .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-field-image-et img {
+    margin: 0;
+    width: auto;
+  }
+  .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-name-field > .field-content {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 16px;
+    height: 8.5rem;
+  }
+  .view-sustainable-development-goals .view-content > ul > li > ul {
+    margin-top: 1.5em;
+    margin-left: 3.75em;
+    margin-right: 3.25em;
+  }
+  [dir="rtl"] .view-sustainable-development-goals .view-content > ul > li > ul {
+    margin-right: 3.75em;
+    margin-left: 3.25em;
+  }
+}
+@media all and (min-width: 767px) {
+  .view-sustainable-development-goals .view-content > ul > li {
+    margin-bottom: 3em;
+  }
+  .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-field-image-et {
+    width: 9rem;
+    margin-right: .5em;
+  }
+  [dir="rtl"] .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-field-image-et {
+    margin-right: 0;
+    margin-left: .5em;
+  }
+  .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-name-field > .field-content {
+    font-size: 17px;
+    height: 9rem;
+  }
+  .view-sustainable-development-goals .view-content > ul > li > ul {
+    margin-left: 5.5rem;
+    margin-right: 5rem;
+    font-size: 16px;
+  }
+  [dir="rtl"] .view-sustainable-development-goals .view-content > ul > li > ul {
+    margin-right: 5.5rem;
+    margin-left: 5rem;
+  }
+}
+@media all and (min-width: 1023px) {
+  .view-sustainable-development-goals .view-content > ul > li {
+    margin-bottom: 3em;
+  }
+  .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-field-image-et {
+    float: left;
+    width: 10rem;
+    margin-right: .5em;
+  }
+  [dir="rtl"] .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-field-image-et {
+    float: right;
+    margin-right: 0;
+    margin-left: .5em;
+  }
+  .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-name-field > .field-content {
+    font-size: 18px;
+    height: 10rem;
+  }
+  .view-sustainable-development-goals .view-content > ul > li > ul {
+    margin-left: 6rem;
+    margin-right: 5.5rem;
+    font-size: 16px;
+  }
+  [dir="rtl"] .view-sustainable-development-goals .view-content > ul > li > ul {
+    margin-right: 5.5rem;
+    margin-left: 5rem;
+  }
+}
 .view-eu-targets .view-content {
   margin-top: 2em;
 }
