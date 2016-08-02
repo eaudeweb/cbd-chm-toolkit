@@ -8408,6 +8408,15 @@ body.maintenance-page #footer-container #footer {
 [dir="rtl"] #page-header .logo {
   float: right !important;
 }
+@media all and (max-width: 559px) {
+  #page-header .logo {
+    width: 100%;
+  }
+  #page-header .logo img {
+    margin: 0 auto;
+    display: block;
+  }
+}
 #page-header .navbar-brand {
   display: block;
   float: left;
@@ -8421,6 +8430,15 @@ body.maintenance-page #footer-container #footer {
 }
 [dir="rtl"] #page-header .navbar-brand {
   float: right;
+}
+@media all and (max-width: 559px) {
+  #page-header .navbar-brand {
+    padding-bottom: 25px;
+    line-height: 24px;
+    height: auto;
+    text-align: center;
+    width: 100%;
+  }
 }
 #page-header #nav-search {
   display: inline-block;
@@ -8526,8 +8544,10 @@ body.maintenance-page #footer-container #footer {
 .navbar-container #navbar .navbar-collapse .nav li.open .caret {
   border-top-color: #ffffff;
 }
-.navbar-container #navbar .navbar-collapse .nav .dropdown:hover .dropdown-menu {
-  display: block;
+@media all and (min-width: 768px) {
+  .navbar-container #navbar .navbar-collapse .nav .dropdown:hover .dropdown-menu {
+    display: block;
+  }
 }
 .navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu {
   margin-top: 0;
@@ -8549,6 +8569,11 @@ body.maintenance-page #footer-container #footer {
 .navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu li a:hover {
   background-color: #039749;
   color: #ffffff;
+}
+@media all and (max-width: 767px) {
+  .navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu li a {
+    color: #fff;
+  }
 }
 .navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu .active a {
   background-color: #039749;
@@ -8758,6 +8783,15 @@ body.maintenance-page #footer-container #footer {
     float: none;
   }
 }
+@media all and (max-width: 480px) {
+  #footer2 .footer-logo {
+    float: none;
+  }
+  #footer2 .footer-logo img {
+    margin: 0 auto;
+    display: block;
+  }
+}
 #footer2 .footer-logo img {
   max-height: 120px;
 }
@@ -8771,6 +8805,15 @@ body.maintenance-page #footer-container #footer {
 @media all and (max-width: 480px) {
   [dir="rtl"] #footer2 .footer-support {
     float: none;
+  }
+}
+@media all and (max-width: 480px) {
+  #footer2 .footer-support {
+    float: none;
+  }
+  #footer2 .footer-support img {
+    margin: 0 auto;
+    display: block;
   }
 }
 #footer2 .footer-support img {
