@@ -8420,10 +8420,9 @@ body.maintenance-page #footer-container #footer {
 #page-header .navbar-brand {
   display: block;
   float: left;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  height: 24px;
-  line-height: 24px;
+  height: 124px;
+  padding: 0;
+  line-height: 124px;
   font-size: 30px;
   color: #000000;
   font-weight: bold;
