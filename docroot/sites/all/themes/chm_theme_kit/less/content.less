@@ -18,14 +18,22 @@
 
 /* front page styling*/
 .view-latest-updates {
-  ul{
+  .view-content > .item-list > ul{
     list-style-type: none;
     margin: 0;
     padding: 0;
     
+    [dir="rtl"] &>li{
+      margin-right: 0;
+    }
     .views-field.views-field-field-image .field-content{
       float:left;
-      margin-right: 20px; 
+      margin-right: 20px;
+      [dir="rtl"] &{
+        float:right;
+        margin-right: auto;
+        margin-left: 20px; 
+      }
     }
     
     .views-field.views-field-title-field{
@@ -49,6 +57,10 @@
       right: 100%;
       top: 50%;
       transform: translateY(-50%);
+      [dir="rtl"] &{
+        right: auto;
+        left: 100%;
+      }
     }
   }
 }
