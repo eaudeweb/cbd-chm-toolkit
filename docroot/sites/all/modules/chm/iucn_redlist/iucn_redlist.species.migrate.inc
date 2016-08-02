@@ -40,6 +40,7 @@ class IUCNRedListSpeciesMigration extends Migration {
     $this->addFieldMapping('field_date', 'published_year');
     $this->addFieldMapping('field_redlist_status', 'category');
     $this->addFieldMapping('field_redlist_status:source_type')->defaultValue('tid');
+    $this->addFieldMapping('uid')->defaultValue(USER_WALLE);
 
 
     $this->addFieldMapping('domain_site')->defaultValue(FALSE);
