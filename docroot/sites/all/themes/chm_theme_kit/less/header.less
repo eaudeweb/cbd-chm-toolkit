@@ -159,7 +159,15 @@
               float: right;
             }
           }
+          
           &.active {
+            background-color: #ffffff;
+            a {
+              color: @navbar-color;
+            }
+          }
+          //WIP here
+          &.active-trail {
             background-color: #ffffff;
             a {
               color: @navbar-color;
@@ -171,6 +179,11 @@
           }
           &:hover {
             background-color: darken(@navbar-color, 3%);
+            @media all and (max-width: @screen-xs-max){
+              >.dropdown-menu{
+                background-color: darken(@navbar-color, 3%);
+              }
+            }
           }
           &.open {
             // >ul{
@@ -196,6 +209,19 @@
               }
             }
           }
+          @media all and (max-width: @screen-xs-max){
+            // background-color: darken(@navbar-color, 2%);
+            .dropdown-menu{
+              display: block;
+              position: static;
+              float: none;
+              width: auto;
+              margin-top: 0;
+              background-color: darken(@navbar-color, 2%);
+              border: 0;
+              box-shadow: none;
+            }
+          }
           .dropdown-menu {
             margin-top: 0;
             min-width: 150px;
@@ -208,6 +234,10 @@
             }
             li {
               width: 100%;
+              @media all and (max-width: @screen-xs-max) {
+                width: ~"calc(100% - 10px)";
+                margin: 0 5px;
+              }
               a {
                 color: #000000;
                 &:hover {
@@ -230,6 +260,9 @@
       }
     }
   }
+  
+
+
 }
 
 
