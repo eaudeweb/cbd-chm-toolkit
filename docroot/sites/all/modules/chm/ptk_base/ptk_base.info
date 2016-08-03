@@ -6,4 +6,5 @@ type = module
 version = 7.x-1.x
 core = 7.x
 dependencies[] = phpexcel
+dependencies[] = menu_attributes
 files[] = ptk_base.admin.inc
