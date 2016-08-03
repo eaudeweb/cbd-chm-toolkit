@@ -496,6 +496,12 @@ function chm_views_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page_main');
   $handler->display->display_options['path'] = 'ecosystems';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Ecosystems';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'menu-information-menu';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
   $translatables['ecosystems'] = array(
     t('Master'),
     t('Ecosystems'),
@@ -1087,6 +1093,12 @@ function chm_views_views_default_views() {
     'news' => 'news',
   );
   $handler->display->display_options['path'] = 'news';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'News';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'menu-information-menu';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
 
   /* Display: Events page */
   $handler = $view->new_display('page', 'Events page', 'page_events');
@@ -1182,6 +1194,12 @@ function chm_views_views_default_views() {
     'event' => 'event',
   );
   $handler->display->display_options['path'] = 'events';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Events';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'menu-information-menu';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
   $translatables['latest_updates'] = array(
     t('Master'),
     t('Latest News & Updates'),
@@ -1491,6 +1509,12 @@ function chm_views_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['path'] = 'photo-galleries';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Images';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'menu-information-menu';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
   $translatables['photo_galleries'] = array(
     t('Master'),
     t('Photo galleries'),
@@ -1610,6 +1634,12 @@ function chm_views_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['path'] = 'projects';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Projects';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'menu-information-menu';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
   $translatables['projects'] = array(
     t('Master'),
     t('Projects'),
@@ -2124,6 +2154,12 @@ function chm_views_views_default_views() {
   $handler->display->display_options['filters']['field_redlist_status_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_redlist_status_tid']['vocabulary'] = 'species_redlist_status';
   $handler->display->display_options['path'] = 'species';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Species';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'menu-information-menu';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
 
   /* Display: Family related species */
   $handler = $view->new_display('block', 'Family related species', 'block_2');
