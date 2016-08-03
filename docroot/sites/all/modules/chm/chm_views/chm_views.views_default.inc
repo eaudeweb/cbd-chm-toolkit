@@ -492,6 +492,10 @@ function chm_views_views_default_views() {
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page_main');
+  $handler->display->display_options['path'] = 'ecosystems';
   $translatables['ecosystems'] = array(
     t('Master'),
     t('Ecosystems'),
@@ -509,6 +513,7 @@ function chm_views_views_default_views() {
     t('next ›'),
     t('last »'),
     t('Block'),
+    t('Page'),
   );
   $export['ecosystems'] = $view;
 
