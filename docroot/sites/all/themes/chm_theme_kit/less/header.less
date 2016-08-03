@@ -169,8 +169,12 @@
           //WIP here
           &.active-trail {
             background-color: #ffffff;
+            &:hover{
+              background-color: #ffffff;
+            }
             a {
               color: @navbar-color;
+
             }
           }
           a {
@@ -210,7 +214,16 @@
             }
           }
           @media all and (max-width: @screen-xs-max){
-            // background-color: darken(@navbar-color, 2%);
+            &:hover{
+              background-color: darken(@navbar-color, 3%);
+              //to-do: fix tools button hover effect on mobile
+              // a.dropdown-toggle{
+              //   &:hover{
+              //     background-color: @navbar-color;
+              //   }
+              // }  
+            }
+            
             .dropdown-menu{
               display: block;
               position: static;
@@ -246,6 +259,7 @@
                 }
                 @media all and (max-width: @screen-xs-max) {
                   color: #fff;
+                  padding-left: 24px;
                 }
               }
             }
@@ -253,6 +267,7 @@
               a {
                 background-color: @navbar-color;
                 color: #ffffff;
+                font-weight: bold;
               }
             }
           }

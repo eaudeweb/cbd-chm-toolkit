@@ -8532,6 +8532,9 @@ body.maintenance-page #footer-container #footer {
 .navbar-container #navbar .navbar-collapse .nav li.active-trail {
   background-color: #ffffff;
 }
+.navbar-container #navbar .navbar-collapse .nav li.active-trail:hover {
+  background-color: #ffffff;
+}
 .navbar-container #navbar .navbar-collapse .nav li.active-trail a {
   color: #039749;
 }
@@ -8560,6 +8563,9 @@ body.maintenance-page #footer-container #footer {
   }
 }
 @media all and (max-width: 767px) {
+  .navbar-container #navbar .navbar-collapse .nav .dropdown:hover {
+    background-color: #038842;
+  }
   .navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu {
     display: block;
     position: static;
@@ -8601,11 +8607,13 @@ body.maintenance-page #footer-container #footer {
 @media all and (max-width: 767px) {
   .navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu li a {
     color: #fff;
+    padding-left: 24px;
   }
 }
 .navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu .active a {
   background-color: #039749;
   color: #ffffff;
+  font-weight: bold;
 }
 #block-locale-language-content {
   float: left;
