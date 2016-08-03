@@ -8538,6 +8538,9 @@ body.maintenance-page #footer-container #footer {
 .navbar-container #navbar .navbar-collapse .nav li.active-trail a {
   color: #039749;
 }
+.navbar-container #navbar .navbar-collapse .nav li.active-trail a.dropdown-toggle > span.caret {
+  border-top-color: #039749;
+}
 .navbar-container #navbar .navbar-collapse .nav li a {
   color: #ffffff;
   border: none;
