@@ -49,7 +49,10 @@ class domain_views_handler_filter_domain_current_user_is_editor extends views_ha
         $join = new views_join;
         $join->construct('domain_editor', $domain_access, 'gid', 'domain_id', array());
         $domain_editor = $query->add_relationship('domain_editor', $join, $domain_access);
-        $query->add_where($this->options['group'], $domain_editor . '.uid', $user->uid);
+        $and = db_and()->condition($domain_access . '.realm', 'domain_site')->condition($domain_access . '.gid', 0);
+        $or = db_or()->condition($domain_editor . '.uid', $user->uid)->condition($and);
+        $query->add_where($this->options['group'], $or);
+
      }
     }
   }
