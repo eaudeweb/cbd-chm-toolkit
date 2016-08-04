@@ -11,6 +11,7 @@ function ptk_base_form_alter(&$form, &$form_state, $form_id) {
     PTKForm::adminContentFormAlter($form, $form_state);
   }
   $klass = 'Chm' . str_replace(' ', '', ucwords(str_replace('_', ' ', $form_id))) . 'Form';
+  // if (module_exists('devel')) { dpm($klass); }
   if (class_exists($klass) && method_exists($klass, 'alter')) {
     $klass::alter($form, $form_state);
   }
