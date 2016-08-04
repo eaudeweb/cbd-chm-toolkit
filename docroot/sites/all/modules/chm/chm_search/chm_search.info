@@ -1,4 +1,5 @@
-name = chm_search
+name = CHM Search
+project = chm_search
 description = The search functionality
 core = 7.x
 package = CHM
