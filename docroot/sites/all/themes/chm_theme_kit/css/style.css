@@ -9241,17 +9241,52 @@ body.maintenance-page #footer-container #footer {
   font-weight: bold;
   font-size: 1.5em;
 }
+#block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-body {
+  font-size: 14px;
+}
+#block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-body a.more-link {
+  display: inline;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-top: .5em;
+  line-height: 1.5em;
+}
+#block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-body a.more-link:before {
+  content: "\a\a";
+  white-space: pre-line;
+}
+#block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-body a.more-link:after {
+  content: " » ";
+}
+#block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-body a.more-link:hover {
+  color: black;
+  text-decoration: underline;
+}
 @media all and (min-width: 480px) {
   #block-views-ecosystems-block .view-ecosystems tr td {
     padding: 2em;
   }
   #block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-field-image img {
-    width: initial;
+    width: 40%;
     float: left;
     margin-right: 1em;
   }
   #block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-title a {
-    font-size: 2em;
+    font-size: 1.7em;
+  }
+  #block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-body a.more-link:before {
+    content: "\a";
+  }
+}
+@media all and (min-width: 992px) {
+  #block-views-ecosystems-block .view-ecosystems tr td {
+    padding: 2em;
+  }
+  #block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-field-image img {
+    width: initial;
+  }
+  #block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-body a.more-link:before {
+    content: "\a\a";
   }
 }
 /* Species listing */
