@@ -30,6 +30,7 @@ features[views_view][] = latest_updates
 features[views_view][] = national_focal_points
 features[views_view][] = photo_galleries
 features[views_view][] = projects
+features[views_view][] = protected_areas
 features[views_view][] = reference_to_content_entity_reference_view
 features[views_view][] = species
 features[views_view][] = sustainable_development_goals
