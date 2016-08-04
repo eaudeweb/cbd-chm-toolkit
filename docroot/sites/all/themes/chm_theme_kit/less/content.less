@@ -675,6 +675,9 @@
     }
   }
 }
+#block-system-main{
+  margin-bottom: 1em;
+}
 
 #block-views-ecosystems-block{
   .view-ecosystems{
@@ -682,8 +685,8 @@
       display: block;
       td{
         display: block;
-        padding: 2em;
-        margin-bottom: 1em;
+        padding: 10vw;
+        margin-bottom: 1.5em;
         background-color: #f5f5f5;
         border: 1px solid #e3e3e3;
         border-radius: 5px;
@@ -696,22 +699,20 @@
         .views-field.views-field-title a{
           color: @navbar-color;
           font-weight: bold;
-          font-size: 2em;
+          font-size: 1.5em;
         }
       }
     }
     @media all and (min-width: @screen-xs-min){
       tr{
         td{
-          background-color: #f5f5f5;
+          padding: 2em;
           .views-field.views-field-field-image img{
             width: initial;
             float: left;
             margin-right: 1em;
           }
           .views-field.views-field-title a{
-            color: @navbar-color;
-            font-weight: bold;
             font-size: 2em;
           }
         }

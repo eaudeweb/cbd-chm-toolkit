@@ -9216,13 +9216,16 @@ body.maintenance-page #footer-container #footer {
     margin-left: 5rem;
   }
 }
+#block-system-main {
+  margin-bottom: 1em;
+}
 #block-views-ecosystems-block .view-ecosystems tr {
   display: block;
 }
 #block-views-ecosystems-block .view-ecosystems tr td {
   display: block;
-  padding: 2em;
-  margin-bottom: 1em;
+  padding: 10vw;
+  margin-bottom: 1.5em;
   background-color: #f5f5f5;
   border: 1px solid #e3e3e3;
   border-radius: 5px;
@@ -9236,11 +9239,11 @@ body.maintenance-page #footer-container #footer {
 #block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-title a {
   color: #039749;
   font-weight: bold;
-  font-size: 2em;
+  font-size: 1.5em;
 }
 @media all and (min-width: 480px) {
   #block-views-ecosystems-block .view-ecosystems tr td {
-    background-color: #f5f5f5;
+    padding: 2em;
   }
   #block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-field-image img {
     width: initial;
@@ -9248,8 +9251,6 @@ body.maintenance-page #footer-container #footer {
     margin-right: 1em;
   }
   #block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-title a {
-    color: #039749;
-    font-weight: bold;
     font-size: 2em;
   }
 }
