@@ -676,6 +676,86 @@
   }
 }
 
+// Information page
+#block-menu-menu-information-menu{
+  width: 100%;
+  .content{
+    ul.menu.nav{
+      >li{
+        width: 40%;
+        margin: 0 4.5% 4.5%;
+        display: inline-block;
+        border: 2px solid @navbar-color;
+        position: relative;
+        cursor: pointer;
+        transition: background-color .2s;
+        &:hover{
+          background-color: @navbar-color;
+          >a{
+            color: white;
+          }
+        }
+        >a{
+          padding: 0;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          font-size: 14px;
+          font-family: "Open Sans";
+          font-weight: 400;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          &:before{
+            position: relative;
+            display: block;
+            text-align: center;
+            font-family: "FontAwesome";
+            font-size: 300%;
+            margin-bottom: 5px;
+          }
+        }
+        &:after{
+          content: "";
+          display: block;
+          padding-bottom: 100%;
+        }
+      }
+      @media all and (min-width: @screen-xs-min){
+        >li{
+          width: 30%;
+          margin: 0 1.4% 1.4%;
+          >a{
+            font-size: 16px;
+          }
+        }
+      }
+      @media all and (min-width: @screen-sm-min){
+        >li{
+          width: 20%;
+          margin: 0 2.3% 2.3%;
+          >a{
+            font-size: 18px;
+          }
+        }
+      }
+      @media all and (min-width: @screen-md-min){
+        >li{
+          >a{
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+
+
+}
+
+
 /* Species listing */
 #block-views-species-block-1 {
   .content {
