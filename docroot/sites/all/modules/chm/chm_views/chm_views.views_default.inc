@@ -92,6 +92,10 @@ function chm_views_views_default_views() {
       'empty_column' => 0,
     ),
   );
+  /* Header: Global: Result summary */
+  $handler->display->display_options['header']['result']['id'] = 'result';
+  $handler->display->display_options['header']['result']['table'] = 'views';
+  $handler->display->display_options['header']['result']['field'] = 'result';
   /* Relationship: Content: Author */
   $handler->display->display_options['relationships']['uid']['id'] = 'uid';
   $handler->display->display_options['relationships']['uid']['table'] = 'node';
@@ -192,6 +196,15 @@ function chm_views_views_default_views() {
   $handler->display->display_options['fields']['nid']['label'] = 'Operations';
   $handler->display->display_options['fields']['nid']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['nid']['alter']['text'] = '[edit_node] [delete_node] <span title="[nid]"></span>';
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Sort criterion: Content: Title (title_field) */
+  $handler->display->display_options['sorts']['title_field_value']['id'] = 'title_field_value';
+  $handler->display->display_options['sorts']['title_field_value']['table'] = 'field_data_title_field';
+  $handler->display->display_options['sorts']['title_field_value']['field'] = 'title_field_value';
   /* Filter criterion: Content: Title (title_field) */
   $handler->display->display_options['filters']['title_field_value']['id'] = 'title_field_value';
   $handler->display->display_options['filters']['title_field_value']['table'] = 'field_data_title_field';
@@ -295,6 +308,7 @@ function chm_views_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
+    t('Displaying @start - @end of @total'),
     t('author'),
     t('Select'),
     t('- Choose an operation -'),
