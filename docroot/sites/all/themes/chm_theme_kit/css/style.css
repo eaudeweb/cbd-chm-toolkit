@@ -9233,8 +9233,6 @@ body.maintenance-page #footer-container #footer {
 }
 #block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-field-image img {
   width: 100%;
-  border: 4px solid #fff;
-  border-radius: 5px;
 }
 #block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-title a {
   color: #039749;
