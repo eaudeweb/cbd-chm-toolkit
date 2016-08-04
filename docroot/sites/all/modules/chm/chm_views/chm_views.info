@@ -33,3 +33,4 @@ features[views_view][] = projects
 features[views_view][] = reference_to_content_entity_reference_view
 features[views_view][] = species
 features[views_view][] = sustainable_development_goals
+features[views_view][] = video_library

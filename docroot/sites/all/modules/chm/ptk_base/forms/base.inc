@@ -1,5 +1,11 @@
 <?php
 
+require_once dirname(__FILE__) . '/ChmDomainForm.php';
+require_once dirname(__FILE__) . '/ChmI18nStringLocaleTranslateEditFormForm.php';
+require_once dirname(__FILE__) . '/ChmSocialMediaForm.php';
+require_once dirname(__FILE__) . '/ChmMiscellaneousForm.php';
+require_once dirname(__FILE__) . '/ChmNodeForm.php';
+require_once dirname(__FILE__) . '/ChmUserLoginForm.php';
 
 
 /**
@@ -11,11 +17,15 @@ function ptk_base_form_alter(&$form, &$form_state, $form_id) {
     PTKForm::adminContentFormAlter($form, $form_state);
   }
   $klass = 'Chm' . str_replace(' ', '', ucwords(str_replace('_', ' ', $form_id))) . 'Form';
+  // if (module_exists('devel')) { dpm($klass); }
   if (class_exists($klass) && method_exists($klass, 'alter')) {
     $klass::alter($form, $form_state);
   }
   // Alter all forms where document type field appears
   PTKFormDocumentTypeField::alter($form);
+  if (!empty($form['#node_edit_form'])) {
+    ChmNodeForm::alter($form, $form_state);
+  }
 }
 
 

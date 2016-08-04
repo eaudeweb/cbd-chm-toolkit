@@ -2390,5 +2390,137 @@ function chm_views_views_default_views() {
   );
   $export['sustainable_development_goals'] = $view;
 
+  $view = new view();
+  $view->name = 'video_library';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Video library';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Video Library';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: Content: Video Link */
+  $handler->display->display_options['fields']['field_video_link']['id'] = 'field_video_link';
+  $handler->display->display_options['fields']['field_video_link']['table'] = 'field_data_field_video_link';
+  $handler->display->display_options['fields']['field_video_link']['field'] = 'field_video_link';
+  $handler->display->display_options['fields']['field_video_link']['label'] = '';
+  $handler->display->display_options['fields']['field_video_link']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_video_link']['click_sort_column'] = 'input';
+  $handler->display->display_options['fields']['field_video_link']['settings'] = array(
+    'youtube_size' => '480x360',
+    'youtube_width' => '',
+    'youtube_height' => '',
+    'youtube_autoplay' => 0,
+    'youtube_loop' => 0,
+    'youtube_showinfo' => 0,
+    'youtube_controls' => 0,
+    'youtube_autohide' => 0,
+    'youtube_iv_load_policy' => 0,
+  );
+  /* Field: Content: Video Link */
+  $handler->display->display_options['fields']['field_video_link_1']['id'] = 'field_video_link_1';
+  $handler->display->display_options['fields']['field_video_link_1']['table'] = 'field_data_field_video_link';
+  $handler->display->display_options['fields']['field_video_link_1']['field'] = 'field_video_link';
+  $handler->display->display_options['fields']['field_video_link_1']['label'] = '';
+  $handler->display->display_options['fields']['field_video_link_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_video_link_1']['click_sort_column'] = 'input';
+  $handler->display->display_options['fields']['field_video_link_1']['type'] = 'youtube_url';
+  $handler->display->display_options['fields']['field_video_link_1']['settings'] = array(
+    'link' => 1,
+  );
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Body */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = '';
+  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['body']['type'] = 'smart_trim_format';
+  $handler->display->display_options['fields']['body']['settings'] = array(
+    'trim_link' => '0',
+    'trim_length' => '100',
+    'trim_type' => 'words',
+    'trim_suffix' => '...',
+    'more_link' => '0',
+    'more_text' => 'Read more',
+    'summary_handler' => 'trim',
+    'trim_options' => array(
+      'text' => 0,
+    ),
+    'trim_preserve_tags' => '',
+  );
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'video' => 'video',
+  );
+  /* Filter criterion: Domain Access: Available on current domain */
+  $handler->display->display_options['filters']['current_all']['id'] = 'current_all';
+  $handler->display->display_options['filters']['current_all']['table'] = 'domain_access';
+  $handler->display->display_options['filters']['current_all']['field'] = 'current_all';
+  $handler->display->display_options['filters']['current_all']['value'] = '1';
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['path'] = 'videos';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Videos';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'menu-information-menu';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
+  $translatables['video_library'] = array(
+    t('Master'),
+    t('Video Library'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Page'),
+  );
+  $export['video_library'] = $view;
+
   return $export;
 }

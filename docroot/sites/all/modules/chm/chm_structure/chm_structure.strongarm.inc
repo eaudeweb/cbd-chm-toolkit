@@ -183,6 +183,13 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'diff_enable_revisions_page_node_video';
+  $strongarm->value = 0;
+  $export['diff_enable_revisions_page_node_video'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'diff_show_preview_changes_node_document';
   $strongarm->value = 0;
   $export['diff_show_preview_changes_node_document'] = $strongarm;
@@ -239,6 +246,13 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'diff_show_preview_changes_node_video';
+  $strongarm->value = 0;
+  $export['diff_show_preview_changes_node_video'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'diff_view_mode_preview_node_document';
   $strongarm->value = 'full';
   $export['diff_view_mode_preview_node_document'] = $strongarm;
@@ -291,6 +305,13 @@ function chm_structure_strongarm() {
   $strongarm->name = 'diff_view_mode_preview_node_species';
   $strongarm->value = 'full';
   $export['diff_view_mode_preview_node_species'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_view_mode_preview_node_video';
+  $strongarm->value = 'full';
+  $export['diff_view_mode_preview_node_video'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -363,6 +384,15 @@ function chm_structure_strongarm() {
     0 => 'DOMAIN_ACTIVE',
   );
   $export['domain_node_project'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'domain_node_video';
+  $strongarm->value = array(
+    0 => 'DOMAIN_ACTIVE',
+  );
+  $export['domain_node_video'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -448,6 +478,13 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_hide_translation_links_video';
+  $strongarm->value = 1;
+  $export['entity_translation_hide_translation_links_video'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_node_metadata_document';
   $strongarm->value = '0';
   $export['entity_translation_node_metadata_document'] = $strongarm;
@@ -507,6 +544,13 @@ function chm_structure_strongarm() {
   $strongarm->name = 'entity_translation_node_metadata_species';
   $strongarm->value = '0';
   $export['entity_translation_node_metadata_species'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_node_metadata_video';
+  $strongarm->value = '0';
+  $export['entity_translation_node_metadata_video'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -631,6 +675,19 @@ function chm_structure_strongarm() {
     'shared_fields_original_only' => 1,
   );
   $export['entity_translation_settings_node__species'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_node__video';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 1,
+  );
+  $export['entity_translation_settings_node__video'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -873,6 +930,49 @@ function chm_structure_strongarm() {
   $strongarm->name = 'entity_translation_workflow_enabled';
   $strongarm->value = 0;
   $export['entity_translation_workflow_enabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'eu_cookie_compliance_domain';
+  $strongarm->value = 'chm-cbd.net';
+  $export['eu_cookie_compliance_domain'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'eu_cookie_compliance_en';
+  $strongarm->value = array(
+    'popup_enabled' => 1,
+    'popup_clicking_confirmation' => 0,
+    'eu_only' => 1,
+    'popup_position' => 1,
+    'popup_agree_button_message' => 'OK, I agree',
+    'popup_disagree_button_message' => 'No, give me more info',
+    'popup_info' => array(
+      'value' => '<p>We use cookies to record some preference settings and to analyse how visitors use our web site. Cookies do not contain any personal information about you. If you wish, see&nbsp;<a href="http://www.aboutcookies.org/how-to-delete-cookies/" target="_blank" title="how to delete or disable cookies">how to delete/disable cookies in your web browser</a>&nbsp;but then our site may not work correctly. See also&nbsp;<a href="/node/3174" title="our privacy policy">our privacy policy</a>.</p>',
+      'format' => 'html',
+    ),
+    'popup_agreed_enabled' => 0,
+    'popup_hide_agreed' => 0,
+    'popup_find_more_button_message' => 'More info',
+    'popup_hide_button_message' => 'Hide',
+    'popup_agreed' => array(
+      'value' => 'Thank you for accepting our cookie policy',
+      'format' => 'plain_text',
+    ),
+    'popup_link' => '/node/3174',
+    'popup_link_new_window' => 1,
+    'popup_height' => '',
+    'popup_width' => '100%',
+    'popup_delay' => '1',
+    'popup_bg_hex' => '0779BF',
+    'popup_text_hex' => 'ffffff',
+    'domains_option' => '1',
+    'domains_list' => '',
+    'exclude_paths' => '',
+  );
+  $export['eu_cookie_compliance_en'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1342,6 +1442,61 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_node__video';
+  $strongarm->value = array(
+    'view_modes' => array(
+      'teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'rss' => array(
+        'custom_settings' => FALSE,
+      ),
+      'print' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
+    ),
+    'extra_fields' => array(
+      'form' => array(
+        'domain' => array(
+          'weight' => '7',
+        ),
+        'domain_path' => array(
+          'weight' => '4',
+        ),
+        'metatags' => array(
+          'weight' => '6',
+        ),
+        'path' => array(
+          'weight' => '3',
+        ),
+        'language' => array(
+          'weight' => '0',
+        ),
+      ),
+      'display' => array(
+        'domain' => array(
+          'default' => array(
+            'weight' => '2',
+            'visible' => TRUE,
+          ),
+        ),
+      ),
+    ),
+  );
+  $export['field_bundle_settings_node__video'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_taxonomy_term__aichi_biodiversity_targets';
   $strongarm->value = array(
     'view_modes' => array(),
@@ -1561,6 +1716,13 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_video';
+  $strongarm->value = '4';
+  $export['language_content_type_video'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_cbd_nfp';
   $strongarm->value = array(
     0 => 'main-menu',
@@ -1660,6 +1822,15 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_options_video';
+  $strongarm->value = array(
+    0 => 'main-menu',
+  );
+  $export['menu_options_video'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_parent_cbd_nfp';
   $strongarm->value = 'main-menu:0';
   $export['menu_parent_cbd_nfp'] = $strongarm;
@@ -1737,6 +1908,13 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_parent_video';
+  $strongarm->value = 'main-menu:0';
+  $export['menu_parent_video'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_node__cbd_nfp';
   $strongarm->value = TRUE;
   $export['metatag_enable_node__cbd_nfp'] = $strongarm;
@@ -1789,6 +1967,13 @@ function chm_structure_strongarm() {
   $strongarm->name = 'metatag_enable_node__species';
   $strongarm->value = TRUE;
   $export['metatag_enable_node__species'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'metatag_enable_node__video';
+  $strongarm->value = TRUE;
+  $export['metatag_enable_node__video'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -2009,6 +2194,15 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_video';
+  $strongarm->value = array(
+    0 => 'status',
+  );
+  $export['node_options_video'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_cbd_nfp';
   $strongarm->value = '0';
   $export['node_preview_cbd_nfp'] = $strongarm;
@@ -2086,6 +2280,13 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_preview_video';
+  $strongarm->value = '0';
+  $export['node_preview_video'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_submitted_cbd_nfp';
   $strongarm->value = 0;
   $export['node_submitted_cbd_nfp'] = $strongarm;
@@ -2159,6 +2360,13 @@ function chm_structure_strongarm() {
   $strongarm->name = 'node_submitted_species';
   $strongarm->value = 0;
   $export['node_submitted_species'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_submitted_video';
+  $strongarm->value = 0;
+  $export['node_submitted_video'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -2726,6 +2934,83 @@ function chm_structure_strongarm() {
   $strongarm->name = 'pathauto_taxonomy_term_treaties_pattern';
   $strongarm->value = '';
   $export['pathauto_taxonomy_term_treaties_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'youtube_color';
+  $strongarm->value = 1;
+  $export['youtube_color'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'youtube_enablejsapi';
+  $strongarm->value = 0;
+  $export['youtube_enablejsapi'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'youtube_modestbranding';
+  $strongarm->value = 1;
+  $export['youtube_modestbranding'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'youtube_player_class';
+  $strongarm->value = 'youtube-field-player';
+  $export['youtube_player_class'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'youtube_privacy';
+  $strongarm->value = 1;
+  $export['youtube_privacy'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'youtube_suggest';
+  $strongarm->value = 0;
+  $export['youtube_suggest'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'youtube_theme';
+  $strongarm->value = 1;
+  $export['youtube_theme'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'youtube_thumb_dir';
+  $strongarm->value = 'youtube';
+  $export['youtube_thumb_dir'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'youtube_thumb_hires';
+  $strongarm->value = 1;
+  $export['youtube_thumb_hires'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'youtube_thumb_token_image_style';
+  $strongarm->value = '';
+  $export['youtube_thumb_token_image_style'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'youtube_wmode';
+  $strongarm->value = 1;
+  $export['youtube_wmode'] = $strongarm;
 
   return $export;
 }
