@@ -9246,6 +9246,7 @@ body.maintenance-page #footer-container #footer {
   display: inline;
   text-transform: uppercase;
   font-weight: bold;
+  font-size: 0.8em;
   margin-top: .5em;
   line-height: 1.5em;
 }
