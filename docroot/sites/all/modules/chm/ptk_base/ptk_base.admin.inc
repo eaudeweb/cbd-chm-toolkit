@@ -13,7 +13,7 @@ function ptk_base_admin_page_content_types_overview() {
   $ret = [
     'download' => [
       '#type' => 'markup',
-      '#markup' => l(t('Download Excel report'), 'admin/reports/system/types/export', ['attributes' => ['class' => ['hidden-print']]]),
+      '#markup' => l(t('Download Excel report'), 'admin/reports/chm/types/export', ['attributes' => ['class' => ['hidden-print']]]),
     ],
   ];
   $types = node_type_get_types();
@@ -59,7 +59,7 @@ function ptk_base_admin_page_taxonomies_overview() {
   $ret = [
     'download' => [
       '#type' => 'markup',
-      '#markup' => l(t('Download Excel report'), 'admin/reports/system/taxonomy/export', ['attributes' => ['class' => ['hidden-print']]]),
+      '#markup' => l(t('Download Excel report'), 'admin/reports/chm/taxonomy/export', ['attributes' => ['class' => ['hidden-print']]]),
     ],
   ];
   $vocabularies = taxonomy_get_vocabularies();
