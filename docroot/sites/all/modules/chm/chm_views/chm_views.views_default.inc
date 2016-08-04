@@ -2458,7 +2458,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['fields']['body']['settings'] = array(
     'trim_link' => '0',
     'trim_length' => '100',
-    'trim_type' => 'chars',
+    'trim_type' => 'words',
     'trim_suffix' => '...',
     'more_link' => '0',
     'more_text' => 'Read more',
