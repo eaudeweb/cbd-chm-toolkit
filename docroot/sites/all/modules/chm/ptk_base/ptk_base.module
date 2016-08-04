@@ -89,7 +89,7 @@ function ptk_base_menu() {
       'access arguments' => ['access site reports'],
       'type' => MENU_CALLBACK,
     ],
-    'admin/config/system/chm_global_settings' => [
+    'admin/reports/chm/chm_global_settings' => [
       'title' => 'CHM Global settings',
       'page callback' => 'drupal_get_form',
       'page arguments' => array('ptk_base_chm_global_settings_form'),
@@ -98,7 +98,7 @@ function ptk_base_menu() {
       'type' => MENU_NORMAL_ITEM,
       'description' => 'General configuration for all websites.',
     ],
-    'admin/config/system/chm_website_settings' => [
+    'admin/reports/chm/chm_website_settings' => [
       'title' => 'CHM website settings',
       'page callback' => 'ptk_base_admin_variables',
       'file path' => 'sites/all/modules/contrib/domain_variable',
