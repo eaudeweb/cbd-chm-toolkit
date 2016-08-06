@@ -2580,25 +2580,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Field: Content: Video Link */
-  $handler->display->display_options['fields']['field_video_link']['id'] = 'field_video_link';
-  $handler->display->display_options['fields']['field_video_link']['table'] = 'field_data_field_video_link';
-  $handler->display->display_options['fields']['field_video_link']['field'] = 'field_video_link';
-  $handler->display->display_options['fields']['field_video_link']['label'] = '';
-  $handler->display->display_options['fields']['field_video_link']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_video_link']['click_sort_column'] = 'input';
-  $handler->display->display_options['fields']['field_video_link']['settings'] = array(
-    'youtube_size' => '480x360',
-    'youtube_width' => '',
-    'youtube_height' => '',
-    'youtube_autoplay' => 0,
-    'youtube_loop' => 0,
-    'youtube_showinfo' => 0,
-    'youtube_controls' => 0,
-    'youtube_autohide' => 0,
-    'youtube_iv_load_policy' => 0,
-  );
-  /* Field: Content: Video Link */
+  /* Field: Content: Video */
   $handler->display->display_options['fields']['field_video_link_1']['id'] = 'field_video_link_1';
   $handler->display->display_options['fields']['field_video_link_1']['table'] = 'field_data_field_video_link';
   $handler->display->display_options['fields']['field_video_link_1']['field'] = 'field_video_link';
