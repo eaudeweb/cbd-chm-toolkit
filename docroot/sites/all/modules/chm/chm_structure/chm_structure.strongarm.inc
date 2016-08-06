@@ -991,13 +991,6 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_domain';
-  $strongarm->value = 'chm-cbd.net';
-  $export['eu_cookie_compliance_domain'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'eu_cookie_compliance_en';
   $strongarm->value = array(
     'popup_enabled' => 1,
