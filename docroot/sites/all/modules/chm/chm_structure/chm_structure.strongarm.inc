@@ -1601,13 +1601,13 @@ function chm_structure_strongarm() {
           'weight' => '7',
         ),
         'domain_path' => array(
-          'weight' => '4',
+          'weight' => '5',
         ),
         'metatags' => array(
           'weight' => '6',
         ),
         'path' => array(
-          'weight' => '3',
+          'weight' => '4',
         ),
         'language' => array(
           'weight' => '0',

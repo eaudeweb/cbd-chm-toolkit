@@ -1325,18 +1325,14 @@ function chm_structure_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_video_link',
-    'indexes' => array(
-      'video_id' => array(
-        0 => 'video_id',
-      ),
-    ),
+    'indexes' => array(),
     'locked' => 0,
-    'module' => 'youtube',
+    'module' => 'video_embed_field',
     'settings' => array(
       'entity_translation_sync' => FALSE,
     ),
     'translatable' => 0,
-    'type' => 'youtube',
+    'type' => 'video_embed_field',
   );
 
   // Exported field_base: 'name_field'.

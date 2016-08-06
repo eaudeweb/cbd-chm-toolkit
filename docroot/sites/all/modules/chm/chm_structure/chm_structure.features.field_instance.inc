@@ -4518,7 +4518,7 @@ function chm_structure_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 1,
+        'weight' => 0,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -4548,7 +4548,7 @@ function chm_structure_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 5,
+      'weight' => 2,
     ),
   );
 
@@ -4557,24 +4557,18 @@ function chm_structure_field_default_field_instances() {
     'bundle' => 'video',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Link to the video. Currently supported platforms are Youtube and Vimeo',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'youtube',
+        'module' => 'video_embed_field',
         'settings' => array(
-          'youtube_autohide' => FALSE,
-          'youtube_autoplay' => FALSE,
-          'youtube_controls' => FALSE,
-          'youtube_height' => NULL,
-          'youtube_iv_load_policy' => FALSE,
-          'youtube_loop' => FALSE,
-          'youtube_showinfo' => FALSE,
-          'youtube_size' => '420x315',
-          'youtube_width' => NULL,
+          'description' => 1,
+          'description_position' => 'bottom',
+          'video_style' => 'normal',
         ),
-        'type' => 'youtube_video',
-        'weight' => 0,
+        'type' => 'video_embed_field',
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -4585,18 +4579,24 @@ function chm_structure_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_video_link',
-    'label' => 'Video Link',
+    'label' => 'Video',
     'required' => 1,
     'settings' => array(
+      'allowed_providers' => array(
+        'vimeo' => 'vimeo',
+        'youtube' => 'youtube',
+      ),
+      'description_field' => 0,
+      'description_length' => 128,
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 0,
-      'module' => 'youtube',
+      'module' => 'video_embed_field',
       'settings' => array(),
-      'type' => 'youtube',
-      'weight' => 2,
+      'type' => 'video_embed_field_video',
+      'weight' => 3,
     ),
   );
 
@@ -5924,6 +5924,7 @@ function chm_structure_field_default_field_instances() {
   t('Item order (1, 2.1, 3.2.1 etc.)');
   t('Kingdom');
   t('Last name');
+  t('Link to the video. Currently supported platforms are Youtube and Vimeo');
   t('Location');
   t('Machine name');
   t('Main common name');
@@ -5954,7 +5955,7 @@ function chm_structure_field_default_field_instances() {
   t('URL');
   t('Unique internal identifier for this item');
   t('Use this field to add reference to other parts of your website. Type to search for content');
-  t('Video Link');
+  t('Video');
   t('Website');
 
   return $field_instances;
