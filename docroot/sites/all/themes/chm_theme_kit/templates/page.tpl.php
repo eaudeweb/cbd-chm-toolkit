@@ -6,6 +6,9 @@
 <?php //if ((($user->uid) && ($page['admin_shortcuts'])) || (($user->uid) && ($secondary_nav))): ?>
 <div id="admin-shortcuts" class="admin-shortcuts clearfix">
   <div class="container">
+    <?php if(variable_get('environment') == 'test'): ?>
+    <span class="label label-warning" style="position: absolute; left: 0; margin: 10px 0 0 10px;">Test website</span>
+    <?php endif; ?>
     <?php //print render($secondary_nav); ?>
     <?php print render($page['admin_shortcuts']); ?>
   </div>
