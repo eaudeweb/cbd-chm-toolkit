@@ -169,7 +169,7 @@
   <div class="container">
 	 <div id="footer-content" class="row footer-content">
        <div class="footer-logo">
-         <img src="<?php print $logo; ?>" alt="<?php print $site_name; ?>" />
+         <img src="/files/chm-logo-new-web-en.png" alt="<?php print $site_name; ?>" />
        </div>
        <div class="footer-support">
          <div class="text"><?php print t('With the support of the'); ?></div>

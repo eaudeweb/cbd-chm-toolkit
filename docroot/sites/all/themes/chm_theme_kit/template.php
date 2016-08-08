@@ -13,7 +13,21 @@ function chm_theme_kit_preprocess_html(&$variables) {
       $variables['head_title'] = implode(' - ', $hta);
     }
   }
+
+  if ($country = PTKDomain::getPortalCountry()) {
+    $variables['classes_array'][] = 'country-portal';
+    $variables['classes_array'][] = 'country-' . strtolower($country->iso2l);
+  }
 }
+
+function chm_theme_kit_preprocess_page(&$vars) {
+  if ($country = PTKDomain::getPortalCountry()) {
+    if ($flag = PTK::getCountryFlag($country)) {
+      $vars['logo'] = image_style_url('header_flag', $flag);
+    }
+  }
+}
+
 
 function chm_theme_kit_css_alter(&$css) {
   $path = drupal_get_path('module', 'addressfield');

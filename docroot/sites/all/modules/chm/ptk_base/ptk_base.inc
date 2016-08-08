@@ -89,12 +89,25 @@ class PTK {
     return NULL;
   }
 
+  public static function getCountryFlag($country, $relative = FALSE) {
+    try {
+      $w = entity_metadata_wrapper('taxonomy_term', $country);
+      if ($iso = $w->field_iso_code->value() && $image = $w->field_image->value()) {
+        return $image['uri'];
+      }
+    } catch (Exception $e) {
+      watchdog_exception('ptk', $e);
+    }
+    return NULL;
+  }
+
   public static function getCountryFlagURL($country) {
     try {
       $w = entity_metadata_wrapper('taxonomy_term', $country);
       if ($iso = $w->field_iso_code->value() && $image = $w->field_image->value()) {
-        return url(file_create_url($image['uri']),
-          array('absolute' => 1, 'language' => (object)array('language' => LANGUAGE_NONE))
+        return url(
+          file_create_url($image['uri']),
+          array('absolute' => 0, 'language' => (object)array('language' => LANGUAGE_NONE))
         );
       }
     } catch (Exception $e) {

@@ -8402,8 +8402,7 @@ body.maintenance-page #footer-container #footer {
 #page-header .logo {
   display: block;
   float: left;
-  margin-top: 0;
-  margin-bottom: 0;
+  margin: 10px 10px 10px 0;
 }
 [dir="rtl"] #page-header .logo {
   float: right !important;
@@ -8420,9 +8419,9 @@ body.maintenance-page #footer-container #footer {
 #page-header .navbar-brand {
   display: block;
   float: left;
-  height: 124px;
+  height: 100px;
   padding: 0;
-  line-height: 124px;
+  line-height: 100px;
   font-size: 30px;
   color: #000000;
   font-weight: bold;
@@ -8442,7 +8441,7 @@ body.maintenance-page #footer-container #footer {
 #page-header #nav-search {
   display: inline-block;
   float: right;
-  margin: 47px 0 0 0;
+  margin: 32px 0 0 0;
 }
 [dir="rtl"] #page-header #nav-search {
   float: left;
@@ -8451,6 +8450,9 @@ body.maintenance-page #footer-container #footer {
   #page-header #nav-search {
     display: none;
   }
+}
+body.country-portal .logo img {
+  margin: 20px 20px 0 0 !important;
 }
 .navbar-container {
   background-color: #039749;
