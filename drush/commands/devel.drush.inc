@@ -40,11 +40,11 @@ function _drush_prepare_dev() {
     if ($domain['machine_name'] == 'www') {
       $subdomain = 'chm7.local.ro';
     }
+    if ($domain['machine_name'] == 'demo') {
+      $subdomain = 'chm7-demo.local.ro';
+    }
     $domain['subdomain'] = $subdomain;
     $path = _drush_prepare_local_domain_name($domain['path']);
-    if ($domain['machine_name'] == 'www') {
-      $path = 'http://chm7.local.ro';
-    }
     $domain['path'] = $path;
     $domain['scheme'] = 'http';
     drush_log('Configuring ' . $domain['scheme'] . '://' . $domain['subdomain'], 'ok');
