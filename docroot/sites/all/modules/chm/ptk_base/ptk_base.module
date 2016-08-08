@@ -106,6 +106,12 @@ function ptk_base_menu() {
   return $items;
 }
 
+function ptk_base_imce_upload_path() {
+  $domain = domain_get_domain();
+  return 'websites/' . $domain['machine_name'] . '/uploads/' . $domain['machine_name'];
+}
+
+
 /**
  * Implements hook_block_info().
  */
