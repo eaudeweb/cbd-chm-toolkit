@@ -12,13 +12,14 @@ include_once 'osha_gallery.features.inc';
 function osha_gallery_menu() {
   $items = array();
   $items['node/%node/bulk_upload'] = array(
-    'title' => 'Bulk Upload',
+    'title' => 'Bulk upload images',
     'description' => 'Provides a form to bulk upload images to node field_images',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('osha_gallery_bulk_upload_form', 1),
     'type' => MENU_LOCAL_TASK,
     'access callback' => 'osha_gallery_bulk_upload_access_callback',
     'access arguments' => array(1),
+    'weight' => 20,
   );
   $items['node/%node/reorder_files'] = array(
     'title' => 'Reorder images',
@@ -28,6 +29,7 @@ function osha_gallery_menu() {
     'type' => MENU_LOCAL_TASK,
     'access callback' => 'osha_gallery_bulk_upload_access_callback',
     'access arguments' => array(1),
+    'weight' => 21,
   );
   $items['admin/config/content/osha_gallery'] = array(
     'title' => 'OSHA Gallery Configuration',
