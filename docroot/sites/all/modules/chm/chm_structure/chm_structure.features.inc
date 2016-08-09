@@ -128,12 +128,28 @@ function chm_structure_node_info() {
       'title_label' => t('Name'),
       'help' => '',
     ),
+    'protected_area' => array(
+      'name' => t('Protected area'),
+      'base' => 'node_content',
+      'description' => t('Use this type to describe a protected area in your country'),
+      'has_title' => '1',
+      'title_label' => t('Name'),
+      'help' => '',
+    ),
     'species' => array(
       'name' => t('Species'),
       'base' => 'node_content',
       'description' => t('Contains species data'),
       'has_title' => '1',
       'title_label' => t('Scientific name'),
+      'help' => '',
+    ),
+    'video' => array(
+      'name' => t('Video'),
+      'base' => 'node_content',
+      'description' => t('Upload a video on Youtube and show it in your website!'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
       'help' => '',
     ),
   );

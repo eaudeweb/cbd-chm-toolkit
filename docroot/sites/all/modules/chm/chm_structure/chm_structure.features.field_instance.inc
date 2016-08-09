@@ -1095,9 +1095,31 @@ function chm_structure_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'description_field' => 1,
-      'entity_translation_sync' => FALSE,
+      'entity_translation_sync' => 0,
       'file_directory' => '[current-domain:machine-name]/documents',
       'file_extensions' => 'rtf txt pdf doc docx xls xlsx ppt pptx odt ods odp rar zip 7z tar.gz gz',
+      'filefield_paths' => array(
+        'active_updating' => 0,
+        'file_name' => array(
+          'options' => array(
+            'pathauto' => 0,
+            'slashes' => 0,
+            'transliterate' => 0,
+          ),
+          'value' => '[file:ffp-name-only-original].[file:ffp-extension-original]',
+        ),
+        'file_path' => array(
+          'options' => array(
+            'pathauto' => 0,
+            'slashes' => 0,
+            'transliterate' => 0,
+          ),
+          'value' => 'websites/[current-domain:machine-name]/documents',
+        ),
+        'redirect' => FALSE,
+        'retroactive_update' => 0,
+      ),
+      'filefield_paths_enabled' => 1,
       'max_filesize' => '',
       'user_register_form' => FALSE,
     ),
@@ -1142,24 +1164,31 @@ function chm_structure_field_default_field_instances() {
     'settings' => array(
       'alt_field' => 1,
       'default_image' => 0,
-      'entity_translation_sync' => FALSE,
+      'entity_translation_sync' => 0,
       'file_directory' => '[current-domain:machine-name]/images/documents',
       'file_extensions' => 'png gif jpg jpeg',
-      'image_field_caption' => array(
-        'enabled' => 0,
-        'image_field_caption_wrapper' => array(
-          'image_field_caption_default' => array(
-            'format' => 'plain_text',
-            'value' => '',
+      'filefield_paths' => array(
+        'active_updating' => 0,
+        'file_name' => array(
+          'options' => array(
+            'pathauto' => 0,
+            'slashes' => 0,
+            'transliterate' => 0,
           ),
+          'value' => '[file:ffp-name-only-original].[file:ffp-extension-original]',
         ),
-      ),
-      'image_field_caption_wrapper' => array(
-        'image_field_caption_default' => array(
-          'format' => 'plain_text',
-          'value' => '',
+        'file_path' => array(
+          'options' => array(
+            'pathauto' => 0,
+            'slashes' => 0,
+            'transliterate' => 0,
+          ),
+          'value' => 'websites/[current-domain:machine-name]/images/documents',
         ),
+        'redirect' => FALSE,
+        'retroactive_update' => 0,
       ),
+      'filefield_paths_enabled' => 1,
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
@@ -1170,18 +1199,18 @@ function chm_structure_field_default_field_instances() {
       'active' => 1,
       'module' => 'image',
       'settings' => array(
-        'manualcrop_crop_info' => TRUE,
-        'manualcrop_default_crop_area' => TRUE,
-        'manualcrop_enable' => FALSE,
-        'manualcrop_inline_crop' => FALSE,
-        'manualcrop_instant_crop' => FALSE,
-        'manualcrop_instant_preview' => TRUE,
-        'manualcrop_keyboard' => TRUE,
-        'manualcrop_maximize_default_crop_area' => FALSE,
+        'manualcrop_crop_info' => 1,
+        'manualcrop_default_crop_area' => 1,
+        'manualcrop_enable' => 0,
+        'manualcrop_inline_crop' => 0,
+        'manualcrop_instant_crop' => 0,
+        'manualcrop_instant_preview' => 1,
+        'manualcrop_keyboard' => 1,
+        'manualcrop_maximize_default_crop_area' => 0,
         'manualcrop_require_cropping' => array(),
         'manualcrop_styles_list' => array(),
         'manualcrop_styles_mode' => 'include',
-        'manualcrop_thumblist' => FALSE,
+        'manualcrop_thumblist' => 0,
         'preview_image_style' => 'thumbnail',
         'progress_indicator' => 'throbber',
       ),
@@ -1475,21 +1504,28 @@ function chm_structure_field_default_field_instances() {
       'entity_translation_sync' => 0,
       'file_directory' => '[current-domain:machine-name]/images/ecosystems',
       'file_extensions' => 'png gif jpg jpeg',
-      'image_field_caption' => array(
-        'enabled' => 0,
-        'image_field_caption_wrapper' => array(
-          'image_field_caption_default' => array(
-            'format' => 'plain_text',
-            'value' => '',
+      'filefield_paths' => array(
+        'active_updating' => 0,
+        'file_name' => array(
+          'options' => array(
+            'pathauto' => 0,
+            'slashes' => 0,
+            'transliterate' => 0,
           ),
+          'value' => '[file:ffp-name-only-original].[file:ffp-extension-original]',
         ),
-      ),
-      'image_field_caption_wrapper' => array(
-        'image_field_caption_default' => array(
-          'format' => 'plain_text',
-          'value' => '',
+        'file_path' => array(
+          'options' => array(
+            'pathauto' => 0,
+            'slashes' => 0,
+            'transliterate' => 0,
+          ),
+          'value' => 'websites/[current-domain:machine-name]/images/ecosystems',
         ),
+        'redirect' => FALSE,
+        'retroactive_update' => 0,
       ),
+      'filefield_paths_enabled' => 1,
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
@@ -1500,18 +1536,18 @@ function chm_structure_field_default_field_instances() {
       'active' => 1,
       'module' => 'image',
       'settings' => array(
-        'manualcrop_crop_info' => TRUE,
-        'manualcrop_default_crop_area' => TRUE,
-        'manualcrop_enable' => FALSE,
-        'manualcrop_inline_crop' => FALSE,
-        'manualcrop_instant_crop' => FALSE,
-        'manualcrop_instant_preview' => TRUE,
-        'manualcrop_keyboard' => TRUE,
-        'manualcrop_maximize_default_crop_area' => FALSE,
+        'manualcrop_crop_info' => 1,
+        'manualcrop_default_crop_area' => 1,
+        'manualcrop_enable' => 0,
+        'manualcrop_inline_crop' => 0,
+        'manualcrop_instant_crop' => 0,
+        'manualcrop_instant_preview' => 1,
+        'manualcrop_keyboard' => 1,
+        'manualcrop_maximize_default_crop_area' => 0,
         'manualcrop_require_cropping' => array(),
         'manualcrop_styles_list' => array(),
         'manualcrop_styles_mode' => 'include',
-        'manualcrop_thumblist' => FALSE,
+        'manualcrop_thumblist' => 0,
         'preview_image_style' => 'thumbnail',
         'progress_indicator' => 'throbber',
       ),
@@ -1970,24 +2006,31 @@ function chm_structure_field_default_field_instances() {
     'settings' => array(
       'alt_field' => 1,
       'default_image' => 0,
-      'entity_translation_sync' => FALSE,
+      'entity_translation_sync' => 0,
       'file_directory' => '[current-domain:machine-name]/images/events',
       'file_extensions' => 'png gif jpg jpeg',
-      'image_field_caption' => array(
-        'enabled' => 0,
-        'image_field_caption_wrapper' => array(
-          'image_field_caption_default' => array(
-            'format' => 'plain_text',
-            'value' => '',
+      'filefield_paths' => array(
+        'active_updating' => 0,
+        'file_name' => array(
+          'options' => array(
+            'pathauto' => 0,
+            'slashes' => 0,
+            'transliterate' => 0,
           ),
+          'value' => '[file:ffp-name-only-original].[file:ffp-extension-original]',
         ),
-      ),
-      'image_field_caption_wrapper' => array(
-        'image_field_caption_default' => array(
-          'format' => 'plain_text',
-          'value' => '',
+        'file_path' => array(
+          'options' => array(
+            'pathauto' => 0,
+            'slashes' => 0,
+            'transliterate' => 0,
+          ),
+          'value' => 'websites/[current-domain:machine-name]/images/events',
         ),
+        'redirect' => FALSE,
+        'retroactive_update' => 0,
       ),
+      'filefield_paths_enabled' => 1,
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
@@ -1998,18 +2041,18 @@ function chm_structure_field_default_field_instances() {
       'active' => 1,
       'module' => 'image',
       'settings' => array(
-        'manualcrop_crop_info' => TRUE,
-        'manualcrop_default_crop_area' => TRUE,
-        'manualcrop_enable' => FALSE,
-        'manualcrop_inline_crop' => FALSE,
-        'manualcrop_instant_crop' => FALSE,
-        'manualcrop_instant_preview' => TRUE,
-        'manualcrop_keyboard' => TRUE,
-        'manualcrop_maximize_default_crop_area' => FALSE,
+        'manualcrop_crop_info' => 1,
+        'manualcrop_default_crop_area' => 1,
+        'manualcrop_enable' => 0,
+        'manualcrop_inline_crop' => 0,
+        'manualcrop_instant_crop' => 0,
+        'manualcrop_instant_preview' => 1,
+        'manualcrop_keyboard' => 1,
+        'manualcrop_maximize_default_crop_area' => 0,
         'manualcrop_require_cropping' => array(),
         'manualcrop_styles_list' => array(),
         'manualcrop_styles_mode' => 'include',
-        'manualcrop_thumblist' => FALSE,
+        'manualcrop_thumblist' => 0,
         'preview_image_style' => 'medium',
         'progress_indicator' => 'throbber',
       ),
@@ -2331,24 +2374,31 @@ function chm_structure_field_default_field_instances() {
     'settings' => array(
       'alt_field' => 1,
       'default_image' => 0,
-      'entity_translation_sync' => FALSE,
+      'entity_translation_sync' => 0,
       'file_directory' => '[current-domain:machine-name]/images/facts',
       'file_extensions' => 'png gif jpg jpeg',
-      'image_field_caption' => array(
-        'enabled' => 0,
-        'image_field_caption_wrapper' => array(
-          'image_field_caption_default' => array(
-            'format' => 'plain_text',
-            'value' => '',
+      'filefield_paths' => array(
+        'active_updating' => 0,
+        'file_name' => array(
+          'options' => array(
+            'pathauto' => 0,
+            'slashes' => 0,
+            'transliterate' => 0,
           ),
+          'value' => '[file:ffp-name-only-original].[file:ffp-extension-original]',
         ),
-      ),
-      'image_field_caption_wrapper' => array(
-        'image_field_caption_default' => array(
-          'format' => 'plain_text',
-          'value' => '',
+        'file_path' => array(
+          'options' => array(
+            'pathauto' => 0,
+            'slashes' => 0,
+            'transliterate' => 0,
+          ),
+          'value' => 'websites/[current-domain:machine-name]/images/facts',
         ),
+        'redirect' => FALSE,
+        'retroactive_update' => 0,
       ),
+      'filefield_paths_enabled' => 1,
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
@@ -2359,18 +2409,18 @@ function chm_structure_field_default_field_instances() {
       'active' => 1,
       'module' => 'image',
       'settings' => array(
-        'manualcrop_crop_info' => TRUE,
-        'manualcrop_default_crop_area' => TRUE,
-        'manualcrop_enable' => FALSE,
-        'manualcrop_inline_crop' => FALSE,
-        'manualcrop_instant_crop' => FALSE,
-        'manualcrop_instant_preview' => TRUE,
-        'manualcrop_keyboard' => TRUE,
-        'manualcrop_maximize_default_crop_area' => FALSE,
+        'manualcrop_crop_info' => 1,
+        'manualcrop_default_crop_area' => 1,
+        'manualcrop_enable' => 0,
+        'manualcrop_inline_crop' => 0,
+        'manualcrop_instant_crop' => 0,
+        'manualcrop_instant_preview' => 1,
+        'manualcrop_keyboard' => 1,
+        'manualcrop_maximize_default_crop_area' => 0,
         'manualcrop_require_cropping' => array(),
         'manualcrop_styles_list' => array(),
         'manualcrop_styles_mode' => 'include',
-        'manualcrop_thumblist' => FALSE,
+        'manualcrop_thumblist' => 0,
         'preview_image_style' => 'thumbnail',
         'progress_indicator' => 'throbber',
       ),
@@ -2628,27 +2678,12 @@ function chm_structure_field_default_field_instances() {
             'slashes' => 0,
             'transliterate' => 0,
           ),
-          'value' => '[current-domain:machine-name]/images/gallery/[node:nid]',
+          'value' => 'websites/[current-domain:machine-name]/images/gallery/[node:nid]',
         ),
         'redirect' => FALSE,
         'retroactive_update' => 0,
       ),
       'filefield_paths_enabled' => 1,
-      'image_field_caption' => array(
-        'enabled' => 0,
-        'image_field_caption_wrapper' => array(
-          'image_field_caption_default' => array(
-            'format' => 'plain_text',
-            'value' => '',
-          ),
-        ),
-      ),
-      'image_field_caption_wrapper' => array(
-        'image_field_caption_default' => array(
-          'format' => 'plain_text',
-          'value' => '',
-        ),
-      ),
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
@@ -2659,18 +2694,18 @@ function chm_structure_field_default_field_instances() {
       'active' => 1,
       'module' => 'image',
       'settings' => array(
-        'manualcrop_crop_info' => TRUE,
-        'manualcrop_default_crop_area' => TRUE,
-        'manualcrop_enable' => FALSE,
-        'manualcrop_inline_crop' => FALSE,
-        'manualcrop_instant_crop' => FALSE,
-        'manualcrop_instant_preview' => TRUE,
-        'manualcrop_keyboard' => TRUE,
-        'manualcrop_maximize_default_crop_area' => FALSE,
+        'manualcrop_crop_info' => 1,
+        'manualcrop_default_crop_area' => 1,
+        'manualcrop_enable' => 0,
+        'manualcrop_inline_crop' => 0,
+        'manualcrop_instant_crop' => 0,
+        'manualcrop_instant_preview' => 1,
+        'manualcrop_keyboard' => 1,
+        'manualcrop_maximize_default_crop_area' => 0,
         'manualcrop_require_cropping' => array(),
         'manualcrop_styles_list' => array(),
         'manualcrop_styles_mode' => 'include',
-        'manualcrop_thumblist' => FALSE,
+        'manualcrop_thumblist' => 0,
         'preview_image_style' => 'medium',
         'progress_indicator' => 'throbber',
       ),
@@ -3013,24 +3048,31 @@ function chm_structure_field_default_field_instances() {
     'settings' => array(
       'alt_field' => 1,
       'default_image' => 0,
-      'entity_translation_sync' => FALSE,
+      'entity_translation_sync' => 0,
       'file_directory' => '[current-domain:machine-name]/images/news',
       'file_extensions' => 'png gif jpg jpeg',
-      'image_field_caption' => array(
-        'enabled' => 0,
-        'image_field_caption_wrapper' => array(
-          'image_field_caption_default' => array(
-            'format' => 'plain_text',
-            'value' => '',
+      'filefield_paths' => array(
+        'active_updating' => 0,
+        'file_name' => array(
+          'options' => array(
+            'pathauto' => 0,
+            'slashes' => 0,
+            'transliterate' => 0,
           ),
+          'value' => '[file:ffp-name-only-original].[file:ffp-extension-original]',
         ),
-      ),
-      'image_field_caption_wrapper' => array(
-        'image_field_caption_default' => array(
-          'format' => 'plain_text',
-          'value' => '',
+        'file_path' => array(
+          'options' => array(
+            'pathauto' => 0,
+            'slashes' => 0,
+            'transliterate' => 0,
+          ),
+          'value' => 'websites/[current-domain:machine-name]/images/news',
         ),
+        'redirect' => FALSE,
+        'retroactive_update' => 0,
       ),
+      'filefield_paths_enabled' => 1,
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
@@ -3041,18 +3083,18 @@ function chm_structure_field_default_field_instances() {
       'active' => 1,
       'module' => 'image',
       'settings' => array(
-        'manualcrop_crop_info' => TRUE,
-        'manualcrop_default_crop_area' => TRUE,
-        'manualcrop_enable' => FALSE,
-        'manualcrop_inline_crop' => FALSE,
-        'manualcrop_instant_crop' => FALSE,
-        'manualcrop_instant_preview' => TRUE,
-        'manualcrop_keyboard' => TRUE,
-        'manualcrop_maximize_default_crop_area' => FALSE,
+        'manualcrop_crop_info' => 1,
+        'manualcrop_default_crop_area' => 1,
+        'manualcrop_enable' => 0,
+        'manualcrop_inline_crop' => 0,
+        'manualcrop_instant_crop' => 0,
+        'manualcrop_instant_preview' => 1,
+        'manualcrop_keyboard' => 1,
+        'manualcrop_maximize_default_crop_area' => 0,
         'manualcrop_require_cropping' => array(),
         'manualcrop_styles_list' => array(),
         'manualcrop_styles_mode' => 'include',
-        'manualcrop_thumblist' => FALSE,
+        'manualcrop_thumblist' => 0,
         'preview_image_style' => 'medium',
         'progress_indicator' => 'throbber',
       ),
@@ -3203,9 +3245,8 @@ function chm_structure_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'i18n_taxonomy',
         'settings' => array(),
-        'type' => 'i18n_taxonomy_term_reference_link',
+        'type' => 'hidden',
         'weight' => 3,
       ),
       'teaser' => array(
@@ -3289,7 +3330,7 @@ function chm_structure_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 1,
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -3512,27 +3553,12 @@ function chm_structure_field_default_field_instances() {
             'slashes' => 0,
             'transliterate' => 0,
           ),
-          'value' => '[current-domain:machine-name]/images/project',
+          'value' => 'websites/[current-domain:machine-name]/images/project',
         ),
         'redirect' => FALSE,
         'retroactive_update' => 0,
       ),
       'filefield_paths_enabled' => 1,
-      'image_field_caption' => array(
-        'enabled' => 0,
-        'image_field_caption_wrapper' => array(
-          'image_field_caption_default' => array(
-            'format' => 'plain_text',
-            'value' => '',
-          ),
-        ),
-      ),
-      'image_field_caption_wrapper' => array(
-        'image_field_caption_default' => array(
-          'format' => 'plain_text',
-          'value' => '',
-        ),
-      ),
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
@@ -3700,6 +3726,180 @@ function chm_structure_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'node-protected_area-body'.
+  $field_instances['node-protected_area-body'] = array(
+    'bundle' => 'protected_area',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 600,
+        ),
+        'type' => 'text_summary_or_trimmed',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'body',
+    'label' => 'Description',
+    'required' => 0,
+    'settings' => array(
+      'display_summary' => 1,
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 20,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance: 'node-protected_area-field_image'.
+  $field_instances['node-protected_area-field_image'] = array(
+    'bundle' => 'protected_area',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => '',
+        ),
+        'type' => 'image',
+        'weight' => 2,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_image',
+    'label' => 'Image',
+    'required' => 0,
+    'settings' => array(
+      'alt_field' => 0,
+      'default_image' => 0,
+      'entity_translation_sync' => 0,
+      'file_directory' => '',
+      'file_extensions' => 'png gif jpg jpeg',
+      'filefield_paths' => array(
+        'active_updating' => 0,
+        'file_name' => array(
+          'options' => array(
+            'pathauto' => 0,
+            'slashes' => 0,
+            'transliterate' => 0,
+          ),
+          'value' => '[file:ffp-name-only-original].[file:ffp-extension-original]',
+        ),
+        'file_path' => array(
+          'options' => array(
+            'pathauto' => 0,
+            'slashes' => 0,
+            'transliterate' => 0,
+          ),
+          'value' => 'websites/[current-domain:machine-name]/images/protected-areas',
+        ),
+        'redirect' => FALSE,
+        'retroactive_update' => 0,
+      ),
+      'filefield_paths_enabled' => 1,
+      'max_filesize' => '',
+      'max_resolution' => '',
+      'min_resolution' => '',
+      'title_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'image',
+      'settings' => array(
+        'manualcrop_crop_info' => 1,
+        'manualcrop_default_crop_area' => 1,
+        'manualcrop_enable' => 0,
+        'manualcrop_inline_crop' => 0,
+        'manualcrop_instant_crop' => 0,
+        'manualcrop_instant_preview' => 1,
+        'manualcrop_keyboard' => 1,
+        'manualcrop_maximize_default_crop_area' => 0,
+        'manualcrop_require_cropping' => array(),
+        'manualcrop_styles_list' => array(),
+        'manualcrop_styles_mode' => 'include',
+        'manualcrop_thumblist' => 0,
+        'preview_image_style' => 'thumbnail',
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'image_image',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'node-protected_area-title_field'.
+  $field_instances['node-protected_area-title_field'] = array(
+    'bundle' => 'protected_area',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'title_field',
+    'label' => 'Title',
+    'required' => TRUE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
       'module' => 'text',
       'settings' => array(
         'size' => 60,
@@ -4330,6 +4530,143 @@ function chm_structure_field_default_field_instances() {
       ),
       'type' => 'text_textfield',
       'weight' => 0,
+    ),
+  );
+
+  // Exported field_instance: 'node-video-body'.
+  $field_instances['node-video-body'] = array(
+    'bundle' => 'video',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 600,
+        ),
+        'type' => 'text_summary_or_trimmed',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'body',
+    'label' => 'Description',
+    'required' => 0,
+    'settings' => array(
+      'display_summary' => 1,
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 10,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'node-video-field_video_link'.
+  $field_instances['node-video-field_video_link'] = array(
+    'bundle' => 'video',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Link to the video. Currently supported platforms are Youtube and Vimeo',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'video_embed_field',
+        'settings' => array(
+          'description' => 1,
+          'description_position' => 'bottom',
+          'video_style' => 'normal',
+        ),
+        'type' => 'video_embed_field',
+        'weight' => 1,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_video_link',
+    'label' => 'Video',
+    'required' => 1,
+    'settings' => array(
+      'allowed_providers' => array(
+        'vimeo' => 'vimeo',
+        'youtube' => 'youtube',
+      ),
+      'description_field' => 0,
+      'description_length' => 128,
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'video_embed_field',
+      'settings' => array(),
+      'type' => 'video_embed_field_video',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance: 'node-video-title_field'.
+  $field_instances['node-video-title_field'] = array(
+    'bundle' => 'video',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'title_field',
+    'label' => 'Title',
+    'required' => TRUE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 1,
     ),
   );
 
@@ -5614,6 +5951,7 @@ function chm_structure_field_default_field_instances() {
   t('Item order (1, 2.1, 3.2.1 etc.)');
   t('Kingdom');
   t('Last name');
+  t('Link to the video. Currently supported platforms are Youtube and Vimeo');
   t('Location');
   t('Machine name');
   t('Main common name');
@@ -5644,6 +5982,7 @@ function chm_structure_field_default_field_instances() {
   t('URL');
   t('Unique internal identifier for this item');
   t('Use this field to add reference to other parts of your website. Type to search for content');
+  t('Video');
   t('Website');
 
   return $field_instances;

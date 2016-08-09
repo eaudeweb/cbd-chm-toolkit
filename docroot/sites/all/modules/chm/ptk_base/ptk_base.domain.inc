@@ -73,11 +73,6 @@ class PTKDomain {
     return NULL;
   }
 
-  public static function getIMCEUploadPath() {
-    $domain = domain_get_domain();
-    return 'uploads/' . $domain['machine_name'];
-  }
-
   /**
    * Get the Country of the current portal.
    *

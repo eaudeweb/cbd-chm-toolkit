@@ -40,11 +40,11 @@ function _drush_prepare_dev() {
     if ($domain['machine_name'] == 'www') {
       $subdomain = 'chm7.local.ro';
     }
+    if ($domain['machine_name'] == 'demo') {
+      $subdomain = 'chm7-demo.local.ro';
+    }
     $domain['subdomain'] = $subdomain;
     $path = _drush_prepare_local_domain_name($domain['path']);
-    if ($domain['machine_name'] == 'www') {
-      $path = 'http://chm7.local.ro';
-    }
     $domain['path'] = $path;
     $domain['scheme'] = 'http';
     drush_log('Configuring ' . $domain['scheme'] . '://' . $domain['subdomain'], 'ok');
@@ -56,6 +56,7 @@ function _drush_prepare_dev() {
     user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access devel information'));
     user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access devel information'));
   }
+  variable_set('eu_cookie_compliance_domain', 'local.ro');
   drush_invoke_process('@self', 'sql-sanitize');
 }
 

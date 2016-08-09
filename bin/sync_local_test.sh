@@ -14,8 +14,8 @@ echo -e "                        kool stuff is happenning..."
 echo -e ""
 
 env=`drush vget --exact environment`
-if [ $env != 'dev' ]; then
-  echo -e "${RED}ERROR: Refusing to drop the current database. Please set environment to 'dev' (drush vset environment dev)\n";
+if [ "$env" != 'dev' ]; then
+  echo -e "${RED}ERROR: Refusing to destroy the current environment ($env). Please set environment to 'dev' (drush vset environment dev)\n";
   exit -1
 fi
 

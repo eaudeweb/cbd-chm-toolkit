@@ -6,6 +6,9 @@
 <?php //if ((($user->uid) && ($page['admin_shortcuts'])) || (($user->uid) && ($secondary_nav))): ?>
 <div id="admin-shortcuts" class="admin-shortcuts clearfix">
   <div class="container">
+    <?php if(variable_get('environment') == 'test'): ?>
+    <span class="label label-warning" style="position: absolute; left: 0; margin: 10px 0 0 10px;">Test website</span>
+    <?php endif; ?>
     <?php //print render($secondary_nav); ?>
     <?php print render($page['admin_shortcuts']); ?>
   </div>
@@ -166,7 +169,7 @@
   <div class="container">
 	 <div id="footer-content" class="row footer-content">
        <div class="footer-logo">
-         <img src="<?php print $logo; ?>" alt="<?php print $site_name; ?>" />
+         <img src="/files/chm-logo-new-web-en.png" alt="<?php print $site_name; ?>" />
        </div>
        <div class="footer-support">
          <div class="text"><?php print t('With the support of the'); ?></div>

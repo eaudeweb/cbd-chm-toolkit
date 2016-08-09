@@ -43,14 +43,16 @@ class ChmContentStatisticsBlock extends AbstractBlock {
     foreach ($types as $machine_name => $type) {
       if (variable_get("{$this->delta}_{$machine_name}_hide", 0) == 0) {
         if (!empty($count[$machine_name])) {
+          $label = variable_get("{$this->delta}_{$machine_name}_title");
           $url = variable_get("{$this->delta}_{$machine_name}_url");
           $icon = variable_get("{$this->delta}_{$machine_name}_icon");
+          $label = !empty($label) ? t($label) : t($type->name);
           if (!empty($icon)) {
-            $type->name = $icon . $type->name;
+            $label = $icon . $label;
           }
-          $name = !empty($url) ? l($type->name, $url, ['html' => TRUE]) : $type->name;
+          $name = !empty($url) ? l($label, $url, ['html' => TRUE]) : $label;
           $content['rows'][] = [
-            $count[$machine_name],
+            array('data' => $count[$machine_name], 'class' => 'col-xs-2'),
             $name,
           ];
         }
@@ -71,60 +73,54 @@ class ChmContentStatisticsBlock extends AbstractBlock {
         '#type' => 'checkbox',
         '#title' => 'Hide ' . $type->name,
       ];
+      $array["{$machine_name}_title"] = [
+        '#type' => 'textfield',
+        '#title' => 'Label',
+        '#size' => 30,
+        '#maxlength' => 128,
+      ];
       $array["{$machine_name}_url"] = [
         '#type' => 'textfield',
-        '#title' => $type->name . ' page url',
+        '#title' => 'Page URL',
         '#size' => 60,
         '#maxlength' => 128,
       ];
       $array["{$machine_name}_icon"] = [
         '#type' => 'textfield',
-        '#title' => $type->name . ' icon',
+        '#title' => ' Icon',
         '#size' => 60,
         '#maxlength' => 128,
-        '#description' => t("HTML can be entered here."),
+        '#description' => t("HTML can be entered here (ex. <span class='fa fa-video-o'></span>"),
       ];
     }
     return $array;
   }
 
   public function configure() {
-    $form = [];
-    $types = node_type_get_types();
-    $form['content_types_settings'] = [
+    $form = parent::configure();
+    $form[$this->delta] = [
       '#type' => 'fieldset',
       '#title' => 'Content types settings',
       '#collapsible' => FALSE,
+      '#weight' => -100,
     ];
+    $types = node_type_get_types();
     foreach ($types as $machine_name => $type) {
-      $form['content_types_settings'][$machine_name] = [
+      $form[$this->delta][$machine_name] = [
         '#type' => 'fieldset',
         '#title' => $type->name,
         '#collapsible' => TRUE,
         '#collapsed' => TRUE,
-        "{$this->delta}_{$machine_name}_hide" => [
-          '#type' => 'checkbox',
-          '#title' => 'Hide',
-          '#default_value' => variable_get("{$this->delta}_{$machine_name}_hide", 0),
-        ],
-        "{$this->delta}_{$machine_name}_url" => [
-          '#type' => 'textfield',
-          '#title' => 'Page url',
-          '#default_value' => variable_get("{$this->delta}_{$machine_name}_url", ''),
-          '#size' => 60,
-          '#maxlength' => 128,
-        ],
-        "{$this->delta}_{$machine_name}_icon" => [
-          '#type' => 'textfield',
-          '#title' => 'Icon',
-          '#default_value' => variable_get("{$this->delta}_{$machine_name}_icon", ''),
-          '#size' => 60,
-          '#maxlength' => 128,
-          '#description' => t("HTML can be entered here."),
-        ],
       ];
+      $form[$this->delta][$machine_name]["{$this->delta}_{$machine_name}_hide"] = $form["{$this->delta}_{$machine_name}_hide"];
+      $form[$this->delta][$machine_name]["{$this->delta}_{$machine_name}_title"] = $form["{$this->delta}_{$machine_name}_title"];
+      $form[$this->delta][$machine_name]["{$this->delta}_{$machine_name}_url"] = $form["{$this->delta}_{$machine_name}_url"];
+      $form[$this->delta][$machine_name]["{$this->delta}_{$machine_name}_icon"] = $form["{$this->delta}_{$machine_name}_icon"];
+      unset($form["{$this->delta}_{$machine_name}_hide"]);
+      unset($form["{$this->delta}_{$machine_name}_title"]);
+      unset($form["{$this->delta}_{$machine_name}_url"]);
+      unset($form["{$this->delta}_{$machine_name}_icon"]);
     }
     return $form;
   }
-
 }

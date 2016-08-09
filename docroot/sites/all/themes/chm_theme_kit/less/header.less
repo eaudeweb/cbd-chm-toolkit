@@ -51,28 +51,28 @@
     [dir="rtl"] &{
       float:right !important;
     }
-    margin-top: 0;
-    margin-bottom: 0;
+    margin: 10px 10px 10px 0;
     @media all and (max-width: 559px){
       width: 100%;
-      img{
+      img {
         margin: 0 auto;
         display: block;
       }
     }
   }
+
   .navbar-brand {
     display: block;
     float: left; //LTR
     [dir="rtl"] &{
       float:right;
     }
-    height: 124px;
+    height: 100px;
     padding: 0;
     // padding-top: 50px;
     // padding-bottom: 50px;
     // height: 124px;
-    line-height: 124px;
+    line-height: 100px;
     font-size: 30px;
     color: #000000;
     font-weight: bold;
@@ -91,12 +91,17 @@
     [dir="rtl"] &{
       float: left;
     }
-    margin: 47px 0 0 0;
+    margin: 32px 0 0 0;
     @media all and (max-width: @screen-sm-min) {
       display: none;
     }
   }
 }
+
+body.country-portal .logo img {
+  margin: 20px 20px 0 0 !important;
+}
+
 
 .navbar-container {
   background-color: @navbar-color;

@@ -174,17 +174,11 @@ function domain_views_views_data() {
   $data['domain_access']['table']['join']['node'] = array(
     'left_field' => 'nid',
     'field' => 'nid',
-    'extra' => array(
-      array('field' => 'realm', 'value' => 'domain_id', 'numeric' => FALSE),
-    ),
   );
   // Define the joins between {node_revision} and {domain_access}.
   $data['domain_access']['table']['join']['node_revision'] = array(
     'left_field' => 'nid',
     'field' => 'nid',
-    'extra' => array(
-      array('field' => 'realm', 'value' => 'domain_id', 'numeric' => FALSE),
-    ),
   );
   // Join the two domain tables.
   // Note that we only JOIN on domain_id records.
@@ -262,7 +256,7 @@ function domain_views_views_data() {
     'help' => t('Filters out nodes not available on current domain (published to current domain or all affiliates)'),
     'field' => array(
       'field' => 'gid',
-      'handler' => 'views_handler_field_boolean',
+      'handler' => 'domain_views_handler_field_domain_access_current_all',
       'click sortable' => TRUE,
     ),
     'filter' => array(
