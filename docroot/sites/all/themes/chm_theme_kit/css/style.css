@@ -9223,16 +9223,7 @@ body.maintenance-page #footer-container #footer {
   width: 40%;
   margin: 0 4.5% 4.5%;
   display: inline-block;
-  border: 2px solid #039749;
   position: relative;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-#block-menu-menu-information-menu .content ul.menu.nav > li:hover {
-  background-color: #039749;
-}
-#block-menu-menu-information-menu .content ul.menu.nav > li:hover > a {
-  color: white;
 }
 #block-menu-menu-information-menu .content ul.menu.nav > li > a {
   padding: 0;
@@ -9248,6 +9239,20 @@ body.maintenance-page #footer-container #footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border: 2px solid #039749;
+  cursor: pointer;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -ms-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  -o-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
+}
+#block-menu-menu-information-menu .content ul.menu.nav > li > a:hover,
+#block-menu-menu-information-menu .content ul.menu.nav > li > a:focus,
+#block-menu-menu-information-menu .content ul.menu.nav > li > a:active {
+  background-color: #039749;
+  color: white;
+  outline: #039749;
 }
 #block-menu-menu-information-menu .content ul.menu.nav > li > a:before {
   position: relative;
