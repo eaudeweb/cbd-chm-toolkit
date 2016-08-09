@@ -9290,6 +9290,80 @@ body.country-portal .logo img {
     content: "\a\a";
   }
 }
+#block-menu-menu-information-menu {
+  width: 100%;
+}
+#block-menu-menu-information-menu .content ul.menu.nav > li {
+  width: 40%;
+  margin: 0 4.5% 4.5%;
+  display: inline-block;
+  position: relative;
+}
+#block-menu-menu-information-menu .content ul.menu.nav > li > a {
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 14px;
+  font-family: "Open Sans";
+  font-weight: 400;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid #039749;
+  cursor: pointer;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -ms-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  -o-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
+}
+#block-menu-menu-information-menu .content ul.menu.nav > li > a:hover,
+#block-menu-menu-information-menu .content ul.menu.nav > li > a:focus,
+#block-menu-menu-information-menu .content ul.menu.nav > li > a:active {
+  background-color: #039749;
+  color: white;
+  outline: #039749;
+}
+#block-menu-menu-information-menu .content ul.menu.nav > li > a:before {
+  position: relative;
+  display: block;
+  text-align: center;
+  font-family: "FontAwesome";
+  font-size: 300%;
+  margin-bottom: 5px;
+}
+#block-menu-menu-information-menu .content ul.menu.nav > li:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+@media all and (min-width: 480px) {
+  #block-menu-menu-information-menu .content ul.menu.nav > li {
+    width: 30%;
+    margin: 0 1.4% 1.4%;
+  }
+  #block-menu-menu-information-menu .content ul.menu.nav > li > a {
+    font-size: 16px;
+  }
+}
+@media all and (min-width: 768px) {
+  #block-menu-menu-information-menu .content ul.menu.nav > li {
+    width: 20%;
+    margin: 0 2.3% 2.3%;
+  }
+  #block-menu-menu-information-menu .content ul.menu.nav > li > a {
+    font-size: 18px;
+  }
+}
+@media all and (min-width: 992px) {
+  #block-menu-menu-information-menu .content ul.menu.nav > li > a {
+    font-size: 20px;
+  }
+}
 /* Species listing */
 #block-views-species-block-1 .content {
   margin-top: 0;
