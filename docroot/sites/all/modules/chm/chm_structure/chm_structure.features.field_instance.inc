@@ -2005,7 +2005,7 @@ function chm_structure_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'alt_field' => 1,
-      'default_image' => 0,
+      'default_image' => 440,
       'entity_translation_sync' => 0,
       'file_directory' => '[current-domain:machine-name]/images/events',
       'file_extensions' => 'png gif jpg jpeg',
@@ -3047,7 +3047,7 @@ function chm_structure_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'alt_field' => 1,
-      'default_image' => 0,
+      'default_image' => 439,
       'entity_translation_sync' => 0,
       'file_directory' => '[current-domain:machine-name]/images/news',
       'file_extensions' => 'png gif jpg jpeg',
