@@ -8363,6 +8363,13 @@ body.maintenance-page #footer-container #footer {
   padding-top: 80px;
   padding-bottom: 80px;
 }
+.btn {
+  background-color: #0081d2;
+}
+.btn:hover {
+  background-color: #0071B8;
+  color: white;
+}
 .region-admin-shortcuts #block-system-user-menu .menu:before {
   display: inline-block;
 }
