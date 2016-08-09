@@ -1298,18 +1298,10 @@ function chm_views_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
     'title' => 'title',
-    'field_country' => 'field_country',
   );
   $handler->display->display_options['style_options']['default'] = 'title';
   $handler->display->display_options['style_options']['info'] = array(
     'title' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_country' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -1327,11 +1319,13 @@ function chm_views_views_default_views() {
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Content: Country */
-  $handler->display->display_options['fields']['field_country']['id'] = 'field_country';
-  $handler->display->display_options['fields']['field_country']['table'] = 'field_data_field_country';
-  $handler->display->display_options['fields']['field_country']['field'] = 'field_country';
-  $handler->display->display_options['fields']['field_country']['type'] = 'taxonomy_term_reference_plain';
+  /* Field: Content: Countries */
+  $handler->display->display_options['fields']['field_countries']['id'] = 'field_countries';
+  $handler->display->display_options['fields']['field_countries']['table'] = 'field_data_field_countries';
+  $handler->display->display_options['fields']['field_countries']['field'] = 'field_countries';
+  $handler->display->display_options['fields']['field_countries']['label'] = 'Country';
+  $handler->display->display_options['fields']['field_countries']['type'] = 'i18n_taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_countries']['delta_offset'] = '0';
   /* Field: Content: Email */
   $handler->display->display_options['fields']['field_email']['id'] = 'field_email';
   $handler->display->display_options['fields']['field_email']['table'] = 'field_data_field_email';
@@ -1369,24 +1363,11 @@ function chm_views_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'cbd_nfp' => 'cbd_nfp',
   );
-  /* Filter criterion: Content: Country (field_country) */
-  $handler->display->display_options['filters']['field_country_tid']['id'] = 'field_country_tid';
-  $handler->display->display_options['filters']['field_country_tid']['table'] = 'field_data_field_country';
-  $handler->display->display_options['filters']['field_country_tid']['field'] = 'field_country_tid';
-  $handler->display->display_options['filters']['field_country_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_country_tid']['expose']['operator_id'] = 'field_country_tid_op';
-  $handler->display->display_options['filters']['field_country_tid']['expose']['label'] = 'Country';
-  $handler->display->display_options['filters']['field_country_tid']['expose']['operator'] = 'field_country_tid_op';
-  $handler->display->display_options['filters']['field_country_tid']['expose']['identifier'] = 'field_country_tid';
-  $handler->display->display_options['filters']['field_country_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-  );
-  $handler->display->display_options['filters']['field_country_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_country_tid']['vocabulary'] = 'countries';
+  /* Filter criterion: Domain Access: Available on current domain */
+  $handler->display->display_options['filters']['current_all']['id'] = 'current_all';
+  $handler->display->display_options['filters']['current_all']['table'] = 'domain_access';
+  $handler->display->display_options['filters']['current_all']['field'] = 'current_all';
+  $handler->display->display_options['filters']['current_all']['value'] = '1';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -1432,29 +1413,28 @@ function chm_views_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'cbd_nfp' => 'cbd_nfp',
   );
-  /* Filter criterion: Content: Country (field_country) */
-  $handler->display->display_options['filters']['field_country_tid']['id'] = 'field_country_tid';
-  $handler->display->display_options['filters']['field_country_tid']['table'] = 'field_data_field_country';
-  $handler->display->display_options['filters']['field_country_tid']['field'] = 'field_country_tid';
-  $handler->display->display_options['filters']['field_country_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_country_tid']['expose']['operator_id'] = 'field_country_tid_op';
-  $handler->display->display_options['filters']['field_country_tid']['expose']['label'] = 'Country';
-  $handler->display->display_options['filters']['field_country_tid']['expose']['operator'] = 'field_country_tid_op';
-  $handler->display->display_options['filters']['field_country_tid']['expose']['identifier'] = 'field_country_tid';
-  $handler->display->display_options['filters']['field_country_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-  );
-  $handler->display->display_options['filters']['field_country_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_country_tid']['vocabulary'] = 'countries';
   /* Filter criterion: Domain Access: Available on current domain */
   $handler->display->display_options['filters']['current_all']['id'] = 'current_all';
   $handler->display->display_options['filters']['current_all']['table'] = 'domain_access';
   $handler->display->display_options['filters']['current_all']['field'] = 'current_all';
   $handler->display->display_options['filters']['current_all']['value'] = '1';
+  /* Filter criterion: Content: Countries (field_countries) */
+  $handler->display->display_options['filters']['field_countries_tid']['id'] = 'field_countries_tid';
+  $handler->display->display_options['filters']['field_countries_tid']['table'] = 'field_data_field_countries';
+  $handler->display->display_options['filters']['field_countries_tid']['field'] = 'field_countries_tid';
+  $handler->display->display_options['filters']['field_countries_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_countries_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_countries_tid']['expose']['operator_id'] = 'field_countries_tid_op';
+  $handler->display->display_options['filters']['field_countries_tid']['expose']['label'] = 'Country';
+  $handler->display->display_options['filters']['field_countries_tid']['expose']['operator'] = 'field_countries_tid_op';
+  $handler->display->display_options['filters']['field_countries_tid']['expose']['identifier'] = 'field_countries_tid';
+  $handler->display->display_options['filters']['field_countries_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+  );
+  $handler->display->display_options['filters']['field_countries_tid']['vocabulary'] = 'countries';
   $translatables['national_focal_points'] = array(
     t('Master'),
     t('National Focal Points Administration'),

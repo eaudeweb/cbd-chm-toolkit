@@ -1,9 +1,9 @@
 name = CHM Search
-project = chm_search
 description = The search functionality
 core = 7.x
 package = CHM
 version = 7.x-1.1
+project = chm_search
 dependencies[] = ctools
 dependencies[] = entity
 dependencies[] = search_api

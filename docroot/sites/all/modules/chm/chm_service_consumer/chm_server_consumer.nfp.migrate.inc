@@ -24,8 +24,8 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
     $this->addFieldMapping('title', 'title');
     $this->addFieldMapping('field_email', 'email');
     $this->addFieldMapping('field_fax_numbers', 'fax');
-    $this->addFieldMapping('field_country', 'country');
-    $this->addFieldMapping('field_country:source_type')->defaultValue('tid');
+    $this->addFieldMapping('field_countries', 'country');
+    $this->addFieldMapping('field_countries:source_type')->defaultValue('tid');
     $this->addFieldMapping('field_address', 'address');
     $this->addFieldMapping('field_organization_name', 'institution');
     $this->addFieldMapping('field_department', 'department');
@@ -46,7 +46,6 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
       'body', 'body:summary', 'body:format',
       'field_url:title', 'field_url:attributes', 'field_url:language',
       'field_nfp_type:create_term', 'field_nfp_type:ignore_case',
-      'field_country:create_term', 'field_country:ignore_case',
 
       'metatag_title', 'metatag_description', 'metatag_abstract', 'metatag_keywords',
       'metatag_robots', 'metatag_news_keywords', 'metatag_standout', 'metatag_rating',
