@@ -675,6 +675,200 @@
     }
   }
 }
+.view-video-library .view-content {
+  .views-row {
+    display: block;
+    padding: 8vw;
+    margin-bottom: 1.5em;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px 4px 2px 2px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    pointer-events: none;
+    position: relative;
+    z-index: 10;
+    & > * {
+      position: relative;
+      z-index: 20;
+      pointer-events: all;
+    }
+
+    &:after {
+      content: '\f107';
+      position: absolute;
+      font-family: FontAwesome;
+      font-size: 1.5em;
+      color: @navbar-color;
+      bottom: 0;
+      text-align: center;
+      width: 100%;
+      margin: 0 -8vw 0;
+      cursor: pointer;
+      pointer-events: all;
+    }
+
+    // &:hover,
+    &:focus,
+    &:active {
+      outline: none;
+      &:after {
+        content: '\f106';
+      }
+      .views-field.views-field-body {
+        max-height: 20em; 
+        
+        &:after {
+          display: none;
+        }
+      }
+    }
+
+    .views-field.views-field-field-video-link-1 {
+      margin: -8vw -8vw 1em;
+    }
+
+    .views-field.views-field-title {
+      font-size: 1.3em;  
+      a {
+        // display: block;
+        color: @navbar-color;
+        font-weight: bold;
+      }
+    }
+
+    .views-field.views-field-body {
+      font-size: 14px;
+      max-height: 5em;
+      overflow: hidden;
+      -webkit-transition: max-height .3s; 
+      -moz-transition: max-height .3s; 
+      -o-transition: max-height .3s; 
+      transition: max-height .3s; 
+      position: relative;
+      pointer-events: none;
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 2em;
+        width: 100%;
+        //* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f5f5f5+100&0+0,1+100 */
+        background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(245,245,245,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#f5f5f5',GradientType=0 ); /* IE6-9 */
+
+
+      }
+    }
+  }
+
+  @media all and (min-width: 650px) {
+    .views-row {
+      padding: 1.5em;
+      // padding-bottom: 0;
+      overflow: hidden;
+      z-index: 20;
+      border-radius: 4px 2px 2px 4px;
+      &:after {
+        content: '' !important;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 3em;
+        width: 100%;
+        z-index: 25;
+        margin: 0;
+        cursor: initial;
+        //* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f5f5f5+100&0+0,1+100 */
+        background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(245,245,245,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#f5f5f5',GradientType=0 ); /* IE6-9 */
+      }
+      &:focus, 
+      &:active {
+        content: '';
+      }
+
+      .views-field.views-field-field-video-link-1 {
+        margin: -1.5em 0 -1.5em -1.5em;
+        width: 40%;
+        float: left;
+        margin-right: 1em;
+        z-index: 30;
+      }
+      .views-field.views-field-title {
+        // font-size: 1.4em;
+      }
+      .views-field.views-field-body {
+        max-height: 4.6em;
+        overflow: hidden;
+        position: relative;
+        transition: none;
+        
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        &:after {
+          display: none;         
+        }
+      }
+
+    }
+  }
+
+  @media all and (min-width: @screen-md-min){
+    .views-row {
+      padding: 2em;
+     
+      &:focus, 
+      &:active {
+        content: '';
+      }
+
+      .views-field.views-field-field-video-link-1 {
+        margin: -2em 0 -2em -2em;
+        width: 40%;
+        margin-right: 2em;
+      }
+      .views-field.views-field-title {
+        font-size: 1.4em;
+      }
+      .views-field.views-field-body {
+        max-height: 7em;
+        -webkit-line-clamp: 5;
+      }
+
+    }
+  }
+ 
+  @media all and (min-width: @screen-lg-min) {
+    .views-row {
+      .views-field.views-field-body {
+        -webkit-line-clamp: initial;
+      }
+    }
+  }
+
+  .player {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+  }
+  
+  .player iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
 #block-system-main{
   margin-bottom: 1em;
 }
