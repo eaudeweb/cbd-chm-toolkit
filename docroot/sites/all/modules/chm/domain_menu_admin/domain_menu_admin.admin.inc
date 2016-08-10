@@ -11,7 +11,7 @@ function domain_menu_admin_overview_page() {
   drupal_alter('user_is_administrator', $is_administrator);
   foreach ($result as $menu) {
     $menu_domain = domain_menu_admin_assignment($menu['menu_name']);
-    if ($user->uid == 1  || in_array($menu_domain, $user->domain_user) || $is_administrator) {
+    if ($user->uid == 1  || $is_administrator || in_array($menu_domain, $user->domain_user)) {
       $row = array(
         theme('menu_admin_overview', array(
           'title' => $menu['title'],

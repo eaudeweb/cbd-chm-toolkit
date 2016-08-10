@@ -10,7 +10,25 @@ function domain_menu_admin_menu_alter(&$items) {
   $items['admin/structure/menu']['file'] = 'domain_menu_admin.admin.inc';
   $items['admin/structure/menu']['access arguments'] = array('administer menu');
 
+  $items['admin/structure/menu/settings']['access callback'] = 'domain_menu_admin_access';
+
+  $items['admin/structure/menu/manage/%menu']['access callback'] = 'domain_menu_admin_access';
+  $items['admin/structure/menu/manage/%menu']['access arguments'] = array('administer menu', 4);
 }
+
+
+/**
+ * Retrieve the domain associated to a menu.
+ *
+ * @param string $menu_name
+ *   Menu machine name
+ * @return int|NULL
+ *   The domain ID or NULL if menu is not associated to a domain
+ */
+function domain_menu_admin_assignment($menu_name) {
+  return db_select('domain_menu_admin')->fields(NULL, array('domain_id'))->condition('menu_name', $menu_name)->execute()->fetchField();
+}
+
 
 /**
  * Implements hook_form_alter().
@@ -101,6 +119,30 @@ function domain_menu_admin_form_submit($form, $form_state) {
 }
 
 
-function domain_menu_admin_assignment($menu_name) {
-  return db_select('domain_menu_admin')->fields(NULL, array('domain_id'))->condition('menu_name', $menu_name)->execute()->fetchField();
+/**
+ * Custom menu access.
+ *
+ * @param string $permission
+ *   Access permission
+ * @param array $menu
+ *   Menu to check access for
+ * @return bool
+ *   TRUE if operation is allowed
+ */
+function domain_menu_admin_access($permission, $menu = NULL) {
+  global $user;
+  domain_user_set($user);
+  if (user_access($permission)) {
+    $is_administrator = FALSE;
+    drupal_alter('user_is_administrator', $is_administrator);
+    if (empty($menu)) {
+      // Check user is admin or administrator
+      return $user->uid == 1 || $is_administrator;
+    }
+    else {
+      $menu_domain = domain_menu_admin_assignment($menu['menu_name']);
+      return $user->uid == 1 || $is_administrator || in_array($menu_domain, $user->domain_user);
+    }
+  }
+  return FALSE;
 }
