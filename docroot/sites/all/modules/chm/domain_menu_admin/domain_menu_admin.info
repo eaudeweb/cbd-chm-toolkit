@@ -1,0 +1,7 @@
+name = Domain menu administration
+description = Assign menu to doma ins and allow domain webmasters to customize their menus
+package = CHM
+type = module
+version = 7.x-1.x
+core = 7.x
+dependencies[] = domain

@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ *
+ * @inheritdoc
+ */
+function domain_menu_admin_schema() {
+  $schema['domain_menu_admin'] = array(
+    'description' => 'Stores domain information for each menu',
+    'fields' => array(
+      'menu_name' => array('type' => 'varchar', 'length' => '255', 'not null' => TRUE, 'description' => 'Menu machine name'),
+      'domain_id' => array('type' => 'varchar', 'length' => '255', 'not null' => TRUE, 'description' => 'Domain ID'),
+    ),
+    'primary key' => array('menu_name', 'domain_id'),
+    'indexes' => array(),
+    'foreign_keys' => array(
+      'menu_name' => array('menu_custom' => 'menu_name'),
+    ),
+  );
+  return $schema;
+}

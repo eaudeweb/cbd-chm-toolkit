@@ -1,0 +1,62 @@
+<?php
+
+
+/**
+ * Implements hook_form_alter().
+ */
+function domain_menu_admin_form_menu_edit_menu_alter(&$form, &$form_state) {
+  // dpm($form);
+  $options = array();
+  foreach (domain_domains() as $data) {
+    // The domain must be valid.
+    if ($data['valid'] || user_access('access inactive domains')) {
+      // Checkboxes must be filtered, select lists should not.
+      $options[$data['domain_id']] = empty($format) ? check_plain($data['sitename']) : $data['sitename'];
+    }
+  }
+  if (user_access('set domain access')) {
+    $menu_name = $form['menu_name']['#default_value'];
+    $form['domain'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Domain access options'),
+      '#collapsible' => TRUE,
+      '#collapsed' => FALSE,
+      '#group' => variable_get('domain_vertical_tab', 0) ? 'additional_settings' : '',
+    );
+    $form['domain']['domains'] = array(
+      '#type' => 'select',
+      '#title' => t('Assign this menu to the following domain'),
+      '#options' => $options,
+      '#empty_value' => '',
+      '#empty_option' => '-- Not assigned --',
+      '#description' => t('Allow the webmasters from this domain to edit the menu.'),
+      '#default_value' => domain_menu_admin_assignment($menu_name),
+    );
+  }
+  $form['#submit'][] = 'domain_menu_admin_form_submit';
+}
+
+
+function domain_menu_admin_form_submit($form, $form_state) {
+  $values = $form_state['values'];
+  $domain_id = $values['domains'];
+  $menu_name = $values['menu_name'];
+  if (empty($domain)) {
+    db_delete('domain_menu_admin')->condition('menu_name', $menu_name);
+  }
+  db_merge('domain_menu_admin')
+    ->key(array(
+      'menu_name' => $menu_name,
+      'domain_id' => $domain_id
+    ))
+    ->fields(array(
+      'menu_name' => $menu_name,
+      'domain_id' => $domain_id
+    ))
+    ->execute();
+}
+
+
+function domain_menu_admin_assignment($menu_name) {
+  return db_select('domain_menu_admin')->fields(NULL, array('domain_id'))->condition('menu_name', $menu_name)->execute()->fetchField();
+}
