@@ -107,7 +107,10 @@ function domain_menu_admin_form_validate($form, $form_state) {
 function domain_menu_admin_form_submit($form, $form_state) {
   $values = $form_state['values'];
   $domain_id = $values['domains'];
-  $menu_name = 'menu-' . $values['menu_name'];
+  $menu_name = $values['menu_name'];
+  if (!empty($form['#insert'])) {
+    $menu_name = 'menu-' . $values['menu_name'];
+  }
   if (empty($domain)) {
     db_delete('domain_menu_admin')->condition('menu_name', $menu_name);
   }
