@@ -9259,7 +9259,7 @@ body.country-portal .logo img {
 }
 .view-video-library .view-content .views-row:focus .views-field.views-field-body,
 .view-video-library .view-content .views-row:active .views-field.views-field-body {
-  max-height: 20em;
+  max-height: 100%;
 }
 .view-video-library .view-content .views-row:focus .views-field.views-field-body:after,
 .view-video-library .view-content .views-row:active .views-field.views-field-body:after {
@@ -9285,6 +9285,9 @@ body.country-portal .logo img {
   transition: max-height 0.3s;
   position: relative;
   pointer-events: none;
+}
+.view-video-library .view-content .views-row .views-field.views-field-body a {
+  pointer-events: all;
 }
 .view-video-library .view-content .views-row .views-field.views-field-body:after {
   content: '';
@@ -9340,7 +9343,7 @@ body.country-portal .logo img {
     z-index: 30;
   }
   .view-video-library .view-content .views-row .views-field.views-field-body {
-    max-height: 4.6em;
+    max-height: 4.8em;
     overflow: hidden;
     position: relative;
     transition: none;
@@ -9376,6 +9379,7 @@ body.country-portal .logo img {
 @media all and (min-width: 1200px) {
   .view-video-library .view-content .views-row .views-field.views-field-body {
     -webkit-line-clamp: initial;
+    max-height: 100%;
   }
 }
 .view-video-library .view-content .player {

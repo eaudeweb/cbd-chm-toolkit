@@ -716,7 +716,7 @@
         content: '\f106';
       }
       .views-field.views-field-body {
-        max-height: 20em; 
+        max-height: 100%; 
         
         &:after {
           display: none;
@@ -747,6 +747,9 @@
       transition: max-height .3s; 
       position: relative;
       pointer-events: none;
+      a {
+        pointer-events: all;
+      }
       &:after {
         content: '';
         position: absolute;
@@ -804,7 +807,7 @@
         // font-size: 1.4em;
       }
       .views-field.views-field-body {
-        max-height: 4.6em;
+        max-height: 4.8em;
         overflow: hidden;
         position: relative;
         transition: none;
@@ -849,6 +852,7 @@
     .views-row {
       .views-field.views-field-body {
         -webkit-line-clamp: initial;
+        max-height: 100%;
       }
     }
   }
