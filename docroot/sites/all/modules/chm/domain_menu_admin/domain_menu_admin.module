@@ -8,7 +8,7 @@ function domain_menu_admin_menu_alter(&$items) {
   $items['admin/structure/menu']['page callback'] = 'domain_menu_admin_overview_page';
   $items['admin/structure/menu']['module'] = 'domain_menu_admin';
   $items['admin/structure/menu']['file'] = 'domain_menu_admin.admin.inc';
-  $items['admin/structure/menu']['access arguments'] = array('configure chm website settings');
+  $items['admin/structure/menu']['access arguments'] = array('administer menu');
 
 }
 

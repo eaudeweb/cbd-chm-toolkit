@@ -12,6 +12,7 @@ require_once dirname(__FILE__) . '/blocks/ChmFooterCountryLinksBlock.php';
 require_once dirname(__FILE__) . '/forms/base.inc';
 
 define('USER_WALLE', 43);
+define('ROLE_ADMINISTRATOR', 'administrator');
 
 /**
  * Implements hook_permission().
@@ -324,4 +325,13 @@ function ptk_base_admin_variables() {
   $realm_key = _domain_variable_realm_key($domain);
   module_load_include('form.inc', 'variable_realm');
   return drupal_get_form('variable_realm_edit_variables_form', 'domain', $realm_key);
+}
+
+
+/**
+ * Implements hook_user_is_administrator().
+ */
+function ptk_base_user_is_administrator_alter(&$is_administrator) {
+  global $user;
+  $is_administrator = in_array(ROLE_ADMINISTRATOR, $user->roles);
 }
