@@ -1,11 +1,23 @@
 <?php
 
+/**
+ * Implements hook_menu_alter().
+ */
+function domain_menu_admin_menu_alter(&$items) {
+  // alter admin/structure/menu
+  $items['admin/structure/menu']['page callback'] = 'domain_menu_admin_overview_page';
+  $items['admin/structure/menu']['module'] = 'domain_menu_admin';
+  $items['admin/structure/menu']['file'] = 'domain_menu_admin.admin.inc';
+  $items['admin/structure/menu']['access arguments'] = array('configure chm website settings');
+
+}
 
 /**
  * Implements hook_form_alter().
  */
 function domain_menu_admin_form_menu_edit_menu_alter(&$form, &$form_state) {
-  // dpm($form);
+  global $user;
+  domain_user_set($user);
   $options = array();
   foreach (domain_domains() as $data) {
     // The domain must be valid.
@@ -33,7 +45,39 @@ function domain_menu_admin_form_menu_edit_menu_alter(&$form, &$form_state) {
       '#default_value' => domain_menu_admin_assignment($menu_name),
     );
   }
-  $form['#submit'][] = 'domain_menu_admin_form_submit';
+  else {
+    $options = array();
+    foreach ($user->domain_user as $domain_id) {
+      $domain = domain_lookup($domain_id);
+      $options[$domain_id] = check_plain($domain['sitename']);
+    }
+    $form['domain'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Domain access options'),
+      '#collapsible' => TRUE,
+      '#collapsed' => FALSE,
+      '#group' => variable_get('domain_vertical_tab', 0) ? 'additional_settings' : '',
+    );
+    $form['domain']['domains'] = array(
+      '#type' => 'select',
+      '#title' => t('Assign this menu to the following domain'),
+      '#options' => $options,
+      '#description' => t('Allow the webmasters from this domain to edit the menu.'),
+    );
+  }
+  $form['#validate'][] = 'domain_menu_admin_form_validate';
+  array_unshift($form['#submit'], 'domain_menu_admin_form_submit');
+}
+
+
+function domain_menu_admin_form_validate($form, $form_state) {
+  global $user;
+  domain_user_set($user);
+  $values = $form_state['values'];
+  $domain_id = $values['domains'];
+  if (!empty($domain_id) && !in_array($domain_id, $user->domain_user)) {
+    form_set_error('domains', t('You are not allowed to assign the menu to that domain'));
+  }
 }
 
 
