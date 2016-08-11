@@ -715,7 +715,7 @@
       &:after {
         content: '\f106';
       }
-      .views-field.views-field-body {
+      .views-field-body {
         max-height: 100%; 
         
         &:after {
@@ -769,7 +769,19 @@
       }
     }
   }
-
+  
+  @media all and (max-width: 649px) {
+    .views-row {
+      &:focus,
+      &:active {
+        .views-field.views-field-body {
+          max-height: 100%; 
+          
+        }
+      }
+    }
+  }
+  
   @media all and (min-width: 650px) {
     .views-row {
       padding: 1.5em;
@@ -796,6 +808,9 @@
       &:focus, 
       &:active {
         content: '';
+        .views-field.views-field-body:after { 
+          display: initial;
+        }
       }
 
       .views-field.views-field-field-video-link-1 {
