@@ -8407,7 +8407,7 @@ body.maintenance-page #footer-container #footer {
 [dir="rtl"] #page-header .logo {
   float: right !important;
 }
-@media all and (max-width: 559px) {
+@media all and (max-width: 767px) {
   #page-header .logo {
     width: 100%;
   }
@@ -8429,7 +8429,7 @@ body.maintenance-page #footer-container #footer {
 [dir="rtl"] #page-header .navbar-brand {
   float: right;
 }
-@media all and (max-width: 559px) {
+@media all and (max-width: 767px) {
   #page-header .navbar-brand {
     padding-bottom: 25px;
     line-height: 24px;
