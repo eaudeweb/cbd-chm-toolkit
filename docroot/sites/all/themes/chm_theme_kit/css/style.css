@@ -9302,6 +9302,7 @@ body.country-portal .logo img {
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#f5f5f5', GradientType=0);
   /* IE6-9 */
+  pointer-events: none;
 }
 @media all and (max-width: 649px) {
   .view-video-library .view-content .views-row:focus .views-field.views-field-body,
@@ -9334,6 +9335,7 @@ body.country-portal .logo img {
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#f5f5f5', GradientType=0);
     /* IE6-9 */
+    pointer-events: none;
   }
   .view-video-library .view-content .views-row:focus,
   .view-video-library .view-content .views-row:active {
