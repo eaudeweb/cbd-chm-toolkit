@@ -738,13 +738,15 @@
     }
 
     .views-field.views-field-body {
+      padding: 0;
       font-size: 14px;
-      max-height: 5em;
+      min-height: ~"calc(2 * @{line-height-em})";
+      max-height: ~"calc(3 * @{line-height-em})";
       overflow: hidden;
-      -webkit-transition: max-height .3s; 
-      -moz-transition: max-height .3s; 
-      -o-transition: max-height .3s; 
-      transition: max-height .3s; 
+      // -webkit-transition: max-height .3s; 
+      // -moz-transition: max-height .3s; 
+      // -o-transition: max-height .3s; 
+      // transition: max-height .3s; 
       position: relative;
       pointer-events: none;
       a {
@@ -805,24 +807,55 @@
       }
       .views-field.views-field-title {
         // font-size: 1.4em;
+        padding-bottom: .5em;
       }
       .views-field.views-field-body {
-        max-height: 4.8em;
+        // max-height: 4.8em;
+        min-height: ~"calc(3 * @{line-height-em})";
+        max-height: ~"calc(4 * @{line-height-em})";
         overflow: hidden;
         position: relative;
         transition: none;
+        &:hover {
+          max-height: 100%;
+        }
         
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 3;
         &:after {
-          display: none;         
+          content: "";
+          text-align: right;
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          left: auto;
+          width: 70%;
+          height: @line-height-em;
+          /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f5f5f5+100&0+0,1+100 */
+          background: -moz-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(245,245,245,1) 100%); /* FF3.6-15 */
+          background: -webkit-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* Chrome10-25,Safari5.1-6 */
+          background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#f5f5f5',GradientType=1 ); /* IE6-9 */
+
         }
       }
 
     }
   }
-
+  @media all and (min-width: @screen-xs-min) {
+    .views-row {
+      .views-field.views-field-body {
+        min-height: ~"calc(1 * @{line-height-em})";
+        max-height: ~"calc(2 * @{line-height-em})";
+      }
+    }
+  }
+  @media all and (min-width: @screen-sm-min) {
+    .views-row {
+      .views-field.views-field-body {
+        min-height: ~"calc(2 * @{line-height-em})";
+        max-height: ~"calc(3 * @{line-height-em})";
+      }
+    }
+  }
   @media all and (min-width: @screen-md-min){
     .views-row {
       padding: 2em;
@@ -839,10 +872,11 @@
       }
       .views-field.views-field-title {
         font-size: 1.4em;
+        padding-bottom: 1em;
       }
       .views-field.views-field-body {
-        max-height: 7em;
-        -webkit-line-clamp: 5;
+        min-height: ~"calc(4 * @{line-height-em})";
+        max-height: ~"calc(5 * @{line-height-em})";
       }
 
     }
@@ -851,12 +885,17 @@
   @media all and (min-width: @screen-lg-min) {
     .views-row {
       .views-field.views-field-body {
-        -webkit-line-clamp: initial;
-        max-height: 100%;
+        // -webkit-line-clamp: initial;
+        min-height: ~"calc(6 * @{line-height-em})";
+        max-height: ~"calc(7 * @{line-height-em})";
+        
+      }
+      .views-field.views-field-title {
+        font-size: 1.5em;
       }
     }
   }
-
+  
   .player {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
