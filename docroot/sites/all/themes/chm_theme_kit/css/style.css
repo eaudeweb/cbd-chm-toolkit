@@ -9234,6 +9234,9 @@ body.country-portal .logo img {
 .view-projects .view-content .views-row .views-field.views-field-field-image img {
   width: 100%;
 }
+.view-projects .view-content .views-row.no-image .views-field.views-field-field-image {
+  display: none;
+}
 .view-projects .view-content .views-row .views-field.views-field-title-field a {
   color: #039749;
   font-weight: bold;
