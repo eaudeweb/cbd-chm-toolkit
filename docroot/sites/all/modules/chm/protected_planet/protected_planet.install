@@ -1,0 +1,47 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ *
+ */
+function protectedplanet_schema() {
+  $schema = array();
+  $schema['protected_planet_entity'] = array(
+    'description' => 'The base table for protected planet entities',
+    'fields' => array(
+      'eid' => array(
+        'description' => 'Primary key of the entity.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'bundle' => array(
+        'description' => 'Entity bundle',
+        'type' => 'text',
+        'size' => 'medium',
+        'not null' => TRUE,
+      ),
+      'created' => array(
+        'description' => 'The Unix timestamp of the entity creation time.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    ),
+    'primary key' => array('eid'),
+  );
+
+  return $schema;
+}
+
+/**
+ * Implements hook_uninstall().
+ *
+ * At uninstall time we'll notify field.module that the entity was deleted
+ * so that attached fields can be cleaned up.
+ *
+ * @ingroup entity_example
+ */
+function entity_example_uninstall() {
+  field_attach_delete_bundle('protected_planet', 'protected_area');
+}

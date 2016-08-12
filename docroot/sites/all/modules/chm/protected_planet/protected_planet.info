@@ -1,0 +1,7 @@
+name = Protected planet integration
+description = Integrate with data offered by the protectedplanet.net project, hosted by WCMC
+core = 7.x
+package = CHM
+version = 7.x-1.0
+dependencies[] = migrate
+files[] = protectedplanet.pa.migrate.inc
