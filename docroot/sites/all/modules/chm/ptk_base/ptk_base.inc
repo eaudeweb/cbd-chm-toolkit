@@ -178,6 +178,9 @@ class PTK {
         if ($f_day != $t_day) {
           return array(date($cfg['from_day'], $from), $to_str);
         }
+        else {
+          return array(date($cfg['from_full'], $from), NULL);
+        }
       }
     }
     return array(NULL, NULL);
