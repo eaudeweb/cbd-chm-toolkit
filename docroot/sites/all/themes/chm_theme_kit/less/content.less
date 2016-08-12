@@ -939,6 +939,14 @@
     border-radius: 5px;
     overflow: hidden;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    
+    &.no-image {
+      padding-bottom: 10vw;
+      .views-field.views-field-field-image {
+        display: none;
+      } 
+    }
+
     .views-field.views-field-field-image {
       margin: -10vw -10vw 1em -10vw;
       img{
@@ -955,6 +963,12 @@
     .views-field.views-field-field-dates {
       font-size: 13px;
       color: #777;
+      .field-content {
+        display: inline;
+        .form-item {
+          display: inline;
+        }
+      }
     }
     .views-field.views-field-body {
       padding: 0;
@@ -1008,6 +1022,9 @@
     .views-row {
       padding: 2em;
       padding-bottom: 0;
+      &.no-image {
+        padding-bottom: 2em;
+      }
       .views-field.views-field-field-image {
         margin: -2em -2em 1em -2em;
         // margin: 0;

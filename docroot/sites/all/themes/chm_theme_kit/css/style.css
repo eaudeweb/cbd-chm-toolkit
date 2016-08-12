@@ -9463,6 +9463,12 @@ body.country-portal .logo img {
   overflow: hidden;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
 }
+.view-projects .view-content .views-row.no-image {
+  padding-bottom: 10vw;
+}
+.view-projects .view-content .views-row.no-image .views-field.views-field-field-image {
+  display: none;
+}
 .view-projects .view-content .views-row .views-field.views-field-field-image {
   margin: -10vw -10vw 1em -10vw;
 }
@@ -9477,6 +9483,12 @@ body.country-portal .logo img {
 .view-projects .view-content .views-row .views-field.views-field-field-dates {
   font-size: 13px;
   color: #777;
+}
+.view-projects .view-content .views-row .views-field.views-field-field-dates .field-content {
+  display: inline;
+}
+.view-projects .view-content .views-row .views-field.views-field-field-dates .field-content .form-item {
+  display: inline;
 }
 .view-projects .view-content .views-row .views-field.views-field-body {
   padding: 0;
@@ -9530,6 +9542,9 @@ body.country-portal .logo img {
   .view-projects .view-content .views-row {
     padding: 2em;
     padding-bottom: 0;
+  }
+  .view-projects .view-content .views-row.no-image {
+    padding-bottom: 2em;
   }
   .view-projects .view-content .views-row .views-field.views-field-field-image {
     margin: -2em -2em 1em -2em;
