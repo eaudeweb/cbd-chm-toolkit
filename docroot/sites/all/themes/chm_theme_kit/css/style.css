@@ -9879,6 +9879,9 @@ body.country-portal .logo img {
   max-height: 100px;
 }
 /* Styling related to slick slideshow */
+.view-home-page-image-slider {
+  overflow: hidden;
+}
 [dir="rtl"] .slick-arrow.slick-prev {
   right: 0;
 }
