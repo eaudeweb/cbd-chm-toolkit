@@ -4,7 +4,7 @@
  * Implements hook_schema().
  *
  */
-function protectedplanet_schema() {
+function protected_planet_schema() {
   $schema = array();
   $schema['protected_planet_entity'] = array(
     'description' => 'The base table for protected planet entities',
@@ -17,6 +17,12 @@ function protectedplanet_schema() {
       ),
       'bundle' => array(
         'description' => 'Entity bundle',
+        'type' => 'text',
+        'size' => 'medium',
+        'not null' => TRUE,
+      ),
+      'name' => array(
+        'description' => 'Entity english name',
         'type' => 'text',
         'size' => 'medium',
         'not null' => TRUE,
@@ -42,6 +48,6 @@ function protectedplanet_schema() {
  *
  * @ingroup entity_example
  */
-function entity_example_uninstall() {
+function protected_planet_uninstall() {
   field_attach_delete_bundle('protected_planet', 'protected_area');
 }

@@ -24,12 +24,11 @@ function protected_planet_migrate_api() {
  */
 function protected_planet_entity_info() {
   $info = array();
-  $info['protected_planet'] = array(
-    'label' => t('Protected Planet item'),
-    'plural label' => t('Protected Planet items'),
+  $info['protected_planet_area'] = array(
+    'label' => t('Protected planet area'),
+    'plural label' => t('Protected Planet areas'),
     'controller class' => 'ProtectedPlanetController',
     'base table' => 'protected_planet_entity',
-    'uri callback' => 'protected_planet_entity_uri',
     'fieldable' => TRUE,
     'entity keys' => array(
       'id' => 'eid',
@@ -40,16 +39,7 @@ function protected_planet_entity_info() {
     ),
     'static cache' => TRUE,
     // Bundles
-    'bundles' => array(
-      'protected_area' => array(
-        'label' => 'Protected area',
-        'admin' => array(
-          'path' => 'admin/structure/protected-planet/manage',
-          'access arguments' => array('administer protected_planet entities'),
-        ),
-      ),
-    ),
-
+    'bundles' => array(),
     'view modes' => array(
       'full' => array(
         'label' => t('Full'),
@@ -57,10 +47,10 @@ function protected_planet_entity_info() {
       ),
     ),
 
-
-    'entity class' => 'ProtectedAreaEntity',
+    'entity class' => 'ProtectedPlanetEntity',
     'label callback' => 'entity_class_label',
     'access callback' => 'protected_planet_access_callback',
+    'uri callback' => 'entity_class_uri',
     'admin ui' => array(
       'path' => 'admin/structure/protected-planet',
       'controller class' => 'EntityDefaultUIController',
@@ -117,13 +107,6 @@ function protected_planet_load_multiple($eids = FALSE, $conditions = array(), $r
 }
 
 
-function protected_planet_entity_uri($e) {
-  return array(
-    'path' => 'admin/content/protected_planet/' . $e->eid,
-  );
-}
-
-
 
 
 /**
@@ -176,11 +159,7 @@ class ProtectedPlanetController
    * Create and return a new entity_example_basic entity.
    */
   public function create() {
-    $entity = new stdClass();
-    $entity->type = 'protected_planet';
-    $entity->bundle_type = 'protected_area';
-    $entity->eid = 0;
-    return $entity;
+    return new ProtectedPlanetEntity(array());
   }
 
   /**
@@ -261,4 +240,68 @@ class ProtectedPlanetController
       }
     }
   }
+}
+
+
+/**
+ * Form function to create an entity_example_basic entity.
+ *
+ * The pattern is:
+ * - Set up the form for the data that is specific to your
+ *   entity: the columns of your base table.
+ * - Call on the Field API to pull in the form elements
+ *   for fields attached to the entity.
+ */
+function protected_planet_form($form, &$form_state, $entity) {
+  $form['basic_entity'] = array(
+    '#type' => 'value',
+    '#value' => $entity,
+  );
+
+  field_attach_form('protected_planet', $entity, $form, $form_state);
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Save'),
+    '#weight' => 100,
+  );
+  $form['delete'] = array(
+    '#type' => 'submit',
+    '#value' => t('Delete'),
+    '#submit' => array('protecte_planet_edit_delete'),
+    '#weight' => 200,
+  );
+
+  return $form;
+}
+
+
+/**
+ * Form deletion handler.
+ *
+ * @todo: 'Are you sure?' message.
+ */
+function protected_planet_edit_delete($form, &$form_state) {
+  $entity = $form_state['values']['basic_entity'];
+  entity_example_basic_delete($entity);
+  drupal_set_message(t('The entity %item_description (ID %id) has been deleted',
+      array('%item_description' => $entity->item_description, '%id' => $entity->basic_id))
+  );
+  $form_state['redirect'] = 'examples/entity_example';
+}
+
+
+/**
+ * Project entity class extending the Entity class
+ */
+class ProtectedPlanetEntity extends Entity {
+
+  protected function defaultLabel() {
+    return $this->name;
+  }
+
+  protected function defaultUri() {
+    return array('path' => 'task/' . $this->identifier());
+  }
+
 }
