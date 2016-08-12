@@ -632,8 +632,8 @@
         [dir="rtl"] &{ //1.1.
           margin-right: 3.75em; 
           margin-left: 3.25em;
-        } 
-      } 
+        }
+      }
     }
   }
   @media all and (min-width: 767px){
@@ -686,44 +686,7 @@
     border-radius: 4px 4px 2px 2px;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
     overflow: hidden;
-    pointer-events: none;
     position: relative;
-    z-index: 10;
-    & > * {
-      position: relative;
-      z-index: 20;
-      pointer-events: all;
-    }
-
-    &:after {
-      content: '\f107';
-      position: absolute;
-      font-family: FontAwesome;
-      font-size: 1.5em;
-      color: @navbar-color;
-      bottom: 0;
-      text-align: center;
-      width: 100%;
-      margin: 0 -8vw 0;
-      cursor: pointer;
-      pointer-events: all;
-    }
-
-    // &:hover,
-    &:focus,
-    &:active {
-      outline: none;
-      &:after {
-        content: '\f106';
-      }
-      .views-field-body {
-        max-height: 100%;
-
-        &:after {
-          display: none;
-        }
-      }
-    }
 
     .views-field.views-field-field-video-link-1 {
       margin: -8vw -8vw 1em;
@@ -741,46 +704,39 @@
     .views-field.views-field-body {
       padding: 0;
       font-size: 14px;
-      min-height: ~"calc(2 * @{line-height-em})";
+      min-height: ~"calc(1 * @{line-height-em})";
       max-height: ~"calc(3 * @{line-height-em})";
       overflow: hidden;
-      // -webkit-transition: max-height .3s;
-      // -moz-transition: max-height .3s;
-      // -o-transition: max-height .3s;
-      // transition: max-height .3s;
       position: relative;
-      pointer-events: none;
-      a {
-        pointer-events: all;
-      }
+
       &:after {
-        content: '';
+        content: "";
+        text-align: right;
         position: absolute;
         bottom: 0;
-        left: 0;
-        height: 2em;
-        width: 100%;
-        //* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f5f5f5+100&0+0,1+100 */
-        background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(245,245,245,1) 100%); /* FF3.6-15 */
-        background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#f5f5f5',GradientType=0 ); /* IE6-9 */
+        right: 0;
+        left: auto;
+        width: 70%;
+        height: @line-height-em;
         pointer-events: none;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f5f5f5+100&0+0,1+100 */
+        background: -moz-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(245,245,245,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#f5f5f5',GradientType=1 ); /* IE6-9 */
 
       }
     }
-  }
+    .views-field.views-field-view-node {
+      display: inline;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 0.8em;
+      margin-top: .5em;
+      line-height: 1.5em;
 
-  @media all and (max-width: 649px) {
-    .views-row {
-      &:focus,
-      &:active {
-        .views-field.views-field-body {
-          max-height: 100%;
-
-        }
-      }
     }
+
   }
 
   @media all and (min-width: 650px) {
@@ -790,30 +746,6 @@
       overflow: hidden;
       z-index: 20;
       border-radius: 4px 2px 2px 4px;
-      &:after {
-        content: '' !important;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        height: 3em;
-        width: 100%;
-        z-index: 25;
-        margin: 0;
-        cursor: initial;
-        //* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f5f5f5+100&0+0,1+100 */
-        background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(245,245,245,1) 100%); /* FF3.6-15 */
-        background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#f5f5f5',GradientType=0 ); /* IE6-9 */
-        pointer-events: none;
-      }
-      &:focus,
-      &:active {
-        content: '';
-        .views-field.views-field-body:after {
-          display: initial;
-        }
-      }
 
       .views-field.views-field-field-video-link-1 {
         margin: -1.5em 0 -1.5em -1.5em;
@@ -828,31 +760,9 @@
       }
       .views-field.views-field-body {
         // max-height: 4.8em;
-        min-height: ~"calc(3 * @{line-height-em})";
         max-height: ~"calc(4 * @{line-height-em})";
         overflow: hidden;
         position: relative;
-        transition: none;
-        &:hover {
-          max-height: 100%;
-        }
-
-        &:after {
-          content: "";
-          text-align: right;
-          position: absolute;
-          bottom: 0;
-          right: 0;
-          left: auto;
-          width: 70%;
-          height: @line-height-em;
-          /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f5f5f5+100&0+0,1+100 */
-          background: -moz-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(245,245,245,1) 100%); /* FF3.6-15 */
-          background: -webkit-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* Chrome10-25,Safari5.1-6 */
-          background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#f5f5f5',GradientType=1 ); /* IE6-9 */
-
-        }
       }
 
     }
@@ -860,7 +770,6 @@
   @media all and (min-width: @screen-xs-min) {
     .views-row {
       .views-field.views-field-body {
-        min-height: ~"calc(1 * @{line-height-em})";
         max-height: ~"calc(2 * @{line-height-em})";
       }
     }
@@ -868,7 +777,6 @@
   @media all and (min-width: @screen-sm-min) {
     .views-row {
       .views-field.views-field-body {
-        min-height: ~"calc(2 * @{line-height-em})";
         max-height: ~"calc(3 * @{line-height-em})";
       }
     }
@@ -876,11 +784,6 @@
   @media all and (min-width: @screen-md-min){
     .views-row {
       padding: 2em;
-
-      &:focus,
-      &:active {
-        content: '';
-      }
 
       .views-field.views-field-field-video-link-1 {
         margin: -2em 0 -2em -2em;
@@ -892,7 +795,6 @@
         padding-bottom: 1em;
       }
       .views-field.views-field-body {
-        min-height: ~"calc(4 * @{line-height-em})";
         max-height: ~"calc(5 * @{line-height-em})";
       }
 
@@ -902,8 +804,6 @@
   @media all and (min-width: @screen-lg-min) {
     .views-row {
       .views-field.views-field-body {
-        // -webkit-line-clamp: initial;
-        min-height: ~"calc(6 * @{line-height-em})";
         max-height: ~"calc(7 * @{line-height-em})";
 
       }
