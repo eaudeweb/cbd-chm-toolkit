@@ -1077,8 +1077,8 @@
   margin-bottom: 1em;
 }
 
-#block-views-ecosystems-block{
-  .view-ecosystems{
+#block-views-ecosystems-block {
+  .view-ecosystems {
     tr{
       display: block;
       td{
@@ -1088,67 +1088,93 @@
         background-color: #f5f5f5;
         border: 1px solid #e3e3e3;
         border-radius: 5px;
+        overflow: hidden;
         box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-        .views-field.views-field-field-image img{
-          width: 100%;
+        .views-field.views-field-field-image {
+          margin: -10vw -10vw 1em -10vw;
+          img{
+            width: 100%;
+          }
         }
-        .views-field.views-field-title a{
+        .views-field.views-field-title a {
           color: @navbar-color;
           font-weight: bold;
           font-size: 1.5em;
         }
-        .views-field.views-field-body{
+        .views-field.views-field-body {
           font-size: 14px;
-          a.more-link{
-            display: inline;
-            text-transform: uppercase;
-            font-weight: bold;
-            font-size: 0.8em;
-            margin-top: .5em;
-            line-height: 1.5em;
-            &:before {
-              content:"\a\a";
-              white-space: pre-line;
-            }
-            &:after{
-              content: " » ";
+          position: relative;
+          overflow: hidden;
+          padding: 0;
+          min-height: ~"calc(1 * @{line-height-em})";
+          max-height: ~"calc(3 * @{line-height-em})";
+          &:after {
+            content: "";
+            text-align: right;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: auto;
+            width: 70%;
+            height: @line-height-em;
+            pointer-events: none;
+            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f5f5f5+100&0+0,1+100 */
+            background: -moz-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(245,245,245,1) 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#f5f5f5',GradientType=1 ); /* IE6-9 */
 
-            }
-            &:hover{
-              color: black;
-              text-decoration: underline;
-            }
           }
+        }
+        .views-field.views-field-view-node {
+          display: inline-block;
+          text-transform: uppercase;
+          font-weight: bold;
+          font-size: 0.8em;
+          margin-top: .5em;
         }
       }
     }
-    @media all and (min-width: @screen-xs-min){
+    
+    @media all and (min-width: @screen-xs-min) {
       tr{
         td{
           padding: 2em;
-          .views-field.views-field-field-image img{
-            width: 40%;
-            float: left;
-            margin-right: 1em;
+          padding-bottom: 0;
+          .views-field.views-field-field-image { 
+            margin: -2em -2em 1em -2em;
+            img {
+              width: 35%;
+              float: left;
+              margin-right: 1em;
+            }
           }
-          .views-field.views-field-title a{
+          .views-field.views-field-title a {
             font-size: 1.7em;
           }
-          .views-field.views-field-body a.more-link:before{
-            content: "\a";
+          .views-field.views-field-body {
+            max-height: ~"calc(2 * @{line-height-em})";
           }
         }
       }
     }
-    @media all and (min-width: @screen-md-min){
+    @media all and (min-width: @screen-sm-min) {
       tr{
         td{
-          padding: 2em;
-          .views-field.views-field-field-image img{
-            width: initial;
+          .views-field.views-field-title {
+            margin-bottom: 0.5em;
           }
-          .views-field.views-field-body a.more-link:before{
-            content: "\a\a";
+          .views-field.views-field-body {
+            max-height: ~"calc(3 * @{line-height-em})";
+          }
+        }
+      }
+    }
+    @media all and (min-width: @screen-md-min) {
+      tr{
+        td{
+          .views-field.views-field-field-image img {
+            width: 220px;
           }
         }
       }
