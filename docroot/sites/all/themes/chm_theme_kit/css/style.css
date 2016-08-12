@@ -9243,6 +9243,12 @@ body.country-portal .logo img {
   font-size: 13px;
   color: #777;
 }
+.view-projects .view-content .views-row .views-field.views-field-field-dates .field-content {
+  display: inline;
+}
+.view-projects .view-content .views-row .views-field.views-field-field-dates .field-content .form-item {
+  display: inline;
+}
 .view-projects .view-content .views-row .views-field.views-field-body {
   padding: 0;
   font-size: 14px;
