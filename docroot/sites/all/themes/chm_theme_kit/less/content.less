@@ -687,19 +687,20 @@
     overflow: hidden;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
     
+    &.no-image {
+      padding-bottom: 10vw;
+      .views-field.views-field-field-image {
+        display: none;
+      } 
+    }
+
     .views-field.views-field-field-image {
       margin: -10vw -10vw 1em -10vw;
       img{
         width: 100%;
       }
+    }
 
-    }
-    &.no-image {
-      .views-field.views-field-field-image {
-        display: none;
-      } 
-    }
-    
     .views-field.views-field-title-field a {
       color: @navbar-color;
       font-weight: bold;
@@ -768,6 +769,9 @@
     .views-row {
       padding: 2em;
       padding-bottom: 0;
+      &.no-image {
+        padding-bottom: 2em;
+      }
       .views-field.views-field-field-image {
         margin: -2em -2em 1em -2em;
         // margin: 0;
