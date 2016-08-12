@@ -198,7 +198,7 @@ function chm_search_default_search_api_index() {
         "field_address" : { "type" : "text" },
         "field_alternative_emails" : { "type" : "list\\u003Ctext\\u003E" },
         "field_city" : { "type" : "text" },
-        "field_country" : { "type" : "integer", "entity_type" : "taxonomy_term" },
+        "field_countries" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_department" : { "type" : "text" },
         "field_email" : { "type" : "text" },
         "field_event_status" : { "type" : "integer", "entity_type" : "taxonomy_term" },

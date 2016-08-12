@@ -1036,13 +1036,13 @@ function chm_structure_strongarm() {
           'weight' => '2',
         ),
         'domain_path' => array(
-          'weight' => '5',
+          'weight' => '4',
         ),
         'locations' => array(
           'weight' => '4',
         ),
         'metatags' => array(
-          'weight' => '6',
+          'weight' => '5',
         ),
         'title' => array(
           'weight' => '0',
