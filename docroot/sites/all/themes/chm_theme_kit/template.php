@@ -56,3 +56,16 @@ function chm_theme_kit_panels_flexible($vars) {
   $output .= "</div>\n</div>\n";
   return $output;
 }
+
+/**
+ * Implements hook_preprocess().
+ *
+ * {@inheritdoc}
+ */
+function chm_theme_kit_preprocess_button(&$vars) {
+  $element = &$vars['element'];
+  if ($element['#type'] == 'submit') {
+     unset($element['#attributes']['class']['btn-info']);
+     $element['#attributes']['class'][] = 'btn-primary';
+  }
+}
