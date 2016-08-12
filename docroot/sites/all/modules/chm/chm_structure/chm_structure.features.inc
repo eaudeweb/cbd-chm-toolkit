@@ -40,6 +40,37 @@ function chm_structure_image_default_styles() {
     ),
   );
 
+  // Exported image style: header_flag.
+  $styles['header_flag'] = array(
+    'label' => 'Header flag',
+    'effects' => array(
+      3 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 65,
+          'height' => 45,
+          'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: image_listing.
+  $styles['image_listing'] = array(
+    'label' => 'Image listing',
+    'effects' => array(
+      6 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 220,
+          'height' => 170,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   return $styles;
 }
 
