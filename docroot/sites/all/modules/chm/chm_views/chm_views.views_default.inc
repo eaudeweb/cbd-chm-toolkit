@@ -515,7 +515,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_image']['settings'] = array(
-    'image_style' => 'medium',
+    'image_style' => 'image_listing',
     'image_link' => 'content',
   );
   /* Field: Content: Title */
@@ -535,17 +535,24 @@ function chm_views_views_default_views() {
   $handler->display->display_options['fields']['body']['type'] = 'smart_trim_format';
   $handler->display->display_options['fields']['body']['settings'] = array(
     'trim_link' => '0',
-    'trim_length' => '50',
+    'trim_length' => '100',
     'trim_type' => 'words',
     'trim_suffix' => '...',
-    'more_link' => '1',
-    'more_text' => 'Read more',
+    'more_link' => '0',
+    'more_text' => '',
     'summary_handler' => 'trim',
     'trim_options' => array(
       'text' => 0,
     ),
     'trim_preserve_tags' => '',
   );
+  /* Field: Content: Link */
+  $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['label'] = '';
+  $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['view_node']['text'] = 'Read more »';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page_main');
@@ -573,6 +580,7 @@ function chm_views_views_default_views() {
     t('next ›'),
     t('last »'),
     t('Block'),
+    t('Read more »'),
     t('Page'),
   );
   $export['ecosystems'] = $view;
