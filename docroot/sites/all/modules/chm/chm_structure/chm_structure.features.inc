@@ -60,11 +60,11 @@ function chm_structure_image_default_styles() {
   $styles['image_listing'] = array(
     'label' => 'Image listing',
     'effects' => array(
-      6 => array(
+      3 => array(
         'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => 220,
-          'height' => 170,
+          'width' => 480,
+          'height' => 360,
         ),
         'weight' => 1,
       ),
