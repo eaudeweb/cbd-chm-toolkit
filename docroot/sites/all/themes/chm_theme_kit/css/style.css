@@ -9431,18 +9431,6 @@ body.country-portal .logo img {
   margin-top: .5em;
   line-height: 1.5em;
 }
-.view-projects .view-content .views-row .views-field.views-field-view-node:after {
-  content: " » ";
-  display: inline;
-  color: #02823F;
-}
-.view-projects .view-content .views-row .views-field.views-field-view-node:hover {
-  color: black;
-  text-decoration: underline;
-}
-.view-projects .view-content .views-row .views-field.views-field-view-node:hover:after {
-  color: black;
-}
 @media all and (min-width: 480px) {
   .view-projects .view-content .views-row {
     padding: 2em;

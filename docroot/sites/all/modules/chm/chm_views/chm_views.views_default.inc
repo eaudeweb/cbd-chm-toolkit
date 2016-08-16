@@ -1735,7 +1735,7 @@ function chm_views_views_default_views() {
     t('next ›'),
     t('last »'),
     t('Date'),
-    t('Read more'),
+    t('Read more »'),
     t('Project date'),
     t('Project name'),
     t('Search'),
