@@ -9506,15 +9506,20 @@ body.country-portal .logo img {
 .view-protected-areas .view-content .views-row .views-field.views-field-field-image img {
   width: 100%;
 }
-.view-protected-areas .view-content .views-row .views-field.views-field-title-field a {
-  color: #039749;
-  font-weight: bold;
-  font-size: 1.3em;
+.view-protected-areas .view-content .views-row .views-field.views-field-title-field {
+  margin-bottom: .25em;
+}
+.view-protected-areas .view-content .views-row .views-field.views-field-title-field .field-content {
   white-space: nowrap;
   text-overflow: ellipsis;
   display: block;
   overflow: hidden;
-  margin-bottom: .25em;
+  color: #039749;
+}
+.view-protected-areas .view-content .views-row .views-field.views-field-title-field a {
+  color: #039749;
+  font-weight: bold;
+  font-size: 1.3em;
 }
 .view-protected-areas .view-content .views-row .views-field.views-field-field-dates {
   font-size: 13px;

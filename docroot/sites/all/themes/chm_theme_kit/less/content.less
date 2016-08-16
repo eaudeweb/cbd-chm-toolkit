@@ -997,16 +997,20 @@
         width: 100%;
       }
     }
-
-    .views-field.views-field-title-field a {
-      color: @navbar-color;
-      font-weight: bold;
-      font-size: 1.3em;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      display: block;
-      overflow: hidden;
+    .views-field.views-field-title-field {
       margin-bottom: .25em;
+      .field-content {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: block;
+        overflow: hidden;
+        color: @navbar-color;
+      }
+      a {
+        color: @navbar-color;
+        font-weight: bold;
+        font-size: 1.3em;
+      }
     }
 
     .views-field.views-field-field-dates {
