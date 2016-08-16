@@ -9514,6 +9514,7 @@ body.country-portal .logo img {
   text-overflow: ellipsis;
   display: block;
   overflow: hidden;
+  margin-bottom: .25em;
 }
 .view-protected-areas .view-content .views-row .views-field.views-field-field-dates {
   font-size: 13px;
@@ -9532,6 +9533,8 @@ body.country-portal .logo img {
   max-height: calc(3 * 1.42857143em);
   overflow: hidden;
   position: relative;
+  word-break: break-all;
+  margin-bottom: .3em;
 }
 .view-protected-areas .view-content .views-row .views-field.views-field-body:after {
   content: "";
@@ -9573,12 +9576,12 @@ body.country-portal .logo img {
     margin: -2em -2em 1em -2em;
   }
   .view-protected-areas .view-content .views-row .views-field.views-field-field-image img {
-    width: 40%;
+    width: 35%;
     float: left;
     margin-right: 1em;
   }
   .view-protected-areas .view-content .views-row .views-field.views-field-body {
-    max-height: calc(1 * 1.42857143em);
+    max-height: calc(2 * 1.42857143em);
   }
 }
 @media all and (min-width: 560px) {

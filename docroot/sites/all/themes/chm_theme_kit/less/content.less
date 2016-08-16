@@ -1006,6 +1006,7 @@
       text-overflow: ellipsis;
       display: block;
       overflow: hidden;
+      margin-bottom: .25em;
     }
 
     .views-field.views-field-field-dates {
@@ -1025,6 +1026,8 @@
       max-height: ~"calc(3 * @{line-height-em})";
       overflow: hidden;
       position: relative;
+      word-break: break-all;
+      margin-bottom: .3em;
       &:after {
         content: "";
         text-align: right;
@@ -1062,7 +1065,7 @@
         margin: -2em -2em 1em -2em;
         // margin: 0;
         img{
-          width: 40%;
+          width: 35%;
           float: left;
           margin-right: 1em;
         }
@@ -1071,7 +1074,7 @@
         // font-size: 1.7em;
       }
       .views-field.views-field-body {
-        max-height: ~"calc(1 * @{line-height-em})";
+        max-height: ~"calc(2 * @{line-height-em})";
       }
 
     }
