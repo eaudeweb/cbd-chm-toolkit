@@ -2,29 +2,82 @@
 
 /**
  * Implements hook_schema().
- *
  */
 function protected_planet_schema() {
   $schema = array();
-  $schema['protected_planet_entity'] = array(
-    'description' => 'The base table for protected planet entities',
+  $schema['protected_planet_area'] = array(
+    'description' => 'The base table for protected planet areas entities',
     'fields' => array(
-      'eid' => array(
-        'description' => 'Primary key of the entity.',
-        'type' => 'serial',
-        'unsigned' => TRUE,
-        'not null' => TRUE,
-      ),
-      'bundle' => array(
-        'description' => 'Entity bundle',
-        'type' => 'text',
-        'size' => 'medium',
+      'wdpaid' => array(
+        'description' => 'Protected planet unique ID',
+        'type' => 'int',
+        'size' => 'big',
         'not null' => TRUE,
       ),
       'name' => array(
-        'description' => 'Entity english name',
-        'type' => 'text',
-        'size' => 'medium',
+        'description' => 'Name of the protected area (PA) as provided by the data provider.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'name_original' => array(
+        'description' => 'Name of the protected area in original language.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'country' => array(
+        'description' => 'Country ID.',
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
+      'designation_type' => array(
+        'description' => 'Type of designation.',
+        'type' => 'int',
+        'default' => NULL,
+      ),
+      'iucn_category' => array(
+        'description' => 'IUCN classification category.',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => NULL,
+      ),
+      'area' => array(
+        'description' => 'Area surface in square kilometers.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ),
+      'status' => array(
+        'description' => 'Proposed, Inscribed, Adopted, Designated, Established.',
+        'type' => 'int',
+        'not null' => FALSE,
+      ),
+      'status_year' => array(
+        'description' => 'Year related “status” field of the PA.',
+        'type' => 'int',
+        'not null' => FALSE,
+      ),
+      'governing_type' => array(
+        'description' => 'Type of governing.',
+        'type' => 'int',
+        'not null' => FALSE,
+      ),
+      'owner_type' => array(
+        'description' => 'Type of owner.',
+        'type' => 'int',
+        'not null' => FALSE,
+      ),
+      'management_authority' => array(
+        'description' => 'Individual or group who manages the protected area.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'management_plan' => array(
+        'description' => 'Link or reference to the protected area’s management plan.',
+        'type' => 'varchar',
+        'length' => 255,
         'not null' => TRUE,
       ),
       'created' => array(
@@ -34,20 +87,33 @@ function protected_planet_schema() {
         'default' => 0,
       ),
     ),
-    'primary key' => array('eid'),
+    'primary key' => array('wdpaid'),
+    'indexes' => array(
+      'wdpaid' => array('wdpaid'),
+      'country' => array('country'),
+    ),
+    'foreign keys' => array(
+      'country_tid' => array(
+        'table' => 'taxonomy_term_data',
+        'columns' => array('country' => 'tid'),
+      ),
+      'designation_type_tid' => array(
+        'table' => 'taxonomy_term_data',
+        'columns' => array('designation_type' => 'tid'),
+      ),
+      'status' => array(
+        'table' => 'taxonomy_term_data',
+        'columns' => array('status' => 'tid'),
+      ),
+      'governing_type_tid' => array(
+        'table' => 'taxonomy_term_data',
+        'columns' => array('governing_type' => 'tid'),
+      ),
+      'owner_type_tid' => array(
+        'table' => 'taxonomy_term_data',
+        'columns' => array('owner_type' => 'tid'),
+      ),
+    )
   );
-
   return $schema;
-}
-
-/**
- * Implements hook_uninstall().
- *
- * At uninstall time we'll notify field.module that the entity was deleted
- * so that attached fields can be cleaned up.
- *
- * @ingroup entity_example
- */
-function protected_planet_uninstall() {
-  field_attach_delete_bundle('protected_planet', 'protected_area');
 }

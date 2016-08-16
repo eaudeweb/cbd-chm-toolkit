@@ -25,20 +25,15 @@ function protected_planet_migrate_api() {
 function protected_planet_entity_info() {
   $info = array();
   $info['protected_planet_area'] = array(
-    'label' => t('Protected planet area'),
+    'label' => t('Protected Planet area'),
     'plural label' => t('Protected Planet areas'),
-    'controller class' => 'ProtectedPlanetController',
-    'base table' => 'protected_planet_entity',
-    'fieldable' => TRUE,
-    'entity keys' => array(
-      'id' => 'eid',
-      'bundle' => 'bundle',
-    ),
+    'controller class' => 'EntityAPIController',
+    'base table' => 'protected_planet_area',
+    'entity keys' => array('id' => 'wdpaid'),
     'bundle keys' => array(
       'bundle' => 'bundle',
     ),
     'static cache' => TRUE,
-    // Bundles
     'bundles' => array(),
     'view modes' => array(
       'full' => array(
@@ -46,21 +41,22 @@ function protected_planet_entity_info() {
         'custom settings' => FALSE,
       ),
     ),
-
-    'entity class' => 'ProtectedPlanetEntity',
     'label callback' => 'entity_class_label',
-    'access callback' => 'protected_planet_access_callback',
     'uri callback' => 'entity_class_uri',
+    'entity class' => 'ProtectedPlanetAreaEntity',
+    'access callback' => 'protected_planet_area_access_callback',
+    'views controller class' => 'EntityDefaultViewsController',
     'admin ui' => array(
-      'path' => 'admin/structure/protected-planet',
+      'path' => 'admin/structure/protected-planet/area',
       'controller class' => 'EntityDefaultUIController',
     ),
+    'module' => 'protected_planet'
   );
   return $info;
 }
 
 
-function protected_planet_access_callback($op, $entity = NULL, $account = NULL) {
+function protected_planet_area_access_callback($op, $entity = NULL, $account = NULL) {
   // TODO
   if ($op == 'view' || $op == 'update' || $op == 'create' || $op == 'delete') {
     return TRUE;
@@ -92,7 +88,7 @@ function protected_planet_access_callback($op, $entity = NULL, $account = NULL) 
  */
 function protected_planet_load($eid = NULL, $reset = FALSE) {
   $eids = (isset($eid) ? array($eid) : array());
-  $entities = entity_example_basic_load_multiple($eids, array(), $reset);
+  $entities = protected_planet_load_multiple($eids, array(), $reset);
   return $entities ? reset($entities) : FALSE;
 }
 
@@ -108,141 +104,6 @@ function protected_planet_load_multiple($eids = FALSE, $conditions = array(), $r
 
 
 
-
-/**
- * ProtectedPlanetControllerInterface definition.
- *
- * We create an interface here because anyone could come along and
- * use hook_entity_info_alter() to change our controller class.
- * We want to let them know what methods our class needs in order
- * to function with the rest of the module, so here's a handy list.
- *
- * @see hook_entity_info_alter()
- */
-interface ProtectedPlanetControllerInterface
-  extends DrupalEntityControllerInterface {
-
-  /**
-   * Create an entity.
-   */
-  public function create();
-
-  /**
-   * Save an entity.
-   *
-   * @param object $entity
-   *   The entity to save.
-   */
-  public function save($entity);
-
-  /**
-   * Delete an entity.
-   *
-   * @param object $entity
-   *   The entity to delete.
-   */
-  public function delete($entity);
-
-}
-
-/**
- * EntityExampleBasicController extends DrupalDefaultEntityController.
- *
- * Our subclass of DrupalDefaultEntityController lets us add a few
- * important create, update, and delete methods.
- */
-class ProtectedPlanetController
-  extends DrupalDefaultEntityController
-  implements ProtectedPlanetControllerInterface {
-
-  /**
-   * Create and return a new entity_example_basic entity.
-   */
-  public function create() {
-    return new ProtectedPlanetEntity(array());
-  }
-
-  /**
-   * Saves the custom fields using drupal_write_record().
-   */
-  public function save($entity) {
-    // If our entity has no basic_id, then we need to give it a
-    // time of creation.
-    if (empty($entity->eid)) {
-      $entity->created = time();
-    }
-    // Invoke hook_entity_presave().
-    module_invoke_all('entity_presave', $entity, 'protected_planet');
-    // The 'primary_keys' argument determines whether this will be an insert
-    // or an update. So if the entity already has an ID, we'll specify
-    // basic_id as the key.
-    $primary_keys = $entity->eid ? 'eid' : array();
-    // Write out the entity record.
-    drupal_write_record('protected_planet', $entity, $primary_keys);
-    // We're going to invoke either hook_entity_update() or
-    // hook_entity_insert(), depending on whether or not this is a
-    // new entity. We'll just store the name of hook_entity_insert()
-    // and change it if we need to.
-    $invocation = 'entity_insert';
-    // Now we need to either insert or update the fields which are
-    // attached to this entity. We use the same primary_keys logic
-    // to determine whether to update or insert, and which hook we
-    // need to invoke.
-    if (empty($primary_keys)) {
-      field_attach_insert('protected_planet', $entity);
-    }
-    else {
-      field_attach_update('protected_planet', $entity);
-      $invocation = 'entity_update';
-    }
-    // Invoke either hook_entity_update() or hook_entity_insert().
-    module_invoke_all($invocation, $entity, 'protected_planet');
-    return $entity;
-  }
-
-  /**
-   * Delete a single entity.
-   *
-   * Really a convenience function for deleteMultiple().
-   */
-  public function delete($entity) {
-    $this->deleteMultiple(array($entity));
-  }
-
-  /**
-   * Delete one or more entity_example_basic entities.
-   *
-   * Deletion is unfortunately not supported in the base
-   * DrupalDefaultEntityController class.
-   *
-   * @param array $entities
-   *   An array of entity IDs or a single numeric ID.
-   */
-  public function deleteMultiple($entities) {
-    $basic_ids = array();
-    if (!empty($entities)) {
-      $transaction = db_transaction();
-      try {
-        foreach ($entities as $entity) {
-          // Invoke hook_entity_delete().
-          module_invoke_all('entity_delete', $entity, 'protected_planet');
-          field_attach_delete('protected_planet', $entity);
-          $basic_ids[] = $entity->eid;
-        }
-        db_delete('protected_planet')
-          ->condition('eid', $basic_ids, 'IN')
-          ->execute();
-      }
-      catch (Exception $e) {
-        $transaction->rollback();
-        watchdog_exception('protected_planet', $e);
-        throw $e;
-      }
-    }
-  }
-}
-
-
 /**
  * Form function to create an entity_example_basic entity.
  *
@@ -252,56 +113,75 @@ class ProtectedPlanetController
  * - Call on the Field API to pull in the form elements
  *   for fields attached to the entity.
  */
-function protected_planet_form($form, &$form_state, $entity) {
-  $form['basic_entity'] = array(
-    '#type' => 'value',
-    '#value' => $entity,
+function protected_planet_area_form($form, &$form_state, $entity) {
+  $form_state['model'] = $entity;
+  field_attach_form('model', $entity, $form, $form_state);
+
+  $form['wdpaid'] = array(
+    '#title' => t('WDPAID identifier'),
+    '#type' => 'textfield',
+    '#maxlength' => 10,
+    '#required' => TRUE,
+    '#default_value' => 'TEST',
   );
-
-  field_attach_form('protected_planet', $entity, $form, $form_state);
-
-  $form['submit'] = array(
+  $form['name_original'] = array(
+    '#title' => t('Original name'),
+    '#type' => 'textfield',
+    '#size' => 60,
+    '#maxlength' => 10,
+    '#required' => TRUE,
+    '#default_value' => 'TEST',
+  );
+  $form['name'] = array(
+    '#title' => t('Protected area name in English'),
+    '#type' => 'textfield',
+    '#size' => 60,
+    '#maxlength' => 10,
+    '#required' => TRUE,
+    '#default_value' => 'TEST',
+  );
+  $form['management_authority'] = array(
+    '#title' => t('Management authority'),
+    '#type' => 'textfield',
+    '#size' => 60,
+    '#maxlength' => 20,
+    '#required' => TRUE,
+    '#default_value' => 'TEST',
+  );
+  $form['management_plan'] = array(
+    '#title' => t('Management plan'),
+    '#type' => 'textfield',
+    '#size' => 60,
+    '#maxlength' => 20,
+    '#required' => TRUE,
+    '#default_value' => 'TEST',
+  );
+  $form['country'] = array(
+    '#title' => t('Country'),
+    '#type' => 'textfield',
+    '#size' => 10,
+    '#maxlength' => 5,
+    '#required' => TRUE,
+    '#default_value' => '12',
+  );
+  $form['actions'] = array('#type' => 'actions');
+  $form['actions']['submit'] = array(
     '#type' => 'submit',
-    '#value' => t('Save'),
-    '#weight' => 100,
+    '#value' => t('Save entity'),
+    '#weight' => 40,
   );
-  $form['delete'] = array(
+  $form['actions']['delete'] = array(
     '#type' => 'submit',
     '#value' => t('Delete'),
-    '#submit' => array('protecte_planet_edit_delete'),
+    '#submit' => array('protected_planet_area_edit_delete'),
     '#weight' => 200,
   );
-
   return $form;
 }
 
-
-/**
- * Form deletion handler.
- *
- * @todo: 'Are you sure?' message.
- */
-function protected_planet_edit_delete($form, &$form_state) {
-  $entity = $form_state['values']['basic_entity'];
-  entity_example_basic_delete($entity);
-  drupal_set_message(t('The entity %item_description (ID %id) has been deleted',
-      array('%item_description' => $entity->item_description, '%id' => $entity->basic_id))
-  );
-  $form_state['redirect'] = 'examples/entity_example';
-}
-
-
-/**
- * Project entity class extending the Entity class
- */
-class ProtectedPlanetEntity extends Entity {
-
-  protected function defaultLabel() {
-    return $this->name;
-  }
-
-  protected function defaultUri() {
-    return array('path' => 'task/' . $this->identifier());
-  }
-
+function protected_planet_area_form_submit($form, $form_state) {
+  $entity = entity_ui_form_submit_build_entity($form, $form_state);
+  $entity->save();
+  dpm($entity);
+  $form_state['redirect'] = 'admin/structure/protected-planet/area';
 }
