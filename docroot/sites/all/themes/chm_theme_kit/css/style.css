@@ -9451,6 +9451,9 @@ body.country-portal .logo img {
   .view-projects .view-content .views-row.no-image {
     padding-bottom: 2em;
   }
+  .view-projects .view-content .views-row .views-field.views-field-field-dates {
+    font-size: 12px;
+  }
   .view-projects .view-content .views-row .views-field.views-field-field-image {
     margin: -2em -2em 1em -2em;
   }
@@ -9464,13 +9467,16 @@ body.country-portal .logo img {
   }
 }
 @media all and (min-width: 560px) {
+  .view-projects .view-content .views-row .views-field.views-field-field-dates {
+    font-size: 13px;
+  }
   .view-projects .view-content .views-row .views-field.views-field-body {
     max-height: calc(2 * 1.42857143em);
   }
 }
 @media all and (min-width: 768px) {
   .view-projects .view-content .views-row .views-field.views-field-field-image img {
-    width: 40%;
+    width: 35%;
   }
   .view-projects .view-content .views-row .views-field.views-field-body {
     max-height: calc(3 * 1.42857143em);
@@ -9478,10 +9484,7 @@ body.country-portal .logo img {
 }
 @media all and (min-width: 992px) {
   .view-projects .view-content .views-row .views-field.views-field-field-image img {
-    width: initial;
-  }
-  .view-projects .view-content .views-row .views-field.views-field-body {
-    max-height: calc(4 * 1.42857143em);
+    width: 220px;
   }
 }
 #block-system-main {
