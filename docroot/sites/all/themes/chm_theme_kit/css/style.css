@@ -9533,7 +9533,6 @@ body.country-portal .logo img {
   max-height: calc(3 * 1.42857143em);
   overflow: hidden;
   position: relative;
-  word-break: break-all;
   margin-bottom: .3em;
 }
 .view-protected-areas .view-content .views-row .views-field.views-field-body:after {
