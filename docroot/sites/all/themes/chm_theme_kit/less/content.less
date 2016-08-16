@@ -925,6 +925,9 @@
       &.no-image {
         padding-bottom: 2em;
       }
+      .views-field.views-field-field-dates {
+        font-size: 12px;
+      }
       .views-field.views-field-field-image {
         margin: -2em -2em 1em -2em;
         // margin: 0;
@@ -945,6 +948,9 @@
   }
   @media all and (min-width: 560px) {
     .views-row {
+      .views-field.views-field-field-dates {
+        font-size: 13px;
+      }
       .views-field.views-field-body {
         max-height: ~"calc(2 * @{line-height-em})";
       }
@@ -953,7 +959,7 @@
   @media all and (min-width: @screen-sm-min) {
     .views-row {
       .views-field.views-field-field-image img {
-        width: 40%;
+        width: 35%;
       }
       .views-field.views-field-body {
         max-height: ~"calc(3 * @{line-height-em})";
@@ -963,10 +969,10 @@
   @media all and (min-width: @screen-md-min){
     .views-row {
       .views-field.views-field-field-image img{
-        width: initial;
+        width: 220px;
       }
       .views-field.views-field-body {
-        max-height: ~"calc(4 * @{line-height-em})";
+        // max-height: ~"calc(4 * @{line-height-em})";
       }
 
     }
