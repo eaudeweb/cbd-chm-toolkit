@@ -8365,6 +8365,7 @@ body.maintenance-page #footer-container #footer {
 }
 .btn.btn-primary {
   background-color: #0081d2;
+  padding: 7px 16px;
 }
 .btn.btn-primary:hover {
   background-color: #0071B8;
