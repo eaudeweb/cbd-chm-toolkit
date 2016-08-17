@@ -9649,11 +9649,16 @@ body.country-portal .logo img {
   }
   #webform-client-form-3177 > div .form-item:not(.webform-conditional-hidden) textarea.form-control {
     margin-bottom: 0;
+    resize: none;
   }
   #webform-client-form-3177 > div .form-actions button {
     position: relative;
     left: 100%;
     margin-top: .5em;
+  }
+  #webform-client-form-3177 > div .grippie {
+    margin-top: -5px;
+    border-radius: 0 0 4px 4px;
   }
 }
 #block-system-main {
