@@ -36,6 +36,17 @@ function chm_search_views_default_views() {
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
+  /* Field: Indexed Multilingual Node: Image */
+  $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['label'] = '';
+  $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_image']['settings'] = array(
+    'image_style' => 'image_listing',
+    'image_link' => 'content',
+  );
   /* Field: Indexed Multilingual Node: Multilingual ID */
   $handler->display->display_options['fields']['search_api_et_id']['id'] = 'search_api_et_id';
   $handler->display->display_options['fields']['search_api_et_id']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -56,6 +67,15 @@ function chm_search_views_default_views() {
     'title_link' => 'content',
     'title_class' => '',
   );
+  /* Field: Indexed Multilingual Node: Status */
+  $handler->display->display_options['fields']['field_event_status']['id'] = 'field_event_status';
+  $handler->display->display_options['fields']['field_event_status']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_event_status']['field'] = 'field_event_status';
+  $handler->display->display_options['fields']['field_event_status']['label'] = '';
+  $handler->display->display_options['fields']['field_event_status']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_event_status']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['field_event_status']['view_mode'] = 'full';
+  $handler->display->display_options['fields']['field_event_status']['bypass_access'] = 0;
   /* Field: Search: Excerpt */
   $handler->display->display_options['fields']['search_api_excerpt']['id'] = 'search_api_excerpt';
   $handler->display->display_options['fields']['search_api_excerpt']['table'] = 'search_api_index_default_multilingual_node_index';
