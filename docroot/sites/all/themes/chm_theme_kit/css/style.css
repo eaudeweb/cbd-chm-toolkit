@@ -9609,6 +9609,58 @@ body.country-portal .logo img {
     width: 220px;
   }
 }
+#webform-client-form-3177 > div > .form-item:not(.webform-conditional-hidden) {
+  display: block !important;
+}
+#webform-client-form-3177 > div > .form-item:not(.webform-conditional-hidden) > label {
+  white-space: nowrap;
+}
+#webform-client-form-3177 > div > .form-item:not(.webform-conditional-hidden) > label span.form-required {
+  color: #d22020;
+}
+#webform-client-form-3177 > div #edit-submitted-file-ajax-wrapper {
+  display: table-row-group;
+  margin-bottom: .5em;
+}
+#webform-client-form-3177 > div #edit-submitted-file-ajax-wrapper input {
+  margin-bottom: .5em;
+}
+#webform-client-form-3177 > div #edit-submitted-file-ajax-wrapper .description {
+  display: inline;
+}
+#webform-client-form-3177 > div #edit-submitted-file-ajax-wrapper button {
+  margin-bottom: .5em;
+}
+@media all and (min-width: 480px) {
+  #webform-client-form-3177 > div {
+    display: table;
+  }
+  #webform-client-form-3177 > div .form-item:not(.webform-conditional-hidden) {
+    display: table-row !important;
+  }
+  #webform-client-form-3177 > div .form-item:not(.webform-conditional-hidden) label {
+    text-align: right;
+    padding-right: .5em;
+  }
+  #webform-client-form-3177 > div .form-item:not(.webform-conditional-hidden) label,
+  #webform-client-form-3177 > div .form-item:not(.webform-conditional-hidden) .form-control {
+    display: table-cell;
+    margin-bottom: .5em;
+  }
+  #webform-client-form-3177 > div .form-item:not(.webform-conditional-hidden) textarea.form-control {
+    margin-bottom: 0;
+    resize: none;
+  }
+  #webform-client-form-3177 > div .form-actions button {
+    position: relative;
+    left: 100%;
+    margin-top: .5em;
+  }
+  #webform-client-form-3177 > div .grippie {
+    margin-top: -5px;
+    border-radius: 0 0 4px 4px;
+  }
+}
 #block-system-main {
   margin-bottom: 1em;
 }
