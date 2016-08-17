@@ -1121,8 +1121,8 @@
 //contact form
 #webform-client-form-3177 {
   > div {
-    > .form-item {
-        // display: block;
+    > .form-item:not(.webform-conditional-hidden) {
+        display: block !important;
       > label {
         white-space: nowrap;
         span.form-required {
@@ -1151,8 +1151,8 @@
   @media all and (min-width: @screen-xs-min) {
     > div {
       display: table;
-      .form-item {
-        display: table-row;
+      .form-item:not(.webform-conditional-hidden) {
+        display: table-row !important;
         label {
           text-align: right;
           padding-right: .5em;

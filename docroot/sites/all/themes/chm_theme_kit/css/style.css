@@ -9609,10 +9609,13 @@ body.country-portal .logo img {
     width: 220px;
   }
 }
-#webform-client-form-3177 > div > .form-item > label {
+#webform-client-form-3177 > div > .form-item:not(.webform-conditional-hidden) {
+  display: block !important;
+}
+#webform-client-form-3177 > div > .form-item:not(.webform-conditional-hidden) > label {
   white-space: nowrap;
 }
-#webform-client-form-3177 > div > .form-item > label span.form-required {
+#webform-client-form-3177 > div > .form-item:not(.webform-conditional-hidden) > label span.form-required {
   color: #d22020;
 }
 #webform-client-form-3177 > div #edit-submitted-file-ajax-wrapper {
@@ -9632,19 +9635,19 @@ body.country-portal .logo img {
   #webform-client-form-3177 > div {
     display: table;
   }
-  #webform-client-form-3177 > div .form-item {
-    display: table-row;
+  #webform-client-form-3177 > div .form-item:not(.webform-conditional-hidden) {
+    display: table-row !important;
   }
-  #webform-client-form-3177 > div .form-item label {
+  #webform-client-form-3177 > div .form-item:not(.webform-conditional-hidden) label {
     text-align: right;
     padding-right: .5em;
   }
-  #webform-client-form-3177 > div .form-item label,
-  #webform-client-form-3177 > div .form-item .form-control {
+  #webform-client-form-3177 > div .form-item:not(.webform-conditional-hidden) label,
+  #webform-client-form-3177 > div .form-item:not(.webform-conditional-hidden) .form-control {
     display: table-cell;
     margin-bottom: .5em;
   }
-  #webform-client-form-3177 > div .form-item textarea.form-control {
+  #webform-client-form-3177 > div .form-item:not(.webform-conditional-hidden) textarea.form-control {
     margin-bottom: 0;
   }
   #webform-client-form-3177 > div .form-actions button {
