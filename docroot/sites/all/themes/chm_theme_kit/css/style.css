@@ -8365,6 +8365,7 @@ body.maintenance-page #footer-container #footer {
 }
 .btn.btn-primary {
   background-color: #0081d2;
+  padding: 7px 16px;
 }
 .btn.btn-primary:hover {
   background-color: #0071B8;
@@ -8650,14 +8651,6 @@ body.country-portal .logo img {
 }
 #page-title {
   margin-top: 0;
-}
-.views-exposed-form .views-exposed-widget .form-submit:hover,
-.views-exposed-form .views-exposed-widget .form-submit:active,
-.views-exposed-form .views-exposed-widget .form-submit:focus,
-.views-exposed-form .views-exposed-widget .form-submit[disabled]:hover,
-.views-exposed-form .views-exposed-widget .form-submit[disabled]:active,
-.views-exposed-form .views-exposed-widget .form-submit[disabled]:focus {
-  background-color: #02823F;
 }
 /* front page styling*/
 .view-latest-updates .view-content > .item-list > ul {
