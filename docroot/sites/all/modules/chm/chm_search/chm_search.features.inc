@@ -202,7 +202,6 @@ function chm_search_default_search_api_index() {
         "field_department" : { "type" : "text" },
         "field_email" : { "type" : "text" },
         "field_event_status" : { "type" : "integer", "entity_type" : "taxonomy_term" },
-        "field_event_type" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_fax_numbers" : { "type" : "list\\u003Ctext\\u003E" },
         "field_first_name" : { "type" : "text" },
         "field_last_name" : { "type" : "text" },
