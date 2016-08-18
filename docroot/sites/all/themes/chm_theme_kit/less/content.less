@@ -7,14 +7,6 @@
 #page-title {
   margin-top: 0;
 }
-.views-exposed-form .views-exposed-widget .form-submit:hover,
-.views-exposed-form .views-exposed-widget .form-submit:active,
-.views-exposed-form .views-exposed-widget .form-submit:focus,
-.views-exposed-form .views-exposed-widget .form-submit[disabled]:hover,
-.views-exposed-form .views-exposed-widget .form-submit[disabled]:active,
-.views-exposed-form .views-exposed-widget .form-submit[disabled]:focus{
-  background-color: @text-color-green;
-}
 
 /* front page styling*/
 .view-latest-updates {
@@ -694,8 +686,8 @@
 
     .views-field.views-field-title {
       font-size: 1.3em;
+      margin-bottom: .25em;
       a {
-        // display: block;
         color: @navbar-color;
         font-weight: bold;
       }
@@ -708,7 +700,7 @@
       max-height: ~"calc(3 * @{line-height-em})";
       overflow: hidden;
       position: relative;
-
+      margin-bottom: .3em;
       &:after {
         content: "";
         text-align: right;
@@ -734,17 +726,13 @@
       font-size: 0.8em;
       margin-top: .5em;
       line-height: 1.5em;
-
     }
-
   }
 
-  @media all and (min-width: 650px) {
+  @media all and (min-width: @screen-xs-min) {
     .views-row {
       padding: 1.5em;
-      // padding-bottom: 0;
       overflow: hidden;
-      z-index: 20;
       border-radius: 4px 2px 2px 4px;
 
       .views-field.views-field-field-video-link-1 {
@@ -752,64 +740,47 @@
         width: 40%;
         float: left;
         margin-right: 1em;
-        z-index: 30;
       }
       .views-field.views-field-title {
-        // font-size: 1.4em;
-        padding-bottom: .5em;
+        .field-content {
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          display: block;
+          overflow: hidden;
+          color: @navbar-color;
+        }
       }
       .views-field.views-field-body {
-        // max-height: 4.8em;
-        max-height: ~"calc(4 * @{line-height-em})";
+        max-height: ~"calc(1 * @{line-height-em})";
         overflow: hidden;
         position: relative;
       }
 
     }
   }
-  @media all and (min-width: @screen-xs-min) {
+  @media all and (min-width: @screen-sm-min) {
     .views-row {
       .views-field.views-field-body {
         max-height: ~"calc(2 * @{line-height-em})";
       }
     }
   }
-  @media all and (min-width: @screen-sm-min) {
-    .views-row {
-      .views-field.views-field-body {
-        max-height: ~"calc(3 * @{line-height-em})";
-      }
-    }
-  }
-  @media all and (min-width: @screen-md-min){
+  @media all and (min-width: @screen-md-min) {
     .views-row {
       padding: 2em;
 
       .views-field.views-field-field-video-link-1 {
         margin: -2em 0 -2em -2em;
-        width: 40%;
+        width: 30%;
         margin-right: 2em;
       }
       .views-field.views-field-title {
-        font-size: 1.4em;
-        padding-bottom: 1em;
+        margin-bottom: .5em;
       }
       .views-field.views-field-body {
-        max-height: ~"calc(5 * @{line-height-em})";
+        max-height: ~"calc(3 * @{line-height-em})";
       }
 
-    }
-  }
-
-  @media all and (min-width: @screen-lg-min) {
-    .views-row {
-      .views-field.views-field-body {
-        max-height: ~"calc(7 * @{line-height-em})";
-
-      }
-      .views-field.views-field-title {
-        font-size: 1.5em;
-      }
     }
   }
 
@@ -854,15 +825,18 @@
       }
     }
 
-    .views-field.views-field-title-field a {
-      color: @navbar-color;
-      font-weight: bold;
-      font-size: 1.3em;
+    .views-field.views-field-title-field {
+      a {
+        color: @navbar-color;
+        font-weight: bold;
+        font-size: 1.3em;
+      }
     }
 
     .views-field.views-field-field-dates {
       font-size: 13px;
       color: #777;
+      margin-bottom: .25em;
       .field-content {
         display: inline;
         .form-item {
@@ -877,6 +851,7 @@
       max-height: ~"calc(3 * @{line-height-em})";
       overflow: hidden;
       position: relative;
+      margin-bottom: .3em;
       &:after {
         content: "";
         text-align: right;
@@ -901,19 +876,6 @@
       font-size: 0.8em;
       margin-top: .5em;
       line-height: 1.5em;
-
-      &:after{
-        content: " » ";
-        display: inline;
-        color: @text-color-green;
-      }
-      &:hover{
-        color: black;
-        text-decoration: underline;
-        &:after {
-          color: black;
-        }
-      }
     }
 
   }
@@ -925,17 +887,26 @@
       &.no-image {
         padding-bottom: 2em;
       }
+      .views-field.views-field-field-dates {
+        font-size: 12px;
+      }
       .views-field.views-field-field-image {
         margin: -2em -2em 1em -2em;
         // margin: 0;
         img{
-          width: 40%;
+          width: 35%;
           float: left;
           margin-right: 1em;
         }
       }
-      .views-field.views-field-title-field a{
-        // font-size: 1.7em;
+      .views-field.views-field-title-field {
+        .field-content {
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          display: block;
+          overflow: hidden;
+          color: @navbar-color;
+        }
       }
       .views-field.views-field-body {
         max-height: ~"calc(1 * @{line-height-em})";
@@ -945,6 +916,9 @@
   }
   @media all and (min-width: 560px) {
     .views-row {
+      .views-field.views-field-field-dates {
+        font-size: 13px;
+      }
       .views-field.views-field-body {
         max-height: ~"calc(2 * @{line-height-em})";
       }
@@ -952,9 +926,6 @@
   }
   @media all and (min-width: @screen-sm-min) {
     .views-row {
-      .views-field.views-field-field-image img {
-        width: 40%;
-      }
       .views-field.views-field-body {
         max-height: ~"calc(3 * @{line-height-em})";
       }
@@ -963,12 +934,201 @@
   @media all and (min-width: @screen-md-min){
     .views-row {
       .views-field.views-field-field-image img{
-        width: initial;
+        width: 220px;
       }
       .views-field.views-field-body {
-        max-height: ~"calc(4 * @{line-height-em})";
+        // max-height: ~"calc(4 * @{line-height-em})";
       }
 
+    }
+  }
+}
+
+.view-protected-areas .view-content {
+  .views-row {
+    display: block;
+    padding: 10vw;
+    margin-bottom: 1.5em;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+
+    &.no-image {
+      padding-bottom: 10vw;
+      .views-field.views-field-field-image {
+        display: none;
+      }
+    }
+
+    .views-field.views-field-field-image {
+      margin: -10vw -10vw 1em -10vw;
+      img{
+        width: 100%;
+      }
+    }
+    .views-field.views-field-title-field {
+      margin-bottom: .25em;
+      a {
+        color: @navbar-color;
+        font-weight: bold;
+        font-size: 1.3em;
+      }
+    }
+
+    .views-field.views-field-field-dates {
+      font-size: 13px;
+      color: #777;
+      .field-content {
+        display: inline;
+        .form-item {
+          display: inline;
+        }
+      }
+    }
+    .views-field.views-field-body {
+      padding: 0;
+      font-size: 14px;
+      min-height: @line-height-em;
+      max-height: ~"calc(3 * @{line-height-em})";
+      overflow: hidden;
+      position: relative;
+      margin-bottom: .3em;
+      &:after {
+        content: "";
+        text-align: right;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: auto;
+        width: 70%;
+        height: @line-height-em;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f5f5f5+100&0+0,1+100 */
+        background: -moz-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(245,245,245,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#f5f5f5',GradientType=1 ); /* IE6-9 */
+        pointer-events: none;
+      }
+    }
+    .views-field.views-field-view-node {
+      display: inline;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 0.8em;
+      margin-top: .5em;
+      line-height: 1.5em;
+    }
+  }
+  @media all and (min-width: @screen-xs-min) {
+    .views-row {
+      padding: 2em;
+      padding-bottom: 0;
+      &.no-image {
+        padding-bottom: 2em;
+      }
+      .views-field.views-field-field-image {
+        margin: -2em -2em 1em -2em;
+        img{
+          width: 35%;
+          float: left;
+          margin-right: 1em;
+        }
+      }
+      .views-field.views-field-title-field {
+        .field-content {
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          display: block;
+          overflow: hidden;
+          color: @navbar-color;
+        }
+      }
+      .views-field.views-field-body {
+        max-height: ~"calc(2 * @{line-height-em})";
+      }
+    }
+  }
+  @media all and (min-width: @screen-sm-min) {
+    .views-row {
+      .views-field.views-field-field-image img {
+        width: 35%;
+      }
+      .views-field.views-field-body {
+        max-height: ~"calc(3 * @{line-height-em})";
+      }
+    }
+  }
+  @media all and (min-width: @screen-md-min){
+    .views-row {
+      .views-field.views-field-title-field {
+        margin-bottom: .5em;
+      }
+      .views-field.views-field-field-image img{
+        width: 220px;
+      }
+    }
+  }
+}
+
+//contact form
+#webform-client-form-3177 {
+  > div {
+    > .form-item:not(.webform-conditional-hidden) {
+        display: block !important;
+      > label {
+        white-space: nowrap;
+        span.form-required {
+          color: #d22020;
+        }
+      }
+      > label, > .form-control {
+      }
+    }
+    //ajax elements
+    #edit-submitted-file-ajax-wrapper {
+      display: table-row-group;
+      margin-bottom: .5em;
+      input {
+        margin-bottom: .5em;
+      }
+      .description {
+        display: inline;
+      }
+      button {
+        margin-bottom: .5em;
+      }
+    }
+  }
+
+  @media all and (min-width: @screen-xs-min) {
+    > div {
+      display: table;
+      .form-item:not(.webform-conditional-hidden) {
+        display: table-row !important;
+        label {
+          text-align: right;
+          padding-right: .5em;
+        }
+        label, .form-control {
+          display: table-cell;
+          margin-bottom: .5em;
+        }
+        textarea.form-control {
+          margin-bottom: 0;
+          resize: none;
+        }
+      }
+      .form-actions button {
+        position: relative;
+        left: 100%;
+        margin-top: .5em;
+      }
+      .grippie {
+        margin-top: -5px;
+        border-radius: 0 0 4px 4px;
+      }
     }
   }
 }
@@ -977,105 +1137,113 @@
   margin-bottom: 1em;
 }
 
-#block-views-ecosystems-block {
-  .view-ecosystems {
-    tr{
+.view-ecosystems {
+  tr{
+    display: block;
+    td{
       display: block;
-      td{
-        display: block;
-        padding: 10vw;
-        margin-bottom: 1.5em;
-        background-color: #f5f5f5;
-        border: 1px solid #e3e3e3;
-        border-radius: 5px;
-        overflow: hidden;
-        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-        .views-field.views-field-field-image {
-          margin: -10vw -10vw 1em -10vw;
-          img{
-            width: 100%;
-          }
+      padding: 10vw;
+      margin-bottom: 1.5em;
+      background-color: #f5f5f5;
+      border: 1px solid #e3e3e3;
+      border-radius: 5px;
+      overflow: hidden;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+      .views-field.views-field-field-image {
+        margin: -10vw -10vw 1em -10vw;
+        img{
+          width: 100%;
         }
-        .views-field.views-field-title a {
+      }
+      .views-field.views-field-title {
+        margin-bottom: .25em;
+        a {
           color: @navbar-color;
           font-weight: bold;
-          font-size: 1.5em;
+          font-size: 1.3em;
+        }
+      }
+      .views-field.views-field-body {
+        font-size: 14px;
+        position: relative;
+        overflow: hidden;
+        padding: 0;
+        min-height: ~"calc(1 * @{line-height-em})";
+        max-height: ~"calc(3 * @{line-height-em})";
+        margin-bottom: .3em;
+        &:after {
+          content: "";
+          text-align: right;
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          left: auto;
+          width: 70%;
+          height: @line-height-em;
+          pointer-events: none;
+          /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f5f5f5+100&0+0,1+100 */
+          background: -moz-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(245,245,245,1) 100%); /* FF3.6-15 */
+          background: -webkit-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* Chrome10-25,Safari5.1-6 */
+          background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#f5f5f5',GradientType=1 ); /* IE6-9 */
+
+        }
+      }
+      .views-field.views-field-view-node {
+        display: inline-block;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 0.8em;
+        margin-top: .5em;
+      }
+    }
+  }
+  
+  @media all and (min-width: @screen-xs-min) {
+    tr{
+      td{
+        padding: 2em;
+        padding-bottom: 0;
+        .views-field.views-field-title {
+          .field-content {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            display: block;
+            overflow: hidden;
+            color: @navbar-color;
+          }
+        }
+        .views-field.views-field-field-image { 
+          margin: -2em -2em 1em -2em;
+          img {
+            width: 35%;
+            float: left;
+            margin-right: 1em;
+          }
         }
         .views-field.views-field-body {
-          font-size: 14px;
-          position: relative;
-          overflow: hidden;
-          padding: 0;
-          min-height: ~"calc(1 * @{line-height-em})";
+          max-height: ~"calc(2 * @{line-height-em})";
+        }
+      }
+    }
+  }
+  @media all and (min-width: @screen-sm-min) {
+    tr{
+      td{
+        .views-field.views-field-title {
+          margin-bottom: .5em;
+        }
+        .views-field.views-field-body {
           max-height: ~"calc(3 * @{line-height-em})";
-          &:after {
-            content: "";
-            text-align: right;
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            left: auto;
-            width: 70%;
-            height: @line-height-em;
-            pointer-events: none;
-            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f5f5f5+100&0+0,1+100 */
-            background: -moz-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(245,245,245,1) 100%); /* FF3.6-15 */
-            background: -webkit-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* Chrome10-25,Safari5.1-6 */
-            background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#f5f5f5',GradientType=1 ); /* IE6-9 */
-
-          }
-        }
-        .views-field.views-field-view-node {
-          display: inline-block;
-          text-transform: uppercase;
-          font-weight: bold;
-          font-size: 0.8em;
-          margin-top: .5em;
         }
       }
     }
-    
-    @media all and (min-width: @screen-xs-min) {
-      tr{
-        td{
-          padding: 2em;
-          padding-bottom: 0;
-          .views-field.views-field-field-image { 
-            margin: -2em -2em 1em -2em;
-            img {
-              width: 35%;
-              float: left;
-              margin-right: 1em;
-            }
-          }
-          .views-field.views-field-title a {
-            font-size: 1.7em;
-          }
-          .views-field.views-field-body {
-            max-height: ~"calc(2 * @{line-height-em})";
-          }
-        }
-      }
-    }
-    @media all and (min-width: @screen-sm-min) {
-      tr{
-        td{
-          .views-field.views-field-title {
-            margin-bottom: 0.5em;
-          }
-          .views-field.views-field-body {
-            max-height: ~"calc(3 * @{line-height-em})";
-          }
-        }
-      }
-    }
-    @media all and (min-width: @screen-md-min) {
-      tr{
-        td{
-          .views-field.views-field-field-image img {
-            width: 220px;
-          }
+  }
+  @media all and (min-width: @screen-md-min) {
+    tr{
+      td{
+        .views-field.views-field-field-image img {
+          width: 220px;
         }
       }
     }

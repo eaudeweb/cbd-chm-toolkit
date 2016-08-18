@@ -8365,6 +8365,7 @@ body.maintenance-page #footer-container #footer {
 }
 .btn.btn-primary {
   background-color: #0081d2;
+  padding: 7px 16px;
 }
 .btn.btn-primary:hover {
   background-color: #0071B8;
@@ -8650,14 +8651,6 @@ body.country-portal .logo img {
 }
 #page-title {
   margin-top: 0;
-}
-.views-exposed-form .views-exposed-widget .form-submit:hover,
-.views-exposed-form .views-exposed-widget .form-submit:active,
-.views-exposed-form .views-exposed-widget .form-submit:focus,
-.views-exposed-form .views-exposed-widget .form-submit[disabled]:hover,
-.views-exposed-form .views-exposed-widget .form-submit[disabled]:active,
-.views-exposed-form .views-exposed-widget .form-submit[disabled]:focus {
-  background-color: #02823F;
 }
 /* front page styling*/
 .view-latest-updates .view-content > .item-list > ul {
@@ -9245,6 +9238,7 @@ body.country-portal .logo img {
 }
 .view-video-library .view-content .views-row .views-field.views-field-title {
   font-size: 1.3em;
+  margin-bottom: .25em;
 }
 .view-video-library .view-content .views-row .views-field.views-field-title a {
   color: #039749;
@@ -9257,6 +9251,7 @@ body.country-portal .logo img {
   max-height: calc(3 * 1.42857143em);
   overflow: hidden;
   position: relative;
+  margin-bottom: .3em;
 }
 .view-video-library .view-content .views-row .views-field.views-field-body:after {
   content: "";
@@ -9286,11 +9281,10 @@ body.country-portal .logo img {
   margin-top: .5em;
   line-height: 1.5em;
 }
-@media all and (min-width: 650px) {
+@media all and (min-width: 480px) {
   .view-video-library .view-content .views-row {
     padding: 1.5em;
     overflow: hidden;
-    z-index: 20;
     border-radius: 4px 2px 2px 4px;
   }
   .view-video-library .view-content .views-row .views-field.views-field-field-video-link-1 {
@@ -9298,25 +9292,23 @@ body.country-portal .logo img {
     width: 40%;
     float: left;
     margin-right: 1em;
-    z-index: 30;
   }
-  .view-video-library .view-content .views-row .views-field.views-field-title {
-    padding-bottom: .5em;
+  .view-video-library .view-content .views-row .views-field.views-field-title .field-content {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+    color: #039749;
   }
   .view-video-library .view-content .views-row .views-field.views-field-body {
-    max-height: calc(4 * 1.42857143em);
+    max-height: calc(1 * 1.42857143em);
     overflow: hidden;
     position: relative;
   }
 }
-@media all and (min-width: 480px) {
-  .view-video-library .view-content .views-row .views-field.views-field-body {
-    max-height: calc(2 * 1.42857143em);
-  }
-}
 @media all and (min-width: 768px) {
   .view-video-library .view-content .views-row .views-field.views-field-body {
-    max-height: calc(3 * 1.42857143em);
+    max-height: calc(2 * 1.42857143em);
   }
 }
 @media all and (min-width: 992px) {
@@ -9325,23 +9317,14 @@ body.country-portal .logo img {
   }
   .view-video-library .view-content .views-row .views-field.views-field-field-video-link-1 {
     margin: -2em 0 -2em -2em;
-    width: 40%;
+    width: 30%;
     margin-right: 2em;
   }
   .view-video-library .view-content .views-row .views-field.views-field-title {
-    font-size: 1.4em;
-    padding-bottom: 1em;
+    margin-bottom: .5em;
   }
   .view-video-library .view-content .views-row .views-field.views-field-body {
-    max-height: calc(5 * 1.42857143em);
-  }
-}
-@media all and (min-width: 1200px) {
-  .view-video-library .view-content .views-row .views-field.views-field-body {
-    max-height: calc(7 * 1.42857143em);
-  }
-  .view-video-library .view-content .views-row .views-field.views-field-title {
-    font-size: 1.5em;
+    max-height: calc(3 * 1.42857143em);
   }
 }
 .view-video-library .view-content .player {
@@ -9388,6 +9371,7 @@ body.country-portal .logo img {
 .view-projects .view-content .views-row .views-field.views-field-field-dates {
   font-size: 13px;
   color: #777;
+  margin-bottom: .25em;
 }
 .view-projects .view-content .views-row .views-field.views-field-field-dates .field-content {
   display: inline;
@@ -9402,6 +9386,7 @@ body.country-portal .logo img {
   max-height: calc(3 * 1.42857143em);
   overflow: hidden;
   position: relative;
+  margin-bottom: .3em;
 }
 .view-projects .view-content .views-row .views-field.views-field-body:after {
   content: "";
@@ -9431,18 +9416,6 @@ body.country-portal .logo img {
   margin-top: .5em;
   line-height: 1.5em;
 }
-.view-projects .view-content .views-row .views-field.views-field-view-node:after {
-  content: " » ";
-  display: inline;
-  color: #02823F;
-}
-.view-projects .view-content .views-row .views-field.views-field-view-node:hover {
-  color: black;
-  text-decoration: underline;
-}
-.view-projects .view-content .views-row .views-field.views-field-view-node:hover:after {
-  color: black;
-}
 @media all and (min-width: 480px) {
   .view-projects .view-content .views-row {
     padding: 2em;
@@ -9451,46 +9424,47 @@ body.country-portal .logo img {
   .view-projects .view-content .views-row.no-image {
     padding-bottom: 2em;
   }
+  .view-projects .view-content .views-row .views-field.views-field-field-dates {
+    font-size: 12px;
+  }
   .view-projects .view-content .views-row .views-field.views-field-field-image {
     margin: -2em -2em 1em -2em;
   }
   .view-projects .view-content .views-row .views-field.views-field-field-image img {
-    width: 40%;
+    width: 35%;
     float: left;
     margin-right: 1em;
+  }
+  .view-projects .view-content .views-row .views-field.views-field-title-field .field-content {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+    color: #039749;
   }
   .view-projects .view-content .views-row .views-field.views-field-body {
     max-height: calc(1 * 1.42857143em);
   }
 }
 @media all and (min-width: 560px) {
+  .view-projects .view-content .views-row .views-field.views-field-field-dates {
+    font-size: 13px;
+  }
   .view-projects .view-content .views-row .views-field.views-field-body {
     max-height: calc(2 * 1.42857143em);
   }
 }
 @media all and (min-width: 768px) {
-  .view-projects .view-content .views-row .views-field.views-field-field-image img {
-    width: 40%;
-  }
   .view-projects .view-content .views-row .views-field.views-field-body {
     max-height: calc(3 * 1.42857143em);
   }
 }
 @media all and (min-width: 992px) {
   .view-projects .view-content .views-row .views-field.views-field-field-image img {
-    width: initial;
-  }
-  .view-projects .view-content .views-row .views-field.views-field-body {
-    max-height: calc(4 * 1.42857143em);
+    width: 220px;
   }
 }
-#block-system-main {
-  margin-bottom: 1em;
-}
-#block-views-ecosystems-block .view-ecosystems tr {
-  display: block;
-}
-#block-views-ecosystems-block .view-ecosystems tr td {
+.view-protected-areas .view-content .views-row {
   display: block;
   padding: 10vw;
   margin-bottom: 1.5em;
@@ -9500,26 +9474,208 @@ body.country-portal .logo img {
   overflow: hidden;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
 }
-#block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-field-image {
+.view-protected-areas .view-content .views-row.no-image {
+  padding-bottom: 10vw;
+}
+.view-protected-areas .view-content .views-row.no-image .views-field.views-field-field-image {
+  display: none;
+}
+.view-protected-areas .view-content .views-row .views-field.views-field-field-image {
   margin: -10vw -10vw 1em -10vw;
 }
-#block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-field-image img {
+.view-protected-areas .view-content .views-row .views-field.views-field-field-image img {
   width: 100%;
 }
-#block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-title a {
+.view-protected-areas .view-content .views-row .views-field.views-field-title-field {
+  margin-bottom: .25em;
+}
+.view-protected-areas .view-content .views-row .views-field.views-field-title-field a {
   color: #039749;
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
-#block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-body {
+.view-protected-areas .view-content .views-row .views-field.views-field-field-dates {
+  font-size: 13px;
+  color: #777;
+}
+.view-protected-areas .view-content .views-row .views-field.views-field-field-dates .field-content {
+  display: inline;
+}
+.view-protected-areas .view-content .views-row .views-field.views-field-field-dates .field-content .form-item {
+  display: inline;
+}
+.view-protected-areas .view-content .views-row .views-field.views-field-body {
+  padding: 0;
+  font-size: 14px;
+  min-height: 1.42857143em;
+  max-height: calc(3 * 1.42857143em);
+  overflow: hidden;
+  position: relative;
+  margin-bottom: .3em;
+}
+.view-protected-areas .view-content .views-row .views-field.views-field-body:after {
+  content: "";
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: auto;
+  width: 70%;
+  height: 1.42857143em;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f5f5f5+100&0+0,1+100 */
+  background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, #f5f5f5 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, #f5f5f5 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #f5f5f5 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#f5f5f5', GradientType=1);
+  /* IE6-9 */
+  pointer-events: none;
+}
+.view-protected-areas .view-content .views-row .views-field.views-field-view-node {
+  display: inline;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.8em;
+  margin-top: .5em;
+  line-height: 1.5em;
+}
+@media all and (min-width: 480px) {
+  .view-protected-areas .view-content .views-row {
+    padding: 2em;
+    padding-bottom: 0;
+  }
+  .view-protected-areas .view-content .views-row.no-image {
+    padding-bottom: 2em;
+  }
+  .view-protected-areas .view-content .views-row .views-field.views-field-field-image {
+    margin: -2em -2em 1em -2em;
+  }
+  .view-protected-areas .view-content .views-row .views-field.views-field-field-image img {
+    width: 35%;
+    float: left;
+    margin-right: 1em;
+  }
+  .view-protected-areas .view-content .views-row .views-field.views-field-title-field .field-content {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+    color: #039749;
+  }
+  .view-protected-areas .view-content .views-row .views-field.views-field-body {
+    max-height: calc(2 * 1.42857143em);
+  }
+}
+@media all and (min-width: 768px) {
+  .view-protected-areas .view-content .views-row .views-field.views-field-field-image img {
+    width: 35%;
+  }
+  .view-protected-areas .view-content .views-row .views-field.views-field-body {
+    max-height: calc(3 * 1.42857143em);
+  }
+}
+@media all and (min-width: 992px) {
+  .view-protected-areas .view-content .views-row .views-field.views-field-title-field {
+    margin-bottom: .5em;
+  }
+  .view-protected-areas .view-content .views-row .views-field.views-field-field-image img {
+    width: 220px;
+  }
+}
+#webform-client-form-3177 > div > .form-item:not(.webform-conditional-hidden) {
+  display: block !important;
+}
+#webform-client-form-3177 > div > .form-item:not(.webform-conditional-hidden) > label {
+  white-space: nowrap;
+}
+#webform-client-form-3177 > div > .form-item:not(.webform-conditional-hidden) > label span.form-required {
+  color: #d22020;
+}
+#webform-client-form-3177 > div #edit-submitted-file-ajax-wrapper {
+  display: table-row-group;
+  margin-bottom: .5em;
+}
+#webform-client-form-3177 > div #edit-submitted-file-ajax-wrapper input {
+  margin-bottom: .5em;
+}
+#webform-client-form-3177 > div #edit-submitted-file-ajax-wrapper .description {
+  display: inline;
+}
+#webform-client-form-3177 > div #edit-submitted-file-ajax-wrapper button {
+  margin-bottom: .5em;
+}
+@media all and (min-width: 480px) {
+  #webform-client-form-3177 > div {
+    display: table;
+  }
+  #webform-client-form-3177 > div .form-item:not(.webform-conditional-hidden) {
+    display: table-row !important;
+  }
+  #webform-client-form-3177 > div .form-item:not(.webform-conditional-hidden) label {
+    text-align: right;
+    padding-right: .5em;
+  }
+  #webform-client-form-3177 > div .form-item:not(.webform-conditional-hidden) label,
+  #webform-client-form-3177 > div .form-item:not(.webform-conditional-hidden) .form-control {
+    display: table-cell;
+    margin-bottom: .5em;
+  }
+  #webform-client-form-3177 > div .form-item:not(.webform-conditional-hidden) textarea.form-control {
+    margin-bottom: 0;
+    resize: none;
+  }
+  #webform-client-form-3177 > div .form-actions button {
+    position: relative;
+    left: 100%;
+    margin-top: .5em;
+  }
+  #webform-client-form-3177 > div .grippie {
+    margin-top: -5px;
+    border-radius: 0 0 4px 4px;
+  }
+}
+#block-system-main {
+  margin-bottom: 1em;
+}
+.view-ecosystems tr {
+  display: block;
+}
+.view-ecosystems tr td {
+  display: block;
+  padding: 10vw;
+  margin-bottom: 1.5em;
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.view-ecosystems tr td .views-field.views-field-field-image {
+  margin: -10vw -10vw 1em -10vw;
+}
+.view-ecosystems tr td .views-field.views-field-field-image img {
+  width: 100%;
+}
+.view-ecosystems tr td .views-field.views-field-title {
+  margin-bottom: .25em;
+}
+.view-ecosystems tr td .views-field.views-field-title a {
+  color: #039749;
+  font-weight: bold;
+  font-size: 1.3em;
+}
+.view-ecosystems tr td .views-field.views-field-body {
   font-size: 14px;
   position: relative;
   overflow: hidden;
   padding: 0;
   min-height: calc(1 * 1.42857143em);
   max-height: calc(3 * 1.42857143em);
+  margin-bottom: .3em;
 }
-#block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-body:after {
+.view-ecosystems tr td .views-field.views-field-body:after {
   content: "";
   text-align: right;
   position: absolute;
@@ -9539,7 +9695,7 @@ body.country-portal .logo img {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#f5f5f5', GradientType=1);
   /* IE6-9 */
 }
-#block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-view-node {
+.view-ecosystems tr td .views-field.views-field-view-node {
   display: inline-block;
   text-transform: uppercase;
   font-weight: bold;
@@ -9547,35 +9703,39 @@ body.country-portal .logo img {
   margin-top: .5em;
 }
 @media all and (min-width: 480px) {
-  #block-views-ecosystems-block .view-ecosystems tr td {
+  .view-ecosystems tr td {
     padding: 2em;
     padding-bottom: 0;
   }
-  #block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-field-image {
+  .view-ecosystems tr td .views-field.views-field-title .field-content {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+    color: #039749;
+  }
+  .view-ecosystems tr td .views-field.views-field-field-image {
     margin: -2em -2em 1em -2em;
   }
-  #block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-field-image img {
+  .view-ecosystems tr td .views-field.views-field-field-image img {
     width: 35%;
     float: left;
     margin-right: 1em;
   }
-  #block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-title a {
-    font-size: 1.7em;
-  }
-  #block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-body {
+  .view-ecosystems tr td .views-field.views-field-body {
     max-height: calc(2 * 1.42857143em);
   }
 }
 @media all and (min-width: 768px) {
-  #block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-title {
-    margin-bottom: 0.5em;
+  .view-ecosystems tr td .views-field.views-field-title {
+    margin-bottom: .5em;
   }
-  #block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-body {
+  .view-ecosystems tr td .views-field.views-field-body {
     max-height: calc(3 * 1.42857143em);
   }
 }
 @media all and (min-width: 992px) {
-  #block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-field-image img {
+  .view-ecosystems tr td .views-field.views-field-field-image img {
     width: 220px;
   }
 }
