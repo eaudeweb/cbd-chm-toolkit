@@ -1932,10 +1932,10 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '5',
+          'weight' => '6',
         ),
         'path' => array(
-          'weight' => '4',
+          'weight' => '5',
         ),
         'language' => array(
           'weight' => '0',
@@ -1955,15 +1955,18 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '40',
+          'weight' => '4',
         ),
         'path' => array(
-          'weight' => '30',
+          'weight' => '3',
         ),
         'name' => array(
           'weight' => '-5',
         ),
         'description' => array(
+          'weight' => '0',
+        ),
+        'language' => array(
           'weight' => '0',
         ),
       ),
