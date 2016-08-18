@@ -755,7 +755,7 @@ function chm_structure_strongarm() {
     'hide_language_selector' => 0,
     'exclude_language_none' => 1,
     'lock_language' => 1,
-    'shared_fields_original_only' => 1,
+    'shared_fields_original_only' => 0,
   );
   $export['entity_translation_settings_taxonomy_term__aichi_biodiversity_targets'] = $strongarm;
 
@@ -768,7 +768,7 @@ function chm_structure_strongarm() {
     'hide_language_selector' => 0,
     'exclude_language_none' => 1,
     'lock_language' => 1,
-    'shared_fields_original_only' => 1,
+    'shared_fields_original_only' => 0,
   );
   $export['entity_translation_settings_taxonomy_term__biodiversity_item_type'] = $strongarm;
 
@@ -807,7 +807,7 @@ function chm_structure_strongarm() {
     'hide_language_selector' => 0,
     'exclude_language_none' => 1,
     'lock_language' => 1,
-    'shared_fields_original_only' => 1,
+    'shared_fields_original_only' => 0,
   );
   $export['entity_translation_settings_taxonomy_term__eu_targets'] = $strongarm;
 
@@ -2202,13 +2202,6 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'metatag_enable_taxonomy_term__event_type';
-  $strongarm->value = TRUE;
-  $export['metatag_enable_taxonomy_term__event_type'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_taxonomy_term__sdg';
   $strongarm->value = TRUE;
   $export['metatag_enable_taxonomy_term__sdg'] = $strongarm;
@@ -3062,13 +3055,6 @@ function chm_structure_strongarm() {
   $strongarm->name = 'pathauto_taxonomy_term_event_status_pattern';
   $strongarm->value = '';
   $export['pathauto_taxonomy_term_event_status_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_taxonomy_term_event_type_pattern';
-  $strongarm->value = '';
-  $export['pathauto_taxonomy_term_event_type_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
