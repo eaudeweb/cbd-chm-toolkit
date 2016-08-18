@@ -7,14 +7,6 @@
 #page-title {
   margin-top: 0;
 }
-.views-exposed-form .views-exposed-widget .form-submit:hover,
-.views-exposed-form .views-exposed-widget .form-submit:active,
-.views-exposed-form .views-exposed-widget .form-submit:focus,
-.views-exposed-form .views-exposed-widget .form-submit[disabled]:hover,
-.views-exposed-form .views-exposed-widget .form-submit[disabled]:active,
-.views-exposed-form .views-exposed-widget .form-submit[disabled]:focus{
-  background-color: @text-color-green;
-}
 
 /* front page styling*/
 .view-latest-updates {
@@ -694,8 +686,8 @@
 
     .views-field.views-field-title {
       font-size: 1.3em;
+      margin-bottom: .25em;
       a {
-        // display: block;
         color: @navbar-color;
         font-weight: bold;
       }
@@ -708,7 +700,7 @@
       max-height: ~"calc(3 * @{line-height-em})";
       overflow: hidden;
       position: relative;
-
+      margin-bottom: .3em;
       &:after {
         content: "";
         text-align: right;
@@ -734,17 +726,13 @@
       font-size: 0.8em;
       margin-top: .5em;
       line-height: 1.5em;
-
     }
-
   }
 
-  @media all and (min-width: 650px) {
+  @media all and (min-width: @screen-xs-min) {
     .views-row {
       padding: 1.5em;
-      // padding-bottom: 0;
       overflow: hidden;
-      z-index: 20;
       border-radius: 4px 2px 2px 4px;
 
       .views-field.views-field-field-video-link-1 {
@@ -752,64 +740,47 @@
         width: 40%;
         float: left;
         margin-right: 1em;
-        z-index: 30;
       }
       .views-field.views-field-title {
-        // font-size: 1.4em;
-        padding-bottom: .5em;
+        .field-content {
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          display: block;
+          overflow: hidden;
+          color: @navbar-color;
+        }
       }
       .views-field.views-field-body {
-        // max-height: 4.8em;
-        max-height: ~"calc(4 * @{line-height-em})";
+        max-height: ~"calc(1 * @{line-height-em})";
         overflow: hidden;
         position: relative;
       }
 
     }
   }
-  @media all and (min-width: @screen-xs-min) {
+  @media all and (min-width: @screen-sm-min) {
     .views-row {
       .views-field.views-field-body {
         max-height: ~"calc(2 * @{line-height-em})";
       }
     }
   }
-  @media all and (min-width: @screen-sm-min) {
-    .views-row {
-      .views-field.views-field-body {
-        max-height: ~"calc(3 * @{line-height-em})";
-      }
-    }
-  }
-  @media all and (min-width: @screen-md-min){
+  @media all and (min-width: @screen-md-min) {
     .views-row {
       padding: 2em;
 
       .views-field.views-field-field-video-link-1 {
         margin: -2em 0 -2em -2em;
-        width: 40%;
+        width: 30%;
         margin-right: 2em;
       }
       .views-field.views-field-title {
-        font-size: 1.4em;
-        padding-bottom: 1em;
+        margin-bottom: .5em;
       }
       .views-field.views-field-body {
-        max-height: ~"calc(5 * @{line-height-em})";
+        max-height: ~"calc(3 * @{line-height-em})";
       }
 
-    }
-  }
-
-  @media all and (min-width: @screen-lg-min) {
-    .views-row {
-      .views-field.views-field-body {
-        max-height: ~"calc(7 * @{line-height-em})";
-
-      }
-      .views-field.views-field-title {
-        font-size: 1.5em;
-      }
     }
   }
 
@@ -854,15 +825,18 @@
       }
     }
 
-    .views-field.views-field-title-field a {
-      color: @navbar-color;
-      font-weight: bold;
-      font-size: 1.3em;
+    .views-field.views-field-title-field {
+      a {
+        color: @navbar-color;
+        font-weight: bold;
+        font-size: 1.3em;
+      }
     }
 
     .views-field.views-field-field-dates {
       font-size: 13px;
       color: #777;
+      margin-bottom: .25em;
       .field-content {
         display: inline;
         .form-item {
@@ -877,6 +851,7 @@
       max-height: ~"calc(3 * @{line-height-em})";
       overflow: hidden;
       position: relative;
+      margin-bottom: .3em;
       &:after {
         content: "";
         text-align: right;
@@ -901,19 +876,6 @@
       font-size: 0.8em;
       margin-top: .5em;
       line-height: 1.5em;
-
-      &:after{
-        content: " » ";
-        display: inline;
-        color: @text-color-green;
-      }
-      &:hover{
-        color: black;
-        text-decoration: underline;
-        &:after {
-          color: black;
-        }
-      }
     }
 
   }
@@ -932,13 +894,19 @@
         margin: -2em -2em 1em -2em;
         // margin: 0;
         img{
-          width: 40%;
+          width: 35%;
           float: left;
           margin-right: 1em;
         }
       }
-      .views-field.views-field-title-field a{
-        // font-size: 1.7em;
+      .views-field.views-field-title-field {
+        .field-content {
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          display: block;
+          overflow: hidden;
+          color: @navbar-color;
+        }
       }
       .views-field.views-field-body {
         max-height: ~"calc(1 * @{line-height-em})";
@@ -958,9 +926,6 @@
   }
   @media all and (min-width: @screen-sm-min) {
     .views-row {
-      .views-field.views-field-field-image img {
-        width: 35%;
-      }
       .views-field.views-field-body {
         max-height: ~"calc(3 * @{line-height-em})";
       }
@@ -1005,13 +970,6 @@
     }
     .views-field.views-field-title-field {
       margin-bottom: .25em;
-      .field-content {
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        display: block;
-        overflow: hidden;
-        color: @navbar-color;
-      }
       a {
         color: @navbar-color;
         font-weight: bold;
@@ -1072,24 +1030,21 @@
       }
       .views-field.views-field-field-image {
         margin: -2em -2em 1em -2em;
-        // margin: 0;
         img{
           width: 35%;
           float: left;
           margin-right: 1em;
         }
       }
-      .views-field.views-field-title-field a{
-        // font-size: 1.7em;
+      .views-field.views-field-title-field {
+        .field-content {
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          display: block;
+          overflow: hidden;
+          color: @navbar-color;
+        }
       }
-      .views-field.views-field-body {
-        max-height: ~"calc(2 * @{line-height-em})";
-      }
-
-    }
-  }
-  @media all and (min-width: 560px) {
-    .views-row {
       .views-field.views-field-body {
         max-height: ~"calc(2 * @{line-height-em})";
       }
@@ -1107,16 +1062,77 @@
   }
   @media all and (min-width: @screen-md-min){
     .views-row {
+      .views-field.views-field-title-field {
+        margin-bottom: .5em;
+      }
       .views-field.views-field-field-image img{
         width: 220px;
       }
-      .views-field.views-field-body {
-        // max-height: ~"calc(4 * @{line-height-em})";
-      }
-
     }
   }
 }
+
+//contact form
+#webform-client-form-3177 {
+  > div {
+    > .form-item:not(.webform-conditional-hidden) {
+        display: block !important;
+      > label {
+        white-space: nowrap;
+        span.form-required {
+          color: #d22020;
+        }
+      }
+      > label, > .form-control {
+      }
+    }
+    //ajax elements
+    #edit-submitted-file-ajax-wrapper {
+      display: table-row-group;
+      margin-bottom: .5em;
+      input {
+        margin-bottom: .5em;
+      }
+      .description {
+        display: inline;
+      }
+      button {
+        margin-bottom: .5em;
+      }
+    }
+  }
+
+  @media all and (min-width: @screen-xs-min) {
+    > div {
+      display: table;
+      .form-item:not(.webform-conditional-hidden) {
+        display: table-row !important;
+        label {
+          text-align: right;
+          padding-right: .5em;
+        }
+        label, .form-control {
+          display: table-cell;
+          margin-bottom: .5em;
+        }
+        textarea.form-control {
+          margin-bottom: 0;
+          resize: none;
+        }
+      }
+      .form-actions button {
+        position: relative;
+        left: 100%;
+        margin-top: .5em;
+      }
+      .grippie {
+        margin-top: -5px;
+        border-radius: 0 0 4px 4px;
+      }
+    }
+  }
+}
+
 //gallery in /content/thirteenth-meeting-conference-parties-convention-biological-diversity
 body.node-type-event {
   .pane-entity-field.pane-node-field-images {
@@ -1136,6 +1152,7 @@ body.node-type-event {
     }
   }
 }
+
 #block-system-main{
   margin-bottom: 1em;
 }
@@ -1158,10 +1175,13 @@ body.node-type-event {
           width: 100%;
         }
       }
-      .views-field.views-field-title a {
-        color: @navbar-color;
-        font-weight: bold;
-        font-size: 1.5em;
+      .views-field.views-field-title {
+        margin-bottom: .25em;
+        a {
+          color: @navbar-color;
+          font-weight: bold;
+          font-size: 1.3em;
+        }
       }
       .views-field.views-field-body {
         font-size: 14px;
@@ -1170,6 +1190,7 @@ body.node-type-event {
         padding: 0;
         min-height: ~"calc(1 * @{line-height-em})";
         max-height: ~"calc(3 * @{line-height-em})";
+        margin-bottom: .3em;
         &:after {
           content: "";
           text-align: right;
@@ -1203,6 +1224,15 @@ body.node-type-event {
       td{
         padding: 2em;
         padding-bottom: 0;
+        .views-field.views-field-title {
+          .field-content {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            display: block;
+            overflow: hidden;
+            color: @navbar-color;
+          }
+        }
         .views-field.views-field-field-image { 
           margin: -2em -2em 1em -2em;
           img {
@@ -1210,9 +1240,6 @@ body.node-type-event {
             float: left;
             margin-right: 1em;
           }
-        }
-        .views-field.views-field-title a {
-          font-size: 1.7em;
         }
         .views-field.views-field-body {
           max-height: ~"calc(2 * @{line-height-em})";
@@ -1224,7 +1251,7 @@ body.node-type-event {
     tr{
       td{
         .views-field.views-field-title {
-          margin-bottom: 0.5em;
+          margin-bottom: .5em;
         }
         .views-field.views-field-body {
           max-height: ~"calc(3 * @{line-height-em})";
