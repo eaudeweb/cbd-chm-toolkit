@@ -1118,13 +1118,21 @@
   }
 }
 //gallery in /content/thirteenth-meeting-conference-parties-convention-biological-diversity
-body.page-node-1467 {
+body.node-type-event {
   .pane-entity-field.pane-node-field-images {
     .field-item {
       margin-bottom: 30px;
-    }
-    img {
-      width: 100%;
+      display: table;
+      a {
+        height: 100px;
+        display: table-cell;
+        vertical-align: middle;
+        img {
+          max-height: 100%;
+          width: auto;
+          margin: 0 auto;
+        }
+      }
     }
   }
 }

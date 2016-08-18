@@ -9609,11 +9609,19 @@ body.country-portal .logo img {
     width: 220px;
   }
 }
-body.page-node-1467 .pane-entity-field.pane-node-field-images .field-item {
+body.node-type-event .pane-entity-field.pane-node-field-images .field-item {
   margin-bottom: 30px;
+  display: table;
 }
-body.page-node-1467 .pane-entity-field.pane-node-field-images img {
-  width: 100%;
+body.node-type-event .pane-entity-field.pane-node-field-images .field-item a {
+  height: 100px;
+  display: table-cell;
+  vertical-align: middle;
+}
+body.node-type-event .pane-entity-field.pane-node-field-images .field-item a img {
+  max-height: 100%;
+  width: auto;
+  margin: 0 auto;
 }
 #block-system-main {
   margin-bottom: 1em;
