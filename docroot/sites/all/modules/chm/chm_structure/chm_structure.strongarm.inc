@@ -445,6 +445,13 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_hide_translation_links_book';
+  $strongarm->value = 0;
+  $export['entity_translation_hide_translation_links_book'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_hide_translation_links_document';
   $strongarm->value = 1;
   $export['entity_translation_hide_translation_links_document'] = $strongarm;
@@ -518,6 +525,20 @@ function chm_structure_strongarm() {
   $strongarm->name = 'entity_translation_hide_translation_links_video';
   $strongarm->value = 1;
   $export['entity_translation_hide_translation_links_video'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_hide_translation_links_webform';
+  $strongarm->value = 0;
+  $export['entity_translation_hide_translation_links_webform'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_node_metadata_book';
+  $strongarm->value = '0';
+  $export['entity_translation_node_metadata_book'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -599,9 +620,29 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_node_metadata_webform';
+  $strongarm->value = '0';
+  $export['entity_translation_node_metadata_webform'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_revision_enabled';
   $strongarm->value = TRUE;
   $export['entity_translation_revision_enabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_node__book';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_node__book'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -749,6 +790,32 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__activity_type';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__activity_type'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__administrative_level';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__administrative_level'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_settings_taxonomy_term__aichi_biodiversity_targets';
   $strongarm->value = array(
     'default_language' => 'xx-et-current',
@@ -762,6 +829,19 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__biodiversity_aspect';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__biodiversity_aspect'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_settings_taxonomy_term__biodiversity_item_type';
   $strongarm->value = array(
     'default_language' => 'xx-et-default',
@@ -771,6 +851,19 @@ function chm_structure_strongarm() {
     'shared_fields_original_only' => 0,
   );
   $export['entity_translation_settings_taxonomy_term__biodiversity_item_type'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__biodiversity_threat';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__biodiversity_threat'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -797,6 +890,45 @@ function chm_structure_strongarm() {
     'shared_fields_original_only' => 0,
   );
   $export['entity_translation_settings_taxonomy_term__document_type'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__economic_sector';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__economic_sector'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__ecosystem_type';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__ecosystem_type'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__email_type';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__email_type'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -840,6 +972,110 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__experience_type';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__experience_type'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__general_issue';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__general_issue'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__organization_type';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__organization_type'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__page_type';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__page_type'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__person_type';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__person_type'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__phone_type';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__phone_type'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__project_status';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__project_status'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__project_type';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__project_type'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_settings_taxonomy_term__sdg';
   $strongarm->value = array(
     'default_language' => 'xx-et-default',
@@ -849,6 +1085,19 @@ function chm_structure_strongarm() {
     'shared_fields_original_only' => 0,
   );
   $export['entity_translation_settings_taxonomy_term__sdg'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__social_media_type';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__social_media_type'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -944,6 +1193,19 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__stakeholder_group';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__stakeholder_group'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_settings_taxonomy_term__taxonomy_nfp_type';
   $strongarm->value = array(
     'default_language' => 'xx-et-default',
@@ -966,6 +1228,19 @@ function chm_structure_strongarm() {
     'shared_fields_original_only' => 0,
   );
   $export['entity_translation_settings_taxonomy_term__taxonomy_term'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__treaties';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__treaties'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
