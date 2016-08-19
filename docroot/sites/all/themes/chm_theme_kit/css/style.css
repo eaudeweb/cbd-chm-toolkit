@@ -8550,6 +8550,9 @@ body.country-portal .logo img {
 .navbar-container #navbar .navbar-collapse .nav li:hover {
   background-color: #038842;
 }
+.navbar-container #navbar .navbar-collapse .nav li:hover a {
+  color: #ffffff;
+}
 .navbar-container #navbar .navbar-collapse .nav li.open > a {
   background-color: #038842;
   color: #ffffff;
@@ -8558,7 +8561,7 @@ body.country-portal .logo img {
   border-top-color: #ffffff;
 }
 @media all and (min-width: 768px) {
-  .navbar-container #navbar .navbar-collapse .nav .dropdown:hover .dropdown-menu {
+  .navbar-container #navbar .navbar-collapse .nav .dropdown:hover > .dropdown-menu {
     display: block;
   }
 }
@@ -8585,8 +8588,11 @@ body.country-portal .logo img {
 }
 @media all and (max-width: 767px) {
   .navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu li a {
-    color: #fff;
+    color: #ffffff;
   }
+}
+.navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu li.dropdown-submenu:hover > a {
+  color: #fff;
 }
 .navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu .active a {
   background-color: #039749;
@@ -8604,6 +8610,7 @@ body.country-portal .logo img {
   -webkit-border-radius: 0 6px 6px 6px;
   -moz-border-radius: 0 6px 6px;
   border-radius: 0 6px 6px 6px;
+  display: none;
 }
 .dropdown-submenu:hover > .dropdown-menu {
   display: block;
