@@ -8547,10 +8547,10 @@ body.country-portal .logo img {
   color: #ffffff;
   border: none;
 }
-.navbar-container #navbar .navbar-collapse .nav li:hover {
+.navbar-container #navbar .navbar-collapse .nav li:not(.active):hover {
   background-color: #038842;
 }
-.navbar-container #navbar .navbar-collapse .nav li:hover a {
+.navbar-container #navbar .navbar-collapse .nav li:not(.active):hover a {
   color: #ffffff;
 }
 .navbar-container #navbar .navbar-collapse .nav li.open > a {
