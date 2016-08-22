@@ -35,6 +35,22 @@ class ChmNodeForm {
   }
 
   static function alter_protected_area(&$form, &$form_state) {
+    $is_new = empty($form['#node']->nid);
+    // Allow full edit for new nodes.
+    if ($is_new) {
+      return;
+    }
+    $nid = $form['#node']->nid;
+    $wdpaid = db_select('migrate_map_protected_areas')
+      ->fields(NULL, array('sourceid1'))
+      ->condition('destid1', $nid)
+      ->execute()
+      ->fetchField();
+    // Allow full edit for non-migrated nodes.
+    if (empty($wdpaid)) {
+      return;
+    }
+
     // Hide migrated fields
     $fields = array(
       'title_field',
