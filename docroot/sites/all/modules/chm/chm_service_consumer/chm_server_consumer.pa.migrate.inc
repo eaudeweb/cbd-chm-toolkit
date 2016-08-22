@@ -116,7 +116,6 @@ class CHMServerConsumerPAMigrate extends CHMServerConsumerMigration {
 
   public function prepareRow($row) {
     // Country.
-    var_dump($row->iso3);
     if (!empty($row->iso3)) {
       // @var stdClass $country
       if ($country = PTK::getCountryByCode($row->iso3)) {
