@@ -121,10 +121,10 @@ class CHMServerConsumerPAMigrate extends CHMServerConsumerMigration {
       if ($country = PTK::getCountryByCode($row->iso3)) {
         $iso = $row->iso3;
         $row->iso3 = $country->tid;
-
-        $domain = PTKDomain::getDomainByCountryISO($iso);
-        $row->domain_source = $domain['domain_id'];
-        $row->domains = array($domain['domain_id']);
+        if ($domains = PTKDomain::getDomainsByCountryISO($iso)) {
+          $row->domain_source = PTKDomain::$CHM_DOMAIN_ID;
+          $row->domains = array_keys($domains);
+        }
       }
       else {
         $this->log('Skipping protected area without country (WDPAID:' . $row->wdpaid . ')');

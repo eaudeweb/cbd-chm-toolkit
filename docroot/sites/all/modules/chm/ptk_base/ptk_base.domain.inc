@@ -2,6 +2,7 @@
 
 class PTKDomain {
 
+  public static $CHM_DOMAIN_ID = 1;
   public static $DEMO_DOMAIN_ID = 3;
 
   /**
@@ -60,6 +61,8 @@ class PTKDomain {
 
   /**
    * Retrieve the domain object corresponding to a country ISO code.
+   * @deprecated by getDomainsByCountryISO.
+   * @see PTKDomain::getDomainsByCountryISO
    */
   public static function getDomainByCountryISO($iso) {
     $all = domain_domains();
@@ -71,6 +74,22 @@ class PTKDomain {
       }
     }
     return NULL;
+  }
+
+  /**
+   * Retrieve all domains configured for a country ISO code.
+   */
+  public static function getDomainsByCountryISO($iso) {
+    $ret = array();
+    $all = domain_domains();
+    foreach ($all as $domain_id => $domain) {
+      if ($value = PTKDomain::variable_get('country', $domain)) {
+        if (strtoupper($iso) == strtoupper($value)) {
+          $ret[$domain_id] = $domain;
+        }
+      }
+    }
+    return $ret;
   }
 
   /**
