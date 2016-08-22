@@ -36,13 +36,18 @@ function chm_service_consumer_migrate_api() {
     'api' => 2,
     'groups' => [
       'cbd' => [ 'title' => t('CBD API migrations'), ],
+      'protected-planet' => [ 'title' => t('Protected Planet'), ],
     ],
     'migrations' => [
       'nfp' => [
         'class_name' => 'CHMServerConsumerNFPMigration',
         'group_name' => 'cbd',
         'urlPattern' => 'https://api.cbd.int/informea.svc/Contacts',
-      ]
+      ],
+      'protected_areas' => [
+        'class_name' => 'CHMServerConsumerPAMigrate',
+        'group_name' => 'protected-planet',
+      ],
     ],
   ];
 }
@@ -62,6 +67,28 @@ class CHMServerConsumerMigration extends Migration {
   function log($message) {
     $this->currentMigration()->saveMessage($message);
     $this->currentMigration()->displayMessage($message);
+  }
+
+  static function getOrCreateTaxonomyTermByName($name, $machine_name) {
+    $voc = taxonomy_vocabulary_machine_name_load($machine_name);
+    /** @var SelectQuery $query */
+    $query = db_select('taxonomy_term_data', 'a')->fields('a', array('tid'))->condition('vid', $voc->vid)->condition('name', $name);
+    if ($tid = $query->execute()->fetchField()) {
+      return $tid;
+    }
+    else {
+      // Create the term
+      $term = new stdClass();
+      $term->language = 'en';
+      $term->vid = $voc->vid;
+      $term->name = $name;
+      $term->name_field['en'][0]['value'] = $name;
+      taxonomy_term_save($term);
+      if (!empty($term->tid)) {
+        return $term->tid;
+      }
+      return NULL;
+    }
   }
 }
 
