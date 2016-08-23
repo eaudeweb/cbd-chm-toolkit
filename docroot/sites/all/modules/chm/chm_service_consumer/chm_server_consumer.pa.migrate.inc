@@ -147,6 +147,13 @@ class CHMServerConsumerPAMigrate extends CHMServerConsumerMigration {
     $row->gov_type = self::getOrCreateTaxonomyTermByName($row->gov_type, 'pa_governing_type');
     $row->own_type = self::getOrCreateTaxonomyTermByName($row->own_type, 'pa_owner_type');
 
+    if (!empty($row->mang_plan) && strtolower($row->mang_plan) == 'not reported') {
+      $row->mang_plan = NULL;
+    }
+    if (!empty($row->mang_auth) && strtolower($row->mang_auth) == 'not reported') {
+      $row->mang_auth = NULL;
+    }
+
     return TRUE;
   }
 }
