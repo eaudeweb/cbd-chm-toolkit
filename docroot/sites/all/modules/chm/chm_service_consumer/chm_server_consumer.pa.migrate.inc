@@ -126,6 +126,10 @@ class CHMServerConsumerPAMigrate extends CHMServerConsumerMigration {
           $row->domain_source = PTKDomain::$CHM_DOMAIN_ID;
           $row->domains = array_keys($domains);
         }
+        if (empty($domains)) {
+          $this->log('Cannot assign protected area to any domain (WDPAID:' . $row->wdpaid . ')');
+          return FALSE;
+        }
       }
       else {
         $this->log('Skipping protected area without country (WDPAID:' . $row->wdpaid . ')');
