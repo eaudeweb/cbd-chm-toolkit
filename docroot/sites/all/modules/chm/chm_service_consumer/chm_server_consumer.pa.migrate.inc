@@ -18,8 +18,9 @@ class CHMServerConsumerPAMigrate extends CHMServerConsumerMigration {
       ),
       MigrateDestinationNode::getKeySchema()
     );
+    $instance = file_stream_wrapper_get_instance_by_uri(variable_get(PROTECTED_PLANET_AREA_CSV_VAR));
     $this->source = new MigrateSourceCSV(
-      '/Users/cristiroma/Work/cbd/toolkit/docroot/files/protected-areas/latest.csv',
+      $instance->realpath(),
       $this->csvcolumns(),
       array('header_rows' => 1,),
       $this->fields()
