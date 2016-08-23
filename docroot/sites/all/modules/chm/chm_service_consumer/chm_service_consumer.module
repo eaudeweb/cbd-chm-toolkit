@@ -6,8 +6,12 @@
 function chm_service_consumer_cronapi() {
   return array(
     'chm_service_consumer_cron' => array(
-      'description' => 'Import NFP from Informea',
+      'description' => 'Import NFP from InforMEA',
       'rule' => '0 0 * * *',
+    ),
+    'chm_service_consumer_protected_planet' => array(
+      'description' => 'Import Protected Planet areas',
+      'rule' => '15 0 * * *',
     ),
   );
 }
@@ -21,10 +25,23 @@ function chm_service_consumer_cron() {
   // Update Focal Point Migration.
   $migration = Migration::getInstance($machine_name);
   $migration->prepareUpdate();
-  watchdog('chm_service_consumer', 'Starting Import @migration',
+  watchdog('chm_service_consumer', 'Starting import @migration',
     array('@migration' => $machine_name), WATCHDOG_INFO);
   $result = $migration->processImport(array('update' => TRUE));
-  watchdog('chm_service_consumer', 'Imported @migration with result: @result',
+  watchdog('chm_service_consumer', 'Done @migration with result: @result',
+    array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);
+}
+
+/**
+ * Implements hook_cron().
+ */
+function chm_service_consumer_protected_planet() {
+  module_load_include('inc', 'migrate_ui', 'migrate_ui.pages');
+  $machine_name = 'protected_areas';
+  $migration = Migration::getInstance($machine_name);
+  watchdog('chm_service_consumer', 'Starting import @migration', array('@migration' => $machine_name), WATCHDOG_INFO);
+  $result = $migration->processImport();
+  watchdog('chm_service_consumer', 'Done @migration with result: @result',
     array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);
 }
 
