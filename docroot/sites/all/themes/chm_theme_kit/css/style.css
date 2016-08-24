@@ -8684,15 +8684,14 @@ body.country-portal .logo img {
 .pane-ptk-base-chm-content-statistics table > tbody > tr > td:nth-child(2) {
   position: relative;
 }
-.pane-ptk-base-chm-content-statistics table > tbody > tr > td:nth-child(2) span.fa {
-  position: absolute;
-  right: 100%;
-  top: 50%;
-  transform: translateY(-50%);
+.pane-ptk-base-chm-content-statistics span.fa {
+  margin-right: 8px;
+  color: #02823F;
 }
-[dir="rtl"] .pane-ptk-base-chm-content-statistics table > tbody > tr > td:nth-child(2) span.fa {
+[dir="rtl"] .pane-ptk-base-chm-content-statistics span.fa {
   right: auto;
-  left: 100%;
+  margin-left: 8px;
+  margin-right: 0;
 }
 /*Aichi biodiversity targets*/
 .view-aichi-biodiversity-targets .view-content ul {
