@@ -315,6 +315,48 @@ function ptk_base_custom_theme() {
   }
 }
 
+/**
+ * Implements hook_theme().
+ */
+function ptk_base_theme($existing, $type, $theme, $path) {
+  return array(
+    'ptk_base_chm_content_statistics_block_config_form' => array(
+      'render element' => 'element',
+    )
+  );
+}
+
+function theme_ptk_base_chm_content_statistics_block_config_form($variables) {
+  $element = $variables['element'];
+  $form = $element['chm_content_statistics'];
+  drupal_add_tabledrag('config_table', 'order', 'sibling', 'item-row-weight');
+  $header = array(
+    'name' => t('Content type'),
+    'hide' => t('Hide'),
+    'singular' => t('Label (singular)'),
+    'plural' => t('Label (plural)'),
+    'url' => t('URL (route)'),
+    'icon' => t('Icon markup'),
+    'weight' => t('Weight'),
+  );
+  $rows = array();
+  foreach (element_children($form) as $key) {
+    $row = array('data' => array());
+    foreach ($header as $fieldname => $title) {
+      $row['data'][] = drupal_render($form[$key][$fieldname]);
+      $row['class'] = array('draggable');
+    }
+    $rows[] = $row;
+  }
+  $prefix = '<p>' . t('Configure the display of content types statistics. Use the mouse to drag and drop rows to determine the display order in the front-end.') . '</p>';
+  return $prefix . theme('table', array(
+    'header' => $header,
+    'rows' => $rows,
+    'attributes' => array('id' => 'config_table'),
+  ));
+
+}
+
 
 /**
  * Variables settings form
