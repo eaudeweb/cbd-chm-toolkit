@@ -2,6 +2,7 @@
 
 class PTKDomain {
 
+  public static $CHM_DOMAIN_ID = 1;
   public static $DEMO_DOMAIN_ID = 3;
 
   /**
@@ -60,6 +61,8 @@ class PTKDomain {
 
   /**
    * Retrieve the domain object corresponding to a country ISO code.
+   * @deprecated by getDomainsByCountryISO.
+   * @see PTKDomain::getDomainsByCountryISO
    */
   public static function getDomainByCountryISO($iso) {
     $all = domain_domains();

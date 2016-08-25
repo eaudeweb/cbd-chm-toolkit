@@ -1765,7 +1765,7 @@ function chm_structure_strongarm() {
       'display' => array(
         'domain' => array(
           'default' => array(
-            'weight' => '1',
+            'weight' => '0',
             'visible' => TRUE,
           ),
         ),

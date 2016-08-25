@@ -277,3 +277,8 @@ function ptk_base_chm_website_settings_form() {
   $form = domain_variable_admin_variables(domain_get_domain());
   return system_settings_form($form);
 }
+
+
+function ptk_base_chm_protected_planet_settings_form() {
+  return ChmProtectedPlanetSettingsForm::form();
+}
