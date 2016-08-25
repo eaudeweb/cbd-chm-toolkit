@@ -413,7 +413,6 @@ features[variable][] = entity_translation_settings_taxonomy_term__ecosystem_type
 features[variable][] = entity_translation_settings_taxonomy_term__email_type
 features[variable][] = entity_translation_settings_taxonomy_term__eu_targets
 features[variable][] = entity_translation_settings_taxonomy_term__event_status
-features[variable][] = entity_translation_settings_taxonomy_term__event_type
 features[variable][] = entity_translation_settings_taxonomy_term__experience_type
 features[variable][] = entity_translation_settings_taxonomy_term__general_issue
 features[variable][] = entity_translation_settings_taxonomy_term__organization_type
