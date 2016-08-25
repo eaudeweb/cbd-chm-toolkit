@@ -10,8 +10,8 @@ function chm_service_consumer_cronapi() {
       'rule' => '0 0 * * *',
     ),
     'chm_service_consumer_protected_planet' => array(
-      'description' => 'Import Protected Planet areas',
-      'rule' => '15 0 * * *',
+      'description' => 'Import Protected Planet areas (every 3 days)',
+      'rule' => '0 0 */3 * *',
     ),
   );
 }
@@ -40,8 +40,8 @@ function chm_service_consumer_protected_planet() {
   $machine_name = 'protected_areas';
   $migration = Migration::getInstance($machine_name);
   watchdog('chm_service_consumer', 'Starting import @migration', array('@migration' => $machine_name), WATCHDOG_INFO);
-  // Process 100 at a time
-  $result = $migration->processImport(array('limit' => array('value' => 100, 'unit' => 'items')));
+  $migration->prepareUpdate();
+  $result = $migration->processImport(array('update' => TRUE));
   watchdog('chm_service_consumer', 'Done @migration with result: @result',
     array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);
 }
