@@ -127,7 +127,7 @@ class CHMServerConsumerPAMigrate extends CHMServerConsumerMigration {
           $row->domains = array_keys($domains);
         }
         if (empty($domains)) {
-          $this->log('Cannot assign protected area to any domain (WDPAID:' . $row->wdpaid . ')');
+          // $this->log('Cannot assign protected area to any domain (WDPAID:' . $row->wdpaid . ')');
           return FALSE;
         }
       }
