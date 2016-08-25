@@ -65,36 +65,6 @@ class ChmProtectedPlanetSettingsForm {
     file_save($file);
     variable_set(PROTECTED_PLANET_AREA_CSV_VAR, $file->uri);
     // Set a response to the user.
-    drupal_set_message(t('The file has been successfully uploaded.'));
-
-    $batch = array(
-      'title' => t('Importing protected areas from the CSV file, please be patient ...'),
-      'operations' => array(
-        array(array('ChmProtectedPlanetSettingsForm', 'batch_process'), array()),
-      ),
-      'finished' => array('ChmProtectedPlanetSettingsForm', 'batch_finished'),
-      'file' => drupal_get_path('module', 'ptk_base') . '/ptk_base.admin.inc',
-    );
-    batch_set($batch);
-  }
-
-
-  static function batch_process(&$context) {
-    module_load_include('inc', 'migrate_ui', 'migrate_ui.pages');
-    $machine_name = 'protected_areas';
-    if ($migration = Migration::getInstance($machine_name)) {
-      $migration->prepareUpdate();
-      $migration->processImport(array('update' => TRUE));
-    }
-  }
-
-  static function batch_finished($success) {
-    if ($success) {
-      $message = t('Data import successful.');
-    }
-    else {
-      $message = t('Data import finished with an error, check the logs for details.');
-    }
-    drupal_set_message($message);
+    drupal_set_message(t('The file has been successfully uploaded. Due to the large amount of records, to conserve server resources the data will be processed in the background'));
   }
 }
