@@ -82,6 +82,7 @@ function chm_theme_kit_menu_link($variables) {
       // Add our own wrapper.
       unset($element['#below']['#theme_wrappers']);
       $sub_menu = '<ul class="dropdown-menu">' . drupal_render($element['#below']) . '</ul>';
+      $element['#title'] .= ' <div class="toggle-submenu"><span class="caret"></span></div>';
       $element['#attributes']['class'][] = 'dropdown-submenu';
       $element['#localized_options']['html'] = TRUE;
       $element['#localized_options']['attributes']['class'][] = 'dropdown-toggle';
@@ -89,7 +90,7 @@ function chm_theme_kit_menu_link($variables) {
     } else {
       unset($element['#below']['#theme_wrappers']);
       $sub_menu = '<ul class="dropdown-menu">' . drupal_render($element['#below']) . '</ul>';
-      $element['#title'] .= ' <span class="caret"></span>';
+      $element['#title'] .= ' <div class="toggle-submenu"><span class="caret"></span></div>';
       $element['#attributes']['class'][] = 'dropdown';
       $element['#localized_options']['html'] = TRUE;
       $element['#localized_options']['attributes']['class'][] = 'dropdown-toggle';
