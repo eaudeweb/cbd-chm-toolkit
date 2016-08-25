@@ -9318,14 +9318,17 @@ body.country-portal .logo img {
     max-height: calc(3 * 1.42857143em);
   }
 }
-.view-video-library .view-content .player {
+.field-name-field-video-link {
+  max-width: 600px;
+}
+.player {
   position: relative;
   padding-bottom: 56.25%;
   /* 16:9 */
   padding-top: 25px;
   height: 0;
 }
-.view-video-library .view-content .player iframe {
+.player iframe {
   position: absolute;
   top: 0;
   left: 0;
