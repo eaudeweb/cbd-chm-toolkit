@@ -30,7 +30,9 @@ class ChmNodeForm {
     if ($form) {
       $bundle = $form['#bundle'];
       $method = 'alter_' . $bundle;
-      self::$method($form, $form_state);
+      if (method_exists('ChmNodeForm', $method)) {
+        self::$method($form, $form_state);
+      }
     }
   }
 
