@@ -49,9 +49,10 @@ class PTK {
       foreach ($rows as $k => $code) {
         $term = taxonomy_term_load($k);
         $w = entity_metadata_wrapper('taxonomy_term', $term);
-        $term->iso2l = $w->field_iso_code->value();
-        $term->iso3l = $w->field_iso3l_code->value();
-        $items[strtoupper($code)] = $term;
+        $term->iso2l = strtoupper($w->field_iso_code->value());
+        $term->iso3l = strtoupper($w->field_iso3l_code->value());
+        $items[$term->iso2l] = $term;
+        $items[$term->iso3l] = $term;
       }
     }
     $k = strtoupper(trim($iso));

@@ -74,6 +74,36 @@ class PTKDomain {
   }
 
   /**
+   * Retrieve all domains configured for a country ISO code.
+   */
+  public static function getDomainsByCountryISO($iso) {
+    static $all = NULL;
+    $iso = strtoupper($iso);
+    if (empty($all)) {
+      $domains = domain_domains();
+      foreach ($domains as $domain_id => $domain) {
+        if ($value = PTKDomain::variable_get('country', $domain)) {
+          $country = PTK::getCountryByCode($value);
+          $iso2 = $country->iso2l;
+          if (empty($all[$iso2])) {
+            $all[$iso2] = array();
+          }
+          $all[$iso2][$domain_id] = $domain;
+          $iso3 = $country->iso3l;
+          if (empty($all[$iso3])) {
+            $all[$iso3] = array();
+          }
+          $all[$iso3][$domain_id] = $domain;
+        }
+      }
+    }
+    if (array_key_exists($iso, $all)) {
+      return $all[$iso];
+    }
+    return array();
+  }
+
+  /**
    * Get the Country of the current portal.
    *
    * @param array $domain
