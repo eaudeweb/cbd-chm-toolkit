@@ -26,3 +26,5 @@ drush vset environment dev
 drush prepare-dev -y
 # drush rsync @prod:%files @self:%files -y
 drush cc all
+
+echo -e "${GREEN}Sync done, to get the files do: drush rsync @prod:%files @self:%files -y";

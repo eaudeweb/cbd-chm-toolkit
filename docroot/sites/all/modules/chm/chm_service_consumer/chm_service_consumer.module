@@ -6,8 +6,12 @@
 function chm_service_consumer_cronapi() {
   return array(
     'chm_service_consumer_cron' => array(
-      'description' => 'Import NFP from Informea',
+      'description' => 'Import NFP from InforMEA',
       'rule' => '0 0 * * *',
+    ),
+    'chm_service_consumer_protected_planet' => array(
+      'description' => 'Import Protected Planet areas (every 3 days)',
+      'rule' => '0 0 */3 * *',
     ),
   );
 }
@@ -21,10 +25,24 @@ function chm_service_consumer_cron() {
   // Update Focal Point Migration.
   $migration = Migration::getInstance($machine_name);
   $migration->prepareUpdate();
-  watchdog('chm_service_consumer', 'Starting Import @migration',
+  watchdog('chm_service_consumer', 'Starting import @migration',
     array('@migration' => $machine_name), WATCHDOG_INFO);
   $result = $migration->processImport(array('update' => TRUE));
-  watchdog('chm_service_consumer', 'Imported @migration with result: @result',
+  watchdog('chm_service_consumer', 'Done @migration with result: @result',
+    array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);
+}
+
+/**
+ * Implements hook_cron().
+ */
+function chm_service_consumer_protected_planet() {
+  module_load_include('inc', 'migrate_ui', 'migrate_ui.pages');
+  $machine_name = 'protected_areas';
+  $migration = Migration::getInstance($machine_name);
+  watchdog('chm_service_consumer', 'Starting import @migration', array('@migration' => $machine_name), WATCHDOG_INFO);
+  $migration->prepareUpdate();
+  $result = $migration->processImport(array('update' => TRUE));
+  watchdog('chm_service_consumer', 'Done @migration with result: @result',
     array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);
 }
 
@@ -36,13 +54,18 @@ function chm_service_consumer_migrate_api() {
     'api' => 2,
     'groups' => [
       'cbd' => [ 'title' => t('CBD API migrations'), ],
+      'protected-planet' => [ 'title' => t('Protected Planet'), ],
     ],
     'migrations' => [
       'nfp' => [
         'class_name' => 'CHMServerConsumerNFPMigration',
         'group_name' => 'cbd',
         'urlPattern' => 'https://api.cbd.int/informea.svc/Contacts',
-      ]
+      ],
+      'protected_areas' => [
+        'class_name' => 'CHMServerConsumerPAMigrate',
+        'group_name' => 'protected-planet',
+      ],
     ],
   ];
 }
@@ -62,6 +85,28 @@ class CHMServerConsumerMigration extends Migration {
   function log($message) {
     $this->currentMigration()->saveMessage($message);
     $this->currentMigration()->displayMessage($message);
+  }
+
+  static function getOrCreateTaxonomyTermByName($name, $machine_name) {
+    $voc = taxonomy_vocabulary_machine_name_load($machine_name);
+    /** @var SelectQuery $query */
+    $query = db_select('taxonomy_term_data', 'a')->fields('a', array('tid'))->condition('vid', $voc->vid)->condition('name', $name);
+    if ($tid = $query->execute()->fetchField()) {
+      return $tid;
+    }
+    else {
+      // Create the term
+      $term = new stdClass();
+      $term->language = 'en';
+      $term->vid = $voc->vid;
+      $term->name = $name;
+      $term->name_field['en'][0]['value'] = $name;
+      taxonomy_term_save($term);
+      if (!empty($term->tid)) {
+        return $term->tid;
+      }
+      return NULL;
+    }
   }
 }
 

@@ -51,7 +51,8 @@ class PTK {
         $w = entity_metadata_wrapper('taxonomy_term', $term);
         $term->iso2l = $w->field_iso_code->value();
         $term->iso3l = $w->field_iso3l_code->value();
-        $items[strtoupper($code)] = $term;
+        $items[strtoupper($term->iso2l)] = $term;
+        $items[strtoupper($term->iso3l)] = $term;
       }
     }
     $k = strtoupper(trim($iso));

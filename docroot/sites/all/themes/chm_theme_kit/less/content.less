@@ -782,15 +782,19 @@
 
     }
   }
+}
 
-  .player {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-  }
+.field-name-field-video-link {
+  max-width: 600px;
+}
 
-  .player iframe {
+.player {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  height: 0;
+
+  iframe {
     position: absolute;
     top: 0;
     left: 0;
@@ -798,7 +802,6 @@
     height: 100%;
   }
 }
-
 .view-projects .view-content {
   .views-row {
     display: block;
@@ -1127,6 +1130,26 @@
       .grippie {
         margin-top: -5px;
         border-radius: 0 0 4px 4px;
+      }
+    }
+  }
+}
+
+//gallery in /content/thirteenth-meeting-conference-parties-convention-biological-diversity
+body.node-type-event {
+  .pane-entity-field.pane-node-field-images {
+    .field-item {
+      margin-bottom: 30px;
+      display: table;
+      a {
+        height: 100px;
+        display: table-cell;
+        vertical-align: middle;
+        img {
+          max-height: 100%;
+          width: auto;
+          margin: 0 auto;
+        }
       }
     }
   }

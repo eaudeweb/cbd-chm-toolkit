@@ -12,6 +12,8 @@ require_once dirname(__FILE__) . '/blocks/ChmFooterCountryLinksBlock.php';
 require_once dirname(__FILE__) . '/forms/base.inc';
 
 define('USER_WALLE', 43);
+define('PROTECTED_PLANET_AREA_CSV_UPLOAD_DIR', 'public://protected-areas/');
+define('PROTECTED_PLANET_AREA_CSV_VAR', 'ptk_protected_planet_areas_csv_path');
 
 /**
  * Implements hook_permission().
@@ -92,6 +94,24 @@ function ptk_base_menu() {
       'access arguments' => ['configure chm settings'],
       'type' => MENU_NORMAL_ITEM,
       'description' => 'General configuration for all websites.',
+    ],
+    'admin/config/system/chm_global_settings/global' => [
+      'title' => 'CHM Global settings',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('ptk_base_chm_global_settings_form'),
+      'file' => 'ptk_base.admin.inc',
+      'access arguments' => ['configure chm settings'],
+      'type' => MENU_DEFAULT_LOCAL_TASK,
+      'description' => 'General configuration for all websites.',
+    ],
+    'admin/config/system/chm_global_settings/protected-planet' => [
+      'title' => 'Protected planet',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('ptk_base_chm_protected_planet_settings_form'),
+      'file' => 'ptk_base.admin.inc',
+      'access arguments' => ['configure chm settings'],
+      'type' => MENU_LOCAL_TASK,
+      'description' => 'Protected Planet integration',
     ],
     'admin/config/system/chm_website_settings' => [
       'title' => 'CHM website settings',
