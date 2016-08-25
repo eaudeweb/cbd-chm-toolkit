@@ -40,7 +40,8 @@ function chm_service_consumer_protected_planet() {
   $machine_name = 'protected_areas';
   $migration = Migration::getInstance($machine_name);
   watchdog('chm_service_consumer', 'Starting import @migration', array('@migration' => $machine_name), WATCHDOG_INFO);
-  $result = $migration->processImport();
+  // Process 100 at a time
+  $result = $migration->processImport(array('limit' => array('value' => 100, 'unit' => 'items')));
   watchdog('chm_service_consumer', 'Done @migration with result: @result',
     array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);
 }
