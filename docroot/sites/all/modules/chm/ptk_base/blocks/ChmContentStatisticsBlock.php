@@ -59,6 +59,10 @@ class ChmContentStatisticsBlock extends AbstractBlock {
     }
     ksort($rows);
     $content['rows'] = $rows;
+    $content['context'] = [
+      'hover' => FALSE,
+      'striped' => FALSE,
+    ];
     $ret = [
       'subject' => t('Content Statistics'),
       'content' => theme('table', $content),
