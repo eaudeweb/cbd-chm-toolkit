@@ -76,9 +76,9 @@ class ChmDomainForm {
         '#title' => t('Initialize domain content'),
         '#weight' => 50,
       ];
-      $form['ptk']['create_main_menu'] = [
+      $form['ptk']['populate_main_menu'] = [
         '#type' => 'checkbox',
-        '#title' => t('Create main menu & static pages'),
+        '#title' => t('Create standard pages and link them to main menu'),
       ];
       $form['ptk']['create_sample_content'] = [
         '#type' => 'checkbox',
@@ -130,7 +130,7 @@ class ChmDomainForm {
       $machine_name = $form_state['values']['machine_name'];
       $domain_id = domain_load_domain_id($machine_name);
       $domain = domain_load($domain_id);
-      PTKDomain::initializeCountryDomain($domain, $form_state['values']);
+      self::initializeDomain($domain, $form_state['values']);
       cache_clear_all();
     }
 
@@ -169,5 +169,296 @@ class ChmDomainForm {
     drupal_set_message($message);
   }
 
+
+  public static function initializeDomain($domain, $values) {
+    global $user;
+    if (empty($domain)) {
+      drupal_set_message('Cannot finish domain structure creation due to internal error, please contact technical support', 'error');
+      return FALSE;
+    }
+    $country = PTK::getCountryByCode($values['country']);
+
+    // Configure front-page
+    PTKDomain::variable_set('site_frontpage', "main-home-page", $domain);
+    if ($country) {
+      // Site name
+      PTKDomain::variable_set('site_name', "Biodiversity {$country->name}", $domain);
+      /** @var stdClass $wrapper */
+      $wrapper = entity_metadata_wrapper('taxonomy_term', $country);
+      try {
+        if ($ppid = $wrapper->field_protected_planet_id->value()) {
+          PTKDomain::variable_set('ptk_protected_planet_id', $ppid, $domain);
+        }
+      } catch (Exception $e) {
+        drupal_set_message('Could not set ProtectedPlanet ID automatically');
+        watchdog_exception('ptk', $e);
+      }
+    }
+    else {
+      PTKDomain::variable_set('site_name', "Biodiversity website", $domain);
+    }
+
+    // Configure slogan
+    PTKDomain::variable_set('site_slogan', 'National Clearing-House Mechanism Training Website', $domain);
+
+    // Enable languages
+    drupal_static_reset('language_list');
+    $languages = $values['language_list'];
+    PTKDomain::variable_set('language_list', $languages, $domain);
+
+    $flagname = strtolower($values['country']);
+    $settings = [
+      'logo_path' => "sites/all/themes/chm_theme_kit/flags/{$flagname}.png",
+    ];
+
+    // Set active theme
+    if (module_exists('domain_theme') && function_exists('domain_theme_lookup')) {
+      $theme = 'chm_theme_kit';
+      $check = domain_theme_lookup($domain['domain_id'], $theme);
+      if ($check != -1) {
+        $existing = db_select('domain_theme', 't')
+          ->fields('t', ['settings'])
+          ->condition('t.domain_id', $domain['domain_id'])
+          ->condition('t.theme', $theme)
+          ->execute()->fetchField();
+      }
+      else {
+        $existing = db_select('domain_theme', 't')
+          ->fields('t', ['settings'])
+          ->condition('t.theme', $theme)
+          ->execute()->fetchField();
+      }
+      $existing = unserialize($existing);
+      $settings = array_merge($existing, $settings);
+      $settings = serialize($settings);
+
+      if ($check != -1) {
+        db_update('domain_theme')
+          ->fields(array(
+            'settings' => $settings,
+          ))
+          ->condition('domain_id', $domain['domain_id'])
+          ->condition('theme', $theme)
+          ->execute();
+      }
+      else {
+        db_insert('domain_theme')
+          ->fields(array(
+            'domain_id' => $domain['domain_id'],
+            'theme' => $theme,
+            'settings' => $settings,
+            'status' => 1,
+          ))
+          ->execute();
+      }
+    }
+
+    // Main menu
+    $menu = self::createWebsiteMainMenu($values['country'], $domain);
+    $populate_main_menu = !empty($values['populate_main_menu']);
+    if ($populate_main_menu) {
+      $page_default_attributes = array(
+        'type' => 'page',
+        'status' => '1',
+        'uid' => $user->uid,
+        'name' => $user->name,
+        'language' => 'en',
+        'menu' => array(
+          'enabled' => 1,
+          'mlid' => 0,
+          'module' => 'menu',
+          'hidden' => 0,
+          'has_children' => 0,
+          'customized' => 0,
+          'options' => array(),
+          'expanded' => 0,
+          'parent_depth_limit' => 8,
+          'description' => '',
+          'parent' => "{$menu['menu_name']}:0",
+          'plid' => 0,
+          'menu_name' => $menu['menu_name'],
+        ),
+        'domains' => array($domain['domain_id'] => $domain['domain_id']),
+        'domain_site' => 0,
+      );
+      $pages = array(
+        'Biodiversity' => 'biodiversity',
+        'Strategy' => 'strategy',
+        'Implementation' => 'implementation',
+        'Information' => 'information',
+        'Participate' => 'participate',
+        'About us' => 'about',
+      );
+      $weight = 1;
+      foreach ($pages as $page => $path) {
+        $node = $page_default_attributes;
+        $node['title'] = $node['menu']['link_title'] = $page;
+        $node['menu']['weight'] = $weight++;
+        $node = (object) $node;
+        $node->path = array('pathauto' => 0, 'alias' => '');
+        node_save($node);
+        db_insert('domain_path')
+          ->fields(array(
+            'domain_id' => $domain['domain_id'],
+            'source' => 'node/' . $node->nid,
+            'alias' => $path,
+            'language' => 'en',
+            'entity_type' => 'node',
+            'entity_id' => $node->nid,
+          ))
+          ->execute();
+        switch ($page) {
+          case 'Biodiversity':
+            PTK::addBlocksToNode(['ecosystems-block'], $node->nid);
+            break;
+          case 'Strategy':
+            PTK::addBlocksToNode(['nbsap-block', 'national_targets-block'], $node->nid);
+            break;
+          case 'Implementation':
+            PTK::addBlocksToNode(['projects-block'], $node->nid);
+            break;
+          case 'Information':
+            $node->title = $page;
+            $node->type = 'page';
+            node_object_prepare($node);
+            $node->uid = 1;
+            node_save($node);
+            break;
+          case 'Participate':
+            node_save($node);
+            break;
+          case 'About us':
+            $node->title = $page;
+            $default_node = node_load(1);
+            $node->body = $default_node->body;
+            $node->title_field = $default_node->title_field;
+            node_save($node);
+            break;
+        }
+      }
+
+      $level2_information_links = [
+        'news' => 'News',
+        'events' => 'Events',
+        'facts' => 'Facts',
+        'ecosystems' => 'Ecosystems',
+        'protected-areas' => 'Protected areas',
+        'projects' => 'Projects',
+        'species' => 'Species',
+        'library' => 'Library',
+        'videos' => 'Videos',
+        'links' => 'Related websites',
+        'photo-galleries' => 'Images',
+      ];
+
+      $links = menu_load_links($menu['menu_name']);
+      foreach ($links as $link) {
+        if ($link['link_title'] == 'Information') {
+          // Expand to enable drop-down
+          $link['expanded'] = 1;
+          $link['has_children'] = 1;
+          menu_link_save($link);
+          $i = 0;
+          $menu_link_default = array(
+            'menu_name' => $menu['menu_name'],
+            'expanded' => 0,
+            'depth' => 2,
+            'plid' => $link['mlid'],
+            'p1' => $link['mlid'],
+          );
+          foreach($level2_information_links as $link_path => $link_title) {
+            $new_link = $menu_link_default + [
+              'link_title' => $link_title,
+              'link_path' => $link_path,
+              'weight' => $i++,
+            ];
+            menu_link_save($new_link);
+          }
+        }
+      }
+
+      PTKDomain::variable_set('menu_main_links_source', $menu['menu_name'], $domain);
+      PTKDomain::variable_set('populate_main_menu', TRUE, $domain);
+    }
+
+    $create_sample_content = !empty($values['create_sample_content']);
+    if ($create_sample_content) {
+      $content_types = [
+        'document',
+        'ecosystem',
+        'event',
+        'fact',
+        'news',
+      ];
+      $number_of_nodes = 2;
+      foreach ($content_types as $ct) {
+        for ($i = 1 ; $i <= $number_of_nodes ; $i++) {
+          $node_attributes = array(
+            'type' => $ct,
+            'title' => "{$ct} node {$i}",
+            'status' => '1',
+            'uid' => $user->uid,
+            'name' => $user->name,
+            'language' => 'en',
+            'domains' => array($domain['domain_id'] => $domain['domain_id']),
+            'domain_site' => 0,
+          );
+          $node = (object)$node_attributes;
+          node_object_prepare($node);
+          node_save($node);
+        }
+      }
+      PTKDomain::variable_set('create_sample_content', TRUE, $domain);
+    }
+
+    // Create entityqueue for slideshow.
+    $default_queue = entityqueue_queue_load('slideshow_www');
+    if (!empty($default_queue)) {
+      $new_queue = (array) $default_queue;
+      unset($new_queue['export_type']);
+      $new_queue['name'] = $new_queue['label'] = 'slideshow_' . $domain['machine_name'];
+      $new_queue['is_new'] = TRUE;
+      $new_queue = new EntityQueue($new_queue);
+      entityqueue_queue_save($new_queue);
+    }
+
+    // Set treaty data
+    PTKDomain::set_country_treaty_data($country, $domain);
+
+    return TRUE;
+  }
+
+
+  public static function createWebsiteMainMenu($country, $domain) {
+    $code = strtolower($country);
+    $countries = PTK::getCountryListAsOptions();
+    if (isset($countries[$code])) {
+      $name = $countries[$code];
+    }
+    else {
+      $name = $domain['subdomain'];
+    }
+    $menu = array(
+      'menu_name' => "menu-main-menu-{$code}",
+      'title' => "Main menu ({$code})",
+      'description' => "Main menu for $name portal",
+      'i18n_mode' => I18N_MODE_MULTIPLE,
+    );
+    $exists = menu_load($menu['menu_name']);
+    if (!$exists) {
+      menu_save($menu);
+    }
+
+    $home_link = [
+      'link_title' => 'Home',
+      'link_path' => '<front>',
+      'menu_name' => $menu['menu_name'],
+      'weight' => 0,
+      'expanded' => 0,
+      'depth' => 1,
+    ];
+    menu_link_save($home_link);
+    return $menu;
+  }
 
 }

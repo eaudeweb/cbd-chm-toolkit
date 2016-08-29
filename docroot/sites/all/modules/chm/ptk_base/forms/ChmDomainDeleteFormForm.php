@@ -18,6 +18,7 @@ class ChmDomainDeleteFormForm {
   static function submit($form, $form_state) {
     if (!empty($form_state['values']['domain'])) {
       $domain = $form_state['values']['domain'];
+      // Delete the main menu
       if ($menu = menu_load('menu-main-menu-' . $domain['machine_name'])) {
         menu_delete($menu);
       };
