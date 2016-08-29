@@ -5898,7 +5898,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 5,
       ),
       'type' => 'text_textfield',
-      'weight' => 3,
+      'weight' => 2,
     ),
   );
 
@@ -5908,7 +5908,7 @@ function chm_structure_field_default_field_instances() {
     'bundle' => 'aichi_biodiversity_targets',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Name without the ordering index',
+    'description' => 'Official text of the target but without number',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -5931,10 +5931,10 @@ function chm_structure_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'size' => 60,
+        'size' => 200,
       ),
       'type' => 'text_textfield',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
@@ -5944,7 +5944,7 @@ function chm_structure_field_default_field_instances() {
     'bundle' => 'aichi_biodiversity_targets',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Short name or title including target number',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -5956,17 +5956,18 @@ function chm_structure_field_default_field_instances() {
     'entity_type' => 'taxonomy_term',
     'field_name' => 'name_field',
     'label' => 'Name',
-    'required' => TRUE,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'hide_label' => array(
-        'entity' => FALSE,
-        'page' => FALSE,
+        'entity' => 0,
+        'page' => 0,
       ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'text',
       'settings' => array(
         'size' => 60,
@@ -6947,7 +6948,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 3,
+      'weight' => 2,
     ),
   );
 
@@ -6956,7 +6957,7 @@ function chm_structure_field_default_field_instances() {
     'bundle' => 'eu_targets',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Name without the ordering index',
+    'description' => 'Official text of the target but without number',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -6979,10 +6980,10 @@ function chm_structure_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'size' => 60,
+        'size' => 200,
       ),
       'type' => 'text_textfield',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
@@ -6991,7 +6992,7 @@ function chm_structure_field_default_field_instances() {
     'bundle' => 'eu_targets',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Short name or title including target number',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -7966,8 +7967,8 @@ function chm_structure_field_default_field_instances() {
   t('Management authority');
   t('Management plan');
   t('Name');
-  t('Name without the ordering index');
   t('Official name');
+  t('Official text of the target but without number');
   t('Order');
   t('Organization acronym');
   t('Organization name');
@@ -7985,6 +7986,7 @@ function chm_structure_field_default_field_instances() {
   t('Roles');
   t('Salutation');
   t('Select the appropriate type for this document');
+  t('Short name or title including target number');
   t('State');
   t('Status');
   t('Status year');

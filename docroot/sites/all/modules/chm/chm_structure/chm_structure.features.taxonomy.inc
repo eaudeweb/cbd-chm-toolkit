@@ -32,8 +32,8 @@ function chm_structure_taxonomy_default_vocabularies() {
     'aichi_biodiversity_targets' => array(
       'name' => 'Aichi Biodiversity Targets',
       'machine_name' => 'aichi_biodiversity_targets',
-      'description' => 'The 20 Aichi biodiversity targets and grouped in 5 strategic goals',
-      'hierarchy' => 1,
+      'description' => 'The 20 Aichi biodiversity targets are grouped in 5 strategic goals',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
       'language' => 'und',
@@ -110,10 +110,10 @@ function chm_structure_taxonomy_default_vocabularies() {
       'i18n_mode' => 1,
     ),
     'eu_targets' => array(
-      'name' => 'EU Targets',
+      'name' => 'EU Biodiversity Targets',
       'machine_name' => 'eu_targets',
       'description' => 'European Union reference targets',
-      'hierarchy' => 1,
+      'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
       'language' => 'und',
