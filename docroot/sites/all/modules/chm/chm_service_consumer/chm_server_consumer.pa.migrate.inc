@@ -18,13 +18,17 @@ class CHMServerConsumerPAMigrate extends CHMServerConsumerMigration {
       ),
       MigrateDestinationNode::getKeySchema()
     );
-    $instance = file_stream_wrapper_get_instance_by_uri(variable_get(PROTECTED_PLANET_AREA_CSV_VAR));
-    $this->source = new MigrateSourceCSV(
-      $instance->realpath(),
-      $this->csvcolumns(),
-      array('header_rows' => 1,),
-      $this->fields()
-    );
+    if ($instance = file_stream_wrapper_get_instance_by_uri(variable_get(PROTECTED_PLANET_AREA_CSV_VAR))) {
+      $this->source = new MigrateSourceCSV(
+        $instance->realpath(),
+        $this->csvcolumns(),
+        array('header_rows' => 1,),
+        $this->fields()
+      );
+    }
+    else {
+      throw new MigrateException('Cannot instantiate migration class because the CSV source data file does not exist. Visit /admin/config/system/chm_global_settings/protected-planet and upload a new file.');
+    }
     $this->destination = new MigrateDestinationNode('protected_area', array('language' => 'en'));
 
     $this->addFieldMapping('title', 'name');
