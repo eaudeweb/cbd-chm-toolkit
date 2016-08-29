@@ -1,3 +1,2 @@
-# Disallow all indexing on the dev/test servers
 User-agent: *
 Disallow: /
