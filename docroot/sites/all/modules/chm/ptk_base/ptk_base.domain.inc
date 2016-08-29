@@ -126,29 +126,6 @@ class PTKDomain {
   }
 
 
-  public static function createCountryMainMenu($country, $domain) {
-    $code = strtolower($country);
-    $countries = PTK::getCountryListAsOptions();
-    if (isset($countries[$code])) {
-      $name = $countries[$code];
-    }
-    else {
-      $name = $domain['subdomain'];
-    }
-    $menu = array(
-      'menu_name' => "menu-main-menu-{$code}",
-      'title' => "Main menu ({$code})",
-      'description' => "Main menu for $name portal",
-      'i18n_mode' => I18N_MODE_MULTIPLE,
-    );
-    $exists = menu_load($menu['menu_name']);
-    if (!$exists) {
-      menu_save($menu);
-    }
-    return $menu;
-  }
-
-
   public static function initializeCountryDomain($domain, $values) {
     global $user;
     if (empty($domain)) {
@@ -156,7 +133,6 @@ class PTKDomain {
     }
     $theme = 'chm_theme_kit';
     $country = PTK::getCountryByCode($values['country']);
-    $create_main_menu = !empty($values['create_main_menu']);
     $create_sample_content = !empty($values['create_sample_content']);
 
     self::variable_set('site_frontpage', "main-home-page", $domain);
@@ -227,18 +203,9 @@ class PTKDomain {
       }
     }
 
+    $create_main_menu = !empty($values['create_main_menu']);
+    $menu = self::createWebsiteMainMenu($values['country'], $domain);
     if ($create_main_menu) {
-      $menu = self::createCountryMainMenu($values['country'], $domain);
-      $home_link = [
-        'link_title' => 'Home',
-        'link_path' => '<front>',
-        'menu_name' => $menu['menu_name'],
-        'weight' => 0,
-        'expanded' => 0,
-        'depth' => 1,
-      ];
-      menu_link_save($home_link);
-
       $page_default_attributes = array(
         'type' => 'page',
         'status' => '1',
@@ -388,6 +355,46 @@ class PTKDomain {
 
     return TRUE;
   }
+
+
+  public static function createWebsiteMainMenu($country, $domain) {
+    $code = strtolower($country);
+    $countries = PTK::getCountryListAsOptions();
+    if (isset($countries[$code])) {
+      $name = $countries[$code];
+    }
+    else {
+      $name = $domain['subdomain'];
+    }
+    $menu = array(
+      'menu_name' => "menu-main-menu-{$code}",
+      'title' => "Main menu ({$code})",
+      'description' => "Main menu for $name portal",
+      'i18n_mode' => I18N_MODE_MULTIPLE,
+    );
+    $exists = menu_load($menu['menu_name']);
+    if (!$exists) {
+      menu_save($menu);
+    }
+
+
+    $home_link = [
+      'link_title' => 'Home',
+      'link_path' => '<front>',
+      'menu_name' => $menu['menu_name'],
+      'weight' => 0,
+      'expanded' => 0,
+      'depth' => 1,
+    ];
+    menu_link_save($home_link);
+
+
+
+    return $menu;
+  }
+
+
+
 
   public static function variable_get($name, $domain = NULL) {
     if (empty($domain)) {
