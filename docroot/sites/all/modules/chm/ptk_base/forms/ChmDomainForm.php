@@ -26,6 +26,11 @@ class ChmDomainForm {
     $is_new = empty($form['#domain']['domain_id']);
     $domain = $form['#domain'];
 
+    $form['subdomain']['#description'] = '<span style="color:red">'
+      . t('If you selected a country above, set the machine name to ISO 2-letter code (i.e. "be").')
+      .  '</span> '
+      . $form['subdomain']['#description'];
+
     $form['sitename']['#prefix'] = '<div id="sitename-wrapper">';
     $form['sitename']['#suffix'] = '</div>';
     if (!PTKDomain::isDefaultDomain($domain)) {
