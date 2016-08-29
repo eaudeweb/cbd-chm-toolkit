@@ -25,6 +25,11 @@ class ChmDomainDeleteFormForm {
       if ($menu = menu_load('menu-main-menu-' . $country->iso2l)) {
         menu_delete($menu);
       };
+
+      // Delete the slideshow entity queues
+      if ($queue = entityqueue_queue_load('slideshow_' . $domain['machine_name'])) {
+        entityqueue_queue_delete($queue);
+      }
     }
   }
 }
