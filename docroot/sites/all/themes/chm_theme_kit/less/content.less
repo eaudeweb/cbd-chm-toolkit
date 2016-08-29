@@ -41,6 +41,30 @@
     }
   }
 }
+#block-ptk-base-chm-content-statistics {
+  @well-ruleset();
+  .table-responsive, tr, td {
+    border: none;
+  }
+  table {
+    tr {
+      background-color: transparent;
+    }
+    td {
+      padding: .5em 0;
+      font-size: 14px;
+      line-height: inherit;
+      color: #000;
+      a {
+        color: @link-color-temp;
+        &:hover {
+          color: @link-color-hover-temp;
+        }
+      }
+    }
+  }
+}
+
 .pane-ptk-base-chm-content-statistics {
   table>tbody>tr>td:nth-child(2) {
     position: relative;
