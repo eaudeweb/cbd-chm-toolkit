@@ -99,23 +99,7 @@ class ChmDomainForm {
     $form['#validate'][] = array('ChmDomainForm', 'validate');
   }
 
-  static function validate($form, $form_state) {
-    if (!empty($form_state['values']['country']) && $iso = $form_state['values']['country']) {
-      if ($country = PTK::getCountryByCode($form_state['values']['country'])) {
-        // Do not allow to set a country without having Protected Planet ID set
-        /** @var stdClass $wrapper */
-        $wrapper = entity_metadata_wrapper('taxonomy_term', $country);
-        $ppid = $wrapper->field_protected_planet_id->value();
-        if (empty($ppid)) {
-          form_set_error(
-            'country',
-            t('Cannot use this country because is missing the <b>Protected Planet</b> ID, configure it !here',
-              array('!here' => l(t('here'), 'taxonomy/term/' . $country->tid . '/edit', array('attributes' => array('target' => '_blank')))))
-          );
-        }
-      }
-    }
-  }
+  static function validate($form, $form_state) {}
 
   static function submit($form, $form_state) {
     $domain = $form['#domain'];
