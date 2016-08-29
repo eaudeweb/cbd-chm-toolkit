@@ -50,11 +50,18 @@ class ChmContentStatisticsBlock extends AbstractBlock {
         $singular = variable_get("{$this->delta}_{$machine_name}_singular");
         $plural = variable_get("{$this->delta}_{$machine_name}_plural");
         $weight = variable_get("{$this->delta}_{$machine_name}_weight");
-        $label = format_plural($c, !empty($singular) ? $singular : $type->name, !empty($plural) ? $plural : $type->name);
-        $name = !empty($url) && (arg(0) != $url) ? l($c . ' ' . $label, $url, ['html' => TRUE]) : $c . ' ' . $label;
-        $rows[$weight] = [
-          $icon ? $icon . $name : $name,
-        ];
+        $label = $c . ' ' . format_plural($c, !empty($singular) ? $singular : $type->name, !empty($plural) ? $plural : $type->name);
+        if (!empty($url)) {
+          if (arg(0) != $url) {
+            $rows[$weight] = [l($icon . $label, $url, ['html' => TRUE])];
+          }
+          else {
+            $rows[$weight] = [$icon . $label];
+          }
+        }
+        else {
+          $rows[$weight] = [$icon . $label];
+        }
       }
     }
     ksort($rows);
