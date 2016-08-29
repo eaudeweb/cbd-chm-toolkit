@@ -293,13 +293,14 @@ class ChmDomainForm {
           ->execute();
         switch ($page) {
           case 'Biodiversity':
-            PTK::addBlocksToNode(['ecosystems-block'], $node->nid);
+            PTK::showBlockOnPage('ecosystems-block', 'node/' . $node->nid);
             break;
           case 'Strategy':
-            PTK::addBlocksToNode(['nbsap-block', 'national_targets-block'], $node->nid);
+            PTK::showBlockOnPage('nbsap-block', 'node/' . $node->nid);
+            PTK::showBlockOnPage('national_targets-block', 'node/' . $node->nid);
             break;
           case 'Implementation':
-            PTK::addBlocksToNode(['projects-block'], $node->nid);
+            PTK::showBlockOnPage('projects-block', $node->nid);
             break;
           case 'Information':
             $node->title = $page;
