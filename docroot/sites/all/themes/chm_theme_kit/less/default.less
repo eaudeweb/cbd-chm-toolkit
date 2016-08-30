@@ -84,19 +84,22 @@ body.maintenance-page {
   .media-body {
     display: block;
     width: auto;
-    > .media-heading {
-      > a {
-        font-weight: bold;
-        font-size: 1.8rem;
-        margin-bottom: .25em;
-        display: block;
-      }
-      > .form-item {
-        font-weight: normal;
-        font-size: 1.3rem;
-        color: #777;
-        margin-bottom: .25em;
-      }
+    .media-heading {
+      font-weight: bold;
+      font-size: 1.6rem;
+      margin-bottom: .25em;
+      display: block;
+    }
+    .field-dates {
+      font-size: 1.3rem;
+      color: #777;
+      margin-bottom: .25em;
+    }
+    .field-type {
+      text-transform: uppercase;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #777;
     }
     > p {
       padding: 0;
@@ -127,8 +130,8 @@ body.maintenance-page {
       font-weight: bold;
       font-size: smaller;
     }
-     .date-display-single,
-     .date-display-range {
+    .date-display-single,
+    .date-display-range {
       font-size: 1.3rem;
     }
   }
@@ -145,11 +148,9 @@ body.maintenance-page {
       }
     }
     .media-body {
-      padding: 1em .5em 0 0;
+      padding: 1em .5em .5em 0;
       > p {
         max-height: ~"calc(2 * @{line-height-em})";
-      }
-      > a {
       }
     }
   }
@@ -174,9 +175,6 @@ body.maintenance-page {
       }
     }
     .media-body {
-      > .media-heading {
-        font-size: 1.3em;
-      }
     }
   }
   @media all and (min-width: @screen-md-min) {
