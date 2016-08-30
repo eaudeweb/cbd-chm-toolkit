@@ -8311,6 +8311,9 @@ body.maintenance-page #footer-container #footer {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
   padding: 8vw;
 }
+.view .media:first-of-type {
+  margin-top: 1em;
+}
 .view .media > .pull-left {
   float: none !important;
   margin: -8vw -8vw 1em -8vw;
@@ -8320,29 +8323,30 @@ body.maintenance-page #footer-container #footer {
 .view .media > .pull-left .embedded-video {
   width: 100%;
 }
-.view .media > .media-body {
+.view .media-body {
   display: block;
   width: auto;
 }
-.view .media > .media-body > .media-heading > a {
+.view .media-body > .media-heading > a {
   font-weight: bold;
+  font-size: 1.8rem;
   margin-bottom: .25em;
   display: block;
 }
-.view .media > .media-body > .media-heading > .form-item {
+.view .media-body > .media-heading > .form-item {
   font-weight: normal;
-  font-size: 13px;
+  font-size: 1.3rem;
   color: #777;
   margin-bottom: .25em;
 }
-.view .media > .media-body > p {
+.view .media-body > p {
   padding: 0;
-  height: calc(3 * 1.42857143em);
+  max-height: calc(3 * 1.42857143em);
   overflow: hidden;
   position: relative;
   margin-bottom: .3em;
 }
-.view .media > .media-body > p:after {
+.view .media-body > p:after {
   content: "";
   text-align: right;
   position: absolute;
@@ -8362,11 +8366,15 @@ body.maintenance-page #footer-container #footer {
   /* IE6-9 */
   pointer-events: none;
 }
-.view .media > .media-body > a {
+.view .media-body > a {
   display: inline;
   text-transform: uppercase;
   font-weight: bold;
   font-size: smaller;
+}
+.view .media-body .date-display-single,
+.view .media-body .date-display-range {
+  font-size: 1.3rem;
 }
 @media all and (min-width: 480px) {
   .view .media {
@@ -8379,11 +8387,11 @@ body.maintenance-page #footer-container #footer {
     margin: 0;
     margin-right: 1em;
   }
-  .view .media > .media-body {
+  .view .media-body {
     padding: 1em .5em 0 0;
   }
-  .view .media > .media-body > p {
-    height: calc(2 * 1.42857143em);
+  .view .media-body > p {
+    max-height: calc(2 * 1.42857143em);
   }
 }
 @media all and (min-width: 650px) {
@@ -8391,17 +8399,17 @@ body.maintenance-page #footer-container #footer {
     width: 35%;
     margin-right: 1em;
   }
-  .view .media > .media-body > .media-heading {
-    font-size: 1.3em;
-  }
-  .view .media > .media-body > p {
-    height: calc(3 * 1.42857143em);
+  .view .media-body > p {
+    max-height: calc(3 * 1.42857143em);
   }
 }
 @media all and (min-width: 768px) {
   .view .media > .pull-left {
     width: 40%;
     margin-right: 1em;
+  }
+  .view .media-body > .media-heading {
+    font-size: 1.3em;
   }
 }
 @media all and (min-width: 992px) {
