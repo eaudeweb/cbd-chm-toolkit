@@ -213,10 +213,10 @@ function chm_structure_field_default_field_bases() {
       'cache_enabled' => 0,
       'entity_translation_sync' => FALSE,
       'granularity' => array(
-        'day' => 0,
+        'day' => 'day',
         'hour' => 0,
         'minute' => 0,
-        'month' => 0,
+        'month' => 'month',
         'second' => 0,
         'year' => 'year',
       ),
@@ -788,6 +788,34 @@ function chm_structure_field_default_field_bases() {
     'type' => 'text',
   );
 
+  // Exported field_base: 'field_organization_type'.
+  $field_bases['field_organization_type'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_organization_type',
+    'indexes' => array(
+      'tid' => array(
+        0 => 'tid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'taxonomy',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => array(
+          'vocabulary' => 'organization_type',
+          'parent' => 0,
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'options_list_callback' => 'i18n_taxonomy_allowed_values',
+    ),
+    'translatable' => 0,
+    'type' => 'taxonomy_term_reference',
+  );
+
   // Exported field_base: 'field_original_id'.
   $field_bases['field_original_id'] = array(
     'active' => 1,
@@ -1208,6 +1236,28 @@ function chm_structure_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
+  // Exported field_base: 'field_reference_number'.
+  $field_bases['field_reference_number'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_reference_number',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
   // Exported field_base: 'field_salutation'.
   $field_bases['field_salutation'] = array(
     'active' => 1,
@@ -1520,6 +1570,32 @@ function chm_structure_field_default_field_bases() {
     ),
     'translatable' => 1,
     'type' => 'link_field',
+  );
+
+  // Exported field_base: 'field_use_aichi_target'.
+  $field_bases['field_use_aichi_target'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_use_aichi_target',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => 0,
+        1 => 1,
+      ),
+      'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
   );
 
   // Exported field_base: 'field_video_link'.

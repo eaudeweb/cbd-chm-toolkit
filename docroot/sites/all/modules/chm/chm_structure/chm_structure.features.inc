@@ -79,6 +79,14 @@ function chm_structure_image_default_styles() {
  */
 function chm_structure_node_info() {
   $items = array(
+    'cbd_national_target' => array(
+      'name' => t('CBD National Target'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
     'cbd_nfp' => array(
       'name' => t('CBD National Focal Point'),
       'base' => 'node_content',
@@ -141,6 +149,14 @@ function chm_structure_node_info() {
       'description' => t('Use <i>news</i> for time-sensitive content like news, press releases, alerts etc.'),
       'has_title' => '1',
       'title_label' => t('Title'),
+      'help' => '',
+    ),
+    'organization' => array(
+      'name' => t('Organization'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Name'),
       'help' => '',
     ),
     'page' => array(
