@@ -728,11 +728,6 @@ function chm_views_views_default_views() {
   $handler->display->display_options['filters']['field_document_type_tid']['id'] = 'field_document_type_tid';
   $handler->display->display_options['filters']['field_document_type_tid']['table'] = 'field_data_field_document_type';
   $handler->display->display_options['filters']['field_document_type_tid']['field'] = 'field_document_type_tid';
-  $handler->display->display_options['filters']['field_document_type_tid']['value'] = array(
-    276 => '276',
-    280 => '280',
-    281 => '281',
-  );
   $handler->display->display_options['filters']['field_document_type_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_document_type_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_document_type_tid']['expose']['operator_id'] = 'field_document_type_tid_op';
