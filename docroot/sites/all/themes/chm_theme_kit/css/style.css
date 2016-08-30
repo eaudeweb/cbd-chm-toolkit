@@ -9466,6 +9466,27 @@ body.country-portal .logo img {
     max-height: calc(3 * 1.42857143em);
   }
 }
+@media all and (min-width: 480px) {
+  .view-video-library .media-body > p,
+  .view-projects .media-body > p,
+  .view-protected-areas .media-body > p {
+    max-height: calc(1 * 1.42857143em);
+  }
+}
+@media all and (min-width: 650px) {
+  .view-video-library .media-body > p,
+  .view-projects .media-body > p,
+  .view-protected-areas .media-body > p {
+    max-height: calc(2 * 1.42857143em);
+  }
+}
+@media all and (min-width: 992px) {
+  .view-video-library .media-body > p,
+  .view-projects .media-body > p,
+  .view-protected-areas .media-body > p {
+    max-height: calc(3 * 1.42857143em);
+  }
+}
 .field-name-field-video-link {
   max-width: 600px;
 }

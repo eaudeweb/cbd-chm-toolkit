@@ -803,7 +803,33 @@
       .views-field.views-field-body {
         max-height: ~"calc(3 * @{line-height-em})";
       }
+    }
+  }
+}
 
+//rewritten
+.view-video-library,
+.view-projects,
+.view-protected-areas {
+  @media all and (min-width: @screen-xs-min) {
+    .media-body {
+      > p {
+        max-height: ~"calc(1 * @{line-height-em})";
+      }
+    }
+  }
+  @media all and (min-width: 650px) {
+    .media-body {
+      > p {
+        max-height: ~"calc(2 * @{line-height-em})";
+      }
+    }
+  }
+  @media all and (min-width: @screen-md-min) {
+    .media-body {
+      > p {
+        max-height: ~"calc(3 * @{line-height-em})";
+      }
     }
   }
 }
