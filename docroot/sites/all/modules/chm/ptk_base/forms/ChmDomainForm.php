@@ -298,6 +298,7 @@ class ChmDomainForm {
           case 'Strategy':
             PTK::showBlockOnPage('nbsap-block', 'node/' . $node->nid);
             PTK::showBlockOnPage('cbd_national_targets-targets', 'node/' . $node->nid);
+            PTK::showBlockOnPage('documents-nbsaps', 'node/' . $node->nid);
             break;
           case 'Implementation':
             PTK::showBlockOnPage('projects-block_listing', 'node/' . $node->nid);
