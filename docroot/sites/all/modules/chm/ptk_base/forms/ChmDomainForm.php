@@ -300,7 +300,7 @@ class ChmDomainForm {
             PTK::showBlockOnPage('national_targets-block', 'node/' . $node->nid);
             break;
           case 'Implementation':
-            PTK::showBlockOnPage('projects-block', $node->nid);
+            PTK::showBlockOnPage('projects-block_listing', 'node/' . $node->nid);
             break;
           case 'Information':
             $node->title = $page;
