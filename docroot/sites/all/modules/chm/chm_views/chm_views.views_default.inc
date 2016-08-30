@@ -579,7 +579,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['path'] = 'national-targets';
 
   /* Display: Block */
-  $handler = $view->new_display('block', 'Block', 'block_listing');
+  $handler = $view->new_display('block', 'Block', 'targets');
   $translatables['cbd_national_targets'] = array(
     t('Master'),
     t('National targets'),
