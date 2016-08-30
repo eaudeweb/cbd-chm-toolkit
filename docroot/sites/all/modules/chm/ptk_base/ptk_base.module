@@ -369,12 +369,13 @@ function theme_ptk_base_chm_content_statistics_block_config_form($variables) {
     $rows[] = $row;
   }
   $prefix = '<p>' . t('Configure the display of content types statistics. Use the mouse to drag and drop rows to determine the display order in the front-end.') . '</p>';
-  return $prefix . theme('table', array(
-    'header' => $header,
-    'rows' => $rows,
-    'attributes' => array('id' => 'config_table'),
-  ));
-
+  return $prefix
+    . drupal_render($element['title'])
+    . theme('table', array(
+      'header' => $header,
+      'rows' => $rows,
+      'attributes' => array('id' => 'config_table'),
+    ));
 }
 
 
