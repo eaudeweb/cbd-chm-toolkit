@@ -1,10 +1,12 @@
 <?php
 
 require_once dirname(__FILE__) . '/ChmDomainForm.php';
+require_once dirname(__FILE__) . '/ChmDomainDeleteFormForm.php';
 require_once dirname(__FILE__) . '/ChmI18nStringLocaleTranslateEditFormForm.php';
 require_once dirname(__FILE__) . '/ChmSocialMediaForm.php';
 require_once dirname(__FILE__) . '/ChmMiscellaneousForm.php';
 require_once dirname(__FILE__) . '/ChmNodeForm.php';
+require_once dirname(__FILE__) . '/ChmProtectedPlanetSettingsForm.php';
 require_once dirname(__FILE__) . '/ChmUserLoginForm.php';
 
 

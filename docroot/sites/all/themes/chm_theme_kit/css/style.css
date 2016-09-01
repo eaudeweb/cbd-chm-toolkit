@@ -7590,43 +7590,11 @@ a:hover {
 .region-admin-shortcuts {
   float: right;
 }
-.header .site-logo img {
-  border: 7px solid white;
-  -webkit-box-shadow: 0px 0px 5px 4px rgba(204, 204, 204, 0.6);
-  -moz-box-shadow: 0px 0px 5px 4px rgba(204, 204, 204, 0.6);
-  box-shadow: 0px 0px 5px 4px rgba(204, 204, 204, 0.6);
-  max-height: 45px;
-}
-.header .site-logo img:hover {
-  -webkit-box-shadow: 0px 0px 5px 4px #cccccc;
-  -moz-box-shadow: 0px 0px 5px 4px #cccccc;
-  box-shadow: 0px 0px 5px 4px #cccccc;
-}
-div#logo.site-logo img {
-  max-height: none;
-}
-.domain-www-chm-cbd-net #name-and-slogan {
-  padding: 37px 0 20px 20px;
-}
-.site-name {
-  font-weight: 700;
-  font-size: 30px;
-  font-family: "PT Serif";
-  width: 75%;
-}
 .nav-search {
   float: right;
   margin: -60px 0px 0 0;
   padding: 0;
   min-height: 1px;
-}
-#site-slogan {
-  font-size: 14px;
-  font-family: "Open Sans";
-  xdisplay: none;
-}
-#name-and-slogan {
-  padding: 20px 0 20px 20px;
 }
 .admin-shortcuts {
   background: #232323;
@@ -7656,8 +7624,6 @@ div#logo.site-logo img {
   border-bottom: 1px solid #C5C5C5;
 }
 /* ----- Search Box ------------------ */
-/* ----- Logo ------------------------ */
-/* ----- Site Title and Slogan ------- */
 /* NAVIGATION ***************************** */
 /* ----- Main Navigation ------------- */
 .navbar-inner {
@@ -8041,9 +8007,6 @@ a.more-link:hover,
     float: right;
     margin: 2px 0px 0 0;
   }
-  #site-slogan {
-    display: none;
-  }
   .view .span4 img,
   .view .span3 img {
     max-width: 80%;
@@ -8068,22 +8031,6 @@ a.more-link:hover,
   .container {
     padding-right: 20px;
     padding-left: 20px;
-  }
-}
-@media (max-width: 480px) {
-  .header #logo {
-    float: left;
-    margin-top: 20px;
-    text-align: left;
-  }
-  #name-and-slogan {
-    float: left;
-    padding-left: 0px;
-    width: auto;
-  }
-  .site-name {
-    width: 100%;
-    text-align: left;
   }
 }
 /* VIEWS ************************* */
@@ -8183,13 +8130,6 @@ a.more-link:hover,
   background: #fff;
   color: #039749;
 }
-.green-theme .header .site-logo img {
-  box-shadow: none;
-  border: none;
-}
-.green-theme .header .site-logo img:hover {
-  box-shadow: none;
-}
 .green-theme h2,
 .green-theme h1,
 .green-theme .views-field-title {
@@ -8221,21 +8161,6 @@ a.more-link:hover,
 }
 #admin-shortcuts a {
   color: #fff;
-}
-.green-theme .content-head {
-  margin-bottom: 0;
-}
-.green-theme .site-name a {
-  color: #333 !important;
-  font-size: 30px;
-  font-family: "Open Sans";
-}
-.green-theme .site-name a {
-  color: #333 !important;
-}
-.green-theme .site-slogan {
-  font-size: 30px;
-  font-family: "Open Sans";
 }
 .green-theme .block-views .content {
   margin-top: 20px;
@@ -8363,6 +8288,18 @@ body.maintenance-page #footer-container #footer {
   padding-top: 80px;
   padding-bottom: 80px;
 }
+.btn.btn-primary {
+  background-color: #0081d2;
+  padding: 7px 16px;
+}
+.btn.btn-primary:hover {
+  background-color: #0071B8;
+  color: white;
+}
+.btn.btn-primary:active,
+.btn.btn-primary:focus {
+  background-color: #006eb3;
+}
 .region-admin-shortcuts #block-system-user-menu .menu:before {
   display: inline-block;
 }
@@ -8398,6 +8335,7 @@ body.maintenance-page #footer-container #footer {
 }
 #page-header {
   display: block;
+  /* Site name & slogan @todo: finish responsiveness for devices */
 }
 #page-header .logo {
   display: block;
@@ -8407,7 +8345,7 @@ body.maintenance-page #footer-container #footer {
 [dir="rtl"] #page-header .logo {
   float: right !important;
 }
-@media all and (max-width: 559px) {
+@media all and (max-width: 767px) {
   #page-header .logo {
     width: 100%;
   }
@@ -8429,7 +8367,7 @@ body.maintenance-page #footer-container #footer {
 [dir="rtl"] #page-header .navbar-brand {
   float: right;
 }
-@media all and (max-width: 559px) {
+@media all and (max-width: 767px) {
   #page-header .navbar-brand {
     padding-bottom: 25px;
     line-height: 24px;
@@ -8449,6 +8387,72 @@ body.maintenance-page #footer-container #footer {
 @media all and (max-width: 768px) {
   #page-header #nav-search {
     display: none;
+  }
+}
+#page-header .site-name {
+  font-family: "PT Serif";
+  font-weight: 700;
+  font-size: 30px;
+  width: 75%;
+}
+#page-header #site-slogan {
+  font-size: 14px;
+  font-family: "Open Sans";
+}
+#page-header #name-and-slogan {
+  display: table-cell;
+  vertical-align: middle;
+  float: left;
+}
+#page-header #name-and-slogan a {
+  height: 70px;
+  float: none;
+}
+#page-header .header .site-logo img {
+  border: 7px solid white;
+  -webkit-box-shadow: 0 0 5px 4px rgba(204, 204, 204, 0.6);
+  -moz-box-shadow: 0 0 5px 4px rgba(204, 204, 204, 0.6);
+  box-shadow: 0 0 5px 4px rgba(204, 204, 204, 0.6);
+  max-height: 45px;
+}
+#page-header .header .site-logo img:hover {
+  -webkit-box-shadow: 0 0 5px 4px #cccccc;
+  -moz-box-shadow: 0 0 5px 4px #cccccc;
+  box-shadow: 0 0 5px 4px #cccccc;
+}
+#page-header div#logo.site-logo img {
+  max-height: none;
+}
+#page-header .green-theme .header .site-logo img {
+  box-shadow: none;
+  border: none;
+}
+#page-header .green-theme .header .site-logo img:hover {
+  box-shadow: none;
+}
+@media (max-width: 767px) {
+  #page-header .nav-search {
+    float: right;
+    margin: 2px 0 0 0;
+  }
+  #page-header #site-slogan {
+    display: none;
+  }
+}
+@media (max-width: 480px) {
+  #page-header .header #logo {
+    float: left;
+    margin-top: 20px;
+    text-align: left;
+  }
+  #page-header #name-and-slogan {
+    float: left;
+    padding-left: 0;
+    width: auto;
+  }
+  #page-header .site-name {
+    width: 100%;
+    text-align: left;
   }
 }
 body.country-portal .logo img {
@@ -8682,14 +8686,6 @@ body.country-portal .logo img {
 #page-title {
   margin-top: 0;
 }
-.views-exposed-form .views-exposed-widget .form-submit:hover,
-.views-exposed-form .views-exposed-widget .form-submit:active,
-.views-exposed-form .views-exposed-widget .form-submit:focus,
-.views-exposed-form .views-exposed-widget .form-submit[disabled]:hover,
-.views-exposed-form .views-exposed-widget .form-submit[disabled]:active,
-.views-exposed-form .views-exposed-widget .form-submit[disabled]:focus {
-  background-color: #02823F;
-}
 /* front page styling*/
 .view-latest-updates .view-content > .item-list > ul {
   list-style-type: none;
@@ -8719,18 +8715,48 @@ body.country-portal .logo img {
   clear: both;
   margin-bottom: 1em;
 }
+#block-ptk-base-chm-content-statistics {
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+#block-ptk-base-chm-content-statistics .table-responsive,
+#block-ptk-base-chm-content-statistics tr,
+#block-ptk-base-chm-content-statistics td {
+  border: none;
+}
+#block-ptk-base-chm-content-statistics table tr {
+  background-color: transparent;
+}
+#block-ptk-base-chm-content-statistics table td {
+  padding: .5em 0;
+  font-size: 14px;
+  line-height: inherit;
+  color: #000 ;
+}
+#block-ptk-base-chm-content-statistics table td a {
+  color: #06c;
+}
+#block-ptk-base-chm-content-statistics table td a:hover {
+  color: #06c;
+}
 .pane-ptk-base-chm-content-statistics table > tbody > tr > td:nth-child(2) {
   position: relative;
 }
-.pane-ptk-base-chm-content-statistics table > tbody > tr > td:nth-child(2) span.fa {
-  position: absolute;
-  right: 100%;
-  top: 50%;
-  transform: translateY(-50%);
+.pane-ptk-base-chm-content-statistics span.fa {
+  margin-right: 8px;
+  color: #02823F;
 }
-[dir="rtl"] .pane-ptk-base-chm-content-statistics table > tbody > tr > td:nth-child(2) span.fa {
+[dir="rtl"] .pane-ptk-base-chm-content-statistics span.fa {
   right: auto;
-  left: 100%;
+  margin-left: 8px;
+  margin-right: 0;
 }
 /*Aichi biodiversity targets*/
 .view-aichi-biodiversity-targets .view-content ul {
@@ -9260,33 +9286,58 @@ body.country-portal .logo img {
     margin-left: 5rem;
   }
 }
-#block-system-main {
-  margin-bottom: 1em;
-}
-#block-views-ecosystems-block .view-ecosystems tr {
+.view-video-library .view-content .views-row {
   display: block;
-}
-#block-views-ecosystems-block .view-ecosystems tr td {
-  display: block;
-  padding: 10vw;
+  padding: 8vw;
   margin-bottom: 1.5em;
   background-color: #f5f5f5;
   border: 1px solid #e3e3e3;
-  border-radius: 5px;
+  border-radius: 4px 4px 2px 2px;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  position: relative;
 }
-#block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-field-image img {
-  width: 100%;
+.view-video-library .view-content .views-row .views-field.views-field-field-video-link-1 {
+  margin: -8vw -8vw 1em;
 }
-#block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-title a {
+.view-video-library .view-content .views-row .views-field.views-field-title {
+  font-size: 1.3em;
+  margin-bottom: .25em;
+}
+.view-video-library .view-content .views-row .views-field.views-field-title a {
   color: #039749;
   font-weight: bold;
-  font-size: 1.5em;
 }
-#block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-body {
+.view-video-library .view-content .views-row .views-field.views-field-body {
+  padding: 0;
   font-size: 14px;
+  min-height: calc(1 * 1.42857143em);
+  max-height: calc(3 * 1.42857143em);
+  overflow: hidden;
+  position: relative;
+  margin-bottom: .3em;
 }
-#block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-body a.more-link {
+.view-video-library .view-content .views-row .views-field.views-field-body:after {
+  content: "";
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: auto;
+  width: 70%;
+  height: 1.42857143em;
+  pointer-events: none;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f5f5f5+100&0+0,1+100 */
+  background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, #f5f5f5 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, #f5f5f5 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #f5f5f5 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#f5f5f5', GradientType=1);
+  /* IE6-9 */
+}
+.view-video-library .view-content .views-row .views-field.views-field-view-node {
   display: inline;
   text-transform: uppercase;
   font-weight: bold;
@@ -9294,42 +9345,479 @@ body.country-portal .logo img {
   margin-top: .5em;
   line-height: 1.5em;
 }
-#block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-body a.more-link:before {
-  content: "\a\a";
-  white-space: pre-line;
-}
-#block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-body a.more-link:after {
-  content: " » ";
-}
-#block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-body a.more-link:hover {
-  color: black;
-  text-decoration: underline;
-}
 @media all and (min-width: 480px) {
-  #block-views-ecosystems-block .view-ecosystems tr td {
-    padding: 2em;
+  .view-video-library .view-content .views-row {
+    padding: 1.5em;
+    overflow: hidden;
+    border-radius: 4px 2px 2px 4px;
   }
-  #block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-field-image img {
+  .view-video-library .view-content .views-row .views-field.views-field-field-video-link-1 {
+    margin: -1.5em 0 -1.5em -1.5em;
     width: 40%;
     float: left;
     margin-right: 1em;
   }
-  #block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-title a {
-    font-size: 1.7em;
+  .view-video-library .view-content .views-row .views-field.views-field-title .field-content {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+    color: #039749;
   }
-  #block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-body a.more-link:before {
-    content: "\a";
+  .view-video-library .view-content .views-row .views-field.views-field-body {
+    max-height: calc(1 * 1.42857143em);
+    overflow: hidden;
+    position: relative;
+  }
+}
+@media all and (min-width: 768px) {
+  .view-video-library .view-content .views-row .views-field.views-field-body {
+    max-height: calc(2 * 1.42857143em);
   }
 }
 @media all and (min-width: 992px) {
-  #block-views-ecosystems-block .view-ecosystems tr td {
+  .view-video-library .view-content .views-row {
     padding: 2em;
   }
-  #block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-field-image img {
-    width: initial;
+  .view-video-library .view-content .views-row .views-field.views-field-field-video-link-1 {
+    margin: -2em 0 -2em -2em;
+    width: 30%;
+    margin-right: 2em;
   }
-  #block-views-ecosystems-block .view-ecosystems tr td .views-field.views-field-body a.more-link:before {
-    content: "\a\a";
+  .view-video-library .view-content .views-row .views-field.views-field-title {
+    margin-bottom: .5em;
+  }
+  .view-video-library .view-content .views-row .views-field.views-field-body {
+    max-height: calc(3 * 1.42857143em);
+  }
+}
+.field-name-field-video-link {
+  max-width: 600px;
+}
+.player {
+  position: relative;
+  padding-bottom: 56.25%;
+  /* 16:9 */
+  padding-top: 25px;
+  height: 0;
+}
+.player iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.view-projects .view-content .views-row {
+  display: block;
+  padding: 10vw;
+  margin-bottom: 1.5em;
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.view-projects .view-content .views-row.no-image {
+  padding-bottom: 10vw;
+}
+.view-projects .view-content .views-row.no-image .views-field.views-field-field-image {
+  display: none;
+}
+.view-projects .view-content .views-row .views-field.views-field-field-image {
+  margin: -10vw -10vw 1em -10vw;
+}
+.view-projects .view-content .views-row .views-field.views-field-field-image img {
+  width: 100%;
+}
+.view-projects .view-content .views-row .views-field.views-field-title-field a {
+  color: #039749;
+  font-weight: bold;
+  font-size: 1.3em;
+}
+.view-projects .view-content .views-row .views-field.views-field-field-dates {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: .25em;
+}
+.view-projects .view-content .views-row .views-field.views-field-field-dates .field-content {
+  display: inline;
+}
+.view-projects .view-content .views-row .views-field.views-field-field-dates .field-content .form-item {
+  display: inline;
+}
+.view-projects .view-content .views-row .views-field.views-field-body {
+  padding: 0;
+  font-size: 14px;
+  min-height: 1.42857143em;
+  max-height: calc(3 * 1.42857143em);
+  overflow: hidden;
+  position: relative;
+  margin-bottom: .3em;
+}
+.view-projects .view-content .views-row .views-field.views-field-body:after {
+  content: "";
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: auto;
+  width: 70%;
+  height: 1.42857143em;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f5f5f5+100&0+0,1+100 */
+  background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, #f5f5f5 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, #f5f5f5 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #f5f5f5 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#f5f5f5', GradientType=1);
+  /* IE6-9 */
+  pointer-events: none;
+}
+.view-projects .view-content .views-row .views-field.views-field-view-node {
+  display: inline;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.8em;
+  margin-top: .5em;
+  line-height: 1.5em;
+}
+@media all and (min-width: 480px) {
+  .view-projects .view-content .views-row {
+    padding: 2em;
+    padding-bottom: 0;
+  }
+  .view-projects .view-content .views-row.no-image {
+    padding-bottom: 2em;
+  }
+  .view-projects .view-content .views-row .views-field.views-field-field-dates {
+    font-size: 12px;
+  }
+  .view-projects .view-content .views-row .views-field.views-field-field-image {
+    margin: -2em -2em 1em -2em;
+  }
+  .view-projects .view-content .views-row .views-field.views-field-field-image img {
+    width: 35%;
+    float: left;
+    margin-right: 1em;
+  }
+  .view-projects .view-content .views-row .views-field.views-field-title-field .field-content {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+    color: #039749;
+  }
+  .view-projects .view-content .views-row .views-field.views-field-body {
+    max-height: calc(1 * 1.42857143em);
+  }
+}
+@media all and (min-width: 560px) {
+  .view-projects .view-content .views-row .views-field.views-field-field-dates {
+    font-size: 13px;
+  }
+  .view-projects .view-content .views-row .views-field.views-field-body {
+    max-height: calc(2 * 1.42857143em);
+  }
+}
+@media all and (min-width: 768px) {
+  .view-projects .view-content .views-row .views-field.views-field-body {
+    max-height: calc(3 * 1.42857143em);
+  }
+}
+@media all and (min-width: 992px) {
+  .view-projects .view-content .views-row .views-field.views-field-field-image img {
+    width: 220px;
+  }
+}
+.view-protected-areas .view-content .views-row {
+  display: block;
+  padding: 10vw;
+  margin-bottom: 1.5em;
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.view-protected-areas .view-content .views-row.no-image {
+  padding-bottom: 10vw;
+}
+.view-protected-areas .view-content .views-row.no-image .views-field.views-field-field-image {
+  display: none;
+}
+.view-protected-areas .view-content .views-row .views-field.views-field-field-image {
+  margin: -10vw -10vw 1em -10vw;
+}
+.view-protected-areas .view-content .views-row .views-field.views-field-field-image img {
+  width: 100%;
+}
+.view-protected-areas .view-content .views-row .views-field.views-field-title-field {
+  margin-bottom: .25em;
+}
+.view-protected-areas .view-content .views-row .views-field.views-field-title-field a {
+  color: #039749;
+  font-weight: bold;
+  font-size: 1.3em;
+}
+.view-protected-areas .view-content .views-row .views-field.views-field-field-dates {
+  font-size: 13px;
+  color: #777;
+}
+.view-protected-areas .view-content .views-row .views-field.views-field-field-dates .field-content {
+  display: inline;
+}
+.view-protected-areas .view-content .views-row .views-field.views-field-field-dates .field-content .form-item {
+  display: inline;
+}
+.view-protected-areas .view-content .views-row .views-field.views-field-body {
+  padding: 0;
+  font-size: 14px;
+  min-height: 1.42857143em;
+  max-height: calc(3 * 1.42857143em);
+  overflow: hidden;
+  position: relative;
+  margin-bottom: .3em;
+}
+.view-protected-areas .view-content .views-row .views-field.views-field-body:after {
+  content: "";
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: auto;
+  width: 70%;
+  height: 1.42857143em;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f5f5f5+100&0+0,1+100 */
+  background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, #f5f5f5 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, #f5f5f5 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #f5f5f5 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#f5f5f5', GradientType=1);
+  /* IE6-9 */
+  pointer-events: none;
+}
+.view-protected-areas .view-content .views-row .views-field.views-field-view-node {
+  display: inline;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.8em;
+  margin-top: .5em;
+  line-height: 1.5em;
+}
+@media all and (min-width: 480px) {
+  .view-protected-areas .view-content .views-row {
+    padding: 2em;
+    padding-bottom: 0;
+  }
+  .view-protected-areas .view-content .views-row.no-image {
+    padding-bottom: 2em;
+  }
+  .view-protected-areas .view-content .views-row .views-field.views-field-field-image {
+    margin: -2em -2em 1em -2em;
+  }
+  .view-protected-areas .view-content .views-row .views-field.views-field-field-image img {
+    width: 35%;
+    float: left;
+    margin-right: 1em;
+  }
+  .view-protected-areas .view-content .views-row .views-field.views-field-title-field .field-content {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+    color: #039749;
+  }
+  .view-protected-areas .view-content .views-row .views-field.views-field-body {
+    max-height: calc(2 * 1.42857143em);
+  }
+}
+@media all and (min-width: 768px) {
+  .view-protected-areas .view-content .views-row .views-field.views-field-field-image img {
+    width: 35%;
+  }
+  .view-protected-areas .view-content .views-row .views-field.views-field-body {
+    max-height: calc(3 * 1.42857143em);
+  }
+}
+@media all and (min-width: 992px) {
+  .view-protected-areas .view-content .views-row .views-field.views-field-title-field {
+    margin-bottom: .5em;
+  }
+  .view-protected-areas .view-content .views-row .views-field.views-field-field-image img {
+    width: 220px;
+  }
+}
+#webform-client-form-3177 > div > .form-item:not(.webform-conditional-hidden) {
+  display: block !important;
+}
+#webform-client-form-3177 > div > .form-item:not(.webform-conditional-hidden) > label {
+  white-space: nowrap;
+}
+#webform-client-form-3177 > div > .form-item:not(.webform-conditional-hidden) > label span.form-required {
+  color: #d22020;
+}
+#webform-client-form-3177 > div #edit-submitted-file-ajax-wrapper {
+  display: table-row-group;
+  margin-bottom: .5em;
+}
+#webform-client-form-3177 > div #edit-submitted-file-ajax-wrapper input {
+  margin-bottom: .5em;
+}
+#webform-client-form-3177 > div #edit-submitted-file-ajax-wrapper .description {
+  display: inline;
+}
+#webform-client-form-3177 > div #edit-submitted-file-ajax-wrapper button {
+  margin-bottom: .5em;
+}
+@media all and (min-width: 480px) {
+  #webform-client-form-3177 > div {
+    display: table;
+  }
+  #webform-client-form-3177 > div .form-item:not(.webform-conditional-hidden) {
+    display: table-row !important;
+  }
+  #webform-client-form-3177 > div .form-item:not(.webform-conditional-hidden) label {
+    text-align: right;
+    padding-right: .5em;
+  }
+  #webform-client-form-3177 > div .form-item:not(.webform-conditional-hidden) label,
+  #webform-client-form-3177 > div .form-item:not(.webform-conditional-hidden) .form-control {
+    display: table-cell;
+    margin-bottom: .5em;
+  }
+  #webform-client-form-3177 > div .form-item:not(.webform-conditional-hidden) textarea.form-control {
+    margin-bottom: 0;
+    resize: none;
+  }
+  #webform-client-form-3177 > div .form-actions button {
+    position: relative;
+    left: 100%;
+    margin-top: .5em;
+  }
+  #webform-client-form-3177 > div .grippie {
+    margin-top: -5px;
+    border-radius: 0 0 4px 4px;
+  }
+}
+body.node-type-event .pane-entity-field.pane-node-field-images .field-item {
+  margin-bottom: 30px;
+  display: table;
+}
+body.node-type-event .pane-entity-field.pane-node-field-images .field-item a {
+  height: 100px;
+  display: table-cell;
+  vertical-align: middle;
+}
+body.node-type-event .pane-entity-field.pane-node-field-images .field-item a img {
+  max-height: 100%;
+  width: auto;
+  margin: 0 auto;
+}
+#block-system-main {
+  margin-bottom: 1em;
+}
+.view-ecosystems tr {
+  display: block;
+}
+.view-ecosystems tr td {
+  display: block;
+  padding: 10vw;
+  margin-bottom: 1.5em;
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.view-ecosystems tr td .views-field.views-field-field-image {
+  margin: -10vw -10vw 1em -10vw;
+}
+.view-ecosystems tr td .views-field.views-field-field-image img {
+  width: 100%;
+}
+.view-ecosystems tr td .views-field.views-field-title {
+  margin-bottom: .25em;
+}
+.view-ecosystems tr td .views-field.views-field-title a {
+  color: #039749;
+  font-weight: bold;
+  font-size: 1.3em;
+}
+.view-ecosystems tr td .views-field.views-field-body {
+  font-size: 14px;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  min-height: calc(1 * 1.42857143em);
+  max-height: calc(3 * 1.42857143em);
+  margin-bottom: .3em;
+}
+.view-ecosystems tr td .views-field.views-field-body:after {
+  content: "";
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: auto;
+  width: 70%;
+  height: 1.42857143em;
+  pointer-events: none;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f5f5f5+100&0+0,1+100 */
+  background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, #f5f5f5 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, #f5f5f5 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #f5f5f5 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#f5f5f5', GradientType=1);
+  /* IE6-9 */
+}
+.view-ecosystems tr td .views-field.views-field-view-node {
+  display: inline-block;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.8em;
+  margin-top: .5em;
+}
+@media all and (min-width: 480px) {
+  .view-ecosystems tr td {
+    padding: 2em;
+    padding-bottom: 0;
+  }
+  .view-ecosystems tr td .views-field.views-field-title .field-content {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+    color: #039749;
+  }
+  .view-ecosystems tr td .views-field.views-field-field-image {
+    margin: -2em -2em 1em -2em;
+  }
+  .view-ecosystems tr td .views-field.views-field-field-image img {
+    width: 35%;
+    float: left;
+    margin-right: 1em;
+  }
+  .view-ecosystems tr td .views-field.views-field-body {
+    max-height: calc(2 * 1.42857143em);
+  }
+}
+@media all and (min-width: 768px) {
+  .view-ecosystems tr td .views-field.views-field-title {
+    margin-bottom: .5em;
+  }
+  .view-ecosystems tr td .views-field.views-field-body {
+    max-height: calc(3 * 1.42857143em);
+  }
+}
+@media all and (min-width: 992px) {
+  .view-ecosystems tr td .views-field.views-field-field-image img {
+    width: 220px;
   }
 }
 #block-menu-menu-information-menu {
@@ -9537,6 +10025,9 @@ body.country-portal .logo img {
   max-height: 100px;
 }
 /* Styling related to slick slideshow */
+.view-home-page-image-slider {
+  overflow: hidden;
+}
 [dir="rtl"] .slick-arrow.slick-prev {
   right: 0;
 }

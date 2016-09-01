@@ -127,9 +127,10 @@ function ptk_base_admin_page_export_content_types_overview() {
       if ($j == 1) {
         $sheet->setCellValue('A1', t('Field name'));
         $sheet->setCellValue('B1', t('Machine name'));
-        $sheet->setCellValue('C1', t('Description'));
-        $sheet->setCellValue('D1', t('Data type'));
-        $sheet->setCellValue('E1', t('Cardinality'));
+        $sheet->setCellValue('C1', t('Field type'));
+        $sheet->setCellValue('D1', t('Cardinality'));
+        $sheet->setCellValue('E1', t('Description'));
+        $j++;
       }
       if (!empty($field_data['label'])) {
         $sheet->setCellValue('A' . $j, $field_data['label']);
@@ -137,14 +138,14 @@ function ptk_base_admin_page_export_content_types_overview() {
       if (!empty($field_name)) {
         $sheet->setCellValue('B' . $j, $field_name);
       }
-      if (!empty($field_data['description'])) {
-        $sheet->setCellValue('C' . $j, $field_data['description']);
-      }
       if (!empty($fi['type'])) {
-        $sheet->setCellValue('D' . $j, $fi['type']);
+        $sheet->setCellValue('C' . $j, $fi['type']);
       }
       if ($j > 1) {
-        $sheet->setCellValue('E' . $j, $cardinality);
+        $sheet->setCellValue('D' . $j, $cardinality);
+      }
+      if (!empty($field_data['description'])) {
+        $sheet->setCellValue('E' . $j, $field_data['description']);
       }
       $j++;
     }
@@ -193,6 +194,7 @@ function ptk_base_admin_page_export_taxonomies_overview() {
         if ($j == 1) {
           $sheet->setCellValue('A1', t('Term'));
           $sheet->setCellValue('B1', t('Description'));
+          $j++;
         }
         else {
           $sheet->setCellValue('A' . $j, $term->name);
@@ -274,4 +276,9 @@ function ptk_base_chm_website_settings_form() {
   module_load_include('inc', 'domain_variable', 'domain_variable.admin');
   $form = domain_variable_admin_variables(domain_get_domain());
   return system_settings_form($form);
+}
+
+
+function ptk_base_chm_protected_planet_settings_form() {
+  return ChmProtectedPlanetSettingsForm::form();
 }

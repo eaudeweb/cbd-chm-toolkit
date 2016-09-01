@@ -40,6 +40,37 @@ function chm_structure_image_default_styles() {
     ),
   );
 
+  // Exported image style: header_flag.
+  $styles['header_flag'] = array(
+    'label' => 'Header flag',
+    'effects' => array(
+      3 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 65,
+          'height' => 45,
+          'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: image_listing.
+  $styles['image_listing'] = array(
+    'label' => 'Image listing',
+    'effects' => array(
+      3 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 480,
+          'height' => 360,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   return $styles;
 }
 
@@ -48,6 +79,14 @@ function chm_structure_image_default_styles() {
  */
 function chm_structure_node_info() {
   $items = array(
+    'cbd_national_target' => array(
+      'name' => t('CBD National Target'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
     'cbd_nfp' => array(
       'name' => t('CBD National Focal Point'),
       'base' => 'node_content',
@@ -112,12 +151,28 @@ function chm_structure_node_info() {
       'title_label' => t('Title'),
       'help' => '',
     ),
+    'organization' => array(
+      'name' => t('Organization'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Name'),
+      'help' => '',
+    ),
     'page' => array(
       'name' => t('Page'),
       'base' => 'node_content',
       'description' => t('Use <i>page</i> for the static content of your national CHM website, such as the <b>About Us</b> page.'),
       'has_title' => '1',
       'title_label' => t('Title'),
+      'help' => '',
+    ),
+    'person' => array(
+      'name' => t('Person'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Full name'),
       'help' => '',
     ),
     'project' => array(

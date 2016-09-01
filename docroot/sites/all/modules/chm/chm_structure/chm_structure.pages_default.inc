@@ -999,36 +999,6 @@ function chm_structure_default_page_manager_handlers() {
     $display->content['new-29469a76-96d8-48e0-81db-3cc98a66408b'] = $pane;
     $display->panels['left_2___left'][0] = 'new-29469a76-96d8-48e0-81db-3cc98a66408b';
     $pane = new stdClass();
-    $pane->pid = 'new-301f81bf-8595-4da0-9a70-a5315c2367b1';
-    $pane->panel = 'left_2___right';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_event_type';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'above',
-      'formatter' => 'i18n_taxonomy_term_reference_plain',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(),
-      'context' => 'argument_entity_id:node_1',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '301f81bf-8595-4da0-9a70-a5315c2367b1';
-    $display->content['new-301f81bf-8595-4da0-9a70-a5315c2367b1'] = $pane;
-    $display->panels['left_2___right'][0] = 'new-301f81bf-8595-4da0-9a70-a5315c2367b1';
-    $pane = new stdClass();
     $pane->pid = 'new-0e195d4e-168f-4220-85bd-4f7d51c778c2';
     $pane->panel = 'left_3';
     $pane->type = 'entity_field';

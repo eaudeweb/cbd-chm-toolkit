@@ -51,7 +51,8 @@ class PTK {
         $w = entity_metadata_wrapper('taxonomy_term', $term);
         $term->iso2l = $w->field_iso_code->value();
         $term->iso3l = $w->field_iso3l_code->value();
-        $items[strtoupper($code)] = $term;
+        $items[strtoupper($term->iso2l)] = $term;
+        $items[strtoupper($term->iso3l)] = $term;
       }
     }
     $k = strtoupper(trim($iso));
@@ -116,26 +117,25 @@ class PTK {
     return NULL;
   }
 
-
-  public static function addBlocksToNode($blocks, $nid, $theme = 'chm_theme_kit') {
-    if (!is_array($blocks)) {
-      $blocks = [$blocks];
-    }
-    foreach ($blocks as $block) {
-      $q = db_select('block', 'b')
-        ->condition('b.delta', $block)
-        ->condition('b.theme', $theme)
-        ->fields('b', ['pages']);
-      $pages = $q->execute()->fetchField();
-      $pages .= "\nnode/{$nid}";
-      db_update('block')
-        ->condition('delta', $block)
-        ->condition('theme', $theme)
-        ->fields([
-          'pages' => $pages,
-        ])
-        ->execute();
-    }
+  /**
+   * Configure the given block to be displayed on a specific URL pattern.
+   * It alters the default 'pages' configuration parameter to add new pattern
+   * @param $blocks
+   * @param $nid
+   * @param string $theme
+   */
+  public static function showBlockOnPage($block_delta, $url, $theme = 'chm_theme_kit') {
+    $q = db_select('block', 'b')
+      ->condition('b.delta', $block_delta)
+      ->condition('b.theme', $theme)
+      ->fields('b', ['pages']);
+    $pages = $q->execute()->fetchField();
+    $pages .= PHP_EOL . $url;
+    db_update('block')
+      ->condition('delta', $block_delta)
+      ->condition('theme', $theme)
+      ->fields(['pages' => $pages])
+      ->execute();
   }
 
   /**
@@ -177,6 +177,9 @@ class PTK {
       else {
         if ($f_day != $t_day) {
           return array(date($cfg['from_day'], $from), $to_str);
+        }
+        else {
+          return array(date($cfg['from_full'], $from), NULL);
         }
       }
     }

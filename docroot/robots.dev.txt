@@ -1,0 +1,3 @@
+# Deny crawling on dev
+User-agent: *
+Disallow: /

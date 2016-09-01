@@ -79,3 +79,13 @@ function chm_structure_form_locale_translation_filter_form_alter(&$form, &$form_
     }
   }
 }
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function chm_structure_entity_info_alter(&$entity_info) {
+  $entity_info['field_collection_item']['view modes']['person_roles'] = array(
+    'label' => t('Person roles'),
+    'custom settings' => FALSE,
+  );
+}

@@ -13,6 +13,8 @@ require_once dirname(__FILE__) . '/forms/base.inc';
 
 define('USER_WALLE', 43);
 define('ROLE_ADMINISTRATOR', 'administrator');
+define('PROTECTED_PLANET_AREA_CSV_UPLOAD_DIR', 'public://protected-areas/');
+define('PROTECTED_PLANET_AREA_CSV_VAR', 'ptk_protected_planet_areas_csv_path');
 
 /**
  * Implements hook_permission().
@@ -94,6 +96,24 @@ function ptk_base_menu() {
       'type' => MENU_NORMAL_ITEM,
       'description' => 'General configuration for all websites.',
     ],
+    'admin/config/system/chm_global_settings/global' => [
+      'title' => 'CHM Global settings',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('ptk_base_chm_global_settings_form'),
+      'file' => 'ptk_base.admin.inc',
+      'access arguments' => ['configure chm settings'],
+      'type' => MENU_DEFAULT_LOCAL_TASK,
+      'description' => 'General configuration for all websites.',
+    ],
+    'admin/config/system/chm_global_settings/protected-planet' => [
+      'title' => 'Protected planet',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('ptk_base_chm_protected_planet_settings_form'),
+      'file' => 'ptk_base.admin.inc',
+      'access arguments' => ['configure chm settings'],
+      'type' => MENU_LOCAL_TASK,
+      'description' => 'Protected Planet integration',
+    ],
     'admin/config/system/chm_website_settings' => [
       'title' => 'CHM website settings',
       'page callback' => 'ptk_base_admin_variables',
@@ -109,7 +129,7 @@ function ptk_base_menu() {
 
 function ptk_base_imce_upload_path() {
   $domain = domain_get_domain();
-  return 'websites/' . $domain['machine_name'] . '/uploads/' . $domain['machine_name'];
+  return 'websites/' . $domain['machine_name'] . '/uploads';
 }
 
 
@@ -314,6 +334,49 @@ function ptk_base_custom_theme() {
       return 'seven';
     }
   }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function ptk_base_theme($existing, $type, $theme, $path) {
+  return array(
+    'ptk_base_chm_content_statistics_block_config_form' => array(
+      'render element' => 'element',
+    )
+  );
+}
+
+function theme_ptk_base_chm_content_statistics_block_config_form($variables) {
+  $element = $variables['element'];
+  $form = $element['chm_content_statistics'];
+  drupal_add_tabledrag('config_table', 'order', 'sibling', 'item-row-weight');
+  $header = array(
+    'name' => t('Content type'),
+    'hide' => t('Hide'),
+    'singular' => t('Label (singular)'),
+    'plural' => t('Label (plural)'),
+    'url' => t('URL (route)'),
+    'icon' => t('Icon markup'),
+    'weight' => t('Weight'),
+  );
+  $rows = array();
+  foreach (element_children($form) as $key) {
+    $row = array('data' => array());
+    foreach ($header as $fieldname => $title) {
+      $row['data'][] = drupal_render($form[$key][$fieldname]);
+      $row['class'] = array('draggable');
+    }
+    $rows[] = $row;
+  }
+  $prefix = '<p>' . t('Configure the display of content types statistics. Use the mouse to drag and drop rows to determine the display order in the front-end.') . '</p>';
+  return $prefix
+    . drupal_render($element['title'])
+    . theme('table', array(
+      'header' => $header,
+      'rows' => $rows,
+      'attributes' => array('id' => 'config_table'),
+    ));
 }
 
 

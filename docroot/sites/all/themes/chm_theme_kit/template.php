@@ -90,3 +90,17 @@ function chm_theme_kit_menu_link($variables) {
   $output = l($element['#title'], $element['#href'], $element['#localized_options']);
   return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
 }
+
+
+/**
+ * Implements hook_preprocess().
+ *
+ * {@inheritdoc}
+ */
+function chm_theme_kit_preprocess_button(&$vars) {
+  $element = &$vars['element'];
+  if ($element['#type'] == 'submit') {
+     unset($element['#attributes']['class']['btn-info']);
+     $element['#attributes']['class'][] = 'btn-primary';
+  }
+}
