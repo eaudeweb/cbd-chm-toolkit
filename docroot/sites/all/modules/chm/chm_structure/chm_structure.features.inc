@@ -167,6 +167,14 @@ function chm_structure_node_info() {
       'title_label' => t('Title'),
       'help' => '',
     ),
+    'person' => array(
+      'name' => t('Person'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Full name'),
+      'help' => '',
+    ),
     'project' => array(
       'name' => t('Project'),
       'base' => 'node_content',
