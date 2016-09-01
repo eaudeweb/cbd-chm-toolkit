@@ -337,6 +337,7 @@ class ChmDomainForm {
         'projects' => 'Projects',
         'species' => 'Species',
         'organizations' => 'Organizations',
+        'network-directory' => 'Network directory',
         'library' => 'Library',
         'videos' => 'Videos',
         'photo-galleries' => 'Image gallery',
