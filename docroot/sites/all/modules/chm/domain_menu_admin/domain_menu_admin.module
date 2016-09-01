@@ -1,0 +1,156 @@
+<?php
+
+/**
+ * Implements hook_menu_alter().
+ */
+function domain_menu_admin_menu_alter(&$items) {
+  // alter admin/structure/menu
+  $items['admin/structure/menu']['page callback'] = 'domain_menu_admin_overview_page';
+  $items['admin/structure/menu']['module'] = 'domain_menu_admin';
+  $items['admin/structure/menu']['file'] = 'domain_menu_admin.admin.inc';
+  $items['admin/structure/menu']['access arguments'] = array('administer menu');
+
+  $items['admin/structure/menu/settings']['access callback'] = 'domain_menu_admin_access';
+
+  $items['admin/structure/menu/manage/%menu']['access callback'] = 'domain_menu_admin_access';
+  $items['admin/structure/menu/manage/%menu']['access arguments'] = array('administer menu', 4);
+
+  $items['admin/structure/menu/manage/translation']['access callback'] = 'domain_menu_admin_access';
+  $items['admin/structure/menu/manage/translation']['access arguments'] = array('administer menu');
+}
+
+
+/**
+ * Retrieve the domain associated to a menu.
+ *
+ * @param string $menu_name
+ *   Menu machine name
+ * @return int|NULL
+ *   The domain ID or NULL if menu is not associated to a domain
+ */
+function domain_menu_admin_assignment($menu_name) {
+  return db_select('domain_menu_admin')->fields(NULL, array('domain_id'))->condition('menu_name', $menu_name)->execute()->fetchField();
+}
+
+
+/**
+ * Implements hook_form_alter().
+ */
+function domain_menu_admin_form_menu_edit_menu_alter(&$form, &$form_state) {
+  global $user;
+  domain_user_set($user);
+  $options = array();
+  foreach (domain_domains() as $data) {
+    // The domain must be valid.
+    if ($data['valid'] || user_access('access inactive domains')) {
+      // Checkboxes must be filtered, select lists should not.
+      $options[$data['domain_id']] = empty($format) ? check_plain($data['sitename']) : $data['sitename'];
+    }
+  }
+  if (user_access('set domain access')) {
+    $menu_name = $form['menu_name']['#default_value'];
+    $form['domain'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Domain access options'),
+      '#collapsible' => TRUE,
+      '#collapsed' => FALSE,
+      '#group' => variable_get('domain_vertical_tab', 0) ? 'additional_settings' : '',
+    );
+    $form['domain']['domains'] = array(
+      '#type' => 'select',
+      '#title' => t('Assign this menu to the following domain'),
+      '#options' => $options,
+      '#empty_value' => '',
+      '#empty_option' => '-- Not assigned --',
+      '#description' => t('Allow the webmasters from this domain to edit the menu.'),
+      '#default_value' => domain_menu_admin_assignment($menu_name),
+    );
+  }
+  else {
+    $options = array();
+    foreach ($user->domain_user as $domain_id) {
+      $domain = domain_lookup($domain_id);
+      $options[$domain_id] = check_plain($domain['sitename']);
+    }
+    $form['domain'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Domain access options'),
+      '#collapsible' => TRUE,
+      '#collapsed' => FALSE,
+      '#group' => variable_get('domain_vertical_tab', 0) ? 'additional_settings' : '',
+    );
+    $form['domain']['domains'] = array(
+      '#type' => 'select',
+      '#title' => t('Assign this menu to the following domain'),
+      '#options' => $options,
+      '#description' => t('Allow the webmasters from this domain to edit the menu.'),
+    );
+  }
+  $form['#validate'][] = 'domain_menu_admin_form_validate';
+  array_unshift($form['#submit'], 'domain_menu_admin_form_submit');
+}
+
+
+function domain_menu_admin_form_validate($form, $form_state) {
+  global $user;
+  domain_user_set($user);
+  $values = $form_state['values'];
+  $domain_id = $values['domains'];
+  $is_administrator = FALSE;
+  drupal_alter('user_is_administrator', $is_administrator);
+  if ($user->uid != 1 && !$is_administrator && !empty($domain_id) && !in_array($domain_id, $user->domain_user)) {
+    form_set_error('domains', t('You are not allowed to assign the menu to that domain'));
+  }
+}
+
+
+function domain_menu_admin_form_submit($form, $form_state) {
+  $values = $form_state['values'];
+  $domain_id = $values['domains'];
+  $menu_name = $values['menu_name'];
+  if (!empty($form['#insert'])) {
+    $menu_name = 'menu-' . $values['menu_name'];
+  }
+  if (empty($domain)) {
+    db_delete('domain_menu_admin')->condition('menu_name', $menu_name);
+  }
+  db_merge('domain_menu_admin')
+    ->key(array(
+      'menu_name' => $menu_name,
+      'domain_id' => $domain_id
+    ))
+    ->fields(array(
+      'menu_name' => $menu_name,
+      'domain_id' => $domain_id
+    ))
+    ->execute();
+}
+
+
+/**
+ * Custom menu access.
+ *
+ * @param string $permission
+ *   Access permission
+ * @param array $menu
+ *   Menu to check access for
+ * @return bool
+ *   TRUE if operation is allowed
+ */
+function domain_menu_admin_access($permission, $menu = NULL) {
+  global $user;
+  domain_user_set($user);
+  if (user_access($permission)) {
+    $is_administrator = FALSE;
+    drupal_alter('user_is_administrator', $is_administrator);
+    if (empty($menu)) {
+      // Check user is admin or administrator
+      return $user->uid == 1 || $is_administrator;
+    }
+    else {
+      $menu_domain = domain_menu_admin_assignment($menu['menu_name']);
+      return $user->uid == 1 || $is_administrator || in_array($menu_domain, $user->domain_user);
+    }
+  }
+  return FALSE;
+}
