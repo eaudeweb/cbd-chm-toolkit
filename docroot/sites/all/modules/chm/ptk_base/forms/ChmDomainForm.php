@@ -330,15 +330,17 @@ class ChmDomainForm {
       $level2_information_links = [
         'news' => 'News',
         'events' => 'Events',
+        'national-targets' => 'National targets',
         'facts' => 'Facts',
         'ecosystems' => 'Ecosystems',
         'protected-areas' => 'Protected areas',
         'projects' => 'Projects',
         'species' => 'Species',
+        'organizations' => 'Organizations',
         'library' => 'Library',
         'videos' => 'Videos',
+        'photo-galleries' => 'Image gallery',
         'links' => 'Related websites',
-        'photo-galleries' => 'Images',
       ];
 
       $links = menu_load_links($menu['menu_name']);
