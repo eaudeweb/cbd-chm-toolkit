@@ -33,6 +33,7 @@ features[views_view][] = latest_updates
 features[views_view][] = links
 features[views_view][] = national_focal_points
 features[views_view][] = organizations
+features[views_view][] = persons_network_directory
 features[views_view][] = photo_galleries
 features[views_view][] = projects
 features[views_view][] = protected_areas
