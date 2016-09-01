@@ -2349,6 +2349,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['text'] = '[field_salutation] [title]';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_type'] = 'h2';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   /* Field: Content: Positions */
   $handler->display->display_options['fields']['field_person_positions']['id'] = 'field_person_positions';
