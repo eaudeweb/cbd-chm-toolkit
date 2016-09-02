@@ -1813,7 +1813,7 @@ function chm_structure_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_url',
     'label' => 'URL',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'absolute_url' => 1,
       'attributes' => array(
