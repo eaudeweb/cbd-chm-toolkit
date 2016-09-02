@@ -26,3 +26,11 @@ function ptk_base_update_7001() {
 function ptk_base_update_7002() {
   db_change_field('taxonomy_term_data', 'name', 'name', array('type' => 'varchar','length' => 2048));
 }
+
+/**
+ * Delete chm_network_sites block
+ */
+function ptk_base_update_7003() {
+  db_delete('block')->condition('delta', 'chm_network_sites')->execute();
+  db_delete('cache_bootstrap')->execute();
+}
