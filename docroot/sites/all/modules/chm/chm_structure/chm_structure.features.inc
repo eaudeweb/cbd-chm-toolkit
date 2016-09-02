@@ -95,6 +95,14 @@ function chm_structure_node_info() {
       'title_label' => t('Name'),
       'help' => '',
     ),
+    'chm_site' => array(
+      'name' => t('CHM site'),
+      'base' => 'node_content',
+      'description' => t('Use this content type to add references of current or future national or regional CHM websites'),
+      'has_title' => '1',
+      'title_label' => t('Name'),
+      'help' => '',
+    ),
     'document' => array(
       'name' => t('Document'),
       'base' => 'node_content',
