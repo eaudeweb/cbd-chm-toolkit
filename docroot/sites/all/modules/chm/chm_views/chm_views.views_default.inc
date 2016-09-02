@@ -617,6 +617,7 @@ function chm_views_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'The CHM Network';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -790,6 +791,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['path'] = 'chm-network';
   $translatables['chm_sites'] = array(
     t('Master'),
+    t('The CHM Network'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -2214,7 +2216,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['fields']['field_department']['table'] = 'field_data_field_department';
   $handler->display->display_options['fields']['field_department']['field'] = 'field_department';
   $handler->display->display_options['fields']['field_department']['type'] = 'text_plain';
-  /* Field: Field: Organization name */
+  /* Field: Field: Organization */
   $handler->display->display_options['fields']['field_organization_name']['id'] = 'field_organization_name';
   $handler->display->display_options['fields']['field_organization_name']['table'] = 'field_data_field_organization_name';
   $handler->display->display_options['fields']['field_organization_name']['field'] = 'field_organization_name';
@@ -2331,7 +2333,7 @@ function chm_views_views_default_views() {
     t('Email'),
     t('Address'),
     t('Department'),
-    t('Organization name'),
+    t('Organization'),
     t('Page'),
     t('Block'),
   );
