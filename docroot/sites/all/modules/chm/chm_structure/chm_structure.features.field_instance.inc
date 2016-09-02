@@ -1753,7 +1753,7 @@ function chm_structure_field_default_field_instances() {
             'slashes' => 0,
             'transliterate' => 0,
           ),
-          'value' => '',
+          'value' => 'websites/[current-domain:machine-name]/images/chm-sites',
         ),
         'redirect' => FALSE,
         'retroactive_update' => 0,
