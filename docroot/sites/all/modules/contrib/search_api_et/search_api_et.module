@@ -38,15 +38,61 @@ function search_api_et_search_api_item_type_info() {
 }
 
 /**
+ * Helper function: updates the stored IndexID with a new IndexID.
+ *
+ * @see search_api_et_search_api_index_update()
+ * @see search_api_et_search_api_index_insert()
+ * @see search_api_et_search_api_index_delete()
+ *
+ * @param integer $original_id
+ *  The original IndexID
+ * @param integer $id
+ *  The new IndexID
+ */
+function _search_api_et_update_index_id($original_id, $id) {
+  db_update('search_api_et_item')
+    ->fields(array('index_id' => $id))
+    ->condition('index_id', $original_id)
+    ->execute();
+}
+
+/**
  * Implements search_api_index_update().
  */
 function search_api_et_search_api_index_update(SearchApiIndex $index) {
   // On feature reverts, the index's numerical ID might change. In that case,
   // we need to keep the {search_api_et_item} table up to date.
   if ($index->id != $index->original->id) {
-    db_update('search_api_et_item')
-      ->fields(array('index_id' => $index->id))
-      ->condition('index_id', $index->original->id)
+    _search_api_et_update_index_id($index->original->id, $index->id);
+  }
+}
+
+/**
+ * Implements search_api_index_insert().
+ */
+function search_api_et_search_api_index_insert(SearchApiIndex $index) {
+  // On feature reverts, the index's numerical ID might change. In that case,
+  // we need to keep the {search_api_et_item} table up to date.
+  // Check whether this is actually part of a revert.
+  $reverts = &drupal_static('search_api_et_search_api_index_delete', array());
+  if (isset($reverts[$index->machine_name])) {
+    _search_api_et_update_index_id($reverts[$index->machine_name], $index->id);
+    unset($reverts[$index->machine_name]);
+  }
+}
+
+/**
+ * Implements hook_search_api_index_delete().
+ */
+function search_api_et_search_api_index_delete(SearchApiIndex $index) {
+  // Keep track of Reverted indexes.
+  if ($index->hasStatus(ENTITY_IN_CODE)) {
+    $reverts = &drupal_static(__FUNCTION__, array());
+    $reverts[$index->machine_name] = $index->id;
+  } else {
+    // We must delete our tracked items when the index is deleted.
+    db_delete('search_api_et_item')
+      ->condition('index_id', $index->id)
       ->execute();
   }
 }
@@ -170,10 +216,10 @@ function search_api_et_admin_index_edit_submit(array $form, array &$form_state) 
 /**
  * Returns list of languages available/enabled on the site.
  *
- * @param bool $enabled
+ * @param bool $enabled_only
  *   A boolean indicating whether to include all languages added to the site
  *   or only those enabled.
- * @param bool $neutral
+ * @param bool $include_neutral
  *   A boolean indicating whether to add the neutral language (LANGUAGE_NONE)
  *   to the language list.
  *
@@ -182,22 +228,26 @@ function search_api_et_admin_index_edit_submit(array $form, array &$form_state) 
  *
  * @see SearchApiAlterLanguageControl::configurationForm()
  */
-function search_api_et_languages($enabled = FALSE, $neutral = TRUE) {
+function search_api_et_languages($enabled_only = FALSE, $include_neutral = TRUE) {
   $languages = array();
-  if (!empty($neutral)) {
+  if ($include_neutral) {
     $languages[LANGUAGE_NONE] = t('Language neutral');
   }
-  $list = language_list('enabled') + array(array(), array());
-  foreach (array($list[1], $list[0]) as $list) {
-    foreach ($list as $lang) {
-      $name = t($lang->name);
-      $native = $lang->native;
-      $languages[$lang->language] = ($name == $native) ? $name : "$name ($native)";
-      if (empty($enabled) && !$lang->enabled) {
-        $languages[$lang->language] .= ' [' . t('disabled') . ']';
-      }
+
+  $list = language_list();
+
+  foreach ($list as $lang) {
+    if ($enabled_only && !$lang->enabled) {
+      continue;
+    }
+    $name = t($lang->name);
+    $native = $lang->native;
+    $languages[$lang->language] = ($name == $native) ? $name : $name . ' (' . $native . ')';
+    if (!$enabled_only && !$lang->enabled) {
+      $languages[$lang->language] .= ' [' . t('disabled') . ']';
     }
   }
+
   return $languages;
 }
 
@@ -299,6 +349,11 @@ function search_api_et_entity_update($entity, $entity_type) {
 function search_api_et_entity_translation_insert($entity_type, $entity, $translation, $values = array()) {
   list($entity_id) = entity_extract_ids($entity_type, $entity);
   $item_id = SearchApiEtHelper::buildItemId($entity_id, $translation['language']);
+
+  // Entity that has been loaded previously and cached is now stale, make sure
+  // that subsequent loads will produce a fresh entity containing the inserted
+  // translation.
+  entity_get_controller($entity_type)->resetCache(array($entity_id));
 
   search_api_track_item_insert(SearchApiEtHelper::getItemType($entity_type), array($item_id));
 }

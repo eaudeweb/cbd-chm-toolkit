@@ -12,35 +12,14 @@ class SearchApiAttachmentsAlterSettings extends SearchApiAbstractAlterCallback {
 
   public function alterItems(array &$items) {
 
-    // Extension restriction.
-    $exclude = array();
-    foreach (explode(' ', $this->options['excluded_extensions']) as $ext) {
-      $exclude[$ext] = file_get_mimetype('dummy.' . $ext);
-    }
-
-    // File size restriction.
-    if (isset($this->options['max_file_size'])) {
-      $max_file_size = parse_size($this->options['max_file_size']);
-    }
-    else {
-      $max_file_size = '0';
-    }
     if ($this->index->getEntityType() == 'file') {
       foreach ($items as $id => &$item) {
         $file = array();
         foreach ($item as $key => $value) {
           $file[$key] = $value;
         }
-        // Private file restriction.
-        if (!$this->is_temporary($file) && !($this->options['excluded_private'] && $this->is_private($file))) {
-          // Extension restriction.
-          if (!in_array($file['filemime'], $exclude)) {
-            // File size restriction.
-            $file_size_errors = file_validate_size((object) $file, $max_file_size);
-            if (empty($file_size_errors)) {
-              $item->attachments_content = $this->getFileContent($file);
-            }
-          }
+        if ($this->isFileIndexable($file, $item)) {
+          $item->attachments_content = $this->getFileContent($file);
         }
       }
     }
@@ -55,21 +34,13 @@ class SearchApiAttachmentsAlterSettings extends SearchApiAbstractAlterCallback {
                 $value = array_slice($value, 0, $this->options['number_indexed']);
               }
               foreach ($value as $file) {
-                // Private file restriction.
-                if (!$this->is_temporary($file) && !($this->options['excluded_private'] && $this->is_private($file))) {
-                  // Extension restriction.
-                  if (!in_array($file['filemime'], $exclude)) {
-                    // File size restriction.
-                    $file_size_errors = file_validate_size((object) $file, $max_file_size);
-                    if (empty($file_size_errors)) {
-                      $attachments = 'attachments_' . $name;
-                      if (isset($item->{$attachments})) {
-                        $item->{$attachments} .= ' ' . $this->getFileContent($file);
-                      }
-                      else {
-                        $item->{$attachments} = $this->getFileContent($file);
-                      }
-                    }
+                if ($this->isFileIndexable($file, $item, $name)) {
+                  $attachments = 'attachments_' . $name;
+                  if (isset($item->{$attachments})) {
+                    $item->{$attachments} .= ' ' . $this->getFileContent($file);
+                  }
+                  else {
+                    $item->{$attachments} = $this->getFileContent($file);
                   }
                 }
               }
@@ -78,6 +49,40 @@ class SearchApiAttachmentsAlterSettings extends SearchApiAbstractAlterCallback {
         }
       }
     }
+  }
+
+  public function isFileIndexable($file, $item, $field_name = NULL) {
+    // Extension restriction.
+    $exclude = array();
+    foreach (explode(' ', $this->options['excluded_extensions']) as $ext) {
+      $exclude[$ext] = file_get_mimetype('dummy.' . $ext);
+    }
+
+    // File size restriction.
+    if (isset($this->options['max_file_size'])) {
+      $max_file_size = parse_size($this->options['max_file_size']);
+    }
+    else {
+      $max_file_size = '0';
+    }
+    // Private file restriction.
+    if (!$this->is_temporary($file) && !($this->options['excluded_private'] && $this->is_private($file))) {
+      // Extension restriction.
+      if (!in_array($file['filemime'], $exclude)) {
+        // File size restriction.
+        $file_size_errors = file_validate_size((object) $file, $max_file_size);
+        if (empty($file_size_errors)) {
+          // Allow customization of indexability rules.
+          foreach (module_implements('search_api_attachments_indexable') as $module) {
+            if (module_invoke($module, 'search_api_attachments_indexable', $file, $item, $field_name) === FALSE) {
+              return FALSE;
+            }
+          }
+          return TRUE;
+        }
+      }
+    }
+    return FALSE;
   }
 
   public function configurationForm() {

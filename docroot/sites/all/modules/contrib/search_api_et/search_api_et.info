@@ -12,9 +12,9 @@ files[] = includes/SearchApiEtHelper.php
 files[] = includes/SearchApiEtPropertyInfoAlter.php
 files[] = includes/SearchApiEtViewsQuery.php
 
-; Information added by Drupal.org packaging script on 2016-05-06
-version = "7.x-2.0-alpha4"
+; Information added by Drupal.org packaging script on 2016-08-02
+version = "7.x-2.0-alpha7"
 core = "7.x"
 project = "search_api_et"
-datestamp = "1462518848"
+datestamp = "1470157107"
 

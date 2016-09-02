@@ -87,4 +87,25 @@ class SearchApiEtHelper {
   static function getItemType($entity_type) {
     return 'search_api_et_' . $entity_type;
   }
+
+  /**
+   * Helper function to group the given list of ItemIds by EntityIds
+   *
+   * @param array $item_ids
+   *  The list of trackable ItemID (in the form "{entity_id}/{language}")
+   * @return array
+   *   A multilevel array where the outer array is keyed by the EntityID, and
+   *   contains all the corresponding ItemIDs.
+   */
+  static function getGroupedItemsIdsByEntity($item_ids) {
+    $ret = array();
+    foreach ($item_ids as $item_id) {
+      $entity_id = self::splitItemId($item_id, self::ITEM_ID_ENTITY_ID);
+      if ($entity_id) {
+        $ret[$entity_id][] = $item_id;
+      }
+    }
+    return $ret;
+  }
+
 }

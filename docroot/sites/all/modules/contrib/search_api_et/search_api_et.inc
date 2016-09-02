@@ -5,7 +5,7 @@
  */
 
 /**
- * Get every language for the site.
+ * Get all enabled language for the site.
  *
  * This reflects the "all site languages" settings when determining which
  * languages that should get indexed.
@@ -14,7 +14,7 @@
  *   An array of applicable language codes.
  */
 function search_api_et_item_languages_all() {
-  return array_keys(search_api_et_languages(FALSE, TRUE));
+  return array_keys(search_api_et_languages(TRUE, TRUE));
 }
 
 
