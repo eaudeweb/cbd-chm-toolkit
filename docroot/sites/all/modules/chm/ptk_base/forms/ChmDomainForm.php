@@ -278,6 +278,7 @@ class ChmDomainForm {
         $node = $page_default_attributes;
         $node['title'] = $node['menu']['link_title'] = $page;
         $node['menu']['weight'] = $weight++;
+        $node['menu']['customized'] = 1;
         $node = (object) $node;
         $node->path = array('pathauto' => 0, 'alias' => '');
         node_save($node);
@@ -358,6 +359,7 @@ class ChmDomainForm {
             'depth' => 2,
             'plid' => $link['mlid'],
             'p1' => $link['mlid'],
+            'customized' => 1,
           );
           foreach($level2_information_links as $link_path => $link_title) {
             $new_link = $menu_link_default + [
@@ -449,6 +451,7 @@ class ChmDomainForm {
       'weight' => 0,
       'expanded' => 0,
       'depth' => 1,
+      'customized' => 1,
     ];
     menu_link_save($home_link);
     return $menu;

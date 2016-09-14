@@ -315,6 +315,7 @@ features[field_instance][] = taxonomy_term-treaties-name_field
 features[image][] = extra_large
 features[image][] = header_flag
 features[image][] = image_listing
+features[image][] = small_flag_icon
 features[node][] = cbd_national_target
 features[node][] = cbd_nfp
 features[node][] = chm_site

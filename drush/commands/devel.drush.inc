@@ -26,7 +26,12 @@ function devel_drush_command() {
 }
 
 function _drush_prepare_dev() {
-  if (!drush_confirm('Are you sure you want to devify the current instance?')) {
+  $env = variable_get('environment');
+  if ($env != 'dev') {
+    drush_set_error("Refusing to destroy the current environment ($env). Please set environment to 'dev' (drush vset environment dev)");
+    return;
+  }
+  if (!drush_confirm('Are you sure you want to alter the current instance?')) {
     return;
   }
   if (module_exists('overlay')) {
@@ -36,21 +41,10 @@ function _drush_prepare_dev() {
   module_enable(['devel']);
   foreach (domain_domains() as $id => $domain) {
     $domain = domain_load($id);
-    $subdomain = _drush_prepare_local_domain_name($domain['subdomain']);
-    if ($domain['machine_name'] == 'www') {
-      $subdomain = 'chm7.local.ro';
-    }
-    if ($domain['machine_name'] == 'demo') {
-      $subdomain = 'chm7-demo.local.ro';
-    }
-    $domain['subdomain'] = $subdomain;
-    $path = _drush_prepare_local_domain_name($domain['path']);
-    $domain['path'] = $path;
-    $domain['scheme'] = 'http';
+    _drush_prepare_development_domains($domain);
     drush_log('Configuring ' . $domain['scheme'] . '://' . $domain['subdomain'], 'ok');
     domain_save($domain);
   }
-  //
   if (module_exists('devel')) {
     drush_log('Assign devel access to everyone');
     user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access devel information'));
@@ -60,47 +54,64 @@ function _drush_prepare_dev() {
   drush_invoke_process('@self', 'sql-sanitize');
 }
 
-function _drush_prepare_test() {
-  if (module_exists('overlay')) {
-    module_disable(['overlay']);
-  }
 
-  foreach (domain_domains() as $id => $domain) {
-    switch ($id) {
-      case 18:
-        // Configure the domains
-        $domain = domain_load($id);
-        $domain['subdomain'] = 'test7.chm-cbd.net';
-        $domain['path'] = 'https://test7.chm-cbd.net';
-        $domain['scheme'] = 'http';
-        drush_log('Configuring `www` domain: ' . $domain['subdomain'], 'ok');
-        domain_save($domain);
-        break;
-      case 1:
-        $domain = domain_load($id);
-        $domain['subdomain'] = 'test7-demo.chm-cbd.net';
-        $domain['path'] = 'https://test7-demo.chm-cbd.net/';
-        $domain['scheme'] = 'http';
-        drush_log('Configuring `bioland` domain: ' . $domain['subdomain'], 'ok');
-        domain_save($domain);
-        break;
-      case 2:
-        $domain = domain_load($id);
-        $domain['subdomain'] = 'test7-al.chm-cbd.net';
-        $domain['path'] = 'https://test7-al.chm-cbd.net/';
-        $domain['scheme'] = 'http';
-        drush_log('Configuring `Albania` domain: ' . $domain['subdomain'], 'ok');
-        domain_save($domain);
-        break;
-      default:
-        drush_log('Disabling: ' . $domain['subdomain'], 'ok');
-        $domain = domain_load($id);
-        $domain['valid'] = 0;
-        domain_save($domain);
-    }
+function _drush_prepare_development_domains(&$domain) {
+  $domain['scheme'] = 'http';
+  switch($domain['subdomain']) {
+    case 'biodiversity-albania.chm-cbd.net':
+    case 'new-al.chm-cbd.net':
+      $domain['subdomain'] = 'chm7-al.local.ro';
+      $domain['path'] = 'http://chm7-al.local.ro';
+      break;
+    case 'biodiversity-kazakhstan.chm-cbd.net':
+    case 'new-kz.chm-cbd.net':
+      $domain['subdomain'] = 'chm7-kz.local.ro';
+      $domain['path'] = 'http://chm7-kz.local.ro';
+      break;
+    default:
+      $subjects = array('www.' , 'demo.',      'new-' , 'old-' , '.chm-cbd.net');
+      $replaces = array('chm7.', 'chm7-demo.', 'chm7-', 'chm7-', '.local.ro');
+      $domain['subdomain'] = str_replace($subjects, $replaces, $domain['subdomain']);
+      $domain['path'] = str_replace($subjects, $replaces, $domain['path']);
   }
 }
 
-function _drush_prepare_local_domain_name($name) {
-  return str_replace(array('new-', 'test7', 'chm-cbd.net'), array('chm7-', 'chm7', 'local.ro'), $name);
+
+function _drush_prepare_test() {
+  $env = variable_get('environment');
+  if ($env != 'test') {
+    drush_set_error("Refusing to destroy the current environment ($env). Please set environment to 'test' (drush vset environment test)");
+    return;
+  }
+  if (!drush_confirm('Are you sure you want to alter the current instance?')) {
+    return;
+  }
+  foreach (domain_domains() as $id => $domain) {
+    $domain = domain_load($id);
+    _drush_prepare_test_domains($domain);
+    drush_log('Configuring ' . $domain['scheme'] . '://' . $domain['subdomain'], 'ok');
+    domain_save($domain);
+  }
+
+  //@todo: Create other new-* test domains
+}
+
+
+function _drush_prepare_test_domains(&$domain) {
+  $domain['scheme'] = 'http';
+  switch($domain['subdomain']) {
+    case 'biodiversity-albania.chm-cbd.net':
+      $domain['subdomain'] = 'new-al.chm-cbd.net';
+      $domain['path'] = 'http://new-al.chm-cbd.net';
+      break;
+    case 'biodiversity-kazakhstan.chm-cbd.net':
+      $domain['subdomain'] = 'new-kz.local.ro';
+      $domain['path'] = 'http://new-kz.local.ro';
+      break;
+    default:
+      $subjects = array('www.' , 'demo.');
+      $replaces = array('new-www.', 'new-demo.');
+      $domain['subdomain'] = str_replace($subjects, $replaces, $domain['subdomain']);
+      $domain['path'] = str_replace($subjects, $replaces, $domain['path']);
+  }
 }

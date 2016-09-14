@@ -71,6 +71,22 @@ function chm_structure_image_default_styles() {
     ),
   );
 
+  // Exported image style: small_flag_icon.
+  $styles['small_flag_icon'] = array(
+    'label' => 'Small flag icon',
+    'effects' => array(
+      3 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 32,
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   return $styles;
 }
 
