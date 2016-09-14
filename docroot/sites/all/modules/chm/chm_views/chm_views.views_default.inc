@@ -625,6 +625,10 @@ function chm_views_views_default_views() {
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['style_plugin'] = 'table';
+  /* Relationship: Content: Countries (field_countries) */
+  $handler->display->display_options['relationships']['field_countries_tid']['id'] = 'field_countries_tid';
+  $handler->display->display_options['relationships']['field_countries_tid']['table'] = 'field_data_field_countries';
+  $handler->display->display_options['relationships']['field_countries_tid']['field'] = 'field_countries_tid';
   /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
@@ -742,6 +746,18 @@ function chm_views_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page_1');
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Entity translation: Image: translated */
+  $handler->display->display_options['fields']['field_image_et']['id'] = 'field_image_et';
+  $handler->display->display_options['fields']['field_image_et']['table'] = 'field_data_field_image';
+  $handler->display->display_options['fields']['field_image_et']['field'] = 'field_image_et';
+  $handler->display->display_options['fields']['field_image_et']['relationship'] = 'field_countries_tid';
+  $handler->display->display_options['fields']['field_image_et']['label'] = '';
+  $handler->display->display_options['fields']['field_image_et']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_image_et']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_image_et']['settings'] = array(
+    'image_style' => 'small_flag_icon',
+    'image_link' => '',
+  );
   /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
@@ -798,6 +814,7 @@ function chm_views_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
+    t('term from field_countries'),
     t('Content'),
     t('Title'),
     t('Country'),
