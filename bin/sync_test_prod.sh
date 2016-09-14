@@ -14,16 +14,16 @@ echo -e "                        kool stuff is happenning..."
 echo -e ""
 
 env=`drush vget --exact environment`
-if [ "$env" != 'dev' ]; then
-  echo -e "${RED}ERROR: Refusing to destroy the current environment ($env). Please set environment to 'dev' (drush vset environment dev)\n";
+if [ "$env" != 'test' ]; then
+  echo -e "${RED}ERROR: Refusing to destroy the current environment ($env). Please set environment to 'test' (drush vset environment test)\n";
   exit -1
 fi
 
 cd ../docroot/
 drush sql-drop -y
-drush sql-sync @test @self -y
-drush vset environment dev
-drush prepare-dev -y
+drush sql-sync @prod @self -y
+drush vset environment test
+drush prepare-test -y
 drush cc all
 
 echo -e "${GREEN}Sync done, to get the files do: drush rsync @prod:%files @self:%files -y";
