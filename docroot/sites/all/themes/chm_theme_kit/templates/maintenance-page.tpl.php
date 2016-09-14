@@ -127,7 +127,7 @@
         </div>
         <div class="footer-support">
           <div class="text"><?php print t('With the support of the'); ?></div>
-          <img src="<?php print drupal_get_path('theme', 'chm_theme_kit') . '/img/jbf.jpg'; ?>" align="Japan Biodiversity Fund" />
+          <img src="/<?php print drupal_get_path('theme', 'chm_theme_kit') . '/img/jbf.jpg' ?>" align="Japan Biodiversity Fund" />
         </div>
         <div class="clearfix"></div>
         <?php print render($page['footer']); ?>
