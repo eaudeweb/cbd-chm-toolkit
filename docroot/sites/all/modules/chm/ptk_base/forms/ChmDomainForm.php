@@ -13,7 +13,7 @@ function ptk_base_domain_form_ajax_country($form, $form_state) {
   if (!empty($form_state['values']['country']) &&
     $country = PTK::getCountryByCode($form_state['values']['country'])
   ) {
-    $control['#value'] = 'CHM ' . $country->name;
+    $control['#value'] = 'Biodiversity ' . $country->name;
   }
   $ret[] = ajax_command_replace('sitename-wrapper', $control);
   return $ret;
