@@ -203,6 +203,7 @@ body.country-portal .logo img {
   .navbar-nav {
     float: none!important;
     margin-top: 7.5px;
+    margin-bottom: 7.5px;
   }
   .navbar-nav>li {
     float: none;
@@ -341,6 +342,11 @@ body.country-portal .logo img {
               top: 0;
               right: 0;
             }
+            .caret {
+              -webkit-transform: rotate(-90deg);
+              -ms-transform: rotate(-90deg);
+              transform: rotate(-90deg);
+            }
           }
           .active {
             @media all and (min-width: @screen-md-min) {
@@ -380,6 +386,11 @@ body.country-portal .logo img {
               @media all and (max-width: @screen-sm-max) {
                 background-color: transparent;
               }
+              .caret {
+                -webkit-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                transform: rotate(0deg);
+              }
             }
             > a.active {
               background-color: #ffffff;
@@ -400,10 +411,18 @@ body.country-portal .logo img {
               }
             }
           }
-          .dropdown-menu {
-            margin-top: 0;
-            min-width: 150px;
+          &.active > .dropdown-menu {
             border-top: none;
+            margin-left: -1px;
+            margin-top: 0;
+            &.dropdown-menu-right {
+              margin-left: 0px;
+              margin-right: -1px;
+            }
+          }
+          .dropdown-menu {
+            margin-top: -1px;
+            min-width: 150px;
             border-radius: 0;
             [dir="rtl"] &{
               text-align: right;
