@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Put production environment to the test environment
+
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 WHITE='\033[1;37m'

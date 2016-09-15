@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Bring production environment on your local development machine
+
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 WHITE='\033[1;37m'
