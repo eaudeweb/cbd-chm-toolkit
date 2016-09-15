@@ -14,7 +14,6 @@ dependencies[] = date
 dependencies[] = domain_variable_locale
 dependencies[] = email
 dependencies[] = entityreference
-dependencies[] = eu_cookie_compliance
 dependencies[] = features
 dependencies[] = field_collection
 dependencies[] = file
