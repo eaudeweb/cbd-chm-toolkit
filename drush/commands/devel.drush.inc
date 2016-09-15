@@ -315,6 +315,28 @@ function _drush_chm_create_test_domains() {
         if (!empty($form_errors)) {
           var_dump($form_errors);
         }
+        // Attach a new 'CHM Site' to each domain
+        $node_attributes = array(
+          'type' => 'chm_site',
+          'title' => $domain['sitename'],
+          'status' => 1,
+          'uid' => 1,
+          'name' => 'chm',
+          'language' => 'en',
+          'domains' => array(PTKDomain::$CHM_DOMAIN_ID),
+          'domain_site' => PTKDomain::$CHM_DOMAIN_ID,
+          'field_url' => ['en' => [0 => ['url' => 'https://' . $domain['subdomain']]]],
+        );
+        $country = PTK::getCountryByCode($domain['country']);
+        if (!empty($country)) {
+          $node_attributes['field_countries'] = [LANGUAGE_NONE => [0 => ['tid' => $country->tid]]];
+        }
+        else {
+          drush_log('Missing country:' . $domain['country'], 'warn');
+        }
+        $node = (object)$node_attributes;
+        node_object_prepare($node);
+        node_save($node);
       }
     }
   }
