@@ -8589,9 +8589,24 @@ body.country-portal .logo img {
 .navbar-container #navbar .navbar-collapse .nav li a.dropdown-toggle {
   background-color: transparent;
 }
+.navbar-container #navbar .navbar-collapse .nav li a.dropdown-toggle .caret {
+  margin-top: -5px;
+}
 @media all and (min-width: 992px) {
   .navbar-container #navbar .navbar-collapse .nav li .expanded {
     display: flex;
+  }
+  .navbar-container #navbar .navbar-collapse .nav li .expanded.pull-left {
+    flex-direction: row-reverse;
+  }
+  .navbar-container #navbar .navbar-collapse .nav li .expanded.pull-left .dropdown-toggle {
+    margin-left: 0;
+    margin-right: -10px;
+  }
+  .navbar-container #navbar .navbar-collapse .nav li .expanded.pull-left .caret {
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
   }
   .navbar-container #navbar .navbar-collapse .nav li a.dropdown-title {
     display: inline-block;
@@ -8698,6 +8713,8 @@ body.country-portal .logo img {
 }
 @media all and (min-width: 992px) {
   .navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu .caret {
+    -webkit-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
     transform: rotate(-90deg);
   }
 }
@@ -8763,6 +8780,7 @@ body.country-portal .logo img {
 }
 .dropdown-submenu.pull-left > .dropdown-menu {
   left: -100%;
+  right: 100%;
   margin-left: 10px;
   -webkit-border-radius: 6px 0 6px 6px;
   -moz-border-radius: 6px 0 6px 6px;

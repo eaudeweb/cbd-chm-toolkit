@@ -300,10 +300,25 @@ body.country-portal .logo img {
           }
           a.dropdown-toggle {
             background-color: transparent;
+            .caret {
+              margin-top: -5px;
+            }
           }
           @media all and (min-width: @screen-md-min) {
             .expanded {
              display: flex;
+             &.pull-left {
+              flex-direction: row-reverse;
+              .dropdown-toggle {
+                margin-left: 0;
+                margin-right: -10px;
+              }
+              .caret {
+                -webkit-transform: rotate(90deg);
+                -ms-transform: rotate(90deg);
+                transform: rotate(90deg);
+              }
+             }
             }
             a.dropdown-title {
               display: inline-block;
@@ -313,6 +328,7 @@ body.country-portal .logo img {
               padding: 10px;
               margin-left: -10px;
               pointer-events: none;
+
             }
           }
           @media all and (max-width: @screen-sm-max) {
@@ -416,6 +432,8 @@ body.country-portal .logo img {
             }
             @media all and (min-width: @screen-md-min) {
               .caret {
+                -webkit-transform: rotate(-90deg);
+                -ms-transform: rotate(-90deg);
                 transform: rotate(-90deg);
               }
             }
@@ -489,6 +507,7 @@ body.country-portal .logo img {
 }
 .dropdown-submenu.pull-left > .dropdown-menu {
   left:-100%;
+  right: 100%;
   margin-left:10px;
   -webkit-border-radius:6px 0 6px 6px;
   -moz-border-radius:6px 0 6px 6px;
