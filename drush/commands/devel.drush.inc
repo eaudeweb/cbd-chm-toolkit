@@ -88,16 +88,16 @@ function _drush_prepare_test() {
   }
   foreach (domain_domains() as $id => $domain) {
     $domain = domain_load($id);
-    _drush_prepare_test_domains($domain);
+    _drush_prepare_test_existing_domains($domain);
     drush_log('Configuring ' . $domain['scheme'] . '://' . $domain['subdomain'], 'ok');
     domain_save($domain);
   }
 
-  //@todo: Create other new-* test domains
+  _drush_chm_create_test_domains();
 }
 
 
-function _drush_prepare_test_domains(&$domain) {
+function _drush_prepare_test_existing_domains(&$domain) {
   $domain['scheme'] = 'http';
   switch($domain['subdomain']) {
     case 'biodiversity-albania.chm-cbd.net':
@@ -114,7 +114,6 @@ function _drush_prepare_test_domains(&$domain) {
       $domain['subdomain'] = str_replace($subjects, $replaces, $domain['subdomain']);
       $domain['path'] = str_replace($subjects, $replaces, $domain['path']);
   }
-  _drush_chm_create_test_domains();
 }
 
 /**
@@ -139,7 +138,7 @@ function _drush_chm_create_test_domains() {
   );
   foreach ($languages as $code => $name) {
     if (!array_key_exists($code, $existing)) {
-      drush_log('Adding new language: ' . $code , 'ok');
+      drush_log("Adding new language: $name ($code)" , 'ok');
       locale_add_language($code);
     }
   }
