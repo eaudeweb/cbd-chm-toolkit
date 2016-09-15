@@ -143,6 +143,7 @@ function _drush_chm_create_test_domains() {
     }
   }
   if (!array_key_exists('pis', $existing)) {
+    drush_log("Adding new language: Pijin (pis)" , 'ok');
     locale_add_language('pis', 'Pijin', 'Pijin', LANGUAGE_LTR, '', 'pis', TRUE);
   }
 
