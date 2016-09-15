@@ -1127,7 +1127,13 @@
       }
     }
   }
-
+  .captcha {
+    display: table-row;
+    &:before {
+      content: '';
+      display: table-cell;
+    }
+  }
   @media all and (min-width: @screen-xs-min) {
     > div {
       display: table;
