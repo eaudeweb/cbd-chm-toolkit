@@ -80,3 +80,19 @@ EOT
   }
   return NULL;
 }
+
+/**
+ * Implements hook_path_breadcrumbs_view().
+ */
+function chm_search_path_breadcrumbs_view($path_breadcrumbs, $contexts) {
+  if (!empty($path_breadcrumbs->machine_name) && $path_breadcrumbs->machine_name == 'search_page') {
+    // Alter the !search_term 'token'
+    if (!empty($_GET['search_api_views_fulltext'])) {
+      $path_breadcrumbs->titles[1] = check_plain($_GET['search_api_views_fulltext']);
+    }
+    else {
+      unset($path_breadcrumbs->titles[1]);
+      unset($path_breadcrumbs->paths[1]);
+    }
+  }
+}
