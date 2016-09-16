@@ -92,6 +92,14 @@ function _drush_prepare_test() {
     drush_log('Configuring ' . $domain['scheme'] . '://' . $domain['subdomain'], 'ok');
     domain_save($domain);
   }
+  /** @var SearchApiServer $server */
+  if ($server = search_api_server_load('apache_solr_search_server')) {
+    if ($server->options['path'] != '/solr/chm-test') {
+      drush_log('Updating Solr server path to /solr/chm-test', 'ok');
+      $server->options['path'] = '/solr/chm-test';
+      $server->save();
+    }
+  }
 
   _drush_chm_create_test_domains();
 }
