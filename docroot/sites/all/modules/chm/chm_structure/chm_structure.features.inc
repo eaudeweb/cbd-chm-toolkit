@@ -71,6 +71,22 @@ function chm_structure_image_default_styles() {
     ),
   );
 
+  // Exported image style: small_flag_icon.
+  $styles['small_flag_icon'] = array(
+    'label' => 'Small flag icon',
+    'effects' => array(
+      3 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 32,
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   return $styles;
 }
 
@@ -79,10 +95,26 @@ function chm_structure_image_default_styles() {
  */
 function chm_structure_node_info() {
   $items = array(
+    'cbd_national_target' => array(
+      'name' => t('CBD National Target'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
     'cbd_nfp' => array(
       'name' => t('CBD National Focal Point'),
       'base' => 'node_content',
       'description' => t('CBD National Focal Point automatically imported from the CBD REST API'),
+      'has_title' => '1',
+      'title_label' => t('Name'),
+      'help' => '',
+    ),
+    'chm_site' => array(
+      'name' => t('CHM site'),
+      'base' => 'node_content',
+      'description' => t('Use this content type to add references of current or future national or regional CHM websites'),
       'has_title' => '1',
       'title_label' => t('Name'),
       'help' => '',
@@ -143,12 +175,28 @@ function chm_structure_node_info() {
       'title_label' => t('Title'),
       'help' => '',
     ),
+    'organization' => array(
+      'name' => t('Organization'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Name'),
+      'help' => '',
+    ),
     'page' => array(
       'name' => t('Page'),
       'base' => 'node_content',
       'description' => t('Use <i>page</i> for the static content of your national CHM website, such as the <b>About Us</b> page.'),
       'has_title' => '1',
       'title_label' => t('Title'),
+      'help' => '',
+    ),
+    'person' => array(
+      'name' => t('Person'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Full name'),
       'help' => '',
     ),
     'project' => array(

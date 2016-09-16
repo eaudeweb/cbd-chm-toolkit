@@ -122,3 +122,8 @@ Hidden Features
 ---------------
 This module suggests a Views filter to choose to search in attachments files too
 or not.
+
+HOOKS
+-----
+This module provides hook_search_api_attachments_indexable.
+See more details in search_api_attachments.api.php

@@ -1,14 +1,28 @@
 SearchAPI ET 7.x-2.x, xxxx-xx-xx
 --------------------------------
 
+SearchAPI ET 7.x-2.0-alpha7, 2016-08-02
+---------------------------------------
+- Translations not properly indexed
+- Items are indexed also for Disabled languages
+
+SearchAPI ET 7.x-2.0-alpha5, 2016-07-11
+---------------------------------------
+- CHANGELOG cleanup
+- Old IndexID are left during FeatureRevert or Index deletion
+- Item ids not updated on search api index revert which triggers an insert
+- Followup for #2722459: updated update_N() function.
+- Migrate the old ItemID format to the newer one.
+- Simplify filterTrackableIds logic
+
 SearchAPI ET 7.x-2.0-alpha4, 2016-05-06
 ---------------------------------------
 - Wrong "token" type returned from getIdFieldInfo().
 
 SearchAPI ET 7.x-2.0-alpha3, 2016-04-27
 ---------------------------------------
-- Issue #2712801 by gnucifer: Check property info before handling entity-update and -delete hooks.
-- Issue #2712899 by gnucifer, thePanz: Code and comments cleanup.
+- Check property info before handling entity-update and -delete hooks.
+- Code and comments cleanup.
 - Code and comments cleanup.
 - Updated Batch messages.
 - Ensure SearchApiEtHelper class is loaded.

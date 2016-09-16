@@ -5,7 +5,7 @@ $aliases['test'] = array(
   'remote-user' => 'please-fill-in-local-aliases',
   'root' => 'please-fill-in-local-aliases',
   'path-aliases' => array(
-    '%files' => 'sites/all/files',
+    '%files' => 'files',
   ),
 );
 $aliases['prod'] = array(
@@ -14,7 +14,7 @@ $aliases['prod'] = array(
   'remote-user' => 'please-fill-in-local-aliases',
   'root' => 'please-fill-in-local-aliases',
   'path-aliases' => array(
-    '%files' => 'sites/all/files',
+    '%files' => 'files',
   ),
 );
 

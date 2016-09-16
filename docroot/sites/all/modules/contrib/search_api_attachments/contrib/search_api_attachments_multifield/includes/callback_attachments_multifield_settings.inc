@@ -11,16 +11,6 @@ class SearchApiAttachmentsMultifieldAlterSettings extends SearchApiAttachmentsAl
    * {@inheritdoc}
    */
   public function alterItems(array &$items) {
-
-    // Extension restriction.
-    $exclude = array();
-    foreach (explode(' ', $this->options['excluded_extensions']) as $ext) {
-      $exclude[$ext] = file_get_mimetype('dummy.' . $ext);
-    }
-
-    // File size restriction.
-    $max_file_size = parse_size($this->options['max_file_size']);
-
     // Get the multifield bundles.
     $multifields_instances = field_info_instances('multifield');
     $multifields = array_keys($multifields_instances);
@@ -64,21 +54,13 @@ class SearchApiAttachmentsMultifieldAlterSettings extends SearchApiAttachmentsAl
                         $files = array_slice($files, 0, $this->options['number_indexed']);
                       }
                       foreach ($files as $file) {
-                        // Private file restriction.
-                        if (!$this->is_temporary($file) && !($this->options['excluded_private'] && $this->is_private($file))) {
-                          // Extension restriction.
-                          if (!in_array($file['filemime'], $exclude)) {
-                            // File size restriction.
-                            $file_size_errors = file_validate_size((object) $file, $max_file_size);
-                            if (empty($file_size_errors)) {
-                              $attachments = 'attachments_' . $file_field;
-                              if (isset($item->{$attachments})) {
-                                $item->{$attachments} .= ' ' . $this->getFileContent($file);
-                              }
-                              else {
-                                $item->{$attachments} = $this->getFileContent($file);
-                              }
-                            }
+                        if ($this->isFileIndexable($file, $item, $multifield)) {
+                          $attachments = 'attachments_' . $file_field;
+                          if (isset($item->{$attachments})) {
+                            $item->{$attachments} .= ' ' . $this->getFileContent($file);
+                          }
+                          else {
+                            $item->{$attachments} = $this->getFileContent($file);
                           }
                         }
                       }

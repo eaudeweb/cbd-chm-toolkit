@@ -55,4 +55,34 @@ class SearchApiEtHelperTest extends PHPUnit_Framework_TestCase {
   public function testSplitItemId($expected, $value, $parts = NULL) {
     $this->assertEquals($expected, SearchApiEtHelper::splitItemId($value, $parts));
   }
+
+  /**
+   * @return array
+   */
+  public function dataProviderGetGroupedItemsIdsByEntity() {
+    return array(
+      'empty' => array(
+        array(),
+        array()
+      ),
+      'oneitem' => array(
+        array('123' => array('123/en', '123/de')),
+        array('123/en', '123/de')
+      ),
+      'twoitems' => array(
+        array('123' => array('123/en'), '321' => array('321/de')),
+        array('123/en', '321/de')
+      ),
+    );
+  }
+
+  /**
+   * @dataProvider dataProviderGetGroupedItemsIdsByEntity
+   * @param $expected
+   * @param $items
+   */
+  public function testGetGroupedItemsIdsByEntity($expected, $items) {
+    $grouped_items = SearchApiEtHelper::getGroupedItemsIdsByEntity($items);
+    $this->assertEquals($expected, $grouped_items );
+  }
 }

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Bring production environment on your local development machine
+
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 WHITE='\033[1;37m'
@@ -24,7 +26,6 @@ drush sql-drop -y
 drush sql-sync @prod @self -y
 drush vset environment dev
 drush prepare-dev -y
-# drush rsync @prod:%files @self:%files -y
 drush cc all
 
 echo -e "${GREEN}Sync done, to get the files do: drush rsync @prod:%files @self:%files -y";

@@ -4,7 +4,6 @@ require_once dirname(__FILE__) . '/ptk_base.inc';
 require_once dirname(__FILE__) . '/ptk_base.domain.inc';
 require_once dirname(__FILE__) . '/blocks/AbstractBlock.php';
 require_once dirname(__FILE__) . '/blocks/ChmContentStatisticsBlock.php';
-require_once dirname(__FILE__) . '/blocks/ChmNetworkSitesBlock.php';
 require_once dirname(__FILE__) . '/blocks/ChmFooterQuickLinksRootBlock.php';
 require_once dirname(__FILE__) . '/blocks/ChmFooterQuickLinksBlock.php';
 require_once dirname(__FILE__) . '/blocks/ChmFooterFollowUsBlock.php';
@@ -12,6 +11,7 @@ require_once dirname(__FILE__) . '/blocks/ChmFooterCountryLinksBlock.php';
 require_once dirname(__FILE__) . '/forms/base.inc';
 
 define('USER_WALLE', 43);
+define('ROLE_ADMINISTRATOR', 'administrator');
 define('PROTECTED_PLANET_AREA_CSV_UPLOAD_DIR', 'public://protected-areas/');
 define('PROTECTED_PLANET_AREA_CSV_VAR', 'ptk_protected_planet_areas_csv_path');
 
@@ -369,12 +369,13 @@ function theme_ptk_base_chm_content_statistics_block_config_form($variables) {
     $rows[] = $row;
   }
   $prefix = '<p>' . t('Configure the display of content types statistics. Use the mouse to drag and drop rows to determine the display order in the front-end.') . '</p>';
-  return $prefix . theme('table', array(
-    'header' => $header,
-    'rows' => $rows,
-    'attributes' => array('id' => 'config_table'),
-  ));
-
+  return $prefix
+    . drupal_render($element['title'])
+    . theme('table', array(
+      'header' => $header,
+      'rows' => $rows,
+      'attributes' => array('id' => 'config_table'),
+    ));
 }
 
 
@@ -386,4 +387,13 @@ function ptk_base_admin_variables() {
   $realm_key = _domain_variable_realm_key($domain);
   module_load_include('form.inc', 'variable_realm');
   return drupal_get_form('variable_realm_edit_variables_form', 'domain', $realm_key);
+}
+
+
+/**
+ * Implements hook_user_is_administrator().
+ */
+function ptk_base_user_is_administrator_alter(&$is_administrator) {
+  global $user;
+  $is_administrator = in_array(ROLE_ADMINISTRATOR, $user->roles);
 }

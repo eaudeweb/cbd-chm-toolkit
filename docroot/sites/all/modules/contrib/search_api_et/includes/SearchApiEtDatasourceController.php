@@ -286,6 +286,9 @@ class SearchApiEtDatasourceController extends SearchApiEntityDataSourceControlle
 
   /**
    * {@inheritdoc}
+   * @param $item_ids array|string
+   * @param $indexes SearchApiIndex[]
+   * @param $dequeue bool
    */
   public function trackItemChange($item_ids, array $indexes, $dequeue = FALSE) {
     // If this method was called from _search_api_index_reindex(), $item_ids
@@ -437,54 +440,29 @@ class SearchApiEtDatasourceController extends SearchApiEntityDataSourceControlle
    * @param SearchApiIndex $index
    *   The SearchAPI index to use
    * @param array $item_ids
-   *   A list of trackable item IDs (in the form "{id}/{language} to check
+   *   A list of trackable ItemID (in the form "{id}/{language}) to filter
    * @return array
+   *   The filtered list of trackable ItemID
    */
   protected function filterTrackableIds(SearchApiIndex $index, $item_ids) {
-    if (empty($item_ids))
-      return array();
-
-    $merged_ids = $this->getGroupedItemsIdsByEntity($item_ids);
-    if (empty($merged_ids)) {
+    if (empty($item_ids)) {
       return array();
     }
 
-    $ret = array();
-    $ids = $this->getTrackableEntityIds($index, array_keys($merged_ids));
-
-    if (!empty($ids)) {
-      // Keeping only the Entity IDs matched by the query
-      $item_ids = array_intersect_key($merged_ids, array_flip($ids));
-
-      // Rebuilding the $ret to contain the '{entity_id}/{language}' IDs
-      if (!empty($item_ids)) {
-        foreach ($item_ids as $ids) {
-          $ret = array_merge($ret, $ids);
-        }
-      }
+    // Group the given ItemIds by their EntityId.
+    $grouped_item_ids = SearchApiEtHelper::getGroupedItemsIdsByEntity($item_ids);
+    if (empty($grouped_item_ids)) {
+      return array();
     }
 
-    return $ret;
-  }
+    // Generate the list of candidate ItemIDs from the current EntityIDs
+    $trackable_item_ids = $this->getTrackableItemIds($index, array_keys($grouped_item_ids));
 
-  /**
-   * Helper function to group the given list of ItemIds by EntityIds
-   *
-   * @param array $item_ids
-   *  The list of trackable item_ids (in the form "{entity_id}/{language}")
-   * @return array
-   *   A multilevel array where the outer array is keyed by the entity_id, and
-   *   contains all the corresponding Item IDs.
-   */
-  protected function getGroupedItemsIdsByEntity($item_ids) {
-    $ret = array();
-    foreach ($item_ids as $item_id) {
-      $id = SearchApiEtHelper::splitItemId($item_id, SearchApiEtHelper::ITEM_ID_ENTITY_ID);
-      if ($id) {
-        $ret[$id][] = $item_id;
-      }
-    }
-    return $ret;
+    // The $trackable_item_ids will contain all ItemIDs that should be indexed.
+    // Additional translations, other than the one provided in $item_ids, will
+    // be taken into account, to cover the case when a non-translatable field is
+    // changed on one translation and such change must be reflected to all other
+    // indexed translations.
+    return $trackable_item_ids;
   }
-
 }

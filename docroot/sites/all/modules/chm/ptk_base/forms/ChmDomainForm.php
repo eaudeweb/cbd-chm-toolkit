@@ -13,7 +13,7 @@ function ptk_base_domain_form_ajax_country($form, $form_state) {
   if (!empty($form_state['values']['country']) &&
     $country = PTK::getCountryByCode($form_state['values']['country'])
   ) {
-    $control['#value'] = 'CHM ' . $country->name;
+    $control['#value'] = 'Biodiversity ' . $country->name;
   }
   $ret[] = ajax_command_replace('sitename-wrapper', $control);
   return $ret;
@@ -278,6 +278,7 @@ class ChmDomainForm {
         $node = $page_default_attributes;
         $node['title'] = $node['menu']['link_title'] = $page;
         $node['menu']['weight'] = $weight++;
+        $node['menu']['customized'] = 1;
         $node = (object) $node;
         $node->path = array('pathauto' => 0, 'alias' => '');
         node_save($node);
@@ -297,10 +298,11 @@ class ChmDomainForm {
             break;
           case 'Strategy':
             PTK::showBlockOnPage('nbsap-block', 'node/' . $node->nid);
-            PTK::showBlockOnPage('national_targets-block', 'node/' . $node->nid);
+            PTK::showBlockOnPage('cbd_national_targets-targets', 'node/' . $node->nid);
+            PTK::showBlockOnPage('documents-nbsaps', 'node/' . $node->nid);
             break;
           case 'Implementation':
-            PTK::showBlockOnPage('projects-block', $node->nid);
+            PTK::showBlockOnPage('projects-block_listing', 'node/' . $node->nid);
             break;
           case 'Information':
             $node->title = $page;
@@ -329,15 +331,18 @@ class ChmDomainForm {
       $level2_information_links = [
         'news' => 'News',
         'events' => 'Events',
+        'national-targets' => 'National targets',
         'facts' => 'Facts',
         'ecosystems' => 'Ecosystems',
         'protected-areas' => 'Protected areas',
         'projects' => 'Projects',
         'species' => 'Species',
+        'organizations' => 'Organizations',
+        'network-directory' => 'Network directory',
         'library' => 'Library',
         'videos' => 'Videos',
+        'photo-galleries' => 'Image gallery',
         'links' => 'Related websites',
-        'photo-galleries' => 'Images',
       ];
 
       $links = menu_load_links($menu['menu_name']);
@@ -354,6 +359,7 @@ class ChmDomainForm {
             'depth' => 2,
             'plid' => $link['mlid'],
             'p1' => $link['mlid'],
+            'customized' => 1,
           );
           foreach($level2_information_links as $link_path => $link_title) {
             $new_link = $menu_link_default + [
@@ -445,6 +451,7 @@ class ChmDomainForm {
       'weight' => 0,
       'expanded' => 0,
       'depth' => 1,
+      'customized' => 1,
     ];
     menu_link_save($home_link);
     return $menu;

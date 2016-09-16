@@ -36,6 +36,17 @@ function chm_search_views_default_views() {
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
+  /* Field: Indexed Multilingual Node: Image */
+  $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['label'] = '';
+  $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_image']['settings'] = array(
+    'image_style' => 'image_listing',
+    'image_link' => 'content',
+  );
   /* Field: Indexed Multilingual Node: Multilingual ID */
   $handler->display->display_options['fields']['search_api_et_id']['id'] = 'search_api_et_id';
   $handler->display->display_options['fields']['search_api_et_id']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -56,6 +67,15 @@ function chm_search_views_default_views() {
     'title_link' => 'content',
     'title_class' => '',
   );
+  /* Field: Indexed Multilingual Node: Status */
+  $handler->display->display_options['fields']['field_event_status']['id'] = 'field_event_status';
+  $handler->display->display_options['fields']['field_event_status']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_event_status']['field'] = 'field_event_status';
+  $handler->display->display_options['fields']['field_event_status']['label'] = '';
+  $handler->display->display_options['fields']['field_event_status']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_event_status']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['field_event_status']['view_mode'] = 'full';
+  $handler->display->display_options['fields']['field_event_status']['bypass_access'] = 0;
   /* Field: Search: Excerpt */
   $handler->display->display_options['fields']['search_api_excerpt']['id'] = 'search_api_excerpt';
   $handler->display->display_options['fields']['search_api_excerpt']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -63,6 +83,20 @@ function chm_search_views_default_views() {
   $handler->display->display_options['fields']['search_api_excerpt']['label'] = '';
   $handler->display->display_options['fields']['search_api_excerpt']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['search_api_excerpt']['link_to_entity'] = 0;
+  /* Sort criterion: Search: Relevance */
+  $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
+  $handler->display->display_options['sorts']['search_api_relevance']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['sorts']['search_api_relevance']['field'] = 'search_api_relevance';
+  $handler->display->display_options['sorts']['search_api_relevance']['order'] = 'DESC';
+  $handler->display->display_options['sorts']['search_api_relevance']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['search_api_relevance']['expose']['label'] = 'Relevance';
+  /* Sort criterion: Indexed Multilingual Node: Date created */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  $handler->display->display_options['sorts']['created']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['created']['expose']['label'] = 'Publish date';
   /* Filter criterion: Search: Fulltext search */
   $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
   $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -103,6 +137,8 @@ function chm_search_views_default_views() {
     t('next ›'),
     t('last »'),
     t('Displaying @start - @end of @total'),
+    t('Relevance'),
+    t('Publish date'),
     t('Text'),
     t('Page'),
   );
