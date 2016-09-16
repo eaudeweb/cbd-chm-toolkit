@@ -51,7 +51,7 @@ function chm_search_default_search_api_index() {
           "weight" : "-10",
           "settings" : { "default" : "1", "domains" : [], "operator" : "OR" }
         },
-        "search_api_alter_node_access" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_node_access" : { "status" : 1, "weight" : "0", "settings" : [] },
         "search_api_alter_node_status" : { "status" : 1, "weight" : "0", "settings" : [] },
         "search_api_attachments_alter_settings" : {
           "status" : 1,
@@ -64,7 +64,7 @@ function chm_search_default_search_api_index() {
           }
         },
         "search_api_alter_language_control" : {
-          "status" : 0,
+          "status" : 1,
           "weight" : "0",
           "settings" : { "lang_field" : "", "languages" : [] }
         },
@@ -127,6 +127,26 @@ function chm_search_default_search_api_index() {
             "title" : 0,
             "alt" : 1,
             "tags" : "h1 = 5\\r\\nh2 = 3\\r\\nh3 = 2\\r\\nstrong = 2\\r\\nb = 2\\r\\nem = 1.5\\r\\nu = 1.5"
+          }
+        },
+        "search_api_transliteration" : {
+          "status" : 0,
+          "weight" : "15",
+          "settings" : { "fields" : {
+              "title" : true,
+              "title_field" : true,
+              "field_address" : true,
+              "field_alternative_emails" : true,
+              "field_city" : true,
+              "field_department" : true,
+              "field_email" : true,
+              "field_fax_numbers" : true,
+              "field_first_name" : true,
+              "field_last_name" : true,
+              "field_nfp_designation" : true,
+              "body:value" : true,
+              "body:summary" : true
+            }
           }
         },
         "search_api_tokenizer" : {
@@ -203,6 +223,7 @@ function chm_search_default_search_api_index() {
         "field_dates:value" : { "type" : "date" },
         "field_dates:value2" : { "type" : "date" },
         "field_department" : { "type" : "text" },
+        "field_document_type" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_email" : { "type" : "text" },
         "field_event_status" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_fax_numbers" : { "type" : "list\\u003Ctext\\u003E" },
@@ -211,8 +232,9 @@ function chm_search_default_search_api_index() {
         "field_nfp_designation" : { "type" : "text" },
         "field_nfp_type" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "promote" : { "type" : "boolean" },
+        "search_api_access_node" : { "type" : "list\\u003Cstring\\u003E" },
         "search_api_language" : { "type" : "string" },
-        "status" : { "type" : "integer" },
+        "status" : { "type" : "boolean" },
         "sticky" : { "type" : "boolean" },
         "title" : { "type" : "text", "boost" : "5.0" },
         "title_field" : { "type" : "text" },
