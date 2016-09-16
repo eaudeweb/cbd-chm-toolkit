@@ -1109,8 +1109,9 @@
           color: #d22020;
         }
       }
-      > label, > .form-control {
-      }
+    }
+    .grippie {
+      border-radius: 0 0 4px 4px;
     }
     //ajax elements
     #edit-submitted-file-ajax-wrapper {
@@ -1127,7 +1128,17 @@
       }
     }
   }
-
+  .captcha {
+    display: table-row;
+    margin-bottom: .5em;
+    &:before {
+      content: '';
+      display: table-cell;
+    }
+    & + * {
+      margin-top: .5em;
+    }
+  }
   @media all and (min-width: @screen-xs-min) {
     > div {
       display: table;
@@ -1153,7 +1164,16 @@
       }
       .grippie {
         margin-top: -5px;
-        border-radius: 0 0 4px 4px;
+      }
+    }
+    .captcha + * {
+      margin-top: 0em;
+    }
+  }
+  @media all and (min-width: @screen-sm-min) {
+    > div {
+      .grippie {
+        margin-top: 0px;
       }
     }
   }
