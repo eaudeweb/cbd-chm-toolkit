@@ -29,7 +29,7 @@ function chm_search_default_search_api_index() {
     "name" : "Default multilingual node index",
     "machine_name" : "default_multilingual_node_index",
     "description" : "An automatically created search index for indexing multilingual node data. Might be configured to specific needs.",
-    "server" : "solr_4_server",
+    "server" : "apache_solr_search_server",
     "item_type" : "search_api_et_node",
     "options" : {
       "datasource" : { "bundles" : [] },
@@ -270,10 +270,10 @@ function chm_search_default_search_api_index() {
  */
 function chm_search_default_search_api_server() {
   $items = array();
-  $items['solr_4_server'] = entity_import('search_api_server', '{
-    "name" : "Solr 4 Server",
-    "machine_name" : "solr_4_server",
-    "description" : "Apache Solr 4.x server",
+  $items['apache_solr_search_server'] = entity_import('search_api_server', '{
+    "name" : "Apache Solr Search",
+    "machine_name" : "apache_solr_search_server",
+    "description" : "The Solr server used for the search functionality",
     "class" : "search_api_solr_service",
     "options" : {
       "clean_ids" : true,
@@ -281,7 +281,7 @@ function chm_search_default_search_api_server() {
       "scheme" : "http",
       "host" : "localhost",
       "port" : "8983",
-      "path" : "\\/solr\\/chm-test",
+      "path" : "\\/solr\\/chm-cbd-prod",
       "http_user" : "",
       "http_pass" : "",
       "excerpt" : 1,
