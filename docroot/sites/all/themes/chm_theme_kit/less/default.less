@@ -63,3 +63,152 @@ body.maintenance-page {
     background-color: darken(@button-bgcolor, 1%);
   }
 }
+
+.views-field-title,
+.views-field-title-field,
+.views-field-field-title,
+{
+  font-size: @font-size-h5;
+  line-height: 1.1;
+  font-weight: bold;
+  margin-bottom: .5em;
+}
+//listings
+.views-bootstrap-media-plugin-style {
+  .media-list {
+    margin: 0;
+    padding: 0;
+  }
+  .media {
+    // @well-ruleset();
+    padding: 20px;
+    &:first-of-type {
+      margin-top: 1em;
+    }
+    > .media-object {
+      float: none !important;
+      // margin: -8vw -8vw 1em -8vw;
+      margin: -20px -20px 1em -20px;
+      padding: 0;
+      img, .embedded-video {
+        width: 100%;
+      }
+    }
+  }
+  .media-body {
+    display: block;
+    width: auto;
+    .media-heading {
+      font-weight: bold;
+      font-size: @font-size-h5;
+      margin-bottom: .25em;
+      display: block;
+    }
+    .field-dates {
+      font-size: 1.3rem;
+      color: #777;
+      margin-bottom: .25em;
+    }
+    .field-type {
+      text-transform: uppercase;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #777;
+    }
+    > p {
+      padding: 0;
+      max-height: ~"calc(3 * @{line-height-em})";
+      overflow: hidden;
+      position: relative;
+      margin-bottom: .3em;
+      &:after {
+        content: "";
+        text-align: right;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: auto;
+        width: 70%;
+        height: @line-height-em;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f5f5f5+100&0+0,1+100 */
+        background: -moz-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(245,245,245,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(245,245,245,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#f5f5f5',GradientType=1 ); /* IE6-9 */
+        pointer-events: none;
+      }
+    }
+    > a {
+      display: inline;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: smaller;
+    }
+  }
+  @media all and (min-width: @screen-xs-min) {
+    .media {
+      display: table;
+      width: 100%;
+      padding: 0;
+      min-height: 130px;
+      .media-object {
+        // float: left !important;
+        display: table-cell;
+        position: relative;
+        margin: 0;
+        width: 35%;
+        min-width: 100px;
+        margin: 0;
+        margin-right: 1em;
+        img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          -o-object-fit: cover;
+          object-fit: cover;
+          height: 100%;
+          width: 100%;
+          max-width: 220px;
+        }
+      }
+    }
+    .media-body {
+      display: table-cell;
+      padding: 14px .5em .5em 1em;
+      > p {
+        max-height: ~"calc(2 * @{line-height-em})";
+      }
+    }
+  }
+  @media all and (min-width: 650px) {
+    .media {
+      .media-object  {
+        width: 30%;
+        margin-right: 1em;
+      }
+    }
+    .media-body {
+      > p {
+        max-height: ~"calc(3 * @{line-height-em})";
+      }
+    }
+  }
+  @media all and (min-width: @screen-sm-min) {
+    .media {
+      .media-object {
+        // width: 30%;
+        margin-right: 1em;
+      }
+    }
+    .media-body {
+    }
+  }
+  @media all and (min-width: @screen-md-min) {
+    .media {
+      .media-object {
+        width: 220px;
+      }
+    }
+  }
+}

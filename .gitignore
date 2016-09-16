@@ -1,4 +1,5 @@
 .idea/
+.DS_Store
 robots.txt
 conf/apache.conf
 drush/aliases/aliases.local.php
