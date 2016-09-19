@@ -10405,3 +10405,14 @@ body.node-type-event .pane-entity-field.pane-node-field-images .field-item a img
   background-image: none;
   border: 1px solid #02823F;
 }
+.node-details-page .field-name-field-event-address .field-item div {
+  display: inline;
+  float: none;
+}
+.node-details-page .field-name-field-event-address .field-item > div:after,
+.node-details-page .field-name-field-event-address .field-item > span:after {
+  content: ", ";
+}
+.node-details-page .field-name-field-event-address .field-item span:last-child:after {
+  content: "";
+}

@@ -48,7 +48,7 @@
   <?php if (!$label_hidden): ?>
     <div class="field-label"<?php print $title_attributes; ?>>
       <span class="glyphicon glyphicon-calendar" aria-hidden="true" title="<?php print $label ?>"></span>
-	  <span class="sr-only"><?php print $label ?></span>
+      <span class="sr-only"><?php print $label ?></span>
 	</div>
   <?php endif; ?>
   <div class="field-items"<?php print $content_attributes; ?>>
