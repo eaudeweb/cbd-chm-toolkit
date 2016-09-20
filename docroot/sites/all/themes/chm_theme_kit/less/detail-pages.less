@@ -1,6 +1,9 @@
 .node-details-page {
+	.field {
+		margin-bottom: 1em;
+	}
 	.field-name-field-event-address {
-		.field-item  {
+		.field-item {
 			div {
 				display: inline;
 				float: none;
@@ -10,8 +13,97 @@
 				content: ", ";
 			}
 			span:last-child:after {
-				content: "";				
+				content: "";
 			}
+		}
+	}
+	.field-label {
+		margin-right: .5em;
+	}
+	.field-name-field-organization-type,
+	.field-name-field-document-type,
+	.field-name-field-event-status {
+		margin-bottom: 1em;
+		text-transform: uppercase;
+		font-size: 14px;
+		font-weight: bold;
+		color: #777777;
+		&.confirmed {
+			color: @navbar-color;
+		}
+		&.cancelled {
+			color: @chm-red;
+		}
+		&.tentative {
+			color: @link-color-temp;
+		}
+		&.postponed {
+			color: #777777;
+		}
+	}
+	.field-name-field-dates,
+	.field-name-field-event-address,
+	.field-name-field-url
+	{
+		color: @text-color-green;
+	}
+	.field-name-field-geolocation {
+		// visibility: hidden;
+		// height: 0;
+	}
+	.field-name-field-countries {
+		.field-item {
+			display: inline-block;
+			margin-right: .5em;
+		}
+		a {
+			display: inline-block;
+			background-color: @navbar-color;
+			//to be removed after adding flags
+			font-size: 0;
+			height: 35px;
+			width: 50px;
+			//
+
+		}
+	}
+	.field-name-field-aichi-targets {
+		.field-item {
+			display: inline-block;
+			margin-right: .5em;
+			max-width: 100%;
+		}
+		a {
+			&:extend(.badge);
+			text-overflow: ellipsis;
+			overflow: hidden;
+			text-decoration: none;
+			background-color: #0071B8;
+			max-width: 100%;
+		}
+	}
+	//gallery in /content/thirteenth-meeting-conference-parties-convention-biological-diversity
+	.field-name-field-images {
+		.field-item {
+			margin-bottom: 30px;
+			a {
+				height: 150px;
+				img {
+					max-height: 100%;
+					width: 100%;
+					-o-object-fit: cover;
+					object-fit: cover;
+					margin: 0 auto;
+				}
+			}
+		}
+	}
+	.protected-area-detail-columns {
+		margin-bottom: 1em;
+		@media all and (min-width: @screen-xs-min) {
+			-webkit-columns: 2;
+			-moz-columns: 2;
+			columns: 2;
 		}
 	}
 }
@@ -25,5 +117,9 @@
 }
 
 .media-second-page {
-
+	.field-name-field-image {
+		img {
+			margin: 0 auto;
+		}
+	}
 }
