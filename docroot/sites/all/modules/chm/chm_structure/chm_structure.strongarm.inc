@@ -1672,7 +1672,7 @@ function chm_structure_strongarm() {
           'weight' => '10',
         ),
         'language' => array(
-          'weight' => '1',
+          'weight' => '0',
         ),
       ),
       'display' => array(),

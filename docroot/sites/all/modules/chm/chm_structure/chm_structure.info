@@ -158,6 +158,7 @@ features[field_instance][] = node-document-field_files
 features[field_instance][] = node-document-field_image
 features[field_instance][] = node-document-field_publication_date
 features[field_instance][] = node-document-field_reference
+features[field_instance][] = node-document-title_field
 features[field_instance][] = node-ecosystem-body
 features[field_instance][] = node-ecosystem-field_countries
 features[field_instance][] = node-ecosystem-field_event_address
