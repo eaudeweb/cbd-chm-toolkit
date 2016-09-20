@@ -70,18 +70,17 @@ function chm_theme_kit_menu_link($variables) {
       // Add our own wrapper.
       unset($element['#below']['#theme_wrappers']);
       $sub_menu = '<ul class="dropdown-menu">' . drupal_render($element['#below']) . '</ul>';
+      $element['#title'] .= ' <a class="dropdown-toggle" role="button" data-toggle="dropdown"><span class="caret"></span></a>';
       $element['#attributes']['class'][] = 'dropdown-submenu';
       $element['#localized_options']['html'] = TRUE;
-      $element['#localized_options']['attributes']['class'][] = 'dropdown-toggle';
-      $element['#localized_options']['attributes']['data-toggle'] = 'dropdown';
+      $element['#localized_options']['attributes']['class'][] = 'dropdown-title';
     } else {
       unset($element['#below']['#theme_wrappers']);
       $sub_menu = '<ul class="dropdown-menu">' . drupal_render($element['#below']) . '</ul>';
-      $element['#title'] .= ' <span class="caret"></span>';
+      $element['#title'] .= ' <a class="dropdown-toggle" role="button" data-toggle="dropdown"><span class="caret"></span> </a>';
       $element['#attributes']['class'][] = 'dropdown';
       $element['#localized_options']['html'] = TRUE;
-      $element['#localized_options']['attributes']['class'][] = 'dropdown-toggle';
-      $element['#localized_options']['attributes']['data-toggle'] = 'dropdown';
+      $element['#localized_options']['attributes']['class'][] = 'dropdown-title';
     }
   }
   if (($element['#href'] == $_GET['q'] || ($element['#href'] == '<front>' && drupal_is_front_page())) && (empty($element['#localized_options']['language']))) {
