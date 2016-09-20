@@ -64,13 +64,13 @@
 						fullWidth += $(element).getHiddenDimensions().width;
 					});
 					dropdownMenus.removeClass('dropdown-menu-right');
-					dropdownSubmenus.removeClass('pull-left');
+					dropdownSubmenus.removeClass('dropdown-submenu-right');
 					if (offset + fullWidth >  windowWidth) {
 						dropdownMenus.addClass('dropdown-menu-right');
-						dropdownSubmenus.addClass('pull-left');
+						dropdownSubmenus.addClass('dropdown-submenu-right');
 					}
 				});
-			}, 100);
+			}, 200);
 		});
 		$(window).resize();
 	});
