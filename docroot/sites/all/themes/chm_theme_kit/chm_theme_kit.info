@@ -5,8 +5,7 @@ core = 7.x
 version = 1.0
 
 stylesheets[all][] = css/style.css
-stylesheets[all][] = packages/font-awesome-3.2.1/css/font-awesome.min.css
-stylesheets[all][] = packages/font-awesome-4.4.0/css/font-awesome.min.css
+stylesheets[all][] = packages/font-awesome-4.6.3/css/font-awesome.min.css
 scripts[] = js/script.js
 
 regions[admin_shortcuts] = Admin Shortcuts (Authenticated Users Only)
