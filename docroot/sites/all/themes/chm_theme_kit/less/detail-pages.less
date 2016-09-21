@@ -108,11 +108,18 @@
 }
 
 .text-only-page {
-
 }
 
 .media-first-page {
-
+	.pane-node-field-salutation,
+	.pane-node-field-last-name,
+	.pane-node-field-first-name {
+		&,
+		& + .panel-separator {
+			font-size: @font-size-h1;
+			display: inline-block;
+		}
+	}
 }
 
 .media-second-page {

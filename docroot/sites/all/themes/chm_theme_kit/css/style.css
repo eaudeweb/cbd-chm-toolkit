@@ -10628,6 +10628,15 @@ body.country-portal .logo img {
     columns: 2;
   }
 }
+.media-first-page .pane-node-field-salutation,
+.media-first-page .pane-node-field-last-name,
+.media-first-page .pane-node-field-first-name,
+.media-first-page .pane-node-field-salutation + .panel-separator,
+.media-first-page .pane-node-field-last-name + .panel-separator,
+.media-first-page .pane-node-field-first-name + .panel-separator {
+  font-size: 28px;
+  display: inline-block;
+}
 .media-second-page .field-name-field-image img {
   margin: 0 auto;
 }
