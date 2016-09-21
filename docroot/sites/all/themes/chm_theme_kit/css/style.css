@@ -8456,10 +8456,10 @@ body.maintenance-page #footer-container #footer {
     width: 220px;
   }
 }
-#block-chm-search-chm-search:hover .btn-search {
+body.logged-in #block-chm-search-chm-search:hover .btn-search {
   right: 30px;
 }
-#block-chm-search-chm-search:hover input[type="text"] {
+body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
   padding-right: 30px;
 }
 .region-admin-shortcuts #block-system-user-menu .menu:before {
