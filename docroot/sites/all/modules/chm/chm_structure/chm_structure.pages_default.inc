@@ -632,11 +632,13 @@ function chm_structure_default_page_manager_handlers() {
   $pane->access = array();
   $pane->configuration = array(
     'label' => 'above',
-    'formatter' => 'i18n_taxonomy_term_reference_link',
+    'formatter' => 'country_taxonomy_flag_formatter',
     'delta_limit' => '0',
     'delta_offset' => '0',
     'delta_reversed' => 0,
-    'formatter_settings' => array(),
+    'formatter_settings' => array(
+      'image_style' => 'thumbnail',
+    ),
     'context' => 'argument_entity_id:node_1',
     'override_title' => 0,
     'override_title_text' => '',
@@ -1294,11 +1296,13 @@ function chm_structure_default_page_manager_handlers() {
   $pane->access = array();
   $pane->configuration = array(
     'label' => 'above',
-    'formatter' => 'i18n_taxonomy_term_reference_link',
+    'formatter' => 'country_taxonomy_flag_formatter',
     'delta_limit' => '0',
     'delta_offset' => '0',
     'delta_reversed' => 0,
-    'formatter_settings' => array(),
+    'formatter_settings' => array(
+      'image_style' => 'thumbnail',
+    ),
     'context' => 'argument_entity_id:node_1',
     'override_title' => 0,
     'override_title_text' => '',
@@ -3732,11 +3736,13 @@ function chm_structure_default_page_manager_handlers() {
   $pane->access = array();
   $pane->configuration = array(
     'label' => 'hidden',
-    'formatter' => 'i18n_taxonomy_term_reference_link',
+    'formatter' => 'country_taxonomy_flag_formatter',
     'delta_limit' => '0',
     'delta_offset' => '0',
     'delta_reversed' => 0,
-    'formatter_settings' => array(),
+    'formatter_settings' => array(
+      'image_style' => 'thumbnail',
+    ),
     'context' => 'argument_entity_id:node_1',
     'override_title' => 0,
     'override_title_text' => '',

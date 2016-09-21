@@ -27,18 +27,20 @@
 		text-transform: uppercase;
 		font-size: 14px;
 		font-weight: bold;
-		color: #777777;
-		&.confirmed {
+		color: @text-gray;
+	}
+	.field-name-field-event-status .field-item {
+		&.field-event-status-268 {
 			color: @navbar-color;
 		}
-		&.cancelled {
+		&.field-event-status-270 {
 			color: @chm-red;
 		}
-		&.tentative {
-			color: @link-color-temp;
+		&.field-event-status-2326 {
+			color: @chm-blue;
 		}
-		&.postponed {
-			color: #777777;
+		&.field-event-status-269 {
+			color: @text-gray;
 		}
 	}
 	.field-name-field-dates,
@@ -56,15 +58,12 @@
 			display: inline-block;
 			margin-right: .5em;
 		}
-		a {
+		img {
 			display: inline-block;
 			background-color: @navbar-color;
-			//to be removed after adding flags
-			font-size: 0;
 			height: 35px;
-			width: 50px;
-			//
-
+			width: auto;
+			border: 1px solid #777777;
 		}
 	}
 	.field-name-field-aichi-targets {

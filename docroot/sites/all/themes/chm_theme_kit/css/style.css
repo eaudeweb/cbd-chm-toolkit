@@ -10565,24 +10565,16 @@ body.country-portal .logo img {
   font-weight: bold;
   color: #777777;
 }
-.node-details-page .field-name-field-organization-type.confirmed,
-.node-details-page .field-name-field-document-type.confirmed,
-.node-details-page .field-name-field-event-status.confirmed {
+.node-details-page .field-name-field-event-status .field-item.field-event-status-268 {
   color: #039749;
 }
-.node-details-page .field-name-field-organization-type.cancelled,
-.node-details-page .field-name-field-document-type.cancelled,
-.node-details-page .field-name-field-event-status.cancelled {
+.node-details-page .field-name-field-event-status .field-item.field-event-status-270 {
   color: #CC0000;
 }
-.node-details-page .field-name-field-organization-type.tentative,
-.node-details-page .field-name-field-document-type.tentative,
-.node-details-page .field-name-field-event-status.tentative {
+.node-details-page .field-name-field-event-status .field-item.field-event-status-2326 {
   color: #06c;
 }
-.node-details-page .field-name-field-organization-type.postponed,
-.node-details-page .field-name-field-document-type.postponed,
-.node-details-page .field-name-field-event-status.postponed {
+.node-details-page .field-name-field-event-status .field-item.field-event-status-269 {
   color: #777777;
 }
 .node-details-page .field-name-field-dates,
@@ -10594,12 +10586,12 @@ body.country-portal .logo img {
   display: inline-block;
   margin-right: .5em;
 }
-.node-details-page .field-name-field-countries a {
+.node-details-page .field-name-field-countries img {
   display: inline-block;
   background-color: #039749;
-  font-size: 0;
   height: 35px;
-  width: 50px;
+  width: auto;
+  border: 1px solid #777777;
 }
 .node-details-page .field-name-field-aichi-targets .field-item {
   display: inline-block;
