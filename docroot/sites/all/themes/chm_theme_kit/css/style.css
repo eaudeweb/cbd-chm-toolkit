@@ -6798,6 +6798,29 @@ body.toolbar-drawer .navbar-fixed-top {
 body.toolbar-drawer.navbar-is-fixed-top {
   padding-top: 128px !important;
 }
+body.admin-menu {
+  padding-top: 100px;
+}
+@media (min-width: 327px) {
+  body.admin-menu {
+    padding-top: 78px;
+  }
+}
+@media (min-width: 437px) {
+  body.admin-menu {
+    padding-top: 56px;
+  }
+}
+@media (min-width: 609px) {
+  body.admin-menu {
+    padding-top: 34px;
+  }
+}
+@media (min-width: 1097px) {
+  body.admin-menu {
+    padding-top: 12px;
+  }
+}
 body.admin-menu .navbar-fixed-top {
   top: 29px;
 }
