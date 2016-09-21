@@ -51,7 +51,15 @@ body.maintenance-page {
   }
 }
 
-.btn.btn-primary{
+a {
+  color: @link-color-temp;
+  &:hover {
+    color: @link-color-hover-temp;
+    text-decoration: underline;
+  }
+}
+
+.btn.btn-primary {
   background-color: lighten(@button-bgcolor, 5%);
   padding: 7px 16px;
   &:hover {
@@ -72,7 +80,11 @@ body.maintenance-page {
   line-height: 1.1;
   font-weight: bold;
   margin-bottom: .5em;
+  a {
+    color: @text-color-green;
+  }
 }
+
 //listings
 .views-bootstrap-media-plugin-style {
   .media-list {
@@ -103,6 +115,9 @@ body.maintenance-page {
       font-size: @font-size-h5;
       margin-bottom: .25em;
       display: block;
+      a {
+        color: @text-color-green;
+      }
     }
     .field-dates {
       font-size: 1.3rem;
