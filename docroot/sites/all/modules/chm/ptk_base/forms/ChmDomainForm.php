@@ -99,7 +99,11 @@ class ChmDomainForm {
     $form['#validate'][] = array('ChmDomainForm', 'validate');
   }
 
-  static function validate($form, $form_state) {}
+  static function validate($form, $form_state) {
+    if (strlen($form_state['values']['machine_name']) > 27) {
+      form_set_error('machine_name', t("Domain's <strong>Machine-readable name</strong> must be 27 characters or less, please edit then submit again"));
+    }
+  }
 
   static function submit($form, $form_state) {
     $domain = $form['#domain'];
@@ -425,18 +429,13 @@ class ChmDomainForm {
 
 
   public static function createWebsiteMainMenu($country, $domain) {
-    $code = strtolower($country);
-    $countries = PTK::getCountryListAsOptions();
-    if (isset($countries[$code])) {
-      $name = $countries[$code];
-    }
-    else {
-      $name = $domain['subdomain'];
-    }
+    $url = l($domain['path'], $domain['path']);
+    $sitename = $domain['sitename'];
+    $code = $domain['machine_name'];
     $menu = array(
-      'menu_name' => "menu-main-menu-{$code}",
-      'title' => "Main menu ({$code})",
-      'description' => "Main menu for $name portal",
+      'menu_name' => "menu-{$code}",
+      'title' => "Main menu for {$sitename}",
+      'description' => "Website's main menu for the <strong>$url</strong> portal",
       'i18n_mode' => I18N_MODE_MULTIPLE,
     );
     $exists = menu_load($menu['menu_name']);
