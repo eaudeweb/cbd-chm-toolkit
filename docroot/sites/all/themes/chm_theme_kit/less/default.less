@@ -212,3 +212,32 @@ body.maintenance-page {
     }
   }
 }
+
+#sliding-popup {
+  overflow: hidden;
+  @media all and (max-width: 600px) {
+    .popup-content #popup-text {
+      max-width: 60%;
+    }
+  }
+  @media all and (max-width: 350px) {
+    .popup-content #popup-text {
+      max-width: 100%;
+    }
+  }
+  .popup-content #popup-buttons {
+    display: -webkit-inline-flex;
+    display: -ms-inline-flex;
+    display: inline-flex;
+    button {
+      margin-top: .5em;
+      margin-bottom: .5em
+    }
+  }
+  .agree-button {
+    order: 2;
+  }
+  .find-more-button {
+    order: 1;
+  }
+}
