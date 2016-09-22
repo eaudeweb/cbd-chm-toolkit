@@ -21,6 +21,12 @@ function chm_theme_kit_preprocess_html(&$variables) {
 }
 
 function chm_theme_kit_preprocess_page(&$vars) {
+  if (!empty($vars['navbar_classes_array'])) {
+    if ($idx = array_search('container', $vars['navbar_classes_array'])) {
+      unset($vars['navbar_classes_array'][$idx]);
+    }
+    unset($vars['navbar_classes_array']['container']);
+  }
   if ($country = PTKDomain::getPortalCountry()) {
     if ($flag = PTK::getCountryFlag($country)) {
       $vars['logo'] = image_style_url('header_flag', $flag);
