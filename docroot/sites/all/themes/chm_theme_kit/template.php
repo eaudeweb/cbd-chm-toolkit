@@ -18,6 +18,11 @@ function chm_theme_kit_preprocess_html(&$variables) {
     $variables['classes_array'][] = 'country-portal';
     $variables['classes_array'][] = 'country-' . strtolower($country->iso2l);
   }
+  if ($domain = domain_get_domain()) {
+    if ($domain['domain_id'] == PTKDomain::$DEMO_DOMAIN_ID) {
+      $variables['classes_array'][] = 'country-portal';
+    }
+  }
 }
 
 function chm_theme_kit_preprocess_page(&$vars) {
@@ -30,6 +35,11 @@ function chm_theme_kit_preprocess_page(&$vars) {
   if ($country = PTKDomain::getPortalCountry()) {
     if ($flag = PTK::getCountryFlag($country)) {
       $vars['logo'] = image_style_url('header_flag', $flag);
+    }
+  }
+  else if ($domain = domain_get_domain()) {
+    if ($domain['domain_id'] == PTKDomain::$DEMO_DOMAIN_ID) {
+      $vars['logo'] = image_style_url('header_flag', 'public://images/flags/flag-bioland.png');
     }
   }
 }
