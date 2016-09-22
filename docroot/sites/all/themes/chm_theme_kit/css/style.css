@@ -4902,7 +4902,8 @@ a.label:focus {
 .label-danger[href]:focus {
   background-color: #c9302c;
 }
-.badge {
+.badge,
+.node-details-page .field-name-field-aichi-targets a {
   display: inline-block;
   min-width: 10px;
   padding: 3px 7px;
@@ -5803,7 +5804,8 @@ button.list-group-item-danger.active:focus {
 .embed-responsive-4by3 {
   padding-bottom: 75%;
 }
-.well {
+.well,
+#block-ptk-base-chm-content-statistics {
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
@@ -8208,36 +8210,6 @@ a.more-link:hover,
   border-top-color: #039749;
   border-bottom-color: #555;
 }
-#block-ptk-base-chm-content-statistics {
-  padding: 10px;
-  border: 1px solid #c5c5c5;
-  background-color: #E6E6E6;
-}
-#block-ptk-base-chm-content-statistics h2 {
-  margin-top: 0;
-}
-#block-ptk-base-chm-content-statistics table {
-  width: 100%;
-}
-#block-ptk-base-chm-content-statistics table tr.odd {
-  background-color: #ededed;
-}
-#block-ptk-base-chm-content-statistics table td {
-  border-color: #ffffff;
-  font-size: 18px;
-  line-height: 18px;
-  height: 18px;
-  color: #000000;
-}
-#block-ptk-base-chm-content-statistics table td a {
-  color: #484646;
-}
-#block-ptk-base-chm-content-statistics table td a:hover {
-  color: #7c7a7a;
-}
-#block-ptk-base-chm-content-statistics table td .fa {
-  margin-right: 5px;
-}
 html {
   height: 100%;
 }
@@ -9057,17 +9029,6 @@ body.country-portal .logo img {
   clear: both;
   margin-bottom: 1em;
 }
-#block-ptk-base-chm-content-statistics {
-  min-height: 20px;
-  padding: 19px;
-  margin-bottom: 20px;
-  background-color: #f5f5f5;
-  border: 1px solid #e3e3e3;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-}
 #block-ptk-base-chm-content-statistics .table-responsive,
 #block-ptk-base-chm-content-statistics tr,
 #block-ptk-base-chm-content-statistics td {
@@ -9087,6 +9048,9 @@ body.country-portal .logo img {
 }
 #block-ptk-base-chm-content-statistics table td a:hover {
   color: #06c;
+}
+#block-ptk-base-chm-content-statistics table td .fa {
+  margin-right: .5em;
 }
 .pane-ptk-base-chm-content-statistics table > tbody > tr > td:nth-child(2) {
   position: relative;
@@ -10098,20 +10062,6 @@ body.country-portal .logo img {
     margin-top: 0px;
   }
 }
-body.node-type-event .pane-entity-field.pane-node-field-images .field-item {
-  margin-bottom: 30px;
-  display: table;
-}
-body.node-type-event .pane-entity-field.pane-node-field-images .field-item a {
-  height: 100px;
-  display: table-cell;
-  vertical-align: middle;
-}
-body.node-type-event .pane-entity-field.pane-node-field-images .field-item a img {
-  max-height: 100%;
-  width: auto;
-  margin: 0 auto;
-}
 #block-system-main {
   margin-bottom: 1em;
 }
@@ -10616,4 +10566,105 @@ body.node-type-event .pane-entity-field.pane-node-field-images .field-item a img
   background-color: #02823F;
   background-image: none;
   border: 1px solid #02823F;
+}
+.node-details-page .field {
+  margin-bottom: 1em;
+}
+.node-details-page .field-name-field-event-address .field-item div {
+  display: inline;
+  float: none;
+}
+.node-details-page .field-name-field-event-address .field-item > div:after,
+.node-details-page .field-name-field-event-address .field-item > span:after {
+  content: ", ";
+}
+.node-details-page .field-name-field-event-address .field-item span:last-child:after {
+  content: "";
+}
+.node-details-page .field-label {
+  margin-right: .5em;
+}
+.node-details-page .field-name-field-organization-type,
+.node-details-page .field-name-field-document-type,
+.node-details-page .field-name-field-event-status {
+  margin-bottom: 1em;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+  color: #777777;
+}
+.node-details-page .field-name-field-event-status .field-item.field-event-status-268 {
+  color: #039749;
+}
+.node-details-page .field-name-field-event-status .field-item.field-event-status-270 {
+  color: #CC0000;
+}
+.node-details-page .field-name-field-event-status .field-item.field-event-status-2326 {
+  color: #06c;
+}
+.node-details-page .field-name-field-event-status .field-item.field-event-status-269 {
+  color: #777777;
+}
+.node-details-page .field-name-field-dates,
+.node-details-page .field-name-field-event-address,
+.node-details-page .field-name-field-url {
+  color: #02823F;
+}
+.node-details-page .field-name-field-countries .field-item {
+  display: inline-block;
+  margin-right: .5em;
+}
+.node-details-page .field-name-field-countries img {
+  display: inline-block;
+  background-color: #039749;
+  height: 35px;
+  width: auto;
+  border: 1px solid #777777;
+}
+.node-details-page .field-name-field-aichi-targets .field-item {
+  display: inline-block;
+  margin-right: .5em;
+  max-width: 100%;
+}
+.node-details-page .field-name-field-aichi-targets a {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-decoration: none;
+  background-color: #0071B8;
+  max-width: 100%;
+}
+.node-details-page .field-name-field-images .field-item {
+  margin-bottom: 30px;
+}
+.node-details-page .field-name-field-images .field-item a {
+  height: 150px;
+}
+.node-details-page .field-name-field-images .field-item a img {
+  max-height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  margin: 0 auto;
+}
+.node-details-page .protected-area-detail-columns {
+  margin-bottom: 1em;
+}
+@media all and (min-width: 480px) {
+  .node-details-page .protected-area-detail-columns {
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    columns: 2;
+  }
+}
+.media-first-page .pane-node-field-salutation,
+.media-first-page .pane-node-field-last-name,
+.media-first-page .pane-node-field-first-name,
+.media-first-page .pane-node-field-salutation + .panel-separator,
+.media-first-page .pane-node-field-last-name + .panel-separator,
+.media-first-page .pane-node-field-first-name + .panel-separator {
+  font-size: 28px;
+  display: inline-block;
+}
+.media-second-page .field-name-field-image img {
+  margin: 0 auto;
 }

@@ -1,0 +1,131 @@
+.node-details-page {
+	.field {
+		margin-bottom: 1em;
+	}
+	.field-name-field-event-address {
+		.field-item {
+			div {
+				display: inline;
+				float: none;
+			}
+			> div:after,
+			> span:after {
+				content: ", ";
+			}
+			span:last-child:after {
+				content: "";
+			}
+		}
+	}
+	.field-label {
+		margin-right: .5em;
+	}
+	.field-name-field-organization-type,
+	.field-name-field-document-type,
+	.field-name-field-event-status {
+		margin-bottom: 1em;
+		text-transform: uppercase;
+		font-size: 14px;
+		font-weight: bold;
+		color: @text-gray;
+	}
+	.field-name-field-event-status .field-item {
+		&.field-event-status-268 {
+			color: @navbar-color;
+		}
+		&.field-event-status-270 {
+			color: @chm-red;
+		}
+		&.field-event-status-2326 {
+			color: @chm-blue;
+		}
+		&.field-event-status-269 {
+			color: @text-gray;
+		}
+	}
+	.field-name-field-dates,
+	.field-name-field-event-address,
+	.field-name-field-url
+	{
+		color: @text-color-green;
+	}
+	.field-name-field-geolocation {
+		// visibility: hidden;
+		// height: 0;
+	}
+	.field-name-field-countries {
+		.field-item {
+			display: inline-block;
+			margin-right: .5em;
+		}
+		img {
+			display: inline-block;
+			background-color: @navbar-color;
+			height: 35px;
+			width: auto;
+			border: 1px solid #777777;
+		}
+	}
+	.field-name-field-aichi-targets {
+		.field-item {
+			display: inline-block;
+			margin-right: .5em;
+			max-width: 100%;
+		}
+		a {
+			&:extend(.badge);
+			text-overflow: ellipsis;
+			overflow: hidden;
+			text-decoration: none;
+			background-color: #0071B8;
+			max-width: 100%;
+		}
+	}
+	//gallery in /content/thirteenth-meeting-conference-parties-convention-biological-diversity
+	.field-name-field-images {
+		.field-item {
+			margin-bottom: 30px;
+			a {
+				height: 150px;
+				img {
+					max-height: 100%;
+					width: 100%;
+					-o-object-fit: cover;
+					object-fit: cover;
+					margin: 0 auto;
+				}
+			}
+		}
+	}
+	.protected-area-detail-columns {
+		margin-bottom: 1em;
+		@media all and (min-width: @screen-xs-min) {
+			-webkit-columns: 2;
+			-moz-columns: 2;
+			columns: 2;
+		}
+	}
+}
+
+.text-only-page {
+}
+
+.media-first-page {
+	.pane-node-field-salutation,
+	.pane-node-field-last-name,
+	.pane-node-field-first-name {
+		&,
+		& + .panel-separator {
+			font-size: @font-size-h1;
+			display: inline-block;
+		}
+	}
+}
+
+.media-second-page {
+	.field-name-field-image {
+		img {
+			margin: 0 auto;
+		}
+	}
+}
