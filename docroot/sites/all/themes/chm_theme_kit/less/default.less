@@ -212,3 +212,66 @@ body.maintenance-page {
     }
   }
 }
+
+//custom portrait image version
+.portrait-image .views-bootstrap-media-plugin-style {
+  @media all and (min-width: @screen-xs-min) {
+    .media {
+      display: table;
+      width: 100%;
+      padding: 0;
+      min-height: 130px;
+      .media-object {
+        width: 30%;
+        img {
+          position: relative;
+          height: auto;
+          width: 100%;
+          max-width: 220px;
+        }
+      }
+      .media-body {
+        > p {
+          max-height: ~"calc(3 * @{line-height-em})";
+        }
+      }
+    }
+  }
+  @media all and (min-width: 650px) {
+    .media {
+      .media-object {
+        width: 25%;
+      }
+      .media-body {
+        > p {
+          // max-height: ~"calc(3 * @{line-height-em})";
+        }
+      }
+    }
+  }
+  @media all and (min-width: @screen-sm-min) {
+    .media {
+      .media-object {
+        // width: 25%;
+        margin-right: 1em;
+      }
+      .media-body {
+        > p {
+          // max-height: ~"calc(3 * @{line-height-em})";
+        }
+      }
+    }
+  }
+  @media all and (min-width: @screen-md-min) {
+    .media {
+      .media-object {
+        width: 160px;
+      }
+      .media-body {
+        > p {
+          // max-height: ~"calc(3 * @{line-height-em})";
+        }
+      }
+    }
+  }
+}

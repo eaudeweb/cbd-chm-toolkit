@@ -19,6 +19,7 @@ features[ctools][] = views:views_default:3.0
 features[entityqueue_queue][] = slideshow_www
 features[fe_block_settings][] = views-home_page_image_slider-block
 features[features_api][] = api:2
+features[image][] = portrait_image_listing
 features[image][] = slider_image
 features[slick_optionset][] = home_slider
 features[views_view][] = administrative_content
