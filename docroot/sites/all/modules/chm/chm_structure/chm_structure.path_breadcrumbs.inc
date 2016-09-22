@@ -23,7 +23,7 @@ function chm_structure_path_breadcrumbs_settings_info() {
       0 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(
       'node' => array(
         'position' => 1,
@@ -51,6 +51,331 @@ about',
   );
   $path_breadcrumb->weight = 0;
   $export['first_level_menu_node_pages'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'listing_biodiversity_facts';
+  $path_breadcrumb->name = 'Listing biodiversity facts';
+  $path_breadcrumb->path = 'facts';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Information',
+      1 => '!page_title',
+    ),
+    'paths' => array(
+      0 => 'information',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(
+      'plugins' => array(),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['listing_biodiversity_facts'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'listing_ecosystems';
+  $path_breadcrumb->name = 'Listing ecosystems';
+  $path_breadcrumb->path = 'ecosystems';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Information',
+      1 => '!page_title',
+    ),
+    'paths' => array(
+      0 => 'information',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(
+      'plugins' => array(),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['listing_ecosystems'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'listing_events';
+  $path_breadcrumb->name = 'Listing events';
+  $path_breadcrumb->path = 'events';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Information',
+      1 => '!page_title',
+    ),
+    'paths' => array(
+      0 => 'information',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(
+      'plugins' => array(),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['listing_events'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'listing_library';
+  $path_breadcrumb->name = 'Listing library';
+  $path_breadcrumb->path = 'library';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Information',
+      1 => '!page_title',
+    ),
+    'paths' => array(
+      0 => 'information',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(
+      'plugins' => array(),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['listing_library'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'listing_links';
+  $path_breadcrumb->name = 'Listing links';
+  $path_breadcrumb->path = 'links';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Information',
+      1 => '!page_title',
+    ),
+    'paths' => array(
+      0 => 'information',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(
+      'plugins' => array(),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['listing_links'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'listing_national_targets';
+  $path_breadcrumb->name = 'Listing national targets';
+  $path_breadcrumb->path = 'national-targets';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Information',
+      1 => '!page_title',
+    ),
+    'paths' => array(
+      0 => 'information',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(
+      'plugins' => array(),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['listing_national_targets'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'listing_network_directory';
+  $path_breadcrumb->name = 'Listing network directory';
+  $path_breadcrumb->path = 'network-directory';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Information',
+      1 => '!page_title',
+    ),
+    'paths' => array(
+      0 => 'information',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(
+      'plugins' => array(),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['listing_network_directory'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'listing_news';
+  $path_breadcrumb->name = 'Listing news';
+  $path_breadcrumb->path = 'news';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Information',
+      1 => '!page_title',
+    ),
+    'paths' => array(
+      0 => 'information',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(
+      'plugins' => array(),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['listing_news'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'listing_photo_galleries';
+  $path_breadcrumb->name = 'Listing photo galleries';
+  $path_breadcrumb->path = 'photo-galleries';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Information',
+      1 => '!page_title',
+    ),
+    'paths' => array(
+      0 => 'information',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(
+      'plugins' => array(),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['listing_photo_galleries'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'listing_projects';
+  $path_breadcrumb->name = 'Listing projects';
+  $path_breadcrumb->path = 'projects';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Information',
+      1 => '!page_title',
+    ),
+    'paths' => array(
+      0 => 'information',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(
+      'plugins' => array(),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['listing_projects'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'listing_protected_areas';
+  $path_breadcrumb->name = 'Listing protected areas';
+  $path_breadcrumb->path = 'protected-areas';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Information',
+      1 => '!page_title',
+    ),
+    'paths' => array(
+      0 => 'information',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(
+      'plugins' => array(),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['listing_protected_areas'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'listing_species';
+  $path_breadcrumb->name = 'Listing species';
+  $path_breadcrumb->path = 'species';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Information',
+      1 => '!page_title',
+    ),
+    'paths' => array(
+      0 => 'information',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(
+      'plugins' => array(),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['listing_species'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'listing_videos';
+  $path_breadcrumb->name = 'Listing videos';
+  $path_breadcrumb->path = 'videos';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Information',
+      1 => '!page_title',
+    ),
+    'paths' => array(
+      0 => 'information',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(
+      'plugins' => array(),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['listing_videos'] = $path_breadcrumb;
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
