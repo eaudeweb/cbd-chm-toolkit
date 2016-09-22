@@ -7552,7 +7552,7 @@ h5 {
   position: relative;
 }
 .views-field-title a {
-  color: #000;
+  color: #039749;
 }
 .views-field-title a:hover {
   color: #02823F;
@@ -8259,6 +8259,13 @@ body.maintenance-page #footer-container #footer {
   padding-top: 80px;
   padding-bottom: 80px;
 }
+a {
+  color: #06c;
+}
+a:hover {
+  color: #06c;
+  text-decoration: underline;
+}
 .btn.btn-primary {
   background-color: #0081d2;
   padding: 7px 16px;
@@ -8278,6 +8285,11 @@ body.maintenance-page #footer-container #footer {
   line-height: 1.1;
   font-weight: bold;
   margin-bottom: .5em;
+}
+.views-field-title a,
+.views-field-title-field a,
+.views-field-field-title a {
+  color: #02823F;
 }
 .views-bootstrap-media-plugin-style .media-list {
   margin: 0;
@@ -8307,6 +8319,9 @@ body.maintenance-page #footer-container #footer {
   font-size: 17px;
   margin-bottom: .25em;
   display: block;
+}
+.views-bootstrap-media-plugin-style .media-body .media-heading a {
+  color: #02823F;
 }
 .views-bootstrap-media-plugin-style .media-body .field-dates {
   font-size: 1.3rem;
@@ -9057,7 +9072,6 @@ body.country-portal .logo img {
 }
 .pane-ptk-base-chm-content-statistics span.fa {
   margin-right: 8px;
-  color: #02823F;
 }
 [dir="rtl"] .pane-ptk-base-chm-content-statistics span.fa {
   right: auto;
@@ -10181,6 +10195,7 @@ body.country-portal .logo img {
   left: 0;
   right: 0;
   bottom: 0;
+  color: #02823F;
   font-size: 14px;
   font-family: "Open Sans";
   font-weight: 400;
