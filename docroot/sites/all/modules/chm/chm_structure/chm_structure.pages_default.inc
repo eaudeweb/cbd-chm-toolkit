@@ -4010,12 +4010,22 @@ function chm_structure_default_page_manager_handlers() {
   $pane->access = array();
   $pane->configuration = array(
     'label' => 'hidden',
-    'formatter' => 'text_summary_or_trimmed',
+    'formatter' => 'smart_trim_format',
     'delta_limit' => 0,
     'delta_offset' => '0',
     'delta_reversed' => FALSE,
     'formatter_settings' => array(
-      'trim_length' => '600',
+      'trim_length' => '30',
+      'trim_type' => 'words',
+      'trim_suffix' => '...',
+      'trim_link' => '0',
+      'more_link' => '0',
+      'more_text' => 'Read more',
+      'summary_handler' => 'full',
+      'trim_options' => array(
+        'text' => 0,
+      ),
+      'trim_preserve_tags' => '',
     ),
     'context' => 'argument_entity_id:node_1',
     'override_title' => 0,
@@ -4107,12 +4117,22 @@ function chm_structure_default_page_manager_handlers() {
   $pane->access = array();
   $pane->configuration = array(
     'label' => 'hidden',
-    'formatter' => 'text_summary_or_trimmed',
+    'formatter' => 'smart_trim_format',
     'delta_limit' => 0,
     'delta_offset' => '0',
     'delta_reversed' => FALSE,
     'formatter_settings' => array(
-      'trim_length' => '600',
+      'trim_length' => '30',
+      'trim_type' => 'words',
+      'trim_suffix' => '...',
+      'trim_link' => '0',
+      'more_link' => '0',
+      'more_text' => 'Read more',
+      'summary_handler' => 'full',
+      'trim_options' => array(
+        'text' => 0,
+      ),
+      'trim_preserve_tags' => '',
     ),
     'context' => 'argument_entity_id:node_1',
     'override_title' => 0,
