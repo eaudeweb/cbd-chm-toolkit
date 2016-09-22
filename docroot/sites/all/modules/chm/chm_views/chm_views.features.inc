@@ -35,6 +35,21 @@ function chm_views_views_api($module = NULL, $api = NULL) {
 function chm_views_image_default_styles() {
   $styles = array();
 
+  // Exported image style: portrait_image_listing.
+  $styles['portrait_image_listing'] = array(
+    'label' => 'Portrait image listing',
+    'effects' => array(
+      1 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 595,
+          'height' => 842,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   // Exported image style: slider_image.
   $styles['slider_image'] = array(
     'label' => 'Slider image',

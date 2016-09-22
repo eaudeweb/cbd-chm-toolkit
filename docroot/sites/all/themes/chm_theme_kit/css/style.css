@@ -8420,6 +8420,41 @@ a:hover {
     width: 220px;
   }
 }
+@media all and (min-width: 480px) {
+  .portrait-image .views-bootstrap-media-plugin-style .media {
+    display: table;
+    width: 100%;
+    padding: 0;
+    min-height: 130px;
+  }
+  .portrait-image .views-bootstrap-media-plugin-style .media .media-object {
+    width: 30%;
+  }
+  .portrait-image .views-bootstrap-media-plugin-style .media .media-object img {
+    position: relative;
+    height: auto;
+    width: 100%;
+    max-width: 220px;
+  }
+  .portrait-image .views-bootstrap-media-plugin-style .media .media-body > p {
+    max-height: calc(3 * 1.42857143em);
+  }
+}
+@media all and (min-width: 650px) {
+  .portrait-image .views-bootstrap-media-plugin-style .media .media-object {
+    width: 25%;
+  }
+}
+@media all and (min-width: 992px) {
+  .portrait-image .views-bootstrap-media-plugin-style .media .media-object {
+    width: 160px;
+  }
+}
+.logo-image .views-bootstrap-media-plugin-style .media .media-object img {
+  -o-object-fit: contain;
+  object-fit: contain;
+  background-color: #fff;
+}
 #sliding-popup {
   overflow: hidden;
 }
@@ -10178,6 +10213,24 @@ body.country-portal .logo img {
   .view-ecosystems tr td .views-field.views-field-field-image img {
     width: 220px;
   }
+}
+.view-persons-network-directory .view-content .views-row {
+  padding: 14px;
+  border-bottom: 1px solid #ddd;
+}
+.view-persons-network-directory .view-content .views-row:last-of-type {
+  border-bottom: none;
+}
+.view-persons-network-directory .view-content .views-field-title a {
+  font-weight: bold;
+}
+.view-persons-network-directory .view-content .views-field-field-person-positions ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.view-persons-network-directory .view-content .views-field-field-person-positions ul [dir="rtl"] li {
+  margin-right: 0;
 }
 #block-menu-menu-information-menu {
   width: 100%;
