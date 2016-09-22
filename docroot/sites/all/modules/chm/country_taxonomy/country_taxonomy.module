@@ -122,6 +122,7 @@ function country_taxonomy_field_formatter_settings_summary($field, $instance, $v
  * Implements hook_field_formatter_view().
  */
 function country_taxonomy_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
   foreach ($items as $delta => $meta) {
     try {
       $w = entity_metadata_wrapper('taxonomy_term', $meta['tid']);
