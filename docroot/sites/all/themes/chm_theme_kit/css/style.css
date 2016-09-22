@@ -8458,11 +8458,6 @@ body.maintenance-page #footer-container #footer {
     width: 25%;
   }
 }
-@media all and (min-width: 768px) {
-  .portrait-image .views-bootstrap-media-plugin-style .media .media-object {
-    margin-right: 1em;
-  }
-}
 @media all and (min-width: 992px) {
   .portrait-image .views-bootstrap-media-plugin-style .media .media-object {
     width: 160px;
