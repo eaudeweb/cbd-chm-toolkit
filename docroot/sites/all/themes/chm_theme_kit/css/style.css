@@ -8468,6 +8468,34 @@ body.maintenance-page #footer-container #footer {
   object-fit: contain;
   background-color: #fff;
 }
+#sliding-popup {
+  overflow: hidden;
+}
+@media all and (max-width: 600px) {
+  #sliding-popup .popup-content #popup-text {
+    max-width: 60%;
+  }
+}
+@media all and (max-width: 350px) {
+  #sliding-popup .popup-content #popup-text {
+    max-width: 100%;
+  }
+}
+#sliding-popup .popup-content #popup-buttons {
+  display: -webkit-inline-flex;
+  display: -ms-inline-flex;
+  display: inline-flex;
+}
+#sliding-popup .popup-content #popup-buttons button {
+  margin-top: .5em;
+  margin-bottom: 0.5em;
+}
+#sliding-popup .agree-button {
+  order: 2;
+}
+#sliding-popup .find-more-button {
+  order: 1;
+}
 .region-admin-shortcuts #block-system-user-menu .menu:before {
   display: inline-block;
 }
