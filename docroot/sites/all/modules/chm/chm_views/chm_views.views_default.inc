@@ -2865,7 +2865,10 @@ function chm_views_views_default_views() {
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
-  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['style_plugin'] = 'views_bootstrap_media_plugin_style';
+  $handler->display->display_options['style_options']['image_field'] = 'field_images';
+  $handler->display->display_options['style_options']['heading_field'] = 'title';
+  $handler->display->display_options['style_options']['body_field'] = 'body';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Field: Content: Images */
   $handler->display->display_options['fields']['field_images']['id'] = 'field_images';
@@ -2875,7 +2878,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['fields']['field_images']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_images']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_images']['settings'] = array(
-    'image_style' => 'medium',
+    'image_style' => 'image_listing',
     'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_images']['delta_limit'] = '1';
@@ -2924,6 +2927,15 @@ function chm_views_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'views_bootstrap_media_plugin_style';
+  $handler->display->display_options['style_options']['image_field'] = 'field_images';
+  $handler->display->display_options['style_options']['heading_field'] = 'title';
+  $handler->display->display_options['style_options']['body_field'] = 'body';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['path'] = 'photo-galleries';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Images';
