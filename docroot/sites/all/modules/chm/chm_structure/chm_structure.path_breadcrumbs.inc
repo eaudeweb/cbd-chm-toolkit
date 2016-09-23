@@ -395,7 +395,6 @@ function chm_structure_path_breadcrumbs_settings_info() {
           'name' => 'node_type',
           'settings' => array(
             'type' => array(
-              'ecosystem' => 'ecosystem',
               'organization' => 'organization',
             ),
           ),
