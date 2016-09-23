@@ -4612,7 +4612,7 @@ function chm_structure_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'path_breadcrumbs_truncate_title_length';
-  $strongarm->value = '';
+  $strongarm->value = '50';
   $export['path_breadcrumbs_truncate_title_length'] = $strongarm;
 
   $strongarm = new stdClass();
