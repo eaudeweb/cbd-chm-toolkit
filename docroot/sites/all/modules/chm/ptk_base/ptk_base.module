@@ -41,6 +41,25 @@ function ptk_base_views_api() {
 }
 
 /**
+ * Implements hook_ctools_plugin_type().
+ */
+function ptk_base_ctools_plugin_type() {
+  $plugins['access'] = array(
+    'load themes' => TRUE,
+  );
+  return $plugins;
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function ptk_base_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'ctools') {
+    return "plugins/$plugin_type";
+  }
+}
+
+/**
  * Implements hook_menu().
  */
 function ptk_base_menu() {

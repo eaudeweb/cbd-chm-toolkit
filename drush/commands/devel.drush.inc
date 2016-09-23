@@ -38,7 +38,7 @@ function _drush_prepare_dev() {
     module_disable(['overlay']);
   }
   module_disable(['memcache_storage']);
-  module_enable(['devel']);
+  module_enable(['devel', 'path_breadcrumbs_ui']);
   foreach (domain_domains() as $id => $domain) {
     $domain = domain_load($id);
     _drush_prepare_development_domains($domain);
