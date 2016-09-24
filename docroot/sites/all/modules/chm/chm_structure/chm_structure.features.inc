@@ -154,6 +154,14 @@ function chm_structure_node_info() {
       'title_label' => t('Title'),
       'help' => '',
     ),
+    'faq' => array(
+      'name' => t('FAQ'),
+      'base' => 'node_content',
+      'description' => t('Frequently Asked Questions'),
+      'has_title' => '1',
+      'title_label' => t('Question'),
+      'help' => '',
+    ),
     'gallery' => array(
       'name' => t('Gallery'),
       'base' => 'node_content',

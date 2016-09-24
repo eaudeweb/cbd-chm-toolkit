@@ -249,6 +249,16 @@ function chm_structure_taxonomy_default_vocabularies() {
       'language' => 'und',
       'i18n_mode' => 1,
     ),
+    'question_category' => array(
+      'name' => 'Question category',
+      'machine_name' => 'question_category',
+      'description' => '',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
+    ),
     'social_media_type' => array(
       'name' => 'Social media type',
       'machine_name' => 'social_media_type',
