@@ -337,6 +337,7 @@ class ChmDomainForm {
         'events' => 'Events',
         'national-targets' => 'National targets',
         'facts' => 'Facts',
+        'faq' => 'FAQ',
         'ecosystems' => 'Ecosystems',
         'protected-areas' => 'Protected areas',
         'projects' => 'Projects',
