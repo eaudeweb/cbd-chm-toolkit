@@ -1968,16 +1968,16 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '6',
+          'weight' => '7',
         ),
         'domain_path' => array(
-          'weight' => '8',
-        ),
-        'metatags' => array(
           'weight' => '9',
         ),
+        'metatags' => array(
+          'weight' => '10',
+        ),
         'path' => array(
-          'weight' => '7',
+          'weight' => '8',
         ),
         'language' => array(
           'weight' => '0',
