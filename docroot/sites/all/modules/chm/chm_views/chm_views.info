@@ -31,6 +31,7 @@ features[views_view][] = ecosystems
 features[views_view][] = eu_targets
 features[views_view][] = events
 features[views_view][] = facts
+features[views_view][] = faqs
 features[views_view][] = home_page_image_slider
 features[views_view][] = latest_updates
 features[views_view][] = links
