@@ -2116,16 +2116,16 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '8',
+          'weight' => '14',
         ),
         'domain_path' => array(
-          'weight' => '10',
+          'weight' => '16',
         ),
         'metatags' => array(
-          'weight' => '11',
+          'weight' => '17',
         ),
         'path' => array(
-          'weight' => '9',
+          'weight' => '15',
         ),
         'language' => array(
           'weight' => '0',
@@ -2970,7 +2970,7 @@ function chm_structure_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_taxonomy_term';
-  $strongarm->value = 1;
+  $strongarm->value = TRUE;
   $export['metatag_enable_taxonomy_term'] = $strongarm;
 
   $strongarm = new stdClass();
