@@ -5561,7 +5561,47 @@ function chm_structure_field_default_field_instances() {
         'apply_chosen' => 1,
       ),
       'type' => 'options_select',
-      'weight' => 9,
+      'weight' => 8,
+    ),
+  );
+
+  // Exported field_instance: 'node-protected_area-field_ecosystem_types'.
+  $field_instances['node-protected_area-field_ecosystem_types'] = array(
+    'bundle' => 'protected_area',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 17,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_ecosystem_types',
+    'label' => 'Ecosystem types',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => 19,
     ),
   );
 
@@ -5687,7 +5727,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 10,
+      'weight' => 9,
     ),
   );
 
@@ -5727,7 +5767,7 @@ function chm_structure_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 11,
+      'weight' => 10,
     ),
   );
 
@@ -5767,7 +5807,7 @@ function chm_structure_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 16,
+      'weight' => 15,
     ),
   );
 
@@ -5807,7 +5847,7 @@ function chm_structure_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 12,
+      'weight' => 11,
     ),
   );
 
@@ -5849,7 +5889,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 18,
+      'weight' => 17,
     ),
   );
 
@@ -5890,7 +5930,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 19,
+      'weight' => 18,
     ),
   );
 
@@ -5930,7 +5970,7 @@ function chm_structure_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 17,
+      'weight' => 16,
     ),
   );
 
@@ -5970,7 +6010,7 @@ function chm_structure_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 14,
+      'weight' => 13,
     ),
   );
 
@@ -6026,7 +6066,7 @@ function chm_structure_field_default_field_instances() {
         'year_range' => '1900:+0',
       ),
       'type' => 'date_select',
-      'weight' => 15,
+      'weight' => 14,
     ),
   );
 
@@ -6067,7 +6107,51 @@ function chm_structure_field_default_field_instances() {
         'size' => 10,
       ),
       'type' => 'text_textfield',
-      'weight' => 13,
+      'weight' => 12,
+    ),
+  );
+
+  // Exported field_instance: 'node-protected_area-field_species'.
+  $field_instances['node-protected_area-field_species'] = array(
+    'bundle' => 'protected_area',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 16,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_species',
+    'label' => 'Species',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete_tags',
+      'weight' => 20,
     ),
   );
 
@@ -9482,6 +9566,7 @@ function chm_structure_field_default_field_instances() {
   t('Description');
   t('Designation');
   t('Designation type');
+  t('Ecosystem types');
   t('Email');
   t('Enter a link to website\'s event, if available');
   t('Enter a short description of the link below');
@@ -9544,6 +9629,7 @@ function chm_structure_field_default_field_instances() {
   t('Salutation');
   t('Select the appropriate type for this document');
   t('Short name or title including target number');
+  t('Species');
   t('State');
   t('Status');
   t('Status year');
