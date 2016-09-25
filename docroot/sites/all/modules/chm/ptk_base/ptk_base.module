@@ -51,15 +51,6 @@ function ptk_base_ctools_plugin_type() {
 }
 
 /**
- * Implements hook_ctools_plugin_directory().
- */
-function ptk_base_ctools_plugin_directory($owner, $plugin_type) {
-  if ($owner == 'ctools') {
-    return "plugins/$plugin_type";
-  }
-}
-
-/**
  * Implements hook_menu().
  */
 function ptk_base_menu() {
