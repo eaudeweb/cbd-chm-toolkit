@@ -16,7 +16,7 @@ function chm_migration_migrate_api() {
   foreach($config->sites as $domain_machine_name => $source) {
     if (!$destination_domain_id = domain_load_domain_id($domain_machine_name)) {
       drupal_set_message(
-        sprintf('[chm_migration]Cannot find domain with machine name: %s', $domain_machine_name, $domain_machine_name),
+        sprintf('[chm_migration] Cannot find domain with machine name: %s', $domain_machine_name, $domain_machine_name),
         'error'
       );
       continue;
@@ -34,7 +34,7 @@ function chm_migration_migrate_api() {
       $migration_name = $domain_machine_name . '_events';
       $migration = array(
         'group_name' => CHM_NAAYA_MIGRATION_GROUP,
-        'class_name' => 'CHMEventsMigration',
+        'class_name' => 'CHMPortalEventsMigration',
         'dependencies' => array(),
         'source_dir' => $data_dir,
         'domain' => $destination_domain
