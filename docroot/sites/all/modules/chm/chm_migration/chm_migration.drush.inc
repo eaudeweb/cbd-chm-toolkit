@@ -3,7 +3,7 @@
 function chm_migration_drush_command() {
   $items = array();
 
-  $items['chm-migrate-overview'] = array(
+  $items['chm-source-overview'] = array(
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
     'description' => 'Status of a CHM site migration',
     'aliases' => array('chm-mo'),
@@ -28,7 +28,7 @@ function chm_migration_drush_command() {
   return $items;
 }
 
-function drush_chm_migration_chm_migrate_overview() {
+function drush_chm_migration_chm_source_overview() {
   if ($source_dir = variable_get(CHM_NAAYA_EXPORT_DIR)) {
     drush_log("Source data directory: $source_dir", 'ok');
     drush_log("Reading source file  : " . realpath($source_dir . '/migrate-config.json'));
