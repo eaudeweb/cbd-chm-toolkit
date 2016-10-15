@@ -38,6 +38,9 @@ class CHMPortalEventsMigration extends CHMPortalBaseMigration {
     $this->addFieldMapping('domain_source', 'domain_source');
     $this->addFieldMapping('domains', 'domains');
 
+    $this->addFieldMapping('field_keywords', 'keywords');
+    $this->addFieldMapping('field_keywords:source_type')->defaultValue('tid');
+
     // title
     $this->addFieldMapping('title', 'title_en');
     $this->addFieldMapping('title_field', 'title');
@@ -100,6 +103,7 @@ class CHMPortalEventsMigration extends CHMPortalBaseMigration {
       'field_reference',
       'field_event_status',
       'field_aichi_targets', 'field_aichi_targets:source_type', 'field_aichi_targets:create_term', 'field_aichi_targets:ignore_case',
+      'field_keywords:create_term', 'field_keywords:ignore_case',
     ]);
     $this->ignoreMetatagFields();
     $this->addUnmigratedSources([
@@ -112,6 +116,7 @@ class CHMPortalEventsMigration extends CHMPortalBaseMigration {
    * {@inheritdoc}
    */
   function prepareRowObject($row) {
+    $this->prepareKeywords($row);
     $domain_id = $this->arguments['domain']['domain_id'];
     $row->domain_source = $domain_id;
     $row->domains = array($domain_id);

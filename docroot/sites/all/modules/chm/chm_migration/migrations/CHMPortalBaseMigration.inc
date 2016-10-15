@@ -5,6 +5,8 @@
  */
 abstract class CHMPortalBaseMigration extends Migration {
 
+  use CHMLoggingTrait;
+
   public function __construct($arguments) {
     parent::__construct($arguments);
   }
@@ -54,4 +56,42 @@ abstract class CHMPortalBaseMigration extends Migration {
       'metatag_cache-control', 'metatag_expires',
     ]);
   }
+
+  public function prepareKeywords($row) {
+    $keywords = [];
+    try {
+      foreach ($row->keywords as $ob) {
+        if ($tid = self::findTermIdByName($ob->term, 'keywords')) {
+          $keywords[] = $tid;
+        }
+        else {
+          $this->info('Creating new term: ' . $ob->term);
+          $voc = taxonomy_vocabulary_machine_name_load('keywords');
+          $term = (object)[
+            'vid' => $voc->vid,
+            'name' => $ob->term,
+            'name_field' => [$ob->language => [0 => ['value' => $ob->term]]],
+            'language' => $ob->language,
+          ];
+          taxonomy_term_save($term);
+          $keywords[] = $term->tid;
+        }
+      }
+    } catch(Exception $e) {
+      // @todo:
+    }
+    $row->keywords = $keywords;
+  }
+
+  public static function findTermIdByName($term, $vocabulary) {
+    // SELECT a.entity_id FROM field_data_name_field a
+    // WHERE a.entity_type = 'taxonomy_term' AND a.bundle = 'keywords'
+    // AND a.name_field_value = 'keyword';
+    $q = db_select('field_data_name_field', 'a')->fields('a', ['entity_id']);
+    $q->condition('entity_type', 'taxonomy_term');
+    $q->condition('bundle', $vocabulary);
+    $q->condition('name_field_value', $term);
+    return $q->execute()->fetchField();
+  }
+
 }

@@ -112,6 +112,24 @@ class CHMEventsNestedDirJSONSource extends CHMNestedDirJSONSource {
           break;
 
         // @todo: case 'keywords' needs special handling for taxonomy terms.
+        case 'keywords':
+          $ret->keywords = array();
+          if (!empty($source['_local_properties']['keywords'])) {
+            foreach ($source['_local_properties']['keywords'] as $language => $keyword_str) {
+              $keyword_str = array_shift($keyword_str);
+              $keyword_arr = explode(', ', $keyword_str);
+              foreach($keyword_arr as $term) {
+                if (!empty(trim($term))) {
+                  $kw_ob = new stdClass();
+                  $kw_ob->language = $language;
+                  $kw_ob->term = $term;
+                  $ret->keywords[] = $kw_ob;
+                }
+              }
+            }
+          }
+          break;
+
         case 'coverage':
           $this->processRootMultilingualField($field_name, $ret, $source);
           break;
