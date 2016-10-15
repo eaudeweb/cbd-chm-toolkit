@@ -244,10 +244,10 @@ function chm_structure_field_default_field_bases() {
       'entity_translation_sync' => FALSE,
       'granularity' => array(
         'day' => 'day',
-        'hour' => 0,
-        'minute' => 0,
+        'hour' => 'hour',
+        'minute' => 'minute',
         'month' => 'month',
-        'second' => 0,
+        'second' => 'second',
         'year' => 'year',
       ),
       'timezone_db' => '',
