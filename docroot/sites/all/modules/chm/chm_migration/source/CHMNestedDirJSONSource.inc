@@ -10,16 +10,7 @@ abstract class CHMNestedDirJSONSource extends MigrateSource {
 
   use CHMLoggingTrait;
 
-  protected $allowed_tags = array(
-    'b', 'strong', 'u', 'i', 'em',
-    'a', 'img',
-    'table', 'caption', 'tr', 'td', 'thead', 'tbody',
-
-    'ul', 'li', 'ol', 'dd', 'dt', 'dl',
-    'h2', 'h3', 'h4', 'h5', 'h6',
-    'p', 'br', 'center', 'span', 'div', 'article', 'aside', 'blockquote',
-    'code', 'hr', 'section', 'pre', 'q', 'small', 'sub',
-  );
+  const ALLOWED_TAGS = 'b strong u i em a img table caption tr td thead tbody ul li ol dd dt dl h2 h3 h4 h5 h6 p br center span div article aside blockquote code hr section pre q small sub';
 
   /**
    * @var string Base directory where to recursively scan for records.
@@ -102,7 +93,8 @@ abstract class CHMNestedDirJSONSource extends MigrateSource {
       $ob = reset($this->raw_data);
     }
     else {
-      $ob = next($this->raw_data);
+      $ob = current($this->raw_data);
+      next($this->raw_data);
     }
     if ($ob) {
       $ret = $this->processRawRecord($ob);
@@ -138,7 +130,7 @@ abstract class CHMNestedDirJSONSource extends MigrateSource {
       $v = array_shift($value);
       if (!empty($language) && !empty($v)) {
         $ret_languages[] = $language;
-        $ret_values[] = strip_tags($v, $this->allowed_tags);
+        $ret_values[] = strip_tags($v, self::ALLOWED_TAGS);
       }
     }
     return array($ret_languages, $ret_values);
