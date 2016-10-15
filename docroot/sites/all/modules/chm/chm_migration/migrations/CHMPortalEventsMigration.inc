@@ -60,7 +60,7 @@ class CHMPortalEventsMigration extends CHMPortalBaseMigration {
     $this->addUnmigratedDestinations(array('field_url:title', 'field_url:attributes', 'field_url:language'));
 
     // field_event_address
-    $this->addFieldMapping('field_event_address', 'location_address');
+    $this->addFieldMapping('field_event_address:data', 'location_address');
     // @todo
     $this->addUnmigratedDestinations(array(
       'field_event_address:administrative_area',
@@ -75,7 +75,6 @@ class CHMPortalEventsMigration extends CHMPortalBaseMigration {
       'field_event_address:name_line',
       'field_event_address:first_name',
       'field_event_address:last_name',
-      'field_event_address:data',
     ));
 
     // @todo
