@@ -575,6 +575,7 @@ features[variable][] = entity_translation_settings_taxonomy_term__eu_targets
 features[variable][] = entity_translation_settings_taxonomy_term__event_status
 features[variable][] = entity_translation_settings_taxonomy_term__experience_type
 features[variable][] = entity_translation_settings_taxonomy_term__general_issue
+features[variable][] = entity_translation_settings_taxonomy_term__keywords
 features[variable][] = entity_translation_settings_taxonomy_term__organization_type
 features[variable][] = entity_translation_settings_taxonomy_term__person_type
 features[variable][] = entity_translation_settings_taxonomy_term__phone_type
