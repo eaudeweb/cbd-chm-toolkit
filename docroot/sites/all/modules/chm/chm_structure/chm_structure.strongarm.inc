@@ -1804,22 +1804,22 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '12',
+          'weight' => '11',
         ),
         'domain_path' => array(
-          'weight' => '14',
+          'weight' => '13',
         ),
         'locations' => array(
           'weight' => '11',
         ),
         'metatags' => array(
-          'weight' => '15',
+          'weight' => '17',
         ),
         'title' => array(
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '13',
+          'weight' => '12',
         ),
         'language' => array(
           'weight' => '0',
