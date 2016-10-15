@@ -4,6 +4,10 @@ class CHMEventsNestedDirJSONSource extends CHMNestedDirJSONSource {
 
   public function fields() {
     return array(
+      'domain_source' => 'Domain where this record belongs to (domain_access)',
+      'domains' => 'Array of domain IDs to assign the record to (domain_access)',
+      'domain_path' => 'Local domain URL alias (domain_access)',
+
       // single-valued string - Primary key within a single portal
       'url' => 'URL alias',
       // single-valued string
@@ -147,7 +151,10 @@ class CHMEventsNestedDirJSONSource extends CHMNestedDirJSONSource {
       }
       $ret->url = $source['url'];
     }
-    // @todo: Consistency check for missing fields (fields found in $source, but not declared in fields()"
+    // Copy first value from the title
+    $ret->title_en = $ret->title[0];
+    // @todo: Consistency check for missing fields
+    // (fields found in $source, but not declared in fields()"
     return $ret;
   }
 

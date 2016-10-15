@@ -30,4 +30,28 @@ abstract class CHMPortalBaseMigration extends Migration {
     $this->prepareRowObject($row);
     return $this->validateRowObject($row);
   }
+
+  public static function prepareDateField($date_string) {
+    if (empty($date_string)) {
+      return NULL;
+    }
+    if ($datetime = DateTime::createFromFormat(DateTime::ISO8601, $date_string . 'Z')) {
+      $datetime->setTimezone(new DateTimeZone('Etc/Zulu'));
+      return $datetime->getTimestamp();
+    }
+    return $date_string;
+  }
+
+  protected function ignoreMetatagFields() {
+    $this->addUnmigratedDestinations([
+      'metatag_title', 'metatag_description', 'metatag_abstract', 'metatag_keywords',
+      'metatag_robots', 'metatag_news_keywords', 'metatag_standout', 'metatag_rating',
+      'metatag_referrer', 'metatag_generator', 'metatag_rights', 'metatag_image_src',
+      'metatag_canonical', 'metatag_shortlink', 'metatag_publisher', 'metatag_author',
+      'metatag_original-source', 'metatag_prev', 'metatag_next', 'metatag_content-language',
+      'metatag_geo.position', 'metatag_geo.placename', 'metatag_geo.region',
+      'metatag_icbm', 'metatag_refresh', 'metatag_revisit-after', 'metatag_pragma',
+      'metatag_cache-control', 'metatag_expires',
+    ]);
+  }
 }
