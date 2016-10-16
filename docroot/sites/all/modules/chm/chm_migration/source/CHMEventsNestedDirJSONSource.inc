@@ -8,6 +8,8 @@ class CHMEventsNestedDirJSONSource extends CHMNestedDirJSONSource {
       'domains' => 'Array of domain IDs to assign the record to (domain_access)',
       'domain_path' => 'Local domain URL alias (domain_access)',
 
+      'country' => 'Domain/Portal associated country',
+
       // single-valued string - Primary key within a single portal
       'url' => 'URL alias',
       // single-valued string

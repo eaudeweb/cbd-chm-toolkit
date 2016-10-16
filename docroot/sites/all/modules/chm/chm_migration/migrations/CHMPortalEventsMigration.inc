@@ -41,6 +41,10 @@ class CHMPortalEventsMigration extends CHMPortalBaseMigration {
     $this->addFieldMapping('field_keywords', 'keywords');
     $this->addFieldMapping('field_keywords:source_type')->defaultValue('tid');
 
+    // field_countries
+    $this->addFieldMapping('field_countries', 'country');
+    $this->addFieldMapping('field_countries:source_type')->defaultValue('tid');
+
     // title
     $this->addFieldMapping('title', 'title_en');
     $this->addFieldMapping('title_field', 'title');
@@ -128,7 +132,9 @@ class CHMPortalEventsMigration extends CHMPortalBaseMigration {
     else {
       $row->last_modification = self::prepareDateField($row->last_modification);
     }
-
+    if($country = PTKDomain::getPortalCountry($this->arguments['domain'])) {
+      $row->country = $country->tid;
+    }
     $row->start_date = self::prepareDateField($row->start_date);
     $row->end_date = self::prepareDateField($row->end_date);
   }
