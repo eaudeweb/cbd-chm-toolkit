@@ -44,6 +44,7 @@ class CHMPortalEventsMigration extends CHMPortalBaseMigration {
     // field_countries
     $this->addFieldMapping('field_countries', 'country');
     $this->addFieldMapping('field_countries:source_type')->defaultValue('tid');
+    $this->addFieldMapping('field_countries:create_term')->defaultValue(FALSE);
 
     // title
     $this->addFieldMapping('title', 'title_en');
@@ -79,6 +80,10 @@ class CHMPortalEventsMigration extends CHMPortalBaseMigration {
       'field_event_address:name_line',
       'field_event_address:first_name',
       'field_event_address:last_name',
+      'field_dates:timezone', 'field_dates:rrule',
+      'field_event_status:source_type', 'field_event_status:create_term',
+      'field_event_status:ignore_case',
+      'field_countries:ignore_case',
     ));
 
     // @todo
@@ -107,11 +112,16 @@ class CHMPortalEventsMigration extends CHMPortalBaseMigration {
       'field_event_status',
       'field_aichi_targets', 'field_aichi_targets:source_type', 'field_aichi_targets:create_term', 'field_aichi_targets:ignore_case',
       'field_keywords:create_term', 'field_keywords:ignore_case',
+      'field_event_address',
+      'field_images:title',
+      'field_image:title',
     ]);
     $this->ignoreMetatagFields();
     $this->addUnmigratedSources([
+      'contributor', 'submitted',
       'id', 'discussion', 'approved_by', 'version', 'folder', 'sortorder',
       'checkout', 'checkout_user',
+      'geo_type',
     ]);
   }
 

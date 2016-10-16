@@ -12,6 +12,8 @@ class CHMEventsNestedDirJSONSource extends CHMNestedDirJSONSource {
 
       // single-valued string - Primary key within a single portal
       'url' => 'URL alias',
+      // String
+      'geo_type' => 'Unknown',
       // single-valued string
       'event_url' => 'External Internet link to event page or source',
       // single-valued string
