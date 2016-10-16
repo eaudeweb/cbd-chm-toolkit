@@ -94,4 +94,28 @@ abstract class CHMPortalBaseMigration extends Migration {
     return $q->execute()->fetchField();
   }
 
+  public function setTranslation($entity, $translations = array()) {
+    if (empty($translations)) {
+      $translations = array();
+    }
+    $migration   = Migration::currentMigration();
+    $languages   = array_keys(language_list());
+    $entity_type = $migration->getDestination()->getEntityType();
+    $translation_handler = entity_translation_get_handler($entity_type, $entity);
+    $translation_handler->setOriginalLanguage('en');
+    $translation_handler->initTranslations();
+    $entity->translations = $translation_handler->getTranslations();
+    foreach ($languages as $language) {
+      if ($language == 'en') {
+        continue;
+      }
+      if (in_array($language, $translations)) {
+        $translation_handler->setTranslation(array(
+          'translate' => 0, 'status' => 1, 'uid' => 1,
+          'language' => $language,
+          'source' => 'en',
+        ));
+      }
+    }
+  }
 }

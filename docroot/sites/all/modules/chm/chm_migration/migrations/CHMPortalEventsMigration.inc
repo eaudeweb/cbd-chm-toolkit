@@ -28,10 +28,9 @@ class CHMPortalEventsMigration extends CHMPortalBaseMigration {
     $this->addFieldMapping('translate')->defaultValue(0);
     $this->addFieldMapping('revision_uid')->defaultValue(0);
     $this->addFieldMapping('uid')->defaultValue(USER_WALLE);
-    $this->addFieldMapping('language')->defaultValue('en');
+    $this->addFieldMapping('language', 'language');
 
     $this->addFieldMapping('pathauto')->defaultValue(1);
-    $this->addFieldMapping('domain_path', 'domain_path');
 
     // @todo
     $this->addFieldMapping('domain_site')->defaultValue(FALSE);
@@ -129,11 +128,11 @@ class CHMPortalEventsMigration extends CHMPortalBaseMigration {
    * {@inheritdoc}
    */
   function prepareRowObject($row) {
+    $row->language = 'en';
     $this->prepareKeywords($row);
     $domain_id = $this->arguments['domain']['domain_id'];
     $row->domain_source = $domain_id;
     $row->domains = array($domain_id);
-    $row->domain_path[$domain_id] = $row->url;
     $row->event_url = strtolower($row->event_url);
     $row->releasedate = self::prepareDateField($row->releasedate);
     if (empty($row->last_modification)) {
@@ -154,5 +153,46 @@ class CHMPortalEventsMigration extends CHMPortalBaseMigration {
    */
   function validateRowObject($row) {
     // TODO: Implement validateRowObject() method.
+  }
+
+  function prepare($entity, $row) {
+    $languages = $this->getLanguages($row);
+    $this->setTranslation($entity, $languages);
+  }
+
+  function getLanguages($row) {
+    $languages = array();
+    if (!empty($row->title_languages)) {
+      $languages = array_merge($languages, $row->title_languages);
+    }
+    if (!empty($row->description_languages)) {
+      $languages = array_merge($languages, $row->description_languages);
+    }
+    return array_unique($languages);
+  }
+
+  function complete($entity, $row) {
+    $domain_id = $this->arguments['domain']['domain_id'];
+    $languages = $this->getLanguages($row);
+    if (empty($languages['en'])) {
+      $languages[] = 'en';
+    }
+    // Add aliases for all languages if not exist (i.e. drush mi --update)
+    foreach($languages as $language) {
+      if (!domain_path_path_load([
+        'alias' => $row->url, 'domain_id' => $domain_id,
+        'language' => $language, 'source' => 'node/' . $entity->nid
+      ])) {
+        $path = [
+          'entity_type' => 'node',
+          'domain_id' => $domain_id,
+          'language' => $language,
+          'alias' => $row->url,
+          'source' => 'node/' . $entity->nid,
+          'entity_id' => $entity->nid
+        ];
+        domain_path_path_save($path);
+      }
+    }
   }
 }
