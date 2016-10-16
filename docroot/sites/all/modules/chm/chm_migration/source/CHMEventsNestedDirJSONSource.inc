@@ -122,7 +122,7 @@ class CHMEventsNestedDirJSONSource extends CHMNestedDirJSONSource {
                 if (!empty(trim($term))) {
                   $kw_ob = new stdClass();
                   $kw_ob->language = $language;
-                  $kw_ob->term = $term;
+                  $kw_ob->term = trim($term);
                   $ret->keywords[] = $kw_ob;
                 }
               }
