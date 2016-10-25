@@ -2260,6 +2260,12 @@ function chm_views_views_default_views() {
 
   /* Display: Events page */
   $handler = $view->new_display('page', 'Events page', 'page_events');
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'views_bootstrap_media_plugin_style';
   $handler->display->display_options['style_options']['image_field'] = 'field_image';
@@ -2325,6 +2331,8 @@ function chm_views_views_default_views() {
   $handler->display->display_options['fields']['body']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['body']['alter']['text'] = '<div class=\'field-dates\'>[field_dates]</div> [body] [view_node]';
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['body']['empty'] = '<div class=\'field-dates\'>[field_dates]</div>';
+  $handler->display->display_options['fields']['body']['hide_alter_empty'] = FALSE;
   $handler->display->display_options['fields']['body']['type'] = 'text_summary_or_trimmed';
   $handler->display->display_options['fields']['body']['settings'] = array(
     'trim_length' => '300',
@@ -2378,8 +2386,16 @@ function chm_views_views_default_views() {
     t('<div class=\'field-type\'> [type] </div> [title_field]'),
     t('<div class="field-dates">[created]</div>[body] [view_node]'),
     t('Events page'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
     t('[title_field]'),
     t('<div class=\'field-dates\'>[field_dates]</div> [body] [view_node]'),
+    t('<div class=\'field-dates\'>[field_dates]</div>'),
   );
   $export['latest_updates'] = $view;
 
