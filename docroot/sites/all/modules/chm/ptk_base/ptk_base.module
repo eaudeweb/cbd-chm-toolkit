@@ -306,12 +306,14 @@ function ptk_base_language_switch_links_alter(array &$links, $type, $path) {
  */
 function ptk_base_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
   $element = array(); // Initialize the var
-  $settings = $display['settings']; // get the settings
-  foreach ($items as $delta => $item) {
-    $f = !empty($item['value']) ? strtotime($item['value']) : NULL;
-    $t = !empty($item['value2']) ? strtotime($item['value2']) : NULL;
-    $value = PTK::dateIntervalString($f, $t);
-    $element[$delta] = array('#type' => 'item', '#markup' => $value);
+  if ($display['type'] == 'event_date_formatter') {
+    $settings = $display['settings']; // get the settings
+    foreach ($items as $delta => $item) {
+      $f = !empty($item['value']) ? strtotime($item['value']) : NULL;
+      $t = !empty($item['value2']) ? strtotime($item['value2']) : NULL;
+      $value = PTK::dateIntervalString($f, $t);
+      $element[$delta] = array('#type' => 'item', '#markup' => $value);
+    }
   }
   return $element;
 }
