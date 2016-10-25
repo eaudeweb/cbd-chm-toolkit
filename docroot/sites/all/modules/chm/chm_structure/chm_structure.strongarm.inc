@@ -1817,22 +1817,22 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '11',
+          'weight' => '12',
         ),
         'domain_path' => array(
-          'weight' => '13',
+          'weight' => '14',
         ),
         'locations' => array(
           'weight' => '11',
         ),
         'metatags' => array(
-          'weight' => '17',
+          'weight' => '15',
         ),
         'title' => array(
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '12',
+          'weight' => '13',
         ),
         'language' => array(
           'weight' => '0',
