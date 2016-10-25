@@ -28,6 +28,7 @@ class CHMPortalEventsMigration extends CHMPortalBaseMigration {
     $this->addFieldMapping('translate')->defaultValue(0);
     $this->addFieldMapping('revision_uid')->defaultValue(0);
     $this->addFieldMapping('uid')->defaultValue(USER_WALLE);
+    // Computed
     $this->addFieldMapping('language', 'language');
 
     $this->addFieldMapping('pathauto')->defaultValue(1);
@@ -64,7 +65,7 @@ class CHMPortalEventsMigration extends CHMPortalBaseMigration {
     $this->addUnmigratedDestinations(array('field_url:title', 'field_url:attributes', 'field_url:language'));
 
     // field_event_address
-    $this->addFieldMapping('field_event_address:data', 'location_address');
+    $this->addFieldMapping('field_event_address:premise', 'location_address');
     // @todo
     $this->addUnmigratedDestinations(array(
       'field_event_address:administrative_area',

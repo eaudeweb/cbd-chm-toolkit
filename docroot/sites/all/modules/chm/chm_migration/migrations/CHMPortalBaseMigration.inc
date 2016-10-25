@@ -80,6 +80,7 @@ abstract class CHMPortalBaseMigration extends Migration {
     } catch(Exception $e) {
       // @todo:
     }
+    $keywords = array_unique($keywords);
     $row->keywords = $keywords;
   }
 
