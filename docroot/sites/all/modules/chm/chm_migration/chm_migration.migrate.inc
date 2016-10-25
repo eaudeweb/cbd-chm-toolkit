@@ -32,14 +32,12 @@ function chm_migration_migrate_api() {
         continue;
       }
       $migration_name = $domain_machine_name . '_events';
-      $default_language = !empty($source->default_language) ? $source->default_language : 'en';
       $migration = array(
         'group_name' => CHM_NAAYA_MIGRATION_GROUP,
         'class_name' => 'CHMPortalEventsMigration',
         'dependencies' => array(),
         'source_dir' => $data_dir,
         'domain' => $destination_domain,
-        'default_language' => $default_language,
       );
       $ret['migrations'][$migration_name] = $migration;
     }

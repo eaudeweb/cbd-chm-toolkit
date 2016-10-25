@@ -25,6 +25,12 @@ function chm_migration_drush_command() {
     'aliases' => array('chm-mi'),
   );
 
+  $items['chm-migrate-test'] = array(
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'description' => 'Test migrations',
+    'aliases' => array('chm-mi-test'),
+  );
+
   return $items;
 }
 
@@ -51,3 +57,13 @@ function drush_chm_migration_chm_migrate_status() {
 
 }
 
+function drush_chm_migration_chm_migrate_test() {
+  $events = new CHMPortalEventsMigrationTest();
+  try {
+    $events->test();
+    echo "Success! (({$events->getAssertionsCount()} assertion(s), {$events->getFailuresCount()} failure(s))\n";
+  } catch (Exception $e) {
+    drush_set_error($e->getMessage());
+    echo "Failure! ({$events->getAssertionsCount()} assertion(s), {$events->getFailuresCount()} failure(s))\n";
+  }
+}

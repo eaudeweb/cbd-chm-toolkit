@@ -9,4 +9,6 @@ files[] = migrations/CHMPortalEventsMigration.inc
 files[] = source/CHMEventsNestedDirJSONSource.inc
 files[] = source/CHMNestedDirJSONSource.inc
 files[] = source/CHMNestedDirJSONSource.inc
+files[] = test/CHMPortalEventsMigrationTest.inc
+files[] = test/CHMPortalMigrationTestBase.inc
 files[] = util/LoggingTrait.inc

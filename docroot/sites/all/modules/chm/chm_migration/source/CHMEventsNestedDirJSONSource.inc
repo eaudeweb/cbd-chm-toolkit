@@ -4,10 +4,10 @@ class CHMEventsNestedDirJSONSource extends CHMNestedDirJSONSource {
 
   public function fields() {
     return array(
+      /* Computed fields (not found in source dataset) */
       'domain_source' => 'Domain where this record belongs to (domain_access)',
       'domains' => 'Array of domain IDs to assign the record to (domain_access)',
       'domain_path' => 'Local domain URL alias (domain_access)',
-
       'country' => 'Domain/Portal associated country',
 
       // single-valued string - Primary key within a single portal
@@ -34,7 +34,7 @@ class CHMEventsNestedDirJSONSource extends CHMNestedDirJSONSource {
       'approved_by' => 'User that approved the item',
       // !!!! Single-value string OR Array of strings keyed by language, each value is single ['en' => 'value1', 'fr' => 'value2']
       'location' => 'Venue description (ex. University of Sibiu, Floor 1, Room 26)',
-      // @todo single-valued integer?
+      // @todo single-valued integer (always null)?
       'version' => 'Probably revision. Seems always NULL',
       // single-valued string
       'folder' => 'Path on disk relative to export directory',
