@@ -9,6 +9,33 @@ abstract class CHMPortalBaseMigration extends Migration {
 
   public function __construct($arguments) {
     parent::__construct($arguments);
+    $this->map = new MigrateSQLMap($this->machineName,
+      array(
+        'url' => array(
+          'type' => 'varchar',
+          'length' => 255,
+          'not null' => TRUE,
+          'description' => 'Entity original ID',
+        ),
+      ),
+      MigrateDestinationNode::getKeySchema()
+    );
+    $this->addFieldMapping('promote')->defaultValue(0);
+    $this->addFieldMapping('comment')->defaultValue(0);
+    $this->addFieldMapping('uid')->defaultValue(USER_WALLE);
+    $this->addFieldMapping('pathauto')->defaultValue(1);
+    $this->addFieldMapping('domain_site')->defaultValue(FALSE);
+    $this->addFieldMapping('revision')->defaultValue(0);
+    $this->addFieldMapping('translate')->defaultValue(0);
+    $this->addFieldMapping('revision_uid')->defaultValue(0);
+
+    $this->addFieldMapping('body:format')->defaultValue('html');
+    $this->addUnmigratedDestinations(array('body:summary'));
+
+    $this->addUnmigratedDestinations([
+      'nid', 'log', 'tnid', 'is_new', 'path'
+    ]);
+    $this->ignoreMetatagFields();
   }
 
   /**
@@ -26,7 +53,17 @@ abstract class CHMPortalBaseMigration extends Migration {
    * @return boolean
    *   TRUE if the row is valid, FALSE otherwise
    */
-  abstract function validateRowObject($row);
+  function validateRowObject($row) {
+    if (empty($row->url)) {
+      $this->error("This record has not ID (url), skipping ...");
+      return false;
+    }
+    if (empty($row->title_en)) {
+      $this->error("The record {$row->url} has no title, skipping ...");
+      return false;
+    }
+    return true;
+  }
 
   public function prepareRow($row) {
     $this->prepareRowObject($row);

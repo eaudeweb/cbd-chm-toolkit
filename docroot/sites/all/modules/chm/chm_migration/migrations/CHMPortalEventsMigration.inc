@@ -4,37 +4,17 @@ class CHMPortalEventsMigration extends CHMPortalBaseMigration {
 
   public function __construct($arguments) {
     parent::__construct($arguments);
-    $this->map = new MigrateSQLMap($this->machineName,
-      array(
-        'url' => array(
-          'type' => 'varchar',
-          'length' => 255,
-          'not null' => TRUE,
-          'description' => 'Entity original ID',
-        ),
-      ),
-      MigrateDestinationNode::getKeySchema()
-    );
     $this->source = new CHMEventsNestedDirJSONSource($arguments);
     $this->destination = new MigrateDestinationNode('event');
 
     $this->addFieldMapping('created', 'releasedate');
     $this->addFieldMapping('changed', 'last_modification');
     $this->addFieldMapping('status', 'approved');
-    $this->addFieldMapping('promote')->defaultValue(0);
-    $this->addFieldMapping('comment')->defaultValue(0);
     $this->addFieldMapping('sticky', 'topitem');
-    $this->addFieldMapping('revision')->defaultValue(0);
-    $this->addFieldMapping('translate')->defaultValue(0);
-    $this->addFieldMapping('revision_uid')->defaultValue(0);
-    $this->addFieldMapping('uid')->defaultValue(USER_WALLE);
     // Computed
     $this->addFieldMapping('language', 'language');
 
-    $this->addFieldMapping('pathauto')->defaultValue(1);
-
     // @todo
-    $this->addFieldMapping('domain_site')->defaultValue(FALSE);
     $this->addFieldMapping('domain_source', 'domain_source');
     $this->addFieldMapping('domains', 'domains');
 
@@ -53,8 +33,6 @@ class CHMPortalEventsMigration extends CHMPortalBaseMigration {
     // body
     $this->addFieldMapping('body', 'description');
     $this->addFieldMapping('body:language', 'description_languages');
-    $this->addFieldMapping('body:format')->defaultValue('html');
-    $this->addUnmigratedDestinations(array('body:summary'));
 
     // field_dates
     $this->addFieldMapping('field_dates', 'start_date');
@@ -74,7 +52,6 @@ class CHMPortalEventsMigration extends CHMPortalBaseMigration {
       'field_event_address:dependent_locality',
       'field_event_address:postal_code',
       'field_event_address:thoroughfare',
-      'field_event_address:premise',
       'field_event_address:sub_premise',
       'field_event_address:organisation_name',
       'field_event_address:name_line',
@@ -104,10 +81,8 @@ class CHMPortalEventsMigration extends CHMPortalBaseMigration {
     // @todo field_images
     // @todo: field_event_status
     $this->addUnmigratedDestinations([
-      'nid', 'log', 'tnid', 'is_new',
       // Don't migrate path to avoid URL collisions with other portals
       // Instead the path is migrated to domain_path.
-      'path',
       'field_reference',
       'field_event_status',
       'field_aichi_targets', 'field_aichi_targets:source_type', 'field_aichi_targets:create_term', 'field_aichi_targets:ignore_case',
@@ -116,7 +91,6 @@ class CHMPortalEventsMigration extends CHMPortalBaseMigration {
       'field_images:title',
       'field_image:title',
     ]);
-    $this->ignoreMetatagFields();
     $this->addUnmigratedSources([
       'contributor', 'submitted',
       'id', 'discussion', 'approved_by', 'version', 'folder', 'sortorder',
@@ -153,7 +127,10 @@ class CHMPortalEventsMigration extends CHMPortalBaseMigration {
    * {@inheritdoc}
    */
   function validateRowObject($row) {
-    // TODO: Implement validateRowObject() method.
+    if (empty($row->start_date)) {
+      $this->warning("The event {$row->url} has no start date, skipping ...");
+    }
+    return parent::validateRowObject($row);
   }
 
   function prepare($entity, $row) {
