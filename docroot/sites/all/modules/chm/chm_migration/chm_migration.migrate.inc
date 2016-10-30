@@ -1,4 +1,7 @@
 <?php
+require_once dirname(__FILE__) . '/source/CHMNestedDirJSONSource.inc';
+require_once dirname(__FILE__) . '/source/CHMEventsNestedDirJSONSource.inc';
+require_once dirname(__FILE__) . '/migrations/CHMPortalEventsMigration.inc';
 
 /**
  * Implements hook_migrate_api().
@@ -41,7 +44,25 @@ function chm_migration_migrate_api() {
       );
       $ret['migrations'][$migration_name] = $migration;
     }
+    if (!empty($source->source_dir_news)) {
+      $data_dir = realpath($root_dir . '/' . $source->source_dir_news);
+      if (!is_dir($data_dir) || !is_readable($data_dir)) {
+        drupal_set_message(
+            sprintf('[chm_migration][%s]Source data directory does not exist or unreadable: %s', $domain_machine_name, $data_dir),
+            'error'
+        );
+        continue;
+      }
+      $migration_name = $domain_machine_name . '_news';
+      $migration = array(
+        'group_name' => CHM_NAAYA_MIGRATION_GROUP,
+        'class_name' => 'CHMPortalNewsMigration',
+        'dependencies' => array(),
+        'source_dir' => $data_dir,
+        'domain' => $destination_domain,
+      );
+      $ret['migrations'][$migration_name] = $migration;
+    }
   }
-
   return $ret;
 }
