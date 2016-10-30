@@ -214,6 +214,7 @@ features[field_instance][] = node-news-field_expire
 features[field_instance][] = node-news-field_geolocation
 features[field_instance][] = node-news-field_image
 features[field_instance][] = node-news-field_reference
+features[field_instance][] = node-news-field_url
 features[field_instance][] = node-news-title_field
 features[field_instance][] = node-organization-body
 features[field_instance][] = node-organization-field_countries
