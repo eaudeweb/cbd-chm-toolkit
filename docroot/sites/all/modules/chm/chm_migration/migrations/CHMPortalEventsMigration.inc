@@ -129,6 +129,7 @@ class CHMPortalEventsMigration extends CHMPortalBaseMigration {
   function validateRowObject($row) {
     if (empty($row->start_date)) {
       $this->warning("The event {$row->url} has no start date, skipping ...");
+      return false;
     }
     return parent::validateRowObject($row);
   }
