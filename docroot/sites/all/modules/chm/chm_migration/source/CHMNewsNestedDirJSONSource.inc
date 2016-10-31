@@ -94,7 +94,7 @@ class CHMNewsNestedDirJSONSource extends CHMNestedDirJSONSource {
           if (!empty($source['_local_properties']['keywords'])) {
             foreach ($source['_local_properties']['keywords'] as $language => $keyword_str) {
               $keyword_str = array_shift($keyword_str);
-              $keyword_arr = explode(', ', $keyword_str);
+              $keyword_arr = explode(',', $keyword_str);
               foreach($keyword_arr as $term) {
                 if (!empty(trim($term))) {
                   $kw_ob = new stdClass();
