@@ -30,7 +30,7 @@ function chm_migration_migrate_api() {
       if (!is_dir($data_dir) || !is_readable($data_dir)) {
         drupal_set_message(
           sprintf('[chm_migration][%s]Source data directory does not exist or unreadable: %s', $domain_machine_name, $data_dir),
-          'error'
+          'warning'
         );
         continue;
       }
@@ -49,7 +49,7 @@ function chm_migration_migrate_api() {
       if (!is_dir($data_dir) || !is_readable($data_dir)) {
         drupal_set_message(
             sprintf('[chm_migration][%s]Source data directory does not exist or unreadable: %s', $domain_machine_name, $data_dir),
-            'error'
+            'warning'
         );
         continue;
       }
