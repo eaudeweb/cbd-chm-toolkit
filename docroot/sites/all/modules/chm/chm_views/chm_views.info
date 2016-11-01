@@ -3,6 +3,7 @@ description = Views and view blocks used throughout the website in both back-end
 core = 7.x
 package = CHM
 version = 7.x-1.0
+dependencies[] = amcharts
 dependencies[] = ctools
 dependencies[] = entityqueue
 dependencies[] = entityreference
