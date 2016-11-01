@@ -29,6 +29,7 @@ function amcharts_libraries_info() {
         'ammap.js' => array(
           'type' => 'file',
           'weight' => 2,
+          'preprocess' => FALSE,
         ),
       ),
       'css' => array(
@@ -64,7 +65,7 @@ function amcharts_library() {
       'website' => 'https://www.amcharts.com/javascript-maps/',
       'version' => '3.20.17',
       'js' => array(
-        libraries_get_path('ammap') . '/ammap.js' => array('type' => 'file', 'weight' => 2),
+        libraries_get_path('ammap') . '/ammap.js' => array('type' => 'file', 'weight' => 2, 'preprocess' => FALSE),
       ),
       'css' => array(
         libraries_get_path('ammap') . '/ammap.css' => array('type' => 'file', 'weight' => 2),
