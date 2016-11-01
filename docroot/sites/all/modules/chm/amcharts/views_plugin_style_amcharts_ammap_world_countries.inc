@@ -86,7 +86,7 @@ class views_plugin_style_amcharts_ammap_world_countries extends views_plugin_sty
 
     $form['areasSettings']['color'] = array(
         '#type' => 'textfield',
-        '#title' => t('Highligh color'),
+        '#title' => t('Highlight color'),
         '#default_value' => $this->options['areasSettings']['color'],
         '#description' => t('Hex color of the highlighted area (ex. #c942e2)'),
     );
