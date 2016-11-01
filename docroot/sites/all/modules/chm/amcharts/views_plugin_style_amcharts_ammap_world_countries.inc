@@ -20,8 +20,8 @@ class views_plugin_style_amcharts_ammap_world_countries extends views_plugin_sty
     $options['iso_code_field'] = array('default' => '');
     $options['tooltip_field'] = array('default' => '');
     $options['dataProvider']['map'] = array('default' => 'worldLow');
-    $options['areaSettings']['autoZoom'] = array('default' => false);
-    $options['areaSettings']['selectedColor'] = array('default' => '#CC0000');
+    $options['areasSettings']['autoZoom'] = array('default' => false);
+    $options['areasSettings']['selectedColor'] = array('default' => '#CC0000');
     $options['smallMap'] = array('default' => false);
 
     return $options;
@@ -67,17 +67,17 @@ class views_plugin_style_amcharts_ammap_world_countries extends views_plugin_sty
         '#default_value' => $this->options['dataProvider']['map'],
         '#description' => t('Map quality - low (~100kB), high (~1MB)'),
     );
-    $form['areaSettings']['autoZoom'] = array(
+    $form['areasSettings']['autoZoom'] = array(
         '#type' => 'checkbox',
         '#title' => t('Use AutoZoom'),
         '#value' => true,
-        '#default_value' => $this->options['areaSettings']['autoZoom'],
+        '#default_value' => $this->options['areasSettings']['autoZoom'],
         '#description' => t('Check to zoom-in the map on the clicked area'),
     );
-    $form['areaSettings']['selectedColor'] = array(
+    $form['areasSettings']['selectedColor'] = array(
         '#type' => 'textfield',
         '#title' => t('Selected color'),
-        '#default_value' => $this->options['areaSettings']['selectedColor'],
+        '#default_value' => $this->options['areasSettings']['selectedColor'],
         '#description' => t('Hex color of the selected area (ex. #c942e2)'),
     );
     $form['smallMap'] = array(
@@ -93,8 +93,8 @@ class views_plugin_style_amcharts_ammap_world_countries extends views_plugin_sty
   public function options_validate(&$form, &$form_state) {
     parent::options_validate($form, $form_state);
     // Check if highlight color is a valid hex color.
-    if (!preg_match('/^#[a-f0-9]{6}$/i', $form_state['values']['style_options']['areaSettings']['selectedColor'])) {
-      form_set_error($form['areaSettings']['selectedColor'], t('Highlight colour must be a valid hex code in the form #RRGGBB.'));
+    if (!preg_match('/^#[a-f0-9]{6}$/i', $form_state['values']['style_options']['areasSettings']['selectedColor'])) {
+      form_set_error($form['areasSettings']['selectedColor'], t('Highlight colour must be a valid hex code in the form #RRGGBB.'));
     }
   }
 
