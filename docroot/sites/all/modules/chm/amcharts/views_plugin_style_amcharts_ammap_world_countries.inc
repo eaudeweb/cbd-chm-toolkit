@@ -21,7 +21,10 @@ class views_plugin_style_amcharts_ammap_world_countries extends views_plugin_sty
     $options['tooltip_field'] = array('default' => '');
     $options['dataProvider']['map'] = array('default' => 'worldLow');
     $options['areasSettings']['autoZoom'] = array('default' => false);
+    $options['areasSettings']['color'] = array('default' => '#0000cc');
     $options['areasSettings']['selectedColor'] = array('default' => '#CC0000');
+    $options['areasSettings']['outlineColor'] = array('default' => '#FF0000');
+    $options['areasSettings']['rollOverOutlineColor'] = array('default' => '#FF0000');
     $options['smallMap'] = array('default' => false);
 
     return $options;
@@ -54,6 +57,11 @@ class views_plugin_style_amcharts_ammap_world_countries extends views_plugin_sty
         '#description' => t('Select the field containing the description contained within the country tooltip'),
         '#required' => FAlSE,
     );
+    $form['smallMap'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('Show minimap'),
+        '#default_value' => $this->options['smallMap'],
+    );
 
     $options = array(
         '' => t('<None>'),
@@ -74,16 +82,31 @@ class views_plugin_style_amcharts_ammap_world_countries extends views_plugin_sty
         '#default_value' => $this->options['areasSettings']['autoZoom'],
         '#description' => t('Check to zoom-in the map on the clicked area'),
     );
+
+
+    $form['areasSettings']['color'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Highligh color'),
+        '#default_value' => $this->options['areasSettings']['color'],
+        '#description' => t('Hex color of the highlighted area (ex. #c942e2)'),
+    );
     $form['areasSettings']['selectedColor'] = array(
         '#type' => 'textfield',
         '#title' => t('Selected color'),
         '#default_value' => $this->options['areasSettings']['selectedColor'],
-        '#description' => t('Hex color of the selected area (ex. #c942e2)'),
+        '#description' => t('Hex color of the clicked area (ex. #c942e2)'),
     );
-    $form['smallMap'] = array(
-        '#type' => 'checkbox',
-        '#title' => t('Show minimap'),
-        '#default_value' => $this->options['smallMap'],
+    $form['areasSettings']['outlineColor'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Outline color'),
+        '#default_value' => $this->options['areasSettings']['outlineColor'],
+        '#description' => t('Color of outline area. (ex. #ff0000)'),
+    );
+    $form['areasSettings']['rollOverOutlineColor'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Rollover outline color'),
+        '#default_value' => $this->options['areasSettings']['rollOverOutlineColor'],
+        '#description' => t('Color of outline when hovering. (ex. #ff0000)'),
     );
   }
 
