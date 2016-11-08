@@ -66,11 +66,13 @@ function chm_search_block_view($delta = '') {
     }
     // Translate the placeholder
     $placeholder = t(variable_get('chm_search_block_input_placeholder'));
+    $domain = domain_get_domain();
+    $action = ($domain['domain_id'] != PTKDomain::$CHM_DOMAIN_ID) ? '/search' : '/search-network';
     $ret = array(
       'subject' => t('Search'),
       'content' =>
 <<<EOT
-        <form method="GET" action="/search">
+        <form method="GET" action="$action">
           <input type="text" name="search_api_views_fulltext" placeholder="$placeholder" value="$val">
           <input class="btn-search form-submit" alt="Search" type="image" id="edit-submit" name="submit" src="/sites/all/themes/chm_theme_kit/img/searchbutton.png">
         </form>

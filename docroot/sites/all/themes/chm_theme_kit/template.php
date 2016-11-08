@@ -42,7 +42,7 @@ function chm_theme_kit_preprocess_page(&$vars) {
       $vars['logo'] = image_style_url('header_flag', 'public://images/flags/flag-bioland.png');
     }
   }
-  if (strtolower(arg(0)) == 'search') {
+  if (strtolower(arg(0)) == 'search' || strtolower(arg(0)) == 'search-network') {
     $breadcrumb = array(
       l(t('Home'), '<front>')
     );

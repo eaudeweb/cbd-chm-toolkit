@@ -44,7 +44,7 @@ function chm_search_views_default_views() {
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
   $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nid']['link_to_entity'] = 0;
-  /* Field: Indexed Multilingual Node: Image */
+  /* Field: Indexed Multilingual Node: Photo */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
@@ -105,6 +105,15 @@ function chm_search_views_default_views() {
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
   $handler->display->display_options['sorts']['created']['exposed'] = TRUE;
   $handler->display->display_options['sorts']['created']['expose']['label'] = 'Publish date';
+  /* Contextual filter: Indexed Multilingual Node: Domains */
+  $handler->display->display_options['arguments']['domains']['id'] = 'domains';
+  $handler->display->display_options['arguments']['domains']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['arguments']['domains']['field'] = 'domains';
+  $handler->display->display_options['arguments']['domains']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['domains']['default_argument_type'] = 'current_domain';
+  $handler->display->display_options['arguments']['domains']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['domains']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['domains']['not'] = 0;
   /* Filter criterion: Search: Fulltext search */
   $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
   $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -120,10 +129,6 @@ function chm_search_views_default_views() {
     1 => 0,
   );
   $handler->display->display_options['filters']['search_api_views_fulltext']['min_length'] = '3';
-  /* Filter criterion: Indexed Multilingual Node: Domains */
-  $handler->display->display_options['filters']['domains']['id'] = 'domains';
-  $handler->display->display_options['filters']['domains']['table'] = 'search_api_index_default_multilingual_node_index';
-  $handler->display->display_options['filters']['domains']['field'] = 'domains';
   /* Filter criterion: Indexed Multilingual Node: Item language */
   $handler->display->display_options['filters']['search_api_language']['id'] = 'search_api_language';
   $handler->display->display_options['filters']['search_api_language']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -132,9 +137,14 @@ function chm_search_views_default_views() {
     'current' => 'current',
   );
 
-  /* Display: Page */
-  $handler = $view->new_display('page', 'Page', 'page');
+  /* Display: CHM website search page */
+  $handler = $view->new_display('page', 'CHM website search page', 'page');
   $handler->display->display_options['path'] = 'search';
+
+  /* Display: CHM network search page */
+  $handler = $view->new_display('page', 'CHM network search page', 'page_1');
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  $handler->display->display_options['path'] = 'search-network';
   $translatables['the_search_view'] = array(
     t('Master'),
     t('Search'),
@@ -157,8 +167,10 @@ function chm_search_views_default_views() {
     t(','),
     t('Relevance'),
     t('Publish date'),
+    t('All'),
     t('Text'),
-    t('Page'),
+    t('CHM website search page'),
+    t('CHM network search page'),
   );
   $export['the_search_view'] = $view;
 
