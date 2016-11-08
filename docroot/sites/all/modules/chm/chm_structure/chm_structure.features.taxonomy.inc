@@ -149,6 +149,16 @@ function chm_structure_taxonomy_default_vocabularies() {
       'language' => 'und',
       'i18n_mode' => 1,
     ),
+    'keywords' => array(
+      'name' => 'Keywords',
+      'machine_name' => 'keywords',
+      'description' => 'Arbitrary keywords assigned by the content managers',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
+    ),
     'organization_type' => array(
       'name' => 'Organization type',
       'machine_name' => 'organization_type',
