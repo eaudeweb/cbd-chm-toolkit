@@ -432,7 +432,7 @@ class ChmDomainForm {
   public static function createWebsiteMainMenu($country, $domain) {
     $url = l($domain['path'], $domain['path']);
     $sitename = $domain['sitename'];
-    $code = $domain['machine_name'];
+    $code = strtolower(preg_replace('/[^a-zA-Z0-9-]+/', '-', $domain['machine_name']));
     $menu = array(
       'menu_name' => "menu-{$code}",
       'title' => "Main menu for {$sitename}",
