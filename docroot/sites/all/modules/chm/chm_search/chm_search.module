@@ -98,3 +98,14 @@ function chm_search_path_breadcrumbs_view($path_breadcrumbs, $contexts) {
     }
   }
 }
+
+
+/**
+ * Implements hook_page_alter().
+ */
+function chm_search_page_alter(&$page) {
+  // Do not cache search pages.
+  if (arg(0) == 'search' || arg(0) == 'search-network') {
+    drupal_page_is_cacheable(FALSE);
+  }
+}
