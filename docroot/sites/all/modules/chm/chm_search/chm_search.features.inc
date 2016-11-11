@@ -51,7 +51,7 @@ function chm_search_default_search_api_index() {
           "weight" : "-10",
           "settings" : { "default" : "1", "domains" : [], "operator" : "OR" }
         },
-        "search_api_alter_node_access" : { "status" : 1, "weight" : "0", "settings" : [] },
+        "search_api_alter_node_access" : { "status" : 0, "weight" : "0", "settings" : [] },
         "search_api_alter_node_status" : { "status" : 1, "weight" : "0", "settings" : [] },
         "search_api_attachments_alter_settings" : {
           "status" : 1,
@@ -90,16 +90,16 @@ function chm_search_default_search_api_index() {
           "weight" : "0",
           "settings" : { "fields" : {
               "title" : true,
-              "title_field" : true,
+              "field_first_name" : true,
+              "field_last_name" : true,
               "field_address" : true,
               "field_alternative_emails" : true,
               "field_city" : true,
               "field_department" : true,
               "field_email" : true,
               "field_fax_numbers" : true,
-              "field_first_name" : true,
-              "field_last_name" : true,
               "field_nfp_designation" : true,
+              "title_field" : true,
               "body:value" : true,
               "body:summary" : true
             }
@@ -111,16 +111,16 @@ function chm_search_default_search_api_index() {
           "settings" : {
             "fields" : {
               "title" : true,
-              "title_field" : true,
+              "field_first_name" : true,
+              "field_last_name" : true,
               "field_address" : true,
               "field_alternative_emails" : true,
               "field_city" : true,
               "field_department" : true,
               "field_email" : true,
               "field_fax_numbers" : true,
-              "field_first_name" : true,
-              "field_last_name" : true,
               "field_nfp_designation" : true,
+              "title_field" : true,
               "body:value" : true,
               "body:summary" : true
             },
@@ -134,16 +134,16 @@ function chm_search_default_search_api_index() {
           "weight" : "15",
           "settings" : { "fields" : {
               "title" : true,
-              "title_field" : true,
+              "field_first_name" : true,
+              "field_last_name" : true,
               "field_address" : true,
               "field_alternative_emails" : true,
               "field_city" : true,
               "field_department" : true,
               "field_email" : true,
               "field_fax_numbers" : true,
-              "field_first_name" : true,
-              "field_last_name" : true,
               "field_nfp_designation" : true,
+              "title_field" : true,
               "body:value" : true,
               "body:summary" : true
             }
@@ -155,16 +155,16 @@ function chm_search_default_search_api_index() {
           "settings" : {
             "fields" : {
               "title" : true,
-              "title_field" : true,
+              "field_first_name" : true,
+              "field_last_name" : true,
               "field_address" : true,
               "field_alternative_emails" : true,
               "field_city" : true,
               "field_department" : true,
               "field_email" : true,
               "field_fax_numbers" : true,
-              "field_first_name" : true,
-              "field_last_name" : true,
               "field_nfp_designation" : true,
+              "title_field" : true,
               "body:value" : true,
               "body:summary" : true
             },
@@ -178,16 +178,16 @@ function chm_search_default_search_api_index() {
           "settings" : {
             "fields" : {
               "title" : true,
-              "title_field" : true,
+              "field_first_name" : true,
+              "field_last_name" : true,
               "field_address" : true,
               "field_alternative_emails" : true,
               "field_city" : true,
               "field_department" : true,
               "field_email" : true,
               "field_fax_numbers" : true,
-              "field_first_name" : true,
-              "field_last_name" : true,
               "field_nfp_designation" : true,
+              "title_field" : true,
               "body:value" : true,
               "body:summary" : true
             },
@@ -232,7 +232,6 @@ function chm_search_default_search_api_index() {
         "field_nfp_designation" : { "type" : "text" },
         "field_nfp_type" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "promote" : { "type" : "boolean" },
-        "search_api_access_node" : { "type" : "list\\u003Cstring\\u003E" },
         "search_api_language" : { "type" : "string" },
         "status" : { "type" : "boolean" },
         "sticky" : { "type" : "boolean" },

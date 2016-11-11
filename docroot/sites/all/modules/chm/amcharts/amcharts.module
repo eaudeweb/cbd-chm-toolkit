@@ -1,0 +1,132 @@
+<?php
+
+/**
+ * Implements of hook_views_api().
+ */
+function amcharts_views_api() {
+  return array(
+    'api' => '3.0-alpha1',
+    'path' => drupal_get_path('module', 'amcharts'),
+  );
+}
+
+/**
+ * Implements hook_libraries_info().
+ */
+function amcharts_libraries_info() {
+  $libraries['ammap'] = array(
+    'name' => 'ammap',
+    'vendor url' => 'https://www.amcharts.com/javascript-maps/',
+    'download url' => 'https://www.amcharts.com/dl/javascript-maps/',
+    'version arguments' => array(
+      'file' => 'ammap.js',
+      'pattern' => '/this\.version=\"([0-9\.\ \-]+)\"/',
+      'lines' => 100,
+      'cols' => 1000,
+    ),
+    'files' => array(
+      'js' => array(
+        'ammap.js' => array(
+          'type' => 'file',
+          'weight' => 2,
+          'preprocess' => FALSE,
+        ),
+      ),
+      'css' => array(
+        'ammap.css' => array(
+          'type' => 'file',
+          'weight' => 2,
+        ),
+      ),
+    ),
+    'variants' => array(
+      'minified' => array(
+        'files' => array(
+          'js' => array(
+            'ammap.js',
+          ),
+        ),
+        'variant arguments' => array(
+          'variant' => 'minified',
+        ),
+      ),
+    ),
+  );
+  return $libraries;
+}
+
+/**
+ * Implements hook_library().
+ */
+function amcharts_library() {
+  return array(
+    'ammap' => array(
+      'name' => 'ammap',
+      'website' => 'https://www.amcharts.com/javascript-maps/',
+      'version' => '3.20.17',
+      'js' => array(
+        libraries_get_path('ammap') . '/ammap.js' => array('type' => 'file', 'weight' => 2, 'preprocess' => FALSE),
+      ),
+      'css' => array(
+        libraries_get_path('ammap') . '/ammap.css' => array('type' => 'file', 'weight' => 2),
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_theme().
+ */
+function amcharts_theme($existing, $type, $theme, $path)  {
+  return array(
+    'views_view_amcharts_ammap_world_countries' => array(
+      'variables' => array(
+        'view' => NULL,
+        'options' => array(),
+        'rows' => array(),
+        'title' => NULL,
+      ),
+    ),
+  );
+}
+
+function theme_views_view_amcharts_ammap_world_countries($variables) {
+  $view = $variables['view'];
+  $options = $variables['options'];
+  drupal_add_library('amcharts', 'ammap');
+  drupal_add_js(libraries_get_path('ammap') . '/maps/js/worldLow.js');
+  $identifier = drupal_html_id($view->name . '_' . $view->current_display);
+  $js_identifier = drupal_clean_css_identifier($identifier, array('-' => '_'));
+
+  $map_options = $options + array('div' => $identifier, 'type' => 'map');
+  $css_class = "ammap-map-div";
+  $inline_style = 'width: 100%; height: 400px;';
+  $output = sprintf('<div id="%s" class="%s" style="%s"></div>', $identifier, $css_class, $inline_style);
+  drupal_add_js("
+    Drupal.behaviors.amcharts = { attach: function (context, settings) {
+      var config = settings.amcharts.map_options_$js_identifier;
+      AmCharts.makeChart(config.div, config);
+  }};", 'inline');
+
+  $countries = views_plugin_style_amcharts_ammap_world_countries::extract_countries_from_rows($variables);
+  $areas = array();
+  foreach ($countries as $iso => $value) {
+    $areas[] = $value + array('id' => $iso);
+  }
+  if (!empty($areas)) {
+    $map_options['dataProvider']['areas'] = $areas;
+  }
+  else {
+    $map_options['dataProvider']['getAreasFromMap'] = true;
+  }
+
+  //@todo: smallMap cannot be boolean
+  if (!empty($map_options['smallMap'])) {
+    $map_options['smallMap'] = array();
+  }
+  drupal_add_js(
+    array('amcharts' => array("map_options_$js_identifier" => $map_options)),
+    array('type' => 'setting')
+  );
+  return $output;
+}

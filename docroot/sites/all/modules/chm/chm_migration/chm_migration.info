@@ -1,0 +1,14 @@
+name = CHM Migration
+description = Helper module to migrate the old CHM websites built on top of Naaya platform into the Drupal platform
+core = 7.x
+package = CHM
+version = 7.x-1.0
+files[] = chm_migration.migrate.inc
+files[] = migrations/CHMPortalBaseMigration.inc
+files[] = migrations/CHMPortalEventsMigration.inc
+files[] = source/CHMEventsNestedDirJSONSource.inc
+files[] = source/CHMNestedDirJSONSource.inc
+files[] = source/CHMNestedDirJSONSource.inc
+files[] = test/CHMPortalEventsMigrationTest.inc
+files[] = test/CHMPortalMigrationTestBase.inc
+files[] = util/LoggingTrait.inc

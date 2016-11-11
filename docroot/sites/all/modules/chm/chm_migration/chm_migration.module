@@ -1,0 +1,24 @@
+<?php
+
+define('CHM_NAAYA_EXPORT_DIR', 'chm_naaya_data_export_path');
+define('CHM_NAAYA_MIGRATION_GROUP', 'old-chm');
+
+function chm_migration_get_source_config() {
+  $data_export_dir = variable_get(CHM_NAAYA_EXPORT_DIR);
+  $config = (object)array('sites' => array());
+  $file = realpath($data_export_dir . '/migrate-config.json');
+  if (file_exists($file) && is_readable($file)) {
+    if ($parsed = json_decode(file_get_contents($file), TRUE)) {
+      foreach ($parsed['sites'] as $machine_name => $object) {
+        $config->sites[$machine_name] = (object) $object;
+      }
+    }
+    else {
+      throw new Exception('Failed to parse the configuration file: ' . $file);
+    }
+  }
+  else {
+    throw new Exception('Cannot read the configuration file: ' . $file);
+  }
+  return $config;
+}
