@@ -139,6 +139,13 @@ DirectoryIndex index.php index.html index.htm
       # Force proxies to cache gzipped & non-gzipped css/js files separately.
       Header append Vary Accept-Encoding
     </FilesMatch>
+
+    <FilesMatch "\.(jpg|jpeg|png|gif|css|js|gz)$">
+      Header set Cache-Control "max-age=1209600, no-transform, public"
+      Header set Expires A1209600
+      Header unset ETag
+    </FilesMatch>
+
   </IfModule>
 </IfModule>
 
