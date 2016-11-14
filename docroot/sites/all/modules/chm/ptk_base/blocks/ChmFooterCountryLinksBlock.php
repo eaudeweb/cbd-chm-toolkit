@@ -20,11 +20,18 @@ class ChmFooterCountryLinksBlock extends AbstractBlock {
 
   public function view() {
     $domain = domain_get_domain();
-    if ($domain['domain_id'] != \PTKDomain::getDefaultDomainId()) {
+    $domain_id = $domain['domain_id'];
+    if ($domain_id != \PTKDomain::getDefaultDomainId()) {
+      $block_title = t('Country links');
       $country = \PTKDomain::getPortalCountry($domain);
+      // We must link the domain to a country otherwise the block is empty
+      if ($domain_id == \PTKDomain::$DEMO_DOMAIN_ID) {
+        $country = \PTK::getCountryByCode('AL');
+      }
       $items = [];
       // GEF
       if ($country) {
+        $block_title = $country->name;
         $link = sprintf('https://www.thegef.org/gef/project_list?countryCode=%s&focalAreaCode=B&op=Search', strtoupper($country->iso2l));
         $items[] = l(t('GEF Projects'), $link, ['attributes' => ['target' => '_blank']]);
       }
@@ -54,8 +61,12 @@ class ChmFooterCountryLinksBlock extends AbstractBlock {
         'attributes' => array('class' => ['menu', 'nav']),
         'items' => $items,
       ];
+      // We must link the domain to a country otherwise the block is empty
+      if ($domain_id == \PTKDomain::$DEMO_DOMAIN_ID) {
+        $block_title = 'Bioland';
+      }
       $ret = [
-        'subject' => !empty($country) ? $country->name : 'Country links',
+        'subject' => $block_title,
         'content' => theme('item_list', $config),
       ];
       return $ret;
