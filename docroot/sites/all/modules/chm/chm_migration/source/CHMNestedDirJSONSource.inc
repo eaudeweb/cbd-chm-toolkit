@@ -46,7 +46,8 @@ abstract class CHMNestedDirJSONSource extends MigrateSource {
       if (is_dir($absolute_path)) {
         $this->_recursive_scan($ret, $absolute_path);
       }
-      else {
+      // Only .json files
+      else if (preg_match('/\.json$/i', $path_item)) {
         $this->debug("Reading: $absolute_path");
         if ($json = json_decode(file_get_contents($absolute_path), TRUE)) {
           if (!empty($json['url'])) {

@@ -18,7 +18,7 @@ function chm_migration_get_source_config() {
     }
   }
   else {
-    throw new Exception('Cannot read the configuration file: ' . $file);
+    drupal_set_message('Cannot read the configuration file to find potential migrations: ' . $file, 'error');
   }
   return $config;
 }
