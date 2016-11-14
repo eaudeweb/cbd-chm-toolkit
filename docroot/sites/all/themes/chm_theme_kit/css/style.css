@@ -8443,7 +8443,6 @@ a:hover {
     width: 220px;
   }
 }
-
 body.logged-in #block-chm-search-chm-search:hover .btn-search {
   right: 30px;
 }
@@ -10521,6 +10520,20 @@ body.country-portal .logo img {
 }
 #footer2 .footer-support img {
   max-height: 100px;
+}
+#footer2 .region-footer .nav li {
+  margin: 0 0 0 10px !important;
+  padding: 0;
+  display: inline;
+  float: left;
+}
+#footer2 .region-footer .nav li a {
+  margin: 0;
+  padding: 0;
+  color: #337ab7;
+}
+#footer2 .region-footer .nav li a:hover {
+  text-decoration: underline;
 }
 /* Styling related to slick slideshow */
 .view-home-page-image-slider {
