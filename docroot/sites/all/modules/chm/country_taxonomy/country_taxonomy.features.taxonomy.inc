@@ -15,7 +15,7 @@ function country_taxonomy_taxonomy_default_vocabularies() {
       'description' => 'List of countries',
       'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => 0,
+      'weight' => -10,
       'language' => 'und',
       'i18n_mode' => 1,
     ),
