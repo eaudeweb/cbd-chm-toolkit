@@ -877,6 +877,107 @@ function chm_views_views_default_views() {
     'chm_site' => 'chm_site',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
+
+  /* Display: Block */
+  $handler = $view->new_display('block', 'Block', 'block_chm_network_sites');
+  $handler->display->display_options['defaults']['use_ajax'] = FALSE;
+  $handler->display->display_options['use_ajax'] = TRUE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Entity translation: Image: translated */
+  $handler->display->display_options['fields']['field_image_et']['id'] = 'field_image_et';
+  $handler->display->display_options['fields']['field_image_et']['table'] = 'field_data_field_image';
+  $handler->display->display_options['fields']['field_image_et']['field'] = 'field_image_et';
+  $handler->display->display_options['fields']['field_image_et']['relationship'] = 'field_countries_tid';
+  $handler->display->display_options['fields']['field_image_et']['label'] = '';
+  $handler->display->display_options['fields']['field_image_et']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_image_et']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_image_et']['settings'] = array(
+    'image_style' => 'small_flag_icon',
+    'image_link' => '',
+  );
+  /* Field: Content: Body */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = '';
+  $handler->display->display_options['fields']['body']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  /* Field: Draggableviews: Content */
+  $handler->display->display_options['fields']['draggableviews']['id'] = 'draggableviews';
+  $handler->display->display_options['fields']['draggableviews']['table'] = 'node';
+  $handler->display->display_options['fields']['draggableviews']['field'] = 'draggableviews';
+  $handler->display->display_options['fields']['draggableviews']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['draggableviews']['hide_alter_empty'] = FALSE;
+  $handler->display->display_options['fields']['draggableviews']['draggableviews']['ajax'] = 1;
+  /* Field: Field: Image */
+  $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
+  $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['label'] = '';
+  $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_image']['settings'] = array(
+    'image_style' => 'thumbnail',
+    'image_link' => '',
+  );
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  /* Field: Content: Countries */
+  $handler->display->display_options['fields']['field_countries']['id'] = 'field_countries';
+  $handler->display->display_options['fields']['field_countries']['table'] = 'field_data_field_countries';
+  $handler->display->display_options['fields']['field_countries']['field'] = 'field_countries';
+  $handler->display->display_options['fields']['field_countries']['label'] = 'Country';
+  $handler->display->display_options['fields']['field_countries']['type'] = 'i18n_taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_countries']['delta_limit'] = '1';
+  $handler->display->display_options['fields']['field_countries']['delta_offset'] = '0';
+  /* Field: Field: URL */
+  $handler->display->display_options['fields']['field_url']['id'] = 'field_url';
+  $handler->display->display_options['fields']['field_url']['table'] = 'field_data_field_url';
+  $handler->display->display_options['fields']['field_url']['field'] = 'field_url';
+  $handler->display->display_options['fields']['field_url']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_url']['type'] = 'link_url';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'chm_site' => 'chm_site',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Countries (field_countries) */
+  $handler->display->display_options['filters']['field_countries_tid']['id'] = 'field_countries_tid';
+  $handler->display->display_options['filters']['field_countries_tid']['table'] = 'field_data_field_countries';
+  $handler->display->display_options['filters']['field_countries_tid']['field'] = 'field_countries_tid';
+  $handler->display->display_options['filters']['field_countries_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_countries_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_countries_tid']['expose']['operator_id'] = 'field_countries_tid_op';
+  $handler->display->display_options['filters']['field_countries_tid']['expose']['label'] = 'Country';
+  $handler->display->display_options['filters']['field_countries_tid']['expose']['operator'] = 'field_countries_tid_op';
+  $handler->display->display_options['filters']['field_countries_tid']['expose']['identifier'] = 'field_countries_tid';
+  $handler->display->display_options['filters']['field_countries_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+  );
+  $handler->display->display_options['filters']['field_countries_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_countries_tid']['vocabulary'] = 'countries';
+  $handler->display->display_options['filters']['field_countries_tid']['error_message'] = FALSE;
+  $handler->display->display_options['block_description'] = 'The CHM Network';
   $translatables['chm_sites'] = array(
     t('Master'),
     t('The CHM Network'),
@@ -891,10 +992,12 @@ function chm_views_views_default_views() {
     t('Title'),
     t('Country'),
     t('URL'),
+    t('Image: translated'),
     t('Search'),
     t('Page'),
     t('Geographical map of CHM network sites'),
     t('ISO 2-letter code'),
+    t('Block'),
   );
   $export['chm_sites'] = $view;
 
