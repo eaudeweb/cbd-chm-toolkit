@@ -675,6 +675,10 @@ function chm_views_views_default_views() {
   $handler->display->display_options['fields']['field_url']['field'] = 'field_url';
   $handler->display->display_options['fields']['field_url']['click_sort_column'] = 'url';
   $handler->display->display_options['fields']['field_url']['type'] = 'link_url';
+  /* Field: Entity translation: Image: translated */
+  $handler->display->display_options['fields']['field_image_et']['id'] = 'field_image_et';
+  $handler->display->display_options['fields']['field_image_et']['table'] = 'field_data_field_image';
+  $handler->display->display_options['fields']['field_image_et']['field'] = 'field_image_et';
   /* Sort criterion: Draggableviews: Weight */
   $handler->display->display_options['sorts']['weight']['id'] = 'weight';
   $handler->display->display_options['sorts']['weight']['table'] = 'draggableviews_structure';
