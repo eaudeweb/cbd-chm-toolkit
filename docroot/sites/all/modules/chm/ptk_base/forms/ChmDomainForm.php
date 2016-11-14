@@ -296,19 +296,19 @@ class ChmDomainForm {
             'entity_id' => $node->nid,
           ))
           ->execute();
-        switch ($page) {
-          case 'Biodiversity':
+        switch ($path) {
+          case 'biodiversity':
             PTK::showBlockOnPage('ecosystems-block', 'node/' . $node->nid);
             break;
-          case 'Strategy':
+          case 'strategy':
             PTK::showBlockOnPage('nbsap-block', 'node/' . $node->nid);
             PTK::showBlockOnPage('cbd_national_targets-targets', 'node/' . $node->nid);
             PTK::showBlockOnPage('documents-nbsaps', 'node/' . $node->nid);
             break;
-          case 'Implementation':
+          case 'implementation':
             PTK::showBlockOnPage('projects-block_listing', 'node/' . $node->nid);
             break;
-          case 'Information':
+          case 'information':
             $node->title = $page;
             $node->type = 'page';
             node_object_prepare($node);
@@ -319,10 +319,10 @@ class ChmDomainForm {
               PTK::showBlockOnPage('menu-information-menu', 'node/' . $node->nid);
             }
             break;
-          case 'Participate':
+          case 'participate':
             node_save($node);
             break;
-          case 'About us':
+          case 'about':
             $node->title = $page;
             $default_node = node_load(1);
             $node->body = $default_node->body;
