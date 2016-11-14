@@ -1582,7 +1582,7 @@ function chm_structure_strongarm() {
     'popup_agree_button_message' => 'X',
     'popup_disagree_button_message' => 'Learn more',
     'popup_info' => array(
-      'value' => '<p>By navigating through this website, you accept the use of cookies to improve your experience.</p>',
+      'value' => '<p>This website uses cookies to improve your user experience.</p>',
       'format' => 'html',
     ),
     'popup_agreed_enabled' => 0,
