@@ -30,6 +30,10 @@ class ChmFooterFollowUsBlock extends AbstractBlock {
   }
 
   public function view() {
+    return self::cacheGet(__METHOD__, array('Drupal\ptk_base\blocks\ChmFooterFollowUsBlock', 'getContent'));
+  }
+
+  public static function getContent() {
     $domain = domain_get_domain();
     $realm_name = 'domain';
     $realm_key = $domain['machine_name'];

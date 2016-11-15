@@ -18,12 +18,18 @@ class ChmFooterCountryLinksBlock extends AbstractBlock {
     ];
   }
 
+
   public function view() {
-    $domain = domain_get_domain();
-    $domain_id = $domain['domain_id'];
+    return self::cacheGet(__METHOD__, array('Drupal\ptk_base\blocks\ChmFooterCountryLinksBlock', 'getContent'));
+  }
+
+
+  public static function getContent() {
+    global $_domain;
+    $domain_id = $_domain['domain_id'];
     if ($domain_id != \PTKDomain::getDefaultDomainId()) {
       $block_title = t('Country links');
-      $country = \PTKDomain::getPortalCountry($domain);
+      $country = \PTKDomain::getPortalCountry($_domain);
       // We must link the domain to a country otherwise the block is empty
       if ($domain_id == \PTKDomain::$DEMO_DOMAIN_ID) {
         $country = \PTK::getCountryByCode('AL');
@@ -61,7 +67,7 @@ class ChmFooterCountryLinksBlock extends AbstractBlock {
         'attributes' => array('class' => ['menu', 'nav']),
         'items' => $items,
       ];
-      // We must link the domain to a country otherwise the block is empty
+      // Handle Bioland block title
       if ($domain_id == \PTKDomain::$DEMO_DOMAIN_ID) {
         $block_title = 'Bioland';
       }
@@ -73,5 +79,4 @@ class ChmFooterCountryLinksBlock extends AbstractBlock {
     }
     return '';
   }
-
 }
