@@ -70,20 +70,20 @@ class ChmContentStatisticsBlock extends AbstractBlock {
         }
       }
       ksort($rows);
-      cache_set($cache_key, $rows, 'cache', time() + $lifetime);
+      $content['rows'] = $rows;
+      $content['context'] = [
+        'hover' => FALSE,
+        'striped' => FALSE,
+      ];
+      $ret = [
+        'subject' => t('Content Statistics'),
+        'content' => theme('table', $content),
+      ];
+      cache_set($cache_key, $ret, 'cache', time() + $lifetime);
     }
     else {
-      $rows = $cache->data;
+      $ret = $cache->data;
     }
-    $content['rows'] = $rows;
-    $content['context'] = [
-      'hover' => FALSE,
-      'striped' => FALSE,
-    ];
-    $ret = [
-      'subject' => t('Content Statistics'),
-      'content' => theme('table', $content),
-    ];
     return $ret;
   }
 
