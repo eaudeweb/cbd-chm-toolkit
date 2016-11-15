@@ -1,0 +1,8 @@
+name = External service document
+description = External services document import into the instance
+package = CHM
+version = 7.x-1.0
+dependencies[] = migrate
+dependencies[] = ptk_base
+core = 7.x
+files[] = chm_service_document.migrate.inc
