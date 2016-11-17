@@ -1731,25 +1731,25 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '9',
+          'weight' => '10',
         ),
         'domain_path' => array(
-          'weight' => '11',
+          'weight' => '12',
         ),
         'locations' => array(
           'weight' => '10',
         ),
         'metatags' => array(
-          'weight' => '12',
+          'weight' => '13',
         ),
         'title' => array(
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '10',
+          'weight' => '11',
         ),
         'language' => array(
-          'weight' => '1',
+          'weight' => '0',
         ),
       ),
       'display' => array(),
