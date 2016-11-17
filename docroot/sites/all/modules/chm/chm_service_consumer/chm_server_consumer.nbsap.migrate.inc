@@ -1,24 +1,10 @@
 <?php
-/**
- * Base class for migrations.
- */
-abstract class CHMServiceDocumentMigration extends Migration {
 
-  public function __construct($arguments) {
-    parent::__construct($arguments);
-  }
-
-  function log($message) {
-    $this->currentMigration()->saveMessage($message);
-    $this->currentMigration()->displayMessage($message);
-  }
-
-}
 
 /**
- * Class for the nfp migration populating cbd_nfp node type.
+ * Class for the NBSAPs document migration into the document node type.
  */
-class CHMServiceDocumentNBSAPMigration extends CHMServiceDocumentMigration {
+class CHMServiceDocumentNBSAPMigration extends CHMServerConsumerMigration {
 
   public function __construct($arguments) {
     parent::__construct($arguments);
@@ -45,7 +31,7 @@ class CHMServiceDocumentNBSAPMigration extends CHMServiceDocumentMigration {
     $this->addFieldMapping('field_files', 'documentLinks_s');
     $this->addFieldMapping('field_files:destination_dir', 'files_destination_dir');
     $this->addFieldMapping('field_files:file_replace')->defaultValue(MigrateFile::FILE_EXISTS_REUSE);
-    
+
     $this->addFieldMapping('field_publication_date', 'startDate_s');
 
     $this->addFieldMapping('language')->defaultValue('en');
@@ -71,13 +57,9 @@ class CHMServiceDocumentNBSAPMigration extends CHMServiceDocumentMigration {
     ]);
   }
 
-  public function getDomainByCountryIso($iso) {
-    $domain = PTKDomain::getDomainByCountryISO($iso);
-    return $domain;
-  }
 
   public function prepareRow($row) {
-    
+
     $row->files_destination_dir = 'public://websites/www/documents'; // default path
 
     if ($nbsap = taxonomy_get_term_by_name('NBSAP', 'document_type')) {
@@ -86,7 +68,7 @@ class CHMServiceDocumentNBSAPMigration extends CHMServiceDocumentMigration {
     $row->document_type = $nbsap->tid;
 
     $row->startDate_s = strtotime($row->startDate_s) +  3600 * 12;// small hack (2hours timezone diffenrence
-    
+
     if ($row->documentLinks_s) {
       $row->documentLinks_s = json_decode($row->documentLinks_s);
       foreach($row->documentLinks_s as $key => $link) {
@@ -99,12 +81,13 @@ class CHMServiceDocumentNBSAPMigration extends CHMServiceDocumentMigration {
         $iso = $row->government_s;
         $row->government_s = $country->tid;
 
-        $domain = PTKDomain::getDomainByCountryISO($iso);
-        $row->domain_source = $domain['domain_id'];
-        $row->domains = array($domain['domain_id']);
-        if ($domain['machine_name']) {
-          $row->files_destination_dir = 'public://websites/' . $domain['machine_name'] . '/documents';
+        $row->domain_source = PTKDomain::$CHM_DOMAIN_ID;
+        $row->domains = array(PTKDomain::$CHM_DOMAIN_ID);
+        // Publish to any existing country portals
+        if ($domains = PTKDomain::getDomainsByCountryISO($iso)) {
+          $row->domains = array_merge($row->domains, array_map(function($d) { return $d['domain_id']; }, $domains));
         }
+        $row->files_destination_dir = 'public://websites/www/documents';
       }
       else {
         $row->government_s = NULL;
@@ -117,33 +100,20 @@ class CHMServiceDocumentNBSAPMigration extends CHMServiceDocumentMigration {
 
 
 /**
- * Migration source class for the document migration.
+ * Migration source class for the NBSAP document migration.
  */
-class CHMServiceDocumentNBSAPMigrateSource extends MigrateSource {
-
-  protected $urlPattern = NULL;
-  protected $count = NULL;
-  protected $data = array();
-  protected $currentPage = 0;
-  protected $currentCount = 0;
-  protected $pageSize = 100;
-
-
-  public function __construct($urlPattern) {
-    parent::__construct(array());
-    $this->urlPattern = $urlPattern;
-  }
+class CHMServiceDocumentNBSAPMigrateSource extends CHMServerConsumerMigrateSource {
 
   public function fields() {
     return [
       'id' => 'Remote record ID',
       'title' => 'title',
       'government_s' => 'Country ISO code',
+      'title_s' => '',
+      'document_type' => '',
+      'documentLinks_s' => '',
+      'startDate_s' => '',
     ];
-  }
-
-  public function __toString() {
-    return sprintf('Extract data from the API');
   }
 
   public function count($refresh = FALSE) {
@@ -185,66 +155,5 @@ class CHMServiceDocumentNBSAPMigrateSource extends MigrateSource {
       $this->currentCount++;
     }
     return $item;
-  }
-
-
-  /**
-   * Do whatever needs to be done to start a fresh traversal of the source data.
-   *
-   * This is always called at the start of an import, so tasks such as opening
-   * file handles, running queries, and so on should be performed here.
-   */
-  public function performRewind() {
-    $this->data = array();
-    $this->currentPage = 0;
-    $this->currentCount = 0;
-  }
-
-  static function http_request($url, $headers = array()) {
-    migrate_instrument_start(__CLASS__ . ' http_request');
-    self::log(__METHOD__ . ": $url", MigrationBase::MESSAGE_INFORMATIONAL);
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 400);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch, CURLOPT_NOBODY, 0);
-    $ret = curl_exec($ch);
-    $info = curl_getinfo($ch);
-    if ($info['http_code'] != 200) {
-      $code = $info['http_code'];
-      self::log(__METHOD__ . ": Failure ({$code}) for URL: $url", MigrationBase::MESSAGE_ERROR);
-      $ret = NULL;
-    }
-    curl_close($ch);
-    migrate_instrument_stop(__CLASS__ . ' http_request');
-    return $ret;
-  }
-
-  /**
-   * Log system for the ws_consumer_odata migrations.
-   *
-   * @param string $message
-   *   Log message
-   * @param int $severity
-   *    See MigrationBase::MESSAGE_* constants
-   */
-  static function log($message, $severity = MigrationBase::MESSAGE_INFORMATIONAL) {
-    if (function_exists('drush_log')) {
-      $status = 'status';
-      switch($severity) {
-        case MigrationBase::MESSAGE_ERROR:
-          $status = 'error';
-          break;
-        case MigrationBase::MESSAGE_WARNING:
-          $status = 'warning';
-          break;
-        case MigrationBase::MESSAGE_NOTICE:
-          $status = 'notice';
-          break;
-      }
-      drush_log($message, $status);
-    }
   }
 }

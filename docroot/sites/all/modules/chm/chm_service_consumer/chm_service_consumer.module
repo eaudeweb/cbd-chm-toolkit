@@ -13,6 +13,10 @@ function chm_service_consumer_cronapi() {
       'description' => 'Import Protected Planet areas (every 3 days)',
       'rule' => '0 0 */3 * *',
     ),
+    'chm_service_consumer_nbsap' => array(
+      'description' => 'Import NBSAP documents from SCBD (every Sunday at 08:05)',
+      'rule' => '5 8 * * 6',
+    ),
   );
 }
 
@@ -33,7 +37,7 @@ function chm_service_consumer_cron() {
 }
 
 /**
- * Implements hook_cron().
+ * Trigger protected_planet migration.
  */
 function chm_service_consumer_protected_planet() {
   module_load_include('inc', 'migrate_ui', 'migrate_ui.pages');
@@ -45,6 +49,27 @@ function chm_service_consumer_protected_planet() {
   watchdog('chm_service_consumer', 'Done @migration with result: @result',
     array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);
 }
+
+/**
+ * Trigger NBSAP migration.
+ */
+function chm_service_consumer_nbsap() {
+  module_load_include('inc', 'migrate_ui', 'migrate_ui.pages');
+  $machine_name = 'nbsap';
+  // Update Focal Point Migration.
+  $migration = Migration::getInstance($machine_name);
+
+  $migration->prepareUpdate();
+  watchdog('chm_service_consumer_nbsap', 'Starting import @migration',
+    array('@migration' => $machine_name), WATCHDOG_INFO);
+
+  $result = $migration->processImport(array('update' => TRUE));
+
+  watchdog('chm_service_consumer_nbsap', 'Done @migration with result: @result',
+    array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);
+  return '';
+}
+
 
 /**
  * Implements hook_migrate_api().
@@ -65,6 +90,11 @@ function chm_service_consumer_migrate_api() {
       'protected_areas' => [
         'class_name' => 'CHMServerConsumerPAMigrate',
         'group_name' => 'protected-planet',
+      ],
+      'nbsap' => [
+        'class_name' => 'CHMServiceDocumentNBSAPMigration',
+        'group_name' => 'cbd',
+        'urlPattern' => 'https://chm.cbd.int/api/v2013/index/select?q=realm_ss:chm+AND+schema_s:nationalReport+AND+reportType_s:B0EBAE91-9581-4BB2-9C02-52FCF9D82721',
       ],
     ],
   ];
