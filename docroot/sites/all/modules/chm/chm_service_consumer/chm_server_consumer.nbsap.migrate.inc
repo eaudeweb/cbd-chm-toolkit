@@ -34,6 +34,9 @@ class CHMServiceDocumentNBSAPMigration extends CHMServerConsumerMigration {
 
     $this->addFieldMapping('field_publication_date', 'startDate_s');
 
+    $this->addFieldMapping('field_url', 'url_ss');
+    $this->addUnmigratedDestinations(array('field_url:title', 'field_url:attributes', 'field_url:language'));
+
     $this->addFieldMapping('language')->defaultValue('en');
 
     $this->addFieldMapping('domain_site')->defaultValue(FALSE);
