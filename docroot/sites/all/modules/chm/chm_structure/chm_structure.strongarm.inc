@@ -1279,6 +1279,19 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__event_type';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 0,
+    'lock_language' => 0,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__event_type'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_settings_taxonomy_term__experience_type';
   $strongarm->value = array(
     'default_language' => 'xx-et-default',
@@ -1331,6 +1344,71 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__pa_designation_type';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 0,
+    'lock_language' => 0,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__pa_designation_type'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__pa_governing_type';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 0,
+    'lock_language' => 0,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__pa_governing_type'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__pa_iucn_category';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 0,
+    'lock_language' => 0,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__pa_iucn_category'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__pa_owner_type';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 0,
+    'lock_language' => 0,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__pa_owner_type'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__pa_status';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 0,
+    'lock_language' => 0,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__pa_status'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_settings_taxonomy_term__person_type';
   $strongarm->value = array(
     'default_language' => 'xx-et-default',
@@ -1357,6 +1435,19 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__planning_item_type';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 0,
+    'lock_language' => 0,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__planning_item_type'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_settings_taxonomy_term__project_status';
   $strongarm->value = array(
     'default_language' => 'xx-et-default',
@@ -1379,6 +1470,19 @@ function chm_structure_strongarm() {
     'shared_fields_original_only' => 0,
   );
   $export['entity_translation_settings_taxonomy_term__project_type'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__question_category';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 0,
+    'lock_language' => 0,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__question_category'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1582,7 +1686,7 @@ function chm_structure_strongarm() {
     'popup_agree_button_message' => 'X',
     'popup_disagree_button_message' => 'Learn more',
     'popup_info' => array(
-      'value' => '<p>By navigating through this website, you accept the use of cookies to improve your experience.</p>',
+      'value' => '<p>This website uses cookies to improve your user experience.</p>',
       'format' => 'html',
     ),
     'popup_agreed_enabled' => 0,
@@ -1702,16 +1806,16 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '6',
+          'weight' => '7',
         ),
         'domain_path' => array(
-          'weight' => '8',
-        ),
-        'metatags' => array(
           'weight' => '9',
         ),
+        'metatags' => array(
+          'weight' => '10',
+        ),
         'path' => array(
-          'weight' => '7',
+          'weight' => '8',
         ),
         'language' => array(
           'weight' => '0',
@@ -1731,25 +1835,25 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '9',
+          'weight' => '10',
         ),
         'domain_path' => array(
-          'weight' => '11',
+          'weight' => '12',
         ),
         'locations' => array(
           'weight' => '10',
         ),
         'metatags' => array(
-          'weight' => '12',
+          'weight' => '13',
         ),
         'title' => array(
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '10',
+          'weight' => '11',
         ),
         'language' => array(
-          'weight' => '1',
+          'weight' => '0',
         ),
       ),
       'display' => array(),
@@ -2032,19 +2136,19 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '8',
+          'weight' => '7',
         ),
         'domain_path' => array(
-          'weight' => '11',
+          'weight' => '10',
         ),
         'metatags' => array(
-          'weight' => '10',
+          'weight' => '9',
         ),
         'title' => array(
           'weight' => '1',
         ),
         'path' => array(
-          'weight' => '12',
+          'weight' => '11',
         ),
         'language' => array(
           'weight' => '0',
@@ -2074,16 +2178,16 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '7',
+          'weight' => '8',
         ),
         'domain_path' => array(
-          'weight' => '9',
-        ),
-        'metatags' => array(
           'weight' => '10',
         ),
+        'metatags' => array(
+          'weight' => '11',
+        ),
         'path' => array(
-          'weight' => '8',
+          'weight' => '9',
         ),
         'language' => array(
           'weight' => '0',
