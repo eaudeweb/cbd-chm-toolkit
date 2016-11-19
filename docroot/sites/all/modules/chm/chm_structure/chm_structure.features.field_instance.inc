@@ -3046,6 +3046,51 @@ function chm_structure_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-event-field_contact_persons'.
+  $field_instances['node-event-field_contact_persons'] = array(
+    'bundle' => 'event',
+    'default_value' => array(),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 17,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_contact_persons',
+    'label' => 'Contact persons',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'apply_chosen' => '',
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete_tags',
+      'weight' => 15,
+    ),
+  );
+
   // Exported field_instance: 'node-event-field_countries'.
   $field_instances['node-event-field_countries'] = array(
     'bundle' => 'event',
@@ -3508,7 +3553,7 @@ function chm_structure_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 15,
+      'weight' => 13,
     ),
   );
 
@@ -3549,6 +3594,50 @@ function chm_structure_field_default_field_instances() {
       ),
       'type' => 'options_select',
       'weight' => 14,
+    ),
+  );
+
+  // Exported field_instance: 'node-event-field_organizers'.
+  $field_instances['node-event-field_organizers'] = array(
+    'bundle' => 'event',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 16,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_organizers',
+    'label' => 'Organizers',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete_tags',
+      'weight' => 16,
     ),
   );
 
@@ -10835,6 +10924,7 @@ function chm_structure_field_default_field_instances() {
   t('Category');
   t('City');
   t('Class');
+  t('Contact persons');
   t('Countries');
   t('Country');
   t('Date when the news is set to expire, after this date the content is removed from listings, front-page etc.');
@@ -10891,6 +10981,7 @@ function chm_structure_field_default_field_instances() {
   t('Organization acronym');
   t('Organization name');
   t('Organizations');
+  t('Organizers');
   t('Owner type');
   t('Person');
   t('Phone number');

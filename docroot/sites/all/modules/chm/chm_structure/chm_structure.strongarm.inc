@@ -1874,22 +1874,22 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '10',
+          'weight' => '12',
         ),
         'domain_path' => array(
-          'weight' => '12',
+          'weight' => '14',
         ),
         'locations' => array(
           'weight' => '10',
         ),
         'metatags' => array(
-          'weight' => '13',
+          'weight' => '15',
         ),
         'title' => array(
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '11',
+          'weight' => '13',
         ),
         'language' => array(
           'weight' => '0',
@@ -1960,22 +1960,22 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '12',
+          'weight' => '20',
         ),
         'domain_path' => array(
-          'weight' => '14',
+          'weight' => '18',
         ),
         'locations' => array(
           'weight' => '11',
         ),
         'metatags' => array(
-          'weight' => '15',
+          'weight' => '19',
         ),
         'title' => array(
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '13',
+          'weight' => '17',
         ),
         'language' => array(
           'weight' => '0',
