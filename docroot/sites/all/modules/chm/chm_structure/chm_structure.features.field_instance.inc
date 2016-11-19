@@ -4064,7 +4064,7 @@ function chm_structure_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_url',
-    'label' => 'Related URL',
+    'label' => 'Source URL',
     'required' => 0,
     'settings' => array(
       'absolute_url' => 1,
@@ -4072,14 +4072,14 @@ function chm_structure_field_default_field_instances() {
         'class' => '',
         'configurable_class' => 0,
         'configurable_title' => 0,
-        'rel' => '',
+        'rel' => 'nofollow',
         'target' => '_blank',
         'title' => '',
       ),
       'display' => array(
         'url_cutoff' => 80,
       ),
-      'enable_tokens' => 1,
+      'enable_tokens' => 0,
       'entity_translation_sync' => FALSE,
       'rel_remove' => 'default',
       'title' => 'none',
@@ -4088,7 +4088,7 @@ function chm_structure_field_default_field_instances() {
       'title_value' => '',
       'url' => 0,
       'user_register_form' => FALSE,
-      'validate_url' => 1,
+      'validate_url' => 0,
     ),
     'widget' => array(
       'active' => 0,
@@ -6033,7 +6033,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 3,
+      'weight' => 2,
     ),
   );
 
@@ -6190,7 +6190,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 2,
+      'weight' => 0,
     ),
   );
 
@@ -11322,7 +11322,6 @@ function chm_structure_field_default_field_instances() {
   t('Reference URL to the news source');
   t('Reference number');
   t('Reference to content');
-  t('Related URL');
   t('Results');
   t('Role');
   t('Role(s)');
