@@ -790,7 +790,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['fields']['field_iso_code']['id'] = 'field_iso_code';
   $handler->display->display_options['fields']['field_iso_code']['table'] = 'field_data_field_iso_code';
   $handler->display->display_options['fields']['field_iso_code']['field'] = 'field_iso_code';
-  $handler->display->display_options['fields']['field_iso_code']['relationship'] = 'field_countries_tid';
+  $handler->display->display_options['fields']['field_iso_code']['relationship'] = 'field_government_tid';
   $handler->display->display_options['fields']['field_iso_code']['label'] = 'ISO 2-letter code';
   $handler->display->display_options['fields']['field_iso_code']['exclude'] = TRUE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
