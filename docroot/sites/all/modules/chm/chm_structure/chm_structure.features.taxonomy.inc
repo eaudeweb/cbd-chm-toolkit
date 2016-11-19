@@ -69,6 +69,16 @@ function chm_structure_taxonomy_default_vocabularies() {
       'language' => 'und',
       'i18n_mode' => 1,
     ),
+    'chm_site_status' => array(
+      'name' => 'CHM site status',
+      'machine_name' => 'chm_site_status',
+      'description' => '',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
+    ),
     'document_type' => array(
       'name' => 'Document type',
       'machine_name' => 'document_type',
