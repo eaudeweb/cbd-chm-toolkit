@@ -2040,16 +2040,16 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '4',
+          'weight' => '5',
         ),
         'domain_path' => array(
-          'weight' => '6',
-        ),
-        'metatags' => array(
           'weight' => '7',
         ),
+        'metatags' => array(
+          'weight' => '8',
+        ),
         'path' => array(
-          'weight' => '5',
+          'weight' => '6',
         ),
         'language' => array(
           'weight' => '0',

@@ -216,6 +216,7 @@ features[field_instance][] = node-fact-field_url
 features[field_instance][] = node-fact-title_field
 features[field_instance][] = node-faq-body
 features[field_instance][] = node-faq-field_question_category
+features[field_instance][] = node-faq-field_url
 features[field_instance][] = node-faq-title_field
 features[field_instance][] = node-gallery-body
 features[field_instance][] = node-gallery-field_countries
