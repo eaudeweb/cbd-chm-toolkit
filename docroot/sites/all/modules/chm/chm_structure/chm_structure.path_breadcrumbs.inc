@@ -628,6 +628,5 @@ function chm_structure_path_breadcrumbs_settings_info() {
   $path_breadcrumb->weight = 0;
   $export['detail_video'] = $path_breadcrumb;
 
-
   return $export;
 }

@@ -2,7 +2,11 @@
 
 namespace Drupal\ptk_base\blocks;
 
+use Drupal\ptk_base\DomainAwareCacheableTrait;
+
 abstract class AbstractBlock {
+
+  use DomainAwareCacheableTrait;
 
   protected $delta;
 

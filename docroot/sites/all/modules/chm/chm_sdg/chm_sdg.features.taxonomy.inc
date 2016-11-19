@@ -15,7 +15,7 @@ function chm_sdg_taxonomy_default_vocabularies() {
       'description' => 'The list of 17 sustainable development goals',
       'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => 0,
+      'weight' => -8,
       'language' => 'und',
       'i18n_mode' => 1,
     ),
