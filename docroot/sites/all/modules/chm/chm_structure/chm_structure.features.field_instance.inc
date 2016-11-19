@@ -5832,7 +5832,59 @@ function chm_structure_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 6,
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance: 'node-person-field_facebook_url'.
+  $field_instances['node-person-field_facebook_url'] = array(
+    'bundle' => 'person',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_default',
+        'weight' => 8,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_facebook_url',
+    'label' => 'Facebook URL',
+    'required' => 0,
+    'settings' => array(
+      'absolute_url' => 1,
+      'attributes' => array(
+        'class' => '',
+        'configurable_class' => 0,
+        'configurable_title' => 0,
+        'rel' => 'nofollow',
+        'target' => '_blank',
+        'title' => '',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 0,
+      'entity_translation_sync' => FALSE,
+      'rel_remove' => 'default',
+      'title' => 'none',
+      'title_label_use_field_label' => 0,
+      'title_maxlength' => 128,
+      'title_value' => '',
+      'url' => 0,
+      'user_register_form' => FALSE,
+      'validate_url' => 0,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'link',
+      'settings' => array(),
+      'type' => 'link_field',
+      'weight' => 9,
     ),
   );
 
@@ -5867,7 +5919,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 3,
+      'weight' => 1,
     ),
   );
 
@@ -5946,7 +5998,7 @@ function chm_structure_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 7,
+      'weight' => 6,
     ),
   );
 
@@ -5981,7 +6033,59 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 4,
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance: 'node-person-field_linkedin_url'.
+  $field_instances['node-person-field_linkedin_url'] = array(
+    'bundle' => 'person',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_default',
+        'weight' => 7,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_linkedin_url',
+    'label' => 'LinkedIn URL',
+    'required' => 0,
+    'settings' => array(
+      'absolute_url' => 1,
+      'attributes' => array(
+        'class' => '',
+        'configurable_class' => 0,
+        'configurable_title' => 0,
+        'rel' => 'nofollow',
+        'target' => '_blank',
+        'title' => '',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 0,
+      'entity_translation_sync' => FALSE,
+      'rel_remove' => 'default',
+      'title' => 'none',
+      'title_label_use_field_label' => 0,
+      'title_maxlength' => 128,
+      'title_value' => '',
+      'url' => 0,
+      'user_register_form' => FALSE,
+      'validate_url' => 0,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'link',
+      'settings' => array(),
+      'type' => 'link_field',
+      'weight' => 8,
     ),
   );
 
@@ -6013,7 +6117,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 5,
+      'weight' => 4,
     ),
   );
 
@@ -6051,7 +6155,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'field_collection',
       'settings' => array(),
       'type' => 'field_collection_embed',
-      'weight' => 12,
+      'weight' => 7,
     ),
   );
 
