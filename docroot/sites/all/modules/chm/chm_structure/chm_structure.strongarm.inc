@@ -1874,22 +1874,22 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '12',
+          'weight' => '13',
         ),
         'domain_path' => array(
-          'weight' => '14',
+          'weight' => '15',
         ),
         'locations' => array(
           'weight' => '10',
         ),
         'metatags' => array(
-          'weight' => '15',
+          'weight' => '16',
         ),
         'title' => array(
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '13',
+          'weight' => '14',
         ),
         'language' => array(
           'weight' => '0',
