@@ -2008,22 +2008,22 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '5',
+          'weight' => '8',
         ),
         'domain_path' => array(
-          'weight' => '8',
+          'weight' => '10',
         ),
         'locations' => array(
           'weight' => '8',
         ),
         'metatags' => array(
-          'weight' => '9',
+          'weight' => '11',
         ),
         'path' => array(
-          'weight' => '7',
+          'weight' => '9',
         ),
         'language' => array(
-          'weight' => '6',
+          'weight' => '0',
         ),
       ),
       'display' => array(),
