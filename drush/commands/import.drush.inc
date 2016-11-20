@@ -16,6 +16,13 @@ function import_drush_command() {
       'path' => 'Path to excel file',
     ),
   );
+  $items['import-gef-countrycodes'] = array(
+    'description' => 'Assign GEF country codes to each country',
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'examples' => array(
+      'drush import-gef-countrycodes' => 'Assign all countries',
+    ),
+  );
   return $items;
 }
 
@@ -100,4 +107,19 @@ function import_drush_create_chm_site($item) {
   node_object_prepare($node);
   node_save($node);
   drush_log('Adding: ' . $node_attributes['title'], 'ok');
+}
+
+function drush_import_gef_countrycodes() {
+  require_once dirname(__FILE__) . '/_gef_countries.inc';
+  global $gef_country_codes;
+  foreach ($gef_country_codes as $name => $gef_id) {
+    if ($cid = PTK::getCountryByName($name)) {
+      $country = taxonomy_term_load($cid);
+      $country->field_gef_id[LANGUAGE_NONE][0]['value'] = $gef_id;
+      taxonomy_term_save($country);
+    }
+    else {
+      drush_log('Missing country: ' . $name, 'warn');
+    }
+  }
 }
