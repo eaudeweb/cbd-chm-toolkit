@@ -1,6 +1,7 @@
 <?php
 
 require_once dirname(__FILE__) . '/ptk_base.inc';
+require_once dirname(__FILE__) . '/ptk_base.cache.inc';
 require_once dirname(__FILE__) . '/ptk_base.domain.inc';
 require_once dirname(__FILE__) . '/blocks/AbstractBlock.php';
 require_once dirname(__FILE__) . '/blocks/ChmContentStatisticsBlock.php';

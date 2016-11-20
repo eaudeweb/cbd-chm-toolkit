@@ -19,6 +19,10 @@ class ChmFooterQuickLinksBlock extends AbstractBlock {
   }
 
   public function view() {
+    return self::cacheGet(__METHOD__, array('Drupal\ptk_base\blocks\ChmFooterQuickLinksBlock', 'getContent'));
+  }
+
+  public static function getContent() {
     $domain = domain_get_domain();
     if ($domain['domain_id'] != \PTKDomain::getDefaultDomainId()) {
       $items = [];

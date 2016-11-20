@@ -18,18 +18,25 @@ class ChmContentStatisticsBlock extends AbstractBlock {
     ];
   }
 
+
   public function view() {
+    return self::cacheGet(__METHOD__, array('Drupal\ptk_base\blocks\ChmContentStatisticsBlock', 'getContent'));
+  }
+
+  public static function getContent() {
     global $_domain;
+    $domain_id = $_domain['domain_id'];
     $types = node_type_get_types();
     $domain_nids = db_select('domain_access', 'da')
       ->fields('da', ['nid'])
       ->condition('realm', 'domain_id')
-      ->condition('da.gid', $_domain['domain_id'])
+      ->condition('da.gid', $domain_id)
       ->execute()->fetchCol();
     $q = db_select('node', 'n')->fields('n', ['type']);
     if (!empty($domain_nids)) {
       $q->condition('n.nid', $domain_nids, 'IN');
-    } else {
+    }
+    else {
       $q->condition('n.nid', -1);
     }
     $q->groupBy('n.type');
@@ -40,16 +47,17 @@ class ChmContentStatisticsBlock extends AbstractBlock {
       'rows' => [],
       'header' => [],
     ];
+    $delta = 'chm_content_statistics';
     $rows = array();
     foreach ($types as $machine_name => $type) {
-      $hide = variable_get($this->delta . '_' . $machine_name . '_hide', 0);
+      $hide = variable_get($delta . '_' . $machine_name . '_hide', 0);
       if (empty($hide) && !empty($count[$machine_name])) {
         $c = $count[$machine_name];
-        $url = variable_get("{$this->delta}_{$machine_name}_url");
-        $icon = variable_get("{$this->delta}_{$machine_name}_icon");
-        $singular = variable_get("{$this->delta}_{$machine_name}_singular");
-        $plural = variable_get("{$this->delta}_{$machine_name}_plural");
-        $weight = variable_get("{$this->delta}_{$machine_name}_weight");
+        $url = variable_get("{$delta}_{$machine_name}_url");
+        $icon = variable_get("{$delta}_{$machine_name}_icon");
+        $singular = variable_get("{$delta}_{$machine_name}_singular");
+        $plural = variable_get("{$delta}_{$machine_name}_plural");
+        $weight = variable_get("{$delta}_{$machine_name}_weight");
         $label = $c . ' ' . format_plural($c, !empty($singular) ? $singular : $type->name, !empty($plural) ? $plural : $type->name);
         if (!empty($url)) {
           if (arg(0) != $url) {

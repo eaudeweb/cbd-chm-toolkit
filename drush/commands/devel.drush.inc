@@ -25,6 +25,25 @@ function devel_drush_command() {
   return $items;
 }
 
+function _drush_devel_update_solr_path() {
+  if (module_exists('search_api')) {
+    $entity_type = 'search_api_server';
+    $servers = entity_load($entity_type, false);
+    foreach($servers as $server) {
+      if ($server->class == 'search_api_solr_service') {
+        $options_path = trim($server->options['path']);
+        if (substr($options_path, -5) == '-prod') {
+          $server->options['path'] = str_replace('-prod', '-test', $options_path);
+          entity_save($entity_type, $server);
+          $msg = t('Updating Solr server path from !from to !to', array('!from' => $options_path, '!to' => $server->options['path']));
+          drupal_set_message($msg);
+          drush_log($msg, 'ok');
+        }
+      }
+    }
+  }
+}
+
 function _drush_prepare_dev() {
   $env = variable_get('environment');
   if ($env != 'dev') {
@@ -52,6 +71,7 @@ function _drush_prepare_dev() {
   }
   variable_set('eu_cookie_compliance_domain', 'local.ro');
   variable_set('error_level', '2');
+  _drush_devel_update_solr_path();
   drush_invoke_process('@self', 'sql-sanitize');
 }
 
@@ -102,6 +122,7 @@ function _drush_prepare_test() {
     }
   }
 
+  _drush_devel_update_solr_path();
   _drush_chm_create_test_domains();
 }
 
