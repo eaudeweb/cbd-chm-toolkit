@@ -21,12 +21,10 @@ function import_drush_command() {
 
 function _drush_prepare_import_chm_sites($path = NULL) {
   if (!file_exists($path)) {
-    drupal_set_message(t('File !path not exists!', array('!path'=>$path)), 'error');
+    drupal_set_message(t('File !path does not exists!', array('!path'=>$path)), 'error');
     return ;
   }
   libraries_load('PHPExcel');
-  // Create new PHPExcel object
-  $objPHPExcel = new \PHPExcel();
   //  Read your Excel workbook
   try {
     $inputFileType = PHPExcel_IOFactory::identify($path);
@@ -54,7 +52,6 @@ function _drush_prepare_import_chm_sites($path = NULL) {
 
   $items = array();
   for ($row = 2; $row <= $highestRow; $row++) {
-    $total++;
     $item = array();
     foreach($headers as $col => $header) {
       $value = $objWorksheet->getCellByColumnAndRow($col, $row)->getValue();
@@ -101,5 +98,5 @@ function import_drush_create_chm_site($item) {
   $node = (object) $node_attributes;
   node_object_prepare($node);
   node_save($node);
-  drupal_set_message('Adding: ' . $node_attributes['title']);
+  drush_log('Adding: ' . $node_attributes['title'], 'ok');
 }
