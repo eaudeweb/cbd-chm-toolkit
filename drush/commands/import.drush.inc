@@ -84,17 +84,18 @@ function import_drush_create_chm_site($item) {
     'field_url' => ['en' => [0 => ['url' => $item['country_chm_web']]]],
   );
 
-  $country = PTK::getCountryByCode($item['country_code']);
-  if (!empty($country)) {
-    $node_attributes['field_countries'] = [LANGUAGE_NONE => [0 => ['tid' => $country->tid]]];
+  if ($status_tid = PTK::getOrCreateTermIdByName($item['country_chm_status'], 'chm_site_status', false)) {
+    $node_attributes['field_chm_site_status'] = [LANGUAGE_NONE => [0 => ['tid' => $status_tid]]];
+  }
+  if ($country = PTK::getCountryByCode($item['country_code'])) {
+    $node_attributes['field_government'] = [LANGUAGE_NONE => [0 => ['tid' => $country->tid]]];
   }
   else {
     drush_log('Missing country: ' . $item['country_code'], 'warn');
     drupal_set_message('Missing country: ' . $item['country_code'], 'error');
     return ;
   }
-
-  $node_attributes['title'] = 'CHM ' . $country->name;
+  $node_attributes['title'] = $country->name;
   $node = (object) $node_attributes;
   node_object_prepare($node);
   node_save($node);

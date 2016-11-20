@@ -278,4 +278,33 @@ class PTK {
       return FALSE;
     }
   }
+
+
+  static function getOrCreateTermIdByName($name, $machine_name, $create = TRUE) {
+    $voc = taxonomy_vocabulary_machine_name_load($machine_name);
+    /** @var SelectQuery $query */
+    $query = db_select('taxonomy_term_data', 'a')
+      ->fields('a', array('tid'))
+      ->condition('vid', $voc->vid)
+      ->condition('name', $name);
+    if ($tid = $query->execute()->fetchField()) {
+      return $tid;
+    }
+    else {
+      if (!$create) {
+        return NULL;
+      }
+      // Create the term
+      $term = new stdClass();
+      $term->language = 'en';
+      $term->vid = $voc->vid;
+      $term->name = $name;
+      $term->name_field['en'][0]['value'] = $name;
+      taxonomy_term_save($term);
+      if (!empty($term->tid)) {
+        return $term->tid;
+      }
+      return NULL;
+    }
+  }
 }
