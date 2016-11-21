@@ -19,16 +19,6 @@ function chm_structure_taxonomy_default_vocabularies() {
       'language' => 'und',
       'i18n_mode' => 1,
     ),
-    'administrative_level' => array(
-      'name' => 'Coverage level',
-      'machine_name' => 'administrative_level',
-      'description' => '',
-      'hierarchy' => 0,
-      'module' => 'taxonomy',
-      'weight' => 0,
-      'language' => 'und',
-      'i18n_mode' => 1,
-    ),
     'aichi_biodiversity_targets' => array(
       'name' => 'Aichi Biodiversity Targets',
       'machine_name' => 'aichi_biodiversity_targets',
@@ -72,6 +62,16 @@ function chm_structure_taxonomy_default_vocabularies() {
     'chm_site_status' => array(
       'name' => 'CHM site status',
       'machine_name' => 'chm_site_status',
+      'description' => '',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
+    ),
+    'coverage_level' => array(
+      'name' => 'Coverage level',
+      'machine_name' => 'coverage_level',
       'description' => '',
       'hierarchy' => 0,
       'module' => 'taxonomy',
