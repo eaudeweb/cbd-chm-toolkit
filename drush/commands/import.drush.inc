@@ -23,6 +23,16 @@ function import_drush_command() {
       'drush import-gef-countrycodes' => 'Assign all countries',
     ),
   );
+  $items['import-subjects'] = array(
+    'description' => 'Import subjects taxonomy from Excel file',
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'examples' => array(
+      'drush import-subjects /path/to/excel/file' => 'Import new terms and update existing ones',
+    ),
+    'arguments' => array(
+      'path' => 'Path to the Excel file',
+    ),
+  );
   return $items;
 }
 
@@ -122,4 +132,88 @@ function drush_import_gef_countrycodes() {
       drush_log('Missing country: ' . $name, 'warn');
     }
   }
+}
+
+function drush_import_subjects($path = NULL) {
+  if (!file_exists($path)) {
+    drupal_set_message(t('File !path does not exists!', array('!path'=>$path)), 'error');
+    return ;
+  }
+  libraries_load('PHPExcel');
+  //  Read your Excel workbook
+  try {
+    $inputFileType = PHPExcel_IOFactory::identify($path);
+    $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+    $objPHPExcel = $objReader->load($path);
+  } catch(Exception $e) {
+    drupal_set_message('Error loading file "'.pathinfo($path, PATHINFO_BASENAME).'": '.$e->getMessage(), 'error');
+    return ;
+  }
+
+  $sheet = $objPHPExcel->getSheet(0);
+  $highestRow = $sheet->getHighestRow();
+  $highestColumn = $sheet->getHighestColumn();
+  $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($highestColumn);
+  $objWorksheet = $objPHPExcel->setActiveSheetIndexbyName('Subjects');
+
+  // header names
+  $headers = array();
+  for ($col = 0; $col <= $highestColumnIndex; ++$col) {
+    $value = $objWorksheet->getCellByColumnAndRow($col, 1)->getValue();
+    if ($value) {
+      $headers[$col] = $value;
+    }
+  }
+
+  $items = array();
+  for ($row = 2; $row <= $highestRow; $row++) {
+    $item = array();
+    foreach($headers as $col => $header) {
+      $value = $objWorksheet->getCellByColumnAndRow($col, $row)->getValue();
+      $item[$header] = $value;
+    }
+    if (!$item['term']) {
+      continue;
+    }
+    $items[] = $item;
+  }
+
+  $voc = taxonomy_vocabulary_machine_name_load('subject');
+  foreach ($items as $item) {
+    $name = $item['term'];
+    if ($tid = PTK::getOrCreateTermIdByName($name, $voc->machine_name, FALSE)) {
+      $term = taxonomy_term_load($tid);
+    }
+    else {
+      // Create the term
+      $term = new stdClass();
+      $term->language = 'en';
+      $term->vid = $voc->vid;
+      $term->name = $name;
+      $term->name_field['en'][0]['value'] = $name;
+    }
+    if (!empty($item['cbd_code'])) {
+      $term->field_cbd_code[LANGUAGE_NONE][0]['value'] = $item['cbd_code'];
+    }
+    if (!empty($item['cbd_json_id'])) {
+      $term->field_cbd_json_id[LANGUAGE_NONE][0]['value'] = $item['cbd_json_id'];
+    }
+    if (!empty($item['nbsap_forum_id'])) {
+      $term->field_nbsap_forum_id[LANGUAGE_NONE][0]['value'] = $item['nbsap_forum_id'];
+    }
+    if (!empty($item['nbsap_forum_url'])) {
+      var_dump($item);
+      $term->field_nbsap_forum_url[LANGUAGE_NONE][0]['url'] = $item['nbsap_forum_url'];
+    }
+
+    if (!empty($item['leo_term'])) {
+      $term->field_leo_term_ids[LANGUAGE_NONE][0]['value'] = $item['leo_term'];
+    }
+    if (!empty($item['leo_term2'])) {
+      $term->field_leo_term_ids[LANGUAGE_NONE][1]['value'] = $item['leo_term2'];
+    }
+    taxonomy_term_save($term);
+  }
+  $total = count($items);
+  drupal_set_message("Total = $total");
 }

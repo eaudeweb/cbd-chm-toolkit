@@ -20,6 +20,7 @@ translation authors keep things up-to-date.
 ### Added
 - Add new taxonomy subjects
 - Add new field_subjects to document, event, news, fact, organization, project, video, link
+- Add new drush command to populate the 'Subjects' taxonomy
 
 ## [0.1.0] - 2016-11-20
 ### Changes
