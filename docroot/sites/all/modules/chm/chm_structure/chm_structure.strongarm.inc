@@ -1643,6 +1643,19 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__subject';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__subject'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_settings_taxonomy_term__taxonomy_nfp_type';
   $strongarm->value = array(
     'default_language' => 'xx-et-default',
@@ -1874,22 +1887,22 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '13',
+          'weight' => '14',
         ),
         'domain_path' => array(
-          'weight' => '15',
+          'weight' => '16',
         ),
         'locations' => array(
           'weight' => '10',
         ),
         'metatags' => array(
-          'weight' => '16',
+          'weight' => '17',
         ),
         'title' => array(
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '14',
+          'weight' => '15',
         ),
         'language' => array(
           'weight' => '0',
@@ -1960,22 +1973,22 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '20',
+          'weight' => '21',
         ),
         'domain_path' => array(
-          'weight' => '18',
+          'weight' => '19',
         ),
         'locations' => array(
           'weight' => '11',
         ),
         'metatags' => array(
-          'weight' => '19',
+          'weight' => '20',
         ),
         'title' => array(
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '17',
+          'weight' => '18',
         ),
         'language' => array(
           'weight' => '0',
@@ -2008,19 +2021,19 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '8',
+          'weight' => '9',
         ),
         'domain_path' => array(
-          'weight' => '10',
+          'weight' => '11',
         ),
         'locations' => array(
           'weight' => '8',
         ),
         'metatags' => array(
-          'weight' => '11',
+          'weight' => '12',
         ),
         'path' => array(
-          'weight' => '9',
+          'weight' => '10',
         ),
         'language' => array(
           'weight' => '0',
@@ -2130,19 +2143,19 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '2',
-        ),
-        'domain_path' => array(
           'weight' => '5',
         ),
-        'metatags' => array(
+        'domain_path' => array(
           'weight' => '6',
         ),
+        'metatags' => array(
+          'weight' => '7',
+        ),
         'path' => array(
-          'weight' => '4',
+          'weight' => '8',
         ),
         'language' => array(
-          'weight' => '3',
+          'weight' => '0',
         ),
       ),
       'display' => array(),
@@ -2175,19 +2188,19 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '7',
+          'weight' => '13',
         ),
         'domain_path' => array(
-          'weight' => '10',
+          'weight' => '14',
         ),
         'metatags' => array(
-          'weight' => '9',
+          'weight' => '15',
         ),
         'title' => array(
           'weight' => '1',
         ),
         'path' => array(
-          'weight' => '11',
+          'weight' => '16',
         ),
         'language' => array(
           'weight' => '0',
@@ -2217,16 +2230,16 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '10',
+          'weight' => '11',
         ),
         'domain_path' => array(
-          'weight' => '12',
-        ),
-        'metatags' => array(
           'weight' => '13',
         ),
+        'metatags' => array(
+          'weight' => '14',
+        ),
         'path' => array(
-          'weight' => '11',
+          'weight' => '12',
         ),
         'language' => array(
           'weight' => '0',
@@ -2365,16 +2378,16 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '14',
-        ),
-        'domain_path' => array(
-          'weight' => '16',
-        ),
-        'metatags' => array(
           'weight' => '17',
         ),
+        'domain_path' => array(
+          'weight' => '18',
+        ),
+        'metatags' => array(
+          'weight' => '19',
+        ),
         'path' => array(
-          'weight' => '15',
+          'weight' => '20',
         ),
         'language' => array(
           'weight' => '0',
@@ -2529,13 +2542,13 @@ function chm_structure_strongarm() {
           'weight' => '7',
         ),
         'domain_path' => array(
-          'weight' => '5',
+          'weight' => '8',
         ),
         'metatags' => array(
-          'weight' => '6',
+          'weight' => '9',
         ),
         'path' => array(
-          'weight' => '4',
+          'weight' => '10',
         ),
         'language' => array(
           'weight' => '0',
@@ -2650,6 +2663,29 @@ function chm_structure_strongarm() {
     ),
   );
   $export['field_bundle_settings_taxonomy_term__species_redlist_status'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_taxonomy_term__subject';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'metatags' => array(
+          'weight' => '8',
+        ),
+        'path' => array(
+          'weight' => '9',
+        ),
+        'language' => array(
+          'weight' => '0',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_taxonomy_term__subject'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -3386,6 +3422,13 @@ function chm_structure_strongarm() {
   $strongarm->name = 'metatag_enable_taxonomy_term__species_redlist_status';
   $strongarm->value = 1;
   $export['metatag_enable_taxonomy_term__species_redlist_status'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'metatag_enable_taxonomy_term__subject';
+  $strongarm->value = TRUE;
+  $export['metatag_enable_taxonomy_term__subject'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
