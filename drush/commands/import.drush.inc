@@ -198,6 +198,9 @@ function drush_import_subjects($path = NULL) {
     if (!empty($item['cbd_json_id'])) {
       $term->field_cbd_json_id[LANGUAGE_NONE][0]['value'] = $item['cbd_json_id'];
     }
+    if (!empty($item['aichi_target'])) {
+      $term->field_aichi_target_number[LANGUAGE_NONE][0]['value'] = $item['aichi_target'];
+    }
     if (!empty($item['nbsap_forum_id'])) {
       $term->field_nbsap_forum_id[LANGUAGE_NONE][0]['value'] = $item['nbsap_forum_id'];
     }
