@@ -383,7 +383,7 @@ function chm_structure_taxonomy_default_vocabularies() {
       'name' => 'Subjects',
       'machine_name' => 'subject',
       'description' => '',
-      'hierarchy' => 0,
+      'hierarchy' => 1,
       'module' => 'taxonomy',
       'weight' => 0,
       'language' => 'und',
