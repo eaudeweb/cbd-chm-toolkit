@@ -202,7 +202,6 @@ function drush_import_subjects($path = NULL) {
       $term->field_nbsap_forum_id[LANGUAGE_NONE][0]['value'] = $item['nbsap_forum_id'];
     }
     if (!empty($item['nbsap_forum_url'])) {
-      var_dump($item);
       $term->field_nbsap_forum_url[LANGUAGE_NONE][0]['url'] = $item['nbsap_forum_url'];
     }
 
