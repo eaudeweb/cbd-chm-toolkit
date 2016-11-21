@@ -440,7 +440,6 @@ features[path_breadcrumbs][] = detail_project
 features[path_breadcrumbs][] = detail_protected_area
 features[path_breadcrumbs][] = detail_species
 features[path_breadcrumbs][] = detail_video
-features[path_breadcrumbs][] = search_page
 features[slick_optionset][] = sidebar
 features[taxonomy][] = activity_type
 features[taxonomy][] = administrative_level
