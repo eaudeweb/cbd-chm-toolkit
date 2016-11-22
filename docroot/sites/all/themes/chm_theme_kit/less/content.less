@@ -22,8 +22,8 @@ h2.pane-title {
       margin-right: 0;
     }
     .views-field.views-field-field-image .field-content{
-      float:left;
-      margin-right: 20px;
+      float:right;
+      margin-left: 20px;
       [dir="rtl"] &{
         float:right;
         margin-right: auto;
@@ -36,11 +36,12 @@ h2.pane-title {
       color: #999;
     }
     .views-field.views-field-body{
-      clear: both;
+      //clear: both;
       margin-bottom: 1em;
     }
   }
 }
+
 #block-ptk-base-chm-content-statistics {
   &:extend(.well);
   .table-responsive, tr, td {
@@ -52,7 +53,7 @@ h2.pane-title {
     }
     td {
       padding: .5em 0;
-      font-size: 14px;
+      font-size: 16px;
       line-height: inherit;
       color: #000;
       a {
@@ -69,6 +70,7 @@ h2.pane-title {
 }
 
 .pane-ptk-base-chm-content-statistics {
+  font-size: 16px;
   table>tbody>tr>td:nth-child(2) {
     position: relative;
   }
