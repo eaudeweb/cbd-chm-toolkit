@@ -10574,7 +10574,6 @@ h2.pane-title {
   float: right;
   text-align: left;
   font-size: 11px;
-  text-transform: uppercase;
 }
 [dir="rtl"] #footer2 .footer-support {
   float: left;
@@ -10612,6 +10611,30 @@ h2.pane-title {
 }
 #footer2 .region-footer .nav li a:hover {
   text-decoration: underline;
+}
+#sliding-popup.sliding-popup-bottom {
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+#sliding-popup .popup-content #popup-text {
+  padding-left: 30px;
+  padding: 5px 0;
+  margin: .5em 0;
+  float: none;
+  display: inline-block;
+  width: auto;
+  text-align: center;
+}
+#sliding-popup .popup-content #popup-text p {
+  line-height: 20px;
+  font-weight: normal;
+  margin: 0;
+  display: inline-block;
+}
+#sliding-popup .popup-content #popup-buttons {
+  float: none;
+  display: inline-block;
+  width: auto;
+  text-align: center;
 }
 /* Styling related to slick slideshow */
 .view-home-page-image-slider {
