@@ -8529,9 +8529,9 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
-  height: 40px;
-  width: 300px;
-  padding: 4px 6px;
+  height: 50px;
+  width: 380px;
+  padding: 4px 10px;
   font-size: 14px;
   line-height: 30px;
   color: #555;
@@ -8539,8 +8539,8 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
 }
 #block-chm-search-chm-search form .btn-search {
   position: absolute;
-  top: 6px;
-  right: 10px;
+  top: 10px;
+  right: 15px;
 }
 [dir="rtl"] #block-chm-search-chm-search form .btn-search {
   right: auto;
@@ -8553,7 +8553,7 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
 #page-header .logo {
   display: block;
   float: left;
-  margin: 10px 10px 10px 0;
+  margin: 10px 0px 10px 0;
 }
 [dir="rtl"] #page-header .logo {
   float: right !important;
@@ -8616,9 +8616,10 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
   display: table-cell;
   vertical-align: middle;
   float: left;
+  margin-bottom: 20px;
 }
 #page-header #name-and-slogan a {
-  height: 70px;
+  height: 60px;
   float: none;
 }
 #page-header .header .site-logo img {
@@ -9108,10 +9109,20 @@ body #admin-menu .dropdown li {
   padding-top: 3px;
 }
 #admin-menu {
-  background: #333;
+  background: #444;
 }
 #admin-menu .shortcut-toggle {
   margin: 5px 0 0 1.3em;
+}
+#page-header .navbar-brand {
+  line-height: 82px;
+}
+#admin-menu-users {
+  display: none;
+}
+#admin-menu .admin-menu-search input {
+  margin-right: 5px;
+  border-radius: 3px;
 }
 /* global styles*/
 .main-container {
@@ -9122,6 +9133,9 @@ body #admin-menu .dropdown li {
   margin-top: 0;
 }
 /* front page styling*/
+h2.pane-title {
+  margin-bottom: 20px;
+}
 .view-latest-updates .view-content > .item-list > ul {
   list-style-type: none;
   margin: 0;
@@ -10402,22 +10416,24 @@ body #admin-menu .dropdown li {
 }
 /* Species details page */
 /* Event detail page */
-.node-event-detail .field {
-  margin-bottom: 10px;
+.node-event-detail .panel-separator {
+  margin: 0 0 .3em 0;
 }
 .node-event-detail .field-name-field-dates {
-  color: #039749;
-  font-size: 1.2em;
-  text-align: center;
+  color: #666;
+  text-align: left;
 }
 .node-event-detail .field-name-field-dates > div {
-  display: inline;
+  display: inline-block;
   float: none;
 }
 .node-event-detail .field-name-field-event-address {
-  color: #039749;
-  font-size: 1.2em;
-  text-align: center;
+  color: #666;
+  text-align: left;
+}
+.node-event-detail .field-name-field-event-address > div {
+  display: inline-block;
+  float: none;
 }
 .node-event-detail .field-name-field-event-address .field-item div,
 .node-event-detail .field-name-field-event-address .field-item span {
@@ -10432,11 +10448,27 @@ body #admin-menu .dropdown li {
 .node-event-detail .field-name-field-event-address .field-item > span:last-child:after {
   content: "";
 }
+.node-event-detail .field-name-field-event-status,
+.node-event-detail .field-name-field-event-type,
+.node-event-detail .field-name-field-url {
+  text-align: left;
+}
 .node-event-detail .field-name-field-event-status > div,
 .node-event-detail .field-name-field-event-type > div,
 .node-event-detail .field-name-field-url > div {
+  display: inline-block;
   float: none;
-  text-align: center;
+  text-align: left;
+}
+.node-event-detail .field-name-body {
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+.node-event-detail .field-name-field-images .field-item {
+  margin-bottom: 20px;
+}
+.node-event-detail .panel-flexible .panel-separator {
+  margin: 0 0 .5em 0;
 }
 #block-facetapi-bhmrhtzu2n0ejkzp9wdi0s1oi2dgbsdm .block-title {
   font-size: 1.5em;
@@ -10513,6 +10545,7 @@ body #admin-menu .dropdown li {
 }
 #footer2 .footer-logo {
   float: left;
+  padding-top: 25px;
 }
 [dir="rtl"] #footer2 .footer-logo {
   float: right;
@@ -10536,7 +10569,9 @@ body #admin-menu .dropdown li {
 }
 #footer2 .footer-support {
   float: right;
-  text-align: center;
+  text-align: left;
+  font-size: 11px;
+  text-transform: uppercase;
 }
 [dir="rtl"] #footer2 .footer-support {
   float: left;
@@ -10554,6 +10589,9 @@ body #admin-menu .dropdown li {
     margin: 0 auto;
     display: block;
   }
+}
+#footer2 .footer-support .text {
+  padding-left: 13px;
 }
 #footer2 .footer-support img {
   max-height: 100px;
