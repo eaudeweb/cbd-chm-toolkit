@@ -9,6 +9,9 @@
 }
 
 /* front page styling*/
+h2.pane-title {
+  margin-bottom:20px;
+}
 .view-latest-updates {
   .view-content > .item-list > ul{
     list-style-type: none;
@@ -19,8 +22,8 @@
       margin-right: 0;
     }
     .views-field.views-field-field-image .field-content{
-      float:left;
-      margin-right: 20px;
+      float:right;
+      margin-left: 20px;
       [dir="rtl"] &{
         float:right;
         margin-right: auto;
@@ -33,11 +36,12 @@
       color: #999;
     }
     .views-field.views-field-body{
-      clear: both;
+      //clear: both;
       margin-bottom: 1em;
     }
   }
 }
+
 #block-ptk-base-chm-content-statistics {
   &:extend(.well);
   .table-responsive, tr, td {
@@ -49,7 +53,7 @@
     }
     td {
       padding: .5em 0;
-      font-size: 14px;
+      font-size: 16px;
       line-height: inherit;
       color: #000;
       a {
@@ -66,6 +70,7 @@
 }
 
 .pane-ptk-base-chm-content-statistics {
+  font-size: 16px;
   table>tbody>tr>td:nth-child(2) {
     position: relative;
   }
@@ -1512,24 +1517,31 @@ body.node-type-species {
 
 /* Event detail page */
 .node-event-detail {
+  .panel-separator {
+    margin: 0 0 .3em 0;
+  }
 
   .field {
-    margin-bottom: 10px;
+    //margin-bottom: 10px;
   }
   .field-name-field-dates {
-    color: #039749;
-    font-size: 1.2em;
-    text-align: center;
+    color: #666;
+    //font-size: 1.2em;
+    text-align: left;
     > div {
-      display: inline;
+      display: inline-block;
       float: none;
     }
   }
 
   .field-name-field-event-address {
-    color: #039749;
-    font-size: 1.2em;
-    text-align: center;
+    color: #666;
+    //font-size: 1.2em;
+    text-align: left;
+    > div {
+      display: inline-block;
+      float: none;
+    }
     .field-item {
       div, span {
         display: inline;
@@ -1545,10 +1557,24 @@ body.node-type-species {
   }
 
   .field-name-field-event-status, .field-name-field-event-type, .field-name-field-url {
+    text-align: left;
     > div {
+      display: inline-block;
       float: none;
-      text-align: center;
+      text-align: left;
     }
+  }
+  .field-name-body {
+    margin-top:30px;
+    margin-bottom:40px;
+  }
+  .field-name-field-images {
+    .field-item {
+      margin-bottom:20px;
+    }
+  }
+  .panel-flexible .panel-separator {
+    margin: 0 0 .5em 0;
   }
 }
 
