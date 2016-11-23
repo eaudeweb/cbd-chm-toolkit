@@ -1,0 +1,4 @@
+name = String translation assist
+core = 7.x
+package = Multilingual
+dependencies[] = locale
