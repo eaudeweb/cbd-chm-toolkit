@@ -313,6 +313,8 @@ function chm_search_select($form, &$form_state, $elements) {
   }
 
   $uri = request_uri();
+  $parts = explode('?', $uri);
+  $uri = $parts[0];
   $url_filters = _chm_search_get_filters(array(substr($uri, 1)));
 
   $facet_id = str_replace('chm_search_', '', $form_state['build_info']['form_id']);
@@ -406,6 +408,8 @@ function chm_search_select_submit($form, &$form_state) {
   
   $filters = _chm_search_get_filters($form_state['values']['select'], true);
   $uri = request_uri();
+  $parts = explode('?', $uri);
+  $uri = $parts[0];
   if (substr($uri, -1) != '/') {
     $uri .= '/';
   }
@@ -426,13 +430,20 @@ function chm_search_select_submit($form, &$form_state) {
       $uri .= '/';
     }
   }
+
   $uri = substr($uri, 0, -1);
 
+  $redirect = array($uri);
+  if (count($parts) > 1) {
+    parse_str($parts[1], $query);
+    $redirect[1] = array('query' => $query);
+  }
+
   if (module_exists('facetapi_pretty_paths')) { // now only this works
-    $form_state['redirect'] = $uri;
+    $form_state['redirect'] = $redirect;
   }
   else {
-    $form_state['redirect'] = array($_GET['q'], array('query' => $uri));    
+    //     $form_state['redirect'] = array($_GET['q'], array('query' => $uri));    
   }
 }
 
