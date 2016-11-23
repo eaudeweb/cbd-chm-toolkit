@@ -8,6 +8,9 @@
  * Implements hook_ctools_plugin_api().
  */
 function chm_search_ctools_plugin_api($module = NULL, $api = NULL) {
+  if ($module == "facetapi" && $api == "facetapi_defaults") {
+    return array("version" => "1");
+  }
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
@@ -90,16 +93,16 @@ function chm_search_default_search_api_index() {
           "weight" : "0",
           "settings" : { "fields" : {
               "title" : true,
-              "field_first_name" : true,
-              "field_last_name" : true,
+              "title_field" : true,
               "field_address" : true,
               "field_alternative_emails" : true,
               "field_city" : true,
               "field_department" : true,
               "field_email" : true,
               "field_fax_numbers" : true,
+              "field_first_name" : true,
+              "field_last_name" : true,
               "field_nfp_designation" : true,
-              "title_field" : true,
               "body:value" : true,
               "body:summary" : true
             }
@@ -111,16 +114,16 @@ function chm_search_default_search_api_index() {
           "settings" : {
             "fields" : {
               "title" : true,
-              "field_first_name" : true,
-              "field_last_name" : true,
+              "title_field" : true,
               "field_address" : true,
               "field_alternative_emails" : true,
               "field_city" : true,
               "field_department" : true,
               "field_email" : true,
               "field_fax_numbers" : true,
+              "field_first_name" : true,
+              "field_last_name" : true,
               "field_nfp_designation" : true,
-              "title_field" : true,
               "body:value" : true,
               "body:summary" : true
             },
@@ -134,16 +137,16 @@ function chm_search_default_search_api_index() {
           "weight" : "15",
           "settings" : { "fields" : {
               "title" : true,
-              "field_first_name" : true,
-              "field_last_name" : true,
+              "title_field" : true,
               "field_address" : true,
               "field_alternative_emails" : true,
               "field_city" : true,
               "field_department" : true,
               "field_email" : true,
               "field_fax_numbers" : true,
+              "field_first_name" : true,
+              "field_last_name" : true,
               "field_nfp_designation" : true,
-              "title_field" : true,
               "body:value" : true,
               "body:summary" : true
             }
@@ -155,16 +158,16 @@ function chm_search_default_search_api_index() {
           "settings" : {
             "fields" : {
               "title" : true,
-              "field_first_name" : true,
-              "field_last_name" : true,
+              "title_field" : true,
               "field_address" : true,
               "field_alternative_emails" : true,
               "field_city" : true,
               "field_department" : true,
               "field_email" : true,
               "field_fax_numbers" : true,
+              "field_first_name" : true,
+              "field_last_name" : true,
               "field_nfp_designation" : true,
-              "title_field" : true,
               "body:value" : true,
               "body:summary" : true
             },
@@ -178,16 +181,16 @@ function chm_search_default_search_api_index() {
           "settings" : {
             "fields" : {
               "title" : true,
-              "field_first_name" : true,
-              "field_last_name" : true,
+              "title_field" : true,
               "field_address" : true,
               "field_alternative_emails" : true,
               "field_city" : true,
               "field_department" : true,
               "field_email" : true,
               "field_fax_numbers" : true,
+              "field_first_name" : true,
+              "field_last_name" : true,
               "field_nfp_designation" : true,
-              "title_field" : true,
               "body:value" : true,
               "body:summary" : true
             },
@@ -224,13 +227,25 @@ function chm_search_default_search_api_index() {
         "field_dates:value2" : { "type" : "date" },
         "field_department" : { "type" : "text" },
         "field_document_type" : { "type" : "integer", "entity_type" : "taxonomy_term" },
+        "field_ecosystem_types" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_email" : { "type" : "text" },
         "field_event_status" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_fax_numbers" : { "type" : "list\\u003Ctext\\u003E" },
         "field_first_name" : { "type" : "text" },
+        "field_keywords" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_last_name" : { "type" : "text" },
         "field_nfp_designation" : { "type" : "text" },
         "field_nfp_type" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "field_organization_type" : { "type" : "integer", "entity_type" : "taxonomy_term" },
+        "field_pa_designation_type" : { "type" : "integer", "entity_type" : "taxonomy_term" },
+        "field_pa_iucn_category" : { "type" : "integer", "entity_type" : "taxonomy_term" },
+        "field_pa_status" : { "type" : "integer", "entity_type" : "taxonomy_term" },
+        "field_project_status" : { "type" : "integer", "entity_type" : "taxonomy_term" },
+        "field_redlist_status" : { "type" : "integer", "entity_type" : "taxonomy_term" },
+        "field_species_class" : { "type" : "integer", "entity_type" : "taxonomy_term" },
+        "field_species_family" : { "type" : "integer", "entity_type" : "taxonomy_term" },
+        "field_species_phylum" : { "type" : "integer", "entity_type" : "taxonomy_term" },
+        "field_subjects" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "promote" : { "type" : "boolean" },
         "search_api_language" : { "type" : "string" },
         "status" : { "type" : "boolean" },
