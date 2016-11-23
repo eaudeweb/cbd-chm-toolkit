@@ -257,7 +257,8 @@ function chm_search_block_view_alter(&$data, $block) {
               'role' => 'button',
               'data-toggle' => 'collapse',
               'aria-expanded' => 'false',
-              'aria-controls' => $id
+              'aria-controls' => $id,
+              'class' => ['facet-title']
             )
           )
         );
