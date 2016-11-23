@@ -9,3 +9,16 @@
   }}
 
 })(jQuery);
+
+(function ($, window, document) {
+
+  Drupal.Select2.functionsScope.chm_search_format_selection = function (term) {
+
+    if (term.hover_title) {
+      return term.hover_title;
+    }
+
+    return term.text;
+  };
+
+})(jQuery, window, document);

@@ -299,6 +299,11 @@ function chm_search_forms() {
   return $forms;
 }
 
+function chm_search_select2_element_alter(&$element) {
+  $element['#select2']['formatSelection'] = 'chm_search_format_selection';
+  $element['#select2']['formatResult'] = 'chm_search_format_selection';
+}
+
 /**
  * Generate form for facet.
  */
@@ -341,9 +346,11 @@ function chm_search_select($form, &$form_state, $elements) {
       if (isset($element['#class'])) {
         $attributes['class'] = array_merge($attributes['class'], $element['#class']);
       }
+      $options[$active_filter] = theme('chm_search_select_active_option', array('title' => $element['#markup'], 'count' => $element['#count']));
     }
-    //($element[$option_key])
-    $options[$active_filter] = theme('chm_search_select_option', array('title' => $element['#markup'], 'count' => $element['#count'])); //serialize
+    else {
+      $options[$active_filter] = theme('chm_search_select_option', array('title' => $element['#markup'], 'count' => $element['#count'])); //      
+    }
 
     if ($element['#active']) {
       $existing[] = $active_filter;
@@ -452,6 +459,11 @@ function chm_search_select_submit($form, &$form_state) {
  */
 function chm_search_theme() {
   return array(
+    
+    'chm_search_select_active_option' => array(
+      'title' => NULL,
+      'count' => NULL,
+    ),
     'chm_search_select_option' => array(
       'title' => NULL,
       'count' => NULL,
@@ -462,11 +474,20 @@ function chm_search_theme() {
   );
 }
 
+
 /**
- * Theme function for selectbox widget option.
+* Theme function for selectbox widget option.
+ */
+
+function theme_chm_search_select_active_option($element) {
+  return $element['title'] . ' <span class="badge">' . $element['count'] . '</span>';
+}
+
+/**
+* Theme function for selectbox widget option.
  */
 function theme_chm_search_select_option($element) {
-  return $element['title'] . ' (' . $element['count'] . ')';
+  return $element['title'] . ' <span class="counter">(' . $element['count'] . ')</span>';
 }
 
 
