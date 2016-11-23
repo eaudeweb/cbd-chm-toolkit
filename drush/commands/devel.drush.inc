@@ -67,6 +67,9 @@ function _drush_prepare_dev() {
   variable_set('eu_cookie_compliance_domain', 'local.ro');
   variable_set('error_level', '2');
   _drush_devel_update_solr_path();
+  variable_set('page_compression', 0);
+  variable_set('preprocess_css', 0);
+  variable_set('preprocess_js', 0);
   drush_invoke_process('@self', 'sql-sanitize');
 }
 
