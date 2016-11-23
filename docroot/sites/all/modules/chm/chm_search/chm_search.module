@@ -243,8 +243,37 @@ function theme_chm_search_link_active($variables) {
  */
 function chm_search_block_view_alter(&$data, $block) {
   if ($block->module == 'facetapi') {
-    if ($data['subject']) {
-      $data['subject'] .= ' <span class="toggle"></span>';
+    $title = !empty($block->title) && $block->title != '<none>' ? $block->title : '';
+    if (isset($data['content']['#facet']['field'])) {
+      $facet_field = $data['content']['#facet']['field'];
+      $block->title = '';
+      if (isset($data['content'][$facet_field]['#id'])) {
+        $id = $data['content'][$facet_field]['#id'];
+        $anchor = l($title, '',
+          array(
+            'fragment' => $data['content'][$facet_field]['#id'],
+            'external' => TRUE,
+            'attributes' => array(
+              'role' => 'button',
+              'data-toggle' => 'collapse',
+              'aria-expanded' => 'false',
+              'aria-controls' => $id
+            )
+          )
+        );
+        $data['content'][$facet_field]['#prefix'] = $anchor;
+        $data['subject'] = '';
+        $data['content'][$facet_field]['#attributes']['class'][] = 'collapse';
+        if (!empty($data['content'][$facet_field]['select']['#default_value'])) {
+          $data['content'][$facet_field]['#attributes']['class'][] = 'in';
+        }
+      }
+      else {
+        //@todo: dpm($data);
+      }
+    }
+    else {
+      // @todo dpm($data); dpm($block);
     }
   }
   if (isset($data['content']['#facet'])) {
