@@ -115,6 +115,9 @@
     display: table-cell;
     vertical-align: middle;
     float: left;
+    [dir="rtl"] &{
+      float:right;
+    }
     margin-bottom: 20px;
     a {
       height: 60px;
@@ -177,6 +180,10 @@
 
 body.country-portal .logo img {
   margin: 20px 20px 0 0 !important;
+  [dir="rtl"] &{
+      margin: 20px 0 0 20px !important;
+    }
+
 }
 
 //collapse menu earlier to fit content

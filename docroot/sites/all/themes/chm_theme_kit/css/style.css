@@ -8619,6 +8619,9 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
   float: left;
   margin-bottom: 20px;
 }
+[dir="rtl"] #page-header #name-and-slogan {
+  float: right;
+}
 #page-header #name-and-slogan a {
   height: 60px;
   float: none;
@@ -8672,6 +8675,9 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
 }
 body.country-portal .logo img {
   margin: 20px 20px 0 0 !important;
+}
+[dir="rtl"] body.country-portal .logo img {
+  margin: 20px 0 0 20px !important;
 }
 @media (max-width: 991px) {
   .navbar-header {
@@ -9197,6 +9203,20 @@ h2.pane-title {
   right: auto;
   margin-left: 8px;
   margin-right: 0;
+}
+.table > thead > tr > td.active,
+.table > tbody > tr > td.active,
+.table > tfoot > tr > td.active,
+.table > thead > tr > th.active,
+.table > tbody > tr > th.active,
+.table > tfoot > tr > th.active,
+.table > thead > tr.active > td,
+.table > tbody > tr.active > td,
+.table > tfoot > tr.active > td,
+.table > thead > tr.active > th,
+.table > tbody > tr.active > th,
+.table > tfoot > tr.active > th {
+  background-color: inherit;
 }
 /*Aichi biodiversity targets*/
 .view-aichi-biodiversity-targets .view-content ul {
