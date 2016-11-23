@@ -51,6 +51,9 @@ function _drush_prepare_dev() {
     user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access devel information'));
   }
   variable_set('eu_cookie_compliance_domain', 'local.ro');
+  variable_set('page_compression', 0);
+  variable_set('preprocess_css', 0);
+  variable_set('preprocess_js', 0);
   drush_invoke_process('@self', 'sql-sanitize');
 }
 
