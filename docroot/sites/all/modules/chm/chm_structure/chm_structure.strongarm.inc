@@ -1214,6 +1214,19 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__coverage_level';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-current',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__coverage_level'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_settings_taxonomy_term__data_source';
   $strongarm->value = array(
     'default_language' => 'xx-et-default',
@@ -2611,6 +2624,29 @@ function chm_structure_strongarm() {
     ),
   );
   $export['field_bundle_settings_taxonomy_term__biodiversity_item_type'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_taxonomy_term__coverage_level';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'metatags' => array(
+          'weight' => '5',
+        ),
+        'path' => array(
+          'weight' => '4',
+        ),
+        'language' => array(
+          'weight' => '0',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_taxonomy_term__coverage_level'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -4727,13 +4763,6 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_taxonomy_term_administrative_level_pattern';
-  $strongarm->value = '';
-  $export['pathauto_taxonomy_term_administrative_level_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_taxonomy_term_aichi_biodiversity_targets_pattern';
   $strongarm->value = '[term:vocabulary]/[term:field_index]';
   $export['pathauto_taxonomy_term_aichi_biodiversity_targets_pattern'] = $strongarm;
@@ -4758,6 +4787,13 @@ function chm_structure_strongarm() {
   $strongarm->name = 'pathauto_taxonomy_term_biodiversity_threat_pattern';
   $strongarm->value = '';
   $export['pathauto_taxonomy_term_biodiversity_threat_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_coverage_level_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_coverage_level_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
