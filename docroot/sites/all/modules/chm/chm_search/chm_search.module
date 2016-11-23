@@ -515,3 +515,24 @@ function chm_search_preprocess_block(&$variables) {
     $variables['classes_array'][] = 'chm-facetapi-collapsible';
   }
 }
+
+function chm_search_fix_domain_blocks() {
+  $or = db_or();
+  $or->condition('b.module', 'facetapi');
+  $or->condition('b.module', 'chm_search');
+
+  $query = db_select('block', 'b')
+    ->fields('b', array('module', 'delta'))
+    ->distinct();
+  $query->leftJoin('domain_blocks', 'db', 'b.delta = db.delta');
+  $query->condition($or);
+  $query->condition('db.delta', NULL);
+
+  $existing_blocks = $query->execute()->fetchAll();
+  foreach ($existing_blocks as $block) {
+    if ($block->delta) {
+      $fields = array('module' => $block->module, 'delta' => $block->delta, 'realm' => 'domain_site', 'domain_id' => '-1');
+      db_insert('domain_blocks')->fields($fields)->execute();
+    }
+  }
+}
