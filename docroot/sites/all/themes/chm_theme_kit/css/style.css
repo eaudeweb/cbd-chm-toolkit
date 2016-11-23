@@ -4476,9 +4476,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 @media (min-width: 768px) {
   .navbar-left {
     float: left !important;
+    float: left;
   }
   .navbar-right {
     float: right !important;
+    float: right;
     margin-right: -15px;
   }
   .navbar-right ~ .navbar-right {
@@ -10438,10 +10440,36 @@ body #admin-menu .dropdown li {
   float: none;
   text-align: center;
 }
-#block-facetapi-bhmrhtzu2n0ejkzp9wdi0s1oi2dgbsdm .block-title {
-  font-size: 1.5em;
+.block-facetapi .block-title {
+  font-size: 1.5rem;
+  margin-top: 0;
 }
-#block-facetapi-bhmrhtzu2n0ejkzp9wdi0s1oi2dgbsdm ul {
+.block-facetapi .block-title:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\f067";
+}
+.block-facetapi .block-title:before.fa-pull-left {
+  margin-right: .3em;
+}
+.block-facetapi .block-title:before.fa-pull-right {
+  margin-left: .3em;
+}
+.block-facetapi .block-title:before.pull-left {
+  margin-right: .3em;
+}
+.block-facetapi .block-title:before.pull-right {
+  margin-left: .3em;
+}
+.block-facetapi .block-title:before {
+  font-size: inherit;
+  margin-right: .3em;
+}
+.block-facetapi ul {
   margin: 0;
   padding: 0;
 }

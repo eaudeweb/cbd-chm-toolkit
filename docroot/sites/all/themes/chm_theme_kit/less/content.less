@@ -1553,9 +1553,15 @@ body.node-type-species {
 }
 
 //search page
-#block-facetapi-bhmrhtzu2n0ejkzp9wdi0s1oi2dgbsdm {
+.block-facetapi {
   .block-title {
-    font-size: 1.5em;
+    font-size: 1.5rem;
+    margin-top: 0;
+    .fa-icon-content(@fa-var-plus);
+    &:before {
+      font-size: inherit;
+      margin-right: .3em;
+    }
   }
   ul {
     margin: 0;
