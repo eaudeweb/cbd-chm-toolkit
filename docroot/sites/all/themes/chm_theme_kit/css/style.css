@@ -10463,16 +10463,12 @@ body #admin-menu .dropdown li {
   font-size: 65%;
 }
 .block-facetapi {
-  margin-bottom: .5em;
+  margin-bottom: .6em;
 }
 .block-facetapi .facet-title {
+  display: block;
   font-size: 1.4rem;
   margin-top: 0;
-}
-.block-facetapi .facet-title,
-.block-facetapi .facet-title:hover {
-  color: #333333;
-  text-decoration: none;
 }
 .block-facetapi .facet-title:before {
   display: inline-block;
@@ -10498,6 +10494,11 @@ body #admin-menu .dropdown li {
 .block-facetapi .facet-title:before {
   font-size: 90%;
   margin-right: .3em;
+}
+.block-facetapi .facet-title,
+.block-facetapi .facet-title:hover {
+  color: #333333;
+  text-decoration: none;
 }
 .block-facetapi .facet-title[aria-expanded="true"]:before {
   display: inline-block;

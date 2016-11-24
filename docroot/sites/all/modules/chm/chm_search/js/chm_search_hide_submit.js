@@ -16,6 +16,9 @@
         $(this)[0].placeholder = placeholderValue;
       });
       $('.ctools-auto-submit-click:not(.chm_search-hide-submit-processed)').addClass('chm_search-hide-submit-processed').hide();
+      $('.chm-search-select-facet.collapse').on('shown.bs.collapse', function () {
+        $(this).find('.select2-input').focus();
+      });
     });
 })(jQuery);
 // (function($){
