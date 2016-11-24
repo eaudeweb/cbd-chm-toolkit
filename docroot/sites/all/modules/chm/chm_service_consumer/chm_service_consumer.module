@@ -100,6 +100,7 @@ function chm_service_consumer_migrate_api() {
   return [
     'api' => 2,
     'groups' => [
+      'gef' => [ 'title' => t('The GEF'), ],
       'cbd' => [ 'title' => t('CBD API migrations'), ],
       'protected-planet' => [ 'title' => t('Protected Planet'), ],
     ],
@@ -117,6 +118,10 @@ function chm_service_consumer_migrate_api() {
         'class_name' => 'CHMServiceDocumentNBSAPMigration',
         'group_name' => 'cbd',
         'urlPattern' => 'https://chm.cbd.int/api/v2013/index/select?q=realm_ss:chm+AND+schema_s:nationalReport+AND+reportType_s:B0EBAE91-9581-4BB2-9C02-52FCF9D82721',
+      ],
+      'gef_projects' => [
+        'class_name' => 'CHMGEFProjectMigrate',
+        'group_name' => 'gef',
       ],
     ],
   ];
@@ -159,6 +164,40 @@ class CHMServerConsumerMigration extends Migration {
       }
       return NULL;
     }
+  }
+
+  function addMetadataUnmigratedDestinations() {
+    $this->addUnmigratedDestinations([
+      'metatag_title',
+      'metatag_description',
+      'metatag_abstract',
+      'metatag_keywords',
+      'metatag_robots',
+      'metatag_news_keywords',
+      'metatag_standout',
+      'metatag_rating',
+      'metatag_referrer',
+      'metatag_generator',
+      'metatag_rights',
+      'metatag_image_src',
+      'metatag_canonical',
+      'metatag_shortlink',
+      'metatag_publisher',
+      'metatag_author',
+      'metatag_original-source',
+      'metatag_prev',
+      'metatag_next',
+      'metatag_content-language',
+      'metatag_geo.position',
+      'metatag_geo.placename',
+      'metatag_geo.region',
+      'metatag_icbm',
+      'metatag_refresh',
+      'metatag_revisit-after',
+      'metatag_pragma',
+      'metatag_cache-control',
+      'metatag_expires',
+    ]);
   }
 }
 
