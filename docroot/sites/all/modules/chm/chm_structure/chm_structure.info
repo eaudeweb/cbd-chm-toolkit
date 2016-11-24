@@ -303,6 +303,7 @@ features[field_instance][] = node-project-field_project_results
 features[field_instance][] = node-project-field_project_status
 features[field_instance][] = node-project-field_project_type
 features[field_instance][] = node-project-field_reference
+features[field_instance][] = node-project-field_source
 features[field_instance][] = node-project-field_subjects
 features[field_instance][] = node-project-field_url
 features[field_instance][] = node-project-title_field

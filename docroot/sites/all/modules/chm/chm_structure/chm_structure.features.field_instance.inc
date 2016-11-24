@@ -7629,6 +7629,56 @@ function chm_structure_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-project-field_source'.
+  $field_instances['node-project-field_source'] = array(
+    'bundle' => 'project',
+    'default_value' => array(),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 26,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_source',
+    'label' => 'Source',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+        'use_select2' => FALSE,
+      ),
+      'type' => 'options_select',
+      'weight' => 26,
+    ),
+  );
+
   // Exported field_instance: 'node-project-field_subjects'.
   $field_instances['node-project-field_subjects'] = array(
     'bundle' => 'project',
