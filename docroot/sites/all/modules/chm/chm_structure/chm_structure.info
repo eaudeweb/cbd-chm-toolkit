@@ -653,7 +653,6 @@ features[variable][] = entity_translation_settings_node__protected_area
 features[variable][] = entity_translation_settings_node__species
 features[variable][] = entity_translation_settings_node__video
 features[variable][] = entity_translation_settings_taxonomy_term__activity_type
-features[variable][] = entity_translation_settings_taxonomy_term__administrative_level
 features[variable][] = entity_translation_settings_taxonomy_term__aichi_biodiversity_targets
 features[variable][] = entity_translation_settings_taxonomy_term__biodiversity_aspect
 features[variable][] = entity_translation_settings_taxonomy_term__biodiversity_item_type
