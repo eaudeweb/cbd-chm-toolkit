@@ -6955,7 +6955,7 @@ function chm_structure_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'apply_chosen' => '',
+        'apply_chosen' => 1,
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
