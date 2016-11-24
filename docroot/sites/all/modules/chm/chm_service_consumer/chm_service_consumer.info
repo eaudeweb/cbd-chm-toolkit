@@ -8,3 +8,4 @@ core = 7.x
 files[] = chm_server_consumer.nbsap.migrate.inc
 files[] = chm_server_consumer.nfp.migrate.inc
 files[] = chm_server_consumer.pa.migrate.inc
+files[] = forms/ChmGefSettingsForm.php

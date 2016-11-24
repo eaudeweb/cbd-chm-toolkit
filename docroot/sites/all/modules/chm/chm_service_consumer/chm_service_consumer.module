@@ -1,5 +1,8 @@
 <?php
 
+define('GEF_CSV_VAR', 'ptk_gef_csv_path');
+define('GEF_CSV_UPLOAD_DIR', 'public://gef-projects/');
+
 /**
  * Implements Elysia hook_cronapi().
  */
@@ -18,6 +21,25 @@ function chm_service_consumer_cronapi() {
       'rule' => '5 8 * * 6',
     ),
   );
+}
+
+
+/**
+ * Implements hook_menu().
+ */
+function chm_service_consumer_menu() {
+  $items = [
+    'admin/config/system/chm_global_settings/gef' => [
+      'title' => 'GEF',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('chm_service_consumer_gef_settings_form'),
+      'file' => 'chm_service_consumer.admin.inc',
+      'access arguments' => ['configure chm settings'],
+      'type' => MENU_LOCAL_TASK,
+      'description' => 'Configure Global Environment Facility (GEF) data source',
+    ],
+  ];
+  return $items;
 }
 
 /**
