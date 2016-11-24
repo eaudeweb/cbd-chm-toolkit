@@ -283,7 +283,17 @@ function ptk_base_field_formatter_info() {
       'settings' => array(
         /* No settings for now */
       ),
-    )
+    ),
+    'domain_link' => array(
+      'label' => t('Domain text link'),
+      'field types' => array('text'),
+      'multiple values' => FIELD_BEHAVIOR_DEFAULT,
+    ),
+    'domain_image_link' => array(
+      'label' => t('Domain image link'),
+      'field types' => array('image'),
+      'settings' => array('image_style' => '', 'image_link' => ''),
+    ),
   );
 }
 
@@ -298,6 +308,95 @@ function ptk_base_language_switch_links_alter(array &$links, $type, $path) {
       $link['attributes']['hreflang'] = $langcode;
     }
   }
+}
+
+function ptk_base_get_domain_url($domain_id) {
+  static $domains = [];
+  if (!$domains) {
+    $all = db_query("SELECT domain_id, subdomain, scheme, valid FROM {domain} where valid=1")->fetchAll();
+    foreach($all as $domain) {
+      $domains[$domain->domain_id] = $domain->scheme . '://' . $domain->subdomain;
+    }
+  }
+  return $domains[$domain_id];
+}
+
+/**
+ * Implements hook_field_formatter_settings_form().
+ */
+function ptk_base_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+  $display = $instance['display'][$view_mode];
+  $element = [];
+
+  if ($display['type'] == 'domain_image_link') {
+    $display = $instance['display'][$view_mode];
+    $settings = $display['settings'];
+  
+    $image_styles = image_style_options(FALSE, PASS_THROUGH);
+    $element['image_style'] = array(
+      '#title' => t('Image style'),
+      '#type' => 'select',
+      '#default_value' => $settings['image_style'],
+      '#empty_option' => t('None (original image)'),
+      '#options' => $image_styles,
+    );
+  
+    $link_types = array(
+      'content' => t('Content'),
+      'file' => t('File'),
+    );
+    $element['image_link'] = array(
+      '#title' => t('Link image to'),
+      '#type' => 'select',
+      '#default_value' => $settings['image_link'],
+      '#empty_option' => t('Nothing'),
+      '#options' => $link_types,
+    );
+  }
+
+  if ($display['type'] == 'domain_link') {
+    $settings = $instance['display'][$view_mode]['settings'];
+    $element = array();
+  
+    $wrap_tags = array(
+      '_none' => t('- None -'),
+      'div' => t('DIV'),
+      'h1' => t('H1'),
+      'h2' => t('H2'),
+      'h3' => t('H3'),
+      'h4' => t('H4'),
+      'h5' => t('H5'),
+      'h6' => t('H6'),
+      'span' => t('SPAN'),
+    );
+    $element['title_style'] = array(
+      '#title' => t('Wrap title in tag'),
+      '#type' => 'select',
+      '#default_value' => !empty($settings['title_style']) ? $settings['title_style'] : '_none',
+      '#options' => $wrap_tags,
+    );
+  
+    $link_types = array(
+      'content' => t('Content'),
+    );
+    $element['title_link'] = array(
+      '#title' => t('Link title to'),
+      '#type' => 'select',
+      '#default_value' => $settings['title_link'],
+      '#empty_option' => t('Nothing'),
+      '#options' => $link_types,
+    );
+  
+    $element['title_class'] = array(
+      '#title' => t('Tag classes'),
+      '#type' => 'textfield',
+      '#description' => t('A CSS class to use in the wrapper tag for the title.'),
+      '#default_value' => $settings['title_class'],
+      '#element_validate' => array('_title_validate_class'),
+    );
+    
+  }
+  return $element;
 }
 
 /**
@@ -316,6 +415,89 @@ function ptk_base_field_formatter_view($entity_type, $entity, $field, $instance,
       $element[$delta] = array('#type' => 'item', '#markup' => $value);
     }
   }
+  
+  if ($display['type'] == 'domain_image_link') {
+    // Check if the formatter involves a link.
+    if ($display['settings']['image_link'] == 'content') {
+      $uri = entity_uri($entity_type, $entity);
+    }
+    elseif ($display['settings']['image_link'] == 'file') {
+      $link_file = TRUE;
+    }
+    $base_url = '';
+    if ($entity->domains) {
+      $base_url = ptk_base_get_domain_url(array_shift($entity->domains));
+    }
+    $options['external'] = TRUE;
+  
+    foreach ($items as $delta => $item) {
+      if (isset($link_file)) {
+        $uri = array(
+          'path' => file_create_url($item['uri']),
+          'options' => array(),
+        );
+      }
+      $uri['path'] = $base_url . '/' . $uri['path'];
+      $element[$delta] = array(
+        '#theme' => 'image_formatter',
+        '#item' => $item,
+        '#image_style' => $display['settings']['image_style'],
+        '#path' => isset($uri) ? $uri : '',
+      );
+    }
+  }
+  
+  if ($display['type'] == 'domain_link') {
+    $settings = $display['settings'];
+    $output = '';
+    if (isset($items[0]['safe_value'])) {
+      $output = $items[0]['safe_value'];
+    }
+    elseif (isset($items[0]['value'])) {
+      $output = _text_sanitize($instance, $langcode, $items[0], 'value');
+    }
+    $element = array();
+  
+    if (!empty($output)) {
+      if ($settings['title_link'] == 'content') {
+        $uri = entity_uri($entity_type, $entity);
+        $options = array('html' => TRUE);
+        if (!empty($uri['options'])) {
+          $options = array_merge($options, $uri['options']);
+        }
+        if ($entity->domains) {
+          $base_url = ptk_base_get_domain_url(array_shift($entity->domains));
+        }
+        $options['external'] = TRUE;
+        $output = l($output, $base_url . '/' . $uri['path'], $options);
+      }
+  
+      $wrap_tag = empty($settings['title_style']) ? '_none' : $settings['title_style'];
+  
+      if ($wrap_tag != '_none') {
+        $variables = array(
+          'element' => array(
+            '#tag' => $wrap_tag,
+            '#value' => $output,
+          ),
+        );
+  
+        if (!empty($settings['title_class'])) {
+          $variables['element']['#attributes'] = array('class' => $settings['title_class']);
+        }
+  
+        $output = theme('html_tag', $variables);
+      }
+  
+      $element = array(
+        array(
+          '#markup' => $output,
+        ),
+      );
+    }
+    return $element;
+  }
+  
   return $element;
 }
 

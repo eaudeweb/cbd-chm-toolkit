@@ -332,8 +332,10 @@ function chm_search_forms() {
 }
 
 function chm_search_select2_element_alter(&$element) {
-  $element['#select2']['formatSelection'] = 'chm_search_format_selection';
-  $element['#select2']['formatResult'] = 'chm_search_format_selection';
+  if (arg(0)=='search' || arg(0)=='search-network') {
+    $element['#select2']['formatSelection'] = 'chm_search_format_selection';
+    $element['#select2']['formatResult'] = 'chm_search_format_selection';
+  }
 }
 
 /**
