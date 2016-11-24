@@ -249,6 +249,7 @@ function chm_search_block_view_alter(&$data, $block) {
       $block->title = '';
       if (isset($data['content'][$facet_field]['#id'])) {
         $id = $data['content'][$facet_field]['#id'];
+        $expand = !empty($data['content'][$facet_field]['select']['#default_value']);
         $anchor = l($title, '',
           array(
             'fragment' => $data['content'][$facet_field]['#id'],
@@ -256,7 +257,7 @@ function chm_search_block_view_alter(&$data, $block) {
             'attributes' => array(
               'role' => 'button',
               'data-toggle' => 'collapse',
-              'aria-expanded' => 'false',
+              'aria-expanded' => $expand ? 'true' : 'false',
               'aria-controls' => $id,
               'class' => ['facet-title']
             )
@@ -264,8 +265,9 @@ function chm_search_block_view_alter(&$data, $block) {
         );
         $data['content'][$facet_field]['#prefix'] = $anchor;
         $data['subject'] = '';
+        $data['content'][$facet_field]['select']['#attributes']['data-placeholder'] = t('Select filter...');
         $data['content'][$facet_field]['#attributes']['class'][] = 'collapse';
-        if (!empty($data['content'][$facet_field]['select']['#default_value'])) {
+        if ($expand) {
           $data['content'][$facet_field]['#attributes']['class'][] = 'in';
         }
       }
@@ -407,8 +409,12 @@ function chm_search_select($form, &$form_state, $elements) {
 
   // Lets add autosubmit js functionality from ctools.
   $form['#attached']['js'][] = drupal_get_path('module', 'ctools') . '/js/auto-submit.js';
-  // Add javascript that hides Filter button.
-  $form['#attached']['js'][] = drupal_get_path('module', 'chm_search') . '/js/chm_search_hide_submit.js';
+
+  $form['#attached']['js'][libraries_get_path('select2') . '/select2.js'] = [ 'weight' => 100 ];
+
+  $form['#attached']['js'][drupal_get_path('module', 'chm_search') . '/js/chm_search_hide_submit.js'] = [ 'weight' => 110 ];
+
+  $form['#attached']['css'][] = libraries_get_path('select2') . '/select2.css';
 
   $form['#attributes']['class'][] = 'chm-search-select-facet';
   return $form;
