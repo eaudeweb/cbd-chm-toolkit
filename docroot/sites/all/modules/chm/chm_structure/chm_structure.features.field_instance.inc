@@ -41,6 +41,7 @@ function chm_structure_field_default_field_instances() {
         'apply_chosen' => '',
         'autocomplete_path' => 'taxonomy/autocomplete',
         'size' => 60,
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 1,
@@ -76,6 +77,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => '',
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 0,
@@ -454,28 +456,37 @@ function chm_structure_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
+        'module' => 'i18n_taxonomy',
         'settings' => array(),
-        'type' => 'text_default',
+        'type' => 'i18n_taxonomy_term_reference_link',
         'weight' => 1,
       ),
     ),
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_project_organization_role',
-    'label' => 'Role',
+    'label' => 'Organization role',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
-      'text_processing' => 0,
+      'select2_integration' => array(
+        'allow_add_onfly' => 0,
+        'show_voc_terms_page_link' => 0,
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'text',
+      'module' => 'options',
       'settings' => array(
-        'size' => 60,
+        'apply_chosen' => '',
+        'use_select2' => FALSE,
       ),
-      'type' => 'text_textfield',
+      'type' => 'options_select',
       'weight' => 3,
     ),
   );
@@ -560,6 +571,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => 1,
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 7,
@@ -1040,6 +1052,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => 1,
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 11,
@@ -1818,6 +1831,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => '',
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 2,
@@ -2175,6 +2189,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => 1,
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 6,
@@ -2215,6 +2230,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => '',
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 3,
@@ -2774,6 +2790,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => 1,
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 12,
@@ -3139,6 +3156,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => '',
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 7,
@@ -3224,6 +3242,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => 1,
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 11,
@@ -3389,6 +3408,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => '',
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 6,
@@ -3690,6 +3710,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => 1,
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 14,
@@ -4005,6 +4026,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => 1,
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 5,
@@ -4403,6 +4425,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => '',
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 1,
@@ -4592,6 +4615,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => 1,
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 9,
@@ -4725,6 +4749,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => 1,
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 3,
@@ -4953,6 +4978,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => 1,
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 9,
@@ -5276,6 +5302,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => '',
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 11,
@@ -5509,7 +5536,7 @@ function chm_structure_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 10,
+      'weight' => 11,
     ),
   );
 
@@ -5547,9 +5574,10 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => 1,
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -5607,7 +5635,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -5648,7 +5676,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -5733,7 +5761,7 @@ function chm_structure_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
@@ -5791,7 +5819,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 7,
+      'weight' => 8,
     ),
   );
 
@@ -5832,7 +5860,57 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 6,
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'node-organization-field_organization_groups'.
+  $field_instances['node-organization-field_organization_groups'] = array(
+    'bundle' => 'organization',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 10,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_organization_groups',
+    'label' => 'Groups',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'allow_add_onfly' => 0,
+        'show_voc_terms_page_link' => 0,
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => 1,
+        'use_select2' => FALSE,
+      ),
+      'type' => 'options_select',
+      'weight' => 7,
     ),
   );
 
@@ -5870,9 +5948,10 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => '',
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
@@ -5913,7 +5992,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 9,
+      'weight' => 10,
     ),
   );
 
@@ -6577,9 +6656,57 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => 1,
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 12,
+    ),
+  );
+
+  // Exported field_instance: 'node-project-field_co_financing_total'.
+  $field_instances['node-project-field_co_financing_total'] = array(
+    'bundle' => 'project',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 2,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_decimal',
+        'weight' => 19,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_co_financing_total',
+    'label' => 'Co-financing total',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 19,
     ),
   );
 
@@ -6617,9 +6744,10 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => 1,
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 14,
+      'weight' => 13,
     ),
   );
 
@@ -6679,6 +6807,303 @@ function chm_structure_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-project-field_gef_approval_fiscal_year'.
+  $field_instances['node-project-field_gef_approval_fiscal_year'] = array(
+    'bundle' => 'project',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => FALSE,
+        ),
+        'type' => 'date_default',
+        'weight' => 22,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_gef_approval_fiscal_year',
+    'label' => 'Approval fiscal year',
+    'required' => 0,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 15,
+        'input_format' => 'm/d/Y - H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'no_fieldset' => 0,
+        'text_parts' => array(),
+        'year_range' => '1990:+2',
+      ),
+      'type' => 'date_select',
+      'weight' => 22,
+    ),
+  );
+
+  // Exported field_instance: 'node-project-field_gef_focal_areas'.
+  $field_instances['node-project-field_gef_focal_areas'] = array(
+    'bundle' => 'project',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 17,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_gef_focal_areas',
+    'label' => 'GEF focal areas',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'allow_add_onfly' => 0,
+        'show_voc_terms_page_link' => 0,
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+        'use_select2' => FALSE,
+      ),
+      'type' => 'options_select',
+      'weight' => 17,
+    ),
+  );
+
+  // Exported field_instance: 'node-project-field_gef_id'.
+  $field_instances['node-project-field_gef_id'] = array(
+    'bundle' => 'project',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 16,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_gef_id',
+    'label' => 'GEF ID',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 16,
+    ),
+  );
+
+  // Exported field_instance: 'node-project-field_gef_period'.
+  $field_instances['node-project-field_gef_period'] = array(
+    'bundle' => 'project',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 23,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_gef_period',
+    'label' => 'GEF period',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'allow_add_onfly' => 0,
+        'show_voc_terms_page_link' => 0,
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+        'use_select2' => FALSE,
+      ),
+      'type' => 'options_select',
+      'weight' => 23,
+    ),
+  );
+
+  // Exported field_instance: 'node-project-field_gef_project_status'.
+  $field_instances['node-project-field_gef_project_status'] = array(
+    'bundle' => 'project',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 21,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_gef_project_status',
+    'label' => 'GEF project status',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'allow_add_onfly' => 0,
+        'show_voc_terms_page_link' => 0,
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => 1,
+        'use_select2' => FALSE,
+      ),
+      'type' => 'options_select',
+      'weight' => 21,
+    ),
+  );
+
+  // Exported field_instance: 'node-project-field_gef_project_type'.
+  $field_instances['node-project-field_gef_project_type'] = array(
+    'bundle' => 'project',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 24,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_gef_project_type',
+    'label' => 'GEF project type',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'allow_add_onfly' => 0,
+        'show_voc_terms_page_link' => 0,
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+        'use_select2' => FALSE,
+      ),
+      'type' => 'options_select',
+      'weight' => 20,
+    ),
+  );
+
   // Exported field_instance: 'node-project-field_government'.
   $field_instances['node-project-field_government'] = array(
     'bundle' => 'project',
@@ -6706,17 +7131,26 @@ function chm_structure_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
+      'select2_integration' => array(
+        'allow_add_onfly' => 0,
+        'show_voc_terms_page_link' => 0,
+        'styling' => array(
+          'dropdownAutoWidth' => 0,
+          'placeholder' => '',
+        ),
+        'use_select2' => 0,
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'taxonomy',
+      'active' => 1,
+      'module' => 'options',
       'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
+        'apply_chosen' => 1,
+        'use_select2' => FALSE,
       ),
-      'type' => 'taxonomy_autocomplete',
-      'weight' => 15,
+      'type' => 'options_select',
+      'weight' => 14,
     ),
   );
 
@@ -6843,6 +7277,53 @@ function chm_structure_field_default_field_instances() {
       ),
       'type' => 'text_textfield',
       'weight' => 10,
+    ),
+  );
+
+  // Exported field_instance: 'node-project-field_project_grant'.
+  $field_instances['node-project-field_project_grant'] = array(
+    'bundle' => 'project',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 2,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_decimal',
+        'weight' => 20,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_project_grant',
+    'label' => 'Project grant',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 18,
     ),
   );
 
@@ -7006,6 +7487,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => '',
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 3,
@@ -7046,6 +7528,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => '',
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 2,
@@ -7092,7 +7575,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 13,
+      'weight' => 24,
     ),
   );
 
@@ -7133,7 +7616,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 16,
+      'weight' => 15,
     ),
   );
 
@@ -7318,6 +7801,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => 1,
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 8,
@@ -7358,6 +7842,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => '',
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 19,
@@ -7524,6 +8009,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => '',
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 10,
@@ -7564,6 +8050,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => '',
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 15,
@@ -7604,6 +8091,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => '',
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 11,
@@ -7727,6 +8215,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => '',
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 16,
@@ -7767,6 +8256,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => '',
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 13,
@@ -8035,6 +8525,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => 1,
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 22,
@@ -8245,6 +8736,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => '',
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 18,
@@ -8449,6 +8941,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => '',
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 9,
@@ -8701,6 +9194,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => 1,
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 4,
@@ -9077,6 +9571,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => '',
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 4,
@@ -10460,6 +10955,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => '',
+        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 4,
@@ -10850,6 +11346,312 @@ function chm_structure_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'taxonomy_term-gef_focal_area-description_field'.
+  $field_instances['taxonomy_term-gef_focal_area-description_field'] = array(
+    'bundle' => 'gef_focal_area',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'description_field',
+    'label' => 'Description',
+    'required' => FALSE,
+    'settings' => array(
+      'display_summary' => 0,
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 20,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => -5,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-gef_focal_area-name_field'.
+  $field_instances['taxonomy_term-gef_focal_area-name_field'] = array(
+    'bundle' => 'gef_focal_area',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'name_field',
+    'label' => 'Name',
+    'required' => TRUE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -5,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-gef_period-description_field'.
+  $field_instances['taxonomy_term-gef_period-description_field'] = array(
+    'bundle' => 'gef_period',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'description_field',
+    'label' => 'Description',
+    'required' => FALSE,
+    'settings' => array(
+      'display_summary' => 0,
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 20,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => -5,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-gef_period-name_field'.
+  $field_instances['taxonomy_term-gef_period-name_field'] = array(
+    'bundle' => 'gef_period',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'name_field',
+    'label' => 'Name',
+    'required' => TRUE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -5,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'taxonomy_term-gef_project_status-description_field'.
+  $field_instances['taxonomy_term-gef_project_status-description_field'] = array(
+    'bundle' => 'gef_project_status',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'description_field',
+    'label' => 'Description',
+    'required' => FALSE,
+    'settings' => array(
+      'display_summary' => 0,
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 20,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => -5,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-gef_project_status-name_field'.
+  $field_instances['taxonomy_term-gef_project_status-name_field'] = array(
+    'bundle' => 'gef_project_status',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'name_field',
+    'label' => 'Name',
+    'required' => TRUE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -5,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'taxonomy_term-gef_project_type-description_field'.
+  $field_instances['taxonomy_term-gef_project_type-description_field'] = array(
+    'bundle' => 'gef_project_type',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'description_field',
+    'label' => 'Description',
+    'required' => FALSE,
+    'settings' => array(
+      'display_summary' => 0,
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 20,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => -5,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-gef_project_type-name_field'.
+  $field_instances['taxonomy_term-gef_project_type-name_field'] = array(
+    'bundle' => 'gef_project_type',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'name_field',
+    'label' => 'Name',
+    'required' => TRUE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -5,
+    ),
+  );
+
   // Exported field_instance: 'taxonomy_term-general_issue-description_field'.
   $field_instances['taxonomy_term-general_issue-description_field'] = array(
     'bundle' => 'general_issue',
@@ -11051,6 +11853,83 @@ function chm_structure_field_default_field_instances() {
       ),
       'type' => 'text_textfield',
       'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'taxonomy_term-organization_group-description_field'.
+  $field_instances['taxonomy_term-organization_group-description_field'] = array(
+    'bundle' => 'organization_group',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'description_field',
+    'label' => 'Description',
+    'required' => FALSE,
+    'settings' => array(
+      'display_summary' => 0,
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 20,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => -5,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-organization_group-name_field'.
+  $field_instances['taxonomy_term-organization_group-name_field'] = array(
+    'bundle' => 'organization_group',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'name_field',
+    'label' => 'Name',
+    'required' => TRUE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -5,
     ),
   );
 
@@ -11924,6 +12803,7 @@ function chm_structure_field_default_field_instances() {
   t('Aichi targets');
   t('Alternative emails');
   t('Answer');
+  t('Approval fiscal year');
   t('Area');
   t('Authority');
   t('Authors');
@@ -11933,6 +12813,7 @@ function chm_structure_field_default_field_instances() {
   t('Category');
   t('City');
   t('Class');
+  t('Co-financing total');
   t('Contact persons');
   t('Countries');
   t('Country');
@@ -11955,12 +12836,18 @@ function chm_structure_field_default_field_instances() {
   t('Files');
   t('First name');
   t('Flag or image');
+  t('GEF ID');
+  t('GEF focal areas');
+  t('GEF period');
+  t('GEF project status');
+  t('GEF project type');
   t('Gallery');
   t('Gender');
   t('Genus');
   t('Geolocation');
   t('Governing type');
   t('Government');
+  t('Groups');
   t('IUCN Code');
   t('IUCN category');
   t('IUCN taxonomic ID');
@@ -11995,6 +12882,7 @@ function chm_structure_field_default_field_instances() {
   t('Organization');
   t('Organization acronym');
   t('Organization name');
+  t('Organization role');
   t('Organizations');
   t('Organizers');
   t('Owner type');
@@ -12007,6 +12895,7 @@ function chm_structure_field_default_field_instances() {
   t('Positions');
   t('Postal code');
   t('Project dates');
+  t('Project grant');
   t('Project website URL');
   t('Publication date');
   t('Published year');
@@ -12016,7 +12905,6 @@ function chm_structure_field_default_field_instances() {
   t('Reference number');
   t('Reference to content');
   t('Results');
-  t('Role');
   t('Role(s)');
   t('Roles');
   t('Salutation');
