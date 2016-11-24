@@ -2443,16 +2443,16 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '25',
-        ),
-        'domain_path' => array(
           'weight' => '26',
         ),
-        'metatags' => array(
+        'domain_path' => array(
           'weight' => '27',
         ),
-        'path' => array(
+        'metatags' => array(
           'weight' => '28',
+        ),
+        'path' => array(
+          'weight' => '29',
         ),
         'language' => array(
           'weight' => '0',
