@@ -1,18 +1,35 @@
 //mixins
 @listings-item-base: {
-	border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
     &:last-of-type {
       border-bottom: none;
     }
 };
 
 @ul-margin-padding-reset: {
-	ul {
-		list-style-type: none;
-		margin: 0;
-		padding: 0;
-		[dir="rtl"] li {
-			margin-right: 0;
-		}
-	}
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    [dir="rtl"] li {
+      margin-right: 0;
+    }
+  }
 };
+// .fa-icon {
+//   &:before {
+//     display: inline-block;
+//     font: normal normal normal @fa-font-size-base/@fa-line-height-base FontAwesome; // shortening font declaration
+//     font-size: inherit; // can't have font-size inherit on line above, so need to override
+//     text-rendering: auto; // optimizelegibility throws things off #1094
+//     -webkit-font-smoothing: antialiased;
+//     -moz-osx-font-smoothing: grayscale;
+//   }
+
+// }
+.fa-icon-content(@fa-icon) {
+  &:before {
+    .fa;
+    content: @fa-icon;
+  }
+}

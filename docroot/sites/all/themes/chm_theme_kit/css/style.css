@@ -4476,9 +4476,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 @media (min-width: 768px) {
   .navbar-left {
     float: left !important;
+    float: left;
   }
   .navbar-right {
     float: right !important;
+    float: right;
     margin-right: -15px;
   }
   .navbar-right ~ .navbar-right {
@@ -10438,12 +10440,139 @@ body #admin-menu .dropdown li {
   float: none;
   text-align: center;
 }
-#block-facetapi-bhmrhtzu2n0ejkzp9wdi0s1oi2dgbsdm .block-title {
-  font-size: 1.5em;
+.region-sidebar-first > .block-facetapi:first-child:before {
+  content: 'Filters';
+  display: block;
+  width: 100%;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 25px;
 }
-#block-facetapi-bhmrhtzu2n0ejkzp9wdi0s1oi2dgbsdm ul {
+.region-sidebar-first > .block-facetapi:first-child:before small,
+.region-sidebar-first > .block-facetapi:first-child:before .small {
+  font-weight: normal;
+  line-height: 1;
+  color: #777777;
+}
+.region-sidebar-first > .block-facetapi:first-child:before small,
+.region-sidebar-first > .block-facetapi:first-child:before .small {
+  font-size: 65%;
+}
+.block-facetapi {
+  margin-bottom: .6em;
+}
+.block-facetapi .facet-title {
+  display: block;
+  font-size: 1.4rem;
+  margin-top: 0;
+}
+.block-facetapi .facet-title:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\f067";
+}
+.block-facetapi .facet-title:before.fa-pull-left {
+  margin-right: .3em;
+}
+.block-facetapi .facet-title:before.fa-pull-right {
+  margin-left: .3em;
+}
+.block-facetapi .facet-title:before.pull-left {
+  margin-right: .3em;
+}
+.block-facetapi .facet-title:before.pull-right {
+  margin-left: .3em;
+}
+.block-facetapi .facet-title:before {
+  font-size: 90%;
+  margin-right: .3em;
+}
+.block-facetapi .facet-title,
+.block-facetapi .facet-title:hover {
+  color: #333333;
+  text-decoration: none;
+}
+.block-facetapi .facet-title[aria-expanded="true"]:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\f068";
+}
+.block-facetapi .facet-title[aria-expanded="true"]:before.fa-pull-left {
+  margin-right: .3em;
+}
+.block-facetapi .facet-title[aria-expanded="true"]:before.fa-pull-right {
+  margin-left: .3em;
+}
+.block-facetapi .facet-title[aria-expanded="true"]:before.pull-left {
+  margin-right: .3em;
+}
+.block-facetapi .facet-title[aria-expanded="true"]:before.pull-right {
+  margin-left: .3em;
+}
+.block-facetapi .facet-title[aria-expanded="true"]:before {
+  font-size: 90%;
+}
+.block-facetapi ul {
   margin: 0;
   padding: 0;
+}
+.block-facetapi .form-group {
+  margin-bottom: 0;
+}
+.block-facetapi .collapsing {
+  -webkit-transition: height 0.01s;
+  -o-transition: height 0.01s;
+  transition: height 0.01s;
+}
+.block-facetapi .badge {
+  background-color: #06c;
+  padding: 3px 4px;
+}
+.block-facetapi .select2-container.select2-container-multi {
+  min-width: 100%;
+  width: 100%;
+}
+.block-facetapi .select2-container.select2-container-multi.select2-container-active .select2-choices {
+  border: none;
+  box-shadow: none;
+}
+.block-facetapi .select2-choices {
+  border: none;
+  background: none;
+  box-shadow: none;
+  border-radius: 4px;
+}
+.block-facetapi .select2-dropdown-open .select2-choices {
+  border-radius: 4px 4px 0 0;
+}
+.block-facetapi .select2-container.select2-container-multi .select2-search-choice {
+  background: #ddd;
+  border-color: #d4d4d4;
+  box-shadow: none;
+  line-height: 1.2em;
+}
+.block-facetapi .select2-search-field {
+  width: 100%;
+}
+.block-facetapi .select2-input {
+  width: 100% !important;
+}
+.select2-drop-active,
+.select2-drop.select2-drop-active.select2-drop-above {
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 .view-the-search-view .view-content .views-row {
   border-bottom: 1px solid #e6e6e6;
