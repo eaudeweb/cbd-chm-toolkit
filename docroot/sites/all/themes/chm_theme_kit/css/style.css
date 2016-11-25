@@ -10546,6 +10546,10 @@ h2.pane-title {
     padding-left: 0;
   }
 }
+table .views-field-title a,
+table .views-field-title a:hover {
+  color: #06c;
+}
 .site-footer {
   padding-top: 40px;
   padding-bottom: 40px;
