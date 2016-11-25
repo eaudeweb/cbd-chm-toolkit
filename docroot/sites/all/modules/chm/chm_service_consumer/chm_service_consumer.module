@@ -2,6 +2,7 @@
 
 define('GEF_CSV_VAR', 'ptk_gef_csv_path');
 define('GEF_CSV_UPLOAD_DIR', 'public://gef-projects/');
+define('IMPLEMENTING_AGENCY_TERM_NAME', 'Implementing Agency');
 
 /**
  * Implements Elysia hook_cronapi().

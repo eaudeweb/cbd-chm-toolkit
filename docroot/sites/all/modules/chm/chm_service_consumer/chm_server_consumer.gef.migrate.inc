@@ -46,8 +46,8 @@ class CHMGEFProjectMigrate extends CHMServerConsumerMigration {
     $this->addFieldMapping('field_gef_focal_areas', 'focal_areas');
     $this->addFieldMapping('field_gef_focal_areas:source_type')->defaultValue('tid');
 
-    // Implementing Agencies
-    $this->addFieldMapping('field_project_organizations', 'implementing_agencies');
+    // Implementing Agencies (handled in prepare(), complete() below)
+    // $this->addFieldMapping('field_project_organizations', 'implementing_agencies');
 
     // Project Type
     $this->addFieldMapping('field_gef_project_type', 'type');
@@ -166,10 +166,6 @@ class CHMGEFProjectMigrate extends CHMServerConsumerMigration {
     // focal_areas
     $row->focal_areas = $this->prepareFocalAreas($row);
 
-    // implementing_agencies
-    $row->implementing_agencies = array();
-    // @todo implementing Agencies
-
     // type
     $row->type = self::getOrCreateTaxonomyTermByName($row->type, 'gef_project_type');
 
@@ -264,5 +260,78 @@ class CHMGEFProjectMigrate extends CHMServerConsumerMigration {
       }
     }
     return $ret;
+  }
+
+
+  public function prepare($entity, stdClass $row) {
+    if (!empty($entity->nid)) { // Updated
+      $node = node_load($entity->nid);
+      // Re-attach the field for existing entities to avoid deletion
+      $entity->field_project_organizations= $node->field_project_organizations;
+    }
+  }
+
+  /**
+   * Migrate field_project_organizations manually
+   * @param $entity
+   * @param \stdClass $row
+   */
+  public function complete($entity, stdClass $row) {
+    $node = node_load($entity->nid);
+    $exploded = explode(', ', $row->implementing_agencies);
+    $role_id = PTK::getOrCreateTermIdByName(IMPLEMENTING_AGENCY_TERM_NAME, 'organization_group', false);
+    if (!$role_id) {
+      $this->log('Cannot find term "' . IMPLEMENTING_AGENCY_TERM_NAME . '", please create it in organization_group taxonomy. Skipping assignment ...');
+      return;
+    }
+    foreach ($exploded as $organization_name) {
+      if ($org_id = PTK::getOrganizationByName($organization_name)) {
+        // Check if is already assigned
+        if (!$this->isOrganizationAlreadyAssigned($node->field_project_organizations, $org_id, $role_id)) {
+          // Create new field_collection entity
+          /** @var FieldCollectionItemEntity $fce */
+          $fce = entity_create('field_collection_item', [
+            'field_name' => 'field_project_organizations',
+            'field_organization' => [LANGUAGE_NONE => [0 => ['target_id' => $org_id]]],
+            'field_project_organization_role' => [LANGUAGE_NONE => [0 => ['tid' => $role_id]]],
+          ]);
+          $fce->setHostEntity('node', $node);
+          node_save($node);
+        }
+      }
+      else {
+        $this->log('Cannot find organization "' . $organization_name . '", please create as organization node type. Skipping assignment ...');
+        continue;
+      }
+    }
+    // @todo: We don't remove outdated records, but I think that a project does not really change the implementing organization.
+  }
+
+  /**
+   * Check if the given organization/role is already assigned inside the field collection.
+   *
+   * @param array $existing
+   *   Field value for the existing entity
+   * @param integer $org_id
+   *   Organization ID
+   * @param integer $role_id
+   *   Organization role ID
+   * @return bool
+   *   TRUE if the organization was already assigned.
+   */
+  function isOrganizationAlreadyAssigned($existing, $org_id, $role_id) {
+    if (empty($existing)) {
+      return FALSE;
+    }
+    foreach($existing[LANGUAGE_NONE] as $delta => $v) {
+      /** @var stdClass $ob */
+      $ob = field_collection_item_load($v['value']);
+      $ob_org_id = $ob->field_organization[LANGUAGE_NONE][0]['target_id'];
+      $ob_role_id = $ob->field_project_organization_role[LANGUAGE_NONE][0]['tid'];
+      if ($org_id == $ob_org_id && $role_id == $ob_role_id) {
+        return TRUE;
+      }
+    }
+    return FALSE;
   }
 }
