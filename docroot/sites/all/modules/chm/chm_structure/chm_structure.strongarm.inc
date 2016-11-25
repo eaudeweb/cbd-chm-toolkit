@@ -1800,10 +1800,10 @@ function chm_structure_strongarm() {
     'popup_clicking_confirmation' => 0,
     'eu_only' => 1,
     'popup_position' => 1,
-    'popup_agree_button_message' => 'X',
+    'popup_agree_button_message' => 'I understand',
     'popup_disagree_button_message' => 'Learn more',
     'popup_info' => array(
-      'value' => '<p>This website uses cookies to improve your user experience.</p>',
+      'value' => '<p>This website uses cookies to improve your user experience. <a href="/node/3174" target=_blank>Learn more</a></p>',
       'format' => 'html',
     ),
     'popup_agreed_enabled' => 0,
@@ -2726,6 +2726,121 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_taxonomy_term__gef_period';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'metatags' => array(
+          'weight' => '4',
+        ),
+        'path' => array(
+          'weight' => '3',
+        ),
+        'language' => array(
+          'weight' => '0',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_taxonomy_term__gef_period'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_taxonomy_term__gef_project_status';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'metatags' => array(
+          'weight' => '4',
+        ),
+        'path' => array(
+          'weight' => '3',
+        ),
+        'language' => array(
+          'weight' => '0',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_taxonomy_term__gef_project_status'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_taxonomy_term__gef_project_type';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'metatags' => array(
+          'weight' => '4',
+        ),
+        'path' => array(
+          'weight' => '3',
+        ),
+        'language' => array(
+          'weight' => '0',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_taxonomy_term__gef_project_type'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_taxonomy_term__organization_group';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'metatags' => array(
+          'weight' => '4',
+        ),
+        'path' => array(
+          'weight' => '3',
+        ),
+        'language' => array(
+          'weight' => '0',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_taxonomy_term__organization_group'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_taxonomy_term__project_type';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'metatags' => array(
+          'weight' => '5',
+        ),
+        'path' => array(
+          'weight' => '4',
+        ),
+        'language' => array(
+          'weight' => '0',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_taxonomy_term__project_type'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_taxonomy_term__species_redlist_status';
   $strongarm->value = array(
     'view_modes' => array(),
@@ -3496,6 +3611,20 @@ function chm_structure_strongarm() {
   $strongarm->name = 'metatag_enable_taxonomy_term__person_type';
   $strongarm->value = 1;
   $export['metatag_enable_taxonomy_term__person_type'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'metatag_enable_taxonomy_term__project_status';
+  $strongarm->value = 1;
+  $export['metatag_enable_taxonomy_term__project_status'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'metatag_enable_taxonomy_term__project_type';
+  $strongarm->value = 1;
+  $export['metatag_enable_taxonomy_term__project_type'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
