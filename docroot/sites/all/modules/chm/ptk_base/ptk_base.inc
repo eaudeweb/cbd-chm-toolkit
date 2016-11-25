@@ -335,4 +335,36 @@ class PTK {
       return NULL;
     }
   }
+
+  /**
+   * Find organization node by name.
+   *
+   * @param string $name Organization name
+   * @return integer
+   *   Node ID or NULL if not found
+   */
+  static function getOrganizationByName($name) {
+    // SELECT * FROM node a
+    // LEFT JOIN field_data_title_field b ON (a.nid = b.entity_id AND b.bundle = 'organization')
+    // LEFT JOIN field_data_field_organization_acronym c ON (a.nid = c.entity_id AND c.bundle = 'organization')
+    // WHERE a.title = 'GEF' OR b.title_field_value = 'GEF';
+    $name = trim($name);
+    /** @var SelectQuery $query */
+    $query = db_select('node', 'a')->fields('a', array('nid'));
+    $query->leftJoin('field_data_title_field', 'b', "a.nid = b.entity_id AND b.bundle = 'organization'");
+    $query->leftJoin('field_data_field_organization_acronym', 'c', "a.nid = c.entity_id AND c.bundle = 'organization'");
+
+    $where = db_or();
+    $where->condition('a.title', $name);
+    $where->condition('b.title_field_value', $name);
+    $where->condition('c.field_organization_acronym_value', $name);
+    $query->condition($where);
+    $query->groupBy('a.nid');
+
+    if ($tid = $query->execute()->fetchField()) {
+      return $tid;
+    }
+    return NULL;
+
+  }
 }
