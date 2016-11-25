@@ -530,14 +530,31 @@ function ptk_base_custom_theme() {
   }
 }
 
+function ptk_base_file_exists($path, $file) {
+  if (file_exists(drupal_realpath(file_default_scheme() . '://') . $path . $file)) {
+    return true;
+  }
+  return false;
+}
+
 function  theme_ptk_base_footer_logo($element) {
   global $language;
-  return "<img src=\"/files/images/logos/chm/logo-chm-{$language->language}.png\" alt=\"" . $element['title'] . '" />';
+  $path = "/images/logos/chm/";
+  $file = "logo-chm-{$language->language}.png";
+  if (!ptk_base_file_exists($path, $file)) {
+    $file = "logo-chm-en.png";
+  }
+  return '<img src="/files' . $path . $file . '" alt="' . $element['title'] . '" />';
 }
 
 function  theme_ptk_base_footer_support() {
   global $language;
-  return "<img src=\"/files/images/logos/jbf/logo-jbf-{$language->language}.jpg\" alt=\"" . t('Japan Biodiversity Fund') . "\" />";
+  $path = "/images/logos/jbf/";
+  $file = "logo-jbf-{$language->language}.jpg";
+  if (!ptk_base_file_exists($path, $file)) {
+    $file = "logo-jbf-{$language->language}.jpg";
+  }
+  return '<img src="/files' . $path . $file . '" alt="' . t('Japan Biodiversity Fund') . '" />';
 }
 
 /**
