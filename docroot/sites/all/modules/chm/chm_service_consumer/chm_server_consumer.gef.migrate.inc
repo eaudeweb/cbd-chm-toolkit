@@ -284,7 +284,14 @@ class CHMGEFProjectMigrate extends CHMServerConsumerMigration {
       $this->log('Cannot find term "' . IMPLEMENTING_AGENCY_TERM_NAME . '", please create it in organization_group taxonomy. Skipping assignment ...');
       return;
     }
+    // Map organisation names
+    $static_mappings = [
+      'GEF Secretariat' => 'Global Environment Facility'
+    ];
     foreach ($exploded as $organization_name) {
+      if (array_key_exists($organization_name, $static_mappings)) {
+        $organization_name = $static_mappings[$organization_name];
+      }
       if ($org_id = PTK::getOrganizationByName($organization_name)) {
         // Check if is already assigned
         if (!$this->isOrganizationAlreadyAssigned($node->field_project_organizations, $org_id, $role_id)) {
