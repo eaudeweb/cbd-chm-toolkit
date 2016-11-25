@@ -242,7 +242,7 @@ class CHMGEFProjectMigrate extends CHMServerConsumerMigration {
       if (array_key_exists($name, $static_mappings)) {
         $name = $static_mappings[$name];
       }
-      if (stripos($name, 'Serbia and Montenegro')) { // Dicks
+      if (stripos($name, 'Serbia and Montenegro') !== FALSE) { // Dicks
         $serbia = PTK::getCountryByName('Serbia');
         $montenegro = PTK::getCountryByName('Montenegro');
         $ret[] = $serbia->tid;
