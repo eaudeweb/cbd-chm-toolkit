@@ -5729,7 +5729,7 @@ function chm_structure_field_default_field_instances() {
             'slashes' => 0,
             'transliterate' => 0,
           ),
-          'value' => 'images/organizations-logos',
+          'value' => 'images/logos',
         ),
         'redirect' => FALSE,
         'retroactive_update' => 0,
@@ -11992,7 +11992,7 @@ function chm_structure_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => -5,
+      'weight' => 2,
     ),
   );
 
@@ -12029,7 +12029,7 @@ function chm_structure_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => -5,
+      'weight' => 1,
     ),
   );
 
