@@ -8532,7 +8532,7 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
-  height: 50px;
+  height: 40px;
   width: 380px;
   padding: 4px 10px;
   font-size: 14px;
@@ -8540,10 +8540,15 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
   color: #555;
   vertical-align: middle;
 }
+@media all and (max-width: 767px) {
+  #block-chm-search-chm-search form input[type="text"] {
+    width: 280px;
+  }
+}
 #block-chm-search-chm-search form .btn-search {
   position: absolute;
-  top: 10px;
-  right: 15px;
+  top: 7px;
+  right: 11px;
 }
 [dir="rtl"] #block-chm-search-chm-search form .btn-search {
   right: auto;
@@ -8766,7 +8771,7 @@ body.country-portal .logo img {
   background: none;
 }
 .navbar-container #navbar .navbar-header #nav-search {
-  margin-top: 9px;
+  margin-top: 4px;
 }
 [dir="rtl"] .navbar-container #navbar .navbar-header #nav-search {
   float: left;
@@ -10751,16 +10756,19 @@ table .views-field-title a:hover {
 #footer2 .footer-support img {
   max-height: 100px;
 }
+#footer2 .region-footer .nav {
+  text-align: center;
+}
 #footer2 .region-footer .nav li {
   margin: 0 0 0 10px !important;
   padding: 0;
-  display: inline;
-  float: left;
+  display: inline-block;
+  float: none;
 }
 #footer2 .region-footer .nav li a {
   margin: 0;
   padding: 0;
-  color: #337ab7;
+  color: #02783a;
 }
 #footer2 .region-footer .nav li a:hover {
   text-decoration: underline;
