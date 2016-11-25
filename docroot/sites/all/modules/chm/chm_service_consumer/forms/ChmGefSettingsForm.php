@@ -51,9 +51,7 @@ class ChmGefSettingsForm {
       if ($file = file_move($file, $upload_dir . 'projects.csv', FILE_EXISTS_REPLACE)) {
         // Save file status.
         $file->status = FILE_STATUS_PERMANENT;
-        dpm($file);
         file_save($file);
-        dpm($file);
         variable_set(GEF_CSV_VAR, $file->uri);
       }
       else {
