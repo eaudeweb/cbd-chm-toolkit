@@ -530,6 +530,16 @@ function ptk_base_custom_theme() {
   }
 }
 
+function  theme_ptk_base_footer_logo($element) {
+  global $language;
+  return "<img src=\"/files/images/logos/chm/logo-chm-{$language->language}.png\" alt=\"" . $element['title'] . '" />';
+}
+
+function  theme_ptk_base_footer_support() {
+  global $language;
+  return "<img src=\"/files/images/logos/jbf/logo-jbf-{$language->language}.jpg\" alt=\"" . t('Japan Biodiversity Fund') . "\" />";
+}
+
 /**
  * Implements hook_theme().
  */
@@ -537,7 +547,12 @@ function ptk_base_theme($existing, $type, $theme, $path) {
   return array(
     'ptk_base_chm_content_statistics_block_config_form' => array(
       'render element' => 'element',
-    )
+    ),
+    'ptk_base_footer_logo' => array(
+      'title' => NULL,
+    ),
+    'ptk_base_footer_support' => array(
+    ),
   );
 }
 
