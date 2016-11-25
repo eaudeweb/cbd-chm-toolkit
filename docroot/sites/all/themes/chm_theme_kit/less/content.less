@@ -1743,10 +1743,9 @@ body.node-type-species {
     &:hover:before {
       color: darken(@facets-accent-color, 5%);
     }
-    &:focus {
-      outline: none;
-    }
+    &:focus,
     &:active {
+      outline: none;
       .fa-spin();
       -webkit-animation-duration: .5s; /* Safari 4.0 - 8.0 */
       animation-duration: .5s;

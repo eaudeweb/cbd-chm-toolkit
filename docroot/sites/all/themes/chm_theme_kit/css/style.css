@@ -10672,10 +10672,9 @@ body #admin-menu .dropdown li {
 .search-api-ranges-elements .form-submit:hover:before {
   color: #0071b8;
 }
-.search-api-ranges-elements .form-submit:focus {
-  outline: none;
-}
+.search-api-ranges-elements .form-submit:focus,
 .search-api-ranges-elements .form-submit:active {
+  outline: none;
   -webkit-animation: fa-spin 2s infinite linear;
   animation: fa-spin 2s infinite linear;
   -webkit-animation-duration: .5s;
