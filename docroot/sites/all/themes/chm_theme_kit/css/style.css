@@ -8676,10 +8676,10 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
   }
 }
 body.country-portal .logo img {
-  margin: 20px 20px 0 0 !important;
+  margin: 0 20px 0 0 !important;
 }
 [dir="rtl"] body.country-portal .logo img {
-  margin: 20px 0 0 20px !important;
+  margin: 0 0 0 20px !important;
 }
 @media (max-width: 991px) {
   .navbar-header {
