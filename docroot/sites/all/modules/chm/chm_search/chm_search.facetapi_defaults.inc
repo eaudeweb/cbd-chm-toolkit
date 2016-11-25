@@ -128,7 +128,7 @@ function chm_search_facetapi_default_facet_settings() {
     'default_true' => '1',
     'facet_search_ids' => array(),
     'date_granularity' => 'MINUTE',
-    'pretty_paths_alias' => 'field_dates:value2',
+    'pretty_paths_alias' => 'field_date',
   );
   $export['search_api@default_multilingual_node_index::field_dates:value2'] = $facet;
 
@@ -1926,7 +1926,7 @@ function chm_search_facetapi_default_facet_settings() {
   $facet->enabled = TRUE;
   $facet->settings = array(
     'weight' => 0,
-    'widget' => 'custom_search_api_ranges_ui_slider',
+    'widget' => 'custom_chm_search_ui_slider',
     'filters' => array(),
     'active_sorts' => array(
       'active' => 'active',
