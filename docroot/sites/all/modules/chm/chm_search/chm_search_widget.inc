@@ -63,7 +63,7 @@ class CustomSearchApiRangesWidgetUISlider extends FacetapiWidget {
     $step = isset($settings['slider-step']) ? $settings['slider-step'] : 1;
     $round_precision = isset($settings['round-precision']) ? (int)$settings['round-precision'] : 0;
     $element = array(
-      '#theme' => 'search_api_ranges_slider' . $theme_suffix,
+      '#theme' => 'chm_search_slider' . $theme_suffix,
       '#slider' => $this->_buildUISliderForm(),
       '#prefix' => '<div id="search-api-ranges-' . $this->facet['field alias'] . '">',
       '#suffix' => '</div>',
@@ -71,7 +71,7 @@ class CustomSearchApiRangesWidgetUISlider extends FacetapiWidget {
         'js' => array(
           array(
             'data' => array(
-              'search_api_ranges' => array(
+              'chm_search' => array(
                 $this->facet['field alias'] => array(
                   'slider-step' => $step,
                   'round-precision' => $round_precision,
@@ -190,7 +190,6 @@ class CustomSearchApiRangesWidgetUISlider extends FacetapiWidget {
       'round-precision' => $round_precision,
     );
 
-//     $min_value = search_api_ranges_minmax($variables, 'ASC');
     //@todo fid how to get query without filter or how to clear filters... - extra solr call. or may be to use drupal to get min max field... or set from settings...
 
     $max_value = search_api_ranges_minmax($variables, 'DESC');
@@ -250,9 +249,9 @@ class CustomSearchApiRangesWidgetUISlider extends FacetapiWidget {
       'target' => $this->facet->getAdapter()->getSearchPath(),
     );
     // We need to generate unique form IDs in case multiple forms get rendered
-    // on the same page. search_api_ranges_forms() takes care of mapping them
-    // back to the base form ID 'search_api_ranges_block_slider_view_form'.
-    return drupal_get_form('search_api_ranges_block_slider_view_form_' . $range_field, $variables);
+    // on the same page. chm_search_forms() takes care of mapping them
+    // back to the base form ID 'chm_search_block_slider_view_form'.
+    return drupal_get_form('chm_search_block_slider_view_form_' . $range_field, $variables);
   }
 
 }

@@ -168,11 +168,11 @@
   <div class="container">
 	 <div id="footer-content" class="row footer-content">
        <div class="footer-logo">
-         <img src="/files/chm-logo-new-web-en.png" alt="<?php print $site_name; ?>" />
+         <?php echo theme('ptk_base_footer_logo', array('title' => $site_name) ); ?>
        </div>
        <div class="footer-support">
          <div class="text"><?php print t('With the support of the'); ?></div>
-         <img src="/<?php print drupal_get_path('theme', 'chm_theme_kit') . '/img/jbf.jpg' ?>" align="Japan Biodiversity Fund" />
+         <?php echo theme('ptk_base_footer_support'); ?>
        </div>
        <div class="clearfix"></div>
        <?php print render($page['footer']); ?>
