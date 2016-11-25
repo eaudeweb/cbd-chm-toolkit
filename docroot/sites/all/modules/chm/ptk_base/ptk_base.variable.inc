@@ -59,6 +59,14 @@ function ptk_base_variable_info($options) {
     'multidomain' => TRUE,
     'description' => t('Visit the <a href="!url" target="_blank">Arkive.org</a> website to get your API access key', array('!url' => 'https://www.arkive.org/api/docs'))
   );
+  $variables['popup_enabled'] = array(
+    'type' => 'string',
+    'title' => t('Enable popup', array(), $options),
+    'description' => t('Cookie enable popup per domain'),
+    'default' => '',
+    'required' => TRUE,
+    'multidomain' => TRUE,
+  );
   return $variables;
 }
 
