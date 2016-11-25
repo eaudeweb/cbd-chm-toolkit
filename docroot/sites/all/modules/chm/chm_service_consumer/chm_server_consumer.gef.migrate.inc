@@ -205,11 +205,10 @@ class CHMGEFProjectMigrate extends CHMServerConsumerMigration {
     $exploded = explode(', ', trim($row->focal_areas));
     foreach ($exploded as $name) {
       $name = trim($name);
-      if ($term = self::getOrCreateTaxonomyTermByName($name, 'gef_focal_area')) {
-        $ret[] = $term->tid;
+      if ($tid = self::getOrCreateTaxonomyTermByName($name, 'gef_focal_area')) {
+        $ret[] = $tid;
       }
     }
-
     return $ret;
   }
 
