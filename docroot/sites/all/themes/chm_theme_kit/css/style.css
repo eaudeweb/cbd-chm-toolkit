@@ -10597,7 +10597,7 @@ h2.pane-title {
   transition: height 0.01s;
 }
 .block-facetapi .badge {
-  background-color: #06c;
+  background-color: #0081d2;
   padding: 3px 4px;
 }
 .block-facetapi .select2-container.select2-container-multi {
@@ -10633,6 +10633,9 @@ h2.pane-title {
 .select2-drop.select2-drop-active.select2-drop-above {
   border: 1px solid #ddd;
   border-radius: 4px;
+}
+.select2-results .select2-highlighted {
+  background-color: #0081d2;
 }
 .view-the-search-view .view-content .views-row {
   border-bottom: 1px solid #e6e6e6;
@@ -10683,6 +10686,110 @@ h2.pane-title {
 table .views-field-title a,
 table .views-field-title a:hover {
   color: #06c;
+}
+.search-api-ranges-elements {
+  position: relative;
+}
+.search-api-ranges-elements .pull-left {
+  margin-bottom: 15px;
+  max-width: 88%;
+}
+.search-api-ranges-elements .form-submit {
+  display: block;
+  padding: 0px;
+  font-size: 0;
+  box-shadow: none;
+  height: 30px;
+}
+.search-api-ranges-elements .form-submit:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\f01e";
+}
+.search-api-ranges-elements .form-submit:before.fa-pull-left {
+  margin-right: .3em;
+}
+.search-api-ranges-elements .form-submit:before.fa-pull-right {
+  margin-left: .3em;
+}
+.search-api-ranges-elements .form-submit:before.pull-left {
+  margin-right: .3em;
+}
+.search-api-ranges-elements .form-submit:before.pull-right {
+  margin-left: .3em;
+}
+.search-api-ranges-elements .form-submit:before {
+  font-size: initial;
+  color: #0081d2;
+}
+.search-api-ranges-elements .form-submit,
+.search-api-ranges-elements .form-submit:hover,
+.search-api-ranges-elements .form-submit:focus,
+.search-api-ranges-elements .form-submit:active,
+.search-api-ranges-elements .form-submit:active:focus {
+  background: none;
+}
+.search-api-ranges-elements .form-submit:hover:before {
+  color: #0071b8;
+}
+.search-api-ranges-elements .form-submit:focus,
+.search-api-ranges-elements .form-submit:active {
+  outline: none;
+  -webkit-animation: fa-spin 2s infinite linear;
+  animation: fa-spin 2s infinite linear;
+  -webkit-animation-duration: .5s;
+  /* Safari 4.0 - 8.0 */
+  animation-duration: .5s;
+}
+.search-api-ranges-elements .form-item-range-from,
+.search-api-ranges-elements .form-item-range-to {
+  float: left;
+}
+.search-api-ranges-elements .form-item-range-from label,
+.search-api-ranges-elements .form-item-range-to label {
+  font-size: 90%;
+  text-transform: lowercase;
+}
+.search-api-ranges-elements .form-item-range-from label,
+.search-api-ranges-elements .form-item-range-to label,
+.search-api-ranges-elements .form-item-range-from input,
+.search-api-ranges-elements .form-item-range-to input {
+  display: inline-block;
+}
+.search-api-ranges-elements .form-item-range-from .form-control,
+.search-api-ranges-elements .form-item-range-to .form-control {
+  background-color: transparent;
+  border-radius: 0;
+  border-width: 0 0 1px;
+  box-shadow: none;
+  display: inline-block;
+  font-size: inherit;
+  height: 30px;
+  padding: 0;
+  width: 3.5em;
+}
+.search-api-ranges-elements .irs-bar,
+.search-api-ranges-elements .irs-to,
+.search-api-ranges-elements .irs-from,
+.search-api-ranges-elements .irs-single,
+.search-api-ranges-elements .irs-slider {
+  background-image: none;
+  background-color: #0081d2;
+}
+.search-api-ranges-elements .irs-to:after,
+.search-api-ranges-elements .irs-from:after,
+.search-api-ranges-elements .irs-single:after {
+  border-top-color: #0081d2;
+}
+.search-api-ranges-elements .irs-slider {
+  width: 3px;
+}
+.search-api-ranges-elements .irs-slider:hover {
+  background-color: #0071b8;
 }
 .site-footer {
   padding-top: 40px;

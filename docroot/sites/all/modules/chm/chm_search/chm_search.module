@@ -374,19 +374,27 @@ function chm_search_block_slider_view_form($form, &$form_state, $variables) {
   }
 
   $form['range-from'] = array(
+    // @todo change this to type= 'number'
     '#type' => 'textfield',
     '#title' => t('From'),
     '#size' => 10,
     '#default_value' => $variables['from'],
+    '#attributes' => [
+      'autocomplete' => 'off',
+    ]
   );
   $form['range-slider'] = array(
     '#type' => 'textfield',
   );
   $form['range-to'] = array(
+    // @todo change this to type= 'number'
     '#type' => 'textfield',
     '#title' => t('To'),
     '#size' => 10,
     '#default_value' => $variables['to'],
+    '#attributes' => [
+      'autocomplete' => 'off',
+    ]
   );
   $form['range-min'] = array(
     '#type' => 'hidden',

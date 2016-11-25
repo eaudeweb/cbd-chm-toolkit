@@ -1640,7 +1640,7 @@ body.node-type-species {
     // .transition(none);
   }
   .badge {
-    background-color: @chm-blue;
+    background-color: @facets-accent-color;
     padding: 3px 4px;
   }
   .select2-container.select2-container-multi {
@@ -1679,7 +1679,9 @@ body.node-type-species {
   border: 1px solid #ddd;
   border-radius: @border-radius-base;
 }
-
+.select2-results .select2-highlighted {
+  background-color: @facets-accent-color;
+}
 .view-the-search-view .view-content {
   .views-row {
     border-bottom: 1px solid #e6e6e6;
@@ -1758,7 +1760,81 @@ body.node-type-species {
     }
   }
 }
+
 table .views-field-title a,
 table .views-field-title a:hover {
   color: @link-color-temp;
+}
+
+@facets-accent-color: lighten(@button-bgcolor, 5%);
+.search-api-ranges-elements {
+  position: relative;
+  .pull-left {
+    margin-bottom: @form-group-margin-bottom;
+    max-width: 88%;
+  }
+  .form-submit {
+    display: block;
+    padding: 0px;
+    font-size: 0;
+    box-shadow: none;
+    height: 30px;
+    .fa-icon-content(@fa-var-repeat);
+    &:before {
+      font-size: initial;
+      color: @facets-accent-color;
+    }
+    &, &:hover, &:focus, &:active, &:active:focus {
+      background:none;
+    }
+    &:hover:before {
+      color: darken(@facets-accent-color, 5%);
+    }
+    &:focus,
+    &:active {
+      outline: none;
+      .fa-spin();
+      -webkit-animation-duration: .5s; /* Safari 4.0 - 8.0 */
+      animation-duration: .5s;
+    }
+  }
+  .form-item-range-from,
+  .form-item-range-to {
+    float: left;
+    label {
+      font-size: 90%;
+      text-transform: lowercase;
+    }
+    label, input {
+      display: inline-block;
+    }
+    .form-control {
+      background-color: transparent;
+      border-radius: 0;
+      border-width: 0 0 1px;
+      box-shadow: none;
+      display: inline-block;
+      font-size: inherit;
+      height: 30px;
+      padding: 0;
+      width: 3.5em;
+    }
+  }
+  .irs-bar, .irs-to, .irs-from, .irs-single, .irs-slider {
+    background-image: none;
+    background-color: @facets-accent-color;
+  }
+  .irs-to,
+  .irs-from,
+  .irs-single {
+    &:after {
+      border-top-color: @facets-accent-color;
+    }
+  }
+  .irs-slider {
+    width: 3px;
+    &:hover {
+      background-color: darken(@facets-accent-color, 5%);
+    }
+  }
 }
