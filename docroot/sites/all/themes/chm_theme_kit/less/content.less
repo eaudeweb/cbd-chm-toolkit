@@ -112,7 +112,8 @@ h2.pane-title {
 
   & > ul > li {
     & > .views-field.views-field-name-field {
-      font-size: 20px;
+      // font-size: 20px;
+      font-size: 1.2em;
       margin-top: .5em;
       margin-bottom: 1em; 
       font-weight: bold;
@@ -132,7 +133,8 @@ h2.pane-title {
         & > .field-content {
           display: table-cell;
           vertical-align: middle;
-          font-size: 18px;
+          // font-size: 18px;
+          font-weight: bold;
           height: 5rem;
           text-transform: uppercase;
         }
@@ -225,7 +227,7 @@ h2.pane-title {
 
     & > ul > li {
       & > .views-field.views-field-name-field{
-        font-size: 24px;
+        // font-size: 24px;
       }
       & > ul{
         margin-left: 3rem; //LTR
@@ -243,7 +245,7 @@ h2.pane-title {
         }
         & > .views-field.views-field-name-field{
           & > .field-content {
-            font-size: 20px;
+            // font-size: 20px;
             height: 6rem;
           }
         }
@@ -262,7 +264,7 @@ h2.pane-title {
 
     & > ul > li {
       & > .views-field.views-field-name-field{
-        font-size: 26px;
+        // font-size: 26px;
       }
       & > ul{
         margin-left: 4rem; //LTR
@@ -280,13 +282,13 @@ h2.pane-title {
         }
         & > .views-field.views-field-name-field{
           & > .field-content {
-            font-size: 22px;
+            // font-size: 22px;
             height: 7rem;
           }
         }
         & > ul{ //1.1.
           margin-left: 4.5rem; //LTR
-          font-size: 16px;
+          // font-size: 16px;
           [dir="rtl"] &{ //1.1.
             margin-left: 0rem;
             margin-right: 4.5rem;
@@ -323,7 +325,7 @@ h2.pane-title {
       & > .field-content {
         // display: table-cell;
         // vertical-align: middle;
-        font-size: 16px;
+        // font-size: 16px;
         // height: 8rem;
         text-transform: uppercase;
         font-weight: bold;
@@ -485,7 +487,7 @@ h2.pane-title {
     & > ul > li {
       & > .views-field.views-field-field-image-et{
         float: left; //LTR
-        width: 8.5rem;
+        width: 7.5rem;
         margin-right: .5em;
         [dir="rtl"] &{
           float: right;
@@ -502,17 +504,17 @@ h2.pane-title {
         & > .field-content {
           display: table-cell;
           vertical-align: middle;
-          font-size: 16px;
-          height: 8.5rem;
+          // font-size: 16px;
+          height: 7.5rem;
         }
       }
       
       & > ul{ //1.1.
         margin-top: 1.5em;
-        margin-left: 3.75em; //LTR
+        margin-left: 3.5em; //LTR
         margin-right: 3.25em; //LTR
         [dir="rtl"] &{ //1.1.
-          margin-right: 3.75em; 
+          margin-right: 3.5em;
           margin-left: 3.25em;
         } 
       } 
@@ -523,7 +525,7 @@ h2.pane-title {
     & > ul > li {
       margin-bottom: 3em;
       & > .views-field.views-field-field-image-et{
-        width: 9rem;
+        width: 8rem;
         margin-right: .5em; //LTR
         [dir="rtl"] &{
           margin-right: 0;
@@ -533,17 +535,17 @@ h2.pane-title {
       
       & > .views-field.views-field-name-field{
         & > .field-content {
-          font-size: 17px;
-          height: 9rem;
+          // font-size: 17px;
+          height: 8rem;
         }
       }
       
       & > ul{ //1.1.
-        margin-left: 5.5rem; //LTR
+        margin-left: 5rem; //LTR
         margin-right: 5rem; //LTR
-        font-size: 16px;
+        // font-size: 16px;
         [dir="rtl"] &{ 
-          margin-right: 5.5rem;
+          margin-right: 5rem;
           margin-left: 5rem;
         } 
       } 
@@ -566,7 +568,7 @@ h2.pane-title {
       
       & > .views-field.views-field-name-field{
         & > .field-content {
-          font-size: 18px;
+          // font-size: 18px;
           height: 10rem;
         }
       }
@@ -574,7 +576,7 @@ h2.pane-title {
       & > ul{ //1.1.
         margin-left: 6rem; //LTR
         margin-right: 5.5rem; //LTR
-        font-size: 16px;
+        // font-size: 16px;
         [dir="rtl"] &{
           margin-right: 5.5rem;
           margin-left: 5rem;
@@ -592,19 +594,19 @@ h2.pane-title {
     margin: 0;
     padding: 0;
   }
-  a{
-    color: black;
+  a {
+    color: @text-color;
   }
 
   & > ul > li {
     margin-bottom: 3em;
     & > .views-field.views-field-name{
-      font-size: 16px;
+      // font-size: 16px;
       text-transform: uppercase;
       font-weight: bold;
-      a:hover{
-        color: @text-color-green;
-      }
+      // a:hover{
+      //   color: @text-color-green;
+      // }
     }
     
     & > ul{ //1.1.
@@ -621,7 +623,7 @@ h2.pane-title {
           display: table-cell;
           margin-top: .4em;
           margin-right: .5em; //LTR
-          background-color: black;
+          background-color: @text-color;
           width: .5em;
           height: .5em;
           position: absolute;
@@ -641,9 +643,9 @@ h2.pane-title {
         }
         &:hover{
           cursor: pointer; 
-          a{
-          text-decoration: none;
-          color: black;
+          a {
+            text-decoration: none;
+            color: @text-color;
           }
           
         }
@@ -656,7 +658,7 @@ h2.pane-title {
   @media all and (min-width: 424px){
     & > ul > li {
       & > .views-field.views-field-name{
-        font-size: 16px;
+        // font-size: 16px;
       }
       
       & > ul{ //1.1.
@@ -674,13 +676,13 @@ h2.pane-title {
     & > ul > li {
       margin-bottom: 3em;
       & > .views-field.views-field-name{
-        font-size: 17px;
+        // font-size: 17px;
       }
       
       & > ul{ //1.1.
         margin-left: 5.5rem; //LTR
         margin-right: 5rem; //LTR
-        font-size: 16px;
+        // font-size: 16px;
         [dir="rtl"] &{ 
           margin-right: 5.5rem;
           margin-left: 5rem;
@@ -693,13 +695,13 @@ h2.pane-title {
     & > ul > li {
       margin-bottom: 3em;
       & > .views-field.views-field-name{
-        font-size: 18px;
+        // font-size: 18px;
       }
       
       & > ul{ //1.1.
         margin-left: 6rem; //LTR
         margin-right: 5.5rem; //LTR
-        font-size: 16px;
+        // font-size: 16px;
         [dir="rtl"] &{
           margin-right: 5.5rem;
           margin-left: 5rem;

@@ -373,10 +373,18 @@ body.country-portal .logo img {
           @media all and (max-width: @screen-sm-max) {
             a.active {
               background-color: #fff;
+              // color: @navbar-color;
             }
           }
           .active-trail {
             font-weight: bold;
+            &:not(.active):hover {
+              background-color: transparent;
+              .dropdown-toggle span.caret {
+                border-top-color: #fff;
+              }
+              // color: @navbar-color;
+            }
           }
           &:hover {
             background-color: transparent;

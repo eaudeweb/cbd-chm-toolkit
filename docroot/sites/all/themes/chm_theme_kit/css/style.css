@@ -8880,6 +8880,12 @@ body.country-portal .logo img {
 .navbar-container #navbar .navbar-collapse .nav li .active-trail {
   font-weight: bold;
 }
+.navbar-container #navbar .navbar-collapse .nav li .active-trail:not(.active):hover {
+  background-color: transparent;
+}
+.navbar-container #navbar .navbar-collapse .nav li .active-trail:not(.active):hover .dropdown-toggle span.caret {
+  border-top-color: #fff;
+}
 .navbar-container #navbar .navbar-collapse .nav li:hover {
   background-color: transparent;
 }
@@ -9228,7 +9234,7 @@ h2.pane-title {
   color: black;
 }
 .view-aichi-biodiversity-targets .view-content > ul > li > .views-field.views-field-name-field {
-  font-size: 20px;
+  font-size: 1.2em;
   margin-top: .5em;
   margin-bottom: 1em;
   font-weight: bold;
@@ -9248,7 +9254,7 @@ h2.pane-title {
 .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > .views-field.views-field-name-field > .field-content {
   display: table-cell;
   vertical-align: middle;
-  font-size: 18px;
+  font-weight: bold;
   height: 5rem;
   text-transform: uppercase;
 }
@@ -9328,9 +9334,6 @@ h2.pane-title {
   background-color: #8DC53E;
 }
 @media all and (min-width: 767px) {
-  .view-aichi-biodiversity-targets .view-content > ul > li > .views-field.views-field-name-field {
-    font-size: 24px;
-  }
   .view-aichi-biodiversity-targets .view-content > ul > li > ul {
     margin-left: 3rem;
   }
@@ -9346,7 +9349,6 @@ h2.pane-title {
     width: 6rem;
   }
   .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > .views-field.views-field-name-field > .field-content {
-    font-size: 20px;
     height: 6rem;
   }
   .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > ul {
@@ -9358,9 +9360,6 @@ h2.pane-title {
   }
 }
 @media all and (min-width: 1023px) {
-  .view-aichi-biodiversity-targets .view-content > ul > li > .views-field.views-field-name-field {
-    font-size: 26px;
-  }
   .view-aichi-biodiversity-targets .view-content > ul > li > ul {
     margin-left: 4rem;
   }
@@ -9376,12 +9375,10 @@ h2.pane-title {
     width: 7rem;
   }
   .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > .views-field.views-field-name-field > .field-content {
-    font-size: 22px;
     height: 7rem;
   }
   .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > ul {
     margin-left: 4.5rem;
-    font-size: 16px;
   }
   [dir="rtl"] .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > ul {
     margin-left: 0rem;
@@ -9408,7 +9405,6 @@ h2.pane-title {
   margin: 1.5em auto;
 }
 .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-name-field > .field-content {
-  font-size: 16px;
   text-transform: uppercase;
   font-weight: bold;
 }
@@ -9556,7 +9552,7 @@ h2.pane-title {
 @media all and (min-width: 424px) {
   .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-field-image-et {
     float: left;
-    width: 8.5rem;
+    width: 7.5rem;
     margin-right: .5em;
   }
   [dir="rtl"] .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-field-image-et {
@@ -9571,16 +9567,15 @@ h2.pane-title {
   .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-name-field > .field-content {
     display: table-cell;
     vertical-align: middle;
-    font-size: 16px;
-    height: 8.5rem;
+    height: 7.5rem;
   }
   .view-sustainable-development-goals .view-content > ul > li > ul {
     margin-top: 1.5em;
-    margin-left: 3.75em;
+    margin-left: 3.5em;
     margin-right: 3.25em;
   }
   [dir="rtl"] .view-sustainable-development-goals .view-content > ul > li > ul {
-    margin-right: 3.75em;
+    margin-right: 3.5em;
     margin-left: 3.25em;
   }
 }
@@ -9589,7 +9584,7 @@ h2.pane-title {
     margin-bottom: 3em;
   }
   .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-field-image-et {
-    width: 9rem;
+    width: 8rem;
     margin-right: .5em;
   }
   [dir="rtl"] .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-field-image-et {
@@ -9597,16 +9592,14 @@ h2.pane-title {
     margin-left: .5em;
   }
   .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-name-field > .field-content {
-    font-size: 17px;
-    height: 9rem;
+    height: 8rem;
   }
   .view-sustainable-development-goals .view-content > ul > li > ul {
-    margin-left: 5.5rem;
+    margin-left: 5rem;
     margin-right: 5rem;
-    font-size: 16px;
   }
   [dir="rtl"] .view-sustainable-development-goals .view-content > ul > li > ul {
-    margin-right: 5.5rem;
+    margin-right: 5rem;
     margin-left: 5rem;
   }
 }
@@ -9625,13 +9618,11 @@ h2.pane-title {
     margin-left: .5em;
   }
   .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-name-field > .field-content {
-    font-size: 18px;
     height: 10rem;
   }
   .view-sustainable-development-goals .view-content > ul > li > ul {
     margin-left: 6rem;
     margin-right: 5.5rem;
-    font-size: 16px;
   }
   [dir="rtl"] .view-sustainable-development-goals .view-content > ul > li > ul {
     margin-right: 5.5rem;
@@ -9647,18 +9638,14 @@ h2.pane-title {
   padding: 0;
 }
 .view-eu-targets .view-content a {
-  color: black;
+  color: #333333;
 }
 .view-eu-targets .view-content > ul > li {
   margin-bottom: 3em;
 }
 .view-eu-targets .view-content > ul > li > .views-field.views-field-name {
-  font-size: 16px;
   text-transform: uppercase;
   font-weight: bold;
-}
-.view-eu-targets .view-content > ul > li > .views-field.views-field-name a:hover {
-  color: #02823F;
 }
 .view-eu-targets .view-content > ul > li > ul {
   margin-top: .5em;
@@ -9674,7 +9661,7 @@ h2.pane-title {
   display: table-cell;
   margin-top: .4em;
   margin-right: .5em;
-  background-color: black;
+  background-color: #333333;
   width: .5em;
   height: .5em;
   position: absolute;
@@ -9696,12 +9683,9 @@ h2.pane-title {
 }
 .view-eu-targets .view-content > ul > li > ul > li:hover a {
   text-decoration: none;
-  color: black;
+  color: #333333;
 }
 @media all and (min-width: 424px) {
-  .view-eu-targets .view-content > ul > li > .views-field.views-field-name {
-    font-size: 16px;
-  }
   .view-eu-targets .view-content > ul > li > ul {
     margin-top: 1.5em;
     margin-left: 3.75em;
@@ -9716,13 +9700,9 @@ h2.pane-title {
   .view-eu-targets .view-content > ul > li {
     margin-bottom: 3em;
   }
-  .view-eu-targets .view-content > ul > li > .views-field.views-field-name {
-    font-size: 17px;
-  }
   .view-eu-targets .view-content > ul > li > ul {
     margin-left: 5.5rem;
     margin-right: 5rem;
-    font-size: 16px;
   }
   [dir="rtl"] .view-eu-targets .view-content > ul > li > ul {
     margin-right: 5.5rem;
@@ -9733,13 +9713,9 @@ h2.pane-title {
   .view-eu-targets .view-content > ul > li {
     margin-bottom: 3em;
   }
-  .view-eu-targets .view-content > ul > li > .views-field.views-field-name {
-    font-size: 18px;
-  }
   .view-eu-targets .view-content > ul > li > ul {
     margin-left: 6rem;
     margin-right: 5.5rem;
-    font-size: 16px;
   }
   [dir="rtl"] .view-eu-targets .view-content > ul > li > ul {
     margin-right: 5.5rem;
