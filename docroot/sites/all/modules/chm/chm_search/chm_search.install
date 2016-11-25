@@ -1,0 +1,9 @@
+<?php
+
+/**
+ * fix domain blocks after feature revert blocks
+ *
+ */
+function chm_search_update_7001() {
+  chm_search_fix_domain_blocks();
+}

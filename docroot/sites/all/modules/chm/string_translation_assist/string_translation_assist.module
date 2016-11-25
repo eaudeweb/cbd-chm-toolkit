@@ -1,0 +1,73 @@
+<?php
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ *
+ * {@inheritdoc}
+ */
+function string_translation_assist_form_i18n_string_locale_translate_edit_form_alter(&$form, &$form_state) {
+  $form['update_identical'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Apply translations to all strings matching this original text'),
+    '#default_value' => 1,
+    '#description' => t('When checked, all other strings with the same original text will also be updated based on the above translations'),
+  );
+  $form['#submit'][] = 'string_translation_assist_update_identical_strings_submit';
+}
+
+
+/**
+ * Submit handler for the string translation form.
+ *
+ * {@inheritdoc}
+ */
+function string_translation_assist_update_identical_strings_submit($form, $form_state) {
+  // Form ID: i18n_string_locale_translate_edit_form
+  if(!empty($form_state['values']['update_identical'])) {
+    $lid = $form_state['values']['lid'];
+    if ($label = string_translation_assist_string_label_by_lid($lid)) {
+      if ($other_lids = string_translation_assist_string_find_lids_by_label($label, $lid)) {
+        foreach ($other_lids as $o_lid) {
+          $o_form = $form;
+          $o_form_state = $form_state;
+          $o_form_state['build_info']['args'][0] = $o_lid;
+          $o_form_state['values']['lid'] = $o_lid;
+          i18n_string_locale_translate_edit_form_submit($o_form, $o_form_state);
+        }
+        drupal_set_message(t('!count additional strings have also been updated', array('!count' => count($other_lids))));
+      }
+    }
+  }
+}
+
+
+/**
+ * Find the label for a specific lid.
+ *
+ * @param integer $lid
+ * @return string or NULL
+ */
+function string_translation_assist_string_label_by_lid($lid) {
+  return db_select('locales_source')->fields(NULL, array('source'))->condition('lid', $lid)->execute()->fetchField();
+}
+
+
+/**
+ * @param string $label
+ *   Label to lookup, case insensitive
+ * @param integer $exclude_lid
+ *   Exclude this lid from results
+ * @return array
+ *   Array with matching lids.
+ */
+function string_translation_assist_string_find_lids_by_label($label, $exclude_lid = NULL) {
+  if (empty($label)) {
+    return array();
+  }
+  $query = db_select('locales_source')->fields(NULL, array('lid'))->condition('source', $label);
+  if ($exclude_lid) {
+    $query = $query->condition('lid', $exclude_lid, '<>');
+  }
+  return $query->execute()->fetchCol();
+}

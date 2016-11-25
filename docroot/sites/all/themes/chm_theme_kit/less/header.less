@@ -23,8 +23,11 @@
         display: inline-block;
         border: 1px solid #ccc;
         border-radius: 4px;
-        height: 50px;
+        height: 40px;
         width:380px;
+        @media all and (max-width: @screen-xs-max){
+           width:280px;
+        }
         padding: 4px 10px;
         font-size: 14px;
         line-height: 30px;
@@ -34,8 +37,8 @@
     }
     .btn-search {
       position: absolute;
-      top: 10px;
-      right: 15px; //LTR
+      top: 7px;
+      right: 11px; //LTR
       [dir="rtl"] &{
         right: auto;
         left: 10px;
@@ -115,6 +118,9 @@
     display: table-cell;
     vertical-align: middle;
     float: left;
+    [dir="rtl"] &{
+      float:right;
+    }
     margin-bottom: 20px;
     a {
       height: 60px;
@@ -176,7 +182,11 @@
 }
 
 body.country-portal .logo img {
-  margin: 20px 20px 0 0 !important;
+  margin: 0 20px 0 0 !important;
+  [dir="rtl"] &{
+      margin: 0 0 0 20px !important;
+    }
+
 }
 
 //collapse menu earlier to fit content
@@ -262,7 +272,7 @@ body.country-portal .logo img {
         }
       }
       #nav-search {
-        margin-top: 9px;
+        margin-top: 4px;
         [dir="rtl"] & {
           float: left;
         }

@@ -84,6 +84,21 @@ h2.pane-title {
   }
 }
 
+.table > thead > tr > td.active,
+.table > tbody > tr > td.active,
+.table > tfoot > tr > td.active,
+.table > thead > tr > th.active,
+.table > tbody > tr > th.active,
+.table > tfoot > tr > th.active,
+.table > thead > tr.active > td,
+.table > tbody > tr.active > td,
+.table > tfoot > tr.active > td,
+.table > thead > tr.active > th,
+.table > tbody > tr.active > th,
+.table > tfoot > tr.active > th {
+    background-color: inherit;
+}
+
 /*Aichi biodiversity targets*/
 .view-aichi-biodiversity-targets .view-content {
   ul {
@@ -1578,15 +1593,94 @@ body.node-type-species {
   }
 }
 
-//search page
-#block-facetapi-bhmrhtzu2n0ejkzp9wdi0s1oi2dgbsdm {
-  .block-title {
-    font-size: 1.5em;
+// Search page
+.region-sidebar-first > .block-facetapi:first-child {
+  &:before {
+    content: 'Filters';
+    display: block;
+    width: 100%;
+    .h2;
+  }
+}
+.block-facetapi {
+  margin-bottom: .6em;
+  .facet-title {
+    display: block;
+    font-size: 1.4rem;
+    margin-top: 0;
+    .fa-icon-content(@fa-var-plus);
+    &:before {
+      font-size: 90%;
+      margin-right: .3em;
+    }
+    &, &:hover {
+      color: @text-color;
+      text-decoration: none;
+    }
+    &[aria-expanded="true"] {
+    // &:hover {
+      .fa-icon-content(@fa-var-minus);
+      // color: @chm-blue;
+      &:before {
+        font-size: 90%;
+        // content: ' - '
+      }
+    }
   }
   ul {
     margin: 0;
     padding: 0;
   }
+  .form-group {
+    margin-bottom: 0;
+    // padding-bottom: @form-group-margin-bottom;
+  }
+  .collapsing {
+    .transition(height 0.01s);
+    // .transition(none);
+  }
+  .badge {
+    background-color: @facets-accent-color;
+    padding: 3px 4px;
+  }
+  .select2-container.select2-container-multi {
+    min-width: 100%;
+    width: 100%;
+    &.select2-container-active .select2-choices {
+      border: none;
+      box-shadow: none;
+    }
+  }
+  .select2-choices {
+    border: none;
+    background: none;
+    box-shadow: none;
+    border-radius: @border-radius-base;
+  }
+  .select2-dropdown-open .select2-choices {
+    border-radius: @border-radius-base @border-radius-base 0 0;
+  }
+  .select2-container.select2-container-multi .select2-search-choice {
+    background: #ddd;
+    border-color: #d4d4d4;
+    box-shadow: none;
+    line-height: 1.2em;
+    // margin: 3px 0;
+  }
+  .select2-search-field {
+    width: 100%;
+  }
+  .select2-input {
+    width: 100% !important;
+  }
+}
+.select2-drop-active,
+.select2-drop.select2-drop-active.select2-drop-above {
+  border: 1px solid #ddd;
+  border-radius: @border-radius-base;
+}
+.select2-results .select2-highlighted {
+  background-color: @facets-accent-color;
 }
 .view-the-search-view .view-content {
   .views-row {
@@ -1663,6 +1757,84 @@ body.node-type-species {
       .views-field.views-field-search-api-excerpt {
 
       }
+    }
+  }
+}
+
+table .views-field-title a,
+table .views-field-title a:hover {
+  color: @link-color-temp;
+}
+
+@facets-accent-color: lighten(@button-bgcolor, 5%);
+.search-api-ranges-elements {
+  position: relative;
+  .pull-left {
+    margin-bottom: @form-group-margin-bottom;
+    max-width: 88%;
+  }
+  .form-submit {
+    display: block;
+    padding: 0px;
+    font-size: 0;
+    box-shadow: none;
+    height: 30px;
+    .fa-icon-content(@fa-var-repeat);
+    &:before {
+      font-size: initial;
+      color: @facets-accent-color;
+    }
+    &, &:hover, &:focus, &:active, &:active:focus {
+      background:none;
+    }
+    &:hover:before {
+      color: darken(@facets-accent-color, 5%);
+    }
+    &:focus,
+    &:active {
+      outline: none;
+      .fa-spin();
+      -webkit-animation-duration: .5s; /* Safari 4.0 - 8.0 */
+      animation-duration: .5s;
+    }
+  }
+  .form-item-range-from,
+  .form-item-range-to {
+    float: left;
+    label {
+      font-size: 90%;
+      text-transform: lowercase;
+    }
+    label, input {
+      display: inline-block;
+    }
+    .form-control {
+      background-color: transparent;
+      border-radius: 0;
+      border-width: 0 0 1px;
+      box-shadow: none;
+      display: inline-block;
+      font-size: inherit;
+      height: 30px;
+      padding: 0;
+      width: 3.5em;
+    }
+  }
+  .irs-bar, .irs-to, .irs-from, .irs-single, .irs-slider {
+    background-image: none;
+    background-color: @facets-accent-color;
+  }
+  .irs-to,
+  .irs-from,
+  .irs-single {
+    &:after {
+      border-top-color: @facets-accent-color;
+    }
+  }
+  .irs-slider {
+    width: 3px;
+    &:hover {
+      background-color: darken(@facets-accent-color, 5%);
     }
   }
 }

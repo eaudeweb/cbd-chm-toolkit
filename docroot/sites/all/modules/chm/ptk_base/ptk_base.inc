@@ -97,17 +97,18 @@ class PTK {
    *   Country tid or NULL
    */
   static function getCountryByName($name) {
+    $name = trim($name);
     /** @var SelectQuery $query */
     $query = db_select('taxonomy_term_data', 'a')->fields('a', array('tid'));
-    $query->innerJoin('field_data_name_field', 'b', "a.tid = b.entity_id AND b.bundle = 'countries'");
-    $query->innerJoin('field_data_field_un_official_short_name', 'c', "a.tid = c.entity_id AND c.bundle = 'countries'");
-    $query->innerJoin('field_data_field_official_name', 'd', "a.tid = d.entity_id AND d.bundle = 'countries'");
+    $query->leftJoin('field_data_name_field', 'b', "a.tid = b.entity_id AND b.bundle = 'countries'");
+    $query->leftJoin('field_data_field_un_official_short_name', 'c', "a.tid = c.entity_id AND c.bundle = 'countries'");
+    $query->leftJoin('field_data_field_official_name', 'd', "a.tid = d.entity_id AND d.bundle = 'countries'");
 
     $where = db_or();
+    $where->condition('a.name', $name);
     $where->condition('b.name_field_value', $name);
     $where->condition('c.field_un_official_short_name_value', $name);
     $where->condition('d.field_official_name_value', $name);
-
     $query->condition($where);
     $query->groupBy('a.tid');
 
@@ -333,5 +334,37 @@ class PTK {
       }
       return NULL;
     }
+  }
+
+  /**
+   * Find organization node by name.
+   *
+   * @param string $name Organization name
+   * @return integer
+   *   Node ID or NULL if not found
+   */
+  static function getOrganizationByName($name) {
+    // SELECT * FROM node a
+    // LEFT JOIN field_data_title_field b ON (a.nid = b.entity_id AND b.bundle = 'organization')
+    // LEFT JOIN field_data_field_organization_acronym c ON (a.nid = c.entity_id AND c.bundle = 'organization')
+    // WHERE a.title = 'GEF' OR b.title_field_value = 'GEF';
+    $name = trim($name);
+    /** @var SelectQuery $query */
+    $query = db_select('node', 'a')->fields('a', array('nid'));
+    $query->leftJoin('field_data_title_field', 'b', "a.nid = b.entity_id AND b.bundle = 'organization'");
+    $query->leftJoin('field_data_field_organization_acronym', 'c', "a.nid = c.entity_id AND c.bundle = 'organization'");
+
+    $where = db_or();
+    $where->condition('a.title', $name);
+    $where->condition('b.title_field_value', $name);
+    $where->condition('c.field_organization_acronym_value', $name);
+    $query->condition($where);
+    $query->groupBy('a.nid');
+
+    if ($tid = $query->execute()->fetchField()) {
+      return $tid;
+    }
+    return NULL;
+
   }
 }

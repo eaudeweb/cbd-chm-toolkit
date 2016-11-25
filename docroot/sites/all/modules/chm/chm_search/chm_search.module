@@ -20,6 +20,19 @@ function chm_search_block_info() {
     'pages' => '',
     'weight' => 1,
   ];
+  $blocks['chm_search_reset'] = [
+    'info' => t('CHM Search reset block'),
+    'status' => TRUE,
+    'region' => 'sidebar_first',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => 
+    'search-network
+search-network/*
+search
+search/*',
+    'weight' => 1,
+  ];
   return $blocks;
 }
 
@@ -59,6 +72,23 @@ function chm_search_block_save($delta = '', $edit = array()) {
  * Implements hook_block_view().
  */
 function chm_search_block_view($delta = '') {
+  global $language;
+  if ($delta == 'chm_search_reset') {
+    $action = '/' . arg(0);
+    if ($language->prefix) {
+      $action = '/' . $language->prefix . $action;
+    }
+    $ret = array(
+      'subject' => t('Search Reset'),
+      'content' =>
+<<<EOT
+<div data-drupal-selector="edit-actions" class="form-actions form-group js-form-wrapper form-wrapper" id="edit-actions">
+<a class="btn btn-default btn-primary btn-sm btn-block search-reset" href="$action" data-drupal-selector="edit-reset">Reset all filters</a>
+</div>
+EOT
+    );
+    return $ret;
+  }
   if ($delta == 'chm_search') {
     $val = '';
     if (!empty($_GET['search_api_views_fulltext'])) {
@@ -108,4 +138,617 @@ function chm_search_page_alter(&$page) {
   if (arg(0) == 'search' || arg(0) == 'search-network') {
     drupal_page_is_cacheable(FALSE);
   }
+}
+
+
+/**
+ * Implements hook_facetapi_query_types().
+ */
+function chm_search_facetapi_query_types() {
+  return array(
+    'chm_search_date_range' => array(
+      'handler' => array(
+        'class' => 'CHM_SearchApi_Facetapi_QueryType_DateRangeQueryType',
+        'adapter' => 'search_api',
+      ),
+    )
+  );
+}
+
+
+/* require for CHM_SearchApi_Facetapi_QueryType_DateRangeQueryType */
+function chm_search_facetapi_facet_info_alter(array &$facet_info, array $searcher_info) {
+  switch ($searcher_info['adapter']) {
+    case 'apachesolr':
+    case 'search':
+    case 'search_api':
+      chm_search_associate_widget($facet_info);
+      break;
+  }
+}
+
+/**
+ * Associates all date fields with the "date_range" query type.
+ *
+ * @param array &$facet_info
+ *   The facet definitions passed to hook_facetapi_facet_info_alter().
+ */
+function chm_search_associate_widget(array &$facet_info) {
+  foreach ($facet_info as $name => $info) {
+    $query_types = array_flip($info['query types']);
+
+    // The check on "field type" is specific to Search Api.
+    $field_type = empty($info['field type']) ? '' : $info['field type'];
+
+    // @todo check if there is a beter way to do this.
+    if (isset($query_types['date']) || 'list<date>' == $field_type) {
+      // Add the date_range to the query types
+      $facet_info[$name]['query types'][] = 'date_range';
+      // This widget needs a different way to set labels
+      // so we add our own callback.
+      $facet_info[$name]['map options']['value callback'] = '_chm_search_api_facet_create_label';
+      $facet_info[$name]['query types'][] = 'date_range';
+    }
+  }
+}
+
+/**
+ * Value callback for labels with the date range type.
+ *
+ * Just added a basic functionality.
+ * Might need to be expanded for more functionality.
+ */
+function _chm_search_api_facet_create_label(array $values, array $options) {
+  $map = array();
+  return $map;
+}
+
+/**
+ * Returns HTML for an active facet item.
+ *
+ * @param $variables
+ *   An associative array containing the keys 'text', 'path', and 'options'. See
+ *   the l() function for information about these variables.
+ *
+ * @see l()
+ *
+ * @ingroup themeable
+ */
+function theme_chm_search_link_active($variables) {
+
+  // Sanitizes the link text if necessary.
+  $sanitize = empty($variables['options']['html']);
+  $link_text = ($sanitize) ? check_plain($variables['text']) : $variables['text'];
+
+  // Theme function variables fro accessible markup.
+  // @see http://drupal.org/node/1316580
+  $accessible_vars = array(
+    'text' => $variables['text'],
+    'active' => TRUE,
+  );
+
+  // Builds link, passes through t() which gives us the ability to change the
+  // position of the widget on a per-language basis.
+  $replacements = array(
+    '!facetapi_deactivate_widget' => theme('facetapi_deactivate_widget', $variables),
+    '!facetapi_accessible_markup' => theme('facetapi_accessible_markup', $accessible_vars),
+  );
+  $variables['text'] = t('!facetapi_deactivate_widget !facetapi_accessible_markup', $replacements);
+  $variables['options']['html'] = TRUE;
+  return theme_link($variables) . $link_text;
+}
+
+/**
+ * Implements hook_block_view_alter().
+ */
+function chm_search_block_view_alter(&$data, $block) {
+  if ($block->module == 'facetapi') {
+    $title = !empty($block->title) && $block->title != '<none>' ? $block->title : '';
+    if (isset($data['content']['#facet']['field'])) {
+      $facet_field = $data['content']['#facet']['field'];
+      $block->title = '';
+      if (isset($data['content'][$facet_field]['#id'])) {
+        $id = $data['content'][$facet_field]['#id'];
+        $expand = !empty($data['content'][$facet_field]['select']['#default_value']);
+        $anchor = l($title, '',
+          array(
+            'fragment' => $data['content'][$facet_field]['#id'],
+            'external' => TRUE,
+            'attributes' => array(
+              'role' => 'button',
+              'data-toggle' => 'collapse',
+              'aria-expanded' => $expand ? 'true' : 'false',
+              'aria-controls' => $id,
+              'class' => ['facet-title']
+            )
+          )
+        );
+        $data['content'][$facet_field]['#prefix'] = $anchor;
+        $data['subject'] = '';
+        $data['content'][$facet_field]['select']['#attributes']['data-placeholder'] = t('Select filter...');
+        $data['content'][$facet_field]['#attributes']['class'][] = 'collapse';
+        if ($expand) {
+          $data['content'][$facet_field]['#attributes']['class'][] = 'in';
+        }
+      }
+      else {
+        //@todo: dpm($data);
+      }
+    }
+    else {
+      // @todo dpm($data); dpm($block);
+    }
+  }
+  if (isset($data['content']['#facet'])) {
+    $settings = $data['content']['#settings'];
+    if (is_object($settings) && isset($settings->settings) && ($settings->settings['widget'] == 'collapsible')) {
+      chm_search_static($block->delta);
+    }
+  }
+}
+
+function chm_search_facetapi_widgets() {
+  return array(
+    'chm_search' => array(
+      'handler' => array(
+        'label' => t('CHM Select'),
+        'class' => 'CustomFacetapiWidgetSelect',
+        'query types' => array('term', 'date', 'date_range'),
+        'requirements' => array(
+          'facetapi_requirement_realm_property' => array('element type' => 'links')
+        ),
+      ),
+    ),
+    'custom_facetapi_links' => array(
+      'handler' => array(
+        'label' => t('CHM Links'),
+        'class' => 'CustomFacetapiWidgetLinks',
+        'query types' => array('term', 'numeric_range', 'date', 'date_range'),
+      ),
+    ),
+    'custom_chm_search_ui_slider' => array(
+      'handler' => array(
+        'label' => t('CHM Date Slider'),
+        'class' => 'CustomSearchApiRangesWidgetUISlider',
+        'query types' => array('date', 'date_range'),
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_forms().
+ *
+ * Set callbacks for select facet forms.
+ */
+function chm_search_forms($form_id) {
+  $forms = array();
+  foreach (facetapi_get_searcher_info() as $searcher => $searcher_info) {
+    foreach (facetapi_get_facet_info($searcher) as $facet) {
+      $forms['chm_search_' .  $facet['name']]['callback'] = 'chm_search_select';
+    }
+  }
+
+  // Map all form IDs starting with chm_search_block_slider_view_form
+  // to our callback.
+  if (strpos($form_id, 'chm_search_block_slider_view_form') === 0) {
+    $forms[$form_id] = array(
+      'callback' => 'chm_search_block_slider_view_form',
+    );
+  }
+
+  return $forms;
+}
+
+/**
+ * Generates the jQuery range slider form for range facet blocks.
+ *
+ * @see chm_search_forms()
+ */
+function chm_search_block_slider_view_form($form, &$form_state, $variables) {
+  $form = array();
+
+  // Add JS.
+  $module_path = drupal_get_path('module', 'chm_search');
+  $form['#attached']['js'][] = $module_path . '/js/ion.rangeSlider.min.js';
+  $form['#attached']['js'][] = $module_path . '/js/jquery.numeric.js';
+  $form['#attached']['js'][] = $module_path . '/js/chm_search.js';
+  $form['#attached']['css'][] = $module_path . '/css/ion.rangeSlider.css';
+  $form['#attached']['css'][] = $module_path . '/css/ion.rangeSlider.skinFlat.css';
+
+  // For compatibility with Search API ajax,
+  // we generate the 'ajax target URL' as a hidden field.
+  $params = drupal_get_query_parameters($_GET, array('q'));
+  foreach ($variables['active_items'] as $key => $active_item) {
+    if ($active_item['field alias'] == $variables['range_field']) {
+      $pos = $active_item['pos'];
+      unset($params['f'][$pos]);
+    }
+  }
+
+  // Get path or facetapi_pretty_paths.
+  $path = $variables['target'];
+  if (module_exists('facetapi_pretty_paths')) {
+    $path = request_path();
+    unset($_GET['f']);
+  }
+
+  $form['range-from'] = array(
+    // @todo change this to type= 'number'
+    '#type' => 'textfield',
+    '#title' => t('From'),
+    '#size' => 10,
+    '#default_value' => $variables['from'],
+    '#attributes' => [
+      'autocomplete' => 'off',
+    ]
+  );
+  $form['range-slider'] = array(
+    '#type' => 'textfield',
+  );
+  $form['range-to'] = array(
+    // @todo change this to type= 'number'
+    '#type' => 'textfield',
+    '#title' => t('To'),
+    '#size' => 10,
+    '#default_value' => $variables['to'],
+    '#attributes' => [
+      'autocomplete' => 'off',
+    ]
+  );
+  $form['range-min'] = array(
+    '#type' => 'hidden',
+    '#value' => $variables['min'],
+  );
+  $form['range-max'] = array(
+    '#type' => 'hidden',
+    '#value' => $variables['max'],
+  );
+  $form['path'] = array(
+    '#type' => 'hidden',
+    '#value' => $path,
+  );
+  $form['range-field'] = array(
+    '#type' => 'hidden',
+    '#value' => $variables['range_field'],
+  );
+  if ($variables['auto_submit_delay']) {
+    $form['delay'] = array(
+      '#type' => 'hidden',
+      '#value' => $variables['auto_submit_delay'],
+    );
+  }
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Go'),
+  );
+
+  return $form;
+}
+
+/**
+ * Handle slider block submit
+ */
+function chm_search_block_slider_view_form_submit($form, &$form_state) {
+  $values = $form_state['values'];
+  $range_field = $form_state['input']['range-field'];
+
+  // Prepare params and existing filter $pos (if any)
+  $params = drupal_get_query_parameters($_GET, array('q', 'page'));
+
+  // Get pretty path path and goto()
+  if (drupal_multilingual() && variable_get('locale_language_negotiation_url_part') == LOCALE_LANGUAGE_NEGOTIATION_URL_PREFIX) {
+    list($language, $path) = language_url_split_prefix(request_path(), language_list());
+    $language = $language ? $language : NULL;
+  }
+  else {
+    $path = request_path();
+    $language = NULL;
+  }
+  if (module_exists('facetapi_pretty_paths')) {
+    $exists = FALSE;
+    $split_path = explode('/', $path);
+    foreach ($split_path as $key => $value) {
+      if ($value == $range_field) {
+        $exists = $split_path[$key + 1];
+      }
+    }
+
+    // Decision: replace existing range or add new
+    $new_range = '[' . $values['range-from'] . ' TO ' . $values['range-to'] . ']';
+    if ($exists) {
+      $path = str_replace($exists, $new_range, $path);
+    }
+    else {
+      $path .= '/' . $range_field . '/' . $new_range;
+    }
+
+    // Unset non-pretty query
+    unset($params['f']);
+  }
+  else {
+    // Not pretty path logic
+    $query = $range_field . ':' . '[' . $values['range-from'] . ' TO ' . $values['range-to'] . ']';
+
+    $pos = -1;
+    if (isset($params['f'])) {
+      foreach ($params['f'] as $key => $param) {
+        if (strpos($param, $range_field . ':') !== FALSE) {
+          $pos = $key;
+        }
+      }
+    }
+
+    if ($pos != -1) {
+      $params['f'][$pos] = $query;
+    }
+    else {
+      $params['f'][] = $query;
+    }
+  }
+
+  drupal_goto($path, array('query' => array($params), 'language' => $language));
+}
+
+function chm_search_select2_element_alter(&$element) {
+  if (arg(0)=='search' || arg(0)=='search-network') {
+    $element['#select2']['formatSelection'] = 'chm_search_format_selection';
+    $element['#select2']['formatResult'] = 'chm_search_format_selection';
+  }
+}
+
+/**
+ * Generate form for facet.
+ */
+function chm_search_select($form, &$form_state, $elements) {
+
+  // Initializes links attributes, adds rel="nofollow" if configured.
+  $attributes = array();
+
+  $option_key = '#query';
+  if (module_exists('facetapi_pretty_paths')) {
+    $option_key = '#path';
+  }
+
+  $uri = request_uri();
+  $parts = explode('?', $uri);
+  $uri = $parts[0];
+  $url_filters = _chm_search_get_filters(array(substr($uri, 1)));
+
+  $facet_id = str_replace('chm_search_', '', $form_state['build_info']['form_id']);
+  $existing = array();
+  foreach ($elements as $element) {
+
+    $active_filter = '';
+    $element_filters = _chm_search_get_filters(array($element[$option_key]));
+    foreach($element_filters as $element_filter) {
+      if (isset($url_filters[$element_filter])) {
+        continue;
+      }
+      $active_filter = 'search/' . $element_filter;
+    }
+    if ($element['#active']) {
+          
+      foreach($url_filters as $url_filter) {
+        if (isset($element_filters[$url_filter])) {
+          continue;
+        }
+        $active_filter = 'search/' . $url_filter;
+      }
+      // Allow adding classes via altering.
+      if (isset($element['#class'])) {
+        $attributes['class'] = array_merge($attributes['class'], $element['#class']);
+      }
+      $options[$active_filter] = theme('chm_search_select_active_option', array('title' => $element['#markup'], 'count' => $element['#count']));
+    }
+    else {
+      $options[$active_filter] = theme('chm_search_select_option', array('title' => $element['#markup'], 'count' => $element['#count'])); //      
+    }
+
+    if ($element['#active']) {
+      $existing[] = $active_filter;
+    }
+  }
+
+  $form['facet_id'] = array(
+    '#type' => 'hidden',
+    '#default_value' => $facet_id,
+  );
+  $form['select'] = array(
+    '#type' => 'select',
+    '#multiple' => 'multiple',
+    '#options' => $options,
+    '#default_value' => $existing,
+    '#attributes' => array('class' => array('ctools-auto-submit')),
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Filter'),
+    '#attributes' => array('class' => array('ctools-use-ajax', 'ctools-auto-submit-click')),
+    '#submit' => array('chm_search_select_submit'),
+  );
+
+  // Lets add autosubmit js functionality from ctools.
+  $form['#attached']['js'][] = drupal_get_path('module', 'ctools') . '/js/auto-submit.js';
+
+  $form['#attached']['js'][libraries_get_path('select2') . '/select2.js'] = [ 'weight' => 100 ];
+
+  $form['#attached']['js'][drupal_get_path('module', 'chm_search') . '/js/chm_search_hide_submit.js'] = [ 'weight' => 110 ];
+
+  $form['#attached']['css'][] = libraries_get_path('select2') . '/select2.css';
+
+  $form['#attributes']['class'][] = 'chm-search-select-facet';
+  return $form;
+}
+
+function _chm_search_get_filters($select, $last_only = false, $facet_id = '') {
+  $filters = [];
+  foreach($select as $item) {
+    $item = str_replace('//', '/', $item);
+    $path = explode('/', $item);
+    array_shift($path);
+    if ($last_only) {
+      $filter = $path[count($path) - 2] . '/' . $path[count($path) - 1];
+      $filters[$filter] = $filter;
+    }
+    else {
+      for($i = 0; $i < intval(count($path) / 2); $i++) {
+        if ($facet_id && $facet_id != $path[$i * 2]) {
+          continue;
+        }
+        $filter = $path[$i * 2] . '/' . $path[$i * 2 + 1];
+        $filters[$filter] = $filter;
+      }
+    }
+  }
+  return $filters;
+}
+
+/**
+ * Submit handler for facet form.
+ */
+function chm_search_select_submit($form, &$form_state) {
+  $facet_id = $form_state['values']['facet_id'];
+  
+  $filters = _chm_search_get_filters($form_state['values']['select'], true);
+  $uri = request_uri();
+  $parts = explode('?', $uri);
+  $uri = $parts[0];
+  if (substr($uri, -1) != '/') {
+    $uri .= '/';
+  }
+  foreach($filters as $filter) {
+    if (strpos($uri, '/' . $filter . '/') > 0) {
+      continue;
+    }
+    $uri .= $filter . '/'; // add new...
+  }
+
+  $url_filters = _chm_search_get_filters(array(substr($uri, 1)), false, $facet_id); // only current facet type
+  foreach($url_filters as $url_filter) {
+    if (isset($filters[$url_filter])) {
+      continue;
+    }
+    $uri = str_replace('/' . $url_filter . '/', '/', $uri);
+    if (substr($uri, -1) != '/') {
+      $uri .= '/';
+    }
+  }
+
+  $uri = substr($uri, 0, -1);
+
+  $redirect = array($uri);
+  if (count($parts) > 1) {
+    parse_str($parts[1], $query);
+    $redirect[1] = array('query' => $query);
+  }
+
+  if (module_exists('facetapi_pretty_paths')) { // now only this works
+    $form_state['redirect'] = $redirect;
+  }
+  else {
+    //     $form_state['redirect'] = array($_GET['q'], array('query' => $uri));    
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function chm_search_theme() {
+  return array(
+
+    'chm_search_select_active_option' => array(
+      'title' => NULL,
+      'count' => NULL,
+    ),
+
+    'chm_search_select_option' => array(
+      'title' => NULL,
+      'count' => NULL,
+    ),
+
+    'chm_search_link_active' => array(
+      'variables' => array('text' => NULL, 'path' => NULL, 'options' => array()),
+    ),
+
+    'chm_search_slider' => array(
+      'variables' => array('slider' => ''),
+    ),
+
+    'chm_search_block_slider_view_form' => array(
+      'template' => 'chm-search-block-slider-view-form',
+      'render element' => 'form',
+    ),
+  );
+}
+
+
+/**
+* Theme function for selectbox widget option.
+ */
+
+function theme_chm_search_select_active_option($element) {
+  return $element['title'] . ' <span class="badge">' . $element['count'] . '</span>';
+}
+
+/**
+* Theme function for selectbox widget option.
+ */
+function theme_chm_search_select_option($element) {
+  return $element['title'] . ' <span class="counter">(' . $element['count'] . ')</span>';
+}
+
+
+
+/**
+ * Function that manages a static array of the block deltas that contain
+ * collapsible facets.
+ */
+function chm_search_static($delta = NULL) {
+  $chm_search = &drupal_static(__FUNCTION__, array());
+  if ($delta) {
+    // Add the given delta to our array of collapsible facets.
+    $chm_search[] = $delta;
+  }
+  return $chm_search;
+}
+
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function chm_search_preprocess_block(&$variables) {
+  $collapsible_facets = chm_search_static();
+  if (in_array($variables['block']->delta, $collapsible_facets)) {
+    $variables['classes_array'][] = 'chm-facetapi-collapsible';
+  }
+}
+
+function chm_search_fix_domain_blocks() {
+  $or = db_or();
+  $or->condition('b.module', 'facetapi');
+  $or->condition('b.module', 'chm_search');
+
+  $query = db_select('block', 'b')
+    ->fields('b', array('module', 'delta'))
+    ->distinct();
+  $query->leftJoin('domain_blocks', 'db', 'b.delta = db.delta');
+  $query->condition($or);
+  $query->condition('db.delta', NULL);
+
+  $existing_blocks = $query->execute()->fetchAll();
+  foreach ($existing_blocks as $block) {
+    if ($block->delta) {
+      $fields = array('module' => $block->module, 'delta' => $block->delta, 'realm' => 'domain_site', 'domain_id' => '-1');
+      db_insert('domain_blocks')->fields($fields)->execute();
+    }
+  }
+}
+
+function theme_chm_search_slider(array $variables) {
+  $output = '';
+  $output .= '<div class="chm-search-widget">';
+  $output .= render($variables['slider']);
+  $output .= '</div>';
+  return $output;
 }
