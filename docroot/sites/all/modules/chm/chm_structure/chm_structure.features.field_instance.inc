@@ -7157,7 +7157,7 @@ function chm_structure_field_default_field_instances() {
   // Exported field_instance: 'node-project-field_government'.
   $field_instances['node-project-field_government'] = array(
     'bundle' => 'project',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(
