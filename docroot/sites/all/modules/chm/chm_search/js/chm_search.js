@@ -60,14 +60,21 @@
             }
         });
 
-        rangeFrom.numeric({decimal : "."});
+        rangeFrom.attr('type', 'number').numeric({decimal : "."});
 
+        var initialFromValue;
+        rangeFrom.bind('focus', function() {
+          initialFromValue = rangeFrom.val();
+        });
         rangeFrom.bind('blur', function() {
+          var from = rangeFrom.val();
+          var to = rangeTo.val();
+          if(initialFromValue === from) return;
           clearTimeout(submitTimeout);
-          if (!isNaN(rangeFrom.val()) && rangeFrom.val() !== '') {
-            var value = parseFloat(rangeFrom.val());
-            if (value > parseFloat(rangeTo.val())) {
-              value = parseFloat(rangeTo.val());
+          if (!isNaN(from) && from !== '') {
+            var value = parseFloat(from);
+            if (value > parseFloat(to)) {
+              value = parseFloat(to);
             }
             slider.data("ionRangeSlider").update({
                 from: value
@@ -76,14 +83,22 @@
           }
         });
 
-        rangeTo.numeric({decimal : "."});
+        rangeTo.attr('type', 'number').numeric({decimal : "."});
+
+        var initialToValue;
+        rangeTo.bind('focus', function() {
+          initialToValue = rangeTo.val();
+        });
 
         rangeTo.bind('blur', function() {
+          var from = rangeFrom.val();
+          var to = rangeTo.val();
+          if(initialToValue === to) return;
           clearTimeout(submitTimeout);
-          if (!isNaN(rangeTo.val()) && rangeTo.val() !== '') {
-            var value = parseFloat(rangeTo.val());
-            if (value < parseFloat(rangeFrom.val())) {
-              value = parseFloat(rangeFrom.val());
+          if (!isNaN(rangeTo.val()) && to !== '') {
+            var value = parseFloat(to);
+            if (value < parseFloat(from)) {
+              value = parseFloat(from);
             }
             slider.data("ionRangeSlider").update({
                 to: value
