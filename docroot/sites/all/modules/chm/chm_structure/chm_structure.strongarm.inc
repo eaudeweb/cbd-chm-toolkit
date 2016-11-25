@@ -1799,11 +1799,11 @@ function chm_structure_strongarm() {
     'popup_enabled' => 1,
     'popup_clicking_confirmation' => 0,
     'eu_only' => 1,
-    'popup_position' => 1,
+    'popup_position' => 0,
     'popup_agree_button_message' => 'I understand',
     'popup_disagree_button_message' => 'Learn more',
     'popup_info' => array(
-      'value' => '<p>This website uses cookies to improve your user experience. <a href="/node/3174" target=_blank>Learn more</a></p>',
+      'value' => '<p>This website uses cookies to improve your user experience. <a href="/node/3174" target="_blank">Learn more</a></p>',
       'format' => 'html',
     ),
     'popup_agreed_enabled' => 0,
