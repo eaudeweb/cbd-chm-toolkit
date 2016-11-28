@@ -10495,7 +10495,6 @@ h2.pane-title {
   margin: 0 0 .5em 0;
 }
 .region-sidebar-first > .block-facetapi:first-child:before {
-  content: 'Filters';
   display: block;
   width: 100%;
   font-family: inherit;
