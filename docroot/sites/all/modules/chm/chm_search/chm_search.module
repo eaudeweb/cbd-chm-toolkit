@@ -792,7 +792,11 @@ function theme_chm_search_slider(array $variables) {
  */
 function chm_search_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-the-search-view-page-1') {
-    $form['search_api_views_fulltext']['#prefix'] = '<div class="well">';
-    $form['search_api_views_fulltext']['#suffix'] = '</div>';
+    $element = 'search_api_views_fulltext';
+    $search_label = $form['#info']['filter-' . $element]['label'];
+    $form['#info']['filter-' . $element]['label'] = '';
+    $form[$element]['#prefix'] = '<div class="well">';
+    $form[$element]['#prefix'] .= sprintf('<label for="%s">%s</label>', 'edit-search-api-views-fulltext', $search_label);
+    $form[]['#suffix'] = '</div>';
   }
 }
