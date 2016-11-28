@@ -75,8 +75,11 @@
   </header>
 </div>
 
-<div class="main-container <?php print $container_class; ?>">
+<div class="breadcrumb-container">
   <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
+</div>
+
+<div class="main-container <?php print $container_class; ?>">
   <?php print render($title_prefix); ?>
   <?php if (!empty($title)): ?>
     <h1 class="title" id="page-title"> <?php print $title; ?> </h1>
