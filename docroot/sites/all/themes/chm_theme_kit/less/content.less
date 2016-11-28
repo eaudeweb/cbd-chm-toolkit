@@ -1608,15 +1608,16 @@ body.node-type-species {
 }
 
 // Search page
-.region-sidebar-first > .block-facetapi:first-child {
-  &:before {
-    display: block;
-    width: 100%;
-    .h2;
-  }
-}
 .block-facetapi {
   margin-bottom: .6em;
+  h2.block-title {
+    font-size: 1.4rem;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  > .content .facetapi-custom-facetapi-links {
+    padding-top: .5em;
+  }
   .facet-title {
     display: block;
     font-size: 1.4rem;

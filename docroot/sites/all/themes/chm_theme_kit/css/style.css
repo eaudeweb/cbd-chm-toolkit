@@ -10505,29 +10505,16 @@ h2.pane-title {
 .node-event-detail .panel-flexible .panel-separator {
   margin: 0 0 .5em 0;
 }
-.region-sidebar-first > .block-facetapi:first-child:before {
-  display: block;
-  width: 100%;
-  font-family: inherit;
-  font-weight: 500;
-  line-height: 1.1;
-  color: inherit;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  font-size: 25px;
-}
-.region-sidebar-first > .block-facetapi:first-child:before small,
-.region-sidebar-first > .block-facetapi:first-child:before .small {
-  font-weight: normal;
-  line-height: 1;
-  color: #777777;
-}
-.region-sidebar-first > .block-facetapi:first-child:before small,
-.region-sidebar-first > .block-facetapi:first-child:before .small {
-  font-size: 65%;
-}
 .block-facetapi {
   margin-bottom: .6em;
+}
+.block-facetapi h2.block-title {
+  font-size: 1.4rem;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.block-facetapi > .content .facetapi-custom-facetapi-links {
+  padding-top: .5em;
 }
 .block-facetapi .facet-title {
   display: block;
