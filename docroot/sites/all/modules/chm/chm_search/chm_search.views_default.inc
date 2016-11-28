@@ -104,6 +104,21 @@ function chm_search_views_default_views() {
   $handler->display->display_options['fields']['field_event_status']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_event_status']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_event_status']['bypass_access'] = 0;
+  /* Field: Indexed Multilingual Node: Dates */
+  $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
+  $handler->display->display_options['fields']['field_dates']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
+  $handler->display->display_options['fields']['field_dates']['label'] = '';
+  $handler->display->display_options['fields']['field_dates']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_dates']['type'] = 'event_date_formatter';
+  $handler->display->display_options['fields']['field_dates']['settings'] = array(
+    'format_type' => 'long',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'show_remaining_days' => 0,
+  );
   /* Sort criterion: Search: Relevance */
   $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
   $handler->display->display_options['sorts']['search_api_relevance']['table'] = 'search_api_index_default_multilingual_node_index';
