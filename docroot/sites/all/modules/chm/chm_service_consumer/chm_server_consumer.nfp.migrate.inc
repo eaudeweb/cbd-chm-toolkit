@@ -22,6 +22,7 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
     $this->destination = new MigrateDestinationNode('cbd_nfp');
 
     $this->addFieldMapping('title', 'title');
+    $this->addFieldMapping('field_title', 'title');
     $this->addFieldMapping('field_email', 'email');
     $this->addFieldMapping('field_fax_numbers', 'fax');
     $this->addFieldMapping('field_countries', 'country');
