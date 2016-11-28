@@ -10681,6 +10681,9 @@ h2.pane-title {
 .view-the-search-view > .text-center {
   text-align: initial;
 }
+.view-the-search-view #edit-submit-the-search-view {
+  display: none;
+}
 #edit-search-api-views-fulltext-wrapper {
   float: none;
 }
