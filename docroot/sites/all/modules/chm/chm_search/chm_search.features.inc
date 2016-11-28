@@ -251,7 +251,7 @@ function chm_search_default_search_api_index() {
         "status" : { "type" : "boolean" },
         "sticky" : { "type" : "boolean" },
         "title" : { "type" : "text", "boost" : "5.0" },
-        "title_field" : { "type" : "text" },
+        "title_field" : { "type" : "text", "boost" : "5.0" },
         "type" : { "type" : "string" },
         "url" : { "type" : "uri" }
       }
