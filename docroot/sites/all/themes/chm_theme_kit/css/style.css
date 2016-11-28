@@ -10645,44 +10645,44 @@ h2.pane-title {
   margin-top: .5em;
   border-top: 1px dashed #e6e6e6;
 }
-.view-the-search-view .view-content .views-row {
+.view-the-search-view .views-row {
   border-bottom: 1px solid #e6e6e6;
   padding: .5em 0 1em;
 }
-.view-the-search-view .view-content .views-row:last-of-type {
+.view-the-search-view .views-row:last-of-type {
   border-bottom: none;
 }
-.view-the-search-view .view-content .views-row .views-field.views-field-title-field {
+.view-the-search-view .views-row .views-field.views-field-title-field {
   font-size: 1.3em;
   font-weight: bold;
 }
-.view-the-search-view .view-content .views-row .views-field.views-field-field-image {
+.view-the-search-view .views-row .views-field.views-field-field-image {
   display: none;
 }
-.view-the-search-view .view-content .views-row .views-field.views-field-field-event-status .field-content:not(:empty) {
+.view-the-search-view .views-row .views-field.views-field-field-event-status .field-content:not(:empty) {
   color: #888;
   font-size: .9em;
 }
-.view-the-search-view .view-content .views-row .views-field.views-field-field-event-status .field-content:not(:empty):before {
+.view-the-search-view .views-row .views-field.views-field-field-event-status .field-content:not(:empty):before {
   content: '\f073';
   font-family: "FontAwesome";
   margin-right: .2em;
 }
-.view-the-search-view .view-content .views-row .views-field.views-field-field-event-status .field-content:not(:empty):not(:first-of-type):after {
+.view-the-search-view .views-row .views-field.views-field-field-event-status .field-content:not(:empty):not(:first-of-type):after {
   content: '\2022';
   margin: 0 .2em;
 }
 @media all and (min-width: 480px) {
-  .view-the-search-view .view-content .views-row {
+  .view-the-search-view .views-row {
     padding: .5em 0 1em;
   }
-  .view-the-search-view .view-content .views-row .views-field.views-field-title-field {
+  .view-the-search-view .views-row .views-field.views-field-title-field {
     font-weight: bold;
   }
-  .view-the-search-view .view-content .views-row .views-field.views-field-field-image {
+  .view-the-search-view .views-row .views-field.views-field-field-image {
     display: block;
   }
-  .view-the-search-view .view-content .views-row .views-field.views-field-field-image img {
+  .view-the-search-view .views-row .views-field.views-field-field-image img {
     min-width: 100px;
     max-width: 150px;
     width: 10%;
@@ -10690,6 +10690,9 @@ h2.pane-title {
     padding: .3em;
     padding-left: 0;
   }
+}
+.view-the-search-view > .text-center {
+  text-align: initial;
 }
 #edit-search-api-views-fulltext-wrapper {
   float: none;
