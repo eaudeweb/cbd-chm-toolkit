@@ -10629,6 +10629,10 @@ h2.pane-title {
 .select2-results .select2-highlighted {
   background-color: #0081d2;
 }
+.view-the-search-view .view-content {
+  margin-top: .5em;
+  border-top: 1px dashed #e6e6e6;
+}
 .view-the-search-view .view-content .views-row {
   border-bottom: 1px solid #e6e6e6;
   padding: .5em 0 1em;
@@ -10673,6 +10677,17 @@ h2.pane-title {
     float: left;
     padding: .3em;
     padding-left: 0;
+  }
+}
+#edit-search-api-views-fulltext-wrapper {
+  float: none;
+}
+#edit-search-api-views-fulltext-wrapper #edit-search-api-views-fulltext {
+  width: 100%;
+}
+@media (min-width: 768px) {
+  #edit-search-api-views-fulltext-wrapper #edit-search-api-views-fulltext {
+    width: 40%;
   }
 }
 .search-api-ranges-elements {

@@ -1684,6 +1684,8 @@ body.node-type-species {
   background-color: @facets-accent-color;
 }
 .view-the-search-view .view-content {
+  margin-top: .5em;
+  border-top: 1px dashed #e6e6e6;
   .views-row {
     border-bottom: 1px solid #e6e6e6;
     padding: .5em 0 1em;
@@ -1761,6 +1763,19 @@ body.node-type-species {
     }
   }
 }
+#edit-search-api-views-fulltext-wrapper {
+  float: none;
+  // & ~ .views-exposed-widget {
+  //   float: right;
+  // }
+  #edit-search-api-views-fulltext {
+    width: 100%;
+    @media (min-width: @grid-float-breakpoint) {
+      width: 40%;
+    }
+  }
+}
+
 @facets-accent-color: lighten(@button-bgcolor, 5%);
 .search-api-ranges-elements {
   position: relative;
