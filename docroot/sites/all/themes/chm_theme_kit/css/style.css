@@ -8659,7 +8659,6 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
   #page-header #logo {
     display: table-cell;
     vertical-align: middle;
-    width: 130px;
   }
 }
 #page-header div#logo.site-logo img {
