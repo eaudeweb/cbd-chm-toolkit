@@ -61,6 +61,28 @@ function chm_theme_kit_preprocess_page(&$vars) {
   }
 }
 
+function chm_theme_kit_breadcrumb($variables) {
+  // Use the Path Breadcrumbs theme function if it should be used instead.
+  if (_bootstrap_use_path_breadcrumbs()) {
+    return path_breadcrumbs_breadcrumb($variables);
+  }
+
+  $output = '';
+  $breadcrumb = $variables['breadcrumb'];
+
+  // Determine if we are to display the breadcrumb.
+  $bootstrap_breadcrumb = bootstrap_setting('breadcrumb');
+  if (($bootstrap_breadcrumb == 1 || ($bootstrap_breadcrumb == 2 && arg(0) == 'admin')) && !empty($breadcrumb)) {
+    $output = theme('item_list', array(
+      'attributes' => array(
+        'class' => array('breadcrumb', 'container'),
+      ),
+      'items' => $breadcrumb,
+      'type' => 'ol',
+    ));
+  }
+  return $output;
+}
 
 function chm_theme_kit_css_alter(&$css) {
   $path = drupal_get_path('module', 'addressfield');
