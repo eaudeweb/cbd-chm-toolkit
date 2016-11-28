@@ -37,6 +37,14 @@ function chm_search_views_default_views() {
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
+  /* Field: Indexed Multilingual Node: Content type */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
+  $handler->display->display_options['fields']['type']['label'] = '';
+  $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['type']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['type']['format_name'] = 1;
   /* Field: Indexed Multilingual Node: Node ID */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -75,6 +83,13 @@ function chm_search_views_default_views() {
     'title_link' => 'content',
     'title_class' => '',
   );
+  /* Field: Indexed Multilingual Node: URL */
+  $handler->display->display_options['fields']['url']['id'] = 'url';
+  $handler->display->display_options['fields']['url']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['url']['field'] = 'url';
+  $handler->display->display_options['fields']['url']['label'] = '';
+  $handler->display->display_options['fields']['url']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['url']['link_to_entity'] = 1;
   /* Field: Indexed Multilingual Node: Status */
   $handler->display->display_options['fields']['field_event_status']['id'] = 'field_event_status';
   $handler->display->display_options['fields']['field_event_status']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -84,13 +99,6 @@ function chm_search_views_default_views() {
   $handler->display->display_options['fields']['field_event_status']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_event_status']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_event_status']['bypass_access'] = 0;
-  /* Field: Search: Excerpt */
-  $handler->display->display_options['fields']['search_api_excerpt']['id'] = 'search_api_excerpt';
-  $handler->display->display_options['fields']['search_api_excerpt']['table'] = 'search_api_index_default_multilingual_node_index';
-  $handler->display->display_options['fields']['search_api_excerpt']['field'] = 'search_api_excerpt';
-  $handler->display->display_options['fields']['search_api_excerpt']['label'] = '';
-  $handler->display->display_options['fields']['search_api_excerpt']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['search_api_excerpt']['link_to_entity'] = 0;
   /* Sort criterion: Search: Relevance */
   $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
   $handler->display->display_options['sorts']['search_api_relevance']['table'] = 'search_api_index_default_multilingual_node_index';
