@@ -7817,7 +7817,7 @@ ul.menu li.leaf {
 /* VIEWS ********************************** */
 /* ----- Search Results -------------- */
 .front .views-row {
-  padding-right: 20px;
+  padding-right: 0px;
   margin-bottom: 20px;
   padding-bottom: 20px;
   border-bottom: 1px solid #dddddd;
@@ -7932,7 +7932,8 @@ th.views-field-title {
 }
 .views-field-type {
   text-transform: uppercase;
-  font-size: 11px;
+  font-size: 13px;
+  line-height: 1em;
   font-weight: bold;
   color: #777777;
 }
@@ -8307,9 +8308,9 @@ a:hover {
 .views-field-title-field,
 .views-field-field-title {
   font-size: 17px;
-  line-height: 1.1;
+  line-height: 1.3;
   font-weight: bold;
-  margin-bottom: .5em;
+  margin: .3em 0;
 }
 .views-field-title a,
 .views-field-title-field a,
@@ -8531,9 +8532,9 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
-  height: 40px;
-  width: 300px;
-  padding: 4px 6px;
+  height: 50px;
+  width: 380px;
+  padding: 4px 10px;
   font-size: 14px;
   line-height: 30px;
   color: #555;
@@ -8541,8 +8542,8 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
 }
 #block-chm-search-chm-search form .btn-search {
   position: absolute;
-  top: 6px;
-  right: 10px;
+  top: 10px;
+  right: 15px;
 }
 [dir="rtl"] #block-chm-search-chm-search form .btn-search {
   right: auto;
@@ -8555,7 +8556,7 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
 #page-header .logo {
   display: block;
   float: left;
-  margin: 10px 10px 10px 0;
+  margin: 10px 0px 10px 0;
 }
 [dir="rtl"] #page-header .logo {
   float: right !important;
@@ -8618,9 +8619,13 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
   display: table-cell;
   vertical-align: middle;
   float: left;
+  margin-bottom: 20px;
+}
+[dir="rtl"] #page-header #name-and-slogan {
+  float: right;
 }
 #page-header #name-and-slogan a {
-  height: 70px;
+  height: 60px;
   float: none;
 }
 #page-header .header .site-logo img {
@@ -8672,6 +8677,9 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
 }
 body.country-portal .logo img {
   margin: 20px 20px 0 0 !important;
+}
+[dir="rtl"] body.country-portal .logo img {
+  margin: 20px 0 0 20px !important;
 }
 @media (max-width: 991px) {
   .navbar-header {
@@ -8873,6 +8881,12 @@ body.country-portal .logo img {
 }
 .navbar-container #navbar .navbar-collapse .nav li .active-trail {
   font-weight: bold;
+}
+.navbar-container #navbar .navbar-collapse .nav li .active-trail:not(.active):hover {
+  background-color: transparent;
+}
+.navbar-container #navbar .navbar-collapse .nav li .active-trail:not(.active):hover .dropdown-toggle span.caret {
+  border-top-color: #fff;
 }
 .navbar-container #navbar .navbar-collapse .nav li:hover {
   background-color: transparent;
@@ -9110,10 +9124,20 @@ body #admin-menu .dropdown li {
   padding-top: 3px;
 }
 #admin-menu {
-  background: #333;
+  background: #444;
 }
 #admin-menu .shortcut-toggle {
   margin: 5px 0 0 1.3em;
+}
+#page-header .navbar-brand {
+  line-height: 82px;
+}
+#admin-menu-users {
+  display: none;
+}
+#admin-menu .admin-menu-search input {
+  margin-right: 5px;
+  border-radius: 3px;
 }
 /* global styles*/
 .main-container {
@@ -9124,6 +9148,9 @@ body #admin-menu .dropdown li {
   margin-top: 0;
 }
 /* front page styling*/
+h2.pane-title {
+  margin-bottom: 20px;
+}
 .view-latest-updates .view-content > .item-list > ul {
   list-style-type: none;
   margin: 0;
@@ -9133,8 +9160,8 @@ body #admin-menu .dropdown li {
   margin-right: 0;
 }
 .view-latest-updates .view-content > .item-list > ul .views-field.views-field-field-image .field-content {
-  float: left;
-  margin-right: 20px;
+  float: right;
+  margin-left: 20px;
 }
 [dir="rtl"] .view-latest-updates .view-content > .item-list > ul .views-field.views-field-field-image .field-content {
   float: right;
@@ -9146,7 +9173,6 @@ body #admin-menu .dropdown li {
   color: #999;
 }
 .view-latest-updates .view-content > .item-list > ul .views-field.views-field-body {
-  clear: both;
   margin-bottom: 1em;
 }
 #block-ptk-base-chm-content-statistics .table-responsive,
@@ -9159,7 +9185,7 @@ body #admin-menu .dropdown li {
 }
 #block-ptk-base-chm-content-statistics table td {
   padding: .5em 0;
-  font-size: 14px;
+  font-size: 16px;
   line-height: inherit;
   color: #000;
 }
@@ -9172,6 +9198,9 @@ body #admin-menu .dropdown li {
 #block-ptk-base-chm-content-statistics table td .fa {
   margin-right: .5em;
 }
+.pane-ptk-base-chm-content-statistics {
+  font-size: 16px;
+}
 .pane-ptk-base-chm-content-statistics table > tbody > tr > td:nth-child(2) {
   position: relative;
 }
@@ -9183,6 +9212,20 @@ body #admin-menu .dropdown li {
   margin-left: 8px;
   margin-right: 0;
 }
+.table > thead > tr > td.active,
+.table > tbody > tr > td.active,
+.table > tfoot > tr > td.active,
+.table > thead > tr > th.active,
+.table > tbody > tr > th.active,
+.table > tfoot > tr > th.active,
+.table > thead > tr.active > td,
+.table > tbody > tr.active > td,
+.table > tfoot > tr.active > td,
+.table > thead > tr.active > th,
+.table > tbody > tr.active > th,
+.table > tfoot > tr.active > th {
+  background-color: inherit;
+}
 /*Aichi biodiversity targets*/
 .view-aichi-biodiversity-targets .view-content ul {
   list-style-type: none;
@@ -9193,7 +9236,7 @@ body #admin-menu .dropdown li {
   color: black;
 }
 .view-aichi-biodiversity-targets .view-content > ul > li > .views-field.views-field-name-field {
-  font-size: 20px;
+  font-size: 1.2em;
   margin-top: .5em;
   margin-bottom: 1em;
   font-weight: bold;
@@ -9213,7 +9256,7 @@ body #admin-menu .dropdown li {
 .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > .views-field.views-field-name-field > .field-content {
   display: table-cell;
   vertical-align: middle;
-  font-size: 18px;
+  font-weight: bold;
   height: 5rem;
   text-transform: uppercase;
 }
@@ -9293,9 +9336,6 @@ body #admin-menu .dropdown li {
   background-color: #8DC53E;
 }
 @media all and (min-width: 767px) {
-  .view-aichi-biodiversity-targets .view-content > ul > li > .views-field.views-field-name-field {
-    font-size: 24px;
-  }
   .view-aichi-biodiversity-targets .view-content > ul > li > ul {
     margin-left: 3rem;
   }
@@ -9311,7 +9351,6 @@ body #admin-menu .dropdown li {
     width: 6rem;
   }
   .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > .views-field.views-field-name-field > .field-content {
-    font-size: 20px;
     height: 6rem;
   }
   .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > ul {
@@ -9323,9 +9362,6 @@ body #admin-menu .dropdown li {
   }
 }
 @media all and (min-width: 1023px) {
-  .view-aichi-biodiversity-targets .view-content > ul > li > .views-field.views-field-name-field {
-    font-size: 26px;
-  }
   .view-aichi-biodiversity-targets .view-content > ul > li > ul {
     margin-left: 4rem;
   }
@@ -9341,12 +9377,10 @@ body #admin-menu .dropdown li {
     width: 7rem;
   }
   .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > .views-field.views-field-name-field > .field-content {
-    font-size: 22px;
     height: 7rem;
   }
   .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > ul {
     margin-left: 4.5rem;
-    font-size: 16px;
   }
   [dir="rtl"] .view-aichi-biodiversity-targets .view-content > ul > li > ul > li > ul {
     margin-left: 0rem;
@@ -9373,7 +9407,6 @@ body #admin-menu .dropdown li {
   margin: 1.5em auto;
 }
 .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-name-field > .field-content {
-  font-size: 16px;
   text-transform: uppercase;
   font-weight: bold;
 }
@@ -9521,7 +9554,7 @@ body #admin-menu .dropdown li {
 @media all and (min-width: 424px) {
   .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-field-image-et {
     float: left;
-    width: 8.5rem;
+    width: 7.5rem;
     margin-right: .5em;
   }
   [dir="rtl"] .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-field-image-et {
@@ -9536,16 +9569,15 @@ body #admin-menu .dropdown li {
   .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-name-field > .field-content {
     display: table-cell;
     vertical-align: middle;
-    font-size: 16px;
-    height: 8.5rem;
+    height: 7.5rem;
   }
   .view-sustainable-development-goals .view-content > ul > li > ul {
     margin-top: 1.5em;
-    margin-left: 3.75em;
+    margin-left: 3.5em;
     margin-right: 3.25em;
   }
   [dir="rtl"] .view-sustainable-development-goals .view-content > ul > li > ul {
-    margin-right: 3.75em;
+    margin-right: 3.5em;
     margin-left: 3.25em;
   }
 }
@@ -9554,7 +9586,7 @@ body #admin-menu .dropdown li {
     margin-bottom: 3em;
   }
   .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-field-image-et {
-    width: 9rem;
+    width: 8rem;
     margin-right: .5em;
   }
   [dir="rtl"] .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-field-image-et {
@@ -9562,16 +9594,14 @@ body #admin-menu .dropdown li {
     margin-left: .5em;
   }
   .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-name-field > .field-content {
-    font-size: 17px;
-    height: 9rem;
+    height: 8rem;
   }
   .view-sustainable-development-goals .view-content > ul > li > ul {
-    margin-left: 5.5rem;
+    margin-left: 5rem;
     margin-right: 5rem;
-    font-size: 16px;
   }
   [dir="rtl"] .view-sustainable-development-goals .view-content > ul > li > ul {
-    margin-right: 5.5rem;
+    margin-right: 5rem;
     margin-left: 5rem;
   }
 }
@@ -9590,13 +9620,11 @@ body #admin-menu .dropdown li {
     margin-left: .5em;
   }
   .view-sustainable-development-goals .view-content > ul > li > .views-field.views-field-name-field > .field-content {
-    font-size: 18px;
     height: 10rem;
   }
   .view-sustainable-development-goals .view-content > ul > li > ul {
     margin-left: 6rem;
     margin-right: 5.5rem;
-    font-size: 16px;
   }
   [dir="rtl"] .view-sustainable-development-goals .view-content > ul > li > ul {
     margin-right: 5.5rem;
@@ -9612,18 +9640,14 @@ body #admin-menu .dropdown li {
   padding: 0;
 }
 .view-eu-targets .view-content a {
-  color: black;
+  color: #333333;
 }
 .view-eu-targets .view-content > ul > li {
   margin-bottom: 3em;
 }
 .view-eu-targets .view-content > ul > li > .views-field.views-field-name {
-  font-size: 16px;
   text-transform: uppercase;
   font-weight: bold;
-}
-.view-eu-targets .view-content > ul > li > .views-field.views-field-name a:hover {
-  color: #02823F;
 }
 .view-eu-targets .view-content > ul > li > ul {
   margin-top: .5em;
@@ -9639,7 +9663,7 @@ body #admin-menu .dropdown li {
   display: table-cell;
   margin-top: .4em;
   margin-right: .5em;
-  background-color: black;
+  background-color: #333333;
   width: .5em;
   height: .5em;
   position: absolute;
@@ -9661,12 +9685,9 @@ body #admin-menu .dropdown li {
 }
 .view-eu-targets .view-content > ul > li > ul > li:hover a {
   text-decoration: none;
-  color: black;
+  color: #333333;
 }
 @media all and (min-width: 424px) {
-  .view-eu-targets .view-content > ul > li > .views-field.views-field-name {
-    font-size: 16px;
-  }
   .view-eu-targets .view-content > ul > li > ul {
     margin-top: 1.5em;
     margin-left: 3.75em;
@@ -9681,13 +9702,9 @@ body #admin-menu .dropdown li {
   .view-eu-targets .view-content > ul > li {
     margin-bottom: 3em;
   }
-  .view-eu-targets .view-content > ul > li > .views-field.views-field-name {
-    font-size: 17px;
-  }
   .view-eu-targets .view-content > ul > li > ul {
     margin-left: 5.5rem;
     margin-right: 5rem;
-    font-size: 16px;
   }
   [dir="rtl"] .view-eu-targets .view-content > ul > li > ul {
     margin-right: 5.5rem;
@@ -9698,13 +9715,9 @@ body #admin-menu .dropdown li {
   .view-eu-targets .view-content > ul > li {
     margin-bottom: 3em;
   }
-  .view-eu-targets .view-content > ul > li > .views-field.views-field-name {
-    font-size: 18px;
-  }
   .view-eu-targets .view-content > ul > li > ul {
     margin-left: 6rem;
     margin-right: 5.5rem;
-    font-size: 16px;
   }
   [dir="rtl"] .view-eu-targets .view-content > ul > li > ul {
     margin-right: 5.5rem;
@@ -10404,22 +10417,24 @@ body #admin-menu .dropdown li {
 }
 /* Species details page */
 /* Event detail page */
-.node-event-detail .field {
-  margin-bottom: 10px;
+.node-event-detail .panel-separator {
+  margin: 0 0 .3em 0;
 }
 .node-event-detail .field-name-field-dates {
-  color: #039749;
-  font-size: 1.2em;
-  text-align: center;
+  color: #666;
+  text-align: left;
 }
 .node-event-detail .field-name-field-dates > div {
-  display: inline;
+  display: inline-block;
   float: none;
 }
 .node-event-detail .field-name-field-event-address {
-  color: #039749;
-  font-size: 1.2em;
-  text-align: center;
+  color: #666;
+  text-align: left;
+}
+.node-event-detail .field-name-field-event-address > div {
+  display: inline-block;
+  float: none;
 }
 .node-event-detail .field-name-field-event-address .field-item div,
 .node-event-detail .field-name-field-event-address .field-item span {
@@ -10434,11 +10449,27 @@ body #admin-menu .dropdown li {
 .node-event-detail .field-name-field-event-address .field-item > span:last-child:after {
   content: "";
 }
+.node-event-detail .field-name-field-event-status,
+.node-event-detail .field-name-field-event-type,
+.node-event-detail .field-name-field-url {
+  text-align: left;
+}
 .node-event-detail .field-name-field-event-status > div,
 .node-event-detail .field-name-field-event-type > div,
 .node-event-detail .field-name-field-url > div {
+  display: inline-block;
   float: none;
-  text-align: center;
+  text-align: left;
+}
+.node-event-detail .field-name-body {
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+.node-event-detail .field-name-field-images .field-item {
+  margin-bottom: 20px;
+}
+.node-event-detail .panel-flexible .panel-separator {
+  margin: 0 0 .5em 0;
 }
 .region-sidebar-first > .block-facetapi:first-child:before {
   content: 'Filters';
@@ -10727,6 +10758,10 @@ body #admin-menu .dropdown li {
 .search-api-ranges-elements .irs-slider:hover {
   background-color: #0071b8;
 }
+table .views-field-title a,
+table .views-field-title a:hover {
+  color: #06c;
+}
 .site-footer {
   padding-top: 40px;
   padding-bottom: 40px;
@@ -10749,6 +10784,7 @@ body #admin-menu .dropdown li {
 }
 #footer2 .footer-logo {
   float: left;
+  padding-top: 25px;
 }
 [dir="rtl"] #footer2 .footer-logo {
   float: right;
@@ -10772,7 +10808,8 @@ body #admin-menu .dropdown li {
 }
 #footer2 .footer-support {
   float: right;
-  text-align: center;
+  text-align: left;
+  font-size: 11px;
 }
 [dir="rtl"] #footer2 .footer-support {
   float: left;
@@ -10791,6 +10828,9 @@ body #admin-menu .dropdown li {
     display: block;
   }
 }
+#footer2 .footer-support .text {
+  padding-left: 13px;
+}
 #footer2 .footer-support img {
   max-height: 100px;
 }
@@ -10807,6 +10847,30 @@ body #admin-menu .dropdown li {
 }
 #footer2 .region-footer .nav li a:hover {
   text-decoration: underline;
+}
+#sliding-popup.sliding-popup-bottom {
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+#sliding-popup .popup-content #popup-text {
+  padding-left: 30px;
+  padding: 5px 0;
+  margin: .5em 0;
+  float: none;
+  display: inline-block;
+  width: auto;
+  text-align: center;
+}
+#sliding-popup .popup-content #popup-text p {
+  line-height: 20px;
+  font-weight: normal;
+  margin: 0;
+  display: inline-block;
+}
+#sliding-popup .popup-content #popup-buttons {
+  float: none;
+  display: inline-block;
+  width: auto;
+  text-align: center;
 }
 /* Styling related to slick slideshow */
 .view-home-page-image-slider {

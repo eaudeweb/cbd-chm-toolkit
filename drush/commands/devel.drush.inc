@@ -25,6 +25,25 @@ function devel_drush_command() {
   return $items;
 }
 
+function _drush_devel_update_solr_path() {
+  if (module_exists('search_api')) {
+    $entity_type = 'search_api_server';
+    $servers = entity_load($entity_type, false);
+    foreach($servers as $server) {
+      if ($server->class == 'search_api_solr_service') {
+        $options_path = trim($server->options['path']);
+        if (substr($options_path, -5) == '-prod') {
+          $server->options['path'] = str_replace('-prod', '-test', $options_path);
+          entity_save($entity_type, $server);
+          $msg = t('Updating Solr server path from !from to !to', array('!from' => $options_path, '!to' => $server->options['path']));
+          drupal_set_message($msg);
+          drush_log($msg, 'ok');
+        }
+      }
+    }
+  }
+}
+
 function _drush_prepare_dev() {
   $env = variable_get('environment');
   if ($env != 'dev') {
@@ -39,12 +58,7 @@ function _drush_prepare_dev() {
   }
   module_disable(['memcache_storage']);
   module_enable(['devel', 'path_breadcrumbs_ui']);
-  foreach (domain_domains() as $id => $domain) {
-    $domain = domain_load($id);
-    _drush_prepare_development_domains($domain);
-    drush_log('Configuring ' . $domain['scheme'] . '://' . $domain['subdomain'], 'ok');
-    domain_save($domain);
-  }
+  _drush_prepare_development_domains($domain);
   if (module_exists('devel')) {
     drush_log('Assign devel access to everyone');
     user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access devel information'));
@@ -52,28 +66,53 @@ function _drush_prepare_dev() {
   }
   variable_set('eu_cookie_compliance_domain', 'local.ro');
   variable_set('error_level', '2');
+  _drush_devel_update_solr_path();
+  variable_set('page_compression', 0);
+  variable_set('preprocess_css', 0);
+  variable_set('preprocess_js', 0);
   drush_invoke_process('@self', 'sql-sanitize');
 }
 
 
 function _drush_prepare_development_domains(&$domain) {
-  $domain['scheme'] = 'http';
-  switch($domain['subdomain']) {
-    case 'biodiversity-albania.chm-cbd.net':
-    case 'new-al.chm-cbd.net':
-      $domain['subdomain'] = 'chm7-al.local.ro';
-      $domain['path'] = 'http://chm7-al.local.ro';
-      break;
-    case 'biodiversity-kazakhstan.chm-cbd.net':
-    case 'new-kz.chm-cbd.net':
-      $domain['subdomain'] = 'chm7-kz.local.ro';
-      $domain['path'] = 'http://chm7-kz.local.ro';
-      break;
-    default:
-      $subjects = array('www.' , 'demo.',      'new-' , 'old-' , '.chm-cbd.net');
-      $replaces = array('chm7.', 'chm7-demo.', 'chm7-', 'chm7-', '.local.ro');
-      $domain['subdomain'] = str_replace($subjects, $replaces, $domain['subdomain']);
-      $domain['path'] = str_replace($subjects, $replaces, $domain['path']);
+  $replacements = array(
+    'www.' => 'chm7.',
+    'demo.' => 'chm7-demo.',
+    'new-' => 'chm7-',
+    'old-' => 'chm7-',
+    '.chm-cbd.net' => '.local.ro'
+  );
+  foreach (domain_domains() as $id => $domain) {
+    $domain = domain_load($id);
+    $domain['scheme'] = 'http';
+    if ($id == 1) { // www
+      $domain['subdomain'] = 'chm7.local.ro';
+      $domain['path'] = 'http://chm7.local.ro/';
+    }
+    else if ($id == 3) { // demo
+      $domain['subdomain'] = 'chm7-demo.local.ro';
+      $domain['path'] = 'http://chm7-demo.local.ro/';
+    }
+    else {
+      $domain['subdomain'] = str_replace('.chm-cbd.net', '.local.ro', $domain['subdomain']);
+      $domain['path'] = str_replace('.chm-cbd.net', '.local.ro', $domain['path']);
+      if (strpos($domain['subdomain'], 'new-') !== FALSE) {
+        $domain['subdomain'] = str_replace('new-', '', $domain['subdomain']);
+        $domain['path'] = str_replace('new-', '', $domain['path']);
+      }
+      if ($country = PTKDomain::getPortalCountry($domain)) {
+        $code = entity_metadata_wrapper('taxonomy_term', $country)->field_iso_code->value();
+        $code = strtolower($code);
+        $domain['subdomain'] = "chm7-{$code}.local.ro";
+        $domain['path'] = "http://chm7-{$code}.local.ro";
+      }
+      else {
+        $domain['subdomain'] = 'chm7-' . $domain['subdomain'];
+        $domain['path'] = str_replace('https://', 'http://chm7-', $domain['path']);
+      }
+    }
+    drush_log('Configuring ' . $domain['path'] . ' (' . $domain['subdomain'] . ')', 'ok');
+    domain_save($domain);
   }
 }
 
@@ -102,6 +141,7 @@ function _drush_prepare_test() {
     }
   }
 
+  _drush_devel_update_solr_path();
   _drush_chm_create_test_domains();
 }
 

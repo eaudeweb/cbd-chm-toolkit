@@ -9,6 +9,9 @@
 }
 
 /* front page styling*/
+h2.pane-title {
+  margin-bottom:20px;
+}
 .view-latest-updates {
   .view-content > .item-list > ul{
     list-style-type: none;
@@ -19,8 +22,8 @@
       margin-right: 0;
     }
     .views-field.views-field-field-image .field-content{
-      float:left;
-      margin-right: 20px;
+      float:right;
+      margin-left: 20px;
       [dir="rtl"] &{
         float:right;
         margin-right: auto;
@@ -33,11 +36,12 @@
       color: #999;
     }
     .views-field.views-field-body{
-      clear: both;
+      //clear: both;
       margin-bottom: 1em;
     }
   }
 }
+
 #block-ptk-base-chm-content-statistics {
   &:extend(.well);
   .table-responsive, tr, td {
@@ -49,7 +53,7 @@
     }
     td {
       padding: .5em 0;
-      font-size: 14px;
+      font-size: 16px;
       line-height: inherit;
       color: #000;
       a {
@@ -66,6 +70,7 @@
 }
 
 .pane-ptk-base-chm-content-statistics {
+  font-size: 16px;
   table>tbody>tr>td:nth-child(2) {
     position: relative;
   }
@@ -77,6 +82,21 @@
       margin-right: 0;
     }
   }
+}
+
+.table > thead > tr > td.active,
+.table > tbody > tr > td.active,
+.table > tfoot > tr > td.active,
+.table > thead > tr > th.active,
+.table > tbody > tr > th.active,
+.table > tfoot > tr > th.active,
+.table > thead > tr.active > td,
+.table > tbody > tr.active > td,
+.table > tfoot > tr.active > td,
+.table > thead > tr.active > th,
+.table > tbody > tr.active > th,
+.table > tfoot > tr.active > th {
+    background-color: inherit;
 }
 
 /*Aichi biodiversity targets*/
@@ -92,7 +112,8 @@
 
   & > ul > li {
     & > .views-field.views-field-name-field {
-      font-size: 20px;
+      // font-size: 20px;
+      font-size: 1.2em;
       margin-top: .5em;
       margin-bottom: 1em; 
       font-weight: bold;
@@ -112,7 +133,8 @@
         & > .field-content {
           display: table-cell;
           vertical-align: middle;
-          font-size: 18px;
+          // font-size: 18px;
+          font-weight: bold;
           height: 5rem;
           text-transform: uppercase;
         }
@@ -205,7 +227,7 @@
 
     & > ul > li {
       & > .views-field.views-field-name-field{
-        font-size: 24px;
+        // font-size: 24px;
       }
       & > ul{
         margin-left: 3rem; //LTR
@@ -223,7 +245,7 @@
         }
         & > .views-field.views-field-name-field{
           & > .field-content {
-            font-size: 20px;
+            // font-size: 20px;
             height: 6rem;
           }
         }
@@ -242,7 +264,7 @@
 
     & > ul > li {
       & > .views-field.views-field-name-field{
-        font-size: 26px;
+        // font-size: 26px;
       }
       & > ul{
         margin-left: 4rem; //LTR
@@ -260,13 +282,13 @@
         }
         & > .views-field.views-field-name-field{
           & > .field-content {
-            font-size: 22px;
+            // font-size: 22px;
             height: 7rem;
           }
         }
         & > ul{ //1.1.
           margin-left: 4.5rem; //LTR
-          font-size: 16px;
+          // font-size: 16px;
           [dir="rtl"] &{ //1.1.
             margin-left: 0rem;
             margin-right: 4.5rem;
@@ -303,7 +325,7 @@
       & > .field-content {
         // display: table-cell;
         // vertical-align: middle;
-        font-size: 16px;
+        // font-size: 16px;
         // height: 8rem;
         text-transform: uppercase;
         font-weight: bold;
@@ -465,7 +487,7 @@
     & > ul > li {
       & > .views-field.views-field-field-image-et{
         float: left; //LTR
-        width: 8.5rem;
+        width: 7.5rem;
         margin-right: .5em;
         [dir="rtl"] &{
           float: right;
@@ -482,17 +504,17 @@
         & > .field-content {
           display: table-cell;
           vertical-align: middle;
-          font-size: 16px;
-          height: 8.5rem;
+          // font-size: 16px;
+          height: 7.5rem;
         }
       }
       
       & > ul{ //1.1.
         margin-top: 1.5em;
-        margin-left: 3.75em; //LTR
+        margin-left: 3.5em; //LTR
         margin-right: 3.25em; //LTR
         [dir="rtl"] &{ //1.1.
-          margin-right: 3.75em; 
+          margin-right: 3.5em;
           margin-left: 3.25em;
         } 
       } 
@@ -503,7 +525,7 @@
     & > ul > li {
       margin-bottom: 3em;
       & > .views-field.views-field-field-image-et{
-        width: 9rem;
+        width: 8rem;
         margin-right: .5em; //LTR
         [dir="rtl"] &{
           margin-right: 0;
@@ -513,17 +535,17 @@
       
       & > .views-field.views-field-name-field{
         & > .field-content {
-          font-size: 17px;
-          height: 9rem;
+          // font-size: 17px;
+          height: 8rem;
         }
       }
       
       & > ul{ //1.1.
-        margin-left: 5.5rem; //LTR
+        margin-left: 5rem; //LTR
         margin-right: 5rem; //LTR
-        font-size: 16px;
+        // font-size: 16px;
         [dir="rtl"] &{ 
-          margin-right: 5.5rem;
+          margin-right: 5rem;
           margin-left: 5rem;
         } 
       } 
@@ -546,7 +568,7 @@
       
       & > .views-field.views-field-name-field{
         & > .field-content {
-          font-size: 18px;
+          // font-size: 18px;
           height: 10rem;
         }
       }
@@ -554,7 +576,7 @@
       & > ul{ //1.1.
         margin-left: 6rem; //LTR
         margin-right: 5.5rem; //LTR
-        font-size: 16px;
+        // font-size: 16px;
         [dir="rtl"] &{
           margin-right: 5.5rem;
           margin-left: 5rem;
@@ -572,19 +594,19 @@
     margin: 0;
     padding: 0;
   }
-  a{
-    color: black;
+  a {
+    color: @text-color;
   }
 
   & > ul > li {
     margin-bottom: 3em;
     & > .views-field.views-field-name{
-      font-size: 16px;
+      // font-size: 16px;
       text-transform: uppercase;
       font-weight: bold;
-      a:hover{
-        color: @text-color-green;
-      }
+      // a:hover{
+      //   color: @text-color-green;
+      // }
     }
     
     & > ul{ //1.1.
@@ -601,7 +623,7 @@
           display: table-cell;
           margin-top: .4em;
           margin-right: .5em; //LTR
-          background-color: black;
+          background-color: @text-color;
           width: .5em;
           height: .5em;
           position: absolute;
@@ -621,9 +643,9 @@
         }
         &:hover{
           cursor: pointer; 
-          a{
-          text-decoration: none;
-          color: black;
+          a {
+            text-decoration: none;
+            color: @text-color;
           }
           
         }
@@ -636,7 +658,7 @@
   @media all and (min-width: 424px){
     & > ul > li {
       & > .views-field.views-field-name{
-        font-size: 16px;
+        // font-size: 16px;
       }
       
       & > ul{ //1.1.
@@ -654,13 +676,13 @@
     & > ul > li {
       margin-bottom: 3em;
       & > .views-field.views-field-name{
-        font-size: 17px;
+        // font-size: 17px;
       }
       
       & > ul{ //1.1.
         margin-left: 5.5rem; //LTR
         margin-right: 5rem; //LTR
-        font-size: 16px;
+        // font-size: 16px;
         [dir="rtl"] &{ 
           margin-right: 5.5rem;
           margin-left: 5rem;
@@ -673,13 +695,13 @@
     & > ul > li {
       margin-bottom: 3em;
       & > .views-field.views-field-name{
-        font-size: 18px;
+        // font-size: 18px;
       }
       
       & > ul{ //1.1.
         margin-left: 6rem; //LTR
         margin-right: 5.5rem; //LTR
-        font-size: 16px;
+        // font-size: 16px;
         [dir="rtl"] &{
           margin-right: 5.5rem;
           margin-left: 5rem;
@@ -1512,24 +1534,31 @@ body.node-type-species {
 
 /* Event detail page */
 .node-event-detail {
+  .panel-separator {
+    margin: 0 0 .3em 0;
+  }
 
   .field {
-    margin-bottom: 10px;
+    //margin-bottom: 10px;
   }
   .field-name-field-dates {
-    color: #039749;
-    font-size: 1.2em;
-    text-align: center;
+    color: #666;
+    //font-size: 1.2em;
+    text-align: left;
     > div {
-      display: inline;
+      display: inline-block;
       float: none;
     }
   }
 
   .field-name-field-event-address {
-    color: #039749;
-    font-size: 1.2em;
-    text-align: center;
+    color: #666;
+    //font-size: 1.2em;
+    text-align: left;
+    > div {
+      display: inline-block;
+      float: none;
+    }
     .field-item {
       div, span {
         display: inline;
@@ -1545,10 +1574,24 @@ body.node-type-species {
   }
 
   .field-name-field-event-status, .field-name-field-event-type, .field-name-field-url {
+    text-align: left;
     > div {
+      display: inline-block;
       float: none;
-      text-align: center;
+      text-align: left;
     }
+  }
+  .field-name-body {
+    margin-top:30px;
+    margin-bottom:40px;
+  }
+  .field-name-field-images {
+    .field-item {
+      margin-bottom:20px;
+    }
+  }
+  .panel-flexible .panel-separator {
+    margin: 0 0 .5em 0;
   }
 }
 
@@ -1790,4 +1833,8 @@ body.node-type-species {
       background-color: darken(@facets-accent-color, 5%);
     }
   }
+}
+table .views-field-title a,
+table .views-field-title a:hover {
+  color: @link-color-temp;
 }

@@ -40,6 +40,7 @@
         display: block;
       }
     }
+    padding-top:25px;
     img {
       max-height: 120px;
     }
@@ -59,7 +60,11 @@
         display: block;
       }
     }
-    text-align: center;
+    text-align: left;
+    font-size: 11px;
+    .text {
+      padding-left: 13px;
+    }
     img {
       max-height: 100px;
     }
@@ -84,3 +89,35 @@
     }
   }
 }
+
+#sliding-popup.sliding-popup-bottom {
+  background:rgba(0,0,0,0.8) !important; 
+}
+
+#sliding-popup .popup-content {
+  #popup-text {
+    padding-left:30px;
+    padding:5px 0;
+    margin: .5em 0;
+    float:none;
+    display:inline-block;
+    width: auto;
+    text-align: center;
+    p {
+      line-height:20px;
+      font-weight:normal;
+      margin:0;
+      display:inline-block;
+    }
+  }
+  #popup-buttons {
+    float:none;
+    display:inline-block;
+    width: auto;
+    text-align: center;
+  }
+}
+
+
+
+

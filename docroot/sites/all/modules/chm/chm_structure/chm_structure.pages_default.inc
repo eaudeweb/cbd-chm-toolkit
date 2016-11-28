@@ -4280,7 +4280,7 @@ function chm_structure_default_page_manager_pages() {
         'children' => array(
           0 => 4,
         ),
-        'class' => 'col-md-6',
+        'class' => 'col-md-8',
         'hide_empty' => 0,
       ),
       3 => array(
@@ -4291,7 +4291,7 @@ function chm_structure_default_page_manager_pages() {
         'children' => array(
           0 => 5,
         ),
-        'class' => 'col-md-6',
+        'class' => 'col-md-4',
         'hide_empty' => 0,
       ),
       4 => array(

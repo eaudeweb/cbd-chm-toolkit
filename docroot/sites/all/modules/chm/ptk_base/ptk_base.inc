@@ -90,6 +90,33 @@ class PTK {
     return NULL;
   }
 
+  /**
+   * Lookup country by name
+   * @param string $name Country name
+   * @return integer
+   *   Country tid or NULL
+   */
+  static function getCountryByName($name) {
+    /** @var SelectQuery $query */
+    $query = db_select('taxonomy_term_data', 'a')->fields('a', array('tid'));
+    $query->innerJoin('field_data_name_field', 'b', "a.tid = b.entity_id AND b.bundle = 'countries'");
+    $query->innerJoin('field_data_field_un_official_short_name', 'c', "a.tid = c.entity_id AND c.bundle = 'countries'");
+    $query->innerJoin('field_data_field_official_name', 'd', "a.tid = d.entity_id AND d.bundle = 'countries'");
+
+    $where = db_or();
+    $where->condition('b.name_field_value', $name);
+    $where->condition('c.field_un_official_short_name_value', $name);
+    $where->condition('d.field_official_name_value', $name);
+
+    $query->condition($where);
+    $query->groupBy('a.tid');
+
+    if ($tid = $query->execute()->fetchField()) {
+      return $tid;
+    }
+    return NULL;
+  }
+
   public static function getCountryFlag($country, $relative = FALSE) {
     try {
       $w = entity_metadata_wrapper('taxonomy_term', $country);
@@ -276,6 +303,35 @@ class PTK {
         }
       }
       return FALSE;
+    }
+  }
+
+
+  static function getOrCreateTermIdByName($name, $machine_name, $create = TRUE) {
+    $voc = taxonomy_vocabulary_machine_name_load($machine_name);
+    /** @var SelectQuery $query */
+    $query = db_select('taxonomy_term_data', 'a')
+      ->fields('a', array('tid'))
+      ->condition('vid', $voc->vid)
+      ->condition('name', $name);
+    if ($tid = $query->execute()->fetchField()) {
+      return $tid;
+    }
+    else {
+      if (!$create) {
+        return NULL;
+      }
+      // Create the term
+      $term = new stdClass();
+      $term->language = 'en';
+      $term->vid = $voc->vid;
+      $term->name = $name;
+      $term->name_field['en'][0]['value'] = $name;
+      taxonomy_term_save($term);
+      if (!empty($term->tid)) {
+        return $term->tid;
+      }
+      return NULL;
     }
   }
 }

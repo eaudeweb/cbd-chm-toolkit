@@ -23,9 +23,9 @@
         display: inline-block;
         border: 1px solid #ccc;
         border-radius: 4px;
-        height: 40px;
-        width:300px;
-        padding: 4px 6px;
+        height: 50px;
+        width:380px;
+        padding: 4px 10px;
         font-size: 14px;
         line-height: 30px;
         color: #555;
@@ -34,8 +34,8 @@
     }
     .btn-search {
       position: absolute;
-      top: 6px;
-      right: 10px; //LTR
+      top: 10px;
+      right: 15px; //LTR
       [dir="rtl"] &{
         right: auto;
         left: 10px;
@@ -52,7 +52,7 @@
     [dir="rtl"] &{
       float:right !important;
     }
-    margin: 10px 10px 10px 0;
+    margin: 10px 0px 10px 0;
     @media all and (max-width: @screen-xs-max){
       width: 100%;
       img {
@@ -115,9 +115,12 @@
     display: table-cell;
     vertical-align: middle;
     float: left;
-
+    [dir="rtl"] &{
+      float:right;
+    }
+    margin-bottom: 20px;
     a {
-      height: 70px;
+      height: 60px;
       float: none;
     }
   }
@@ -177,6 +180,10 @@
 
 body.country-portal .logo img {
   margin: 20px 20px 0 0 !important;
+  [dir="rtl"] &{
+      margin: 20px 0 0 20px !important;
+    }
+
 }
 
 //collapse menu earlier to fit content
@@ -366,10 +373,18 @@ body.country-portal .logo img {
           @media all and (max-width: @screen-sm-max) {
             a.active {
               background-color: #fff;
+              // color: @navbar-color;
             }
           }
           .active-trail {
             font-weight: bold;
+            &:not(.active):hover {
+              background-color: transparent;
+              .dropdown-toggle span.caret {
+                border-top-color: #fff;
+              }
+              // color: @navbar-color;
+            }
           }
           &:hover {
             background-color: transparent;
@@ -615,9 +630,21 @@ body #admin-menu .dropdown li {
 #admin-menu .dropdown li.admin-menu-icon {padding-top:3px;}
 
 #admin-menu {
-    background: #333;
+    background: #444;
 }
 
 #admin-menu .shortcut-toggle {
     margin: 5px 0 0 1.3em;
+  }
+
+  #page-header .navbar-brand {
+    line-height: 82px;
+
+  }
+
+ #admin-menu-users {display:none;} 
+
+ #admin-menu .admin-menu-search input {
+    margin-right:5px;
+    border-radius: 3px;
   }
