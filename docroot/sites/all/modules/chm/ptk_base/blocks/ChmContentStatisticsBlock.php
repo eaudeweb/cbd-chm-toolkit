@@ -27,18 +27,19 @@ class ChmContentStatisticsBlock extends AbstractBlock {
     global $_domain;
     $domain_id = $_domain['domain_id'];
     $types = node_type_get_types();
-    $site_domain_nids = db_select('domain_access', 'da')
-      ->fields('da', ['nid'])
-      ->condition('realm', 'domain_site')
-      ->execute()->fetchCol();
+
+    $db_and = db_and();
+    $db_and ->condition('realm', 'domain_id');
+    $db_and ->condition('gid', $domain_id);
+
+    $db_or = db_or();
+    $db_or->condition('realm', 'domain_site');
+    $db_or->condition($db_and);
 
     $domain_nids = db_select('domain_access', 'da')
       ->fields('da', ['nid'])
-      ->condition('realm', 'domain_id')
-      ->condition('da.gid', $domain_id)
+      ->condition($db_or)
       ->execute()->fetchCol();
-
-    $domain_nids = array_merge($domain_nids, $site_domain_nids);
 
     $q = db_select('node', 'n')->fields('n', ['type']);
     if (!empty($domain_nids)) {
