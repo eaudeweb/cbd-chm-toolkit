@@ -8590,8 +8590,7 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
 }
 @media all and (max-width: 767px) {
   #page-header .navbar-brand {
-    padding-bottom: 25px;
-    line-height: 24px;
+    line-height: 30px;
     height: auto;
     text-align: center;
     width: 100%;
@@ -8621,7 +8620,8 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
   font-family: "Open Sans";
 }
 #page-header #name-and-slogan {
-  display: table-cell;
+  display: block;
+  width: 100%;
   vertical-align: middle;
   float: left;
   margin-bottom: 20px;
@@ -8630,8 +8630,12 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
   float: right;
 }
 #page-header #name-and-slogan a {
-  height: 60px;
   float: none;
+}
+@media (min-width: 768px) {
+  #page-header #name-and-slogan a {
+    height: 60px;
+  }
 }
 #page-header .header .site-logo img {
   border: 7px solid white;
@@ -8644,6 +8648,17 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
   -webkit-box-shadow: 0 0 5px 4px #cccccc;
   -moz-box-shadow: 0 0 5px 4px #cccccc;
   box-shadow: 0 0 5px 4px #cccccc;
+}
+@media (min-width: 768px) {
+  #page-header #name-and-slogan {
+    display: table-cell;
+    width: auto;
+  }
+  #page-header #logo {
+    display: table-cell;
+    vertical-align: middle;
+    width: 130px;
+  }
 }
 #page-header div#logo.site-logo img {
   max-height: none;
@@ -8673,18 +8688,14 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
   #page-header #name-and-slogan {
     float: left;
     padding-left: 0;
-    width: auto;
   }
   #page-header .site-name {
     width: 100%;
     text-align: left;
   }
 }
-body.country-portal .logo img {
-  margin: 0 20px 0 0 !important;
-}
-[dir="rtl"] body.country-portal .logo img {
-  margin: 0 0 0 20px !important;
+.header-section {
+  display: table;
 }
 @media (max-width: 991px) {
   .navbar-header {
@@ -9134,8 +9145,10 @@ body #admin-menu .dropdown li {
 #admin-menu .shortcut-toggle {
   margin: 5px 0 0 1.3em;
 }
-#page-header .navbar-brand {
-  line-height: 82px;
+@media (min-width: 768px) {
+  #page-header .navbar-brand {
+    line-height: 82px;
+  }
 }
 #admin-menu-users {
   display: none;
@@ -9143,6 +9156,9 @@ body #admin-menu .dropdown li {
 #admin-menu .admin-menu-search input {
   margin-right: 5px;
   border-radius: 3px;
+}
+.flag-border {
+  border: 1px solid #ddd;
 }
 /* global styles*/
 .main-container {
