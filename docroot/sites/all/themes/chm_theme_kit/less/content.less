@@ -9,6 +9,11 @@
 .breadcrumb {
   margin-bottom: 0;
   border-radius: 0;
+  @media (min-width: @grid-float-breakpoint) {
+    li:first-child {
+      margin-left: 13px;
+    }
+  }
 }
 
 #page-title {

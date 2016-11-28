@@ -9173,6 +9173,11 @@ body #admin-menu .dropdown li {
   margin-bottom: 0;
   border-radius: 0;
 }
+@media (min-width: 768px) {
+  .breadcrumb li:first-child {
+    margin-left: 13px;
+  }
+}
 #page-title {
   margin-top: 0;
 }
