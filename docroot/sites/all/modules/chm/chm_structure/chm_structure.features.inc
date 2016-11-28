@@ -50,7 +50,7 @@ function chm_structure_image_default_styles() {
       1 => array(
         'name' => 'image_scale',
         'data' => array(
-          'width' => 112,
+          'width' => '',
           'height' => 80,
           'upscale' => 0,
         ),
