@@ -54,6 +54,16 @@ function chm_search_block_configure($delta = '') {
     );
     return $form;
   }
+  if ($delta == 'chm_search_reset') {
+    $form = array();
+    $form['chm_search_block_reset_label'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Reset button label, in english'),
+      '#default_value' => variable_get('chm_search_block_reset_label', 'Clear filters'),
+      '#description' => t('The string is translated in available languages through <a href="/admin/config/regional/translate/translate">string translation</a> screen. If you change the value, new value must be re-translated.')
+    );
+    return $form;
+  }
 }
 
 /**
@@ -65,6 +75,10 @@ function chm_search_block_save($delta = '', $edit = array()) {
     variable_set('chm_search_block_input_placeholder', $value);
     $value = isset($edit['chm_search_block_input_size']) ? $edit['chm_search_block_input_size'] : '';
     variable_set('chm_search_block_input_size', $value);
+  }
+  if ($delta == 'chm_search_reset') {
+    $value = isset($edit['chm_search_block_reset_label']) ? $edit['chm_search_block_reset_label'] : 'Clear filters';
+    variable_set('chm_search_block_reset_label', $value);
   }
 }
 
@@ -78,12 +92,13 @@ function chm_search_block_view($delta = '') {
     if ($language->prefix) {
       $action = '/' . $language->prefix . $action;
     }
+    $btn_reset_label = variable_get('chm_search_block_reset_label', 'Clear filters');
     $ret = array(
       'subject' => t('Search Reset'),
       'content' =>
 <<<EOT
 <div data-drupal-selector="edit-actions" class="form-actions form-group js-form-wrapper form-wrapper" id="edit-actions">
-<a class="btn btn-default btn-primary btn-sm btn-block search-reset" href="$action" data-drupal-selector="edit-reset">Reset all filters</a>
+<a class="btn btn-default btn-primary btn-sm pull-right search-reset" href="$action" data-drupal-selector="edit-reset">$btn_reset_label</a>
 </div>
 EOT
     );
@@ -751,4 +766,15 @@ function theme_chm_search_slider(array $variables) {
   $output .= render($variables['slider']);
   $output .= '</div>';
   return $output;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function chm_search_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-the-search-view-page-1') {
+    $form['search_api_views_fulltext']['#prefix'] = '<div class="well">';
+    $form['search_api_views_fulltext']['#suffix'] = '</div>';
+    dpm($form);
+  }
 }
