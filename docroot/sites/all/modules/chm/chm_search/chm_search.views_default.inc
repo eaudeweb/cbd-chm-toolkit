@@ -134,12 +134,14 @@ function chm_search_views_default_views() {
   $handler->display->display_options['filters']['search_api_views_fulltext']['operator'] = 'OR';
   $handler->display->display_options['filters']['search_api_views_fulltext']['exposed'] = TRUE;
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator_id'] = 'search_api_views_fulltext_op';
-  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['label'] = 'Text';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['label'] = 'Search text';
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator'] = 'search_api_views_fulltext_op';
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['identifier'] = 'search_api_views_fulltext';
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
+    3 => 0,
+    4 => 0,
   );
   $handler->display->display_options['filters']['search_api_views_fulltext']['min_length'] = '3';
   /* Filter criterion: Indexed Multilingual Node: Item language */
@@ -181,7 +183,7 @@ function chm_search_views_default_views() {
     t('Relevance'),
     t('Publish date'),
     t('All'),
-    t('Text'),
+    t('Search text'),
     t('CHM website search page'),
     t('CHM network search page'),
   );
