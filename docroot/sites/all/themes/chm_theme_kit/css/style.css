@@ -7819,8 +7819,10 @@ ul.menu li.leaf {
 .front .views-row {
   padding-right: 0px;
   margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #dddddd;
+}
+.front .views-row + .views-row {
+  border-top: 1px solid #dddddd;
+  padding-top: 20px;
 }
 [dir="rtl"] .front .views-row {
   padding-left: 20px;
@@ -8532,7 +8534,7 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
-  height: 50px;
+  height: 40px;
   width: 380px;
   padding: 4px 10px;
   font-size: 14px;
@@ -8540,10 +8542,15 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
   color: #555;
   vertical-align: middle;
 }
+@media all and (max-width: 767px) {
+  #block-chm-search-chm-search form input[type="text"] {
+    width: 280px;
+  }
+}
 #block-chm-search-chm-search form .btn-search {
   position: absolute;
-  top: 10px;
-  right: 15px;
+  top: 7px;
+  right: 11px;
 }
 [dir="rtl"] #block-chm-search-chm-search form .btn-search {
   right: auto;
@@ -8585,8 +8592,7 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
 }
 @media all and (max-width: 767px) {
   #page-header .navbar-brand {
-    padding-bottom: 25px;
-    line-height: 24px;
+    line-height: 30px;
     height: auto;
     text-align: center;
     width: 100%;
@@ -8616,7 +8622,8 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
   font-family: "Open Sans";
 }
 #page-header #name-and-slogan {
-  display: table-cell;
+  display: block;
+  width: 100%;
   vertical-align: middle;
   float: left;
   margin-bottom: 20px;
@@ -8625,8 +8632,12 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
   float: right;
 }
 #page-header #name-and-slogan a {
-  height: 60px;
   float: none;
+}
+@media (min-width: 768px) {
+  #page-header #name-and-slogan a {
+    height: 60px;
+  }
 }
 #page-header .header .site-logo img {
   border: 7px solid white;
@@ -8639,6 +8650,17 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
   -webkit-box-shadow: 0 0 5px 4px #cccccc;
   -moz-box-shadow: 0 0 5px 4px #cccccc;
   box-shadow: 0 0 5px 4px #cccccc;
+}
+@media (min-width: 768px) {
+  #page-header #name-and-slogan {
+    display: table-cell;
+    width: auto;
+  }
+  #page-header #logo {
+    display: table-cell;
+    vertical-align: middle;
+    width: 130px;
+  }
 }
 #page-header div#logo.site-logo img {
   max-height: none;
@@ -8668,18 +8690,14 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
   #page-header #name-and-slogan {
     float: left;
     padding-left: 0;
-    width: auto;
   }
   #page-header .site-name {
     width: 100%;
     text-align: left;
   }
 }
-body.country-portal .logo img {
-  margin: 20px 20px 0 0 !important;
-}
-[dir="rtl"] body.country-portal .logo img {
-  margin: 20px 0 0 20px !important;
+.header-section {
+  display: table;
 }
 @media (max-width: 991px) {
   .navbar-header {
@@ -8766,7 +8784,7 @@ body.country-portal .logo img {
   background: none;
 }
 .navbar-container #navbar .navbar-header #nav-search {
-  margin-top: 9px;
+  margin-top: 4px;
 }
 [dir="rtl"] .navbar-container #navbar .navbar-header #nav-search {
   float: left;
@@ -9129,8 +9147,10 @@ body #admin-menu .dropdown li {
 #admin-menu .shortcut-toggle {
   margin: 5px 0 0 1.3em;
 }
-#page-header .navbar-brand {
-  line-height: 82px;
+@media (min-width: 768px) {
+  #page-header .navbar-brand {
+    line-height: 82px;
+  }
 }
 #admin-menu-users {
   display: none;
@@ -9138,6 +9158,9 @@ body #admin-menu .dropdown li {
 #admin-menu .admin-menu-search input {
   margin-right: 5px;
   border-radius: 3px;
+}
+.flag-border {
+  border: 1px solid #ddd;
 }
 /* global styles*/
 .main-container {
@@ -10834,16 +10857,19 @@ table .views-field-title a:hover {
 #footer2 .footer-support img {
   max-height: 100px;
 }
+#footer2 .region-footer .nav {
+  text-align: center;
+}
 #footer2 .region-footer .nav li {
   margin: 0 0 0 10px !important;
   padding: 0;
-  display: inline;
-  float: left;
+  display: inline-block;
+  float: none;
 }
 #footer2 .region-footer .nav li a {
   margin: 0;
   padding: 0;
-  color: #337ab7;
+  color: #02783a;
 }
 #footer2 .region-footer .nav li a:hover {
   text-decoration: underline;

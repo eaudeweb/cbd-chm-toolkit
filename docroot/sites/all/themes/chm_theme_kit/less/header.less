@@ -23,8 +23,11 @@
         display: inline-block;
         border: 1px solid #ccc;
         border-radius: 4px;
-        height: 50px;
+        height: 40px;
         width:380px;
+        @media all and (max-width: @screen-xs-max){
+           width:280px;
+        }
         padding: 4px 10px;
         font-size: 14px;
         line-height: 30px;
@@ -34,8 +37,8 @@
     }
     .btn-search {
       position: absolute;
-      top: 10px;
-      right: 15px; //LTR
+      top: 7px;
+      right: 11px; //LTR
       [dir="rtl"] &{
         right: auto;
         left: 10px;
@@ -77,10 +80,10 @@
     font-size: 30px;
     color: #000000;
     font-weight: bold;
-    @media all and (max-width: @screen-xs-max){
+    @media all and (max-width: @screen-xs-max) {
       // padding-top: 25px;
-      padding-bottom: 25px;
-      line-height: 24px;
+      // padding-bottom: 25px;
+      line-height: 30px;
       height: auto;
       text-align: center;
       width: 100%;
@@ -112,7 +115,8 @@
   }
 
   #name-and-slogan {
-    display: table-cell;
+    display: block;
+    width: 100%;
     vertical-align: middle;
     float: left;
     [dir="rtl"] &{
@@ -120,8 +124,11 @@
     }
     margin-bottom: 20px;
     a {
-      height: 60px;
+      // height: 60px;
       float: none;
+      @media (min-width: @grid-float-breakpoint) {
+        height: 60px;
+      }
     }
   }
 
@@ -130,7 +137,7 @@
     -webkit-box-shadow: 0 0 5px 4px rgba(204,204,204,.6);
     -moz-box-shadow: 0 0 5px 4px rgba(204,204,204,.6);
     box-shadow: 0 0 5px 4px rgba(204,204,204,.6);
-    max-height:45px
+    max-height:45px;
   }
   .header .site-logo img:hover {
     -webkit-box-shadow: 0 0 5px 4px rgba(204,204,204,1);
@@ -138,6 +145,17 @@
     box-shadow: 0 0 5px 4px rgba(204,204,204,1);
   }
 
+@media (min-width: @grid-float-breakpoint) {
+  #name-and-slogan {
+    display: table-cell;
+    width: auto;
+  }
+  #logo {
+    display: table-cell;
+    vertical-align: middle;
+    width: 130px;
+  }
+}
   div#logo.site-logo img {
     max-height: none;
   }
@@ -167,7 +185,7 @@
     #name-and-slogan {
       float: left;
       padding-left: 0;
-      width: auto;
+      // width: auto;
     }
     .site-name {
       width:100%;
@@ -177,11 +195,14 @@
   }
 
 }
-
+.header-section {
+  display: table;
+}
 body.country-portal .logo img {
-  margin: 20px 20px 0 0 !important;
-  [dir="rtl"] &{
-      margin: 20px 0 0 20px !important;
+  // margin: 20px 20px 0 0 !important;
+  [dir="rtl"] & {
+    // @todo: get clarification on whether the header should align to one side or be centered
+      // margin: 0 0 0 20px !important;
     }
 
 }
@@ -269,7 +290,7 @@ body.country-portal .logo img {
         }
       }
       #nav-search {
-        margin-top: 9px;
+        margin-top: 4px;
         [dir="rtl"] & {
           float: left;
         }
@@ -638,8 +659,9 @@ body #admin-menu .dropdown li {
   }
 
   #page-header .navbar-brand {
-    line-height: 82px;
-
+    @media (min-width: @grid-float-breakpoint) {
+      line-height: 82px;
+    }
   }
 
  #admin-menu-users {display:none;} 
@@ -648,3 +670,6 @@ body #admin-menu .dropdown li {
     margin-right:5px;
     border-radius: 3px;
   }
+.flag-border {
+  border: 1px solid #ddd;
+}

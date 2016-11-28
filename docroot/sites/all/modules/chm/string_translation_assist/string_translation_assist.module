@@ -9,9 +9,9 @@
 function string_translation_assist_form_i18n_string_locale_translate_edit_form_alter(&$form, &$form_state) {
   $form['update_identical'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Update also other identical strings'),
+    '#title' => t('Apply translations to all strings matching this original text'),
     '#default_value' => 1,
-    '#description' => t('When checked all identical strings from other artefacts (menu labels, block titles, arbitrary texts etc.) are also translated'),
+    '#description' => t('When checked, all other strings with the same original text will also be updated based on the above translations'),
   );
   $form['#submit'][] = 'string_translation_assist_update_identical_strings_submit';
 }
@@ -35,7 +35,7 @@ function string_translation_assist_update_identical_strings_submit($form, $form_
           $o_form_state['values']['lid'] = $o_lid;
           i18n_string_locale_translate_edit_form_submit($o_form, $o_form_state);
         }
-        drupal_set_message(t('Updated additionally !count other identical strings', array('!count' => count($other_lids))));
+        drupal_set_message(t('!count additional strings have also been updated', array('!count' => count($other_lids))));
       }
     }
   }
