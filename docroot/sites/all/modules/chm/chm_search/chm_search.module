@@ -84,6 +84,16 @@ function chm_search_block_configure($delta = '') {
     );
     return $form;
   }
+  if ($delta == 'chm_search_reset') {
+    $form = array();
+    $form['chm_search_block_reset_label'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Reset button label, in english'),
+      '#default_value' => variable_get('chm_search_block_reset_label', 'Clear filters'),
+      '#description' => t('The string is translated in available languages through <a href="/admin/config/regional/translate/translate">string translation</a> screen. If you change the value, new value must be re-translated.')
+    );
+    return $form;
+  }
 }
 
 /**
@@ -95,6 +105,10 @@ function chm_search_block_save($delta = '', $edit = array()) {
     variable_set('chm_search_block_input_placeholder', $value);
     $value = isset($edit['chm_search_block_input_size']) ? $edit['chm_search_block_input_size'] : '';
     variable_set('chm_search_block_input_size', $value);
+  }
+  if ($delta == 'chm_search_reset') {
+    $value = isset($edit['chm_search_block_reset_label']) ? $edit['chm_search_block_reset_label'] : 'Clear filters';
+    variable_set('chm_search_block_reset_label', $value);
   }
 }
 
@@ -108,12 +122,13 @@ function chm_search_block_view($delta = '') {
     if ($language->prefix) {
       $action = '/' . $language->prefix . $action;
     }
+    $btn_reset_label = variable_get('chm_search_block_reset_label', 'Clear filters');
     $ret = array(
       'subject' => t('Search Reset'),
       'content' =>
 <<<EOT
 <div data-drupal-selector="edit-actions" class="form-actions form-group js-form-wrapper form-wrapper" id="edit-actions">
-<a class="btn btn-default btn-primary btn-sm btn-block search-reset" href="$action" data-drupal-selector="edit-reset">Reset all filters</a>
+<a class="btn btn-default btn-primary btn-sm pull-right search-reset" href="$action" data-drupal-selector="edit-reset">$btn_reset_label</a>
 </div>
 EOT
     );
@@ -302,6 +317,25 @@ function chm_search_block_view_alter(&$data, $block) {
         }
       }
       else {
+        $block->title = '';
+        $id = $block->delta;
+        $expand = true;
+        $anchor = l($title, '',
+          array(
+            'fragment' => $id,
+            'external' => TRUE,
+            'attributes' => array(
+              'role' => 'button',
+              'data-toggle' => 'collapse',
+              'aria-expanded' => $expand ? 'true' : 'false',
+              'aria-controls' => $id,
+              'class' => ['facet-title']
+            )
+          )
+        );
+        $data['subject'] = $anchor;
+        $data['content'][$facet_field]['#prefix'] = '<div id="' . $id . '" class="collapse in">';
+        $data['content'][$facet_field]['#suffix'] = '</div>';
         //@todo: dpm($data);
       }
     }
@@ -603,6 +637,8 @@ function chm_search_select($form, &$form_state, $elements) {
 
   $form['#attached']['js'][libraries_get_path('select2') . '/select2.js'] = [ 'weight' => 100 ];
 
+  $form['#attached']['js'][drupal_get_path('module', 'chm_search') . '/js/chm_search_facets.js'] = [ 'weight' => 110 ];
+
   $form['#attached']['js'][drupal_get_path('module', 'chm_search') . '/js/chm_search_hide_submit.js'] = [ 'weight' => 110 ];
 
   $form['#attached']['css'][] = libraries_get_path('select2') . '/select2.css';
@@ -781,4 +817,18 @@ function theme_chm_search_slider(array $variables) {
   $output .= render($variables['slider']);
   $output .= '</div>';
   return $output;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function chm_search_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-the-search-view-page-1') {
+    $element = 'search_api_views_fulltext';
+    $search_label = $form['#info']['filter-' . $element]['label'];
+    $form['#info']['filter-' . $element]['label'] = '';
+    $form[$element]['#prefix'] = '<div class="well">';
+    $form[$element]['#prefix'] .= sprintf('<label for="%s">%s</label>', 'edit-search-api-views-fulltext', $search_label);
+    $form[]['#suffix'] = '</div>';
+  }
 }
