@@ -9166,6 +9166,13 @@ body #admin-menu .dropdown li {
   padding-top: 40px;
   padding-bottom: 40px;
 }
+.breadcrumb-container {
+  background-color: #f5f5f5;
+}
+.breadcrumb {
+  margin-bottom: 0;
+  border-radius: 0;
+}
 #page-title {
   margin-top: 0;
 }
@@ -10687,7 +10694,7 @@ h2.pane-title {
 }
 @media (min-width: 768px) {
   #edit-search-api-views-fulltext-wrapper #edit-search-api-views-fulltext {
-    width: 40%;
+    width: 50%;
   }
 }
 .search-api-ranges-elements {
