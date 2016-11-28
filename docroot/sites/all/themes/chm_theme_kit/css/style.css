@@ -7819,8 +7819,10 @@ ul.menu li.leaf {
 .front .views-row {
   padding-right: 0px;
   margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #dddddd;
+}
+.front .views-row + .views-row {
+  border-top: 1px solid #dddddd;
+  padding-top: 20px;
 }
 [dir="rtl"] .front .views-row {
   padding-left: 20px;
