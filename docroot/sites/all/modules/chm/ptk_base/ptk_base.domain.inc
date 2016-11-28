@@ -107,6 +107,30 @@ class PTKDomain {
   }
 
   /**
+   * Retrieve all domains configured for a country term ID.
+   */
+  public static function getDomainsByCountryTid($tid) {
+    static $all = NULL;
+    if (empty($all)) {
+      $domains = domain_domains();
+      foreach ($domains as $domain_id => $domain) {
+        if ($value = PTKDomain::variable_get('country', $domain)) {
+          if ($country = PTK::getCountryByCode($value)) {
+            if (empty($all[$country->tid])) {
+              $all[$country->tid] = array();
+            }
+            $all[$country->tid][$domain_id] = $domain;
+          }
+        }
+      }
+    }
+    if (array_key_exists($tid, $all)) {
+      return $all[$tid];
+    }
+    return array();
+  }
+
+  /**
    * Get the Country of the current portal.
    *
    * @param array $domain

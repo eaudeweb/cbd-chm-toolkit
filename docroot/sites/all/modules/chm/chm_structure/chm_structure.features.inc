@@ -47,11 +47,11 @@ function chm_structure_image_default_styles() {
   $styles['header_flag'] = array(
     'label' => 'Header flag',
     'effects' => array(
-      3 => array(
+      1 => array(
         'name' => 'image_scale',
         'data' => array(
-          'width' => 65,
-          'height' => 45,
+          'width' => 112,
+          'height' => 80,
           'upscale' => 0,
         ),
         'weight' => 1,

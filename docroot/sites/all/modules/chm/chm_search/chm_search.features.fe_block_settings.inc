@@ -89,7 +89,7 @@ search/*',
         'weight' => -36,
       ),
     ),
-    'title' => '',
+    'title' => 'Species status',
     'visibility' => 0,
   );
 
@@ -141,7 +141,7 @@ search/*',
         'weight' => -43,
       ),
     ),
-    'title' => '',
+    'title' => 'Event status',
     'visibility' => 0,
   );
 
@@ -167,7 +167,7 @@ search/*',
         'weight' => -35,
       ),
     ),
-    'title' => '',
+    'title' => 'Species class',
     'visibility' => 0,
   );
 
@@ -193,7 +193,7 @@ search/*',
         'weight' => -38,
       ),
     ),
-    'title' => '',
+    'title' => 'Species phylum',
     'visibility' => 0,
   );
 
@@ -219,7 +219,7 @@ search/*',
         'weight' => -37,
       ),
     ),
-    'title' => '',
+    'title' => 'Species family',
     'visibility' => 0,
   );
 
@@ -245,7 +245,7 @@ search/*',
         'weight' => -41,
       ),
     ),
-    'title' => '',
+    'title' => 'Designation',
     'visibility' => 0,
   );
 
@@ -271,7 +271,7 @@ search/*',
         'weight' => -46,
       ),
     ),
-    'title' => '',
+    'title' => 'Type',
     'visibility' => 0,
   );
 
@@ -297,7 +297,7 @@ search/*',
         'weight' => -45,
       ),
     ),
-    'title' => 'Organization Types',
+    'title' => 'Organization type',
     'visibility' => 0,
   );
 
@@ -375,7 +375,7 @@ search/*',
         'weight' => -34,
       ),
     ),
-    'title' => '',
+    'title' => 'Protected area status',
     'visibility' => 0,
   );
 
@@ -453,7 +453,7 @@ search/*',
         'weight' => -48,
       ),
     ),
-    'title' => 'Document Types',
+    'title' => 'Document type',
     'visibility' => 0,
   );
 
@@ -479,7 +479,7 @@ search/*',
         'weight' => -42,
       ),
     ),
-    'title' => '',
+    'title' => 'Department',
     'visibility' => 0,
   );
 
@@ -505,7 +505,7 @@ search/*',
         'weight' => -39,
       ),
     ),
-    'title' => '',
+    'title' => 'IUCN category',
     'visibility' => 0,
   );
 
@@ -531,7 +531,7 @@ search/*',
         'weight' => -50,
       ),
     ),
-    'title' => '',
+    'title' => 'Countries',
     'visibility' => 0,
   );
 
@@ -551,13 +551,13 @@ search/*',
         'weight' => 0,
       ),
       'chm_theme_kit' => array(
-        'region' => 'sidebar_first',
-        'status' => 1,
+        'region' => '',
+        'status' => 0,
         'theme' => 'chm_theme_kit',
         'weight' => -44,
       ),
     ),
-    'title' => 'PA Classifications status',
+    'title' => 'Status',
     'visibility' => 0,
   );
 
@@ -583,7 +583,7 @@ search/*',
         'weight' => -40,
       ),
     ),
-    'title' => 'Designation types',
+    'title' => 'Designation type',
     'visibility' => 0,
   );
 
@@ -609,7 +609,7 @@ search/*',
         'weight' => -31,
       ),
     ),
-    'title' => '',
+    'title' => 'Dates',
     'visibility' => 0,
   );
 
@@ -635,7 +635,7 @@ search/*',
         'weight' => -47,
       ),
     ),
-    'title' => '',
+    'title' => 'Ecosystem types',
     'visibility' => 0,
   );
 

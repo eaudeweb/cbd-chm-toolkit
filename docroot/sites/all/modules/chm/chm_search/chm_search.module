@@ -249,6 +249,7 @@ function chm_search_block_view_alter(&$data, $block) {
       $block->title = '';
       if (isset($data['content'][$facet_field]['#id'])) {
         $id = $data['content'][$facet_field]['#id'];
+        $expand = !empty($data['content'][$facet_field]['select']['#default_value']);
         $anchor = l($title, '',
           array(
             'fragment' => $data['content'][$facet_field]['#id'],
@@ -256,15 +257,17 @@ function chm_search_block_view_alter(&$data, $block) {
             'attributes' => array(
               'role' => 'button',
               'data-toggle' => 'collapse',
-              'aria-expanded' => 'false',
-              'aria-controls' => $id
+              'aria-expanded' => $expand ? 'true' : 'false',
+              'aria-controls' => $id,
+              'class' => ['facet-title']
             )
           )
         );
         $data['content'][$facet_field]['#prefix'] = $anchor;
         $data['subject'] = '';
+        $data['content'][$facet_field]['select']['#attributes']['data-placeholder'] = t('Select filter...');
         $data['content'][$facet_field]['#attributes']['class'][] = 'collapse';
-        if (!empty($data['content'][$facet_field]['select']['#default_value'])) {
+        if ($expand) {
           $data['content'][$facet_field]['#attributes']['class'][] = 'in';
         }
       }
@@ -303,7 +306,7 @@ function chm_search_facetapi_widgets() {
         'query types' => array('term', 'numeric_range', 'date', 'date_range'),
       ),
     ),
-    'custom_search_api_ranges_ui_slider' => array(
+    'custom_chm_search_ui_slider' => array(
       'handler' => array(
         'label' => t('CHM Date Slider'),
         'class' => 'CustomSearchApiRangesWidgetUISlider',
@@ -318,19 +321,180 @@ function chm_search_facetapi_widgets() {
  *
  * Set callbacks for select facet forms.
  */
-function chm_search_forms() {
+function chm_search_forms($form_id) {
   $forms = array();
   foreach (facetapi_get_searcher_info() as $searcher => $searcher_info) {
     foreach (facetapi_get_facet_info($searcher) as $facet) {
       $forms['chm_search_' .  $facet['name']]['callback'] = 'chm_search_select';
     }
   }
+
+  // Map all form IDs starting with chm_search_block_slider_view_form
+  // to our callback.
+  if (strpos($form_id, 'chm_search_block_slider_view_form') === 0) {
+    $forms[$form_id] = array(
+      'callback' => 'chm_search_block_slider_view_form',
+    );
+  }
+
   return $forms;
 }
 
+/**
+ * Generates the jQuery range slider form for range facet blocks.
+ *
+ * @see chm_search_forms()
+ */
+function chm_search_block_slider_view_form($form, &$form_state, $variables) {
+  $form = array();
+
+  // Add JS.
+  $module_path = drupal_get_path('module', 'chm_search');
+  $form['#attached']['js'][] = $module_path . '/js/ion.rangeSlider.min.js';
+  $form['#attached']['js'][] = $module_path . '/js/jquery.numeric.js';
+  $form['#attached']['js'][] = $module_path . '/js/chm_search.js';
+  $form['#attached']['css'][] = $module_path . '/css/ion.rangeSlider.css';
+  $form['#attached']['css'][] = $module_path . '/css/ion.rangeSlider.skinFlat.css';
+
+  // For compatibility with Search API ajax,
+  // we generate the 'ajax target URL' as a hidden field.
+  $params = drupal_get_query_parameters($_GET, array('q'));
+  foreach ($variables['active_items'] as $key => $active_item) {
+    if ($active_item['field alias'] == $variables['range_field']) {
+      $pos = $active_item['pos'];
+      unset($params['f'][$pos]);
+    }
+  }
+
+  // Get path or facetapi_pretty_paths.
+  $path = $variables['target'];
+  if (module_exists('facetapi_pretty_paths')) {
+    $path = request_path();
+    unset($_GET['f']);
+  }
+
+  $form['range-from'] = array(
+    // @todo change this to type= 'number'
+    '#type' => 'textfield',
+    '#title' => t('From'),
+    '#size' => 10,
+    '#default_value' => $variables['from'],
+    '#attributes' => [
+      'autocomplete' => 'off',
+    ]
+  );
+  $form['range-slider'] = array(
+    '#type' => 'textfield',
+  );
+  $form['range-to'] = array(
+    // @todo change this to type= 'number'
+    '#type' => 'textfield',
+    '#title' => t('To'),
+    '#size' => 10,
+    '#default_value' => $variables['to'],
+    '#attributes' => [
+      'autocomplete' => 'off',
+    ]
+  );
+  $form['range-min'] = array(
+    '#type' => 'hidden',
+    '#value' => $variables['min'],
+  );
+  $form['range-max'] = array(
+    '#type' => 'hidden',
+    '#value' => $variables['max'],
+  );
+  $form['path'] = array(
+    '#type' => 'hidden',
+    '#value' => $path,
+  );
+  $form['range-field'] = array(
+    '#type' => 'hidden',
+    '#value' => $variables['range_field'],
+  );
+  if ($variables['auto_submit_delay']) {
+    $form['delay'] = array(
+      '#type' => 'hidden',
+      '#value' => $variables['auto_submit_delay'],
+    );
+  }
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Go'),
+  );
+
+  return $form;
+}
+
+/**
+ * Handle slider block submit
+ */
+function chm_search_block_slider_view_form_submit($form, &$form_state) {
+  $values = $form_state['values'];
+  $range_field = $form_state['input']['range-field'];
+
+  // Prepare params and existing filter $pos (if any)
+  $params = drupal_get_query_parameters($_GET, array('q', 'page'));
+
+  // Get pretty path path and goto()
+  if (drupal_multilingual() && variable_get('locale_language_negotiation_url_part') == LOCALE_LANGUAGE_NEGOTIATION_URL_PREFIX) {
+    list($language, $path) = language_url_split_prefix(request_path(), language_list());
+    $language = $language ? $language : NULL;
+  }
+  else {
+    $path = request_path();
+    $language = NULL;
+  }
+  if (module_exists('facetapi_pretty_paths')) {
+    $exists = FALSE;
+    $split_path = explode('/', $path);
+    foreach ($split_path as $key => $value) {
+      if ($value == $range_field) {
+        $exists = $split_path[$key + 1];
+      }
+    }
+
+    // Decision: replace existing range or add new
+    $new_range = '[' . $values['range-from'] . ' TO ' . $values['range-to'] . ']';
+    if ($exists) {
+      $path = str_replace($exists, $new_range, $path);
+    }
+    else {
+      $path .= '/' . $range_field . '/' . $new_range;
+    }
+
+    // Unset non-pretty query
+    unset($params['f']);
+  }
+  else {
+    // Not pretty path logic
+    $query = $range_field . ':' . '[' . $values['range-from'] . ' TO ' . $values['range-to'] . ']';
+
+    $pos = -1;
+    if (isset($params['f'])) {
+      foreach ($params['f'] as $key => $param) {
+        if (strpos($param, $range_field . ':') !== FALSE) {
+          $pos = $key;
+        }
+      }
+    }
+
+    if ($pos != -1) {
+      $params['f'][$pos] = $query;
+    }
+    else {
+      $params['f'][] = $query;
+    }
+  }
+
+  drupal_goto($path, array('query' => array($params), 'language' => $language));
+}
+
 function chm_search_select2_element_alter(&$element) {
-  $element['#select2']['formatSelection'] = 'chm_search_format_selection';
-  $element['#select2']['formatResult'] = 'chm_search_format_selection';
+  if (arg(0)=='search' || arg(0)=='search-network') {
+    $element['#select2']['formatSelection'] = 'chm_search_format_selection';
+    $element['#select2']['formatResult'] = 'chm_search_format_selection';
+  }
 }
 
 /**
@@ -406,8 +570,12 @@ function chm_search_select($form, &$form_state, $elements) {
 
   // Lets add autosubmit js functionality from ctools.
   $form['#attached']['js'][] = drupal_get_path('module', 'ctools') . '/js/auto-submit.js';
-  // Add javascript that hides Filter button.
-  $form['#attached']['js'][] = drupal_get_path('module', 'chm_search') . '/js/chm_search_hide_submit.js';
+
+  $form['#attached']['js'][libraries_get_path('select2') . '/select2.js'] = [ 'weight' => 100 ];
+
+  $form['#attached']['js'][drupal_get_path('module', 'chm_search') . '/js/chm_search_hide_submit.js'] = [ 'weight' => 110 ];
+
+  $form['#attached']['css'][] = libraries_get_path('select2') . '/select2.css';
 
   $form['#attributes']['class'][] = 'chm-search-select-facet';
   return $form;
@@ -488,17 +656,28 @@ function chm_search_select_submit($form, &$form_state) {
  */
 function chm_search_theme() {
   return array(
-    
+
     'chm_search_select_active_option' => array(
       'title' => NULL,
       'count' => NULL,
     ),
+
     'chm_search_select_option' => array(
       'title' => NULL,
       'count' => NULL,
     ),
+
     'chm_search_link_active' => array(
       'variables' => array('text' => NULL, 'path' => NULL, 'options' => array()),
+    ),
+
+    'chm_search_slider' => array(
+      'variables' => array('slider' => ''),
+    ),
+
+    'chm_search_block_slider_view_form' => array(
+      'template' => 'chm-search-block-slider-view-form',
+      'render element' => 'form',
     ),
   );
 }
@@ -564,4 +743,12 @@ function chm_search_fix_domain_blocks() {
       db_insert('domain_blocks')->fields($fields)->execute();
     }
   }
+}
+
+function theme_chm_search_slider(array $variables) {
+  $output = '';
+  $output .= '<div class="chm-search-widget">';
+  $output .= render($variables['slider']);
+  $output .= '</div>';
+  return $output;
 }

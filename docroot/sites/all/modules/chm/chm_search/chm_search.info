@@ -18,7 +18,6 @@ dependencies[] = search_api_facetapi
 dependencies[] = search_api_ranges
 dependencies[] = search_api_solr
 dependencies[] = search_api_views
-dependencies[] = select2
 dependencies[] = strongarm
 dependencies[] = views
 features[ctools][] = facetapi:facetapi_defaults:1
