@@ -217,6 +217,7 @@ function chm_search_default_search_api_index() {
         "body:value" : { "type" : "text" },
         "changed" : { "type" : "date" },
         "created" : { "type" : "date" },
+        "domain_site" : { "type" : "integer" },
         "domains" : { "type" : "list\\u003Cinteger\\u003E" },
         "field_address" : { "type" : "text" },
         "field_aichi_targets" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
