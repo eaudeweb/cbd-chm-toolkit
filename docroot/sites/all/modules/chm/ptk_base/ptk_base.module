@@ -666,12 +666,37 @@ function ptk_base_site_information_settings() {
  * Implements hook_variable_settings_form_alter().
  */
 function ptk_base_variable_settings_form_alter(&$form, &$form_state, $form_id) {
+  global $_domain, $user;
+  $user_domains = domain_get_user_domains($user);
+
   $role = user_role_load_by_name('administrator');
-  $is_admin = user_has_role($role ->rid);
-  if (!$is_admin) {
-    // hide attached domains block
-    unset($form['variable_realm_selector_domain']);
+  // no check for admin and dev
+  if (user_has_role($role->rid) || $user->uid == 1) {
+    return;
   }
+
+  // current domain not in user domains
+  if (!isset($user_domains[$_domain['domain_id']])) {
+    drupal_access_denied();
+    drupal_exit();
+  }
+
+  // restrict access to current domain only
+  if (isset($_REQUEST['variable_realm_key_domain'])) {
+    $uri = request_path();
+    $params = drupal_get_query_parameters($_GET, array('q', 'page'));
+    if ( $_domain['machine_name'] != $_REQUEST['variable_realm_key_domain'] ) {
+      unset($params['variable_realm_key_domain']);
+      if ($params) {
+        drupal_goto($uri, array('query' => array($params)) );
+      }
+      else {
+        drupal_goto($uri);
+      }
+    }
+  }
+  // hide attached domains block
+  unset($form['variable_realm_selector_domain']);
 }
 
 function ptk_base_variable_info_alter(&$variables, $options) {
