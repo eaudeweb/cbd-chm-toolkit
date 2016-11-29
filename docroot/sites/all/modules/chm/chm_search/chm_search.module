@@ -11,11 +11,12 @@ include_once 'chm_search.features.inc';
  */
 function chm_search_search_api_solr_query_alter(array &$call_args, SearchApiQueryInterface $query) {
   foreach($call_args['params']['fq'] as $k => $v) {
-    if ($v=='im_domains:"type"') { // remove unclear error filter
-      unset($call_args['params']['fq'][$k]);
-      continue;
-    }
-    if (strpos('.'.$v, 'im_domains')) {
+    if (strpos('.' . $v, 'im_domains:')) { // remove unclear error filter
+      $val = explode(":", str_replace('"', '', $v));
+      if (!is_numeric($val[1])) {
+        unset($call_args['params']['fq'][$k]);
+        continue;
+      }
       $call_args['params']['fq'][$k] = '(({!tag=facet:domains}' . $v . ') OR ({!tag=facet:domains}is_domain_site:"1"))';
     }
   }
