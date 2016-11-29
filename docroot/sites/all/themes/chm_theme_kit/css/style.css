@@ -8661,6 +8661,9 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
     display: inline;
     vertical-align: middle;
   }
+  #page-header #logo img {
+    max-width: 300px;
+  }
 }
 #page-header div#logo.site-logo img {
   max-height: none;
