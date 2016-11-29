@@ -23,7 +23,6 @@
  */
 ?>
 
-<?php 
-	$url = PTKDomain::url($row->entity);
-	print '<a href="' . $url .'">'. $url  .'</a>';
+<?php
+  print PTKDomain::fieldUrl($row->entity);
 ?>

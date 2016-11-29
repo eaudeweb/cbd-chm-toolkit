@@ -424,12 +424,8 @@ function ptk_base_field_formatter_view($entity_type, $entity, $field, $instance,
     elseif ($display['settings']['image_link'] == 'file') {
       $link_file = TRUE;
     }
-    $base_url = '';
-    if ($entity->domains) {
-      $base_url = ptk_base_get_domain_url(array_shift($entity->domains));
-    }
+    $base_url = PTKDomain::baseDomain($entity->domains);
     $options['external'] = TRUE;
-  
     foreach ($items as $delta => $item) {
       if (isset($link_file)) {
         $uri = array(
@@ -465,9 +461,7 @@ function ptk_base_field_formatter_view($entity_type, $entity, $field, $instance,
         if (!empty($uri['options'])) {
           $options = array_merge($options, $uri['options']);
         }
-        if ($entity->domains) {
-          $base_url = ptk_base_get_domain_url(array_shift($entity->domains));
-        }
+        $base_url = PTKDomain::baseDomain($entity->domains);
         $options['external'] = TRUE;
         $output = l($output, $base_url . '/' . $uri['path'], $options);
       }
