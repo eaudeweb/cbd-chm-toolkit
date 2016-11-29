@@ -8653,11 +8653,12 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
 }
 @media (min-width: 768px) {
   #page-header #name-and-slogan {
-    display: table-cell;
+    display: inline;
     width: auto;
+    margin-left: 20px;
   }
   #page-header #logo {
-    display: table-cell;
+    display: inline;
     vertical-align: middle;
   }
 }
@@ -8694,9 +8695,6 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
     width: 100%;
     text-align: left;
   }
-}
-.header-section {
-  display: table;
 }
 @media (max-width: 991px) {
   .navbar-header {
