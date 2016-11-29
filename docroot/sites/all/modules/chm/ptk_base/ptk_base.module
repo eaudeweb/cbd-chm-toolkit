@@ -658,8 +658,20 @@ function ptk_base_site_information_settings() {
     '#default_value' => variable_get('popup_enabled'),
     '#description' => t('Cookie enable popup per domain'),
   );
-  
+
   return system_settings_form($form);
+}
+
+/**
+ * Implements hook_variable_settings_form_alter().
+ */
+function ptk_base_variable_settings_form_alter(&$form, &$form_state, $form_id) {
+  $role = user_role_load_by_name('administrator');
+  $is_admin = user_has_role($role ->rid);
+  if (!$is_admin) {
+    // hide attached domains block
+    unset($form['variable_realm_selector_domain']);
+  }
 }
 
 function ptk_base_variable_info_alter(&$variables, $options) {
