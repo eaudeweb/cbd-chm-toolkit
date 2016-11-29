@@ -7,6 +7,37 @@
 include_once 'chm_search.features.inc';
 
 /**
+ * Implements hook_search_api_solr_query_alter().
+ */
+function chm_search_search_api_solr_query_alter(array &$call_args, SearchApiQueryInterface $query) {
+  foreach($call_args['params']['fq'] as $k => $v) {
+    if (strpos('.' . $v, 'im_domains:')) { // remove unclear error filter
+      $val = explode(":", str_replace('"', '', $v));
+      if (!is_numeric($val[1])) {
+        unset($call_args['params']['fq'][$k]);
+        continue;
+      }
+      $call_args['params']['fq'][$k] = '(({!tag=facet:domains}' . $v . ') OR ({!tag=facet:domains}is_domain_site:"1"))';
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_property_info_alter().
+ */
+function chm_search_entity_property_info() {
+  $info = array();
+  $properties = &$info['node']['properties'];
+
+  $properties['domain_site'] = array(
+    'label' => t("Domain site"),
+    'type' => 'integer',
+    'description' => "",
+  );
+  return $info;
+}
+
+/**
  * Implements hook_block_info().
  */
 function chm_search_block_info() {
@@ -524,6 +555,7 @@ function chm_search_block_slider_view_form_submit($form, &$form_state) {
   drupal_goto($path, array('query' => array($params), 'language' => $language));
 }
 
+// @todo: Obsolete, check if it can be removed.
 function chm_search_select2_element_alter(&$element) {
   if (arg(0)=='search' || arg(0)=='search-network') {
     $element['#select2']['formatSelection'] = 'chm_search_format_selection';

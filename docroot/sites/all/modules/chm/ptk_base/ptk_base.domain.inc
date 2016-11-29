@@ -309,4 +309,60 @@ class PTKDomain {
     return $ret;
   }
 
+
+  /**
+   * Compute entity absolute URL using its original domain
+   * @param int $entity_id
+   * @return string
+   *   Absolute URL
+   */
+  public static function url($entity_id) {
+    $e = entity_load('node',array($entity_id));
+    if(!isset($e[$entity_id])) {
+      return false;
+    }
+    $entity = $e[$entity_id];
+    $entity_uri = entity_uri('node',$entity);
+    //Base url
+    $base_url = self::baseDomain($entity->domains);
+    return  $base_url . '/' . $entity_uri['path'];
+  }
+
+  /**
+   * Compute entity html formatted absolute URL using its original domain
+   * @param int $entity_id
+   * @return string
+   *  a href element
+   */
+  public static function fieldUrl($entity_id, $options = array()) {
+    $url = self::url($entity_id);
+    if($url) {
+      return l($url, $url, $options);
+    }
+  }
+
+    /**
+     * Gets base domain url
+     * @param $domain_id
+     * @return string
+     * Domain url
+     */
+
+  public static function baseDomain($entity_domains = NULL){
+    static $domains = [];
+    if(!$entity_domains || !is_array($entity_domains)) {
+      return '';
+    }
+    $domain_id = array_shift($entity_domains);
+    if(!$domain_id) {
+      return '';
+    }
+    if (!$domains) {
+      $all = db_query('SELECT domain_id, subdomain, scheme, valid FROM {domain} where valid=1')->fetchAll();
+      foreach($all as $domain) {
+        $domains[$domain->domain_id] = $domain->scheme . '://' . $domain->subdomain;
+      }
+    }
+    return isset($domains[$domain_id]) ? $domains[$domain_id] : '';
+  }
 }

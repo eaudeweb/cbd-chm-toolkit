@@ -217,6 +217,7 @@ function chm_search_default_search_api_index() {
         "body:value" : { "type" : "text" },
         "changed" : { "type" : "date" },
         "created" : { "type" : "date" },
+        "domain_site" : { "type" : "integer" },
         "domains" : { "type" : "list\\u003Cinteger\\u003E" },
         "field_address" : { "type" : "text" },
         "field_aichi_targets" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
@@ -251,7 +252,7 @@ function chm_search_default_search_api_index() {
         "status" : { "type" : "boolean" },
         "sticky" : { "type" : "boolean" },
         "title" : { "type" : "text", "boost" : "5.0" },
-        "title_field" : { "type" : "text" },
+        "title_field" : { "type" : "text", "boost" : "5.0" },
         "type" : { "type" : "string" },
         "url" : { "type" : "uri" }
       }
