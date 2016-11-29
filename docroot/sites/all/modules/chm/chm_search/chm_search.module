@@ -635,15 +635,8 @@ function chm_search_select($form, &$form_state, $elements) {
     '#submit' => array('chm_search_select_submit'),
   );
 
-  // Lets add autosubmit js functionality from ctools.
-  $form['#attached']['js'][] = drupal_get_path('module', 'ctools') . '/js/auto-submit.js';
-
   $form['#attached']['js'][libraries_get_path('select2') . '/select2.js'] = [ 'weight' => 100 ];
-
   $form['#attached']['js'][drupal_get_path('module', 'chm_search') . '/js/chm_search_facets.js'] = [ 'weight' => 110 ];
-
-  $form['#attached']['js'][drupal_get_path('module', 'chm_search') . '/js/chm_search_hide_submit.js'] = [ 'weight' => 110 ];
-
   $form['#attached']['css'][] = libraries_get_path('select2') . '/select2.css';
 
   $form['#attributes']['class'][] = 'chm-search-select-facet';
@@ -836,5 +829,8 @@ function chm_search_form_alter(&$form, &$form_state, $form_id) {
     $form[$element]['#prefix'] = '<div class="well">';
     $form[$element]['#prefix'] .= sprintf('<label for="%s">%s</label>', 'edit-search-api-views-fulltext', $search_label);
     $form[]['#suffix'] = '</div>';
+    // Lets add autosubmit js functionality from ctools.
+    $form['#attached']['js'][drupal_get_path('module', 'chm_search') . '/js/chm_search_hide_submit.js'] = [ 'weight' => 110 ];
+    $form['#attached']['js'][] = drupal_get_path('module', 'ctools') . '/js/auto-submit.js';
   }
 }
