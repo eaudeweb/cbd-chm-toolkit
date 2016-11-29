@@ -6,6 +6,21 @@
 
 include_once 'chm_views.features.inc';
 
+function chm_views_form_ctools_export_ui_list_form_alter(&$form, &$form_state, $form_id) {
+  global $_domain;
+  // removed non current domain slideshow queues bases on queue title
+  if ($form_state['plugin']['schema'] == 'entityqueue_queue') {
+    foreach($form_state['object']->items as $slideshow_id => $item) {
+      if (strpos($slideshow_id, 'slideshow_') !== FALSE) {
+        if (strpos($slideshow_id, '_' . $_domain['machine_name'])) {
+          continue;
+        }
+        unset($form_state['object']->items[$slideshow_id]);
+      }
+    }
+  }
+}
+
 /**
  * Implements hook_views_query_alter().
  */
