@@ -267,7 +267,9 @@ body.country-portal .logo img {
     line-height: 20px;
   }
 }
-
+.navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus {
+  font-weight: normal;
+}
 .navbar-container {
   background-color: @navbar-color;
   #navbar {
@@ -407,7 +409,7 @@ body.country-portal .logo img {
             }
           }
           .active-trail {
-            font-weight: bold;
+            // font-weight: bold;
             &:not(.active):hover {
               background-color: transparent;
               .dropdown-toggle span.caret {

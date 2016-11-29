@@ -8757,6 +8757,11 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
     line-height: 20px;
   }
 }
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus {
+  font-weight: normal;
+}
 .navbar-container {
   background-color: #039749;
 }
@@ -8905,9 +8910,6 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
   .navbar-container #navbar .navbar-collapse .nav li a.active {
     background-color: #fff;
   }
-}
-.navbar-container #navbar .navbar-collapse .nav li .active-trail {
-  font-weight: bold;
 }
 .navbar-container #navbar .navbar-collapse .nav li .active-trail:not(.active):hover {
   background-color: transparent;
