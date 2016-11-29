@@ -10819,11 +10819,6 @@ h2.pane-title {
 .search-api-ranges-elements .form-submit:focus,
 .search-api-ranges-elements .form-submit:active {
   outline: none;
-  -webkit-animation: fa-spin 2s infinite linear;
-  animation: fa-spin 2s infinite linear;
-  -webkit-animation-duration: .5s;
-  /* Safari 4.0 - 8.0 */
-  animation-duration: .5s;
 }
 .search-api-ranges-elements .form-item-range-from,
 .search-api-ranges-elements .form-item-range-to {
