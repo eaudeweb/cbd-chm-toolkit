@@ -1615,17 +1615,26 @@ body.node-type-species {
     margin-top: 0;
     margin-bottom: 0;
   }
-  > .content .facetapi-custom-facetapi-links {
+  > .content .facetapi-custom-facetapi-links,
+  > .content .facetapi-facetapi-checkbox-links {
     padding-top: .5em;
     padding-left: .5em;
     margin-left: .3em;
     .dashed-left;
   }
+  .facetapi-facetapi-checkbox-links {
+    input[type="checkbox"] {
+      margin-right: .3em;
+    }
+    a {
+      &, &:hover { color: @text-color;text-decoration: none;}
+    }
+  }
   .facet-title {
     display: block;
     font-size: 1.4rem;
     margin-top: 0;
-    .fa-icon-content(@fa-var-plus);
+    .fa-icon-content(@fa-var-caret-right);
     &:before {
       font-size: 90%;
       margin-right: .3em;
@@ -1635,12 +1644,9 @@ body.node-type-species {
       text-decoration: none;
     }
     &[aria-expanded="true"] {
-    // &:hover {
-      .fa-icon-content(@fa-var-minus);
-      // color: @chm-blue;
+      .fa-icon-content(@fa-var-caret-down);
       &:before {
         font-size: 90%;
-        // content: ' - '
       }
     }
   }
@@ -1650,11 +1656,9 @@ body.node-type-species {
   }
   .form-group {
     margin-bottom: 0;
-    // padding-bottom: @form-group-margin-bottom;
   }
   .collapsing {
     .transition(height 0.01s);
-    // .transition(none);
   }
   .badge {
     background-color: @facets-accent-color;
@@ -1706,9 +1710,10 @@ body.node-type-species {
 }
 .view-the-search-view {
   .view-header {
-    padding-top: 1em;
+    padding-top: 2em;
     padding-bottom: .5em;
     border-bottom: 1px dashed #e6e6e6;
+    margin-bottom: 1em;
   }
   .views-row {
     border-bottom: 1px solid #e6e6e6;
@@ -1722,7 +1727,6 @@ body.node-type-species {
     }
     .views-field.views-field-field-image {
       // width: 100px;
-      // float: left;
       // padding: .2em;
       display: none;
     }
@@ -1754,14 +1758,9 @@ body.node-type-species {
       }
       .views-field.views-field-field-image {
         display: block;
-        img {
-          min-width: 100px;
-          max-width: 150px;
-          width: 10%;
-          float: left;
-          padding: .3em;
-          padding-left: 0;
-        }
+        max-width: 100px;
+        float: right;
+        margin-left: 20px;
       }
 
       .views-field.views-field-search-api-excerpt {
