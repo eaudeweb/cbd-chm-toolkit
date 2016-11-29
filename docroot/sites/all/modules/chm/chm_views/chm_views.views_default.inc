@@ -902,17 +902,6 @@ function chm_views_views_default_views() {
   $handler->display->display_options['fields']['draggableviews']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['draggableviews']['hide_alter_empty'] = FALSE;
   $handler->display->display_options['fields']['draggableviews']['draggableviews']['ajax'] = 1;
-  /* Field: Field: Image */
-  $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
-  $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
-  $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
-  $handler->display->display_options['fields']['field_image']['label'] = '';
-  $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_image']['settings'] = array(
-    'image_style' => 'small_flag_icon',
-    'image_link' => '',
-  );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -2950,17 +2939,6 @@ function chm_views_views_default_views() {
   $handler->display->display_options['style_options']['heading_field'] = 'title';
   $handler->display->display_options['style_options']['body_field'] = 'body';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Field: Field: Image */
-  $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
-  $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
-  $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
-  $handler->display->display_options['fields']['field_image']['label'] = '';
-  $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_image']['settings'] = array(
-    'image_style' => 'large',
-    'image_link' => 'content',
-  );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -2998,6 +2976,17 @@ function chm_views_views_default_views() {
       'text' => 0,
     ),
     'trim_preserve_tags' => '',
+  );
+  /* Field: Field: Image */
+  $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
+  $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['label'] = '';
+  $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_image']['settings'] = array(
+    'image_style' => 'large',
+    'image_link' => 'content',
   );
   /* Sort criterion: Content: Title */
   $handler->display->display_options['sorts']['title']['id'] = 'title';
@@ -4087,7 +4076,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['fields']['field_species_family']['field'] = 'field_species_family';
   $handler->display->display_options['fields']['field_species_family']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_species_family']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Content: Status */
+  /* Field: Content: IUCN status */
   $handler->display->display_options['fields']['field_redlist_status']['id'] = 'field_redlist_status';
   $handler->display->display_options['fields']['field_redlist_status']['table'] = 'field_data_field_redlist_status';
   $handler->display->display_options['fields']['field_redlist_status']['field'] = 'field_redlist_status';
@@ -4171,7 +4160,7 @@ function chm_views_views_default_views() {
   );
   $handler->display->display_options['filters']['field_species_family_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_species_family_tid']['vocabulary'] = 'species_family';
-  /* Filter criterion: Content: Status (field_redlist_status) */
+  /* Filter criterion: Content: IUCN status (field_redlist_status) */
   $handler->display->display_options['filters']['field_redlist_status_tid']['id'] = 'field_redlist_status_tid';
   $handler->display->display_options['filters']['field_redlist_status_tid']['table'] = 'field_data_field_redlist_status';
   $handler->display->display_options['filters']['field_redlist_status_tid']['field'] = 'field_redlist_status_tid';
