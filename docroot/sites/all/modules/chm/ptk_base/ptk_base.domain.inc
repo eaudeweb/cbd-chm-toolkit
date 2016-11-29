@@ -309,4 +309,22 @@ class PTKDomain {
     return $ret;
   }
 
+
+  /**
+   * Compute entity absolute URL using its original domain
+   * @param int $entity_id
+   * @return string
+   *   Absolute URL
+   */
+  public static function url($entity_id) {
+    $e = entity_load('node',array($entity_id));
+    if(!isset($e[$entity_id])) {
+      return '';
+    }
+    $entity = $e[$entity_id];
+    $entity_uri = entity_uri('node',$entity);
+    //Base url
+    $base_url = ptk_base_get_domain_url(array_shift($entity->domains));
+    return  $base_url . '/' . $entity_uri['path'];
+  }
 }

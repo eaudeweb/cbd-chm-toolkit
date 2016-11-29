@@ -41,6 +41,17 @@ function chm_theme_kit_preprocess_page(&$vars) {
     if ($domain['domain_id'] == PTKDomain::$DEMO_DOMAIN_ID) {
       $vars['logo'] = image_style_url('header_flag', 'public://images/flags/flag-bioland.png');
     }
+    if ($domain['domain_id'] == PTKDomain::$CHM_DOMAIN_ID) {
+      global $language;
+      $langcode = $language->language;
+      $uri = "public://images/logos/chm/logo-chm-$langcode.png";
+      /** @var DrupalPublicStreamWrapper $w */
+      $w = file_stream_wrapper_get_instance_by_uri($uri);
+      if (!file_exists($w->realpath())) {
+        $uri = "public://images/logos/chm/logo-chm-en.png";
+      }
+      $vars['logo'] = image_style_url('header_flag', $uri);
+    }
   }
   if (strtolower(arg(0)) == 'search' || strtolower(arg(0)) == 'search-network') {
     $breadcrumb = array(
@@ -50,6 +61,28 @@ function chm_theme_kit_preprocess_page(&$vars) {
   }
 }
 
+function chm_theme_kit_breadcrumb($variables) {
+  // Use the Path Breadcrumbs theme function if it should be used instead.
+  if (_bootstrap_use_path_breadcrumbs()) {
+    return path_breadcrumbs_breadcrumb($variables);
+  }
+
+  $output = '';
+  $breadcrumb = $variables['breadcrumb'];
+
+  // Determine if we are to display the breadcrumb.
+  $bootstrap_breadcrumb = bootstrap_setting('breadcrumb');
+  if (($bootstrap_breadcrumb == 1 || ($bootstrap_breadcrumb == 2 && arg(0) == 'admin')) && !empty($breadcrumb)) {
+    $output = theme('item_list', array(
+      'attributes' => array(
+        'class' => array('breadcrumb', 'container'),
+      ),
+      'items' => $breadcrumb,
+      'type' => 'ol',
+    ));
+  }
+  return $output;
+}
 
 function chm_theme_kit_css_alter(&$css) {
   $path = drupal_get_path('module', 'addressfield');

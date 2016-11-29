@@ -3,6 +3,18 @@
   padding-top: 40px;
   padding-bottom: 40px;
 }
+.breadcrumb-container {
+  background-color: @breadcrumb-bg;
+}
+.breadcrumb {
+  margin-bottom: 0;
+  border-radius: 0;
+  @media (min-width: @grid-float-breakpoint) {
+    li:first-child {
+      margin-left: 13px;
+    }
+  }
+}
 
 #page-title {
   margin-top: 0;
@@ -112,7 +124,8 @@ h2.pane-title {
 
   & > ul > li {
     & > .views-field.views-field-name-field {
-      font-size: 20px;
+      // font-size: 20px;
+      font-size: 1.2em;
       margin-top: .5em;
       margin-bottom: 1em; 
       font-weight: bold;
@@ -132,7 +145,8 @@ h2.pane-title {
         & > .field-content {
           display: table-cell;
           vertical-align: middle;
-          font-size: 18px;
+          // font-size: 18px;
+          font-weight: bold;
           height: 5rem;
           text-transform: uppercase;
         }
@@ -225,7 +239,7 @@ h2.pane-title {
 
     & > ul > li {
       & > .views-field.views-field-name-field{
-        font-size: 24px;
+        // font-size: 24px;
       }
       & > ul{
         margin-left: 3rem; //LTR
@@ -243,7 +257,7 @@ h2.pane-title {
         }
         & > .views-field.views-field-name-field{
           & > .field-content {
-            font-size: 20px;
+            // font-size: 20px;
             height: 6rem;
           }
         }
@@ -262,7 +276,7 @@ h2.pane-title {
 
     & > ul > li {
       & > .views-field.views-field-name-field{
-        font-size: 26px;
+        // font-size: 26px;
       }
       & > ul{
         margin-left: 4rem; //LTR
@@ -280,13 +294,13 @@ h2.pane-title {
         }
         & > .views-field.views-field-name-field{
           & > .field-content {
-            font-size: 22px;
+            // font-size: 22px;
             height: 7rem;
           }
         }
         & > ul{ //1.1.
           margin-left: 4.5rem; //LTR
-          font-size: 16px;
+          // font-size: 16px;
           [dir="rtl"] &{ //1.1.
             margin-left: 0rem;
             margin-right: 4.5rem;
@@ -323,7 +337,7 @@ h2.pane-title {
       & > .field-content {
         // display: table-cell;
         // vertical-align: middle;
-        font-size: 16px;
+        // font-size: 16px;
         // height: 8rem;
         text-transform: uppercase;
         font-weight: bold;
@@ -485,7 +499,7 @@ h2.pane-title {
     & > ul > li {
       & > .views-field.views-field-field-image-et{
         float: left; //LTR
-        width: 8.5rem;
+        width: 7.5rem;
         margin-right: .5em;
         [dir="rtl"] &{
           float: right;
@@ -502,17 +516,17 @@ h2.pane-title {
         & > .field-content {
           display: table-cell;
           vertical-align: middle;
-          font-size: 16px;
-          height: 8.5rem;
+          // font-size: 16px;
+          height: 7.5rem;
         }
       }
       
       & > ul{ //1.1.
         margin-top: 1.5em;
-        margin-left: 3.75em; //LTR
+        margin-left: 3.5em; //LTR
         margin-right: 3.25em; //LTR
         [dir="rtl"] &{ //1.1.
-          margin-right: 3.75em; 
+          margin-right: 3.5em;
           margin-left: 3.25em;
         } 
       } 
@@ -523,7 +537,7 @@ h2.pane-title {
     & > ul > li {
       margin-bottom: 3em;
       & > .views-field.views-field-field-image-et{
-        width: 9rem;
+        width: 8rem;
         margin-right: .5em; //LTR
         [dir="rtl"] &{
           margin-right: 0;
@@ -533,17 +547,17 @@ h2.pane-title {
       
       & > .views-field.views-field-name-field{
         & > .field-content {
-          font-size: 17px;
-          height: 9rem;
+          // font-size: 17px;
+          height: 8rem;
         }
       }
       
       & > ul{ //1.1.
-        margin-left: 5.5rem; //LTR
+        margin-left: 5rem; //LTR
         margin-right: 5rem; //LTR
-        font-size: 16px;
+        // font-size: 16px;
         [dir="rtl"] &{ 
-          margin-right: 5.5rem;
+          margin-right: 5rem;
           margin-left: 5rem;
         } 
       } 
@@ -566,7 +580,7 @@ h2.pane-title {
       
       & > .views-field.views-field-name-field{
         & > .field-content {
-          font-size: 18px;
+          // font-size: 18px;
           height: 10rem;
         }
       }
@@ -574,7 +588,7 @@ h2.pane-title {
       & > ul{ //1.1.
         margin-left: 6rem; //LTR
         margin-right: 5.5rem; //LTR
-        font-size: 16px;
+        // font-size: 16px;
         [dir="rtl"] &{
           margin-right: 5.5rem;
           margin-left: 5rem;
@@ -592,19 +606,19 @@ h2.pane-title {
     margin: 0;
     padding: 0;
   }
-  a{
-    color: black;
+  a {
+    color: @text-color;
   }
 
   & > ul > li {
     margin-bottom: 3em;
     & > .views-field.views-field-name{
-      font-size: 16px;
+      // font-size: 16px;
       text-transform: uppercase;
       font-weight: bold;
-      a:hover{
-        color: @text-color-green;
-      }
+      // a:hover{
+      //   color: @text-color-green;
+      // }
     }
     
     & > ul{ //1.1.
@@ -621,7 +635,7 @@ h2.pane-title {
           display: table-cell;
           margin-top: .4em;
           margin-right: .5em; //LTR
-          background-color: black;
+          background-color: @text-color;
           width: .5em;
           height: .5em;
           position: absolute;
@@ -641,9 +655,9 @@ h2.pane-title {
         }
         &:hover{
           cursor: pointer; 
-          a{
-          text-decoration: none;
-          color: black;
+          a {
+            text-decoration: none;
+            color: @text-color;
           }
           
         }
@@ -656,7 +670,7 @@ h2.pane-title {
   @media all and (min-width: 424px){
     & > ul > li {
       & > .views-field.views-field-name{
-        font-size: 16px;
+        // font-size: 16px;
       }
       
       & > ul{ //1.1.
@@ -674,13 +688,13 @@ h2.pane-title {
     & > ul > li {
       margin-bottom: 3em;
       & > .views-field.views-field-name{
-        font-size: 17px;
+        // font-size: 17px;
       }
       
       & > ul{ //1.1.
         margin-left: 5.5rem; //LTR
         margin-right: 5rem; //LTR
-        font-size: 16px;
+        // font-size: 16px;
         [dir="rtl"] &{ 
           margin-right: 5.5rem;
           margin-left: 5rem;
@@ -693,13 +707,13 @@ h2.pane-title {
     & > ul > li {
       margin-bottom: 3em;
       & > .views-field.views-field-name{
-        font-size: 18px;
+        // font-size: 18px;
       }
       
       & > ul{ //1.1.
         margin-left: 6rem; //LTR
         margin-right: 5.5rem; //LTR
-        font-size: 16px;
+        // font-size: 16px;
         [dir="rtl"] &{
           margin-right: 5.5rem;
           margin-left: 5rem;
@@ -1594,16 +1608,19 @@ body.node-type-species {
 }
 
 // Search page
-.region-sidebar-first > .block-facetapi:first-child {
-  &:before {
-    content: 'Filters';
-    display: block;
-    width: 100%;
-    .h2;
-  }
-}
 .block-facetapi {
   margin-bottom: .6em;
+  h2.block-title {
+    font-size: 1.4rem;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  > .content .facetapi-custom-facetapi-links {
+    padding-top: .5em;
+    padding-left: .5em;
+    margin-left: .3em;
+    .dashed-left;
+  }
   .facet-title {
     display: block;
     font-size: 1.4rem;
@@ -1648,6 +1665,7 @@ body.node-type-species {
     width: 100%;
     &.select2-container-active .select2-choices {
       border: none;
+      .dashed-left;
       box-shadow: none;
     }
   }
@@ -1655,7 +1673,10 @@ body.node-type-species {
     border: none;
     background: none;
     box-shadow: none;
-    border-radius: @border-radius-base;
+    border-radius: 0;
+    padding-left: .5em;
+    margin-left: .3em;
+    .dashed-left;
   }
   .select2-dropdown-open .select2-choices {
     border-radius: @border-radius-base @border-radius-base 0 0;
@@ -1665,7 +1686,7 @@ body.node-type-species {
     border-color: #d4d4d4;
     box-shadow: none;
     line-height: 1.2em;
-    // margin: 3px 0;
+    margin: 3px 6px 3px 0;
   }
   .select2-search-field {
     width: 100%;
@@ -1673,6 +1694,7 @@ body.node-type-species {
   .select2-input {
     width: 100% !important;
   }
+
 }
 .select2-drop-active,
 .select2-drop.select2-drop-active.select2-drop-above {
@@ -1682,7 +1704,12 @@ body.node-type-species {
 .select2-results .select2-highlighted {
   background-color: @facets-accent-color;
 }
-.view-the-search-view .view-content {
+.view-the-search-view {
+  .view-header {
+    padding-top: 1em;
+    padding-bottom: .5em;
+    border-bottom: 1px dashed #e6e6e6;
+  }
   .views-row {
     border-bottom: 1px solid #e6e6e6;
     padding: .5em 0 1em;
@@ -1742,28 +1769,44 @@ body.node-type-species {
       }
     }
   }
-  @media all and (min-width: @screen-sm-min) {
-    .views-row {
+  // @media all and (min-width: @screen-sm-min) {
+  //   .views-row {
 
-      .views-field.views-field-title-field {
-      }
-      .views-field.views-field-field-image {
-        img {
-        }
-      }
-      .views-field.views-field-field-event-status {
-      }
+  //     .views-field.views-field-title-field {
+  //     }
+  //     .views-field.views-field-field-image {
+  //       img {
+  //       }
+  //     }
+  //     .views-field.views-field-field-event-status {
+  //     }
 
-      .views-field.views-field-search-api-excerpt {
+  //     .views-field.views-field-search-api-excerpt {
 
-      }
-    }
+  //     }
+  //   }
+  // }
+  > .text-center {
+    text-align: initial;
+  }
+  // Hide submit button and autosubmit on change
+  #edit-submit-the-search-view {
+    display: none;
   }
 }
-
-table .views-field-title a,
-table .views-field-title a:hover {
-  color: @link-color-temp;
+#edit-search-api-views-fulltext-wrapper {
+  float: none;
+  padding-top: 0;
+  padding-right: 0;
+  // .views-exposed-widget {
+  //   float: right;
+  // }
+  #edit-search-api-views-fulltext {
+    width: 100%;
+    @media (min-width: @grid-float-breakpoint) {
+      width: 100%;
+    }
+  }
 }
 
 @facets-accent-color: lighten(@button-bgcolor, 5%);
@@ -1837,4 +1880,8 @@ table .views-field-title a:hover {
       background-color: darken(@facets-accent-color, 5%);
     }
   }
+}
+table .views-field-title a,
+table .views-field-title a:hover {
+  color: @link-color-temp;
 }
