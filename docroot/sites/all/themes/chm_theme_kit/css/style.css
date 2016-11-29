@@ -10505,29 +10505,18 @@ h2.pane-title {
 .node-event-detail .panel-flexible .panel-separator {
   margin: 0 0 .5em 0;
 }
-.region-sidebar-first > .block-facetapi:first-child:before {
-  display: block;
-  width: 100%;
-  font-family: inherit;
-  font-weight: 500;
-  line-height: 1.1;
-  color: inherit;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  font-size: 25px;
-}
-.region-sidebar-first > .block-facetapi:first-child:before small,
-.region-sidebar-first > .block-facetapi:first-child:before .small {
-  font-weight: normal;
-  line-height: 1;
-  color: #777777;
-}
-.region-sidebar-first > .block-facetapi:first-child:before small,
-.region-sidebar-first > .block-facetapi:first-child:before .small {
-  font-size: 65%;
-}
 .block-facetapi {
   margin-bottom: .6em;
+}
+.block-facetapi h2.block-title {
+  font-size: 1.4rem;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.block-facetapi > .content .facetapi-custom-facetapi-links {
+  padding-top: .5em;
+  padding-left: .5em;
+  margin-left: .3em;
 }
 .block-facetapi .facet-title {
   display: block;
@@ -10616,7 +10605,9 @@ h2.pane-title {
   border: none;
   background: none;
   box-shadow: none;
-  border-radius: 4px;
+  border-radius: 0;
+  padding-left: .5em;
+  margin-left: .3em;
 }
 .block-facetapi .select2-dropdown-open .select2-choices {
   border-radius: 4px 4px 0 0;
@@ -10626,6 +10617,7 @@ h2.pane-title {
   border-color: #d4d4d4;
   box-shadow: none;
   line-height: 1.2em;
+  margin: 3px 6px 3px 0;
 }
 .block-facetapi .select2-search-field {
   width: 100%;
@@ -10641,9 +10633,10 @@ h2.pane-title {
 .select2-results .select2-highlighted {
   background-color: #0081d2;
 }
-.view-the-search-view .view-content {
-  margin-top: .5em;
-  border-top: 1px dashed #e6e6e6;
+.view-the-search-view .view-header {
+  padding-top: 1em;
+  padding-bottom: .5em;
+  border-bottom: 1px dashed #e6e6e6;
 }
 .view-the-search-view .views-row {
   border-bottom: 1px solid #e6e6e6;
@@ -10694,15 +10687,20 @@ h2.pane-title {
 .view-the-search-view > .text-center {
   text-align: initial;
 }
+.view-the-search-view #edit-submit-the-search-view {
+  display: none;
+}
 #edit-search-api-views-fulltext-wrapper {
   float: none;
+  padding-top: 0;
+  padding-right: 0;
 }
 #edit-search-api-views-fulltext-wrapper #edit-search-api-views-fulltext {
   width: 100%;
 }
 @media (min-width: 768px) {
   #edit-search-api-views-fulltext-wrapper #edit-search-api-views-fulltext {
-    width: 50%;
+    width: 100%;
   }
 }
 .search-api-ranges-elements {

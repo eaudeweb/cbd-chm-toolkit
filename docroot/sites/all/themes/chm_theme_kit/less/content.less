@@ -1608,15 +1608,19 @@ body.node-type-species {
 }
 
 // Search page
-.region-sidebar-first > .block-facetapi:first-child {
-  &:before {
-    display: block;
-    width: 100%;
-    .h2;
-  }
-}
 .block-facetapi {
   margin-bottom: .6em;
+  h2.block-title {
+    font-size: 1.4rem;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  > .content .facetapi-custom-facetapi-links {
+    padding-top: .5em;
+    padding-left: .5em;
+    margin-left: .3em;
+    .dashed-left;
+  }
   .facet-title {
     display: block;
     font-size: 1.4rem;
@@ -1661,6 +1665,7 @@ body.node-type-species {
     width: 100%;
     &.select2-container-active .select2-choices {
       border: none;
+      .dashed-left;
       box-shadow: none;
     }
   }
@@ -1668,7 +1673,10 @@ body.node-type-species {
     border: none;
     background: none;
     box-shadow: none;
-    border-radius: @border-radius-base;
+    border-radius: 0;
+    padding-left: .5em;
+    margin-left: .3em;
+    .dashed-left;
   }
   .select2-dropdown-open .select2-choices {
     border-radius: @border-radius-base @border-radius-base 0 0;
@@ -1678,7 +1686,7 @@ body.node-type-species {
     border-color: #d4d4d4;
     box-shadow: none;
     line-height: 1.2em;
-    // margin: 3px 0;
+    margin: 3px 6px 3px 0;
   }
   .select2-search-field {
     width: 100%;
@@ -1686,6 +1694,7 @@ body.node-type-species {
   .select2-input {
     width: 100% !important;
   }
+
 }
 .select2-drop-active,
 .select2-drop.select2-drop-active.select2-drop-above {
@@ -1696,9 +1705,10 @@ body.node-type-species {
   background-color: @facets-accent-color;
 }
 .view-the-search-view {
-  .view-content {
-    margin-top: .5em;
-    border-top: 1px dashed #e6e6e6;
+  .view-header {
+    padding-top: 1em;
+    padding-bottom: .5em;
+    border-bottom: 1px dashed #e6e6e6;
   }
   .views-row {
     border-bottom: 1px solid #e6e6e6;
@@ -1779,19 +1789,22 @@ body.node-type-species {
   > .text-center {
     text-align: initial;
   }
+  // Hide submit button and autosubmit on change
   #edit-submit-the-search-view {
-    // display: none;
+    display: none;
   }
 }
 #edit-search-api-views-fulltext-wrapper {
   float: none;
-  // & ~ .views-exposed-widget {
+  padding-top: 0;
+  padding-right: 0;
+  // .views-exposed-widget {
   //   float: right;
   // }
   #edit-search-api-views-fulltext {
     width: 100%;
     @media (min-width: @grid-float-breakpoint) {
-      width: 50%;
+      width: 100%;
     }
   }
 }

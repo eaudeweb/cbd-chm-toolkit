@@ -607,6 +607,8 @@ function chm_search_select($form, &$form_state, $elements) {
 
   $form['#attached']['js'][libraries_get_path('select2') . '/select2.js'] = [ 'weight' => 100 ];
 
+  $form['#attached']['js'][drupal_get_path('module', 'chm_search') . '/js/chm_search_facets.js'] = [ 'weight' => 110 ];
+
   $form['#attached']['js'][drupal_get_path('module', 'chm_search') . '/js/chm_search_hide_submit.js'] = [ 'weight' => 110 ];
 
   $form['#attached']['css'][] = libraries_get_path('select2') . '/select2.css';

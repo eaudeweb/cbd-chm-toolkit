@@ -1,25 +1,13 @@
 (function($) {
   $(document).ready(function() {
-      // Select2
-      var initialSelects = $('[id^=edit-select]');
-      var placeholderValue = initialSelects.eq(0).data('placeholder');
-      initialSelects.each(function() {
-        var self = $(this);
-        self.css('width', '100%').removeClass('form-control').select2({
-          allowClear: true,
-          placeholder: placeholderValue,
-          escapeMarkup: function (text) { return text; }
-        });
-      });
-      // $('[id^=s2id_autogen]','#chm-search-type')
-      $('.select2-input').each(function () {
-        $(this)[0].placeholder = placeholderValue;
-      });
-      $('.ctools-auto-submit-click:not(.chm_search-hide-submit-processed)').addClass('chm_search-hide-submit-processed').hide();
-      $('.chm-search-select-facet.collapse').on('shown.bs.collapse', function () {
-        $(this).find('.select2-input').focus();
+    var container = document.querySelectorAll('#edit-search-api-views-fulltext-wrapper')[0];
+    var elements = container.querySelectorAll('select');
+    Array.prototype.forEach.call(elements, function(el, i) {
+      el.addEventListener("change", function() {
+        this.form.submit();
       });
     });
+  });
 })(jQuery);
 // (function($){
 //   /**
