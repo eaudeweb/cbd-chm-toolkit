@@ -42,7 +42,7 @@ function chm_search_views_default_views() {
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
-  /* Field: Indexed Multilingual Node: Image */
+  /* Field: Indexed Multilingual Node: Photo */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
@@ -51,7 +51,7 @@ function chm_search_views_default_views() {
   $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_image']['type'] = 'domain_image_link';
   $handler->display->display_options['fields']['field_image']['settings'] = array(
-    'image_style' => 'image_listing',
+    'image_style' => 'thumbnail',
     'image_link' => 'content',
   );
   /* Field: Indexed Multilingual Node: Content type */
