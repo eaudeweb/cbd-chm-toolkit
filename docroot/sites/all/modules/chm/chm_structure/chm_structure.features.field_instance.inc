@@ -8963,7 +8963,7 @@ function chm_structure_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_redlist_status',
-    'label' => 'Status',
+    'label' => 'IUCN status',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -8974,7 +8974,6 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => '',
-        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 18,
@@ -13088,6 +13087,7 @@ function chm_structure_field_default_field_instances() {
   t('Groups');
   t('IUCN Code');
   t('IUCN category');
+  t('IUCN status');
   t('IUCN taxonomic ID');
   t('If checked, this value will be available in drop-downs');
   t('Image');

@@ -410,7 +410,7 @@ function chm_structure_taxonomy_default_vocabularies() {
       'i18n_mode' => 0,
     ),
     'species_redlist_status' => array(
-      'name' => 'Species RedList status',
+      'name' => 'IUCN species status',
       'machine_name' => 'species_redlist_status',
       'description' => 'IUCN RedList species threat status',
       'hierarchy' => 0,

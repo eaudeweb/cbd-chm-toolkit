@@ -89,7 +89,7 @@ search/*',
         'weight' => -27,
       ),
     ),
-    'title' => 'Species status',
+    'title' => 'IUCN species status',
     'visibility' => 0,
   );
 
