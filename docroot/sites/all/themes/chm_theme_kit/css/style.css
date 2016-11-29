@@ -10710,6 +10710,8 @@ h2.pane-title {
 }
 .view-the-search-view .views-row .views-field-field-dates .field-content:not(:empty) > * {
   color: #888;
+  font-size: .9em;
+  margin-top: .2em;
 }
 .view-the-search-view .views-row .views-field-field-dates .field-content:not(:empty) > *:before {
   display: inline-block;
