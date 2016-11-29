@@ -554,6 +554,7 @@ function chm_search_block_slider_view_form_submit($form, &$form_state) {
   drupal_goto($path, array('query' => array($params), 'language' => $language));
 }
 
+// @todo: Obsolete, check if it can be removed.
 function chm_search_select2_element_alter(&$element) {
   if (arg(0)=='search' || arg(0)=='search-network') {
     $element['#select2']['formatSelection'] = 'chm_search_format_selection';
