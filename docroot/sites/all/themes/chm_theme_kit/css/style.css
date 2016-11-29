@@ -8832,6 +8832,7 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
   background-color: transparent;
 }
 .navbar-container #navbar .navbar-collapse .nav li a.dropdown-toggle .caret {
+  border-top-color: #fff;
   margin-top: -5px;
 }
 @media all and (min-width: 992px) {
