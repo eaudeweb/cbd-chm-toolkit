@@ -10643,9 +10643,10 @@ h2.pane-title {
   background-color: #0081d2;
 }
 .view-the-search-view .view-header {
-  padding-top: 1em;
+  padding-top: 2em;
   padding-bottom: .5em;
   border-bottom: 1px dashed #e6e6e6;
+  margin-bottom: 1em;
 }
 .view-the-search-view .views-row {
   border-bottom: 1px solid #e6e6e6;
@@ -10683,14 +10684,9 @@ h2.pane-title {
   }
   .view-the-search-view .views-row .views-field.views-field-field-image {
     display: block;
-  }
-  .view-the-search-view .views-row .views-field.views-field-field-image img {
-    min-width: 100px;
-    max-width: 150px;
-    width: 10%;
-    float: left;
-    padding: .3em;
-    padding-left: 0;
+    max-width: 100px;
+    float: right;
+    margin-left: 20px;
   }
 }
 .view-the-search-view > .text-center {
