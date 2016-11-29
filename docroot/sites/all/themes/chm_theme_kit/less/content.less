@@ -1623,10 +1623,16 @@ body.node-type-species {
     .dashed-left;
   }
   .facetapi-facetapi-checkbox-links {
+    li {
+      display: table;
+    }
     input[type="checkbox"] {
       margin-right: .3em;
+      display: table-cell;
     }
+
     a {
+      display: table-cell;
       &, &:hover { color: @text-color;text-decoration: none;}
     }
   }
@@ -1707,6 +1713,16 @@ body.node-type-species {
 }
 .select2-results .select2-highlighted {
   background-color: @facets-accent-color;
+}
+
+.page-search,
+.page-search-network {
+  .region-sidebar-first.well {
+    padding: 10px;
+  }
+  h2 {
+    margin-top: 10px;
+  }
 }
 .view-the-search-view {
   .view-header {
@@ -1816,6 +1832,11 @@ body.node-type-species {
 }
 
 @facets-accent-color: lighten(@button-bgcolor, 5%);
+.block-facetapi .search-api-ranges-elements {
+  margin-top: .5em;
+  width: 90%;
+  margin-left: 5%;
+}
 .search-api-ranges-elements {
   position: relative;
   .pull-left {

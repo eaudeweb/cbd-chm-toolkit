@@ -10519,8 +10519,15 @@ h2.pane-title {
   padding-left: .5em;
   margin-left: .3em;
 }
+.block-facetapi .facetapi-facetapi-checkbox-links li {
+  display: table;
+}
 .block-facetapi .facetapi-facetapi-checkbox-links input[type="checkbox"] {
   margin-right: .3em;
+  display: table-cell;
+}
+.block-facetapi .facetapi-facetapi-checkbox-links a {
+  display: table-cell;
 }
 .block-facetapi .facetapi-facetapi-checkbox-links a,
 .block-facetapi .facetapi-facetapi-checkbox-links a:hover {
@@ -10642,6 +10649,14 @@ h2.pane-title {
 .select2-results .select2-highlighted {
   background-color: #0081d2;
 }
+.page-search .region-sidebar-first.well,
+.page-search-network .region-sidebar-first.well {
+  padding: 10px;
+}
+.page-search h2,
+.page-search-network h2 {
+  margin-top: 10px;
+}
 .view-the-search-view .view-header {
   padding-top: 2em;
   padding-bottom: .5em;
@@ -10746,6 +10761,11 @@ h2.pane-title {
   #edit-search-api-views-fulltext-wrapper #edit-search-api-views-fulltext {
     width: 100%;
   }
+}
+.block-facetapi .search-api-ranges-elements {
+  margin-top: .5em;
+  width: 90%;
+  margin-left: 5%;
 }
 .search-api-ranges-elements {
   position: relative;
