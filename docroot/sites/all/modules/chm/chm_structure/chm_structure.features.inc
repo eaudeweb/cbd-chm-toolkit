@@ -107,9 +107,9 @@ function chm_structure_node_info() {
       'help' => '',
     ),
     'cbd_nfp' => array(
-      'name' => t('CBD National Focal Point'),
+      'name' => t('National Focal Point'),
       'base' => 'node_content',
-      'description' => t('CBD National Focal Point automatically imported from the CBD REST API'),
+      'description' => t('National Focal Point automatically imported from the SCBD API'),
       'has_title' => '1',
       'title_label' => t('Name'),
       'help' => '',
@@ -171,7 +171,7 @@ function chm_structure_node_info() {
       'help' => t('Create a gallery with description and after saving, use drag and drop to upload files from your computer. Images can be ordered, cropped etc.'),
     ),
     'link' => array(
-      'name' => t('Link'),
+      'name' => t('Website'),
       'base' => 'node_content',
       'description' => t('Provide a link to a website or another online reference presenting relevant information about biodiversity in your country.'),
       'has_title' => '1',
@@ -195,7 +195,7 @@ function chm_structure_node_info() {
       'help' => '',
     ),
     'page' => array(
-      'name' => t('Page'),
+      'name' => t('Web page'),
       'base' => 'node_content',
       'description' => t('Use <i>page</i> for the static content of your national CHM website, such as the <b>About Us</b> page.'),
       'has_title' => '1',
