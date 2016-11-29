@@ -1624,10 +1624,16 @@ body.node-type-species {
     .dashed-left;
   }
   .facetapi-facetapi-checkbox-links {
+    li {
+      display: table;
+    }
     input[type="checkbox"] {
       margin-right: .3em;
+      display: table-cell;
     }
+
     a {
+      display: table-cell;
       &, &:hover { color: @text-color;text-decoration: none;}
     }
   }
@@ -1709,6 +1715,16 @@ body.node-type-species {
 .select2-results .select2-highlighted {
   background-color: @facets-accent-color;
 }
+
+.page-search,
+.page-search-network {
+  .region-sidebar-first.well {
+    padding: 10px;
+  }
+  h2 {
+    margin-top: 10px;
+  }
+}
 .view-the-search-view {
   .view-header {
     padding-top: 2em;
@@ -1718,7 +1734,7 @@ body.node-type-species {
   }
   .views-row {
     border-bottom: 1px solid #e6e6e6;
-    padding: .5em 0 1em;
+    padding: .8em 0 1.2em;
     &:last-of-type {
       border-bottom: none;
     }
@@ -1733,10 +1749,9 @@ body.node-type-species {
     }
     .views-field.views-field-field-event-status .field-content:not(:empty) {
       color: #888;
-      font-size: .9em;
+      // font-size: .9em;
+      .fa-icon-content(@fa-var-check-square-o);
       &:before {
-        content: '\f073';
-        font-family: "FontAwesome";
         margin-right: .2em;
       }
       &:not(:first-of-type):after {
@@ -1748,15 +1763,24 @@ body.node-type-species {
     .views-field.views-field-search-api-excerpt {
 
     }
+    .views-field-field-dates .field-content:not(:empty) > * {
+      color: #888;
+      font-size: .9em;
+      margin-top: .2em;
+      .fa-icon-content(@fa-var-calendar);
+      &:before {
+        margin-right: .2em;
+      }
+    }
   }
   @media all and (min-width: @screen-xs-min) {
     .views-row {
       // border-bottom: none;
-      padding: .5em 0 1em;
+      // padding: .5em 0 1em;
 
-      .views-field.views-field-title-field {
-        font-weight: bold;
-      }
+      // .views-field.views-field-title-field {
+      //   font-weight: bold;
+      // }
       .views-field.views-field-field-image {
         display: block;
         max-width: 100px;
@@ -1810,6 +1834,11 @@ body.node-type-species {
 }
 
 @facets-accent-color: lighten(@button-bgcolor, 5%);
+.block-facetapi .search-api-ranges-elements {
+  margin-top: .5em;
+  width: 90%;
+  margin-left: 5%;
+}
 .search-api-ranges-elements {
   position: relative;
   .pull-left {
@@ -1836,9 +1865,9 @@ body.node-type-species {
     &:focus,
     &:active {
       outline: none;
-      .fa-spin();
-      -webkit-animation-duration: .5s; /* Safari 4.0 - 8.0 */
-      animation-duration: .5s;
+      // .fa-spin();
+      // -webkit-animation-duration: .5s; /* Safari 4.0 - 8.0 */
+      // animation-duration: .5s;
     }
   }
   .form-item-range-from,
