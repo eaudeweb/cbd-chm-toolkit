@@ -3286,8 +3286,8 @@ function chm_search_facetapi_default_facet_settings() {
     'filters' => array(),
     'active_sorts' => array(
       'active' => 'active',
-      'count' => 'count',
       'display' => 'display',
+      'count' => 0,
       'natural' => 0,
       'indexed' => 0,
     ),
