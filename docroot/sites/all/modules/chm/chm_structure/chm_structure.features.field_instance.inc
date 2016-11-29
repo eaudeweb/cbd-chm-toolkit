@@ -2615,7 +2615,7 @@ function chm_structure_field_default_field_instances() {
   // Exported field_instance: 'node-document-field_subjects'.
   $field_instances['node-document-field_subjects'] = array(
     'bundle' => 'document',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -2642,13 +2642,12 @@ function chm_structure_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'taxonomy',
+      'active' => 1,
+      'module' => 'options',
       'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
+        'apply_chosen' => 1,
       ),
-      'type' => 'taxonomy_autocomplete',
+      'type' => 'options_select',
       'weight' => 13,
     ),
   );
@@ -3851,7 +3850,7 @@ function chm_structure_field_default_field_instances() {
   // Exported field_instance: 'node-event-field_subjects'.
   $field_instances['node-event-field_subjects'] = array(
     'bundle' => 'event',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -3878,13 +3877,12 @@ function chm_structure_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'taxonomy',
+      'active' => 1,
+      'module' => 'options',
       'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
+        'apply_chosen' => 1,
       ),
-      'type' => 'taxonomy_autocomplete',
+      'type' => 'options_select',
       'weight' => 17,
     ),
   );
@@ -4276,13 +4274,12 @@ function chm_structure_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'taxonomy',
+      'active' => 1,
+      'module' => 'options',
       'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
+        'apply_chosen' => 1,
       ),
-      'type' => 'taxonomy_autocomplete',
+      'type' => 'options_select',
       'weight' => 7,
     ),
   );
@@ -4802,7 +4799,7 @@ function chm_structure_field_default_field_instances() {
   // Exported field_instance: 'node-link-field_subjects'.
   $field_instances['node-link-field_subjects'] = array(
     'bundle' => 'link',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -4829,13 +4826,12 @@ function chm_structure_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'taxonomy',
+      'active' => 1,
+      'module' => 'options',
       'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
+        'apply_chosen' => 1,
       ),
-      'type' => 'taxonomy_autocomplete',
+      'type' => 'options_select',
       'weight' => 4,
     ),
   );
@@ -5399,7 +5395,7 @@ function chm_structure_field_default_field_instances() {
   // Exported field_instance: 'node-news-field_subjects'.
   $field_instances['node-news-field_subjects'] = array(
     'bundle' => 'news',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -5426,13 +5422,12 @@ function chm_structure_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'taxonomy',
+      'active' => 1,
+      'module' => 'options',
       'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
+        'apply_chosen' => 1,
       ),
-      'type' => 'taxonomy_autocomplete',
+      'type' => 'options_select',
       'weight' => 12,
     ),
   );
@@ -6001,7 +5996,7 @@ function chm_structure_field_default_field_instances() {
   // Exported field_instance: 'node-organization-field_subjects'.
   $field_instances['node-organization-field_subjects'] = array(
     'bundle' => 'organization',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -6028,13 +6023,12 @@ function chm_structure_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'taxonomy',
+      'active' => 1,
+      'module' => 'options',
       'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
+        'apply_chosen' => 1,
       ),
-      'type' => 'taxonomy_autocomplete',
+      'type' => 'options_select',
       'weight' => 10,
     ),
   );
@@ -7725,7 +7719,7 @@ function chm_structure_field_default_field_instances() {
   // Exported field_instance: 'node-project-field_subjects'.
   $field_instances['node-project-field_subjects'] = array(
     'bundle' => 'project',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -7752,13 +7746,12 @@ function chm_structure_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'taxonomy',
+      'active' => 1,
+      'module' => 'options',
       'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
+        'apply_chosen' => 1,
       ),
-      'type' => 'taxonomy_autocomplete',
+      'type' => 'options_select',
       'weight' => 16,
     ),
   );
@@ -9388,7 +9381,7 @@ function chm_structure_field_default_field_instances() {
   // Exported field_instance: 'node-video-field_subjects'.
   $field_instances['node-video-field_subjects'] = array(
     'bundle' => 'video',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -9415,13 +9408,12 @@ function chm_structure_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'taxonomy',
+      'active' => 1,
+      'module' => 'options',
       'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
+        'apply_chosen' => 1,
       ),
-      'type' => 'taxonomy_autocomplete',
+      'type' => 'options_select',
       'weight' => 6,
     ),
   );
