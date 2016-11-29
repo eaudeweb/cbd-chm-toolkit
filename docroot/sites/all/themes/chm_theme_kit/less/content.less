@@ -1615,17 +1615,26 @@ body.node-type-species {
     margin-top: 0;
     margin-bottom: 0;
   }
-  > .content .facetapi-custom-facetapi-links {
+  > .content .facetapi-custom-facetapi-links,
+  > .content .facetapi-facetapi-checkbox-links {
     padding-top: .5em;
     padding-left: .5em;
     margin-left: .3em;
     .dashed-left;
   }
+  .facetapi-facetapi-checkbox-links {
+    input[type="checkbox"] {
+      margin-right: .3em;
+    }
+    a {
+      &, &:hover { color: @text-color;text-decoration: none;}
+    }
+  }
   .facet-title {
     display: block;
     font-size: 1.4rem;
     margin-top: 0;
-    .fa-icon-content(@fa-var-plus);
+    .fa-icon-content(@fa-var-caret-right);
     &:before {
       font-size: 90%;
       margin-right: .3em;
@@ -1635,12 +1644,9 @@ body.node-type-species {
       text-decoration: none;
     }
     &[aria-expanded="true"] {
-    // &:hover {
-      .fa-icon-content(@fa-var-minus);
-      // color: @chm-blue;
+      .fa-icon-content(@fa-var-caret-down);
       &:before {
         font-size: 90%;
-        // content: ' - '
       }
     }
   }

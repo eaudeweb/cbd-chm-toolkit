@@ -10513,10 +10513,19 @@ h2.pane-title {
   margin-top: 0;
   margin-bottom: 0;
 }
-.block-facetapi > .content .facetapi-custom-facetapi-links {
+.block-facetapi > .content .facetapi-custom-facetapi-links,
+.block-facetapi > .content .facetapi-facetapi-checkbox-links {
   padding-top: .5em;
   padding-left: .5em;
   margin-left: .3em;
+}
+.block-facetapi .facetapi-facetapi-checkbox-links input[type="checkbox"] {
+  margin-right: .3em;
+}
+.block-facetapi .facetapi-facetapi-checkbox-links a,
+.block-facetapi .facetapi-facetapi-checkbox-links a:hover {
+  color: #333333;
+  text-decoration: none;
 }
 .block-facetapi .facet-title {
   display: block;
@@ -10530,7 +10539,7 @@ h2.pane-title {
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  content: "\f067";
+  content: "\f0da";
 }
 .block-facetapi .facet-title:before.fa-pull-left {
   margin-right: .3em;
@@ -10560,7 +10569,7 @@ h2.pane-title {
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  content: "\f068";
+  content: "\f0d7";
 }
 .block-facetapi .facet-title[aria-expanded="true"]:before.fa-pull-left {
   margin-right: .3em;
