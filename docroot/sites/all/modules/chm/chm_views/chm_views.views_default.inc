@@ -920,11 +920,6 @@ function chm_views_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Field: Content: Status */
-  $handler->display->display_options['fields']['field_chm_site_status']['id'] = 'field_chm_site_status';
-  $handler->display->display_options['fields']['field_chm_site_status']['table'] = 'field_data_field_chm_site_status';
-  $handler->display->display_options['fields']['field_chm_site_status']['field'] = 'field_chm_site_status';
-  $handler->display->display_options['fields']['field_chm_site_status']['type'] = 'i18n_taxonomy_term_reference_plain';
   /* Field: Field: URL */
   $handler->display->display_options['fields']['field_url']['id'] = 'field_url';
   $handler->display->display_options['fields']['field_url']['table'] = 'field_data_field_url';
@@ -967,24 +962,6 @@ function chm_views_views_default_views() {
   );
   $handler->display->display_options['filters']['field_government_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_government_tid']['vocabulary'] = 'countries';
-  /* Filter criterion: Content: Status (field_chm_site_status) */
-  $handler->display->display_options['filters']['field_chm_site_status_tid']['id'] = 'field_chm_site_status_tid';
-  $handler->display->display_options['filters']['field_chm_site_status_tid']['table'] = 'field_data_field_chm_site_status';
-  $handler->display->display_options['filters']['field_chm_site_status_tid']['field'] = 'field_chm_site_status_tid';
-  $handler->display->display_options['filters']['field_chm_site_status_tid']['group'] = 1;
-  $handler->display->display_options['filters']['field_chm_site_status_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_chm_site_status_tid']['expose']['operator_id'] = 'field_chm_site_status_tid_op';
-  $handler->display->display_options['filters']['field_chm_site_status_tid']['expose']['label'] = 'Status';
-  $handler->display->display_options['filters']['field_chm_site_status_tid']['expose']['operator'] = 'field_chm_site_status_tid_op';
-  $handler->display->display_options['filters']['field_chm_site_status_tid']['expose']['identifier'] = 'field_chm_site_status_tid';
-  $handler->display->display_options['filters']['field_chm_site_status_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-  );
-  $handler->display->display_options['filters']['field_chm_site_status_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_chm_site_status_tid']['vocabulary'] = 'chm_site_status';
   $handler->display->display_options['block_description'] = 'The CHM Network';
   $translatables['chm_sites'] = array(
     t('Master'),
@@ -1005,7 +982,6 @@ function chm_views_views_default_views() {
     t('Geographical map of CHM network sites'),
     t('ISO 2-letter code'),
     t('Block'),
-    t('Status'),
     t('Government'),
   );
   $export['chm_sites'] = $view;
@@ -2347,9 +2323,53 @@ function chm_views_views_default_views() {
     'event' => 'event',
     'news' => 'news',
   );
+  /* Filter criterion: Content: Promoted to front page */
+  $handler->display->display_options['filters']['promote']['id'] = 'promote';
+  $handler->display->display_options['filters']['promote']['table'] = 'node';
+  $handler->display->display_options['filters']['promote']['field'] = 'promote';
 
   /* Display: Front page latest */
   $handler = $view->new_display('block', 'Front page latest', 'block');
+  $handler->display->display_options['defaults']['query'] = FALSE;
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Weight (field_weight) */
+  $handler->display->display_options['sorts']['field_weight_value']['id'] = 'field_weight_value';
+  $handler->display->display_options['sorts']['field_weight_value']['table'] = 'field_data_field_weight';
+  $handler->display->display_options['sorts']['field_weight_value']['field'] = 'field_weight_value';
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Domain Access: Available on current domain */
+  $handler->display->display_options['filters']['current_all']['id'] = 'current_all';
+  $handler->display->display_options['filters']['current_all']['table'] = 'domain_access';
+  $handler->display->display_options['filters']['current_all']['field'] = 'current_all';
+  $handler->display->display_options['filters']['current_all']['value'] = '1';
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'event' => 'event',
+    'news' => 'news',
+  );
+  /* Filter criterion: Content: Promoted to front page */
+  $handler->display->display_options['filters']['promote']['id'] = 'promote';
+  $handler->display->display_options['filters']['promote']['table'] = 'node';
+  $handler->display->display_options['filters']['promote']['field'] = 'promote';
+  $handler->display->display_options['filters']['promote']['value'] = '1';
 
   /* Display: News page */
   $handler = $view->new_display('page', 'News page', 'page_news');
@@ -2369,17 +2389,6 @@ function chm_views_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Field: Image */
-  $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
-  $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
-  $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
-  $handler->display->display_options['fields']['field_image']['label'] = '';
-  $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_image']['settings'] = array(
-    'image_style' => 'image_listing',
-    'image_link' => 'content',
-  );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
@@ -2420,6 +2429,17 @@ function chm_views_views_default_views() {
   $handler->display->display_options['fields']['body']['type'] = 'text_summary_or_trimmed';
   $handler->display->display_options['fields']['body']['settings'] = array(
     'trim_length' => '300',
+  );
+  /* Field: Field: Image */
+  $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
+  $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['label'] = '';
+  $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_image']['settings'] = array(
+    'image_style' => 'image_listing',
+    'image_link' => 'content',
   );
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
@@ -2780,7 +2800,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['fields']['field_department']['table'] = 'field_data_field_department';
   $handler->display->display_options['fields']['field_department']['field'] = 'field_department';
   $handler->display->display_options['fields']['field_department']['type'] = 'text_plain';
-  /* Field: Field: Organization */
+  /* Field: Field: Organization name */
   $handler->display->display_options['fields']['field_organization_name']['id'] = 'field_organization_name';
   $handler->display->display_options['fields']['field_organization_name']['table'] = 'field_data_field_organization_name';
   $handler->display->display_options['fields']['field_organization_name']['field'] = 'field_organization_name';
@@ -2897,7 +2917,7 @@ function chm_views_views_default_views() {
     t('Email'),
     t('Address'),
     t('Department'),
-    t('Organization'),
+    t('Organization name'),
     t('Page'),
     t('Block'),
   );
