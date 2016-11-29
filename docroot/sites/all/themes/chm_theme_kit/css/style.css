@@ -11057,7 +11057,7 @@ table .views-field-title a:hover {
     text-overflow: ellipsis;
   }
 }
-@media all and (max-width: 457px) {
+@media all and (max-width: 550px) {
   .view-home-page-image-slider .slick-content.well h2 {
     margin-bottom: 0;
   }
@@ -11071,6 +11071,12 @@ table .views-field-title a:hover {
   }
   .view-home-page-image-slider .slick-content.well .form-item.form-type-item.form-group {
     font-size: 10px;
+  }
+}
+@media all and (max-width: 457px) {
+  .view-home-page-image-slider .slick-content.well h2 > a {
+    font-size: 16px;
+    font-size: 5vw;
   }
 }
 .view-home-page-image-slider .slick-content.well:hover {
