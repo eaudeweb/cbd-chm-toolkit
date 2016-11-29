@@ -825,7 +825,10 @@ function theme_chm_search_slider(array $variables) {
  * Implements hook_form_alter().
  */
 function chm_search_form_alter(&$form, &$form_state, $form_id) {
-  if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-the-search-view-page-1') {
+  if ($form_id == 'views_exposed_form' &&
+      (
+        $form['#id'] == 'views-exposed-form-the-search-view-page-1'
+        || ($form['#id'] == 'views-exposed-form-the-search-view-page'))) {
     $element = 'search_api_views_fulltext';
     $search_label = $form['#info']['filter-' . $element]['label'];
     $form['#info']['filter-' . $element]['label'] = '';
