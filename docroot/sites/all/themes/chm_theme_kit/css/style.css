@@ -9178,7 +9178,7 @@ body #admin-menu .dropdown li {
 }
 /* global styles*/
 .main-container {
-  padding-top: 20px;
+  padding-top: 15px;
   padding-bottom: 40px;
 }
 .breadcrumb {
@@ -9192,6 +9192,7 @@ body #admin-menu .dropdown li {
 }
 #page-title {
   margin-top: 0;
+  margin-bottom: 35px;
 }
 /* front page styling*/
 h2.pane-title {
