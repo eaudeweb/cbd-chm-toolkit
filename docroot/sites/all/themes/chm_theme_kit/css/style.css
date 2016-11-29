@@ -10886,6 +10886,21 @@ table .views-field-title a,
 table .views-field-title a:hover {
   color: #06c;
 }
+#views-form-chm-sites-block-chm-network-sites th img.img-responsive {
+  margin-left: 8px;
+  display: inline;
+}
+#views-form-chm-sites-block-chm-network-sites th.views-field-field-image-et,
+#views-form-chm-sites-block-chm-network-sites td.views-field-field-image-et {
+  width: 7%;
+}
+#views-form-chm-sites-block-chm-network-sites th.views-field-title,
+#views-form-chm-sites-block-chm-network-sites td.views-field-title {
+  width: 25%;
+}
+#views-form-chm-sites-block-chm-network-sites th.views-field-field-url {
+  width: 60%;
+}
 .site-footer {
   padding-top: 40px;
   padding-bottom: 40px;
