@@ -8862,6 +8862,10 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
     padding-right: 10px;
     pointer-events: none;
   }
+  [dir="rtl"] .navbar-container #navbar .navbar-collapse .nav li a.dropdown-toggle {
+    padding-right: 0;
+    padding-left: 10px;
+  }
 }
 @media all and (max-width: 991px) {
   .navbar-container #navbar .navbar-collapse .nav li .expanded {
