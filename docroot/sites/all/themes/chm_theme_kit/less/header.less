@@ -26,7 +26,7 @@
         height: 40px;
         width:380px;
         @media all and (max-width: @screen-xs-max){
-           width:280px;
+          width:280px;
         }
         padding: 4px 10px;
         font-size: 14px;
@@ -150,6 +150,10 @@
     display: inline;
     width: auto;
     margin-left: 20px;
+    [dir="rtl"] & {
+      margin-right: 20px;
+      margin-left: 0px;
+    }
   }
   #logo {
     display: inline;

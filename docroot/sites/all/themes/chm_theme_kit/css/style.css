@@ -8657,6 +8657,10 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
     width: auto;
     margin-left: 20px;
   }
+  [dir="rtl"] #page-header #name-and-slogan {
+    margin-right: 20px;
+    margin-left: 0px;
+  }
   #page-header #logo {
     display: inline;
     vertical-align: middle;
