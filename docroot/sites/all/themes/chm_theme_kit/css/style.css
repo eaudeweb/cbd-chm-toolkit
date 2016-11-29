@@ -8330,7 +8330,7 @@ a:hover {
   margin-top: 1em;
 }
 .views-bootstrap-media-plugin-style .media > .media-object {
-  float: none !important;
+  float: none;
   margin: -20px -20px 1em -20px;
   padding: 0;
 }
@@ -8432,15 +8432,9 @@ a:hover {
 @media all and (min-width: 650px) {
   .views-bootstrap-media-plugin-style .media .media-object {
     width: 30%;
-    margin-right: 1em;
   }
   .views-bootstrap-media-plugin-style .media-body > p {
     max-height: calc(3 * 1.42857143em);
-  }
-}
-@media all and (min-width: 768px) {
-  .views-bootstrap-media-plugin-style .media .media-object {
-    margin-right: 1em;
   }
 }
 @media all and (min-width: 992px) {
@@ -10828,6 +10822,58 @@ h2.pane-title {
 table .views-field-title a,
 table .views-field-title a:hover {
   color: #06c;
+}
+.view-organizations .views-bootstrap-media-plugin-style .media .media-object {
+  display: none;
+}
+@media all and (min-width: 480px) {
+  .view-organizations .views-bootstrap-media-plugin-style .media .media-object {
+    display: table-cell;
+    float: right;
+    min-height: inherit;
+    margin-right: 0;
+    margin-left: 1em;
+  }
+  .view-organizations .views-bootstrap-media-plugin-style .media-body {
+    float: left;
+    max-width: 60%;
+  }
+}
+body.logged-in #block-chm-search-chm-search:hover .btn-search {
+  right: 30px;
+}
+body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
+  padding-right: 30px;
+}
+@media all and (min-width: 480px) {
+  .portrait-image .views-bootstrap-media-plugin-style .media {
+    display: table;
+    width: 100%;
+    padding: 0;
+    min-height: 130px;
+  }
+  .portrait-image .views-bootstrap-media-plugin-style .media .media-object {
+    width: 30%;
+  }
+  .portrait-image .views-bootstrap-media-plugin-style .media .media-object img {
+    position: relative;
+    height: auto;
+    width: 100%;
+    max-width: 220px;
+  }
+  .portrait-image .views-bootstrap-media-plugin-style .media .media-body > p {
+    max-height: calc(3 * 1.42857143em);
+  }
+}
+@media all and (min-width: 650px) {
+  .portrait-image .views-bootstrap-media-plugin-style .media .media-object {
+    width: 25%;
+  }
+}
+@media all and (min-width: 992px) {
+  .portrait-image .views-bootstrap-media-plugin-style .media .media-object {
+    width: 160px;
+  }
 }
 .site-footer {
   padding-top: 40px;

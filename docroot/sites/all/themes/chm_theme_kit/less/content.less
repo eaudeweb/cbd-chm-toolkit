@@ -1885,3 +1885,72 @@ table .views-field-title a,
 table .views-field-title a:hover {
   color: @link-color-temp;
 }
+
+.view-organizations .views-bootstrap-media-plugin-style {
+  .media .media-object {
+    display: none;
+  }
+  @media all and (min-width: @screen-xs-min) {
+    .media .media-object {
+      display: table-cell;
+      float: right;
+      min-height: inherit;
+      margin-right: 0;
+      margin-left: 1em;
+    }
+    .media-body {
+      float: left;
+      max-width: 60%;
+    }
+  }
+}
+
+body.logged-in {
+  #block-chm-search-chm-search:hover {
+    .btn-search {
+      right: 30px;
+    }
+    input[type="text"] {
+      padding-right: 30px;
+    }
+  }
+}
+//custom portrait image version
+.portrait-image .views-bootstrap-media-plugin-style {
+  @media all and (min-width: @screen-xs-min) {
+    .media {
+      display: table;
+      width: 100%;
+      padding: 0;
+      min-height: 130px;
+      .media-object {
+        width: 30%;
+        img {
+          position: relative;
+          height: auto;
+          width: 100%;
+          max-width: 220px;
+        }
+      }
+      .media-body {
+        > p {
+          max-height: ~"calc(3 * @{line-height-em})";
+        }
+      }
+    }
+  }
+  @media all and (min-width: 650px) {
+    .media {
+      .media-object {
+        width: 25%;
+      }
+    }
+  }
+  @media all and (min-width: @screen-md-min) {
+    .media {
+      .media-object {
+        width: 160px;
+      }
+    }
+  }
+}
