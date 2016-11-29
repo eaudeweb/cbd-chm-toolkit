@@ -157,6 +157,16 @@ function chm_search_views_default_views() {
   $handler->display->display_options['filters']['search_api_language']['value'] = array(
     'current' => 'current',
   );
+  /* Filter criterion: Indexed Multilingual Node: Content type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['operator'] = '<>';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'book' => 'book',
+    'chm_site' => 'chm_site',
+    'faq' => 'faq',
+  );
 
   /* Display: CHM website search page */
   $handler = $view->new_display('page', 'CHM website search page', 'page');
