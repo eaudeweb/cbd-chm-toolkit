@@ -58,7 +58,7 @@ class ChmContentStatisticsBlock extends AbstractBlock {
         $singular = variable_get("{$delta}_{$machine_name}_singular");
         $plural = variable_get("{$delta}_{$machine_name}_plural");
         $weight = variable_get("{$delta}_{$machine_name}_weight");
-        $label = $c . ' ' . format_plural($c, !empty($singular) ? $singular : $type->name, !empty($plural) ? $plural : $type->name);
+        $label = $c . ' ' . format_plural($c, !empty($singular) ? t($singular) : $type->name, !empty($plural) ? t($plural) : $type->name);
         if (!empty($url)) {
           if (arg(0) != $url) {
             $rows[$weight] = [l($icon . $label, $url, ['html' => TRUE])];
