@@ -5,6 +5,17 @@
  */
 function import_drush_command() {
   $items = array();
+  $items['fix-double-term'] = array(
+    'description' => 'fix double term',
+    'callback' => '_drush_fix_double_status_term',
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'examples' => array(
+      'drush fix-double-term tid' => 'temporary fix double term name',
+    ),
+    'arguments' => array(
+      'tid' => 'destination term id',
+    ),
+  );
   $items['import-chm-sites'] = array(
     'description' => 'Script to import xls data as content type ‘CHM Site’',
     'callback' => '_drush_prepare_import_chm_sites',
