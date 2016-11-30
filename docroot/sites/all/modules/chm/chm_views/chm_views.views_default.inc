@@ -2820,6 +2820,44 @@ function chm_views_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'cbd_nfp' => 'cbd_nfp',
+  );
+  /* Filter criterion: Domain Access: Available on current domain */
+  $handler->display->display_options['filters']['current_all']['id'] = 'current_all';
+  $handler->display->display_options['filters']['current_all']['table'] = 'domain_access';
+  $handler->display->display_options['filters']['current_all']['field'] = 'current_all';
+  $handler->display->display_options['filters']['current_all']['value'] = '1';
+  /* Filter criterion: Content: Countries (field_countries) */
+  $handler->display->display_options['filters']['field_countries_tid']['id'] = 'field_countries_tid';
+  $handler->display->display_options['filters']['field_countries_tid']['table'] = 'field_data_field_countries';
+  $handler->display->display_options['filters']['field_countries_tid']['field'] = 'field_countries_tid';
+  $handler->display->display_options['filters']['field_countries_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_countries_tid']['expose']['operator_id'] = 'field_countries_tid_op';
+  $handler->display->display_options['filters']['field_countries_tid']['expose']['label'] = 'Country';
+  $handler->display->display_options['filters']['field_countries_tid']['expose']['operator'] = 'field_countries_tid_op';
+  $handler->display->display_options['filters']['field_countries_tid']['expose']['identifier'] = 'field_countries_tid';
+  $handler->display->display_options['filters']['field_countries_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+  );
+  $handler->display->display_options['filters']['field_countries_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_countries_tid']['vocabulary'] = 'countries';
   $handler->display->display_options['path'] = 'admin/content/nfp';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'National Focal Points';
