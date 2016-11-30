@@ -59,6 +59,16 @@ function chm_structure_taxonomy_default_vocabularies() {
       'language' => 'und',
       'i18n_mode' => 1,
     ),
+    'content_management_system' => array(
+      'name' => 'Content management system',
+      'machine_name' => 'content_management_system',
+      'description' => 'Types of content management systems',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
+    ),
     'coverage_level' => array(
       'name' => 'Coverage level',
       'machine_name' => 'coverage_level',
