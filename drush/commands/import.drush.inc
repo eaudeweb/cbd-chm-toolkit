@@ -47,6 +47,38 @@ function import_drush_command() {
   return $items;
 }
 
+/**
+ * Temporary fix. it may be overwritten by cron migrate script
+ */
+function _drush_fix_double_status_term($dest_tid = 642, $node_field = 'field_redlist_status') {
+  $dest_term = taxonomy_term_load( $dest_tid );
+  if (!$dest_term) {
+    return;
+  }
+  $terms = taxonomy_get_term_by_name($dest_term->name, $dest_term->vocabulary_machine_name);
+  unset($terms[$dest_term->tid]);
+
+  foreach($terms as $term) {
+    $nodes = taxonomy_select_nodes($term->tid, TRUE, 999);
+    if ($nodes) {
+      echo $term->tid . ' => ' . $dest_term->tid;
+      foreach($nodes as $nid) {
+        $node = node_load($nid);
+        $found = false;
+        foreach($node->{$node_field}['und'] as $k => $v) {
+          if ($v['tid'] == $term->tid) {
+            $node->{$node_field}['und'][$k]['tid'] = $dest_tid;
+            $found = true;
+          }
+        }
+        if ($found) {
+          node_save($node);
+        }
+      }
+    }
+  }
+}
+
 function _drush_prepare_import_chm_sites($path = NULL) {
   if (!file_exists($path)) {
     drupal_set_message(t('File !path does not exists!', array('!path'=>$path)), 'error');
