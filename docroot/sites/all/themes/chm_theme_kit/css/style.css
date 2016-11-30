@@ -10676,6 +10676,8 @@ h2.pane-title {
   padding-bottom: .5em;
   border-bottom: 1px dashed #e6e6e6;
   margin-bottom: 1em;
+  font-size: 1.3em;
+  font-weight: bold;
 }
 .view-the-search-view .views-row {
   border-bottom: 1px solid #e6e6e6;

@@ -42,7 +42,8 @@ function chm_search_views_default_views() {
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
-  /* Field: Indexed Multilingual Node: Photo */
+  $handler->display->display_options['header']['result']['content'] = 'Displaying @start - @end of @total result(s)';
+  /* Field: Indexed Multilingual Node: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
@@ -192,7 +193,7 @@ function chm_search_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
-    t('Displaying @start - @end of @total'),
+    t('Displaying @start - @end of @total result(s)'),
     t('Node ID'),
     t('.'),
     t(','),
