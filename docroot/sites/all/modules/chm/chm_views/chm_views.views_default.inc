@@ -2789,7 +2789,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['fields']['field_department']['table'] = 'field_data_field_department';
   $handler->display->display_options['fields']['field_department']['field'] = 'field_department';
   $handler->display->display_options['fields']['field_department']['type'] = 'text_plain';
-  /* Field: Field: Organization name */
+  /* Field: Field: Organization */
   $handler->display->display_options['fields']['field_organization_name']['id'] = 'field_organization_name';
   $handler->display->display_options['fields']['field_organization_name']['table'] = 'field_data_field_organization_name';
   $handler->display->display_options['fields']['field_organization_name']['field'] = 'field_organization_name';
@@ -2906,7 +2906,7 @@ function chm_views_views_default_views() {
     t('Email'),
     t('Address'),
     t('Department'),
-    t('Organization name'),
+    t('Organization'),
     t('Page'),
     t('Block'),
   );
@@ -3104,60 +3104,37 @@ function chm_views_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Relationship: Content: Positions (field_person_positions) */
-  $handler->display->display_options['relationships']['field_person_positions_value']['id'] = 'field_person_positions_value';
-  $handler->display->display_options['relationships']['field_person_positions_value']['table'] = 'field_data_field_person_positions';
-  $handler->display->display_options['relationships']['field_person_positions_value']['field'] = 'field_person_positions_value';
-  $handler->display->display_options['relationships']['field_person_positions_value']['delta'] = '-1';
-  /* Relationship: Entity Reference: Referenced Entity */
-  $handler->display->display_options['relationships']['field_organization_target_id']['id'] = 'field_organization_target_id';
-  $handler->display->display_options['relationships']['field_organization_target_id']['table'] = 'field_data_field_organization';
-  $handler->display->display_options['relationships']['field_organization_target_id']['field'] = 'field_organization_target_id';
-  $handler->display->display_options['relationships']['field_organization_target_id']['relationship'] = 'field_person_positions_value';
+  /* Relationship: Content: Roles (field_nfp_roles) */
+  $handler->display->display_options['relationships']['field_nfp_roles_value']['id'] = 'field_nfp_roles_value';
+  $handler->display->display_options['relationships']['field_nfp_roles_value']['table'] = 'field_data_field_nfp_roles';
+  $handler->display->display_options['relationships']['field_nfp_roles_value']['field'] = 'field_nfp_roles_value';
+  $handler->display->display_options['relationships']['field_nfp_roles_value']['label'] = 'field collection field_nfp_roles';
+  $handler->display->display_options['relationships']['field_nfp_roles_value']['delta'] = '-1';
   /* Field: Content: Title */
-  $handler->display->display_options['fields']['field_salutation']['id'] = 'field_salutation';
-  $handler->display->display_options['fields']['field_salutation']['table'] = 'field_data_field_salutation';
-  $handler->display->display_options['fields']['field_salutation']['field'] = 'field_salutation';
-  $handler->display->display_options['fields']['field_salutation']['label'] = '';
-  $handler->display->display_options['fields']['field_salutation']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_salutation']['element_label_colon'] = FALSE;
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['title']['alter']['text'] = '[field_salutation] [title]';
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  $handler->display->display_options['fields']['title']['element_type'] = 'h5';
-  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Field: Content: Positions */
-  $handler->display->display_options['fields']['field_person_positions']['id'] = 'field_person_positions';
-  $handler->display->display_options['fields']['field_person_positions']['table'] = 'field_data_field_person_positions';
-  $handler->display->display_options['fields']['field_person_positions']['field'] = 'field_person_positions';
-  $handler->display->display_options['fields']['field_person_positions']['label'] = '';
-  $handler->display->display_options['fields']['field_person_positions']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_person_positions']['type'] = 'field_collection_fields';
-  $handler->display->display_options['fields']['field_person_positions']['settings'] = array(
+  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
+  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['label'] = '';
+  $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['type'] = 'title_linked';
+  $handler->display->display_options['fields']['title_field']['settings'] = array(
+    'title_style' => '_none',
+    'title_link' => 'content',
+    'title_class' => '',
+  );
+  $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
+  /* Field: Content: Roles */
+  $handler->display->display_options['fields']['field_nfp_roles']['id'] = 'field_nfp_roles';
+  $handler->display->display_options['fields']['field_nfp_roles']['table'] = 'field_data_field_nfp_roles';
+  $handler->display->display_options['fields']['field_nfp_roles']['field'] = 'field_nfp_roles';
+  $handler->display->display_options['fields']['field_nfp_roles']['label'] = '';
+  $handler->display->display_options['fields']['field_nfp_roles']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_nfp_roles']['type'] = 'field_collection_fields';
+  $handler->display->display_options['fields']['field_nfp_roles']['settings'] = array(
     'view_mode' => 'person_roles',
   );
-  $handler->display->display_options['fields']['field_person_positions']['delta_offset'] = '0';
-  $handler->display->display_options['fields']['field_person_positions']['multi_type'] = 'ul';
-  /* Field: Field: First name */
-  $handler->display->display_options['fields']['field_first_name']['id'] = 'field_first_name';
-  $handler->display->display_options['fields']['field_first_name']['table'] = 'field_data_field_first_name';
-  $handler->display->display_options['fields']['field_first_name']['field'] = 'field_first_name';
-  $handler->display->display_options['fields']['field_first_name']['label'] = '';
-  $handler->display->display_options['fields']['field_first_name']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_first_name']['element_label_colon'] = FALSE;
-  /* Field: Field: Last name */
-  $handler->display->display_options['fields']['field_last_name']['id'] = 'field_last_name';
-  $handler->display->display_options['fields']['field_last_name']['table'] = 'field_data_field_last_name';
-  $handler->display->display_options['fields']['field_last_name']['field'] = 'field_last_name';
-  $handler->display->display_options['fields']['field_last_name']['label'] = '';
-  $handler->display->display_options['fields']['field_last_name']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_last_name']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_nfp_roles']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_nfp_roles']['multi_type'] = 'ul';
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -3175,7 +3152,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'person' => 'person',
+    'cbd_nfp' => 'cbd_nfp',
   );
   /* Filter criterion: Domain Access: Available on current domain */
   $handler->display->display_options['filters']['current_all']['id'] = 'current_all';
@@ -3204,23 +3181,6 @@ function chm_views_views_default_views() {
     'field_first_name' => 'field_first_name',
     'field_last_name' => 'field_last_name',
   );
-  /* Filter criterion: Content: Title (title_field) */
-  $handler->display->display_options['filters']['title_field_value']['id'] = 'title_field_value';
-  $handler->display->display_options['filters']['title_field_value']['table'] = 'field_data_title_field';
-  $handler->display->display_options['filters']['title_field_value']['field'] = 'title_field_value';
-  $handler->display->display_options['filters']['title_field_value']['relationship'] = 'field_organization_target_id';
-  $handler->display->display_options['filters']['title_field_value']['operator'] = 'contains';
-  $handler->display->display_options['filters']['title_field_value']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['title_field_value']['expose']['operator_id'] = 'title_field_value_op';
-  $handler->display->display_options['filters']['title_field_value']['expose']['label'] = 'Organization';
-  $handler->display->display_options['filters']['title_field_value']['expose']['operator'] = 'title_field_value_op';
-  $handler->display->display_options['filters']['title_field_value']['expose']['identifier'] = 'title_field_value';
-  $handler->display->display_options['filters']['title_field_value']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-  );
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -3241,11 +3201,8 @@ function chm_views_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
-    t('field collection item from field_person_positions'),
-    t('Content entity referenced from field_organization'),
-    t('[field_salutation] [title]'),
+    t('field collection field_nfp_roles'),
     t('Search'),
-    t('Organization'),
     t('Page'),
   );
   $export['persons_network_directory'] = $view;
