@@ -10923,7 +10923,6 @@ table .views-field-title a:hover {
 }
 #footer2 .footer-logo {
   float: left;
-  padding-top: 25px;
 }
 [dir="rtl"] #footer2 .footer-logo {
   float: right;
@@ -10970,7 +10969,7 @@ table .views-field-title a:hover {
   padding-left: 13px;
 }
 #footer2 .footer-support img {
-  max-height: 100px;
+  max-height: 80px;
 }
 #footer2 .region-footer .nav {
   text-align: center;
