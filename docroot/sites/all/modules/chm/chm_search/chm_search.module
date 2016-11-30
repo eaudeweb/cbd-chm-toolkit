@@ -117,18 +117,46 @@ function chm_search_block_save($delta = '', $edit = array()) {
  * Implements hook_block_view().
  */
 function chm_search_block_view($delta = '') {
-  global $language;
+  global $language, $_domain;
   if ($delta == 'chm_search_reset') {
     $action = '/' . arg(0);
     if ($language->prefix) {
       $action = '/' . $language->prefix . $action;
     }
+
+    $goto_button = '';
+    drupal_add_js(drupal_get_path('module', 'chm_search') . '/js/chm_search_cookie.js');
+    $params = drupal_get_query_parameters($_GET, array('q', 'page'));
+    if ($_domain['domain_id'] == PTKDomain::$CHM_DOMAIN_ID) { // network domain
+      $goto_href = @$_COOKIE['cookie-search-goto'];
+      if (isset($_REQUEST['national'])) {
+        $refurl = parse_url($_SERVER['HTTP_REFERER']);
+        if ($refurl['host'] != $_SERVER['HTTP_HOST']) {
+          $goto_href = $_SERVER['HTTP_REFERER'];
+        }
+      }
+      if ($goto_href) {
+        $goto_title = variable_get('chm_search_block_goto_national', 'Go back to national site');
+        $goto_button = '<a class="" href="' . $goto_href . '" data-drupal-selector="edit-reset">' . $goto_title . '</a>';
+      }
+    }
+    else {
+      $params['national'] = $_domain['machine_name'];
+      $domain_default = domain_default();
+      $path = PTKDomain::baseDomain(array($domain_default['domain_id'])) . str_replace('/search/', '/search-network/', '/' . request_path()); // redirect to network url
+      $options['external'] = TRUE;
+      $options['query'] = $params;
+
+      $goto_title = variable_get('chm_search_block_goto_network', 'Go to CHM network search');
+      $goto_button = '<a class="" href="' . url($path, $options) . '" data-drupal-selector="edit-reset">' . $goto_title . '</a>';
+    }
+
     $btn_reset_label = variable_get('chm_search_block_reset_label', 'Clear filters');
     $ret = array(
       'subject' => t('Search Reset'),
       'content' =>
 <<<EOT
-<div data-drupal-selector="edit-actions" class="form-actions form-group js-form-wrapper form-wrapper" id="edit-actions">
+<div data-drupal-selector="edit-actions" class="form-actions form-group js-form-wrapper form-wrapper" id="edit-actions">$goto_button
 <a class="btn btn-default btn-primary btn-sm pull-right search-reset" href="$action" data-drupal-selector="edit-reset">$btn_reset_label</a>
 </div>
 EOT
@@ -321,6 +349,9 @@ function chm_search_block_view_alter(&$data, $block) {
         $block->title = '';
         $id = $block->delta;
         $expand = in_array($id, ['bhmRHTzU2n0ejKZP9wDI0S1oi2DgbSDm', 'yJSewVbtoL4B0ngOcQBoQIhAfTXyAGzO']);
+        if ($data['content']['#adapter'] && $data['content']['#adapter']->getActiveItems(array('name'=>$facet_field ))) {
+          $expand = true;
+        }
         $anchor = l($title, '',
           array(
             'fragment' => $id,
