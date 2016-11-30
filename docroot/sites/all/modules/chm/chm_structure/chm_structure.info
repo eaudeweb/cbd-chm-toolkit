@@ -714,7 +714,6 @@ features[variable][] = entity_translation_settings_taxonomy_term__activity_type
 features[variable][] = entity_translation_settings_taxonomy_term__administrative_level
 features[variable][] = entity_translation_settings_taxonomy_term__aichi_biodiversity_targets
 features[variable][] = entity_translation_settings_taxonomy_term__biodiversity_aspect
-features[variable][] = entity_translation_settings_taxonomy_term__biodiversity_item_type
 features[variable][] = entity_translation_settings_taxonomy_term__biodiversity_threat
 features[variable][] = entity_translation_settings_taxonomy_term__chm_site_status
 features[variable][] = entity_translation_settings_taxonomy_term__content_management_system
