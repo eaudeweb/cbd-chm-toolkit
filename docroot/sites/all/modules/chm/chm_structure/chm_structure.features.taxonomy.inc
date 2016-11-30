@@ -39,16 +39,6 @@ function chm_structure_taxonomy_default_vocabularies() {
       'language' => 'und',
       'i18n_mode' => 1,
     ),
-    'biodiversity_item_type' => array(
-      'name' => 'Biodiversity item type',
-      'machine_name' => 'biodiversity_item_type',
-      'description' => 'Type of biodiversity item (i.e. goal, target, indicator)',
-      'hierarchy' => 0,
-      'module' => 'taxonomy',
-      'weight' => 0,
-      'language' => 'und',
-      'i18n_mode' => 1,
-    ),
     'biodiversity_threat' => array(
       'name' => 'Biodiversity threat',
       'machine_name' => 'biodiversity_threat',

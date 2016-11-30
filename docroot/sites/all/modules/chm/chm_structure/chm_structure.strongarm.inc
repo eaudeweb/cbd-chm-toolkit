@@ -2705,29 +2705,6 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'field_bundle_settings_taxonomy_term__biodiversity_item_type';
-  $strongarm->value = array(
-    'view_modes' => array(),
-    'extra_fields' => array(
-      'form' => array(
-        'metatags' => array(
-          'weight' => '6',
-        ),
-        'path' => array(
-          'weight' => '5',
-        ),
-        'language' => array(
-          'weight' => '0',
-        ),
-      ),
-      'display' => array(),
-    ),
-  );
-  $export['field_bundle_settings_taxonomy_term__biodiversity_item_type'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_taxonomy_term__coverage_level';
   $strongarm->value = array(
     'view_modes' => array(),
@@ -3584,13 +3561,6 @@ function chm_structure_strongarm() {
   $strongarm->name = 'metatag_enable_taxonomy_term__aichi_biodiversity_targets';
   $strongarm->value = 1;
   $export['metatag_enable_taxonomy_term__aichi_biodiversity_targets'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'metatag_enable_taxonomy_term__biodiversity_item_type';
-  $strongarm->value = 1;
-  $export['metatag_enable_taxonomy_term__biodiversity_item_type'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -5067,13 +5037,6 @@ function chm_structure_strongarm() {
   $strongarm->name = 'pathauto_taxonomy_term_biodiversity_aspect_pattern';
   $strongarm->value = '';
   $export['pathauto_taxonomy_term_biodiversity_aspect_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_taxonomy_term_biodiversity_item_type_pattern';
-  $strongarm->value = '';
-  $export['pathauto_taxonomy_term_biodiversity_item_type_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
