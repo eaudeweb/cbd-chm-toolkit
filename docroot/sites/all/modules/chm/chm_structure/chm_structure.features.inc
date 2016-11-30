@@ -99,7 +99,7 @@ function chm_structure_image_default_styles() {
 function chm_structure_node_info() {
   $items = array(
     'cbd_national_target' => array(
-      'name' => t('CBD National Target'),
+      'name' => t('National Target'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
