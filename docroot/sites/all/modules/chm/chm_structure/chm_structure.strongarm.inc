@@ -1577,9 +1577,9 @@ function chm_structure_strongarm() {
   $strongarm->name = 'entity_translation_settings_taxonomy_term__planning_item_type';
   $strongarm->value = array(
     'default_language' => 'xx-et-default',
-    'hide_language_selector' => 1,
-    'exclude_language_none' => 0,
-    'lock_language' => 0,
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
     'shared_fields_original_only' => 0,
   );
   $export['entity_translation_settings_taxonomy_term__planning_item_type'] = $strongarm;
@@ -2688,10 +2688,10 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '9',
+          'weight' => '10',
         ),
         'path' => array(
-          'weight' => '8',
+          'weight' => '9',
         ),
         'language' => array(
           'weight' => '0',
@@ -2862,6 +2862,29 @@ function chm_structure_strongarm() {
     ),
   );
   $export['field_bundle_settings_taxonomy_term__organization_group'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_taxonomy_term__planning_item_type';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'metatags' => array(
+          'weight' => '6',
+        ),
+        'path' => array(
+          'weight' => '5',
+        ),
+        'language' => array(
+          'weight' => '0',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_taxonomy_term__planning_item_type'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -5177,6 +5200,13 @@ function chm_structure_strongarm() {
   $strongarm->name = 'pathauto_taxonomy_term_phone_type_pattern';
   $strongarm->value = '';
   $export['pathauto_taxonomy_term_phone_type_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_planning_item_type_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_planning_item_type_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

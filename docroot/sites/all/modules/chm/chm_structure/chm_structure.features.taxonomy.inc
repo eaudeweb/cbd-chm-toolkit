@@ -309,6 +309,16 @@ function chm_structure_taxonomy_default_vocabularies() {
       'language' => 'und',
       'i18n_mode' => 1,
     ),
+    'planning_item_type' => array(
+      'name' => 'Planning item type',
+      'machine_name' => 'planning_item_type',
+      'description' => 'Type of planning item (i.e. goal, objective, action, indicator)',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 2,
+      'language' => 'und',
+      'i18n_mode' => 1,
+    ),
     'project_status' => array(
       'name' => 'Project status',
       'machine_name' => 'project_status',

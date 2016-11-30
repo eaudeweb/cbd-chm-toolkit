@@ -16,7 +16,6 @@ features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[field_base][] = field_index
 features[field_instance][] = taxonomy_term-sdg-description_field
-features[field_instance][] = taxonomy_term-sdg-field_biodiversity_item_type
 features[field_instance][] = taxonomy_term-sdg-field_image
 features[field_instance][] = taxonomy_term-sdg-field_index
 features[field_instance][] = taxonomy_term-sdg-field_official_name

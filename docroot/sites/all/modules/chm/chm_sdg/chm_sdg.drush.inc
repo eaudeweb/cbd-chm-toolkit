@@ -18,8 +18,8 @@ function chm_sdg_drush_command() {
  */
 function drush_chm_sdg_full_import() {
   $voc = taxonomy_vocabulary_machine_name_load('sdg');
-  $goal_term = reset(taxonomy_get_term_by_name('Goal', 'biodiversity_item_type'));
-  $target_term = reset(taxonomy_get_term_by_name('Target', 'biodiversity_item_type'));
+  $goal_term = reset(taxonomy_get_term_by_name('Goal', 'field_planning_item_type'));
+  $target_term = reset(taxonomy_get_term_by_name('Target', 'field_planning_item_type'));
   $columns = [
     'en' => 0,
     'fr' => 2,
@@ -67,7 +67,7 @@ function drush_chm_sdg_full_import() {
     $term->name = $row[$columns['en']] . ' ' . $row[$columns['en'] + 1];
     $term->name_field = [];
     $term->field_official_name = [];
-    $term->field_biodiversity_item_type = [LANGUAGE_NONE => [0 => ['tid' => $type]]];
+    $term->field_planning_item_type = [LANGUAGE_NONE => [0 => ['tid' => $type]]];
     $term->field_index = [LANGUAGE_NONE => [0 => ['value' => $id]]];
     foreach ($columns as $lang => $colNum) {
       $name_field = $row[$columns[$lang]] . ' ' . $row[$columns[$lang] + 1];
