@@ -82,6 +82,9 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
       return FALSE;
     }
 
+    // Demo domain
+    $row->domains = array(PTKDomain::$DEMO_DOMAIN_ID);
+
     // Country.
     if (!empty($row->country)) {
       // @var stdClass $country
@@ -91,7 +94,7 @@ class CHMServerConsumerNFPMigration extends CHMServerConsumerMigration {
 
         $domain = PTKDomain::getDomainByCountryISO($iso);
         $row->domain_source = $domain['domain_id'];
-        $row->domains = array($domain['domain_id']);
+        $row->domains[] = $domain['domain_id'];
       }
       else {
         $row->country = NULL;
