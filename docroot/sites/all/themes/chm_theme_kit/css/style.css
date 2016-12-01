@@ -10753,6 +10753,16 @@ h2.pane-title {
 .view-the-search-view .views-row .views-field-field-dates .field-content:not(:empty) > *:before {
   margin-right: .2em;
 }
+.view-the-search-view .views-row .views-field-field-government {
+  margin: 3px 0;
+}
+.view-the-search-view .views-row .views-field-field-government div,
+.view-the-search-view .views-row .views-field-field-government img {
+  display: inline;
+}
+.view-the-search-view .views-row .views-field-field-government .field-name-name-field {
+  margin-left: 5px;
+}
 @media all and (min-width: 480px) {
   .view-the-search-view .views-row .views-field.views-field-field-image {
     display: block;
