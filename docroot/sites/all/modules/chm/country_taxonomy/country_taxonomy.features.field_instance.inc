@@ -129,6 +129,12 @@ function country_taxonomy_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'chm_country' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 15,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -168,6 +174,12 @@ function country_taxonomy_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'chm_country' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 12,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'i18n_taxonomy',
@@ -202,6 +214,12 @@ function country_taxonomy_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'chm_country' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -238,6 +256,12 @@ function country_taxonomy_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'chm_country' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 8,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -278,6 +302,12 @@ function country_taxonomy_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'chm_country' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 13,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -312,6 +342,16 @@ function country_taxonomy_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'chm_country' => array(
+        'label' => 'above',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => 'small_flag_icon',
+        ),
+        'type' => 'image',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'image',
@@ -374,6 +414,12 @@ function country_taxonomy_field_default_field_instances() {
     'deleted' => 0,
     'description' => 'This country is on the list of UN official countries',
     'display' => array(
+      'chm_country' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'list',
@@ -408,6 +454,12 @@ function country_taxonomy_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'chm_country' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -444,6 +496,12 @@ function country_taxonomy_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'chm_country' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -480,6 +538,13 @@ function country_taxonomy_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'chm_country' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -515,6 +580,12 @@ function country_taxonomy_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'chm_country' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 9,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'i18n_taxonomy',
@@ -551,6 +622,12 @@ function country_taxonomy_field_default_field_instances() {
     'deleted' => 0,
     'description' => 'To find this country\'s protected areas on the Protected Planet website (www.protectedplanet.net)',
     'display' => array(
+      'chm_country' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -587,6 +664,12 @@ function country_taxonomy_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'chm_country' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -623,6 +706,12 @@ function country_taxonomy_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'chm_country' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -658,6 +747,12 @@ function country_taxonomy_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'chm_country' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 11,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'i18n_taxonomy',
@@ -692,6 +787,12 @@ function country_taxonomy_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'chm_country' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 14,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
