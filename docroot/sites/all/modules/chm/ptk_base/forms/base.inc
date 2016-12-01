@@ -16,6 +16,10 @@ require_once dirname(__FILE__) . '/ChmUserAdminAccountForm.php';
  * @inheritdoc
  */
 function ptk_base_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'entityqueue_subqueue_edit_form') {
+    $form['eq_node']['und']['add']['entity']['#size'] = 140;
+  }
+
   if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-administrative-content-page') {
     PTKForm::adminContentFormAlter($form, $form_state);
   }
