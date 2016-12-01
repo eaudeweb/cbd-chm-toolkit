@@ -343,7 +343,7 @@ function country_taxonomy_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'chm_country' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
@@ -539,10 +539,10 @@ function country_taxonomy_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'chm_country' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
+        'type' => 'text_plain',
         'weight' => 1,
       ),
       'default' => array(
