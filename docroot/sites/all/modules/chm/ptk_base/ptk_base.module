@@ -508,6 +508,12 @@ function ptk_base_iucn_redlist_log($message, $variables, $severity) {
  */
 function ptk_base_entity_info_alter(&$entity_info) {
   $entity_info['entityqueue_subqueue']['access callback'] = array('PTK', 'entityQueueAccess');
+  $entity_info['taxonomy_term']['view modes'] += array(
+    'chm_country' => array(
+      'label' => t('CHM Country'),
+      'custom settings' => FALSE,
+    ),
+  );
 }
 
 /**
