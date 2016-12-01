@@ -25,20 +25,13 @@ class ChmFooterQuickLinksRootBlock extends AbstractBlock {
   public static function getContent() {
     $domain = domain_get_domain();
     if ($domain['domain_id'] == \PTKDomain::getDefaultDomainId()) {
+      $menu_links = menu_tree_all_data('main-menu');
       $items = [];
-      $link_home = domain_get_uri($domain);
-      $items[] = l(t('Home'), $link_home);
-      if ($link = l(t('Network'), 'chm-network')) {
-        $items[] = $link;
-      }
-      if ($link = l(t('Guidance'), 'guidance')) {
-        $items[] = $link;
-      }
-      if ($link = l(t('Tools'), 'tools')) {
-        $items[] = $link;
-      }
-      if ($link = l(t('About Us'), 'about')) {
-        $items[] = $link;
+      foreach ($menu_links as $link) {
+        $link = $link['link'];
+        if ($link['depth'] == 1 && empty($link['hidden'])) {
+          $items[] = l(_i18n_menu_link_title($link), $link['link_path']);
+        }
       }
       $config = [
         'type' => 'ul',
@@ -53,5 +46,4 @@ class ChmFooterQuickLinksRootBlock extends AbstractBlock {
     }
     return '';
   }
-
 }

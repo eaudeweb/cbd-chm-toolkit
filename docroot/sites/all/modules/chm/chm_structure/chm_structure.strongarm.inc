@@ -14,7 +14,7 @@ function chm_structure_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'additional_settings__active_tab_cbd_national_target';
-  $strongarm->value = 'edit-webform';
+  $strongarm->value = 'edit-submission';
   $export['additional_settings__active_tab_cbd_national_target'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -714,6 +714,13 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_hide_translation_links_gallery';
+  $strongarm->value = 0;
+  $export['entity_translation_hide_translation_links_gallery'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_hide_translation_links_link';
   $strongarm->value = 1;
   $export['entity_translation_hide_translation_links_link'] = $strongarm;
@@ -843,6 +850,13 @@ function chm_structure_strongarm() {
   $strongarm->name = 'entity_translation_node_metadata_faq';
   $strongarm->value = '0';
   $export['entity_translation_node_metadata_faq'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_node_metadata_gallery';
+  $strongarm->value = '0';
+  $export['entity_translation_node_metadata_gallery'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1171,6 +1185,19 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__administrative_level';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__administrative_level'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_settings_taxonomy_term__aichi_biodiversity_targets';
   $strongarm->value = array(
     'default_language' => 'xx-et-current',
@@ -1197,19 +1224,6 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'entity_translation_settings_taxonomy_term__biodiversity_item_type';
-  $strongarm->value = array(
-    'default_language' => 'xx-et-default',
-    'hide_language_selector' => 0,
-    'exclude_language_none' => 1,
-    'lock_language' => 1,
-    'shared_fields_original_only' => 0,
-  );
-  $export['entity_translation_settings_taxonomy_term__biodiversity_item_type'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_settings_taxonomy_term__biodiversity_threat';
   $strongarm->value = array(
     'default_language' => 'xx-et-default',
@@ -1232,6 +1246,19 @@ function chm_structure_strongarm() {
     'shared_fields_original_only' => 0,
   );
   $export['entity_translation_settings_taxonomy_term__chm_site_status'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__content_management_system';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__content_management_system'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1577,9 +1604,9 @@ function chm_structure_strongarm() {
   $strongarm->name = 'entity_translation_settings_taxonomy_term__planning_item_type';
   $strongarm->value = array(
     'default_language' => 'xx-et-default',
-    'hide_language_selector' => 1,
-    'exclude_language_none' => 0,
-    'lock_language' => 0,
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
     'shared_fields_original_only' => 0,
   );
   $export['entity_translation_settings_taxonomy_term__planning_item_type'] = $strongarm;
@@ -1906,6 +1933,122 @@ function chm_structure_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__cbd_national_target';
   $strongarm->value = array(
+    'view_modes' => array(
+      'teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'rss' => array(
+        'custom_settings' => FALSE,
+      ),
+      'print' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
+    ),
+    'extra_fields' => array(
+      'form' => array(
+        'domain' => array(
+          'weight' => '10',
+        ),
+        'domain_path' => array(
+          'weight' => '12',
+        ),
+        'metatags' => array(
+          'weight' => '13',
+        ),
+        'path' => array(
+          'weight' => '11',
+        ),
+        'language' => array(
+          'weight' => '0',
+        ),
+      ),
+      'display' => array(
+        'domain' => array(
+          'default' => array(
+            'weight' => '1',
+            'visible' => TRUE,
+          ),
+        ),
+      ),
+    ),
+  );
+  $export['field_bundle_settings_node__cbd_national_target'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_node__cbd_nfp';
+  $strongarm->value = array(
+    'view_modes' => array(
+      'teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'rss' => array(
+        'custom_settings' => FALSE,
+      ),
+      'print' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
+    ),
+    'extra_fields' => array(
+      'form' => array(
+        'domain' => array(
+          'weight' => '6',
+        ),
+        'domain_path' => array(
+          'weight' => '8',
+        ),
+        'locations' => array(
+          'weight' => '4',
+        ),
+        'metatags' => array(
+          'weight' => '9',
+        ),
+        'title' => array(
+          'weight' => '0',
+        ),
+        'path' => array(
+          'weight' => '7',
+        ),
+        'language' => array(
+          'weight' => '10',
+        ),
+      ),
+      'display' => array(
+        'domain' => array(
+          'default' => array(
+            'weight' => '6',
+            'visible' => TRUE,
+          ),
+        ),
+      ),
+    ),
+  );
+  $export['field_bundle_settings_node__cbd_nfp'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_node__chm_site';
+  $strongarm->value = array(
     'view_modes' => array(),
     'extra_fields' => array(
       'form' => array(
@@ -1928,67 +2071,6 @@ function chm_structure_strongarm() {
       'display' => array(),
     ),
   );
-  $export['field_bundle_settings_node__cbd_national_target'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'field_bundle_settings_node__cbd_nfp';
-  $strongarm->value = array(
-    'view_modes' => array(),
-    'extra_fields' => array(
-      'form' => array(
-        'domain' => array(
-          'weight' => '2',
-        ),
-        'domain_path' => array(
-          'weight' => '4',
-        ),
-        'locations' => array(
-          'weight' => '4',
-        ),
-        'metatags' => array(
-          'weight' => '5',
-        ),
-        'title' => array(
-          'weight' => '0',
-        ),
-        'path' => array(
-          'weight' => '3',
-        ),
-      ),
-      'display' => array(),
-    ),
-  );
-  $export['field_bundle_settings_node__cbd_nfp'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'field_bundle_settings_node__chm_site';
-  $strongarm->value = array(
-    'view_modes' => array(),
-    'extra_fields' => array(
-      'form' => array(
-        'domain' => array(
-          'weight' => '7',
-        ),
-        'domain_path' => array(
-          'weight' => '9',
-        ),
-        'metatags' => array(
-          'weight' => '10',
-        ),
-        'path' => array(
-          'weight' => '8',
-        ),
-        'language' => array(
-          'weight' => '0',
-        ),
-      ),
-      'display' => array(),
-    ),
-  );
   $export['field_bundle_settings_node__chm_site'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -2000,22 +2082,22 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '14',
+          'weight' => '16',
         ),
         'domain_path' => array(
-          'weight' => '16',
+          'weight' => '18',
         ),
         'locations' => array(
           'weight' => '10',
         ),
         'metatags' => array(
-          'weight' => '17',
+          'weight' => '19',
         ),
         'title' => array(
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '15',
+          'weight' => '17',
         ),
         'language' => array(
           'weight' => '0',
@@ -2035,22 +2117,22 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '6',
+          'weight' => '9',
         ),
         'domain_path' => array(
-          'weight' => '9',
+          'weight' => '11',
         ),
         'locations' => array(
           'weight' => '8',
         ),
         'metatags' => array(
-          'weight' => '10',
+          'weight' => '12',
         ),
         'path' => array(
-          'weight' => '8',
+          'weight' => '10',
         ),
         'language' => array(
-          'weight' => '7',
+          'weight' => '0',
         ),
       ),
       'display' => array(),
@@ -2086,22 +2168,22 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '21',
+          'weight' => '22',
         ),
         'domain_path' => array(
-          'weight' => '19',
+          'weight' => '20',
         ),
         'locations' => array(
           'weight' => '11',
         ),
         'metatags' => array(
-          'weight' => '20',
+          'weight' => '21',
         ),
         'title' => array(
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '18',
+          'weight' => '19',
         ),
         'language' => array(
           'weight' => '0',
@@ -2134,19 +2216,19 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '9',
+          'weight' => '11',
         ),
         'domain_path' => array(
-          'weight' => '11',
+          'weight' => '13',
         ),
         'locations' => array(
           'weight' => '8',
         ),
         'metatags' => array(
-          'weight' => '12',
+          'weight' => '14',
         ),
         'path' => array(
-          'weight' => '10',
+          'weight' => '12',
         ),
         'language' => array(
           'weight' => '0',
@@ -2166,16 +2248,16 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '5',
+          'weight' => '6',
         ),
         'domain_path' => array(
-          'weight' => '7',
-        ),
-        'metatags' => array(
           'weight' => '8',
         ),
+        'metatags' => array(
+          'weight' => '9',
+        ),
         'path' => array(
-          'weight' => '6',
+          'weight' => '7',
         ),
         'language' => array(
           'weight' => '0',
@@ -2211,22 +2293,22 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '3',
+          'weight' => '8',
         ),
         'domain_path' => array(
-          'weight' => '6',
+          'weight' => '10',
         ),
         'locations' => array(
           'weight' => '5',
         ),
         'metatags' => array(
-          'weight' => '7',
+          'weight' => '11',
         ),
         'title' => array(
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '4',
+          'weight' => '9',
         ),
       ),
       'display' => array(
@@ -2256,16 +2338,16 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '5',
+          'weight' => '9',
         ),
         'domain_path' => array(
-          'weight' => '6',
+          'weight' => '10',
         ),
         'metatags' => array(
-          'weight' => '7',
+          'weight' => '11',
         ),
         'path' => array(
-          'weight' => '8',
+          'weight' => '12',
         ),
         'language' => array(
           'weight' => '0',
@@ -2301,19 +2383,19 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '13',
+          'weight' => '15',
         ),
         'domain_path' => array(
-          'weight' => '14',
+          'weight' => '16',
         ),
         'metatags' => array(
-          'weight' => '15',
+          'weight' => '17',
         ),
         'title' => array(
           'weight' => '1',
         ),
         'path' => array(
-          'weight' => '16',
+          'weight' => '18',
         ),
         'language' => array(
           'weight' => '0',
@@ -2343,16 +2425,16 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '12',
+          'weight' => '17',
         ),
         'domain_path' => array(
-          'weight' => '14',
+          'weight' => '19',
         ),
         'metatags' => array(
-          'weight' => '15',
+          'weight' => '20',
         ),
         'path' => array(
-          'weight' => '13',
+          'weight' => '18',
         ),
         'language' => array(
           'weight' => '0',
@@ -2391,22 +2473,22 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'path' => array(
-          'weight' => '6',
+          'weight' => '8',
         ),
         'language' => array(
           'weight' => '0',
         ),
         'domain' => array(
-          'weight' => '5',
+          'weight' => '7',
         ),
         'domain_path' => array(
-          'weight' => '7',
+          'weight' => '9',
         ),
         'locations' => array(
           'weight' => '6',
         ),
         'metatags' => array(
-          'weight' => '8',
+          'weight' => '10',
         ),
       ),
       'display' => array(
@@ -2452,19 +2534,19 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '10',
+          'weight' => '11',
         ),
         'domain_path' => array(
-          'weight' => '12',
-        ),
-        'metatags' => array(
           'weight' => '13',
         ),
+        'metatags' => array(
+          'weight' => '14',
+        ),
         'title' => array(
-          'weight' => '3',
+          'weight' => '0',
         ),
         'path' => array(
-          'weight' => '11',
+          'weight' => '12',
         ),
         'language' => array(
           'weight' => '0',
@@ -2491,16 +2573,16 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '27',
-        ),
-        'domain_path' => array(
           'weight' => '28',
         ),
-        'metatags' => array(
+        'domain_path' => array(
           'weight' => '29',
         ),
-        'path' => array(
+        'metatags' => array(
           'weight' => '30',
+        ),
+        'path' => array(
+          'weight' => '31',
         ),
         'language' => array(
           'weight' => '0',
@@ -2652,16 +2734,16 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'domain' => array(
-          'weight' => '7',
-        ),
-        'domain_path' => array(
-          'weight' => '8',
-        ),
-        'metatags' => array(
           'weight' => '9',
         ),
-        'path' => array(
+        'domain_path' => array(
           'weight' => '10',
+        ),
+        'metatags' => array(
+          'weight' => '11',
+        ),
+        'path' => array(
+          'weight' => '12',
         ),
         'language' => array(
           'weight' => '0',
@@ -2688,10 +2770,10 @@ function chm_structure_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '9',
+          'weight' => '10',
         ),
         'path' => array(
-          'weight' => '8',
+          'weight' => '9',
         ),
         'language' => array(
           'weight' => '0',
@@ -2701,29 +2783,6 @@ function chm_structure_strongarm() {
     ),
   );
   $export['field_bundle_settings_taxonomy_term__aichi_biodiversity_targets'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'field_bundle_settings_taxonomy_term__biodiversity_item_type';
-  $strongarm->value = array(
-    'view_modes' => array(),
-    'extra_fields' => array(
-      'form' => array(
-        'metatags' => array(
-          'weight' => '6',
-        ),
-        'path' => array(
-          'weight' => '5',
-        ),
-        'language' => array(
-          'weight' => '0',
-        ),
-      ),
-      'display' => array(),
-    ),
-  );
-  $export['field_bundle_settings_taxonomy_term__biodiversity_item_type'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -2862,6 +2921,29 @@ function chm_structure_strongarm() {
     ),
   );
   $export['field_bundle_settings_taxonomy_term__organization_group'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_taxonomy_term__planning_item_type';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'metatags' => array(
+          'weight' => '6',
+        ),
+        'path' => array(
+          'weight' => '5',
+        ),
+        'language' => array(
+          'weight' => '0',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_taxonomy_term__planning_item_type'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -3096,7 +3178,7 @@ function chm_structure_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'language_content_type_gallery';
-  $strongarm->value = '0';
+  $strongarm->value = '4';
   $export['language_content_type_gallery'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -3561,13 +3643,6 @@ function chm_structure_strongarm() {
   $strongarm->name = 'metatag_enable_taxonomy_term__aichi_biodiversity_targets';
   $strongarm->value = 1;
   $export['metatag_enable_taxonomy_term__aichi_biodiversity_targets'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'metatag_enable_taxonomy_term__biodiversity_item_type';
-  $strongarm->value = 1;
-  $export['metatag_enable_taxonomy_term__biodiversity_item_type'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -5048,13 +5123,6 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_taxonomy_term_biodiversity_item_type_pattern';
-  $strongarm->value = '';
-  $export['pathauto_taxonomy_term_biodiversity_item_type_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_taxonomy_term_biodiversity_threat_pattern';
   $strongarm->value = '';
   $export['pathauto_taxonomy_term_biodiversity_threat_pattern'] = $strongarm;
@@ -5177,6 +5245,13 @@ function chm_structure_strongarm() {
   $strongarm->name = 'pathauto_taxonomy_term_phone_type_pattern';
   $strongarm->value = '';
   $export['pathauto_taxonomy_term_phone_type_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_planning_item_type_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_planning_item_type_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

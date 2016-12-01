@@ -26,7 +26,7 @@
         height: 40px;
         width:380px;
         @media all and (max-width: @screen-xs-max){
-           width:280px;
+          width:280px;
         }
         padding: 4px 10px;
         font-size: 14px;
@@ -56,7 +56,7 @@
       float:right !important;
     }
     margin: 10px 0px 10px 0;
-    @media all and (max-width: @screen-xs-max){
+    @media all and (max-width: @screen-xs-max) {
       width: 100%;
       img {
         margin: 0 auto;
@@ -147,12 +147,20 @@
 
 @media (min-width: @grid-float-breakpoint) {
   #name-and-slogan {
-    display: table-cell;
+    display: inline;
     width: auto;
+    margin-left: 20px;
+    [dir="rtl"] & {
+      margin-right: 20px;
+      margin-left: 0px;
+    }
   }
   #logo {
-    display: table-cell;
+    display: inline;
     vertical-align: middle;
+    img {
+      max-width: 130px;
+    }
     // width: 130px;
   }
 }
@@ -194,9 +202,6 @@
 
   }
 
-}
-.header-section {
-  display: table;
 }
 body.country-portal .logo img {
   // margin: 20px 20px 0 0 !important;
@@ -262,7 +267,9 @@ body.country-portal .logo img {
     line-height: 20px;
   }
 }
-
+.navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus {
+  font-weight: normal;
+}
 .navbar-container {
   background-color: @navbar-color;
   #navbar {
@@ -331,6 +338,7 @@ body.country-portal .logo img {
           a.dropdown-toggle {
             background-color: transparent;
             .caret {
+              border-top-color: #fff;
               margin-top: -5px;
             }
           }
@@ -360,7 +368,10 @@ body.country-portal .logo img {
               padding-left: 0;
               padding-right: 10px;
               pointer-events: none;
-
+              [dir="rtl"] & {
+                padding-right: 0;
+                padding-left: 10px;
+              }
             }
           }
           @media all and (max-width: @screen-sm-max) {
@@ -398,7 +409,7 @@ body.country-portal .logo img {
             }
           }
           .active-trail {
-            font-weight: bold;
+            // font-weight: bold;
             &:not(.active):hover {
               background-color: transparent;
               .dropdown-toggle span.caret {
@@ -672,4 +683,8 @@ body #admin-menu .dropdown li {
   }
 .flag-border {
   border: 1px solid #ddd;
+}
+
+.domain-www #page-header #logo img {
+  max-width: none;
 }
