@@ -303,6 +303,7 @@ features[field_instance][] = node-organization-field_organization_groups
 features[field_instance][] = node-organization-field_organization_type
 features[field_instance][] = node-organization-field_source
 features[field_instance][] = node-organization-field_subjects
+features[field_instance][] = node-organization-field_url
 features[field_instance][] = node-organization-title_field
 features[field_instance][] = node-page-body
 features[field_instance][] = node-page-field_aichi_targets
