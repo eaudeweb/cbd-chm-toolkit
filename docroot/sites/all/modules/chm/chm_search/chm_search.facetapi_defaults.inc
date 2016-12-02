@@ -88,7 +88,7 @@ function chm_search_facetapi_default_facet_settings() {
   $facet->enabled = FALSE;
   $facet->settings = array(
     'operator' => 'or',
-    'hard_limit' => '50',
+    'hard_limit' => '-1',
     'dependencies' => array(
       'bundle' => 'none',
       'bundle_selected' => array(),
