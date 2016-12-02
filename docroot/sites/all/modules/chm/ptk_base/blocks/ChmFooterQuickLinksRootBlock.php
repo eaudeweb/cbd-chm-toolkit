@@ -19,7 +19,8 @@ class ChmFooterQuickLinksRootBlock extends AbstractBlock {
   }
 
   public function view() {
-    return self::cacheGet(__METHOD__, array('Drupal\ptk_base\blocks\ChmFooterQuickLinksRootBlock', 'getContent'));
+    return self::getContent();
+//    return self::cacheGet(__METHOD__, array('Drupal\ptk_base\blocks\ChmFooterQuickLinksRootBlock', 'getContent'));
   }
 
   public static function getContent() {

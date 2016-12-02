@@ -20,7 +20,8 @@ class ChmFooterCountryLinksBlock extends AbstractBlock {
 
 
   public function view() {
-    return self::cacheGet(__METHOD__, array('Drupal\ptk_base\blocks\ChmFooterCountryLinksBlock', 'getContent'));
+    return self::getContent();
+//    return self::cacheGet(__METHOD__, array('Drupal\ptk_base\blocks\ChmFooterCountryLinksBlock', 'getContent'));
   }
 
 

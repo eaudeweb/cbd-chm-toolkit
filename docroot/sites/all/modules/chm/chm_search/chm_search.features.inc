@@ -233,6 +233,7 @@ function chm_search_default_search_api_index() {
         "field_event_status" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_fax_numbers" : { "type" : "list\\u003Ctext\\u003E" },
         "field_first_name" : { "type" : "text" },
+        "field_government" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_keywords" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_last_name" : { "type" : "text" },
         "field_nfp_designation" : { "type" : "text" },

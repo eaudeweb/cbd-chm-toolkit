@@ -42,6 +42,7 @@ function chm_search_views_default_views() {
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
+  $handler->display->display_options['header']['result']['content'] = 'Displaying @start - @end of @total result(s)';
   /* Field: Indexed Multilingual Node: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -51,7 +52,7 @@ function chm_search_views_default_views() {
   $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_image']['type'] = 'domain_image_link';
   $handler->display->display_options['fields']['field_image']['settings'] = array(
-    'image_style' => 'image_listing',
+    'image_style' => 'thumbnail',
     'image_link' => 'content',
   );
   /* Field: Indexed Multilingual Node: Content type */
@@ -62,6 +63,16 @@ function chm_search_views_default_views() {
   $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['type']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['type']['format_name'] = 1;
+  /* Field: Indexed Multilingual Node: Government */
+  $handler->display->display_options['fields']['field_government']['id'] = 'field_government';
+  $handler->display->display_options['fields']['field_government']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_government']['field'] = 'field_government';
+  $handler->display->display_options['fields']['field_government']['label'] = '';
+  $handler->display->display_options['fields']['field_government']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_government']['link_to_entity'] = 1;
+  $handler->display->display_options['fields']['field_government']['display'] = 'view';
+  $handler->display->display_options['fields']['field_government']['view_mode'] = 'chm_country';
+  $handler->display->display_options['fields']['field_government']['bypass_access'] = 0;
   /* Field: Indexed Multilingual Node: Node ID */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -157,6 +168,16 @@ function chm_search_views_default_views() {
   $handler->display->display_options['filters']['search_api_language']['value'] = array(
     'current' => 'current',
   );
+  /* Filter criterion: Indexed Multilingual Node: Content type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['operator'] = '<>';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'book' => 'book',
+    'chm_site' => 'chm_site',
+    'faq' => 'faq',
+  );
 
   /* Display: CHM website search page */
   $handler = $view->new_display('page', 'CHM website search page', 'page');
@@ -182,7 +203,7 @@ function chm_search_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
-    t('Displaying @start - @end of @total'),
+    t('Displaying @start - @end of @total result(s)'),
     t('Node ID'),
     t('.'),
     t(','),

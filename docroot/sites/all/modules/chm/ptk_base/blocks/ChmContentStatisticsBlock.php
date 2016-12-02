@@ -20,18 +20,28 @@ class ChmContentStatisticsBlock extends AbstractBlock {
 
 
   public function view() {
-    return self::cacheGet(__METHOD__, array('Drupal\ptk_base\blocks\ChmContentStatisticsBlock', 'getContent'));
+    return self::getContent();
+//    return self::cacheGet(__METHOD__, array('Drupal\ptk_base\blocks\ChmContentStatisticsBlock', 'getContent'));
   }
 
   public static function getContent() {
     global $_domain;
     $domain_id = $_domain['domain_id'];
     $types = node_type_get_types();
+
+    $db_and = db_and();
+    $db_and ->condition('realm', 'domain_id');
+    $db_and ->condition('gid', $domain_id);
+
+    $db_or = db_or();
+    $db_or->condition('realm', 'domain_site');
+    $db_or->condition($db_and);
+
     $domain_nids = db_select('domain_access', 'da')
       ->fields('da', ['nid'])
-      ->condition('realm', 'domain_id')
-      ->condition('da.gid', $domain_id)
+      ->condition($db_or)
       ->execute()->fetchCol();
+
     $q = db_select('node', 'n')->fields('n', ['type']);
     if (!empty($domain_nids)) {
       $q->condition('n.nid', $domain_nids, 'IN');
