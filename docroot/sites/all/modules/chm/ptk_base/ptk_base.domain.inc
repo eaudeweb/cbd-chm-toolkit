@@ -328,6 +328,32 @@ class PTKDomain {
     return  $base_url . '/' . $entity_uri['path'];
   }
 
+  public static function fieldNFPcategory($entity_properties, $options = array()) {
+    if ($entity_properties['field_nfp_roles']) {
+      $roles = entity_load('field_collection_item', $entity_properties['field_nfp_roles']);
+      $output = [];
+      $row = '';
+      foreach($roles as $role) {
+        if ($role->field_treaty) {
+          foreach($role->field_treaty['und'] as $treaty) {
+            $row = '<span class="treaty">' . $treaty['taxonomy_term']->name . ':</span> ';
+          }
+        }
+        if ($role->field_nfp_type) {
+          foreach($role->field_nfp_type['und'] as $nfp_type) {
+            $types[] = '<span class="nfp_type">' . $nfp_type['taxonomy_term']->name . '</span>';
+          }
+        }
+        if ($types) {
+          $row .= implode('<span> - </span>', $types);
+        }
+        $output[] = '<div class="bfp_category">' . $row . '</div>';
+      }
+      return implode("\n", $output);
+    }
+    return '';
+  }
+
   /**
    * Compute title link using content type dependents urls
    * @return string
