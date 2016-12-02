@@ -8491,6 +8491,7 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
   -o-object-fit: contain;
   object-fit: contain;
   background-color: #fff;
+  padding: 5px;
 }
 #sliding-popup {
   overflow: hidden;
