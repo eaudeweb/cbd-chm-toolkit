@@ -26,6 +26,8 @@ class CHMServiceDocumentNBSAPMigration extends CHMServerConsumerMigration {
     $this->addFieldMapping('title_field', 'title_s');
     $this->addFieldMapping('field_countries', 'government_s');
     $this->addFieldMapping('field_countries:source_type')->defaultValue('tid');
+    $this->addFieldMapping('field_government', 'government_s');
+    $this->addFieldMapping('field_government:source_type')->defaultValue('tid');
     $this->addFieldMapping('field_document_type', 'document_type');
     $this->addFieldMapping('field_document_type:source_type')->defaultValue('tid');
     $this->addFieldMapping('field_files', 'documentLinks_s');
@@ -62,14 +64,25 @@ class CHMServiceDocumentNBSAPMigration extends CHMServerConsumerMigration {
 
 
   public function prepareRow($row) {
-
     $row->files_destination_dir = 'public://websites/www/documents'; // default path
 
-    if ($nbsap = taxonomy_get_term_by_name('NBSAP', 'document_type')) {
-      $nbsap = current($nbsap);
+    $term_mappings = [
+      'B0EBAE91-9581-4BB2-9C02-52FCF9D82721' => 'NBSAP',
+      'F27DBC9B-FF25-471B-B624-C0F73E76C8B3' => '1st National Report (1992-1998)',
+      'A49393CA-2950-4EFD-8BCC-33266D69232F' => '2nd National Report (1997-2001)',
+      'DA7E04F1-D2EA-491E-9503-F7923B1FD7D4' => '3rd National Report (2001-2005)',
+      '272B0A17-5569-429D-ADF5-2A55C588F7A7' => '4th National Report (2005-2009)',
+      'B3079A36-32A3-41E2-BDE0-65E4E3A51601' => '5th National Report (2009-2014)',
+    ];
+    // Do not import unknown terms
+    if (!array_key_exists($row->reportType_s, $term_mappings)) {
+      return FALSE;
     }
-    $row->document_type = $nbsap->tid;
-
+    // @todo: Add a machine name on the document_type to keep the mappings dynamic
+    if ($doc_type = taxonomy_get_term_by_name($term_mappings[$row->reportType_s], 'document_type')) {
+      $doc_type = current($doc_type);
+    }
+    $row->document_type = $doc_type->tid;
     $row->startDate_s = strtotime($row->startDate_s) +  3600 * 12;// small hack (2hours timezone diffenrence
 
     if ($row->documentLinks_s) {

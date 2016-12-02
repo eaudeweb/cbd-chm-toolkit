@@ -118,7 +118,7 @@ function chm_service_consumer_migrate_api() {
       'nbsap' => [
         'class_name' => 'CHMServiceDocumentNBSAPMigration',
         'group_name' => 'cbd',
-        'urlPattern' => 'https://chm.cbd.int/api/v2013/index/select?q=realm_ss:chm+AND+schema_s:nationalReport+AND+reportType_s:B0EBAE91-9581-4BB2-9C02-52FCF9D82721',
+        'urlPattern' => 'https://chm.cbd.int/api/v2013/index/select?q=realm_ss:chm+AND+schema_s:nationalReport',
       ],
       'gef_projects' => [
         'class_name' => 'CHMGEFProjectMigrate',
