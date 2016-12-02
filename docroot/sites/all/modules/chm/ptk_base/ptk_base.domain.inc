@@ -329,6 +329,54 @@ class PTKDomain {
   }
 
   /**
+   * Compute title link using content type dependents urls
+   * @return string
+   */
+  public static function fieldTitleUrl($row) {
+    if ($row->_entity_properties) {
+
+      $path = '';
+      $output = '';
+
+      $entity = $row->_entity_properties['entity object'];
+
+      if (isset($entity->title_field['en'][0]['safe_value'])) {
+        $output = $entity->title_field['en'][0]['safe_value'];
+      }
+
+      if ($entity->type == 'video') {
+        $path = @$entity->field_video_link['und'][0]['video_url'];
+      }
+
+      if ($entity->type == 'organization') {
+        $path = @$entity->field_facebook_url['und'][0]['url'];
+        if (!$path) {
+          $path = @$entity->field_linkedin_url['und'][0]['url'];
+        }
+      }
+
+      if ($entity->type == 'link') {
+        $path = @$entity->field_url['en'][0]['url'];
+      }
+
+      if ($entity->type == 'document') {
+        $path = @$entity->field_url['en'][0]['url'];
+        // @todo not sure about external files. better to use link field...
+        //if ($entity->field_files['en']) {
+        //  $path  = file_create_url($entity->field_files['en'][0]['uri']);
+        //}
+      }
+
+      if (!$path) {
+        $uri = entity_uri('node', $entity);
+        $path = PTKDomain::baseDomain($entity->domains) . '/' . $uri['path'];
+      }
+
+      return l($output, $path, ['external' => TRUE]);
+    }
+  }
+
+  /**
    * Compute entity html formatted absolute URL using its original domain
    * @param int $entity_id
    * @return string
