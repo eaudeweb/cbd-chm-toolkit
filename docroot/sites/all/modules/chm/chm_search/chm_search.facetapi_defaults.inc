@@ -1686,7 +1686,32 @@ function chm_search_facetapi_default_facet_settings() {
   $facet->settings = array(
     'weight' => 0,
     'widget' => 'facetapi_checkbox_links',
-    'filters' => array(),
+    'filters' => array(
+      'active_items' => array(
+        'status' => 0,
+        'weight' => '-50',
+      ),
+      'exclude_items' => array(
+        'status' => 0,
+        'weight' => '-49',
+      ),
+      'rewrite_items' => array(
+        'status' => 1,
+        'weight' => '-48',
+      ),
+      'narrow_results' => array(
+        'status' => 0,
+        'weight' => '-47',
+      ),
+      'show_if_minimum_items' => array(
+        'status' => 0,
+        'weight' => '-46',
+      ),
+      'deepest_level_items' => array(
+        'status' => 0,
+        'weight' => '-45',
+      ),
+    ),
     'active_sorts' => array(
       'active' => 'active',
       'display' => 'display',
@@ -1726,6 +1751,10 @@ function chm_search_facetapi_default_facet_settings() {
       'value' => '',
       'format' => 'html',
     ),
+    'exclude' => '',
+    'regex' => 0,
+    'show_minimum_items' => 2,
+    'rewrite_items' => 1,
   );
   $export['search_api@default_multilingual_node_index:block:domains'] = $facet;
 
@@ -1776,7 +1805,36 @@ function chm_search_facetapi_default_facet_settings() {
   $facet->settings = array(
     'weight' => 0,
     'widget' => 'facetapi_checkbox_links',
-    'filters' => array(),
+    'filters' => array(
+      'active_items' => array(
+        'status' => 0,
+        'weight' => '-50',
+      ),
+      'current_depth' => array(
+        'status' => 0,
+        'weight' => '-49',
+      ),
+      'exclude_items' => array(
+        'status' => 0,
+        'weight' => '-48',
+      ),
+      'rewrite_items' => array(
+        'status' => 1,
+        'weight' => '-47',
+      ),
+      'narrow_results' => array(
+        'status' => 0,
+        'weight' => '-46',
+      ),
+      'show_if_minimum_items' => array(
+        'status' => 0,
+        'weight' => '-45',
+      ),
+      'deepest_level_items' => array(
+        'status' => 0,
+        'weight' => '-44',
+      ),
+    ),
     'active_sorts' => array(
       'active' => 0,
       'count' => 0,
@@ -1816,6 +1874,10 @@ function chm_search_facetapi_default_facet_settings() {
       'value' => '',
       'format' => 'html',
     ),
+    'exclude' => '',
+    'regex' => 0,
+    'show_minimum_items' => 2,
+    'rewrite_items' => 1,
   );
   $export['search_api@default_multilingual_node_index:block:field_aichi_targets'] = $facet;
 
@@ -1902,7 +1964,36 @@ function chm_search_facetapi_default_facet_settings() {
   $facet->settings = array(
     'weight' => 0,
     'widget' => 'facetapi_checkbox_links',
-    'filters' => array(),
+    'filters' => array(
+      'active_items' => array(
+        'status' => 0,
+        'weight' => '-50',
+      ),
+      'current_depth' => array(
+        'status' => 0,
+        'weight' => '-49',
+      ),
+      'exclude_items' => array(
+        'status' => 0,
+        'weight' => '-48',
+      ),
+      'rewrite_items' => array(
+        'status' => 1,
+        'weight' => '-47',
+      ),
+      'narrow_results' => array(
+        'status' => 0,
+        'weight' => '-46',
+      ),
+      'show_if_minimum_items' => array(
+        'status' => 0,
+        'weight' => '-45',
+      ),
+      'deepest_level_items' => array(
+        'status' => 0,
+        'weight' => '-44',
+      ),
+    ),
     'active_sorts' => array(
       'active' => 'active',
       'display' => 'display',
@@ -1942,6 +2033,10 @@ function chm_search_facetapi_default_facet_settings() {
       'value' => '',
       'format' => 'html',
     ),
+    'exclude' => '',
+    'regex' => 0,
+    'show_minimum_items' => 2,
+    'rewrite_items' => 1,
   );
   $export['search_api@default_multilingual_node_index:block:field_countries'] = $facet;
 
@@ -2118,7 +2213,36 @@ function chm_search_facetapi_default_facet_settings() {
   $facet->settings = array(
     'weight' => 0,
     'widget' => 'facetapi_checkbox_links',
-    'filters' => array(),
+    'filters' => array(
+      'active_items' => array(
+        'status' => 0,
+        'weight' => '-50',
+      ),
+      'current_depth' => array(
+        'status' => 0,
+        'weight' => '-49',
+      ),
+      'exclude_items' => array(
+        'status' => 0,
+        'weight' => '-48',
+      ),
+      'rewrite_items' => array(
+        'status' => 1,
+        'weight' => '-47',
+      ),
+      'narrow_results' => array(
+        'status' => 0,
+        'weight' => '-46',
+      ),
+      'show_if_minimum_items' => array(
+        'status' => 0,
+        'weight' => '-45',
+      ),
+      'deepest_level_items' => array(
+        'status' => 0,
+        'weight' => '-44',
+      ),
+    ),
     'active_sorts' => array(
       'active' => 'active',
       'display' => 'display',
@@ -2158,6 +2282,10 @@ function chm_search_facetapi_default_facet_settings() {
       'value' => '',
       'format' => 'html',
     ),
+    'exclude' => '',
+    'regex' => 0,
+    'show_minimum_items' => 2,
+    'rewrite_items' => 1,
   );
   $export['search_api@default_multilingual_node_index:block:field_document_type'] = $facet;
 
@@ -2172,7 +2300,36 @@ function chm_search_facetapi_default_facet_settings() {
   $facet->settings = array(
     'weight' => 0,
     'widget' => 'facetapi_checkbox_links',
-    'filters' => array(),
+    'filters' => array(
+      'active_items' => array(
+        'status' => 0,
+        'weight' => '-50',
+      ),
+      'current_depth' => array(
+        'status' => 0,
+        'weight' => '-49',
+      ),
+      'exclude_items' => array(
+        'status' => 0,
+        'weight' => '-48',
+      ),
+      'rewrite_items' => array(
+        'status' => 1,
+        'weight' => '-47',
+      ),
+      'narrow_results' => array(
+        'status' => 0,
+        'weight' => '-46',
+      ),
+      'show_if_minimum_items' => array(
+        'status' => 0,
+        'weight' => '-45',
+      ),
+      'deepest_level_items' => array(
+        'status' => 0,
+        'weight' => '-44',
+      ),
+    ),
     'active_sorts' => array(
       'active' => 'active',
       'display' => 'display',
@@ -2212,6 +2369,10 @@ function chm_search_facetapi_default_facet_settings() {
       'value' => '',
       'format' => 'html',
     ),
+    'exclude' => '',
+    'regex' => 0,
+    'show_minimum_items' => 2,
+    'rewrite_items' => 1,
   );
   $export['search_api@default_multilingual_node_index:block:field_ecosystem_types'] = $facet;
 
@@ -2262,7 +2423,36 @@ function chm_search_facetapi_default_facet_settings() {
   $facet->settings = array(
     'weight' => 0,
     'widget' => 'facetapi_checkbox_links',
-    'filters' => array(),
+    'filters' => array(
+      'active_items' => array(
+        'status' => 0,
+        'weight' => '-50',
+      ),
+      'current_depth' => array(
+        'status' => 0,
+        'weight' => '-49',
+      ),
+      'exclude_items' => array(
+        'status' => 0,
+        'weight' => '-48',
+      ),
+      'rewrite_items' => array(
+        'status' => 1,
+        'weight' => '-47',
+      ),
+      'narrow_results' => array(
+        'status' => 0,
+        'weight' => '-46',
+      ),
+      'show_if_minimum_items' => array(
+        'status' => 0,
+        'weight' => '-45',
+      ),
+      'deepest_level_items' => array(
+        'status' => 0,
+        'weight' => '-44',
+      ),
+    ),
     'active_sorts' => array(
       'active' => 'active',
       'display' => 'display',
@@ -2302,6 +2492,10 @@ function chm_search_facetapi_default_facet_settings() {
       'value' => '',
       'format' => 'html',
     ),
+    'exclude' => '',
+    'regex' => 0,
+    'show_minimum_items' => 2,
+    'rewrite_items' => 1,
   );
   $export['search_api@default_multilingual_node_index:block:field_event_status'] = $facet;
 
@@ -2424,7 +2618,36 @@ function chm_search_facetapi_default_facet_settings() {
   $facet->settings = array(
     'weight' => 0,
     'widget' => 'chm_search',
-    'filters' => array(),
+    'filters' => array(
+      'active_items' => array(
+        'status' => 0,
+        'weight' => '-50',
+      ),
+      'current_depth' => array(
+        'status' => 0,
+        'weight' => '-49',
+      ),
+      'exclude_items' => array(
+        'status' => 0,
+        'weight' => '-48',
+      ),
+      'rewrite_items' => array(
+        'status' => 1,
+        'weight' => '-47',
+      ),
+      'narrow_results' => array(
+        'status' => 0,
+        'weight' => '-46',
+      ),
+      'show_if_minimum_items' => array(
+        'status' => 0,
+        'weight' => '-45',
+      ),
+      'deepest_level_items' => array(
+        'status' => 0,
+        'weight' => '-44',
+      ),
+    ),
     'active_sorts' => array(
       'active' => 'active',
       'count' => 'count',
@@ -2464,6 +2687,10 @@ function chm_search_facetapi_default_facet_settings() {
       'value' => '',
       'format' => 'html',
     ),
+    'exclude' => '',
+    'regex' => 0,
+    'show_minimum_items' => 2,
+    'rewrite_items' => 1,
   );
   $export['search_api@default_multilingual_node_index:block:field_keywords'] = $facet;
 
@@ -2514,7 +2741,32 @@ function chm_search_facetapi_default_facet_settings() {
   $facet->settings = array(
     'weight' => 0,
     'widget' => 'facetapi_checkbox_links',
-    'filters' => array(),
+    'filters' => array(
+      'active_items' => array(
+        'status' => 0,
+        'weight' => '-50',
+      ),
+      'exclude_items' => array(
+        'status' => 0,
+        'weight' => '-49',
+      ),
+      'rewrite_items' => array(
+        'status' => 1,
+        'weight' => '-48',
+      ),
+      'narrow_results' => array(
+        'status' => 0,
+        'weight' => '-47',
+      ),
+      'show_if_minimum_items' => array(
+        'status' => 0,
+        'weight' => '-46',
+      ),
+      'deepest_level_items' => array(
+        'status' => 0,
+        'weight' => '-45',
+      ),
+    ),
     'active_sorts' => array(
       'active' => 'active',
       'display' => 'display',
@@ -2554,6 +2806,10 @@ function chm_search_facetapi_default_facet_settings() {
       'value' => '',
       'format' => 'html',
     ),
+    'exclude' => '',
+    'regex' => 0,
+    'show_minimum_items' => 2,
+    'rewrite_items' => 1,
   );
   $export['search_api@default_multilingual_node_index:block:field_nfp_designation'] = $facet;
 
@@ -2568,7 +2824,36 @@ function chm_search_facetapi_default_facet_settings() {
   $facet->settings = array(
     'weight' => 0,
     'widget' => 'facetapi_checkbox_links',
-    'filters' => array(),
+    'filters' => array(
+      'active_items' => array(
+        'status' => 0,
+        'weight' => '-50',
+      ),
+      'current_depth' => array(
+        'status' => 0,
+        'weight' => '-49',
+      ),
+      'exclude_items' => array(
+        'status' => 0,
+        'weight' => '-48',
+      ),
+      'rewrite_items' => array(
+        'status' => 1,
+        'weight' => '-47',
+      ),
+      'narrow_results' => array(
+        'status' => 0,
+        'weight' => '-46',
+      ),
+      'show_if_minimum_items' => array(
+        'status' => 0,
+        'weight' => '-45',
+      ),
+      'deepest_level_items' => array(
+        'status' => 0,
+        'weight' => '-44',
+      ),
+    ),
     'active_sorts' => array(
       'active' => 'active',
       'display' => 'display',
@@ -2608,6 +2893,10 @@ function chm_search_facetapi_default_facet_settings() {
       'value' => '',
       'format' => 'html',
     ),
+    'exclude' => '',
+    'regex' => 0,
+    'show_minimum_items' => 2,
+    'rewrite_items' => 1,
   );
   $export['search_api@default_multilingual_node_index:block:field_nfp_type'] = $facet;
 
@@ -2622,7 +2911,36 @@ function chm_search_facetapi_default_facet_settings() {
   $facet->settings = array(
     'weight' => 0,
     'widget' => 'chm_search',
-    'filters' => array(),
+    'filters' => array(
+      'active_items' => array(
+        'status' => 0,
+        'weight' => '-50',
+      ),
+      'current_depth' => array(
+        'status' => 0,
+        'weight' => '-49',
+      ),
+      'exclude_items' => array(
+        'status' => 0,
+        'weight' => '-48',
+      ),
+      'rewrite_items' => array(
+        'status' => 1,
+        'weight' => '-47',
+      ),
+      'narrow_results' => array(
+        'status' => 0,
+        'weight' => '-46',
+      ),
+      'show_if_minimum_items' => array(
+        'status' => 0,
+        'weight' => '-45',
+      ),
+      'deepest_level_items' => array(
+        'status' => 0,
+        'weight' => '-44',
+      ),
+    ),
     'active_sorts' => array(
       'active' => 'active',
       'display' => 'display',
@@ -2662,6 +2980,10 @@ function chm_search_facetapi_default_facet_settings() {
       'value' => '',
       'format' => 'html',
     ),
+    'exclude' => '',
+    'regex' => 0,
+    'show_minimum_items' => 2,
+    'rewrite_items' => 1,
   );
   $export['search_api@default_multilingual_node_index:block:field_organization_type'] = $facet;
 
@@ -2676,7 +2998,36 @@ function chm_search_facetapi_default_facet_settings() {
   $facet->settings = array(
     'weight' => 0,
     'widget' => 'facetapi_checkbox_links',
-    'filters' => array(),
+    'filters' => array(
+      'active_items' => array(
+        'status' => 0,
+        'weight' => '-50',
+      ),
+      'current_depth' => array(
+        'status' => 0,
+        'weight' => '-49',
+      ),
+      'exclude_items' => array(
+        'status' => 0,
+        'weight' => '-48',
+      ),
+      'rewrite_items' => array(
+        'status' => 1,
+        'weight' => '-47',
+      ),
+      'narrow_results' => array(
+        'status' => 0,
+        'weight' => '-46',
+      ),
+      'show_if_minimum_items' => array(
+        'status' => 0,
+        'weight' => '-45',
+      ),
+      'deepest_level_items' => array(
+        'status' => 0,
+        'weight' => '-44',
+      ),
+    ),
     'active_sorts' => array(
       'active' => 'active',
       'display' => 'display',
@@ -2716,6 +3067,10 @@ function chm_search_facetapi_default_facet_settings() {
       'value' => '',
       'format' => 'html',
     ),
+    'exclude' => '',
+    'regex' => 0,
+    'show_minimum_items' => 2,
+    'rewrite_items' => 1,
   );
   $export['search_api@default_multilingual_node_index:block:field_pa_designation_type'] = $facet;
 
@@ -2730,7 +3085,36 @@ function chm_search_facetapi_default_facet_settings() {
   $facet->settings = array(
     'weight' => 0,
     'widget' => 'facetapi_checkbox_links',
-    'filters' => array(),
+    'filters' => array(
+      'active_items' => array(
+        'status' => 0,
+        'weight' => '-50',
+      ),
+      'current_depth' => array(
+        'status' => 0,
+        'weight' => '-49',
+      ),
+      'exclude_items' => array(
+        'status' => 0,
+        'weight' => '-48',
+      ),
+      'rewrite_items' => array(
+        'status' => 1,
+        'weight' => '-47',
+      ),
+      'narrow_results' => array(
+        'status' => 0,
+        'weight' => '-46',
+      ),
+      'show_if_minimum_items' => array(
+        'status' => 0,
+        'weight' => '-45',
+      ),
+      'deepest_level_items' => array(
+        'status' => 0,
+        'weight' => '-44',
+      ),
+    ),
     'active_sorts' => array(
       'active' => 'active',
       'display' => 'display',
@@ -2770,6 +3154,10 @@ function chm_search_facetapi_default_facet_settings() {
       'value' => '',
       'format' => 'html',
     ),
+    'exclude' => '',
+    'regex' => 0,
+    'show_minimum_items' => 2,
+    'rewrite_items' => 1,
   );
   $export['search_api@default_multilingual_node_index:block:field_pa_iucn_category'] = $facet;
 
@@ -2784,7 +3172,36 @@ function chm_search_facetapi_default_facet_settings() {
   $facet->settings = array(
     'weight' => 0,
     'widget' => 'chm_search',
-    'filters' => array(),
+    'filters' => array(
+      'active_items' => array(
+        'status' => 0,
+        'weight' => '-50',
+      ),
+      'current_depth' => array(
+        'status' => 0,
+        'weight' => '-49',
+      ),
+      'exclude_items' => array(
+        'status' => 0,
+        'weight' => '-48',
+      ),
+      'rewrite_items' => array(
+        'status' => 1,
+        'weight' => '-47',
+      ),
+      'narrow_results' => array(
+        'status' => 0,
+        'weight' => '-46',
+      ),
+      'show_if_minimum_items' => array(
+        'status' => 0,
+        'weight' => '-45',
+      ),
+      'deepest_level_items' => array(
+        'status' => 0,
+        'weight' => '-44',
+      ),
+    ),
     'active_sorts' => array(
       'active' => 'active',
       'count' => 'count',
@@ -2824,6 +3241,10 @@ function chm_search_facetapi_default_facet_settings() {
       'value' => '',
       'format' => 'html',
     ),
+    'exclude' => '',
+    'regex' => 0,
+    'show_minimum_items' => 2,
+    'rewrite_items' => 1,
   );
   $export['search_api@default_multilingual_node_index:block:field_pa_status'] = $facet;
 
@@ -2838,7 +3259,36 @@ function chm_search_facetapi_default_facet_settings() {
   $facet->settings = array(
     'weight' => 0,
     'widget' => 'facetapi_checkbox_links',
-    'filters' => array(),
+    'filters' => array(
+      'active_items' => array(
+        'status' => 0,
+        'weight' => '-50',
+      ),
+      'current_depth' => array(
+        'status' => 0,
+        'weight' => '-49',
+      ),
+      'exclude_items' => array(
+        'status' => 0,
+        'weight' => '-48',
+      ),
+      'rewrite_items' => array(
+        'status' => 1,
+        'weight' => '-47',
+      ),
+      'narrow_results' => array(
+        'status' => 0,
+        'weight' => '-46',
+      ),
+      'show_if_minimum_items' => array(
+        'status' => 0,
+        'weight' => '-45',
+      ),
+      'deepest_level_items' => array(
+        'status' => 0,
+        'weight' => '-44',
+      ),
+    ),
     'active_sorts' => array(
       'active' => 'active',
       'display' => 'display',
@@ -2878,6 +3328,10 @@ function chm_search_facetapi_default_facet_settings() {
       'value' => '',
       'format' => 'html',
     ),
+    'exclude' => '',
+    'regex' => 0,
+    'show_minimum_items' => 2,
+    'rewrite_items' => 1,
   );
   $export['search_api@default_multilingual_node_index:block:field_project_status'] = $facet;
 
@@ -2892,7 +3346,36 @@ function chm_search_facetapi_default_facet_settings() {
   $facet->settings = array(
     'weight' => 0,
     'widget' => 'facetapi_checkbox_links',
-    'filters' => array(),
+    'filters' => array(
+      'active_items' => array(
+        'status' => 0,
+        'weight' => '-50',
+      ),
+      'current_depth' => array(
+        'status' => 0,
+        'weight' => '-49',
+      ),
+      'exclude_items' => array(
+        'status' => 0,
+        'weight' => '-48',
+      ),
+      'rewrite_items' => array(
+        'status' => 1,
+        'weight' => '-47',
+      ),
+      'narrow_results' => array(
+        'status' => 0,
+        'weight' => '-46',
+      ),
+      'show_if_minimum_items' => array(
+        'status' => 0,
+        'weight' => '-45',
+      ),
+      'deepest_level_items' => array(
+        'status' => 0,
+        'weight' => '-44',
+      ),
+    ),
     'active_sorts' => array(
       'active' => 'active',
       'display' => 'display',
@@ -2932,6 +3415,10 @@ function chm_search_facetapi_default_facet_settings() {
       'value' => '',
       'format' => 'html',
     ),
+    'exclude' => '',
+    'regex' => 0,
+    'show_minimum_items' => 2,
+    'rewrite_items' => 1,
   );
   $export['search_api@default_multilingual_node_index:block:field_redlist_status'] = $facet;
 
@@ -2946,7 +3433,36 @@ function chm_search_facetapi_default_facet_settings() {
   $facet->settings = array(
     'weight' => 0,
     'widget' => 'facetapi_checkbox_links',
-    'filters' => array(),
+    'filters' => array(
+      'active_items' => array(
+        'status' => 0,
+        'weight' => '-50',
+      ),
+      'current_depth' => array(
+        'status' => 0,
+        'weight' => '-49',
+      ),
+      'exclude_items' => array(
+        'status' => 0,
+        'weight' => '-48',
+      ),
+      'rewrite_items' => array(
+        'status' => 1,
+        'weight' => '-47',
+      ),
+      'narrow_results' => array(
+        'status' => 0,
+        'weight' => '-46',
+      ),
+      'show_if_minimum_items' => array(
+        'status' => 0,
+        'weight' => '-45',
+      ),
+      'deepest_level_items' => array(
+        'status' => 0,
+        'weight' => '-44',
+      ),
+    ),
     'active_sorts' => array(
       'active' => 'active',
       'display' => 'display',
@@ -2986,6 +3502,10 @@ function chm_search_facetapi_default_facet_settings() {
       'value' => '',
       'format' => 'html',
     ),
+    'exclude' => '',
+    'regex' => 0,
+    'show_minimum_items' => 2,
+    'rewrite_items' => 1,
   );
   $export['search_api@default_multilingual_node_index:block:field_species_class'] = $facet;
 
@@ -3000,7 +3520,36 @@ function chm_search_facetapi_default_facet_settings() {
   $facet->settings = array(
     'weight' => 0,
     'widget' => 'facetapi_checkbox_links',
-    'filters' => array(),
+    'filters' => array(
+      'active_items' => array(
+        'status' => 0,
+        'weight' => '-50',
+      ),
+      'current_depth' => array(
+        'status' => 0,
+        'weight' => '-49',
+      ),
+      'exclude_items' => array(
+        'status' => 0,
+        'weight' => '-48',
+      ),
+      'rewrite_items' => array(
+        'status' => 1,
+        'weight' => '-47',
+      ),
+      'narrow_results' => array(
+        'status' => 0,
+        'weight' => '-46',
+      ),
+      'show_if_minimum_items' => array(
+        'status' => 0,
+        'weight' => '-45',
+      ),
+      'deepest_level_items' => array(
+        'status' => 0,
+        'weight' => '-44',
+      ),
+    ),
     'active_sorts' => array(
       'active' => 'active',
       'display' => 'display',
@@ -3040,6 +3589,10 @@ function chm_search_facetapi_default_facet_settings() {
       'value' => '',
       'format' => 'html',
     ),
+    'exclude' => '',
+    'regex' => 0,
+    'show_minimum_items' => 2,
+    'rewrite_items' => 1,
   );
   $export['search_api@default_multilingual_node_index:block:field_species_family'] = $facet;
 
@@ -3054,7 +3607,36 @@ function chm_search_facetapi_default_facet_settings() {
   $facet->settings = array(
     'weight' => 0,
     'widget' => 'facetapi_checkbox_links',
-    'filters' => array(),
+    'filters' => array(
+      'active_items' => array(
+        'status' => 0,
+        'weight' => '-50',
+      ),
+      'current_depth' => array(
+        'status' => 0,
+        'weight' => '-49',
+      ),
+      'exclude_items' => array(
+        'status' => 0,
+        'weight' => '-48',
+      ),
+      'rewrite_items' => array(
+        'status' => 1,
+        'weight' => '-47',
+      ),
+      'narrow_results' => array(
+        'status' => 0,
+        'weight' => '-46',
+      ),
+      'show_if_minimum_items' => array(
+        'status' => 0,
+        'weight' => '-45',
+      ),
+      'deepest_level_items' => array(
+        'status' => 0,
+        'weight' => '-44',
+      ),
+    ),
     'active_sorts' => array(
       'active' => 'active',
       'display' => 'display',
@@ -3094,6 +3676,10 @@ function chm_search_facetapi_default_facet_settings() {
       'value' => '',
       'format' => 'html',
     ),
+    'exclude' => '',
+    'regex' => 0,
+    'show_minimum_items' => 2,
+    'rewrite_items' => 1,
   );
   $export['search_api@default_multilingual_node_index:block:field_species_phylum'] = $facet;
 
@@ -3108,7 +3694,36 @@ function chm_search_facetapi_default_facet_settings() {
   $facet->settings = array(
     'weight' => 0,
     'widget' => 'facetapi_checkbox_links',
-    'filters' => array(),
+    'filters' => array(
+      'active_items' => array(
+        'status' => 0,
+        'weight' => '-50',
+      ),
+      'current_depth' => array(
+        'status' => 0,
+        'weight' => '-49',
+      ),
+      'exclude_items' => array(
+        'status' => 0,
+        'weight' => '-48',
+      ),
+      'rewrite_items' => array(
+        'status' => 1,
+        'weight' => '-47',
+      ),
+      'narrow_results' => array(
+        'status' => 0,
+        'weight' => '-46',
+      ),
+      'show_if_minimum_items' => array(
+        'status' => 0,
+        'weight' => '-45',
+      ),
+      'deepest_level_items' => array(
+        'status' => 0,
+        'weight' => '-44',
+      ),
+    ),
     'active_sorts' => array(
       'active' => 'active',
       'display' => 'display',
@@ -3148,6 +3763,10 @@ function chm_search_facetapi_default_facet_settings() {
       'value' => '',
       'format' => 'html',
     ),
+    'exclude' => '',
+    'regex' => 0,
+    'show_minimum_items' => 2,
+    'rewrite_items' => 1,
   );
   $export['search_api@default_multilingual_node_index:block:field_subjects'] = $facet;
 
@@ -3270,7 +3889,32 @@ function chm_search_facetapi_default_facet_settings() {
   $facet->settings = array(
     'weight' => 0,
     'widget' => 'facetapi_checkbox_links',
-    'filters' => array(),
+    'filters' => array(
+      'active_items' => array(
+        'status' => 0,
+        'weight' => '-50',
+      ),
+      'exclude_items' => array(
+        'status' => 0,
+        'weight' => '-49',
+      ),
+      'rewrite_items' => array(
+        'status' => 1,
+        'weight' => '-48',
+      ),
+      'narrow_results' => array(
+        'status' => 0,
+        'weight' => '-47',
+      ),
+      'show_if_minimum_items' => array(
+        'status' => 0,
+        'weight' => '-46',
+      ),
+      'deepest_level_items' => array(
+        'status' => 0,
+        'weight' => '-45',
+      ),
+    ),
     'active_sorts' => array(
       'active' => 'active',
       'display' => 'display',
@@ -3310,6 +3954,10 @@ function chm_search_facetapi_default_facet_settings() {
       'value' => '',
       'format' => 'html',
     ),
+    'exclude' => '',
+    'regex' => 0,
+    'show_minimum_items' => 2,
+    'rewrite_items' => 1,
   );
   $export['search_api@default_multilingual_node_index:block:status'] = $facet;
 
@@ -3432,7 +4080,32 @@ function chm_search_facetapi_default_facet_settings() {
   $facet->settings = array(
     'weight' => 0,
     'widget' => 'facetapi_checkbox_links',
-    'filters' => array(),
+    'filters' => array(
+      'active_items' => array(
+        'status' => 0,
+        'weight' => '-50',
+      ),
+      'exclude_items' => array(
+        'status' => 0,
+        'weight' => '-49',
+      ),
+      'rewrite_items' => array(
+        'status' => 1,
+        'weight' => '-48',
+      ),
+      'narrow_results' => array(
+        'status' => 0,
+        'weight' => '-47',
+      ),
+      'show_if_minimum_items' => array(
+        'status' => 0,
+        'weight' => '-46',
+      ),
+      'deepest_level_items' => array(
+        'status' => 0,
+        'weight' => '-45',
+      ),
+    ),
     'active_sorts' => array(
       'active' => 'active',
       'display' => 'display',
@@ -3472,6 +4145,10 @@ function chm_search_facetapi_default_facet_settings() {
     'round-precision' => '0',
     'range_simple' => 10,
     'range_advanced' => '',
+    'exclude' => '',
+    'regex' => 0,
+    'show_minimum_items' => 2,
+    'rewrite_items' => 1,
   );
   $export['search_api@default_multilingual_node_index:block:type'] = $facet;
 

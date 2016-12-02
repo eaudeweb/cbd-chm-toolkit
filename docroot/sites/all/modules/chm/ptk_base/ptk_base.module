@@ -624,3 +624,17 @@ function ptk_base_user_is_administrator_alter(&$is_administrator) {
   global $user;
   $is_administrator = in_array(ROLE_ADMINISTRATOR, $user->roles);
 }
+
+/**
+ * Add a SPAN tag around the value to make it targetable from CSS.
+ *
+ * @param array $build
+ * @param array $settings
+ */
+function ptk_base_facet_items_alter(&$build, &$settings) {
+  foreach ($build as $key => $item) {
+    //dpm($build[$key]);
+    $build[$key]["#html"] = TRUE;
+    $build[$key]["#markup"] = '<span>' . $item["#markup"] . '</span>';
+  }
+}
