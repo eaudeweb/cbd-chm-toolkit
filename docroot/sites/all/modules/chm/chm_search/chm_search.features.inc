@@ -221,6 +221,7 @@ function chm_search_default_search_api_index() {
         }
       },
       "fields" : {
+        "attachments_field_files" : { "type" : "text" },
         "author" : { "type" : "integer", "entity_type" : "user" },
         "body:summary" : { "type" : "text" },
         "body:value" : { "type" : "text" },
