@@ -345,7 +345,7 @@ class PTKDomain {
           }
         }
         if ($types) {
-          $row .= implode('<span> - </span>', $types);
+          $row .= implode(', ', $types);
         }
         $output[] = '<div class="bfp_category">' . $row . '</div>';
       }
