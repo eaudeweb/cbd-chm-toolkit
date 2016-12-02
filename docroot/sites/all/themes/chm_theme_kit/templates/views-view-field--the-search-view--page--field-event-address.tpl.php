@@ -21,12 +21,12 @@
  * regardless of any changes in the aliasing that might happen if
  * the view is modified.
  */
-?><?php if ($output) {?>
+?><?php if ($output) { ?>
 <div class="field-label">
     <span class="glyphicon glyphicon-map-marker" aria-hidden="true" title="Address"></span>
     <span class="sr-only">Address</span>
 </div>
-<div class="field-items"<?php print $content_attributes; ?>>
+<div class="field-items">
     <div class="field-item even">
     <?php print $output; ?>
     </div>
