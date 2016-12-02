@@ -44,6 +44,7 @@ function chm_search_default_search_api_index() {
         "fallback language" : ""
       },
       "data_alter_callbacks" : {
+        "search_api_ranges_alter" : { "status" : 0, "weight" : "-50", "settings" : { "fields" : [] } },
         "search_api_alter_bundle_filter" : {
           "status" : 0,
           "weight" : "-10",
@@ -54,7 +55,6 @@ function chm_search_default_search_api_index() {
           "weight" : "-10",
           "settings" : { "default" : "1", "domains" : [], "operator" : "OR" }
         },
-        "search_api_alter_node_access" : { "status" : 0, "weight" : "0", "settings" : [] },
         "search_api_alter_node_status" : { "status" : 1, "weight" : "0", "settings" : [] },
         "search_api_attachments_alter_settings" : {
           "status" : 1,
@@ -66,16 +66,25 @@ function chm_search_default_search_api_index() {
             "excluded_private" : 1
           }
         },
+        "search_api_alter_node_access" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_add_hierarchy" : {
+          "status" : 1,
+          "weight" : "0",
+          "settings" : { "fields" : {
+              "field_aichi_targets:parent" : "field_aichi_targets:parent",
+              "field_aichi_targets:parents_all" : "field_aichi_targets:parents_all"
+            }
+          }
+        },
+        "search_api_alter_add_url" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_add_aggregation" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "full" } },
+        "search_api_metatag_alter_callback" : { "status" : 0, "weight" : "0", "settings" : [] },
         "search_api_alter_language_control" : {
           "status" : 1,
           "weight" : "0",
           "settings" : { "lang_field" : "", "languages" : [] }
-        },
-        "search_api_alter_add_hierarchy" : { "status" : 0, "weight" : "0", "settings" : { "fields" : [] } },
-        "search_api_alter_add_url" : { "status" : 0, "weight" : "0", "settings" : [] },
-        "search_api_alter_add_aggregation" : { "status" : 0, "weight" : "0", "settings" : [] },
-        "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "full" } },
-        "search_api_metatag_alter_callback" : { "status" : 0, "weight" : "0", "settings" : [] }
+        }
       },
       "processors" : {
         "search_api_domain" : {
