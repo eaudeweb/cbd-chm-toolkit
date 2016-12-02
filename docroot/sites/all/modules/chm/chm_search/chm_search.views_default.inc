@@ -121,6 +121,19 @@ function chm_search_views_default_views() {
     'multiple_to' => '',
     'show_remaining_days' => 0,
   );
+  /* Field: Indexed Multilingual Node: Location */
+  $handler->display->display_options['fields']['field_event_address']['id'] = 'field_event_address';
+  $handler->display->display_options['fields']['field_event_address']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_event_address']['field'] = 'field_event_address';
+  $handler->display->display_options['fields']['field_event_address']['label'] = '';
+  $handler->display->display_options['fields']['field_event_address']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_event_address']['click_sort_column'] = 'country';
+  $handler->display->display_options['fields']['field_event_address']['settings'] = array(
+    'use_widget_handlers' => 1,
+    'format_handlers' => array(
+      'address' => 'address',
+    ),
+  );
   /* Sort criterion: Search: Relevance */
   $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
   $handler->display->display_options['sorts']['search_api_relevance']['table'] = 'search_api_index_default_multilingual_node_index';
