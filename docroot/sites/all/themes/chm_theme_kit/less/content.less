@@ -1791,13 +1791,16 @@ body.node-type-species {
     .views-field.views-field-search-api-excerpt {
 
     }
-    .views-field-field-dates .field-content:not(:empty) > * {
-      color: #888;
-      font-size: .9em;
-      margin-top: .2em;
-      .fa-icon-content(@fa-var-calendar);
-      &:before {
-        margin-right: .2em;
+    .views-field-field-dates {
+      display: inline-block;
+      .field-content:not(:empty) > * {
+        color: #888;
+        font-size: .9em;
+        margin-top: .2em;
+        .fa-icon-content(@fa-var-calendar);
+        &:before {
+          margin-right: .2em;
+        }
       }
     }
 
@@ -1810,11 +1813,17 @@ body.node-type-species {
     }
 
     .views-field-field-event-address {
+      display: inline-block;
+      color: #888;
+      font-size: .9em;
       .field-label, .field-items {
         display: inline-block;
       }
       .field-item > * {
         display: inline-block;
+        & > * {
+          display: inline-block;
+        }
         & + * {
           &:before {
             content: ",";
