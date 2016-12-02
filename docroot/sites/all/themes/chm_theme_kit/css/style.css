@@ -10775,13 +10775,14 @@ h2.pane-title {
 .view-the-search-view .views-row .views-field-field-government .field-name-name-field {
   margin-left: 5px;
 }
-.view-the-search-view .views-row .views-field-field-event-address .field-content > * {
+.view-the-search-view .views-row .views-field-field-event-address .field-label,
+.view-the-search-view .views-row .views-field-field-event-address .field-items {
   display: inline-block;
 }
-.view-the-search-view .views-row .views-field-field-event-address .field-content > * > * {
-  display: inline;
+.view-the-search-view .views-row .views-field-field-event-address .field-item > * {
+  display: inline-block;
 }
-.view-the-search-view .views-row .views-field-field-event-address .field-content > * + *:before {
+.view-the-search-view .views-row .views-field-field-event-address .field-item > * + *:before {
   content: ",";
   margin-right: .25em;
   display: inline-block;

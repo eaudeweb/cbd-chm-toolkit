@@ -1810,11 +1810,11 @@ body.node-type-species {
     }
 
     .views-field-field-event-address {
-      .field-content > * {
+      .field-label, .field-items {
         display: inline-block;
-        & > * {
-          display: inline;
-        }
+      }
+      .field-item > * {
+        display: inline-block;
         & + * {
           &:before {
             content: ",";
