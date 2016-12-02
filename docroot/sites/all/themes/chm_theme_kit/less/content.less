@@ -1808,6 +1808,23 @@ body.node-type-species {
         margin-left: 5px;
       }
     }
+
+    .views-field-field-event-address {
+      .field-content > * {
+        display: inline-block;
+        & > * {
+          display: inline;
+        }
+        & + * {
+          &:before {
+            content: ",";
+            margin-right: .25em;
+            display: inline-block;
+          }
+        }
+      }
+    }
+
   }
   @media all and (min-width: @screen-xs-min) {
     .views-row {

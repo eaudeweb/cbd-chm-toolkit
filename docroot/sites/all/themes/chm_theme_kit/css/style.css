@@ -10775,6 +10775,17 @@ h2.pane-title {
 .view-the-search-view .views-row .views-field-field-government .field-name-name-field {
   margin-left: 5px;
 }
+.view-the-search-view .views-row .views-field-field-event-address .field-content > * {
+  display: inline-block;
+}
+.view-the-search-view .views-row .views-field-field-event-address .field-content > * > * {
+  display: inline;
+}
+.view-the-search-view .views-row .views-field-field-event-address .field-content > * + *:before {
+  content: ",";
+  margin-right: .25em;
+  display: inline-block;
+}
 @media all and (min-width: 480px) {
   .view-the-search-view .views-row .views-field.views-field-field-image {
     display: block;
