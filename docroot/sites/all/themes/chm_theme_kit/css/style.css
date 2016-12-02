@@ -10362,13 +10362,16 @@ h2.pane-title {
 .view-persons-network-directory .view-content .views-field-title a {
   font-weight: bold;
 }
-.view-persons-network-directory .view-content .views-field-field-person-positions ul {
+.view-persons-network-directory .view-content .views-field-field-nfp-roles ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-.view-persons-network-directory .view-content .views-field-field-person-positions ul [dir="rtl"] li {
+.view-persons-network-directory .view-content .views-field-field-nfp-roles ul [dir="rtl"] li {
   margin-right: 0;
+}
+.view-persons-network-directory .view-content .views-field-field-nfp-roles .field-content > ul > li {
+  margin-bottom: 15px;
 }
 #block-menu-menu-information-menu {
   width: 100%;
