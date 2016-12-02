@@ -9881,6 +9881,11 @@ h2.pane-title {
     max-height: calc(3 * 1.42857143em);
   }
 }
+.view-links .views-bootstrap-media-plugin-style .media-body > a {
+  text-transform: initial;
+  font-weight: normal;
+  font-size: inherit !important;
+}
 @media all and (min-width: 480px) {
   .page-videos .views-bootstrap-media-plugin-style .media {
     display: block;
@@ -9929,6 +9934,10 @@ h2.pane-title {
   left: 0;
   width: 100%;
   height: 100%;
+}
+.pane-node-created {
+  font-size: 13px;
+  color: #777;
 }
 .view-projects .view-content .views-row {
   display: block;
@@ -11245,8 +11254,11 @@ table .views-field-title a:hover {
   text-overflow: ellipsis;
   overflow: hidden;
   text-decoration: none;
-  background-color: #0071B8;
+  background-color: #02783a;
+  padding: 8px 10px;
+  font-weight: normal;
   max-width: 100%;
+  border-radius: 4px;
 }
 .node-details-page .field-name-field-images .field-item {
   margin-bottom: 30px;
