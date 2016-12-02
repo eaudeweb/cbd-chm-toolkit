@@ -1643,15 +1643,21 @@ body.node-type-species {
   }
   .facetapi-facetapi-checkbox-links {
     li {
-      display: table;
+      // display: table;
     }
     input[type="checkbox"] {
-      margin-right: .3em;
-      display: table-cell;
+      // margin-right: .3em;
+      position: absolute;
+      // display: table-cell;
     }
-
+    > li > span, > li a {
+      position: relative;
+      display: block;
+      left: 1.2em;
+      width: ~'calc(100% - 1.2em)';
+    }
     a {
-      display: table-cell;
+      // display: table-cell;
       &, &:hover { color: @text-color;text-decoration: none;}
     }
   }

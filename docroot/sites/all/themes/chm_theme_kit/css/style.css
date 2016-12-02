@@ -10543,15 +10543,15 @@ h2.pane-title {
   padding-left: .5em;
   margin-left: .3em;
 }
-.block-facetapi .facetapi-facetapi-checkbox-links li {
-  display: table;
-}
 .block-facetapi .facetapi-facetapi-checkbox-links input[type="checkbox"] {
-  margin-right: .3em;
-  display: table-cell;
+  position: absolute;
 }
-.block-facetapi .facetapi-facetapi-checkbox-links a {
-  display: table-cell;
+.block-facetapi .facetapi-facetapi-checkbox-links > li > span,
+.block-facetapi .facetapi-facetapi-checkbox-links > li a {
+  position: relative;
+  display: block;
+  left: 1.2em;
+  width: calc(100% - 1.2em);
 }
 .block-facetapi .facetapi-facetapi-checkbox-links a,
 .block-facetapi .facetapi-facetapi-checkbox-links a:hover {
