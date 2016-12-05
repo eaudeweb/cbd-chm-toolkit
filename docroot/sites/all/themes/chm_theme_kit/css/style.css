@@ -11218,7 +11218,7 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
 @media all and (max-width: 767px) {
   .view-home-page-image-slider .slick-content.well h2 > a {
     margin: 0;
-    font-size: 25px;
+    font-size: 24px;
   }
   .view-home-page-image-slider .slick-content.well a.more-link {
     margin: 0;
