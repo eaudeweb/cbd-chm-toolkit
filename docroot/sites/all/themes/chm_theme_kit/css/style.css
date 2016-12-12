@@ -9183,6 +9183,7 @@ body #admin-menu .dropdown li {
 }
 .breadcrumb {
   margin-bottom: 0;
+  margin-top: 10px;
   border-radius: 0;
 }
 @media (min-width: 768px) {
@@ -10675,6 +10676,8 @@ h2.pane-title {
   padding-bottom: .5em;
   border-bottom: 1px dashed #e6e6e6;
   margin-bottom: 1em;
+  font-size: 1.3em;
+  font-weight: bold;
 }
 .view-the-search-view .views-row {
   border-bottom: 1px solid #e6e6e6;
@@ -10749,6 +10752,16 @@ h2.pane-title {
 }
 .view-the-search-view .views-row .views-field-field-dates .field-content:not(:empty) > *:before {
   margin-right: .2em;
+}
+.view-the-search-view .views-row .views-field-field-government {
+  margin: 3px 0;
+}
+.view-the-search-view .views-row .views-field-field-government div,
+.view-the-search-view .views-row .views-field-field-government img {
+  display: inline;
+}
+.view-the-search-view .views-row .views-field-field-government .field-name-name-field {
+  margin-left: 5px;
 }
 @media all and (min-width: 480px) {
   .view-the-search-view .views-row .views-field.views-field-field-image {
@@ -10885,6 +10898,21 @@ table .views-field-title a,
 table .views-field-title a:hover {
   color: #06c;
 }
+#views-form-chm-sites-block-chm-network-sites th img.img-responsive {
+  margin-left: 8px;
+  display: inline;
+}
+#views-form-chm-sites-block-chm-network-sites th.views-field-field-image-et,
+#views-form-chm-sites-block-chm-network-sites td.views-field-field-image-et {
+  width: 7%;
+}
+#views-form-chm-sites-block-chm-network-sites th.views-field-title,
+#views-form-chm-sites-block-chm-network-sites td.views-field-title {
+  width: 25%;
+}
+#views-form-chm-sites-block-chm-network-sites th.views-field-field-url {
+  width: 60%;
+}
 .site-footer {
   padding-top: 40px;
   padding-bottom: 40px;
@@ -10907,7 +10935,6 @@ table .views-field-title a:hover {
 }
 #footer2 .footer-logo {
   float: left;
-  padding-top: 25px;
 }
 [dir="rtl"] #footer2 .footer-logo {
   float: right;
@@ -10932,7 +10959,6 @@ table .views-field-title a:hover {
 #footer2 .footer-support {
   float: right;
   text-align: left;
-  font-size: 11px;
 }
 [dir="rtl"] #footer2 .footer-support {
   float: left;
@@ -10955,7 +10981,7 @@ table .views-field-title a:hover {
   padding-left: 13px;
 }
 #footer2 .footer-support img {
-  max-height: 100px;
+  max-height: 80px;
 }
 #footer2 .region-footer .nav {
   text-align: center;

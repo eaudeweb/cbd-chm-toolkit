@@ -8,6 +8,7 @@
 }
 .breadcrumb {
   margin-bottom: 0;
+  margin-top: 10px;
   border-radius: 0;
   @media (min-width: @grid-float-breakpoint) {
     li:first-child {
@@ -1731,6 +1732,8 @@ body.node-type-species {
     padding-bottom: .5em;
     border-bottom: 1px dashed #e6e6e6;
     margin-bottom: 1em;
+    font-size: 1.3em;
+    font-weight: bold;
   }
   .views-row {
     border-bottom: 1px solid #e6e6e6;
@@ -1770,6 +1773,14 @@ body.node-type-species {
       .fa-icon-content(@fa-var-calendar);
       &:before {
         margin-right: .2em;
+      }
+    }
+
+    .views-field-field-government {
+      margin: 3px 0;
+      div, img { display: inline; }
+      .field-name-name-field {
+        margin-left: 5px;
       }
     }
   }
@@ -1913,4 +1924,14 @@ body.node-type-species {
 table .views-field-title a,
 table .views-field-title a:hover {
   color: @link-color-temp;
+}
+
+#views-form-chm-sites-block-chm-network-sites {
+  th img.img-responsive {
+    margin-left: 8px;
+    display: inline;
+  }
+  th.views-field-field-image-et, td.views-field-field-image-et { width: 7%; }
+  th.views-field-title, td.views-field-title { width: 25%; }
+  th.views-field-field-url { width: 60%; }
 }

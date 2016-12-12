@@ -45,41 +45,7 @@ function chm_sdg_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 6,
-    ),
-  );
-
-  // Exported field_instance: 'taxonomy_term-sdg-field_biodiversity_item_type'.
-  $field_instances['taxonomy_term-sdg-field_biodiversity_item_type'] = array(
-    'bundle' => 'sdg',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'i18n_taxonomy',
-        'settings' => array(),
-        'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 6,
-      ),
-    ),
-    'entity_type' => 'taxonomy_term',
-    'field_name' => 'field_biodiversity_item_type',
-    'label' => 'Type',
-    'required' => 1,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'apply_chosen' => '',
-      ),
-      'type' => 'options_select',
-      'weight' => 4,
+      'weight' => 7,
     ),
   );
 
@@ -137,7 +103,7 @@ function chm_sdg_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -259,7 +225,6 @@ function chm_sdg_field_default_field_instances() {
   t('Official name');
   t('Official text of the target but without number');
   t('Short name or title including target number');
-  t('Type');
 
   return $field_instances;
 }
