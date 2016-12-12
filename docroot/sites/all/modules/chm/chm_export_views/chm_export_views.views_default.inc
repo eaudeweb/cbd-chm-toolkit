@@ -11,18 +11,18 @@ function chm_export_views_views_default_views() {
   $export = array();
 
   $view = new view();
-  $view->name = 'export_cbd_nfp';
+  $view->name = 'export_content';
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'export cbd_nfp';
+  $view->human_name = 'Export content';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'export cbd_nfp';
+  $handler->display->display_options['title'] = 'Export content';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -34,6 +34,7 @@ function chm_export_views_views_default_views() {
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['pager']['options']['expose']['items_per_page'] = TRUE;
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options'] = '5, 10, 25, 50';
   $handler->display->display_options['pager']['options']['expose']['offset'] = TRUE;
   $handler->display->display_options['style_plugin'] = 'chm_export';
   /* Field: Content: Title */
@@ -48,6 +49,17 @@ function chm_export_views_views_default_views() {
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Contextual filter: Content: Type */
+  $handler->display->display_options['arguments']['type']['id'] = 'type';
+  $handler->display->display_options['arguments']['type']['table'] = 'node';
+  $handler->display->display_options['arguments']['type']['field'] = 'type';
+  $handler->display->display_options['arguments']['type']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['type']['default_argument_type'] = 'raw';
+  $handler->display->display_options['arguments']['type']['default_argument_options']['index'] = '0';
+  $handler->display->display_options['arguments']['type']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['type']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['type']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['type']['limit'] = '0';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -55,20 +67,13 @@ function chm_export_views_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'cbd_nfp' => 'cbd_nfp',
-  );
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'api/content/nfp';
-  $translatables['export_cbd_nfp'] = array(
+  $handler->display->display_options['path'] = 'api/content';
+  $translatables['export_content'] = array(
     t('Master'),
-    t('export cbd_nfp'),
+    t('Export content'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -82,23 +87,24 @@ function chm_export_views_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
+    t('All'),
     t('Page'),
   );
-  $export['export_cbd_nfp'] = $view;
+  $export['export_content'] = $view;
 
   $view = new view();
-  $view->name = 'export_subjects';
+  $view->name = 'export_terms';
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'taxonomy_term_data';
-  $view->human_name = 'export subjects';
+  $view->human_name = 'Export terms';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'export subjects';
+  $handler->display->display_options['title'] = 'Export terms';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -110,6 +116,7 @@ function chm_export_views_views_default_views() {
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['pager']['options']['expose']['items_per_page'] = TRUE;
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options'] = '5, 10, 25, 50';
   $handler->display->display_options['pager']['options']['expose']['offset'] = TRUE;
   $handler->display->display_options['style_plugin'] = 'chm_export';
   $handler->display->display_options['style_options']['plaintext_output'] = 1;
@@ -131,20 +138,23 @@ function chm_export_views_views_default_views() {
   $handler->display->display_options['fields']['name']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['name']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['name']['link_to_taxonomy'] = TRUE;
-  /* Filter criterion: Taxonomy vocabulary: Machine name */
-  $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
-  $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
-  $handler->display->display_options['filters']['machine_name']['field'] = 'machine_name';
-  $handler->display->display_options['filters']['machine_name']['value'] = array(
-    'subject' => 'subject',
-  );
+  /* Contextual filter: Taxonomy vocabulary: Machine name */
+  $handler->display->display_options['arguments']['machine_name']['id'] = 'machine_name';
+  $handler->display->display_options['arguments']['machine_name']['table'] = 'taxonomy_vocabulary';
+  $handler->display->display_options['arguments']['machine_name']['field'] = 'machine_name';
+  $handler->display->display_options['arguments']['machine_name']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['machine_name']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['machine_name']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['machine_name']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['machine_name']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['machine_name']['limit'] = '0';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'api/content/subjects';
-  $translatables['export_subjects'] = array(
+  $handler->display->display_options['path'] = 'api/terms';
+  $translatables['export_terms'] = array(
     t('Master'),
-    t('export subjects'),
+    t('Export terms'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -158,9 +168,10 @@ function chm_export_views_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
+    t('All'),
     t('Page'),
   );
-  $export['export_subjects'] = $view;
+  $export['export_terms'] = $view;
 
   return $export;
 }

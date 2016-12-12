@@ -32,7 +32,7 @@ function _chm_export_entity_as_json($entity, $id, $type) {
   $fields = field_info_instances($type, $bundle_name);
   $w = entity_metadata_wrapper($type, $entity);
   foreach (array_keys($fields) as $field_name) {
-    $res_field_name = str_replace('field_', '', $field_name);
+    $res_field_name = str_replace(['field_', '_field'], ['', ''], $field_name);
     $info = field_info_field($field_name);
     if ($field_name == 'field_files') {
       $files = array();
@@ -118,18 +118,20 @@ function _chm_export_entity_as_json($entity, $id, $type) {
       }
     }
 
-    if (($field_name == 'title_field') || ($field_name == 'name_field')) {
-      $data = array(str_replace('_field', '', $field_name) => $entity->{$field_name}) + $data;
-    }
-    else {
-      $data[$res_field_name] = $entity->{$field_name};
-    }
+    $data[$res_field_name] = $entity->{$field_name};
   }
   unset($data['field_data_source']);
   if ($type == 'node') {
     $aliases = array('default' => $base_url . '/node/' . $id);
     foreach (language_list() as $code => $language) {
       $aliases[$code] = url('node/' . $id, array('absolute' => TRUE, 'language' => $language));
+    }
+    $data['url'] = $aliases;
+  }
+  if ($type != 'node') {
+    $aliases = array('default' => $base_url . '/taxonomy/term/' . $id);
+    foreach (language_list() as $code => $language) {
+      $aliases[$code] = url('taxonomy/term/' . $id, array('absolute' => TRUE, 'language' => $language));
     }
     $data['url'] = $aliases;
   }
