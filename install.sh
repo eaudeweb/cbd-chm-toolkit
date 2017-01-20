@@ -1,6 +1,10 @@
 #!/bin/bash
-# Go to docroot/
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+WHITE='\033[1;37m'
+
+# Go to docroot/
 DIR="`pwd`"
 if [ -d "$DIR/docroot" ]; then
   cd docroot/
@@ -11,6 +15,12 @@ if [ ! -z "$1" ]; then
   env=$1
 fi
 
+db_en=`drush --exact --format=string vget environment`
+if [ "$db_en" == 'prod' ]; then
+  echo -e "${RED}Refusing to drop production db, aborting ...${WHITE}\n";
+  exit -1
+fi
+
 echo "Dropping all tables in database..."
 drush sql-drop -y
 echo
@@ -18,14 +28,12 @@ echo
 echo "Getting '$env' environment database..."
 drush sql-sync "@$env" @self -y
 
+echo "Configuring local development settings..."
+drush vset -y environment dev
+drush prepare-dev
+
 echo "Getting the files from @$env..."
 drush -v rsync "@$env:%files" @self:%files -y
-
-echo "Configuring local development settings..."
-drush vset environment dev
-drush prepare-dev
-# Enable modules
-# drush en -y devel simpletest
 
 drush cc all
 echo "Done!"
