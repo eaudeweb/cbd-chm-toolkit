@@ -30,10 +30,10 @@ drush sql-sync "@$env" @self -y
 
 echo "Configuring local development settings..."
 drush vset -y environment dev
-drush prepare-dev
+drush prepare-dev -y
 
 echo "Getting the files from @$env..."
-drush -v rsync "@$env:%files" @self:%files -y
+drush -v rsync -y "@$env:%files" @self:%files
 
 drush cc all
 echo "Done!"
