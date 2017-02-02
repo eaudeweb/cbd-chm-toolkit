@@ -85,7 +85,7 @@ function drush_chm_service_consumer_nfp_purge_orphans() {
 
   $rows = db_select('migrate_map_' . $migration_name, 'm')
     ->fields('m', array('sourceid1', 'destid1'))
-    ->isNotNull('destid1')
+    ->isNotNull('sourceid1')
     ->execute()
     ->fetchAllKeyed(0, 1);
   $total_destination = count($rows);
@@ -113,13 +113,13 @@ function drush_chm_service_consumer_nfp_purge_orphans() {
   $deleted = 0;
   foreach($rows as $source_id => $nid) {
     if (!@$source_ids[$source_id]) {
-//      echo "Orphaned source_id = " . $source_id . ", dest_id = " . $nid . "\n";
-//      $orphaned++;
       if (!$dry_run) {
         chm_service_consumer_log(__METHOD__ . "(): Deleting orphan record: $source_id ($nid)", MigrationBase::MESSAGE_INFORMATIONAL);
-//        node_delete($nid);
-        $deleted++;
-//        $migration->getMap()->delete(array($source_id));
+        if ($nid) {
+          node_delete($nid);
+          $deleted++;
+        }
+        $migration->getMap()->delete(array($source_id));
       } else {
         chm_service_consumer_log(__METHOD__ . "(): Found orphan record: $source_id ($nid)", MigrationBase::MESSAGE_INFORMATIONAL);
         $orphaned++;
@@ -135,5 +135,4 @@ function drush_chm_service_consumer_nfp_purge_orphans() {
   else {
     chm_service_consumer_log(__METHOD__ . "(): Found {$orphaned} orphan records", MigrationBase::MESSAGE_INFORMATIONAL);
   }
-//  echo "Orphaned = $orphaned \n";
 }
