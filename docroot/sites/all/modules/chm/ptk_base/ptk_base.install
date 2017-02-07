@@ -34,3 +34,11 @@ function ptk_base_update_7003() {
   db_delete('block')->condition('delta', 'chm_network_sites')->execute();
   db_delete('cache_bootstrap')->execute();
 }
+
+/**
+ * Update information menu attributes classes
+ */
+function ptk_base_update_7004() {
+  db_delete('block')->condition('delta', 'menu-information-menu')->execute();
+  ptk_base_update_information_menus();
+}
