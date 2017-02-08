@@ -10,12 +10,94 @@ require_once dirname(__FILE__) . '/ChmProtectedPlanetSettingsForm.php';
 require_once dirname(__FILE__) . '/ChmUserLoginForm.php';
 require_once dirname(__FILE__) . '/ChmUserAdminAccountForm.php';
 
+function ptk_base_add_domain_menu(&$form, &$form_state) {
+  $main_menu = variable_get('menu_main_links_source', 'main-menu');
+
+  $link = $form['#node']->menu;
+  $type = $form['#node']->type;
+
+  $item = $link['mlid'] ? $link : $type;
+
+  if (!is_array($item)) {
+    // If $item is not an array then it is a node type.
+    // Use it as $type and prepare a dummy menu item for _menu_get_options().
+    $type = $item;
+    $item = array('mlid' => 0);
+  }
+  $options = _menu_get_options(menu_get_menus(), [$main_menu => $main_menu], $item);
+  // If no possible parent menu items were found, there is nothing to display.
+  if (empty($options)) {
+    return;
+  }
+  // Populate the element with the link data.
+  foreach (array('mlid', 'module', 'hidden', 'has_children', 'customized', 'options', 'expanded', 'hidden', 'parent_depth_limit') as $key) {
+    $form['menu']['link'][$key] = array('#type' => 'value', '#value' => $link[$key]);
+  }
+
+  $default = ($link['mlid'] ? $link['menu_name'] . ':' . $link['plid'] : variable_get('menu_parent_' . $type, 'main-menu:0'));
+  if (!isset($options[$default])) {
+    $array = array_keys($options);
+    $default = reset($array);
+  }
+  $form['menu']['link']['parent'] = array(
+    '#type' => 'select',
+    '#title' => t('Parent item'),
+    '#default_value' => $default,
+    '#options' => $options,
+    '#attributes' => array('class' => array('menu-parent-select')),
+  );
+}
+
+function ptk_base_node_prepare($node) {
+  $main_menu = variable_get('menu_main_links_source', 'main-menu');
+
+  $item = array();
+  if (isset($node->nid)) {
+    $mlid = db_query_range("SELECT mlid FROM {menu_links} WHERE link_path = :path AND menu_name = :menu_name AND module = 'menu' ORDER BY mlid ASC", 0, 1, array(
+      ':path' => 'node/' . $node->nid,
+      ':menu_name' => $main_menu,
+    ))->fetchField();
+
+    // Check all allowed menus if a link does not exist in the default menu.
+    if (!$mlid) {
+      $mlid = db_query_range("SELECT mlid FROM {menu_links} WHERE link_path = :path AND module = 'menu' AND menu_name IN (:type_menus) ORDER BY mlid ASC", 0, 1, array(
+        ':path' => 'node/' . $node->nid,
+        ':type_menus' => [$main_menu],
+      ))->fetchField();
+    }
+    if ($mlid) {
+      $item = menu_link_load($mlid);
+    }
+  }
+  // Set default values.
+  $node->menu = $item + array(
+      'link_title' => '',
+      'mlid' => 0,
+      'plid' => 0,
+      'menu_name' => $main_menu,
+      'weight' => 0,
+      'options' => array(),
+      'module' => 'menu',
+      'expanded' => 0,
+      'hidden' => 0,
+      'has_children' => 0,
+      'customized' => 0,
+    );
+
+  // Find the depth limit for the parent select.
+  if (!isset($node->menu['parent_depth_limit'])) {
+    $node->menu['parent_depth_limit'] = _menu_parent_depth_limit($node->menu);
+  }
+}
 
 /**
  * Implements hook_form_alter().
  * @inheritdoc
  */
 function ptk_base_form_alter(&$form, &$form_state, $form_id) {
+  if (strpos($form_id, '_node_form')) {
+    ptk_base_add_domain_menu($form, $form_state);
+  }
   if ($form_id == 'entityqueue_subqueue_edit_form') {
     $form['eq_node']['und']['add']['entity']['#size'] = 140;
     $form['eq_node']['und']['add']['entity']['#title'] = t('Type few characters to search by item name');
