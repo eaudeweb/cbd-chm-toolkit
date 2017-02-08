@@ -317,6 +317,7 @@ class ChmDomainForm {
             if (!empty($node->nid)) {
               // Show the Information block on this page
               PTK::showBlockOnPage('chm_information_page', 'node/' . $node->nid);
+              PTK::showBlockOnPage('chm_information_page', 'node/' . $node->nid, 'bootstrap' );
             }
             break;
           case 'participate':
