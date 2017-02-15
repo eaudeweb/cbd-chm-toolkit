@@ -48,6 +48,9 @@ function ptk_base_add_domain_menu(&$form, &$form_state) {
   );
 }
 
+/**
+ * Implements hook_node_prepare().
+ */
 function ptk_base_node_prepare($node) {
   $main_menu = variable_get('menu_main_links_source', 'main-menu');
 
