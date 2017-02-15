@@ -1,8 +1,8 @@
 <?php
 
-define ('ADMINISTATOR_ROLE', 'administrator');
-
 class PTK {
+
+  const ROLE_ADMINISTRATOR = 'administrator';
 
   public static function getCountryListAsOptions() {
     $ret = [];
@@ -267,15 +267,14 @@ class PTK {
    *   TRUE if the user is administrator
    */
   static function userIsAdministrator($account = NULL) {
-    $subject = $account;
     if (empty($account)) {
       global $user;
-      $subject = $user;
+      $account = $user;
     }
-    if ($subject->uid == 1) {
-      return TRUE;
+    if ($account->uid == 1) {
+      return true;
     }
-    return in_array(ADMINISTATOR_ROLE, $subject->roles);
+    return in_array(self::ROLE_ADMINISTRATOR, $account->roles);
   }
 
 

@@ -413,4 +413,34 @@ class PTKDomain {
     }
     return isset($domains[$domain_id]) ? $domains[$domain_id] : '';
   }
+
+  /**
+   * Determine if user can view an entity queue in queue list.
+   *
+   * @param string $queue_id
+   *   Queue machine name
+   * @param null $account
+   *   Account, if null current user
+   * @return bool
+   *   true if user can view the queue in queue list
+   */
+  public static function userCanViewQueue($queue_id, $account = NULL) {
+    if (empty($account)) {
+      global $user;
+      $account = $user;
+    }
+    if (PTK::userIsAdministrator($account)) {
+      return true;
+    }
+    $domain = domain_get_domain();
+    domain_user_set($account);
+    if (
+      user_access('manipulate all entityqueues', $account)
+      && strpos($queue_id, '_' . $domain['machine_name'])
+      && array_key_exists($domain['domain_id'], $account->domain_user)) {
+      return true;
+    }
+
+    return false;
+  }
 }
