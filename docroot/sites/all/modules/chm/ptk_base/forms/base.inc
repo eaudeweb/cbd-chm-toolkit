@@ -10,6 +10,16 @@ require_once dirname(__FILE__) . '/ChmProtectedPlanetSettingsForm.php';
 require_once dirname(__FILE__) . '/ChmUserLoginForm.php';
 require_once dirname(__FILE__) . '/ChmUserAdminAccountForm.php';
 
+/**
+ * This function is altering the node form. In the form tab at the bottom called
+ * "Menu settings", when checked, it replaces the menu links provided by Drupal
+ * with the menu links from the current domain.
+ *
+ * @param array $form
+ *   Form to alter
+ * @param array $form_state
+ *   Unused
+ */
 function ptk_base_add_domain_menu(&$form, &$form_state) {
   $main_menu = variable_get('menu_main_links_source', 'main-menu');
 
