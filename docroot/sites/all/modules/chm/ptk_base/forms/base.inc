@@ -10,6 +10,26 @@ require_once dirname(__FILE__) . '/ChmProtectedPlanetSettingsForm.php';
 require_once dirname(__FILE__) . '/ChmUserLoginForm.php';
 require_once dirname(__FILE__) . '/ChmUserAdminAccountForm.php';
 
+function _ptk_base_menu_link_check_expanded($link) {
+  for($i=1; $i <= $link['depth']; $i++) {
+    $mlid = $link['p' . $i];
+    if ($mlid ) {
+      $menu_link = menu_link_load($mlid);
+      if (!$menu_link['expanded']) {
+        $menu_link['expanded'] = 1;
+        menu_link_save($menu_link);
+      }
+    }
+  }
+}
+function ptk_base_menu_link_insert($link) {
+  _ptk_base_menu_link_check_expanded($link);
+}
+
+function ptk_base_menu_link_update($link) {
+  _ptk_base_menu_link_check_expanded($link);
+}
+
 /**
  * This function is altering the node form. In the form tab at the bottom called
  * "Menu settings", when checked, it replaces the menu links provided by Drupal
