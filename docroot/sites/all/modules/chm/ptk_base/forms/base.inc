@@ -131,6 +131,25 @@ function ptk_base_form_alter(&$form, &$form_state, $form_id) {
   if (strpos($form_id, '_node_form')) {
     ptk_base_add_domain_menu($form, $form_state);
   }
+
+  if ($form_id == 'views_exposed_form') { // todo add domain check
+    $query = db_select('field_data_field_document_type', 'dt')
+      ->fields('dt', array('field_document_type_tid'))->distinct();
+    $query->join('node', 'n', 'n.nid = dt.entity_id');
+    $query->condition('n.status', 1);
+    $used_tids = $query->execute()->fetchCol();
+    $options = [];
+    foreach($form['field_document_type_tid']['#options'] as $tid => $option) {
+      if (!in_array($tid, $used_tids)) {
+        if ($tid != 'All') {
+          continue;
+        }
+      }
+      $options[$tid] = $option;
+    }
+    $form['field_document_type_tid']['#options'] = $options;
+  }
+
   if ($form_id == 'entityqueue_subqueue_edit_form') {
     $form['eq_node']['und']['add']['entity']['#size'] = 140;
     $form['eq_node']['und']['add']['entity']['#title'] = t('Type few characters to search by item name');
