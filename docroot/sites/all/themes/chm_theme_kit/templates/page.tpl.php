@@ -178,7 +178,12 @@
          <?php echo theme('ptk_base_footer_support'); ?>
        </div>
        <div class="clearfix"></div>
-       <?php print render($page['footer']); ?>
+       <?php
+       $search = '</li>
+</ul>';
+       $replace = '</li><li class="leaf copyright">' . $copyright . '</li></ul>';
+       print str_replace($search, $replace, render($page['footer']));
+       ?>
      </div>
   </div>
 </div>
