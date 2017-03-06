@@ -477,12 +477,20 @@ class ChmDomainForm {
     $exists = menu_load($menu['menu_name']);
     if (!$exists) {
       menu_save($menu);
+      _block_rehash('bootstrap');
+      _block_rehash('chm_theme_kit');
       db_update('block')
         ->condition('delta', $menu['menu_name'])
         ->condition('theme', 'chm_theme_kit')
-        ->fields(['status' => 1])
-        ->fields(['region' => 'footer'])
-        ->fields(['title' => '<none>'])
+        ->fields(['region' => 'footer', 'status' => 1, 'title' => '<none>'])
+        ->execute();
+      db_insert('domain_path')
+        ->fields(array(
+          'module' => 'menu',
+          'delta' => $menu['menu_name'],
+          'realm' => 'domain_id',
+          'domain_id' => $domain['domain_id'],
+        ))
         ->execute();
     }
     if ($populate_footer_menu) {
