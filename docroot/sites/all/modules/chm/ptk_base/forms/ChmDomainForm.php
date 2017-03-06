@@ -484,7 +484,7 @@ class ChmDomainForm {
         ->condition('theme', 'chm_theme_kit')
         ->fields(['region' => 'footer', 'status' => 1, 'title' => '<none>'])
         ->execute();
-      db_insert('domain_path')
+      db_insert('domain_blocks')
         ->fields(array(
           'module' => 'menu',
           'delta' => $menu['menu_name'],
