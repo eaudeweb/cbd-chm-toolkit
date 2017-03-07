@@ -132,23 +132,9 @@ function ptk_base_form_alter(&$form, &$form_state, $form_id) {
     ptk_base_add_domain_menu($form, $form_state);
   }
 
-  if ($form_id == 'views_exposed_form') { // todo add domain check
+  if ($form_id == 'views_exposed_form') {
     if (@$form_state['view'] && $form_state['view']->name == 'documents') {
-      $query = db_select('field_data_field_document_type', 'dt')
-        ->fields('dt', array('field_document_type_tid'))->distinct();
-      $query->join('node', 'n', 'n.nid = dt.entity_id');
-      $query->condition('n.status', 1);
-      $used_tids = $query->execute()->fetchCol();
-      $options = [];
-      foreach($form['field_document_type_tid']['#options'] as $tid => $option) {
-        if (!in_array($tid, $used_tids)) {
-          if ($tid != 'All') {
-            continue;
-          }
-        }
-        $options[$tid] = $option;
-      }
-      $form['field_document_type_tid']['#options'] = $options;
+      $form['field_document_type_tid']['#options'] = PTK::getDocumentsOptionsInUse($form);
     }
   }
 
