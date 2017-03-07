@@ -55,6 +55,19 @@ function _chm_export_entity_as_json($entity, $id, $type) {
         $entity->{$field_name}[LANGUAGE_NONE][$key] = $element;
       }
     }
+
+    if ($info['type'] == 'image') {
+      if ($entity->{$field_name}) {
+        foreach ($entity->{$field_name} as $language => $elements) {
+          foreach ($elements as $idx => $element) {
+            if ($element['uri']) {
+              $entity->{$field_name}[$language][$idx]['url'] = file_create_url($element['uri']);
+            }
+          }
+        }
+      }
+    }
+
     if ($info['type'] == 'entityreference') {
       $data[$field_name] = array();
       if ($field_name == 'field_country') {
