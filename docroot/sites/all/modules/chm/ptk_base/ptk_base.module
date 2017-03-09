@@ -124,6 +124,16 @@ function ptk_base_menu() {
       'type' => MENU_LOCAL_TASK,
       'description' => 'Protected Planet integration',
     ],
+
+    'admin/config/system/chm_website_information_settings' => [
+      'title' => 'Site details',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => ['ptk_base_site_information_settings'],
+      'access arguments' => ['configure chm website settings'],
+      'description' => 'Change site name, slogan.',
+      'weight' => -19,
+    ],
+
     'admin/config/system/chm_website_settings' => [
       'title' => 'CHM website settings',
       'page callback' => 'ptk_base_admin_variables',
@@ -613,9 +623,53 @@ function ptk_base_admin_variables() {
   $domain = domain_get_domain();
   $realm_key = _domain_variable_realm_key($domain);
   module_load_include('form.inc', 'variable_realm');
-  return drupal_get_form('variable_realm_edit_variables_form', 'domain', $realm_key);
+  
+  $build = drupal_get_form('variable_realm_edit_variables_form', 'domain', $realm_key);
+  unset($build['variables']['site_information']['site_name']);
+  unset($build['variables']['site_information']['site_slogan']);
+
+  return $build;
 }
 
+/**
+ * Site name and Slogan settings form
+ */
+function ptk_base_site_information_settings() {
+  $form['site_information'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Site details'),
+  );
+  $form['site_information']['site_name'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Site name'),
+    '#default_value' => variable_get('site_name', 'Drupal'),
+    '#required' => TRUE
+  );
+  $form['site_information']['site_slogan'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Slogan'),
+    '#default_value' => variable_get('site_slogan', ''),
+    '#description' => t("How this is used depends on your site's theme."),
+  );
+
+  return system_settings_form($form);
+}
+
+/**
+ * Implements hook_init()
+ *
+ * Let realms be overriden by query string parameters, but only for:
+ * - Admin paths (not variable realm admin pages)
+ * - add realm for users with 'configure chm website settings' permissions
+ */
+function ptk_base_init() {
+  if (arg(0) == 'admin' && (arg(3) == 'chm_website_information_settings') && ($params = variable_realm_params()) && !user_access('administer site configuration') && user_access('configure chm website settings') ) {
+    foreach ($params as $realm_name => $realm_key) {
+      variable_realm_switch($realm_name, $realm_key, FALSE);
+    }
+    variable_realm_rebuild();
+  }
+}
 
 /**
  * Implements hook_user_is_administrator().
