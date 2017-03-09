@@ -26,6 +26,7 @@ function chm_theme_kit_preprocess_html(&$variables) {
 }
 
 function chm_theme_kit_preprocess_page(&$vars) {
+  $vars['copyright'] = t('&copy; !year CBD Secretariat', array('!year' => date('Y')));
   if (!empty($vars['navbar_classes_array'])) {
     if ($idx = array_search('container', $vars['navbar_classes_array'])) {
       unset($vars['navbar_classes_array'][$idx]);
