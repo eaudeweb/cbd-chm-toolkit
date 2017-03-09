@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * EU Cookie Compliance popup settings
+ *
+ */
+function chm_structure_update_7001() {
+  global $language;
+  $popup_settings = variable_get('eu_cookie_compliance_' . $language->language, array());
+  $popup_settings['popup_agreed_enabled'] = 0;
+  $popup_settings['popup_hide_agreed'] = 0;
+  variable_set('eu_cookie_compliance_' . $language->language, $popup_settings);
+}

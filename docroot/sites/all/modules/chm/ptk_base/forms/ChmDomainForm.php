@@ -110,9 +110,14 @@ class ChmDomainForm {
     if (empty($domain['machine_name'])) {
       $domain['machine_name'] = $form_state['values']['machine_name'];
     }
-    if ($countryIsoCode = $form_state['values']['country']) {
-      PTKDomain::variable_set('country', $countryIsoCode, $domain);
+
+    $countryIsoCode = NULL;
+    if (!PTKDomain::isDefaultDomain($domain)) {
+      if ($countryIsoCode = $form_state['values']['country']) {
+        PTKDomain::variable_set('country', $countryIsoCode, $domain);
+      }
     }
+
     cache_clear_all();
     if (!empty($form['#is_new'])) {
       $machine_name = $form_state['values']['machine_name'];
