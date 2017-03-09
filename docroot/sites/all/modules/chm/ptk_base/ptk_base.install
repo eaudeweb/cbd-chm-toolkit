@@ -36,7 +36,7 @@ function ptk_base_update_7003() {
 }
 
 /**
- * Increase term.name column size.
+ * Fix term.name for badly migrated terms.
  */
 function ptk_base_update_7004() {
   $query = new EntityFieldQuery();
