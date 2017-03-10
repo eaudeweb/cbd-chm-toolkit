@@ -131,6 +131,13 @@ function ptk_base_form_alter(&$form, &$form_state, $form_id) {
   if (strpos($form_id, '_node_form')) {
     ptk_base_add_domain_menu($form, $form_state);
   }
+
+  if ($form_id == 'views_exposed_form') {
+    if (@$form_state['view'] && $form_state['view']->name == 'documents') {
+      $form['field_document_type_tid']['#options'] = PTK::getDocumentsOptionsInUse($form);
+    }
+  }
+
   if ($form_id == 'entityqueue_subqueue_edit_form') {
     $form['eq_node']['und']['add']['entity']['#size'] = 140;
     $form['eq_node']['und']['add']['entity']['#title'] = t('Type few characters to search by item name');
