@@ -15,8 +15,9 @@ echo -e " \___|_| |_|_| |_| |_|\__\___/ \___/|_|_|\_\_|\__|"
 echo -e "                        kool stuff is happenning..."
 echo -e ""
 
-env=`drush vget --exact environment`
-if [ "$env" != 'test' ]; then
+# Avoid dropping non-local environments
+db_en=`drush --exact --format=string vget environment`
+if [ "$?" == 0 ] && [ "$db_en" != 'test' ]; then
   echo -e "${RED}ERROR: Refusing to destroy the current environment ($env). Please set environment to 'test' (drush vset environment test)\n";
   exit -1
 fi
