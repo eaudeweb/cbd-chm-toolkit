@@ -78,7 +78,7 @@ function _drush_prepare_development_domains(&$domain) {
   $replacements = array(
     'www.' => 'chm7.',
     'demo.' => 'chm7-demo.',
-    'new-' => 'chm7-',
+    'test-' => 'chm7-',
     'old-' => 'chm7-',
     '.chm-cbd.net' => '.local.ro'
   );
@@ -96,9 +96,9 @@ function _drush_prepare_development_domains(&$domain) {
     else {
       $domain['subdomain'] = str_replace('.chm-cbd.net', '.local.ro', $domain['subdomain']);
       $domain['path'] = str_replace('.chm-cbd.net', '.local.ro', $domain['path']);
-      if (strpos($domain['subdomain'], 'new-') !== FALSE) {
-        $domain['subdomain'] = str_replace('new-', '', $domain['subdomain']);
-        $domain['path'] = str_replace('new-', '', $domain['path']);
+      if (strpos($domain['subdomain'], 'test-') !== FALSE) {
+        $domain['subdomain'] = str_replace('test-', '', $domain['subdomain']);
+        $domain['path'] = str_replace('test-', '', $domain['path']);
       }
       if ($country = PTKDomain::getPortalCountry($domain)) {
         $code = entity_metadata_wrapper('taxonomy_term', $country)->field_iso_code->value();
@@ -150,16 +150,16 @@ function _drush_prepare_test_existing_domains(&$domain) {
   $domain['scheme'] = 'http';
   switch($domain['subdomain']) {
     case 'biodiversity-albania.chm-cbd.net':
-      $domain['subdomain'] = 'new-al.chm-cbd.net';
-      $domain['path'] = 'http://new-al.chm-cbd.net';
+      $domain['subdomain'] = 'test-al.chm-cbd.net';
+      $domain['path'] = 'http://test-al.chm-cbd.net';
       break;
     case 'biodiversity-kazakhstan.chm-cbd.net':
-      $domain['subdomain'] = 'new-kz.local.ro';
-      $domain['path'] = 'http://new-kz.local.ro';
+      $domain['subdomain'] = 'test-kz.local.ro';
+      $domain['path'] = 'http://test-kz.local.ro';
       break;
     default:
       $subjects = array('www.' , 'demo.');
-      $replaces = array('new-www.', 'new-demo.');
+      $replaces = array('test-www.', 'test-demo.');
       $domain['subdomain'] = str_replace($subjects, $replaces, $domain['subdomain']);
       $domain['path'] = str_replace($subjects, $replaces, $domain['path']);
   }
@@ -209,139 +209,139 @@ function _drush_chm_create_test_domains() {
   );
   $domains = array();
   $domains['biodiversity_armenia'] = $defaults + array(
-      'subdomain' => 'new-am.chm-cbd.net',
+      'subdomain' => 'test-am.chm-cbd.net',
       'sitename' => 'Biodiversity Armenia',
       'country' => 'am',
       'language_list' => array('en' => 'en', 'hy' => 'hy'),
   );
   $domains['biodiversity_azerbaijan'] = $defaults + array(
-      'subdomain' => 'new-az.chm-cbd.net',
+      'subdomain' => 'test-az.chm-cbd.net',
       'sitename' => 'Biodiversity Azerbaijan',
       'machine_name' => 'biodiversity_azerbaijan',
       'country' => 'az',
       'language_list' => array('en' => 'en', 'az' => 'az'),
   );
   $domains['biodiversity_bosnia_herzegovina'] = $defaults + array(
-      'subdomain' => 'new-ba.chm-cbd.net',
+      'subdomain' => 'test-ba.chm-cbd.net',
       'sitename' => 'Biodiversity Bosnia & Herzegovina',
       'machine_name' => 'biodiversity_bosnia_herzegovina',
       'country' => 'ba',
       'language_list' => array('en' => 'en', 'bs' => 'bs'),
   );
   $domains['biodiversity_bulgaria'] = $defaults + array(
-      'subdomain' => 'new-bg.chm-cbd.net',
+      'subdomain' => 'test-bg.chm-cbd.net',
       'sitename' => 'Biodiversity Bulgaria',
       'machine_name' => 'biodiversity_bulgaria',
       'country' => 'bg',
       'language_list' => array('en' => 'en', 'bg' => 'bg'),
   );
   $domains['biodiversity_kyrgyzstan'] = $defaults + array(
-      'subdomain' => 'new-kg.chm-cbd.net',
+      'subdomain' => 'test-kg.chm-cbd.net',
       'sitename' => 'Biodiversity Kyrgyzstan',
       'machine_name' => 'biodiversity_kyrgyzstan',
       'country' => 'kg',
       'language_list' => array('en' => 'en', 'ru' => 'ru', 'ky' => 'ky'),
   );
   $domains['biodiversity_serbia'] = $defaults + array(
-      'subdomain' => 'new-rs.chm-cbd.net',
+      'subdomain' => 'test-rs.chm-cbd.net',
       'sitename' => 'Biodiversity Serbia',
       'machine_name' => 'biodiversity_serbia',
       'country' => 'rs',
       'language_list' => array('en' => 'en', 'sr' => 'sr'),
   );
   $domains['biodiversity_tajikistan'] = $defaults + array(
-      'subdomain' => 'new-tj.chm-cbd.net',
+      'subdomain' => 'test-tj.chm-cbd.net',
       'sitename' => 'Biodiversity Tajikistan',
       'machine_name' => 'biodiversity_tajikistan',
       'country' => 'tj',
       'language_list' => array('en' => 'en', 'ru' => 'ru', 'tg' => 'tg'),
   );
   $domains['biodiversity_turkmenistan'] = $defaults + array(
-      'subdomain' => 'new-tm.chm-cbd.net',
+      'subdomain' => 'test-tm.chm-cbd.net',
       'sitename' => 'Biodiversity Turkmenistan',
       'machine_name' => 'biodiversity_turkmenistan',
       'country' => 'tm',
       'language_list' => array('en' => 'en', 'ru' => 'ru', 'tk' => 'tk'),
   );
   $domains['biodiversity_ukraine'] = $defaults + array(
-      'subdomain' => 'new-ua.chm-cbd.net',
+      'subdomain' => 'test-ua.chm-cbd.net',
       'sitename' => 'Biodiversity Ukraine',
       'machine_name' => 'biodiversity_ukraine',
       'country' => 'ua',
       'language_list' => array('en' => 'en', 'uk' => 'uk'),
   );
   $domains['biodiversity_fiji'] = $defaults + array(
-      'subdomain' => 'new-fj.chm-cbd.net',
+      'subdomain' => 'test-fj.chm-cbd.net',
       'sitename' => 'Biodiversity Fiji',
       'machine_name' => 'biodiversity_fiji',
       'country' => 'fj',
       'language_list' => array('en' => 'en', 'fj' => 'fj', 'hi' => 'hi'),
   );
   $domains['biodiversity_kiribati'] = $defaults + array(
-      'subdomain' => 'new-ki.chm-cbd.net',
+      'subdomain' => 'test-ki.chm-cbd.net',
       'sitename' => 'Biodiversity Kiribati',
       'machine_name' => 'biodiversity_kiribati',
       'country' => 'ki',
       'language_list' => array('en' => 'en'),
   );
   $domains['biodiversity_marshall_islands'] = $defaults + array(
-      'subdomain' => 'new-mh.chm-cbd.net',
+      'subdomain' => 'test-mh.chm-cbd.net',
       'sitename' => 'Biodiversity Marshall Islands',
       'machine_name' => 'biodiversity_marshall_islands',
       'country' => 'mh',
       'language_list' => array('en' => 'en'),
   );
   $domains['biodiversity_micronesia'] = $defaults + array(
-      'subdomain' => 'new-fm.chm-cbd.net',
+      'subdomain' => 'test-fm.chm-cbd.net',
       'sitename' => 'Biodiversity Micronesia',
       'machine_name' => 'biodiversity_micronesia',
       'country' => 'fm',
       'language_list' => array('en' => 'en'),
   );
   $domains['biodiversity_niue'] = $defaults + array(
-      'subdomain' => 'new-nu.chm-cbd.net',
+      'subdomain' => 'test-nu.chm-cbd.net',
       'sitename' => 'Biodiversity Niue',
       'machine_name' => 'biodiversity_niue',
       'country' => 'nu',
       'language_list' => array('en' => 'en'),
   );
   $domains['biodiversity_palau'] = $defaults + array(
-      'subdomain' => 'new-pw.chm-cbd.net',
+      'subdomain' => 'test-pw.chm-cbd.net',
       'sitename' => 'Biodiversity Palau',
       'machine_name' => 'biodiversity_palau',
       'country' => 'pw',
       'language_list' => array('en' => 'en'),
   );
   $domains['biodiversity_solomon_islands'] = $defaults + array(
-      'subdomain' => 'new-sb.chm-cbd.net',
+      'subdomain' => 'test-sb.chm-cbd.net',
       'sitename' => 'Biodiversity Solomon Islands',
       'machine_name' => 'biodiversity_solomon_islands',
       'country' => 'sb',
       'language_list' => array('en' => 'en', 'pis' => 'pis'),
   );
   $domains['biodiversity_tonga'] = $defaults + array(
-      'subdomain' => 'new-to.chm-cbd.net',
+      'subdomain' => 'test-to.chm-cbd.net',
       'sitename' => 'Biodiversity Tonga',
       'machine_name' => 'biodiversity_tonga',
       'country' => 'to',
       'language_list' => array('en' => 'en'),
   );
   $domains['biodiversity_tuvalu'] = $defaults + array(
-      'subdomain' => 'new-tv.chm-cbd.net',
+      'subdomain' => 'test-tv.chm-cbd.net',
       'sitename' => 'Biodiversity Tuvalu',
       'machine_name' => 'biodiversity_tuvalu',
       'country' => 'tv',
       'language_list' => array('en' => 'en'),
   );
   $domains['biodiversity_vanuatu'] = $defaults + array(
-      'subdomain' => 'new-vu.chm-cbd.net',
+      'subdomain' => 'test-vu.chm-cbd.net',
       'sitename' => 'Biodiversity Vanuatu',
       'machine_name' => 'biodiversity_vanuatu',
       'country' => 'vu',
       'language_list' => array('en' => 'en', 'fr' => 'fr', 'bi' => 'bi'),
   );
   $domains['biodiversity_samoa'] = $defaults + array(
-      'subdomain' => 'new-ws.chm-cbd.net',
+      'subdomain' => 'test-ws.chm-cbd.net',
       'sitename' => 'Biodiversity Samoa',
       'machine_name' => 'biodiversity_samoa',
       'country' => 'ws',
