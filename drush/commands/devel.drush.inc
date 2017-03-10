@@ -75,13 +75,6 @@ function _drush_prepare_dev() {
 
 
 function _drush_prepare_development_domains(&$domain) {
-  $replacements = array(
-    'www.' => 'chm7.',
-    'demo.' => 'chm7-demo.',
-    'test-' => 'chm7-',
-    'old-' => 'chm7-',
-    '.chm-cbd.net' => '.local.ro'
-  );
   foreach (domain_domains() as $id => $domain) {
     $domain = domain_load($id);
     $domain['scheme'] = 'http';
@@ -126,44 +119,38 @@ function _drush_prepare_test() {
   if (!drush_confirm('Are you sure you want to alter the current instance?')) {
     return;
   }
+  _drush_devel_update_solr_path();
+  // Fix existing domains
   foreach (domain_domains() as $id => $domain) {
     $domain = domain_load($id);
-    _drush_prepare_test_existing_domains($domain);
-    drush_log('Configuring ' . $domain['scheme'] . '://' . $domain['subdomain'], 'ok');
+    $domain['scheme'] = 'http';
+    if ($id == 1) { // www
+      $domain['subdomain'] = 'test-www.chm-cbd.net';
+      $domain['path'] = 'http://test-www.chm-cbd.net/';
+    }
+    else if ($id == 3) { // demo
+      $domain['subdomain'] = 'test-demo.chm-cbd.net';
+      $domain['path'] = 'http://test-demo.chm-cbd.net/';
+    }
+    else {
+      $domain['subdomain'] = str_replace('new-', 'test-', $domain['subdomain']);
+      $domain['path'] = str_replace('new-', 'test-', $domain['path']);
+
+      // Force country assigned domain to predictible DNS name
+      if ($country = PTKDomain::getPortalCountry($domain)) {
+        $code = entity_metadata_wrapper('taxonomy_term', $country)->field_iso_code->value();
+        $code = strtolower($code);
+        $domain['subdomain'] = "test-{$code}.chm-cbd.net";
+        $domain['path'] = "http://test-{$code}.chm-cbd.net";
+      }
+    }
+    drush_log('Configuring ' . $domain['path'] . ' (' . $domain['subdomain'] . ')', 'ok');
     domain_save($domain);
   }
-  /** @var SearchApiServer $server */
-  if ($server = search_api_server_load('apache_solr_search_server')) {
-    if ($server->options['path'] != '/solr/chm-test') {
-      drush_log('Updating Solr server path to /solr/chm-test', 'ok');
-      $server->options['path'] = '/solr/chm-test';
-      $server->save();
-    }
-  }
-
-  _drush_devel_update_solr_path();
+  // Create new domains
   _drush_chm_create_test_domains();
 }
 
-
-function _drush_prepare_test_existing_domains(&$domain) {
-  $domain['scheme'] = 'http';
-  switch($domain['subdomain']) {
-    case 'biodiversity-albania.chm-cbd.net':
-      $domain['subdomain'] = 'test-al.chm-cbd.net';
-      $domain['path'] = 'http://test-al.chm-cbd.net';
-      break;
-    case 'biodiversity-kazakhstan.chm-cbd.net':
-      $domain['subdomain'] = 'test-kz.local.ro';
-      $domain['path'] = 'http://test-kz.local.ro';
-      break;
-    default:
-      $subjects = array('www.' , 'demo.');
-      $replaces = array('test-www.', 'test-demo.');
-      $domain['subdomain'] = str_replace($subjects, $replaces, $domain['subdomain']);
-      $domain['path'] = str_replace($subjects, $replaces, $domain['path']);
-  }
-}
 
 /**
  * Create the domains on the test server together with their links etc.
@@ -277,13 +264,6 @@ function _drush_chm_create_test_domains() {
       'country' => 'fj',
       'language_list' => array('en' => 'en', 'fj' => 'fj', 'hi' => 'hi'),
   );
-  $domains['biodiversity_kiribati'] = $defaults + array(
-      'subdomain' => 'test-ki.chm-cbd.net',
-      'sitename' => 'Biodiversity Kiribati',
-      'machine_name' => 'biodiversity_kiribati',
-      'country' => 'ki',
-      'language_list' => array('en' => 'en'),
-  );
   $domains['biodiversity_marshall_islands'] = $defaults + array(
       'subdomain' => 'test-mh.chm-cbd.net',
       'sitename' => 'Biodiversity Marshall Islands',
@@ -326,13 +306,6 @@ function _drush_chm_create_test_domains() {
       'country' => 'to',
       'language_list' => array('en' => 'en'),
   );
-  $domains['biodiversity_tuvalu'] = $defaults + array(
-      'subdomain' => 'test-tv.chm-cbd.net',
-      'sitename' => 'Biodiversity Tuvalu',
-      'machine_name' => 'biodiversity_tuvalu',
-      'country' => 'tv',
-      'language_list' => array('en' => 'en'),
-  );
   $domains['biodiversity_vanuatu'] = $defaults + array(
       'subdomain' => 'test-vu.chm-cbd.net',
       'sitename' => 'Biodiversity Vanuatu',
@@ -347,11 +320,16 @@ function _drush_chm_create_test_domains() {
       'country' => 'ws',
       'language_list' => array('en' => 'en'),
   );
-
   // 'balkan-biodiversity.chm-cbd.net' => 'Balkan Biodiversity'
   $weight = 5;
   module_load_include('inc', 'domain', 'domain.admin');
   foreach ($domains as $machine_name => $domain) {
+    // @warning Make sure machine name is limited to 27 characters
+    if (strlen($machine_name) > 27) {
+      $original = $machine_name;
+      $machine_name = substr($machine_name, 0, 27);
+      drush_log(sprintf('Adjusting machine name from %s to %s', $original, $machine_name, 'warning'));
+    }
     if (!empty($domain['valid'])) {
       if (!domain_load_domain_id($machine_name)) {
         drush_log(sprintf('Creating new domain: %s (%s)', $domain['sitename'], $machine_name), 'ok');
