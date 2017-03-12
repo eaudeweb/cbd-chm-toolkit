@@ -2337,7 +2337,7 @@ function chm_structure_field_default_field_bases() {
     'module' => 'entityreference',
     'settings' => array(
       'entity_translation_sync' => FALSE,
-      'handler' => 'views',
+      'handler' => 'base',
       'handler_settings' => array(
         'behaviors' => array(
           'entityqueue' => array(
@@ -2347,11 +2347,10 @@ function chm_structure_field_default_field_bases() {
             'status' => 0,
           ),
         ),
-        'view' => array(
-          'args' => array(),
-          'display_name' => 'entityreference_tab',
-          'view_name' => 'reference_to_content_entity_reference_view',
+        'sort' => array(
+          'type' => 'none',
         ),
+        'target_bundles' => array(),
       ),
       'target_type' => 'node',
     ),
