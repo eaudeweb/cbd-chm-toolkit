@@ -498,6 +498,16 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'domain_node_book';
+  $strongarm->value = array(
+    0 => 'DOMAIN_ALL',
+    1 => 'www',
+  );
+  $export['domain_node_book'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'domain_node_cbd_national_target';
   $strongarm->value = array(
     0 => 'DOMAIN_ACTIVE',
@@ -570,6 +580,15 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'domain_node_gallery';
+  $strongarm->value = array(
+    0 => 'DOMAIN_ACTIVE',
+  );
+  $export['domain_node_gallery'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'domain_node_link';
   $strongarm->value = array(
     0 => 'DOMAIN_ACTIVE',
@@ -593,6 +612,15 @@ function chm_structure_strongarm() {
     0 => 'DOMAIN_ACTIVE',
   );
   $export['domain_node_organization'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'domain_node_page';
+  $strongarm->value = array(
+    0 => 'DOMAIN_ACTIVE',
+  );
+  $export['domain_node_page'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -624,11 +652,29 @@ function chm_structure_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'domain_node_species';
+  $strongarm->value = array(
+    0 => 'DOMAIN_ACTIVE',
+  );
+  $export['domain_node_species'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'domain_node_video';
   $strongarm->value = array(
     0 => 'DOMAIN_ACTIVE',
   );
   $export['domain_node_video'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'domain_node_webform';
+  $strongarm->value = array(
+    0 => 'DOMAIN_ACTIVE',
+  );
+  $export['domain_node_webform'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
