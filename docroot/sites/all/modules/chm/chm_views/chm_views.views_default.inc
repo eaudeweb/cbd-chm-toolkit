@@ -2389,6 +2389,8 @@ function chm_views_views_default_views() {
 
   /* Display: News page */
   $handler = $view->new_display('page', 'News page', 'page_news');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Latest News';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
@@ -2488,6 +2490,8 @@ function chm_views_views_default_views() {
 
   /* Display: Events page */
   $handler = $view->new_display('page', 'Events page', 'page_events');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Latest Events';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
@@ -2611,6 +2615,7 @@ function chm_views_views_default_views() {
     t('Read more »'),
     t('Front page latest'),
     t('News page'),
+    t('Latest News'),
     t('Items per page'),
     t('- All -'),
     t('Offset'),
@@ -2621,6 +2626,7 @@ function chm_views_views_default_views() {
     t('<div class=\'field-type\'> [type] </div> [title_field]'),
     t('<div class="field-dates">[created]</div>[body] [view_node]'),
     t('Events page'),
+    t('Latest Events'),
     t('[title_field]'),
     t('<div class=\'field-dates\'>[field_dates]</div> [body] [view_node]'),
     t('<div class=\'field-dates\'>[field_dates]</div>'),
