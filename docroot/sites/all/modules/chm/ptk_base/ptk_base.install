@@ -54,3 +54,10 @@ function ptk_base_update_7004() {
     taxonomy_term_save($term);
   }
 }
+
+/**
+ * Fix duplicates links
+ */
+function ptk_base_update_7005() {
+//  features_revert(array('chm_views' => ['views_view']));
+}
