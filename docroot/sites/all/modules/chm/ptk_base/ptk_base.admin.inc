@@ -120,7 +120,11 @@ function ptk_base_admin_page_export_content_types_overview() {
     $j = 1;
     $fields = field_info_instances('node', $machine_name);
     $sheet = new \PHPExcel_Worksheet();
-    $sheet->setTitle($machine_name);
+    $title = $machine_name;
+    if (strlen($title) > 31) {
+      $title = substr($title, 0, 31);
+    }
+    $sheet->setTitle($title);
     foreach ($fields as $field_name => $field_data) {
       $fi = field_info_field($field_name);
       $cardinality = $fi['cardinality'] == -1 ? 'unlimited' : format_plural($fi['cardinality'], '@count value', '@count values');
@@ -184,7 +188,11 @@ function ptk_base_admin_page_export_taxonomies_overview() {
   foreach ($vocabularies as $vid => $voc) {
     $j = 1;
     $sheet = new \PHPExcel_Worksheet();
-    $sheet->setTitle($voc->name);
+    $title = $voc->name;
+    if (strlen($title) > 31) {
+      $title = substr($title, 0, 31);
+    }
+    $sheet->setTitle($title);
     if ($terms = taxonomy_get_tree($vid)) {
       uasort($terms, function ($a, $b) {
         return strcmp($a->name, $b->name);
