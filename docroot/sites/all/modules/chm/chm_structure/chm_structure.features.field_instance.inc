@@ -411,7 +411,7 @@ function chm_structure_field_default_field_instances() {
   // 'field_collection_item-field_project_organizations-field_organization'.
   $field_instances['field_collection_item-field_project_organizations-field_organization'] = array(
     'bundle' => 'field_project_organizations',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -435,13 +435,17 @@ function chm_structure_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'entityreference',
+      'module' => 'entityreference_view_widget',
       'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
+        'allow_duplicates' => 0,
+        'close_modal' => 1,
+        'pass_argument' => 0,
+        'pass_arguments' => '',
+        'rendered_entity' => 0,
+        'view' => 'administrative_content|entityreference_view_widget_organization',
+        'view_mode' => 'full',
       ),
-      'type' => 'entityreference_autocomplete',
+      'type' => 'entityreference_view_widget',
       'weight' => 2,
     ),
   );
@@ -664,13 +668,12 @@ function chm_structure_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'taxonomy',
+      'active' => 1,
+      'module' => 'options',
       'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
+        'apply_chosen' => 1,
       ),
-      'type' => 'taxonomy_autocomplete',
+      'type' => 'options_select',
       'weight' => 14,
     ),
   );
@@ -680,7 +683,7 @@ function chm_structure_field_default_field_instances() {
     'bundle' => 'cbd_national_target',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Enter a comma-separated list of keywords. Non-existing terms will be automatically created',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -705,12 +708,14 @@ function chm_structure_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 1,
-      'module' => 'options',
+      'active' => 0,
+      'module' => 'taxonomy',
       'settings' => array(
         'apply_chosen' => '',
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
       ),
-      'type' => 'options_select',
+      'type' => 'taxonomy_autocomplete',
       'weight' => 8,
     ),
   );
@@ -718,7 +723,7 @@ function chm_structure_field_default_field_instances() {
   // Exported field_instance: 'node-cbd_national_target-field_reference'.
   $field_instances['node-cbd_national_target-field_reference'] = array(
     'bundle' => 'cbd_national_target',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -748,13 +753,17 @@ function chm_structure_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'entityreference',
+      'module' => 'entityreference_view_widget',
       'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
+        'allow_duplicates' => 0,
+        'close_modal' => 1,
+        'pass_argument' => 0,
+        'pass_arguments' => '',
+        'rendered_entity' => 0,
+        'view' => 'administrative_content|entityreference_view_widget',
+        'view_mode' => 'full',
       ),
-      'type' => 'entityreference_autocomplete',
+      'type' => 'entityreference_view_widget',
       'weight' => 9,
     ),
   );
@@ -833,7 +842,7 @@ function chm_structure_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'apply_chosen' => '',
+        'apply_chosen' => 1,
       ),
       'type' => 'options_select',
       'weight' => 7,
@@ -2438,9 +2447,9 @@ function chm_structure_field_default_field_instances() {
   // Exported field_instance: 'node-document-field_authors'.
   $field_instances['node-document-field_authors'] = array(
     'bundle' => 'document',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Select a person or organisation that authored this document',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -2468,13 +2477,17 @@ function chm_structure_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'entityreference',
+      'module' => 'entityreference_view_widget',
       'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
+        'allow_duplicates' => 0,
+        'close_modal' => 0,
+        'pass_argument' => 0,
+        'pass_arguments' => '',
+        'rendered_entity' => 0,
+        'view' => 'administrative_content|entityreference_view_widget_author',
+        'view_mode' => 'full',
       ),
-      'type' => 'entityreference_autocomplete_tags',
+      'type' => 'entityreference_view_widget',
       'weight' => 12,
     ),
   );
@@ -2553,8 +2566,7 @@ function chm_structure_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'apply_chosen' => '',
-        'use_select2' => FALSE,
+        'apply_chosen' => 1,
       ),
       'type' => 'options_select',
       'weight' => 4,
@@ -2656,13 +2668,12 @@ function chm_structure_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'taxonomy',
+      'active' => 1,
+      'module' => 'options',
       'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
+        'apply_chosen' => 1,
       ),
-      'type' => 'taxonomy_autocomplete',
+      'type' => 'options_select',
       'weight' => 3,
     ),
   );
@@ -2757,7 +2768,7 @@ function chm_structure_field_default_field_instances() {
     'bundle' => 'document',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Enter a comma-separated list of keywords. Non-existing terms will be automatically created',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -2782,12 +2793,14 @@ function chm_structure_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 1,
-      'module' => 'options',
+      'active' => 0,
+      'module' => 'taxonomy',
       'settings' => array(
-        'apply_chosen' => '',
+        'apply_chosen' => 1,
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
       ),
-      'type' => 'options_select',
+      'type' => 'taxonomy_autocomplete',
       'weight' => 11,
     ),
   );
@@ -2851,7 +2864,7 @@ function chm_structure_field_default_field_instances() {
   // Exported field_instance: 'node-document-field_reference'.
   $field_instances['node-document-field_reference'] = array(
     'bundle' => 'document',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => 'Use this field to add reference to other parts of your website. Type to search for content',
     'display' => array(
@@ -2881,14 +2894,18 @@ function chm_structure_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'entityreference',
+      'module' => 'entityreference_view_widget',
       'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
+        'allow_duplicates' => 0,
+        'close_modal' => 1,
+        'pass_argument' => 0,
+        'pass_arguments' => '',
+        'rendered_entity' => 0,
+        'view' => 'administrative_content|entityreference_view_widget',
+        'view_mode' => 'full',
       ),
-      'type' => 'entityreference_autocomplete',
-      'weight' => 14,
+      'type' => 'entityreference_view_widget',
+      'weight' => 15,
     ),
   );
 
@@ -2922,14 +2939,13 @@ function chm_structure_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'taxonomy',
+      'active' => 1,
+      'module' => 'options',
       'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
+        'apply_chosen' => 1,
       ),
-      'type' => 'taxonomy_autocomplete',
-      'weight' => 13,
+      'type' => 'options_select',
+      'weight' => 14,
     ),
   );
 
@@ -3027,7 +3043,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 15,
+      'weight' => 13,
     ),
   );
 
@@ -3193,7 +3209,7 @@ function chm_structure_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'apply_chosen' => '',
+        'apply_chosen' => 1,
       ),
       'type' => 'options_select',
       'weight' => 2,
@@ -3269,6 +3285,7 @@ function chm_structure_field_default_field_instances() {
   // Exported field_instance: 'node-ecosystem-field_geolocation'.
   $field_instances['node-ecosystem-field_geolocation'] = array(
     'bundle' => 'ecosystem',
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -3291,15 +3308,16 @@ function chm_structure_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_geolocation',
     'label' => 'Geolocation',
-    'required' => FALSE,
+    'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'addressfield_autocomplete',
       'settings' => array(
-        'addressfield_autocomplete_field' => '',
+        'addressfield_autocomplete_field' => 'field_event_address',
         'delta_handling' => 'default',
       ),
       'type' => 'addressfield_autocomplete_latlng',
@@ -3395,7 +3413,7 @@ function chm_structure_field_default_field_instances() {
   // Exported field_instance: 'node-ecosystem-field_reference'.
   $field_instances['node-ecosystem-field_reference'] = array(
     'bundle' => 'ecosystem',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => 'Use this field to add reference to other parts of your website. Type to search for content',
     'display' => array(
@@ -3425,13 +3443,17 @@ function chm_structure_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'entityreference',
+      'module' => 'entityreference_view_widget',
       'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
+        'allow_duplicates' => 0,
+        'close_modal' => 1,
+        'pass_argument' => 0,
+        'pass_arguments' => '',
+        'rendered_entity' => 0,
+        'view' => 'administrative_content|entityreference_view_widget',
+        'view_mode' => 'full',
       ),
-      'type' => 'entityreference_autocomplete',
+      'type' => 'entityreference_view_widget',
       'weight' => 8,
     ),
   );
@@ -3558,8 +3580,7 @@ function chm_structure_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'apply_chosen' => '',
-        'use_select2' => FALSE,
+        'apply_chosen' => 1,
       ),
       'type' => 'options_select',
       'weight' => 7,
@@ -3599,14 +3620,18 @@ function chm_structure_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'entityreference',
+      'module' => 'entityreference_view_widget',
       'settings' => array(
+        'allow_duplicates' => 0,
         'apply_chosen' => '',
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
+        'close_modal' => 1,
+        'pass_argument' => 0,
+        'pass_arguments' => '',
+        'rendered_entity' => 0,
+        'view' => 'administrative_content|entityreference_view_widget_person',
+        'view_mode' => 'full',
       ),
-      'type' => 'entityreference_autocomplete_tags',
+      'type' => 'entityreference_view_widget',
       'weight' => 16,
     ),
   );
@@ -3810,8 +3835,7 @@ function chm_structure_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'apply_chosen' => '',
-        'use_select2' => FALSE,
+        'apply_chosen' => 1,
       ),
       'type' => 'options_select',
       'weight' => 6,
@@ -3890,13 +3914,12 @@ function chm_structure_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'taxonomy',
+      'active' => 1,
+      'module' => 'options',
       'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
+        'apply_chosen' => 1,
       ),
-      'type' => 'taxonomy_autocomplete',
+      'type' => 'options_select',
       'weight' => 14,
     ),
   );
@@ -4084,7 +4107,7 @@ function chm_structure_field_default_field_instances() {
     'bundle' => 'event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Enter a comma-separated list of keywords. Non-existing terms will be automatically created',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -4113,7 +4136,6 @@ function chm_structure_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => 1,
-        'use_select2' => FALSE,
       ),
       'type' => 'options_select',
       'weight' => 9,
@@ -4123,7 +4145,7 @@ function chm_structure_field_default_field_instances() {
   // Exported field_instance: 'node-event-field_organizers'.
   $field_instances['node-event-field_organizers'] = array(
     'bundle' => 'event',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -4153,13 +4175,17 @@ function chm_structure_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'entityreference',
+      'module' => 'entityreference_view_widget',
       'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
+        'allow_duplicates' => 0,
+        'close_modal' => 0,
+        'pass_argument' => 0,
+        'pass_arguments' => '',
+        'rendered_entity' => 0,
+        'view' => 'administrative_content|entityreference_view_widget_organization',
+        'view_mode' => 'full',
       ),
-      'type' => 'entityreference_autocomplete_tags',
+      'type' => 'entityreference_view_widget',
       'weight' => 17,
     ),
   );
@@ -4167,7 +4193,7 @@ function chm_structure_field_default_field_instances() {
   // Exported field_instance: 'node-event-field_reference'.
   $field_instances['node-event-field_reference'] = array(
     'bundle' => 'event',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => 'Use this field to add reference to other parts of your website. Type to search for content',
     'display' => array(
@@ -4197,13 +4223,17 @@ function chm_structure_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'entityreference',
+      'module' => 'entityreference_view_widget',
       'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
+        'allow_duplicates' => 0,
+        'close_modal' => 1,
+        'pass_argument' => 0,
+        'pass_arguments' => '',
+        'rendered_entity' => 0,
+        'view' => 'administrative_content|entityreference_view_widget',
+        'view_mode' => 'full',
       ),
-      'type' => 'entityreference_autocomplete',
+      'type' => 'entityreference_view_widget',
       'weight' => 12,
     ),
   );
@@ -4478,7 +4508,7 @@ function chm_structure_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'apply_chosen' => '',
+        'apply_chosen' => 1,
       ),
       'type' => 'options_select',
       'weight' => 7,
@@ -4522,63 +4552,7 @@ function chm_structure_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 5,
-    ),
-  );
-
-  // Exported field_instance: 'node-fact-field_dates'.
-  $field_instances['node-fact-field_dates'] = array(
-    'bundle' => 'fact',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'long',
-          'fromto' => 'both',
-          'multiple_from' => '',
-          'multiple_number' => '',
-          'multiple_to' => '',
-          'show_remaining_days' => FALSE,
-        ),
-        'type' => 'date_default',
-        'weight' => 8,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_dates',
-    'label' => 'Date',
-    'required' => 0,
-    'settings' => array(
-      'default_value' => 'now',
-      'default_value2' => 'same',
-      'default_value_code' => '',
-      'default_value_code2' => '',
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'date',
-      'settings' => array(
-        'increment' => 15,
-        'input_format' => 'm/d/Y - H:i:s',
-        'input_format_custom' => '',
-        'label_position' => 'above',
-        'no_fieldset' => 0,
-        'text_parts' => array(),
-        'year_range' => '-3:+3',
-      ),
-      'type' => 'date_popup',
-      'weight' => 15,
+      'weight' => 4,
     ),
   );
 
@@ -4672,7 +4646,7 @@ function chm_structure_field_default_field_instances() {
     'bundle' => 'fact',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Enter a comma-separated list of keywords. Non-existing terms will be automatically created',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -4697,12 +4671,14 @@ function chm_structure_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 1,
-      'module' => 'options',
+      'active' => 0,
+      'module' => 'taxonomy',
       'settings' => array(
-        'apply_chosen' => '',
+        'apply_chosen' => 1,
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
       ),
-      'type' => 'options_select',
+      'type' => 'taxonomy_autocomplete',
       'weight' => 9,
     ),
   );
@@ -4710,9 +4686,9 @@ function chm_structure_field_default_field_instances() {
   // Exported field_instance: 'node-fact-field_reference'.
   $field_instances['node-fact-field_reference'] = array(
     'bundle' => 'fact',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
-    'description' => 'Use this field to add reference to other parts of your website. Type to search for content',
+    'description' => 'Use this field to reference other content from your website',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -4740,13 +4716,17 @@ function chm_structure_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'entityreference',
+      'module' => 'entityreference_view_widget',
       'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
+        'allow_duplicates' => 0,
+        'close_modal' => 1,
+        'pass_argument' => 0,
+        'pass_arguments' => '',
+        'rendered_entity' => 0,
+        'view' => 'administrative_content|entityreference_view_widget',
+        'view_mode' => 'full',
       ),
-      'type' => 'entityreference_autocomplete',
+      'type' => 'entityreference_view_widget',
       'weight' => 10,
     ),
   );
@@ -4754,7 +4734,7 @@ function chm_structure_field_default_field_instances() {
   // Exported field_instance: 'node-fact-field_source'.
   $field_instances['node-fact-field_source'] = array(
     'bundle' => 'fact',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -4782,12 +4762,13 @@ function chm_structure_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 0,
-      'module' => 'taxonomy',
+      'module' => 'options',
       'settings' => array(
+        'apply_chosen' => '',
         'autocomplete_path' => 'taxonomy/autocomplete',
         'size' => 60,
       ),
-      'type' => 'taxonomy_autocomplete',
+      'type' => 'options_select',
       'weight' => 6,
     ),
   );
@@ -4886,7 +4867,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -5632,7 +5613,7 @@ function chm_structure_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'apply_chosen' => '',
+        'apply_chosen' => 1,
       ),
       'type' => 'options_select',
       'weight' => 6,
@@ -5770,7 +5751,7 @@ function chm_structure_field_default_field_instances() {
     'bundle' => 'link',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Enter a comma-separated list of keywords. Non-existing terms will be automatically created',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -5795,12 +5776,14 @@ function chm_structure_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 1,
-      'module' => 'options',
+      'active' => 0,
+      'module' => 'taxonomy',
       'settings' => array(
         'apply_chosen' => '',
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
       ),
-      'type' => 'options_select',
+      'type' => 'taxonomy_autocomplete',
       'weight' => 8,
     ),
   );
@@ -6065,7 +6048,7 @@ function chm_structure_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'apply_chosen' => '',
+        'apply_chosen' => 1,
       ),
       'type' => 'options_select',
       'weight' => 11,
@@ -6300,13 +6283,12 @@ function chm_structure_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'taxonomy',
+      'active' => 1,
+      'module' => 'options',
       'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
+        'apply_chosen' => 1,
       ),
-      'type' => 'taxonomy_autocomplete',
+      'type' => 'options_select',
       'weight' => 10,
     ),
   );
@@ -6399,9 +6381,9 @@ function chm_structure_field_default_field_instances() {
   // Exported field_instance: 'node-news-field_keywords'.
   $field_instances['node-news-field_keywords'] = array(
     'bundle' => 'news',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Enter a comma-separated list of keywords. Non-existing terms will be automatically created',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -6427,12 +6409,13 @@ function chm_structure_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
+      'module' => 'taxonomy',
       'settings' => array(
         'apply_chosen' => '',
-        'use_select2' => FALSE,
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
       ),
-      'type' => 'options_select',
+      'type' => 'taxonomy_autocomplete',
       'weight' => 13,
     ),
   );
@@ -6440,7 +6423,7 @@ function chm_structure_field_default_field_instances() {
   // Exported field_instance: 'node-news-field_reference'.
   $field_instances['node-news-field_reference'] = array(
     'bundle' => 'news',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => 'Use this field to add reference to other parts of your website. Type to search for content',
     'display' => array(
@@ -6470,13 +6453,17 @@ function chm_structure_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'entityreference',
+      'module' => 'entityreference_view_widget',
       'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
+        'allow_duplicates' => 0,
+        'close_modal' => 1,
+        'pass_argument' => 0,
+        'pass_arguments' => '',
+        'rendered_entity' => 0,
+        'view' => 'administrative_content|entityreference_view_widget',
+        'view_mode' => 'full',
       ),
-      'type' => 'entityreference_autocomplete',
+      'type' => 'entityreference_view_widget',
       'weight' => 8,
     ),
   );
@@ -6751,7 +6738,7 @@ function chm_structure_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'apply_chosen' => '',
+        'apply_chosen' => 1,
       ),
       'type' => 'options_select',
       'weight' => 11,
@@ -6997,13 +6984,12 @@ function chm_structure_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'taxonomy',
+      'active' => 1,
+      'module' => 'options',
       'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
+        'apply_chosen' => 1,
       ),
-      'type' => 'taxonomy_autocomplete',
+      'type' => 'options_select',
       'weight' => 10,
     ),
   );
@@ -7098,7 +7084,7 @@ function chm_structure_field_default_field_instances() {
     'bundle' => 'organization',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Enter a comma-separated list of keywords. Non-existing terms will be automatically created',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -7123,12 +7109,14 @@ function chm_structure_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 1,
-      'module' => 'options',
+      'active' => 0,
+      'module' => 'taxonomy',
       'settings' => array(
         'apply_chosen' => '',
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
       ),
-      'type' => 'options_select',
+      'type' => 'taxonomy_autocomplete',
       'weight' => 13,
     ),
   );
@@ -7315,8 +7303,7 @@ function chm_structure_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'apply_chosen' => '',
-        'use_select2' => FALSE,
+        'apply_chosen' => 1,
       ),
       'type' => 'options_select',
       'weight' => 3,
@@ -7356,7 +7343,7 @@ function chm_structure_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'apply_chosen' => '',
+        'apply_chosen' => 1,
       ),
       'type' => 'options_select',
       'weight' => 16,
@@ -7584,7 +7571,7 @@ function chm_structure_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'apply_chosen' => '',
+        'apply_chosen' => 1,
       ),
       'type' => 'options_select',
       'weight' => 4,
@@ -7596,7 +7583,7 @@ function chm_structure_field_default_field_instances() {
     'bundle' => 'page',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Enter a comma-separated list of keywords. Non-existing terms will be automatically created',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -7621,12 +7608,14 @@ function chm_structure_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 1,
-      'module' => 'options',
+      'active' => 0,
+      'module' => 'taxonomy',
       'settings' => array(
         'apply_chosen' => '',
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
       ),
-      'type' => 'options_select',
+      'type' => 'taxonomy_autocomplete',
       'weight' => 6,
     ),
   );
@@ -7634,7 +7623,7 @@ function chm_structure_field_default_field_instances() {
   // Exported field_instance: 'node-page-field_reference'.
   $field_instances['node-page-field_reference'] = array(
     'bundle' => 'page',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => 'Use this field to add reference to other parts of your website. Type to search for content',
     'display' => array(
@@ -7664,13 +7653,17 @@ function chm_structure_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'entityreference',
+      'module' => 'entityreference_view_widget',
       'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
+        'allow_duplicates' => 0,
+        'close_modal' => 1,
+        'pass_argument' => 0,
+        'pass_arguments' => '',
+        'rendered_entity' => 0,
+        'view' => 'administrative_content|entityreference_view_widget',
+        'view_mode' => 'full',
       ),
-      'type' => 'entityreference_autocomplete',
+      'type' => 'entityreference_view_widget',
       'weight' => 3,
     ),
   );
@@ -7708,7 +7701,7 @@ function chm_structure_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'apply_chosen' => '',
+        'apply_chosen' => 1,
       ),
       'type' => 'options_select',
       'weight' => 5,
@@ -8911,9 +8904,9 @@ function chm_structure_field_default_field_instances() {
   // Exported field_instance: 'node-project-field_keywords'.
   $field_instances['node-project-field_keywords'] = array(
     'bundle' => 'project',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Enter a comma-separated list of keywords. Non-existing terms will be automatically created',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -8939,11 +8932,13 @@ function chm_structure_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
+      'module' => 'taxonomy',
       'settings' => array(
         'apply_chosen' => '',
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
       ),
-      'type' => 'options_select',
+      'type' => 'taxonomy_autocomplete',
       'weight' => 14,
     ),
   );
@@ -9247,7 +9242,7 @@ function chm_structure_field_default_field_instances() {
   // Exported field_instance: 'node-project-field_reference'.
   $field_instances['node-project-field_reference'] = array(
     'bundle' => 'project',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => 'Use this field to add reference to other parts of your website. Type to search for content',
     'display' => array(
@@ -9277,13 +9272,17 @@ function chm_structure_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'entityreference',
+      'module' => 'entityreference_view_widget',
       'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
+        'allow_duplicates' => 0,
+        'close_modal' => 1,
+        'pass_argument' => 0,
+        'pass_arguments' => '',
+        'rendered_entity' => 0,
+        'view' => 'administrative_content|entityreference_view_widget',
+        'view_mode' => 'full',
       ),
-      'type' => 'entityreference_autocomplete',
+      'type' => 'entityreference_view_widget',
       'weight' => 26,
     ),
   );
@@ -9599,13 +9598,11 @@ function chm_structure_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'entityreference',
+      'module' => 'options',
       'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
+        'apply_chosen' => 1,
       ),
-      'type' => 'entityreference_autocomplete',
+      'type' => 'options_select',
       'weight' => 21,
     ),
   );
@@ -9643,8 +9640,7 @@ function chm_structure_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'apply_chosen' => '',
-        'use_select2' => FALSE,
+        'apply_chosen' => 1,
       ),
       'type' => 'options_select',
       'weight' => 19,
@@ -10205,7 +10201,7 @@ function chm_structure_field_default_field_instances() {
   // Exported field_instance: 'node-protected_area-field_species'.
   $field_instances['node-protected_area-field_species'] = array(
     'bundle' => 'protected_area',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -10235,13 +10231,17 @@ function chm_structure_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'entityreference',
+      'module' => 'entityreference_view_widget',
       'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
+        'allow_duplicates' => 0,
+        'close_modal' => 1,
+        'pass_argument' => 0,
+        'pass_arguments' => '',
+        'rendered_entity' => 0,
+        'view' => 'administrative_content|entityreference_view_widget_species',
+        'view_mode' => 'full',
       ),
-      'type' => 'entityreference_autocomplete_tags',
+      'type' => 'entityreference_view_widget',
       'weight' => 20,
     ),
   );
@@ -11074,7 +11074,7 @@ function chm_structure_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'apply_chosen' => '',
+        'apply_chosen' => 1,
       ),
       'type' => 'options_select',
       'weight' => 6,
@@ -11152,13 +11152,12 @@ function chm_structure_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'taxonomy',
+      'active' => 1,
+      'module' => 'options',
       'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
+        'apply_chosen' => 1,
       ),
-      'type' => 'taxonomy_autocomplete',
+      'type' => 'options_select',
       'weight' => 5,
     ),
   );
@@ -11166,9 +11165,9 @@ function chm_structure_field_default_field_instances() {
   // Exported field_instance: 'node-video-field_keywords'.
   $field_instances['node-video-field_keywords'] = array(
     'bundle' => 'video',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Enter a comma-separated list of keywords. Non-existing terms will be automatically created',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -11194,11 +11193,13 @@ function chm_structure_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
+      'module' => 'taxonomy',
       'settings' => array(
         'apply_chosen' => '',
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
       ),
-      'type' => 'options_select',
+      'type' => 'taxonomy_autocomplete',
       'weight' => 8,
     ),
   );
@@ -14823,6 +14824,7 @@ function chm_structure_field_default_field_instances() {
   t('Ecosystem type');
   t('Ecosystem types');
   t('Email');
+  t('Enter a comma-separated list of keywords. Non-existing terms will be automatically created');
   t('Enter a link to website\'s event, if available');
   t('Enter a short description of the link below');
   t('Expire');
@@ -14905,6 +14907,7 @@ function chm_structure_field_default_field_instances() {
   t('Role(s)');
   t('Roles');
   t('Salutation');
+  t('Select a person or organisation that authored this document');
   t('Select the appropriate type for this document');
   t('Short name or title including target number');
   t('Source');
@@ -14924,6 +14927,7 @@ function chm_structure_field_default_field_instances() {
   t('Use Aichi target');
   t('Use this field to add reference to other parts of your website. Type to search for content');
   t('Use this field to order the items when they are displayed in a list. Use a negative values to increase priority compared to the default value of zero.');
+  t('Use this field to reference other content from your website');
   t('Video');
   t('Website');
   t('Website URL');

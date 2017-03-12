@@ -2681,6 +2681,9 @@ function chm_structure_strongarm() {
         'language' => array(
           'weight' => '0',
         ),
+        'locations' => array(
+          'weight' => '30',
+        ),
       ),
       'display' => array(
         'domain' => array(

@@ -7,6 +7,7 @@ dependencies[] = amcharts
 dependencies[] = ctools
 dependencies[] = entityqueue
 dependencies[] = entityreference
+dependencies[] = entityreference_view_widget
 dependencies[] = fe_block
 dependencies[] = image
 dependencies[] = slick

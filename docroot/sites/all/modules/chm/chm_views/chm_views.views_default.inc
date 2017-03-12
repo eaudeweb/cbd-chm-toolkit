@@ -206,10 +206,6 @@ function chm_views_views_default_views() {
   $handler->display->display_options['sorts']['title_field_value']['id'] = 'title_field_value';
   $handler->display->display_options['sorts']['title_field_value']['table'] = 'field_data_title_field';
   $handler->display->display_options['sorts']['title_field_value']['field'] = 'title_field_value';
-  $handler->display->display_options['filter_groups']['groups'] = array(
-    1 => 'AND',
-    2 => 'AND',
-  );
   /* Filter criterion: Content: Title (title_field) */
   $handler->display->display_options['filters']['title_field_value']['id'] = 'title_field_value';
   $handler->display->display_options['filters']['title_field_value']['table'] = 'field_data_title_field';
@@ -281,7 +277,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['filters']['current_all']['table'] = 'domain_access';
   $handler->display->display_options['filters']['current_all']['field'] = 'current_all';
   $handler->display->display_options['filters']['current_all']['value'] = '1';
-  $handler->display->display_options['filters']['current_all']['group'] = 2;
+  $handler->display->display_options['filters']['current_all']['group'] = 1;
 
   /* Display: Platform content */
   $handler = $view->new_display('page', 'Platform content', 'page');
@@ -381,10 +377,6 @@ function chm_views_views_default_views() {
   $handler->display->display_options['fields']['nid']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['nid']['alter']['text'] = '[edit_node] [delete_node] <span title="[nid]"></span>';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['filter_groups']['groups'] = array(
-    1 => 'AND',
-    2 => 'AND',
-  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Title (title_field) */
   $handler->display->display_options['filters']['title_field_value']['id'] = 'title_field_value';
@@ -456,6 +448,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['filters']['gid']['id'] = 'gid';
   $handler->display->display_options['filters']['gid']['table'] = 'domain_access';
   $handler->display->display_options['filters']['gid']['field'] = 'gid';
+  $handler->display->display_options['filters']['gid']['group'] = 1;
   $handler->display->display_options['filters']['gid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['gid']['expose']['operator_id'] = 'gid_op';
   $handler->display->display_options['filters']['gid']['expose']['label'] = 'CHM Site';
@@ -648,6 +641,927 @@ function chm_views_views_default_views() {
   $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['menu']['context_only_inline'] = 0;
   $handler->display->display_options['tab_options']['weight'] = '0';
+
+  /* Display: ER Widget */
+  $handler = $view->new_display('entityreference_view_widget', 'ER Widget', 'entityreference_view_widget');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Select content';
+  $handler->display->display_options['defaults']['use_ajax'] = FALSE;
+  $handler->display->display_options['defaults']['exposed_form'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'views_bulk_operations' => 'views_bulk_operations',
+    'title' => 'title',
+    'type' => 'type',
+    'changed' => 'changed',
+    'created' => 'created',
+    'sitename' => 'sitename',
+    'name' => 'name',
+    'edit_node' => 'edit_node',
+    'delete_node' => 'delete_node',
+    'nid' => 'nid',
+  );
+  $handler->display->display_options['style_options']['default'] = 'changed';
+  $handler->display->display_options['style_options']['info'] = array(
+    'views_bulk_operations' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'type' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'changed' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'desc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'created' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'sitename' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'name' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'edit_node' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'delete_node' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'nid' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Entity Reference View Widget Checkbox: Content */
+  $handler->display->display_options['fields']['entityreference_view_widget']['id'] = 'entityreference_view_widget';
+  $handler->display->display_options['fields']['entityreference_view_widget']['table'] = 'node';
+  $handler->display->display_options['fields']['entityreference_view_widget']['field'] = 'entityreference_view_widget';
+  $handler->display->display_options['fields']['entityreference_view_widget']['label'] = '';
+  $handler->display->display_options['fields']['entityreference_view_widget']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['entityreference_view_widget']['ervw']['force_single'] = 0;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Type */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'node';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
+  /* Field: Content: Updated date */
+  $handler->display->display_options['fields']['changed']['id'] = 'changed';
+  $handler->display->display_options['fields']['changed']['table'] = 'node';
+  $handler->display->display_options['fields']['changed']['field'] = 'changed';
+  $handler->display->display_options['fields']['changed']['label'] = 'Updated';
+  $handler->display->display_options['fields']['changed']['date_format'] = 'european';
+  $handler->display->display_options['fields']['changed']['second_date_format'] = 'search_api_facetapi_YEAR';
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['name']['label'] = 'Author';
+  $handler->display->display_options['fields']['name']['link_to_user'] = FALSE;
+  /* Field: Content: Edit link */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = 'Edit';
+  $handler->display->display_options['fields']['edit_node']['exclude'] = TRUE;
+  /* Field: Content: Delete link */
+  $handler->display->display_options['fields']['delete_node']['id'] = 'delete_node';
+  $handler->display->display_options['fields']['delete_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
+  $handler->display->display_options['fields']['delete_node']['label'] = 'Delete';
+  $handler->display->display_options['fields']['delete_node']['exclude'] = TRUE;
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = 'Operations';
+  $handler->display->display_options['fields']['nid']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['nid']['alter']['text'] = '[edit_node] [delete_node] <span title="[nid]"></span>';
+
+  /* Display: Author Widget */
+  $handler = $view->new_display('entityreference_view_widget', 'Author Widget', 'entityreference_view_widget_author');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Select content';
+  $handler->display->display_options['display_description'] = 'Widget selection for field_authors';
+  $handler->display->display_options['defaults']['use_ajax'] = FALSE;
+  $handler->display->display_options['defaults']['exposed_form'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'views_bulk_operations' => 'views_bulk_operations',
+    'title' => 'title',
+    'type' => 'type',
+    'changed' => 'changed',
+    'created' => 'created',
+    'sitename' => 'sitename',
+    'name' => 'name',
+    'edit_node' => 'edit_node',
+    'delete_node' => 'delete_node',
+    'nid' => 'nid',
+  );
+  $handler->display->display_options['style_options']['default'] = 'changed';
+  $handler->display->display_options['style_options']['info'] = array(
+    'views_bulk_operations' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'type' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'changed' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'desc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'created' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'sitename' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'name' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'edit_node' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'delete_node' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'nid' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Entity Reference View Widget Checkbox: Content */
+  $handler->display->display_options['fields']['entityreference_view_widget']['id'] = 'entityreference_view_widget';
+  $handler->display->display_options['fields']['entityreference_view_widget']['table'] = 'node';
+  $handler->display->display_options['fields']['entityreference_view_widget']['field'] = 'entityreference_view_widget';
+  $handler->display->display_options['fields']['entityreference_view_widget']['label'] = '';
+  $handler->display->display_options['fields']['entityreference_view_widget']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['entityreference_view_widget']['ervw']['force_single'] = 0;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Type */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'node';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
+  /* Field: Content: Updated date */
+  $handler->display->display_options['fields']['changed']['id'] = 'changed';
+  $handler->display->display_options['fields']['changed']['table'] = 'node';
+  $handler->display->display_options['fields']['changed']['field'] = 'changed';
+  $handler->display->display_options['fields']['changed']['label'] = 'Updated';
+  $handler->display->display_options['fields']['changed']['date_format'] = 'european';
+  $handler->display->display_options['fields']['changed']['second_date_format'] = 'search_api_facetapi_YEAR';
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['name']['label'] = 'Author';
+  $handler->display->display_options['fields']['name']['link_to_user'] = FALSE;
+  /* Field: Content: Edit link */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = 'Edit';
+  $handler->display->display_options['fields']['edit_node']['exclude'] = TRUE;
+  /* Field: Content: Delete link */
+  $handler->display->display_options['fields']['delete_node']['id'] = 'delete_node';
+  $handler->display->display_options['fields']['delete_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
+  $handler->display->display_options['fields']['delete_node']['label'] = 'Delete';
+  $handler->display->display_options['fields']['delete_node']['exclude'] = TRUE;
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = 'Operations';
+  $handler->display->display_options['fields']['nid']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['nid']['alter']['text'] = '[edit_node] [delete_node] <span title="[nid]"></span>';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Title (title_field) */
+  $handler->display->display_options['filters']['title_field_value']['id'] = 'title_field_value';
+  $handler->display->display_options['filters']['title_field_value']['table'] = 'field_data_title_field';
+  $handler->display->display_options['filters']['title_field_value']['field'] = 'title_field_value';
+  $handler->display->display_options['filters']['title_field_value']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title_field_value']['group'] = 1;
+  $handler->display->display_options['filters']['title_field_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title_field_value']['expose']['operator_id'] = 'title_field_value_op';
+  $handler->display->display_options['filters']['title_field_value']['expose']['label'] = 'Title';
+  $handler->display->display_options['filters']['title_field_value']['expose']['description'] = 'Filter by content title';
+  $handler->display->display_options['filters']['title_field_value']['expose']['operator'] = 'title_field_value_op';
+  $handler->display->display_options['filters']['title_field_value']['expose']['identifier'] = 'title_field_value';
+  $handler->display->display_options['filters']['title_field_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+  );
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 'All';
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['status']['expose']['operator_id'] = '';
+  $handler->display->display_options['filters']['status']['expose']['label'] = 'Published';
+  $handler->display->display_options['filters']['status']['expose']['operator'] = 'status_op';
+  $handler->display->display_options['filters']['status']['expose']['identifier'] = 'status';
+  $handler->display->display_options['filters']['status']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+  );
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
+  $handler->display->display_options['filters']['type_1']['table'] = 'node';
+  $handler->display->display_options['filters']['type_1']['field'] = 'type';
+  $handler->display->display_options['filters']['type_1']['value'] = array(
+    'organization' => 'organization',
+    'person' => 'person',
+  );
+  $handler->display->display_options['filters']['type_1']['group'] = 1;
+  /* Filter criterion: Domain Access: Available on current domain */
+  $handler->display->display_options['filters']['current_all']['id'] = 'current_all';
+  $handler->display->display_options['filters']['current_all']['table'] = 'domain_access';
+  $handler->display->display_options['filters']['current_all']['field'] = 'current_all';
+  $handler->display->display_options['filters']['current_all']['value'] = '1';
+  $handler->display->display_options['filters']['current_all']['group'] = 1;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'organization' => 'organization',
+    'person' => 'person',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  $handler->display->display_options['filters']['type']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['type']['expose']['operator_id'] = 'type_op';
+  $handler->display->display_options['filters']['type']['expose']['label'] = 'Type';
+  $handler->display->display_options['filters']['type']['expose']['operator'] = 'type_op';
+  $handler->display->display_options['filters']['type']['expose']['identifier'] = 'type';
+  $handler->display->display_options['filters']['type']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+  );
+  $handler->display->display_options['filters']['type']['expose']['reduce'] = TRUE;
+
+  /* Display: Person Widget */
+  $handler = $view->new_display('entityreference_view_widget', 'Person Widget', 'entityreference_view_widget_person');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Select content';
+  $handler->display->display_options['display_description'] = 'Widget to select persons only';
+  $handler->display->display_options['defaults']['use_ajax'] = FALSE;
+  $handler->display->display_options['defaults']['exposed_form'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'views_bulk_operations' => 'views_bulk_operations',
+    'title' => 'title',
+    'type' => 'type',
+    'changed' => 'changed',
+    'created' => 'created',
+    'sitename' => 'sitename',
+    'name' => 'name',
+    'edit_node' => 'edit_node',
+    'delete_node' => 'delete_node',
+    'nid' => 'nid',
+  );
+  $handler->display->display_options['style_options']['default'] = 'changed';
+  $handler->display->display_options['style_options']['info'] = array(
+    'views_bulk_operations' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'type' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'changed' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'desc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'created' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'sitename' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'name' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'edit_node' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'delete_node' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'nid' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Entity Reference View Widget Checkbox: Content */
+  $handler->display->display_options['fields']['entityreference_view_widget']['id'] = 'entityreference_view_widget';
+  $handler->display->display_options['fields']['entityreference_view_widget']['table'] = 'node';
+  $handler->display->display_options['fields']['entityreference_view_widget']['field'] = 'entityreference_view_widget';
+  $handler->display->display_options['fields']['entityreference_view_widget']['label'] = '';
+  $handler->display->display_options['fields']['entityreference_view_widget']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['entityreference_view_widget']['ervw']['force_single'] = 0;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Type */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'node';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
+  /* Field: Content: Updated date */
+  $handler->display->display_options['fields']['changed']['id'] = 'changed';
+  $handler->display->display_options['fields']['changed']['table'] = 'node';
+  $handler->display->display_options['fields']['changed']['field'] = 'changed';
+  $handler->display->display_options['fields']['changed']['label'] = 'Updated';
+  $handler->display->display_options['fields']['changed']['date_format'] = 'european';
+  $handler->display->display_options['fields']['changed']['second_date_format'] = 'search_api_facetapi_YEAR';
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['name']['label'] = 'Author';
+  $handler->display->display_options['fields']['name']['link_to_user'] = FALSE;
+  /* Field: Content: Edit link */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = 'Edit';
+  $handler->display->display_options['fields']['edit_node']['exclude'] = TRUE;
+  /* Field: Content: Delete link */
+  $handler->display->display_options['fields']['delete_node']['id'] = 'delete_node';
+  $handler->display->display_options['fields']['delete_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
+  $handler->display->display_options['fields']['delete_node']['label'] = 'Delete';
+  $handler->display->display_options['fields']['delete_node']['exclude'] = TRUE;
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = 'Operations';
+  $handler->display->display_options['fields']['nid']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['nid']['alter']['text'] = '[edit_node] [delete_node] <span title="[nid]"></span>';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Title (title_field) */
+  $handler->display->display_options['filters']['title_field_value']['id'] = 'title_field_value';
+  $handler->display->display_options['filters']['title_field_value']['table'] = 'field_data_title_field';
+  $handler->display->display_options['filters']['title_field_value']['field'] = 'title_field_value';
+  $handler->display->display_options['filters']['title_field_value']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title_field_value']['group'] = 1;
+  $handler->display->display_options['filters']['title_field_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title_field_value']['expose']['operator_id'] = 'title_field_value_op';
+  $handler->display->display_options['filters']['title_field_value']['expose']['label'] = 'Title';
+  $handler->display->display_options['filters']['title_field_value']['expose']['description'] = 'Filter by content title';
+  $handler->display->display_options['filters']['title_field_value']['expose']['operator'] = 'title_field_value_op';
+  $handler->display->display_options['filters']['title_field_value']['expose']['identifier'] = 'title_field_value';
+  $handler->display->display_options['filters']['title_field_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+  );
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 'All';
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['status']['expose']['operator_id'] = '';
+  $handler->display->display_options['filters']['status']['expose']['label'] = 'Published';
+  $handler->display->display_options['filters']['status']['expose']['operator'] = 'status_op';
+  $handler->display->display_options['filters']['status']['expose']['identifier'] = 'status';
+  $handler->display->display_options['filters']['status']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+  );
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
+  $handler->display->display_options['filters']['type_1']['table'] = 'node';
+  $handler->display->display_options['filters']['type_1']['field'] = 'type';
+  $handler->display->display_options['filters']['type_1']['value'] = array(
+    'person' => 'person',
+  );
+  $handler->display->display_options['filters']['type_1']['group'] = 1;
+
+  /* Display: Organization Widget */
+  $handler = $view->new_display('entityreference_view_widget', 'Organization Widget', 'entityreference_view_widget_organization');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Select content';
+  $handler->display->display_options['display_description'] = 'Widget to select organizations only';
+  $handler->display->display_options['defaults']['use_ajax'] = FALSE;
+  $handler->display->display_options['defaults']['exposed_form'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'views_bulk_operations' => 'views_bulk_operations',
+    'title' => 'title',
+    'type' => 'type',
+    'changed' => 'changed',
+    'created' => 'created',
+    'sitename' => 'sitename',
+    'name' => 'name',
+    'edit_node' => 'edit_node',
+    'delete_node' => 'delete_node',
+    'nid' => 'nid',
+  );
+  $handler->display->display_options['style_options']['default'] = 'changed';
+  $handler->display->display_options['style_options']['info'] = array(
+    'views_bulk_operations' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'type' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'changed' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'desc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'created' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'sitename' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'name' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'edit_node' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'delete_node' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'nid' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Entity Reference View Widget Checkbox: Content */
+  $handler->display->display_options['fields']['entityreference_view_widget']['id'] = 'entityreference_view_widget';
+  $handler->display->display_options['fields']['entityreference_view_widget']['table'] = 'node';
+  $handler->display->display_options['fields']['entityreference_view_widget']['field'] = 'entityreference_view_widget';
+  $handler->display->display_options['fields']['entityreference_view_widget']['label'] = '';
+  $handler->display->display_options['fields']['entityreference_view_widget']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['entityreference_view_widget']['ervw']['force_single'] = 0;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Type */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'node';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
+  /* Field: Content: Updated date */
+  $handler->display->display_options['fields']['changed']['id'] = 'changed';
+  $handler->display->display_options['fields']['changed']['table'] = 'node';
+  $handler->display->display_options['fields']['changed']['field'] = 'changed';
+  $handler->display->display_options['fields']['changed']['label'] = 'Updated';
+  $handler->display->display_options['fields']['changed']['date_format'] = 'european';
+  $handler->display->display_options['fields']['changed']['second_date_format'] = 'search_api_facetapi_YEAR';
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['name']['label'] = 'Author';
+  $handler->display->display_options['fields']['name']['link_to_user'] = FALSE;
+  /* Field: Content: Edit link */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = 'Edit';
+  $handler->display->display_options['fields']['edit_node']['exclude'] = TRUE;
+  /* Field: Content: Delete link */
+  $handler->display->display_options['fields']['delete_node']['id'] = 'delete_node';
+  $handler->display->display_options['fields']['delete_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
+  $handler->display->display_options['fields']['delete_node']['label'] = 'Delete';
+  $handler->display->display_options['fields']['delete_node']['exclude'] = TRUE;
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = 'Operations';
+  $handler->display->display_options['fields']['nid']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['nid']['alter']['text'] = '[edit_node] [delete_node] <span title="[nid]"></span>';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Title (title_field) */
+  $handler->display->display_options['filters']['title_field_value']['id'] = 'title_field_value';
+  $handler->display->display_options['filters']['title_field_value']['table'] = 'field_data_title_field';
+  $handler->display->display_options['filters']['title_field_value']['field'] = 'title_field_value';
+  $handler->display->display_options['filters']['title_field_value']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title_field_value']['group'] = 1;
+  $handler->display->display_options['filters']['title_field_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title_field_value']['expose']['operator_id'] = 'title_field_value_op';
+  $handler->display->display_options['filters']['title_field_value']['expose']['label'] = 'Title';
+  $handler->display->display_options['filters']['title_field_value']['expose']['description'] = 'Filter by content title';
+  $handler->display->display_options['filters']['title_field_value']['expose']['operator'] = 'title_field_value_op';
+  $handler->display->display_options['filters']['title_field_value']['expose']['identifier'] = 'title_field_value';
+  $handler->display->display_options['filters']['title_field_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+  );
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 'All';
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['status']['expose']['operator_id'] = '';
+  $handler->display->display_options['filters']['status']['expose']['label'] = 'Published';
+  $handler->display->display_options['filters']['status']['expose']['operator'] = 'status_op';
+  $handler->display->display_options['filters']['status']['expose']['identifier'] = 'status';
+  $handler->display->display_options['filters']['status']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+  );
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
+  $handler->display->display_options['filters']['type_1']['table'] = 'node';
+  $handler->display->display_options['filters']['type_1']['field'] = 'type';
+  $handler->display->display_options['filters']['type_1']['value'] = array(
+    'organization' => 'organization',
+  );
+  $handler->display->display_options['filters']['type_1']['group'] = 1;
+
+  /* Display: Species Widget */
+  $handler = $view->new_display('entityreference_view_widget', 'Species Widget', 'entityreference_view_widget_species');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Select content';
+  $handler->display->display_options['display_description'] = 'Widget to select species only';
+  $handler->display->display_options['defaults']['use_ajax'] = FALSE;
+  $handler->display->display_options['defaults']['exposed_form'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'views_bulk_operations' => 'views_bulk_operations',
+    'title' => 'title',
+    'type' => 'type',
+    'changed' => 'changed',
+    'created' => 'created',
+    'sitename' => 'sitename',
+    'name' => 'name',
+    'edit_node' => 'edit_node',
+    'delete_node' => 'delete_node',
+    'nid' => 'nid',
+  );
+  $handler->display->display_options['style_options']['default'] = 'changed';
+  $handler->display->display_options['style_options']['info'] = array(
+    'views_bulk_operations' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'type' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'changed' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'desc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'created' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'sitename' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'name' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'edit_node' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'delete_node' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'nid' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Entity Reference View Widget Checkbox: Content */
+  $handler->display->display_options['fields']['entityreference_view_widget']['id'] = 'entityreference_view_widget';
+  $handler->display->display_options['fields']['entityreference_view_widget']['table'] = 'node';
+  $handler->display->display_options['fields']['entityreference_view_widget']['field'] = 'entityreference_view_widget';
+  $handler->display->display_options['fields']['entityreference_view_widget']['label'] = '';
+  $handler->display->display_options['fields']['entityreference_view_widget']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['entityreference_view_widget']['ervw']['force_single'] = 0;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Type */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'node';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
+  /* Field: Content: Updated date */
+  $handler->display->display_options['fields']['changed']['id'] = 'changed';
+  $handler->display->display_options['fields']['changed']['table'] = 'node';
+  $handler->display->display_options['fields']['changed']['field'] = 'changed';
+  $handler->display->display_options['fields']['changed']['label'] = '';
+  $handler->display->display_options['fields']['changed']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['changed']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['changed']['date_format'] = 'european';
+  $handler->display->display_options['fields']['changed']['second_date_format'] = 'search_api_facetapi_YEAR';
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['name']['label'] = 'Author';
+  $handler->display->display_options['fields']['name']['link_to_user'] = FALSE;
+  /* Field: Content: Edit link */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = 'Edit';
+  $handler->display->display_options['fields']['edit_node']['exclude'] = TRUE;
+  /* Field: Content: Delete link */
+  $handler->display->display_options['fields']['delete_node']['id'] = 'delete_node';
+  $handler->display->display_options['fields']['delete_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
+  $handler->display->display_options['fields']['delete_node']['label'] = 'Delete';
+  $handler->display->display_options['fields']['delete_node']['exclude'] = TRUE;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Title (title_field) */
+  $handler->display->display_options['filters']['title_field_value']['id'] = 'title_field_value';
+  $handler->display->display_options['filters']['title_field_value']['table'] = 'field_data_title_field';
+  $handler->display->display_options['filters']['title_field_value']['field'] = 'title_field_value';
+  $handler->display->display_options['filters']['title_field_value']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title_field_value']['group'] = 1;
+  $handler->display->display_options['filters']['title_field_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title_field_value']['expose']['operator_id'] = 'title_field_value_op';
+  $handler->display->display_options['filters']['title_field_value']['expose']['label'] = 'Scientific name';
+  $handler->display->display_options['filters']['title_field_value']['expose']['description'] = 'Filter by species name';
+  $handler->display->display_options['filters']['title_field_value']['expose']['operator'] = 'title_field_value_op';
+  $handler->display->display_options['filters']['title_field_value']['expose']['identifier'] = 'title_field_value';
+  $handler->display->display_options['filters']['title_field_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+  );
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = '1';
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator_id'] = '';
+  $handler->display->display_options['filters']['status']['expose']['label'] = 'Published';
+  $handler->display->display_options['filters']['status']['expose']['operator'] = 'status_op';
+  $handler->display->display_options['filters']['status']['expose']['identifier'] = 'status';
+  $handler->display->display_options['filters']['status']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+  );
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
+  $handler->display->display_options['filters']['type_1']['table'] = 'node';
+  $handler->display->display_options['filters']['type_1']['field'] = 'type';
+  $handler->display->display_options['filters']['type_1']['value'] = array(
+    'species' => 'species',
+  );
+  $handler->display->display_options['filters']['type_1']['group'] = 1;
   $translatables['administrative_content'] = array(
     t('Master'),
     t('Administrative content'),
@@ -683,6 +1597,18 @@ function chm_views_views_default_views() {
     t('Platform content'),
     t('CHM Site'),
     t('Portal content'),
+    t('ER Widget'),
+    t('Select content'),
+    t('Author Widget'),
+    t('Widget selection for field_authors'),
+    t('Person Widget'),
+    t('Widget to select persons only'),
+    t('Organization Widget'),
+    t('Widget to select organizations only'),
+    t('Species Widget'),
+    t('Widget to select species only'),
+    t('Scientific name'),
+    t('Filter by species name'),
   );
   $export['administrative_content'] = $view;
 
@@ -2000,7 +2926,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Field: Content: Date */
+  /* Field: Content: Project dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -2024,7 +2950,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_type'] = 'h4';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Sort criterion: Content: Date (field_dates) */
+  /* Sort criterion: Content: Project dates (field_dates) */
   $handler->display->display_options['sorts']['field_dates_value']['id'] = 'field_dates_value';
   $handler->display->display_options['sorts']['field_dates_value']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value']['field'] = 'field_dates_value';
@@ -2053,7 +2979,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'event' => 'event',
   );
-  /* Filter criterion: Content: Date (field_dates) */
+  /* Filter criterion: Content: Project dates (field_dates) */
   $handler->display->display_options['filters']['field_dates_value']['id'] = 'field_dates_value';
   $handler->display->display_options['filters']['field_dates_value']['table'] = 'field_data_field_dates';
   $handler->display->display_options['filters']['field_dates_value']['field'] = 'field_dates_value';
@@ -2472,7 +3398,7 @@ function chm_views_views_default_views() {
   );
   $handler->display->display_options['fields']['title_field']['field_api_classes'] = TRUE;
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
-  /* Field: Content: Date */
+  /* Field: Content: Project dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -2639,7 +3565,7 @@ function chm_views_views_default_views() {
     'title_class' => '',
   );
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
-  /* Field: Content: Date */
+  /* Field: Content: Project dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -2737,7 +3663,7 @@ function chm_views_views_default_views() {
     'title_class' => '',
   );
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
-  /* Field: Content: Date */
+  /* Field: Content: Project dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -2963,7 +3889,7 @@ function chm_views_views_default_views() {
     'title_class' => '',
   );
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
-  /* Field: Content: Date */
+  /* Field: Content: Project dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -3000,7 +3926,7 @@ function chm_views_views_default_views() {
     'trim_length' => '300',
   );
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Content: Date (field_dates) */
+  /* Sort criterion: Content: Project dates (field_dates) */
   $handler->display->display_options['sorts']['field_dates_value']['id'] = 'field_dates_value';
   $handler->display->display_options['sorts']['field_dates_value']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value']['field'] = 'field_dates_value';
@@ -3897,7 +4823,7 @@ function chm_views_views_default_views() {
     'title_class' => '',
   );
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
-  /* Field: Content: Date */
+  /* Field: Content: Project dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -3934,7 +4860,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
-  /* Sort criterion: Content: Date (field_dates) */
+  /* Sort criterion: Content: Project dates (field_dates) */
   $handler->display->display_options['sorts']['field_dates_value']['id'] = 'field_dates_value';
   $handler->display->display_options['sorts']['field_dates_value']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value']['field'] = 'field_dates_value';
@@ -4024,7 +4950,7 @@ function chm_views_views_default_views() {
     t('next ›'),
     t('last »'),
     t('[title_field]'),
-    t('Date'),
+    t('Project dates'),
     t('Read more »'),
     t('<span class=\'field-dates\'>[field_dates]</span> [body] [view_node]'),
     t('Project date'),
