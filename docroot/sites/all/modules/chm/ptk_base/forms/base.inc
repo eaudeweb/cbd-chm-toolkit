@@ -8,7 +8,6 @@ require_once dirname(__FILE__) . '/ChmMiscellaneousForm.php';
 require_once dirname(__FILE__) . '/ChmNodeForm.php';
 require_once dirname(__FILE__) . '/ChmProtectedPlanetSettingsForm.php';
 require_once dirname(__FILE__) . '/ChmUserLoginForm.php';
-require_once dirname(__FILE__) . '/ChmUserAdminAccountForm.php';
 
 function _ptk_base_menu_link_check_expanded($link) {
   for($i=1; $i <= $link['depth']; $i++) {
