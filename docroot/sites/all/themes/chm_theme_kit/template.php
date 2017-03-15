@@ -33,25 +33,30 @@ function chm_theme_kit_preprocess_page(&$vars) {
     }
     unset($vars['navbar_classes_array']['container']);
   }
-  if ($country = PTKDomain::getPortalCountry()) {
-    if ($flag = PTK::getCountryFlag($country)) {
-      $vars['logo'] = image_style_url('header_flag', $flag);
-    }
-  }
-  else if ($domain = domain_get_domain()) {
-    if ($domain['domain_id'] == PTKDomain::$DEMO_DOMAIN_ID) {
-      $vars['logo'] = image_style_url('header_flag', 'public://images/flags/flag-bioland.png');
-    }
-    if ($domain['domain_id'] == PTKDomain::$CHM_DOMAIN_ID) {
-      global $language;
-      $langcode = $language->language;
-      $uri = "public://images/logos/chm/logo-chm-$langcode.png";
-      /** @var DrupalPublicStreamWrapper $w */
-      $w = file_stream_wrapper_get_instance_by_uri($uri);
-      if (!file_exists($w->realpath())) {
-        $uri = "public://images/logos/chm/logo-chm-en.png";
+  // @todo improve this check for default logo files/chm-logo-new-web-en.png
+  if (preg_match('/chm-logo-new-web-en\.png/', $vars['logo'])) {
+    if ($country = PTKDomain::getPortalCountry()) {
+      if ($flag = PTK::getCountryFlag($country)) {
+        $vars['logo'] = image_style_url('header_flag', $flag);
       }
-      $vars['logo'] = image_style_url('header_flag', $uri);
+    }
+    else {
+      if ($domain = domain_get_domain()) {
+        if ($domain['domain_id'] == PTKDomain::$DEMO_DOMAIN_ID) {
+          $vars['logo'] = image_style_url('header_flag', 'public://images/flags/flag-bioland.png');
+        }
+        if ($domain['domain_id'] == PTKDomain::$CHM_DOMAIN_ID) {
+          global $language;
+          $langcode = $language->language;
+          $uri = "public://images/logos/chm/logo-chm-$langcode.png";
+          /** @var DrupalPublicStreamWrapper $w */
+          $w = file_stream_wrapper_get_instance_by_uri($uri);
+          if (!file_exists($w->realpath())) {
+            $uri = "public://images/logos/chm/logo-chm-en.png";
+          }
+          $vars['logo'] = image_style_url('header_flag', $uri);
+        }
+      }
     }
   }
   if (strtolower(arg(0)) == 'search' || strtolower(arg(0)) == 'search-network') {
