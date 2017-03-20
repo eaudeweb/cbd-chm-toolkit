@@ -8847,14 +8847,8 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
     transform: rotate(90deg);
   }
 }
-@media all and (min-width: 992px) {
-}
 .navbar-container #navbar .navbar-collapse .nav li .active-trail:not(.active):hover .dropdown-toggle span.caret {
   border-top-color: #fff;
-}
-@media all and (min-width: 992px) {
-}
-@media all and (max-width: 991px) {
 }
 .navbar-container #navbar .navbar-collapse .nav li.open > a .caret {
   -webkit-transform: rotate(0deg);
@@ -8891,8 +8885,6 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
 .navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu li {
   width: 100%;
 }
-@media all and (max-width: 991px) {
-}
 .navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu li a.dropdown-title {
   width: 100%;
 }
@@ -8902,8 +8894,6 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
     -ms-transform: rotate(-90deg);
     transform: rotate(-90deg);
   }
-}
-@media all and (min-width: 992px) {
 }
 .navbar-container #navbar .navbar-collapse .nav .dropdown .dropdown-menu .active > a.active {
   text-shadow: 2px 2px rgba(0, 0, 0, 0.2);
