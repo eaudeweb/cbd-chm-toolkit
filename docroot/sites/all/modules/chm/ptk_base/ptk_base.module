@@ -17,6 +17,25 @@ define('PROTECTED_PLANET_AREA_CSV_UPLOAD_DIR', 'public://protected-areas/');
 define('PROTECTED_PLANET_AREA_CSV_VAR', 'ptk_protected_planet_areas_csv_path');
 
 /**
+ * Implements hook_init().
+ */
+function ptk_base_init() {
+  $main_menu = variable_get('menu_main_links_source', 'main-menu');
+  $active_menus = menu_get_active_menu_names();
+  $active_menu_names = [];
+  foreach($active_menus as $active_menu) {
+    if (
+      (strpos($active_menu, 'menu-') !== 0) ||
+      (strpos($active_menu, 'menu-footer') === 0) ||
+      ($active_menu == $main_menu)
+    ) {
+      $active_menu_names[] = $active_menu;
+    }
+  }
+  menu_set_active_menu_names($active_menu_names); // exclude other domain main menus
+}
+
+/**
  * Implements hook_permission().
  */
 function ptk_base_permission() {
