@@ -21,6 +21,7 @@ dependencies[] = file
 dependencies[] = filefield_paths
 dependencies[] = galleryformatter
 dependencies[] = geofield
+dependencies[] = geofield_map
 dependencies[] = i18n_taxonomy
 dependencies[] = image
 dependencies[] = link
