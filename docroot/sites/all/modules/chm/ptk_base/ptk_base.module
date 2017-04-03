@@ -260,19 +260,6 @@ function ptk_base_block_view($delta = '') {
  * Implements hook_block_view_alter().
  */
 function ptk_base_block_view_alter(&$data, $block) {
-
-  if ($block->delta == 'menu-information-menu') {
-    db_update('block')
-      ->fields([
-        'status' => 0,
-      ])
-      ->condition('module', 'menu')
-      ->condition('delta', 'menu-information-menu')
-      ->execute();
-    $data['content'] = '';
-
-  }
-
   $klass = \Drupal\ptk_base\blocks\AbstractBlock::getBlockClassName($block->delta);
   if (class_exists($klass)) {
     /** @var \Drupal\ptk_base\blocks\AbstractBlock $block */
