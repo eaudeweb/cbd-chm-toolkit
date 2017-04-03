@@ -11,3 +11,10 @@ function chm_structure_update_7001() {
   $popup_settings['popup_hide_agreed'] = 0;
   variable_set('eu_cookie_compliance_' . $language->language, $popup_settings);
 }
+
+/**
+ * Geo map for news and gallery
+ */
+function chm_structure_update_7002() {
+  features_revert_module('chm_structure');
+}
