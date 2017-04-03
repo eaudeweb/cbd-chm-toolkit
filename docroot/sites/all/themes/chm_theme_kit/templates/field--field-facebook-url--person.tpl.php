@@ -47,7 +47,7 @@
 <div class="<?php print $classes; ?>"<?php print $attributes; ?>>
   <?php if (!$label_hidden): ?>
     <div class="field-label"<?php print $title_attributes; ?>>
-      <span class="glyphicon glyphicon-link" aria-hidden="true" title="<?php print $label ?>"></span>
+      <span class="fa fa-facebook-square" aria-hidden="true" title="<?php print $label ?>"></span>
   	  <span class="sr-only"><?php print $label ?></span>
     </div>
   <?php endif; ?>

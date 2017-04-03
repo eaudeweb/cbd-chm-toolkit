@@ -11264,6 +11264,9 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
 .node-details-page .field {
   margin-bottom: 1em;
 }
+.node-details-page .field-label > .fa {
+  font-size: 1.1em;
+}
 .node-details-page .field-name-field-event-address .field-item div {
   display: inline;
   float: none;
