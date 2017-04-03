@@ -64,7 +64,6 @@ function ptk_base_add_aichi_targets_parents($node) {
     }
     $map[$parent_tid] = 0;
     $node->field_aichi_targets['und'][] = ['tid' => $parent_tid];
-    drupal_set_message('ADDED tid = ' . $parent_tid);
   }
 }
 
