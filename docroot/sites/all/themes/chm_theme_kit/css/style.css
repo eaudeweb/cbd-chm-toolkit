@@ -11267,6 +11267,11 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
 .node-details-page .field-label > .fa {
   font-size: 1.1em;
 }
+.node-details-page .field-label > .glyphicon,
+.node-details-page .field-label > .fa {
+  float: left;
+  margin-right: .5em;
+}
 .node-details-page .field-name-field-event-address .field-item div {
   display: inline;
   float: none;
@@ -11277,9 +11282,6 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
 }
 .node-details-page .field-name-field-event-address .field-item span:last-child:after {
   content: "";
-}
-.node-details-page .field-label {
-  margin-right: .5em;
 }
 .node-details-page .field-name-field-organization-type,
 .node-details-page .field-name-field-document-type,
@@ -11306,10 +11308,6 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
 .node-details-page .field-name-field-event-address,
 .node-details-page .field-name-field-url {
   color: #02823F;
-}
-.node-details-page .field-name-field-publication-date .field-label,
-.node-details-page .field-type-link-field .field-label {
-  float: left;
 }
 .node-details-page .field-name-field-countries .field-item {
   display: inline-block;

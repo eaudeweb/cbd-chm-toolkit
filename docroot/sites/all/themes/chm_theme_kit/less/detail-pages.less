@@ -2,8 +2,15 @@
 	.field {
 		margin-bottom: 1em;
 	}
-	.field-label > .fa {
-		font-size: 1.1em;
+	.field-label {
+		> .fa {
+			font-size: 1.1em;
+		}
+    > .glyphicon,
+    > .fa {
+      float: left;
+      margin-right: .5em;
+    }
 	}
 	.field-name-field-event-address {
 		.field-item {
@@ -19,9 +26,6 @@
 				content: "";
 			}
 		}
-	}
-	.field-label {
-		margin-right: .5em;
 	}
 	.field-name-field-organization-type,
 	.field-name-field-document-type,
@@ -54,10 +58,6 @@
 	.field-name-field-geolocation {
 		// visibility: hidden;
 		// height: 0;
-	}
-	.field-name-field-publication-date .field-label,
-	.field-type-link-field .field-label {
-		float: left;
 	}
 	.field-name-field-countries {
 		.field-item {
