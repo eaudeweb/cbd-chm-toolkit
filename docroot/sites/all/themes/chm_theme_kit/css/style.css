@@ -11304,6 +11304,10 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
 .node-details-page .field-name-field-url {
   color: #02823F;
 }
+.node-details-page .field-name-field-publication-date .field-label,
+.node-details-page .field-type-link-field .field-label {
+  float: left;
+}
 .node-details-page .field-name-field-countries .field-item {
   display: inline-block;
   margin-right: .5em;
