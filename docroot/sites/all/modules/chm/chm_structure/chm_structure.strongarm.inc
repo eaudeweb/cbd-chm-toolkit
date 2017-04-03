@@ -2360,7 +2360,7 @@ function chm_structure_strongarm() {
       'display' => array(
         'domain' => array(
           'default' => array(
-            'weight' => '3',
+            'weight' => '4',
             'visible' => TRUE,
           ),
         ),
