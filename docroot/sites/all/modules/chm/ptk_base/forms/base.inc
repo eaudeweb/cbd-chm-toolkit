@@ -136,6 +136,9 @@ function ptk_base_form_alter(&$form, &$form_state, $form_id) {
     if (@$form_state['view'] && $form_state['view']->name == 'documents') {
       $form['field_document_type_tid']['#options'] = PTK::getDocumentsOptionsInUse($form);
     }
+    if (@$form_state['view'] && $form_state['view']->name == 'solr_documents') {
+      $form['field_document_type_tid']['#options'] = PTK::getDocumentsOptionsInUse($form);
+    }
   }
 
   if ($form_id == 'entityqueue_subqueue_edit_form') {

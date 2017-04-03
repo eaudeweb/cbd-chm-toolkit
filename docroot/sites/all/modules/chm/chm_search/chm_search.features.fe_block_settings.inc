@@ -47,7 +47,10 @@ search/*',
     'delta' => '19bHdUnmFxK7eb920GDpzRM1qyfR1Cyi',
     'module' => 'facetapi',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => 'search-network
+search-network/*
+search
+search/*',
     'roles' => array(),
     'themes' => array(
       'bootstrap' => array(
@@ -64,7 +67,7 @@ search/*',
       ),
     ),
     'title' => 'Aichi targets',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   $export['facetapi-1CYaGOaIEXdnamCgdq1Gdpv77bnvUD7D'] = array(
@@ -99,7 +102,10 @@ search/*',
     'delta' => '2WsraxK8PCznJ9C72fpnhpQInTbjXcLN',
     'module' => 'facetapi',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => 'search-network
+search-network/*
+search
+search/*',
     'roles' => array(),
     'themes' => array(
       'bootstrap' => array(
@@ -116,7 +122,7 @@ search/*',
       ),
     ),
     'title' => 'Subjects',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   $export['facetapi-AoCU3rlr8GYfymdYLwGLFYxa8sASyjOs'] = array(
@@ -307,7 +313,10 @@ search/*',
     'delta' => 'a2Q4rVt6DWWT27ii3ZepIItnu6yWtxzy',
     'module' => 'facetapi',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => 'search-network
+search-network/*
+search
+search/*',
     'roles' => array(),
     'themes' => array(
       'bootstrap' => array(
@@ -324,7 +333,7 @@ search/*',
       ),
     ),
     'title' => 'Keywords',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   $export['facetapi-bhmRHTzU2n0ejKZP9wDI0S1oi2DgbSDm'] = array(
@@ -333,7 +342,10 @@ search/*',
     'delta' => 'bhmRHTzU2n0ejKZP9wDI0S1oi2DgbSDm',
     'module' => 'facetapi',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => 'search-network
+search-network/*
+search
+search/*',
     'roles' => array(),
     'themes' => array(
       'bootstrap' => array(
@@ -350,7 +362,7 @@ search/*',
       ),
     ),
     'title' => 'Information type',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   $export['facetapi-iMhaaj0arVkCJe1zZp7gBw8i81U5iE1p'] = array(
@@ -411,7 +423,10 @@ search/*',
     'delta' => 'jmsS3R9uZ3SlC7IbspnkfTuPbMMgaFB0',
     'module' => 'facetapi',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => 'search-network
+search-network/*
+search
+search/*',
     'roles' => array(),
     'themes' => array(
       'bootstrap' => array(
@@ -428,7 +443,7 @@ search/*',
       ),
     ),
     'title' => 'CHM website',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   $export['facetapi-k0hWqhTI8R0yy5qQwUQWpEM1BT0nBoL9'] = array(
@@ -515,7 +530,10 @@ search/*',
     'delta' => 'quOCSH73Ih7QlyLc5C8uqdPNEZVwj6u6',
     'module' => 'facetapi',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => 'search-network
+search-network/*
+search
+search/*',
     'roles' => array(),
     'themes' => array(
       'bootstrap' => array(
@@ -532,7 +550,7 @@ search/*',
       ),
     ),
     'title' => 'Countries',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   $export['facetapi-saSOniarzepx25uEEito7x1bTGpvdNqU'] = array(
@@ -593,7 +611,10 @@ search/*',
     'delta' => 'yJSewVbtoL4B0ngOcQBoQIhAfTXyAGzO',
     'module' => 'facetapi',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => 'search-network
+search-network/*
+search
+search/*',
     'roles' => array(),
     'themes' => array(
       'bootstrap' => array(
@@ -610,7 +631,7 @@ search/*',
       ),
     ),
     'title' => 'Dates',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   $export['facetapi-zzq5edF4HoXxtUjaWHvJcUsxkt0tHlYD'] = array(
@@ -619,7 +640,10 @@ search/*',
     'delta' => 'zzq5edF4HoXxtUjaWHvJcUsxkt0tHlYD',
     'module' => 'facetapi',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => 'search-network
+search-network/*
+search
+search/*',
     'roles' => array(),
     'themes' => array(
       'bootstrap' => array(
@@ -636,7 +660,7 @@ search/*',
       ),
     ),
     'title' => 'Ecosystem types',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   return $export;

@@ -63,7 +63,7 @@ function chm_views_slick_default_presets() {
       'speed' => 500,
       'swipe' => TRUE,
       'swipeToSlide' => FALSE,
-      'edgeFriction' => 0.34999999999999998,
+      'edgeFriction' => 0.34999999999999997779553950749686919152736663818359375,
       'touchMove' => TRUE,
       'touchThreshold' => 5,
       'useCSS' => TRUE,
