@@ -3583,7 +3583,7 @@ function chm_structure_field_default_field_instances() {
         'apply_chosen' => 1,
       ),
       'type' => 'options_select',
-      'weight' => 7,
+      'weight' => 8,
     ),
   );
 
@@ -3632,7 +3632,7 @@ function chm_structure_field_default_field_instances() {
         'view_mode' => 'full',
       ),
       'type' => 'entityreference_view_widget',
-      'weight' => 16,
+      'weight' => 17,
     ),
   );
 
@@ -3673,7 +3673,7 @@ function chm_structure_field_default_field_instances() {
         'use_select2' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 13,
+      'weight' => 14,
     ),
   );
 
@@ -3729,7 +3729,7 @@ function chm_structure_field_default_field_instances() {
         'year_range' => '-20:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
@@ -3798,7 +3798,7 @@ function chm_structure_field_default_field_instances() {
         'visible_markers' => 1,
       ),
       'type' => 'addressfield_autocomplete',
-      'weight' => 10,
+      'weight' => 11,
     ),
   );
 
@@ -3838,7 +3838,63 @@ function chm_structure_field_default_field_instances() {
         'apply_chosen' => 1,
       ),
       'type' => 'options_select',
-      'weight' => 6,
+      'weight' => 7,
+    ),
+  );
+
+  // Exported field_instance: 'node-event-field_expire'.
+  $field_instances['node-event-field_expire'] = array(
+    'bundle' => 'event',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => FALSE,
+        ),
+        'type' => 'date_default',
+        'weight' => 20,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_expire',
+    'label' => 'Expire',
+    'required' => 0,
+    'settings' => array(
+      'default_value' => 'strtotime',
+      'default_value2' => 'same',
+      'default_value_code' => '+ 60 days',
+      'default_value_code2' => '',
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 15,
+        'input_format' => 'Y-m-d H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'no_fieldset' => 0,
+        'text_parts' => array(),
+        'year_range' => '-3:+3',
+      ),
+      'type' => 'date_popup',
+      'weight' => 3,
     ),
   );
 
@@ -3936,7 +3992,7 @@ function chm_structure_field_default_field_instances() {
         'delta_handling' => 'default',
       ),
       'type' => 'addressfield_autocomplete_latlng',
-      'weight' => 11,
+      'weight' => 12,
     ),
   );
 
@@ -3976,7 +4032,7 @@ function chm_structure_field_default_field_instances() {
         'apply_chosen' => 1,
       ),
       'type' => 'options_select',
-      'weight' => 14,
+      'weight' => 15,
     ),
   );
 
@@ -4061,7 +4117,7 @@ function chm_structure_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -4154,7 +4210,7 @@ function chm_structure_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 15,
+      'weight' => 16,
     ),
   );
 
@@ -4194,7 +4250,7 @@ function chm_structure_field_default_field_instances() {
         'apply_chosen' => 1,
       ),
       'type' => 'options_select',
-      'weight' => 9,
+      'weight' => 10,
     ),
   );
 
@@ -4242,7 +4298,7 @@ function chm_structure_field_default_field_instances() {
         'view_mode' => 'full',
       ),
       'type' => 'entityreference_view_widget',
-      'weight' => 17,
+      'weight' => 18,
     ),
   );
 
@@ -4290,7 +4346,7 @@ function chm_structure_field_default_field_instances() {
         'view_mode' => 'full',
       ),
       'type' => 'entityreference_view_widget',
-      'weight' => 12,
+      'weight' => 13,
     ),
   );
 
@@ -4330,7 +4386,7 @@ function chm_structure_field_default_field_instances() {
         'apply_chosen' => 1,
       ),
       'type' => 'options_select',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -4388,7 +4444,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -4439,7 +4495,7 @@ function chm_structure_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 18,
+      'weight' => 19,
     ),
   );
 
@@ -5367,7 +5423,7 @@ function chm_structure_field_default_field_instances() {
           'use_widget_handlers' => 1,
         ),
         'type' => 'addressfield_default',
-        'weight' => 8,
+        'weight' => 6,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -5425,13 +5481,36 @@ function chm_structure_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
-        'module' => 'geofield',
+        'label' => 'hidden',
+        'module' => 'geofield_map',
         'settings' => array(
-          'data' => 'full',
+          'geofield_map_baselayers_hybrid' => 1,
+          'geofield_map_baselayers_map' => 1,
+          'geofield_map_baselayers_physical' => 0,
+          'geofield_map_baselayers_satellite' => 1,
+          'geofield_map_center' => array(
+            'geocode' => 'Find my location',
+            'lat' => '',
+            'lon' => '',
         ),
-        'type' => 'geofield_wkt',
-        'weight' => 6,
+          'geofield_map_controltype' => 'default',
+          'geofield_map_draggable' => 0,
+          'geofield_map_height' => '300px',
+          'geofield_map_maptype' => 'map',
+          'geofield_map_max_zoom' => 0,
+          'geofield_map_min_zoom' => 0,
+          'geofield_map_mtc' => 'standard',
+          'geofield_map_overview' => 0,
+          'geofield_map_overview_opened' => 0,
+          'geofield_map_pancontrol' => 1,
+          'geofield_map_scale' => 0,
+          'geofield_map_scrollwheel' => 0,
+          'geofield_map_streetview_show' => 0,
+          'geofield_map_width' => '100%',
+          'geofield_map_zoom' => 12,
+        ),
+        'type' => 'geofield_map_map',
+        'weight' => 7,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -5565,7 +5644,7 @@ function chm_structure_field_default_field_instances() {
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 9,
+        'weight' => 8,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -5604,7 +5683,7 @@ function chm_structure_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 4,
+        'weight' => 9,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -6244,9 +6323,9 @@ function chm_structure_field_default_field_instances() {
     'label' => 'Expire',
     'required' => 0,
     'settings' => array(
-      'default_value' => 'blank',
+      'default_value' => 'strtotime',
       'default_value2' => 'same',
-      'default_value_code' => '',
+      'default_value_code' => '+ 60 days',
       'default_value_code2' => '',
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
@@ -6293,15 +6372,16 @@ function chm_structure_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_geolocation',
     'label' => 'Geolocation',
-    'required' => FALSE,
+    'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'addressfield_autocomplete',
       'settings' => array(
-        'addressfield_autocomplete_field' => '',
+        'addressfield_autocomplete_field' => 'field_event_address',
         'delta_handling' => 'default',
       ),
       'type' => 'addressfield_autocomplete_latlng',

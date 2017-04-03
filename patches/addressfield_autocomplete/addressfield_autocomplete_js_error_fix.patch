@@ -1,0 +1,13 @@
+diff --git a/docroot/sites/all/modules/contrib/addressfield_autocomplete/addressfield_autocomplete.js b/docroot/sites/all/modules/contrib/addressfield_autocomplete/addressfield_autocomplete.js
+index 96fd3f1..8ed857e 100644
+--- a/docroot/sites/all/modules/contrib/addressfield_autocomplete/addressfield_autocomplete.js
++++ b/docroot/sites/all/modules/contrib/addressfield_autocomplete/addressfield_autocomplete.js
+@@ -455,7 +455,7 @@
+       /*
+        * Methods to update the address after an ajax callback.
+        */
+-      if (context.length) {
++      if (context.length && typeof context === 'object' && context.has('[id^="addressfield-wrapper"]')) {
+         /*
+          * When we trigger a change on the addressfield country
+          * select this will be returned. As new fields may have
