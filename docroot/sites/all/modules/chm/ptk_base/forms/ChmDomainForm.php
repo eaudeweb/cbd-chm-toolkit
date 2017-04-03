@@ -80,6 +80,10 @@ class ChmDomainForm {
         '#type' => 'checkbox',
         '#title' => t('Create standard pages and link them to main menu'),
       ];
+      $form['ptk']['populate_footer_menu'] = [
+        '#type' => 'checkbox',
+        '#title' => t('Create standard pages and link them to footer menu'),
+      ];
       $form['ptk']['create_sample_content'] = [
         '#type' => 'checkbox',
         '#title' => t('Create sample content (i.e. project, species etc.)'),
@@ -110,9 +114,14 @@ class ChmDomainForm {
     if (empty($domain['machine_name'])) {
       $domain['machine_name'] = $form_state['values']['machine_name'];
     }
-    if ($countryIsoCode = $form_state['values']['country']) {
-      PTKDomain::variable_set('country', $countryIsoCode, $domain);
+
+    $countryIsoCode = NULL;
+    if (!PTKDomain::isDefaultDomain($domain)) {
+      if ($countryIsoCode = $form_state['values']['country']) {
+        PTKDomain::variable_set('country', $countryIsoCode, $domain);
+      }
     }
+
     cache_clear_all();
     if (!empty($form['#is_new'])) {
       $machine_name = $form_state['values']['machine_name'];
@@ -240,6 +249,9 @@ class ChmDomainForm {
           ->execute();
       }
     }
+
+    $populate_footer_menu = !empty($values['populate_footer_menu']);
+    self::createWebsiteFooterMenu($values['country'], $domain, $populate_footer_menu);
 
     // Main menu
     $menu = self::createWebsiteMainMenu($values['country'], $domain);
@@ -462,6 +474,110 @@ class ChmDomainForm {
       'customized' => 1,
     ];
     menu_link_save($home_link);
+    return $menu;
+  }
+
+  public static function createWebsiteFooterMenu($country, $domain, $populate_footer_menu) {
+    global $user;
+    $url = l($domain['path'], $domain['path']);
+    // todo because of sql menu_name filed max length 32 we will use $country + domain_id
+    $menu = array(
+      'menu_name' => "footer-menu-{$country}-{$domain['domain_id']}",
+      'title' => "Footer menu {$domain['sitename']}",
+      'description' => "Website's footer menu for the <strong>$url</strong> portal",
+      'i18n_mode' => I18N_MODE_MULTIPLE,
+    );
+    $exists = menu_load($menu['menu_name']);
+    if (!$exists) {
+      menu_save($menu);
+      _block_rehash('bootstrap');
+      _block_rehash('chm_theme_kit');
+      db_update('block')
+        ->condition('delta', $menu['menu_name'])
+        ->condition('theme', 'chm_theme_kit')
+        ->fields(['region' => 'footer', 'status' => 1, 'title' => '<none>'])
+        ->execute();
+      db_insert('domain_blocks')
+        ->fields(array(
+          'module' => 'menu',
+          'delta' => $menu['menu_name'],
+          'realm' => 'domain_id',
+          'domain_id' => $domain['domain_id'],
+        ))
+        ->execute();
+    }
+    if ($populate_footer_menu) {
+      $page_default_attributes = array(
+        'type' => 'page',
+        'status' => '1',
+        'uid' => $user->uid,
+        'name' => $user->name,
+        'language' => 'en',
+        'menu' => array(
+          'enabled' => 1,
+          'mlid' => 0,
+          'module' => 'menu',
+          'hidden' => 0,
+          'has_children' => 0,
+          'customized' => 0,
+          'options' => array(),
+          'expanded' => 0,
+          'parent_depth_limit' => 8,
+          'description' => '',
+          'parent' => "{$menu['menu_name']}:0",
+          'plid' => 0,
+          'menu_name' => $menu['menu_name'],
+        ),
+        'domains' => array($domain['domain_id'] => $domain['domain_id']),
+        'domain_site' => 0,
+      );
+      $pages = array(
+        'Contact' => ['node/3177', 'none'],
+        'Credits' => ['credits'],
+        'FAQ' => ['faq', 'none'],
+        'Terms of use' => ['terms-of-use'],
+      );
+      $weight = 1;
+      foreach ($pages as $link_title => $page) {
+        $path = $page[0];
+        $type = @$page[1];
+        if ($type != 'none') {
+          $node = $page_default_attributes;
+          if ($type) {
+            $node['type'] = $type;
+          }
+          $node['title'] = $node['menu']['link_title'] = $link_title;
+          $node['menu']['weight'] = $weight++;
+          $node['menu']['customized'] = 1;
+          $node = (object) $node;
+          $node->path = array('pathauto' => 0, 'alias' => '');
+          node_save($node);
+          db_insert('domain_path')
+            ->fields(array(
+              'domain_id' => $domain['domain_id'],
+              'source' => 'node/' . $node->nid,
+              'alias' => $path,
+              'language' => 'en',
+              'entity_type' => 'node',
+              'entity_id' => $node->nid,
+            ))
+            ->execute();
+        } else {
+          $custom_link = [
+            'link_title' => $link_title,
+            'link_path' => $path,
+            'menu_name' => $menu['menu_name'],
+            'weight' => $weight++,
+            'expanded' => 0,
+            'depth' => 1,
+            'customized' => 1,
+          ];
+          menu_link_save($custom_link);
+        }
+      }
+    }
+
+    PTKDomain::variable_set('populate_footer_menu', TRUE, $domain);
     return $menu;
   }
 

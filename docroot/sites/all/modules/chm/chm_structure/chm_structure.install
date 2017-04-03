@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * EU Cookie Compliance popup settings
+ *
+ */
+function chm_structure_update_7001() {
+  global $language;
+  $popup_settings = variable_get('eu_cookie_compliance_' . $language->language, array());
+  $popup_settings['popup_agreed_enabled'] = 0;
+  $popup_settings['popup_hide_agreed'] = 0;
+  variable_set('eu_cookie_compliance_' . $language->language, $popup_settings);
+}
+
+/**
+ * Geo map for news and gallery
+ * Expire date for events
+ */
+function chm_structure_update_7002() {
+  module_enable(['date_views']);
+  features_revert_module('chm_structure');
+  features_revert_module('chm_views');
+}

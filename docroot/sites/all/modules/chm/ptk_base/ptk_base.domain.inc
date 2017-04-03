@@ -339,32 +339,33 @@ class PTKDomain {
       $output = '';
 
       $entity = $row->_entity_properties['entity object'];
-
-      if (isset($entity->title_field['en'][0]['safe_value'])) {
-        $output = $entity->title_field['en'][0]['safe_value'];
-      }
-
-      if ($entity->type == 'video') {
-        $path = @$entity->field_video_link['und'][0]['video_url'];
-      }
-
-      if ($entity->type == 'organization') {
-        $path = @$entity->field_facebook_url['und'][0]['url'];
-        if (!$path) {
-          $path = @$entity->field_linkedin_url['und'][0]['url'];
+      if ($entity) {
+        if (isset($entity->title_field['en'][0]['safe_value'])) {
+          $output = $entity->title_field['en'][0]['safe_value'];
         }
-      }
 
-      if ($entity->type == 'link') {
-        $path = @$entity->field_url['en'][0]['url'];
-      }
+        if ($entity->type == 'video') {
+          $path = @$entity->field_video_link['und'][0]['video_url'];
+        }
 
-      if ($entity->type == 'document') {
-        $path = @$entity->field_url['en'][0]['url'];
-        // @todo not sure about external files. better to use link field...
-        //if ($entity->field_files['en']) {
-        //  $path  = file_create_url($entity->field_files['en'][0]['uri']);
-        //}
+        if ($entity->type == 'organization') {
+          $path = @$entity->field_facebook_url['und'][0]['url'];
+          if (!$path) {
+            $path = @$entity->field_linkedin_url['und'][0]['url'];
+          }
+        }
+
+        if ($entity->type == 'link') {
+          $path = @$entity->field_url['en'][0]['url'];
+        }
+
+        if ($entity->type == 'document') {
+          $path = @$entity->field_url['en'][0]['url'];
+          // @todo not sure about external files. better to use link field...
+          //if ($entity->field_files['en']) {
+          //  $path  = file_create_url($entity->field_files['en'][0]['uri']);
+          //}
+        }
       }
 
       if (!$path) {
@@ -412,5 +413,35 @@ class PTKDomain {
       }
     }
     return isset($domains[$domain_id]) ? $domains[$domain_id] : '';
+  }
+
+  /**
+   * Determine if user can view an entity queue in queue list.
+   *
+   * @param string $queue_id
+   *   Queue machine name
+   * @param null $account
+   *   Account, if null current user
+   * @return bool
+   *   true if user can view the queue in queue list
+   */
+  public static function userCanViewQueue($queue_id, $account = NULL) {
+    if (empty($account)) {
+      global $user;
+      $account = $user;
+    }
+    if (PTK::userIsAdministrator($account)) {
+      return true;
+    }
+    $domain = domain_get_domain();
+    domain_user_set($account);
+    if (
+      user_access('manipulate all entityqueues', $account)
+      && strpos($queue_id, '_' . $domain['machine_name'])
+      && array_key_exists($domain['domain_id'], $account->domain_user)) {
+      return true;
+    }
+
+    return false;
   }
 }

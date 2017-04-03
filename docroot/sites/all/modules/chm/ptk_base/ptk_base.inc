@@ -1,8 +1,43 @@
 <?php
 
-define ('ADMINISTATOR_ROLE', 'administrator');
-
 class PTK {
+
+  const ROLE_ADMINISTRATOR = 'administrator';
+
+  public static function getDocumentsOptionsInUse($form) {
+    global $_domain;
+
+    $db_and = db_and();
+    $db_and ->condition('da.realm', 'domain_id');
+    $db_and ->condition('da.gid', $_domain['domain_id']);
+
+    $db_or = db_or();
+    $db_or->condition('da.realm', 'domain_site');
+    $db_or->condition($db_and);
+
+    $query = db_select('field_data_field_document_type', 'dt')
+      ->fields('dt', array('field_document_type_tid'))->distinct();
+
+    $query->join('domain_access', 'da', 'da.nid = dt.entity_id');
+    $query->condition($db_or);
+
+    $query->join('node', 'n', 'n.nid = dt.entity_id');
+    $query->condition('n.status', 1);
+
+    $result = $query->execute()->fetchCol();
+
+    $options = [];
+    foreach($form['field_document_type_tid']['#options'] as $tid => $option) {
+      if (!in_array($tid, $result)) {
+        if ($tid != 'All') {
+          continue;
+        }
+      }
+      $options[$tid] = $option;
+    }
+    return $options;
+  }
+
 
   public static function getCountryListAsOptions() {
     $ret = [];
@@ -267,15 +302,14 @@ class PTK {
    *   TRUE if the user is administrator
    */
   static function userIsAdministrator($account = NULL) {
-    $subject = $account;
     if (empty($account)) {
       global $user;
-      $subject = $user;
+      $account = $user;
     }
-    if ($subject->uid == 1) {
-      return TRUE;
+    if ($account->uid == 1) {
+      return true;
     }
-    return in_array(ADMINISTATOR_ROLE, $subject->roles);
+    return in_array(self::ROLE_ADMINISTRATOR, $account->roles);
   }
 
 

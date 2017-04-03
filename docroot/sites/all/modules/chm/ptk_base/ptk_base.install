@@ -37,8 +37,25 @@ function ptk_base_update_7003() {
 
 /**
  * Update information menu attributes classes
+ *
+ *
  */
 function ptk_base_update_7004() {
   db_delete('block')->condition('delta', 'menu-information-menu')->execute();
   ptk_base_update_information_menus();
+  
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'taxonomy_term')
+    ->entityCondition('bundle', array('document_type'));
+
+  $result = $query->execute();
+  $terms = array_keys($result['taxonomy_term']);
+  foreach($terms as $tid) {
+    $term = taxonomy_term_load($tid);
+    if ($term->name_field) {
+      continue;
+    }
+    $term->name_field[$term->language][0]['value'] = $term->name;
+    taxonomy_term_save($term);
+  }
 }
