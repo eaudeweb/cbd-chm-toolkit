@@ -10,3 +10,27 @@
 @font-size-h4:            ceil((@font-size-base * 1.4));
 @font-size-h5:            ceil((@font-size-base * 1.2));
 @font-size-h6:            @font-size-base;
+
+@brand-primary:           @chm-green;
+@brand-secondary:         @chm-blue;
+
+@navbar-default-color:    #fff;
+@navbar-default-bg:       @brand-primary;
+@navbar-default-border:   transparent;
+
+// Navbar links
+@navbar-default-link-color:                @navbar-default-color;
+@navbar-default-link-hover-color:          #ffffff;
+@navbar-default-link-hover-bg:             darken(@navbar-default-bg, 3%);
+@navbar-default-link-active-color:         #ffffff;
+@navbar-default-link-active-bg:            @navbar-default-bg;
+@navbar-default-link-disabled-color:       #ccc;
+@navbar-default-link-disabled-bg:          transparent;
+
+@dropdown-link-hover-color:               @navbar-default-link-hover-color;
+@dropdown-link-hover-bg:                  @navbar-default-link-hover-bg;
+
+@navbar-default-toggle-icon-bar-bg:       @navbar-default-color;
+
+@nav-link-hover-bg:                       @navbar-default-link-hover-bg;
+@grid-float-breakpoint:                   @screen-md-min;
