@@ -60,6 +60,13 @@ function ptk_base_update_7004() {
  */
 function ptk_base_update_7005() {
   db_delete('block')->condition('delta', 'menu-information-menu')->execute();
+  db_insert('domain_blocks')
+    ->fields(array(
+      'module' => 'ptk_base',
+      'delta' => 'chm_information_page',
+      'realm' => 'domain_site',
+      'domain_id' => 1,
+    ))
+    ->execute();
   ptk_base_update_information_menus();
-
 }
