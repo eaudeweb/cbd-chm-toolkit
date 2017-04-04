@@ -404,7 +404,7 @@ function ptk_base_field_formatter_settings_form($field, $instance, $view_mode, $
   if ($display['type'] == 'domain_image_link') {
     $display = $instance['display'][$view_mode];
     $settings = $display['settings'];
-  
+
     $image_styles = image_style_options(FALSE, PASS_THROUGH);
     $element['image_style'] = array(
       '#title' => t('Image style'),
@@ -413,7 +413,7 @@ function ptk_base_field_formatter_settings_form($field, $instance, $view_mode, $
       '#empty_option' => t('None (original image)'),
       '#options' => $image_styles,
     );
-  
+
     $link_types = array(
       'content' => t('Content'),
       'file' => t('File'),
@@ -430,7 +430,7 @@ function ptk_base_field_formatter_settings_form($field, $instance, $view_mode, $
   if ($display['type'] == 'domain_link') {
     $settings = $instance['display'][$view_mode]['settings'];
     $element = array();
-  
+
     $wrap_tags = array(
       '_none' => t('- None -'),
       'div' => t('DIV'),
@@ -448,7 +448,7 @@ function ptk_base_field_formatter_settings_form($field, $instance, $view_mode, $
       '#default_value' => !empty($settings['title_style']) ? $settings['title_style'] : '_none',
       '#options' => $wrap_tags,
     );
-  
+
     $link_types = array(
       'content' => t('Content'),
     );
@@ -459,7 +459,7 @@ function ptk_base_field_formatter_settings_form($field, $instance, $view_mode, $
       '#empty_option' => t('Nothing'),
       '#options' => $link_types,
     );
-  
+
     $element['title_class'] = array(
       '#title' => t('Tag classes'),
       '#type' => 'textfield',
@@ -467,7 +467,7 @@ function ptk_base_field_formatter_settings_form($field, $instance, $view_mode, $
       '#default_value' => $settings['title_class'],
       '#element_validate' => array('_title_validate_class'),
     );
-    
+
   }
   return $element;
 }
@@ -488,7 +488,7 @@ function ptk_base_field_formatter_view($entity_type, $entity, $field, $instance,
       $element[$delta] = array('#type' => 'item', '#markup' => $value);
     }
   }
-  
+
   if ($display['type'] == 'domain_image_link') {
     // Check if the formatter involves a link.
     if ($display['settings']['image_link'] == 'content') {
@@ -515,7 +515,7 @@ function ptk_base_field_formatter_view($entity_type, $entity, $field, $instance,
       );
     }
   }
-  
+
   if ($display['type'] == 'domain_link') {
     $settings = $display['settings'];
     $output = '';
@@ -526,7 +526,7 @@ function ptk_base_field_formatter_view($entity_type, $entity, $field, $instance,
       $output = _text_sanitize($instance, $langcode, $items[0], 'value');
     }
     $element = array();
-  
+
     if (!empty($output)) {
       if ($settings['title_link'] == 'content') {
         $uri = entity_uri($entity_type, $entity);
@@ -538,9 +538,9 @@ function ptk_base_field_formatter_view($entity_type, $entity, $field, $instance,
         $options['external'] = TRUE;
         $output = l($output, $base_url . '/' . $uri['path'], $options);
       }
-  
+
       $wrap_tag = empty($settings['title_style']) ? '_none' : $settings['title_style'];
-  
+
       if ($wrap_tag != '_none') {
         $variables = array(
           'element' => array(
@@ -548,14 +548,14 @@ function ptk_base_field_formatter_view($entity_type, $entity, $field, $instance,
             '#value' => $output,
           ),
         );
-  
+
         if (!empty($settings['title_class'])) {
           $variables['element']['#attributes'] = array('class' => $settings['title_class']);
         }
-  
+
         $output = theme('html_tag', $variables);
       }
-  
+
       $element = array(
         array(
           '#markup' => $output,
@@ -564,7 +564,7 @@ function ptk_base_field_formatter_view($entity_type, $entity, $field, $instance,
     }
     return $element;
   }
-  
+
   return $element;
 }
 
@@ -785,6 +785,20 @@ function ptk_base_init() {
     }
     variable_realm_rebuild();
   }
+  
+  $main_menu = variable_get('menu_main_links_source', 'main-menu');
+  $active_menus = menu_get_active_menu_names();
+  $active_menu_names = [];
+  foreach($active_menus as $active_menu) {
+    if (
+      (strpos($active_menu, 'menu-') !== 0) ||
+      (strpos($active_menu, 'menu-footer') === 0) ||
+      ($active_menu == $main_menu)
+    ) {
+      $active_menu_names[] = $active_menu;
+    }
+  }
+  menu_set_active_menu_names($active_menu_names); // exclude other domain main menus
 }
 
 /**
