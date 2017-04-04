@@ -823,7 +823,7 @@ function ptk_base_get_information_block_pages() {
 }
 
 function ptk_base_update_information_menus() {
-  $custom_menus = menu_load_all(FALSE);
+  $custom_menus = menu_load_all();
   foreach($custom_menus as $menu_name => $menu) {
     if (strpos($menu_name, 'menu-main-menu-') !== 0) {
       continue;
@@ -834,15 +834,19 @@ function ptk_base_update_information_menus() {
 
 function ptk_base_add_update_information_menu_items($menu_name) {
   $info_settings = ptk_base_get_information_settings();
-  $found = FALSE;
-  $data = menu_tree_all_data($menu_name);
+  $data = menu_load_links($menu_name);
   foreach($data as $menu_item) {
-    if ($menu_item['link']['link_title'] == 'Information') {
-      $found = TRUE;
-      foreach($menu_item['below'] as $sub_item) {
-        $link_path = $sub_item['link']['link_path'];
-        if (!$sub_item['link']['options']['attributes']['class']) { // Require to update
-          $mlid = $sub_item['link']['mlid'];
+    if ($menu_item['link_title'] == 'Information') {
+      $information_mlid = $menu_item['mlid'];
+      break;
+    }
+  }
+  if (!empty($information_mlid)) {
+    foreach($data as $menu_item) {
+      if ($menu_item['plid'] == $information_mlid) {
+        $link_path = $menu_item['link_path'];
+        if (!$menu_item['options']['attributes']['class']) { // Require to update
+          $mlid = $menu_item['mlid'];
           $item = menu_link_load($mlid);
           $item['options']['attributes']['class'] = $info_settings[$link_path]['class'];
           if (@$info_settings[$link_path]['accesskey']) {
@@ -855,13 +859,6 @@ function ptk_base_add_update_information_menu_items($menu_name) {
         }
       }
     }
-  }
-  if ($info_settings) {
-    $pages = implode(', ', array_keys($info_settings));
-    drupal_set_message(t('%menu_name menu not found subitems: %pages.', array('%menu_name' => $menu_name, '%pages' => $pages)), WATCHDOG_ERROR);
-  }
-  if (!$found) {
-    drupal_set_message(t('Information not found in %menu_name menu.', array('%menu_name' => $menu_name)), WATCHDOG_ERROR);
   }
 }
 
