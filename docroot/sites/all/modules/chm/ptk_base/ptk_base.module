@@ -4,6 +4,7 @@ require_once dirname(__FILE__) . '/ptk_base.inc';
 require_once dirname(__FILE__) . '/ptk_base.cache.inc';
 require_once dirname(__FILE__) . '/ptk_base.domain.inc';
 require_once dirname(__FILE__) . '/blocks/AbstractBlock.php';
+require_once dirname(__FILE__) . '/blocks/ChmInformationPageBlock.php';
 require_once dirname(__FILE__) . '/blocks/ChmContentStatisticsBlock.php';
 require_once dirname(__FILE__) . '/blocks/ChmFooterQuickLinksRootBlock.php';
 require_once dirname(__FILE__) . '/blocks/ChmFooterQuickLinksBlock.php';
@@ -806,4 +807,78 @@ function ptk_base_facet_items_alter(&$build, &$settings) {
     $build[$key]["#html"] = TRUE;
     $build[$key]["#markup"] = '<span>' . $item["#markup"] . '</span>';
   }
+}
+
+function ptk_base_get_information_block_pages() {
+  $query = db_select('node', 'n')
+    ->fields('n', array('nid', 'title'))
+    ->condition('title', 'Information')
+    ->condition('type', 'page');
+  $result = $query->execute();
+  $rs = [];
+  foreach ($result as $item) {
+    $rs[] = 'node/' . $item->nid;
+  }
+  return implode(PHP_EOL, $rs);
+}
+
+function ptk_base_update_information_menus() {
+  $custom_menus = menu_load_all();
+  foreach($custom_menus as $menu_name => $menu) {
+    if (strpos($menu_name, 'menu-main-menu-') !== 0) {
+      continue;
+    }
+    ptk_base_add_update_information_menu_items($menu_name);
+  }
+}
+
+function ptk_base_add_update_information_menu_items($menu_name) {
+  $info_settings = ptk_base_get_information_settings();
+  $data = menu_load_links($menu_name);
+  foreach($data as $menu_item) {
+    if ($menu_item['link_title'] == 'Information') {
+      $information_mlid = $menu_item['mlid'];
+      break;
+    }
+  }
+  if (!empty($information_mlid)) {
+    foreach($data as $menu_item) {
+      if ($menu_item['plid'] == $information_mlid) {
+        $link_path = $menu_item['link_path'];
+        if (!$menu_item['options']['attributes']['class']) { // Require to update
+          $mlid = $menu_item['mlid'];
+          $item = menu_link_load($mlid);
+          $item['options']['attributes']['class'] = $info_settings[$link_path]['class'];
+          if (@$info_settings[$link_path]['accesskey']) {
+            $item['options']['attributes']['accesskey'] = $info_settings[$link_path]['accesskey'];
+          }
+          menu_link_save($item);
+        }
+        if (@$info_settings[$link_path]) {
+          unset($info_settings[$link_path]);
+        }
+      }
+    }
+  }
+}
+
+function ptk_base_get_information_settings() {
+  $info_settings = [
+    'news' => ['class' => ["fa", "fa-newspaper-o", "fa-4x"], 'accesskey' => 'n'],
+    'events' => ['class' => ["fa", "fa-calendar", "fa-4x"], 'accesskey' => 'e'],
+    'national-targets' => ['class' => ["fa", "fa-dot-circle-o", "fa-4x"], 'accesskey' => ''],
+    'facts' => ['class' => ["fa", "fa-info-circle", "fa-4x"], 'accesskey' => ''],
+    'faq' => ['class' => ["fa", "fa-question-circle-o", "fa-4x"], 'accesskey' => ''],
+    'ecosystems' => ['class' => ["fa", "fa-recycle", "fa-4x"], 'accesskey' => 'c'],
+    'protected-areas' => ['class' => ["fa", "fa-globe", "fa-4x"], 'accesskey' => ''],
+    'projects' => ['class' => ["fa", "fa-sitemap", "fa-4x"], 'accesskey' => 'p'],
+    'species' => ['class' => ["fa", "fa-bug", "fa-4x"], 'accesskey' => 's'],
+    'organizations' => ['class' => ["fa", "fa-building-o", "fa-4x"], 'accesskey' => ''],
+    'network-directory' => ['class' => ["fa", "fa-users", "fa-4x"], 'accesskey' => ''],
+    'library' => ['class' => ["fa", "fa-folder-open-o", "fa-4x"], 'accesskey' => ''],
+    'videos' => ['class' => ["fa", "fa-video-camera", "fa-4x"], 'accesskey' => ''],
+    'photo-galleries' => ['class' => ["fa", "fa-picture-o", "fa-4x"], 'accesskey' => 'i'],
+    'links' => ['class' => ["fa", "fa-link", "fa-4x"], 'accesskey' => ''],
+  ];
+  return $info_settings;
 }

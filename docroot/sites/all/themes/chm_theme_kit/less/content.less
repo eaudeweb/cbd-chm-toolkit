@@ -1430,7 +1430,7 @@ h2.pane-title {
 }
 
 // Information page
-#block-menu-menu-information-menu {
+#block-ptk-base-chm-information-page {
   width: 100%;
   .content {
     ul.menu.nav {
@@ -2060,3 +2060,30 @@ body.logged-in {
   width:25%;
 }
 
+
+/* Gallery address */
+
+.node-type-gallery {
+  .field-name-field-event-address {
+    color: #666;
+    text-align: left;
+    > div {
+      display: inline-block;
+      float: none;
+    }
+    .field-item {
+      div, span {
+        display: inline;
+        float: none;
+      }
+      > div, > span {
+        &:after {
+          content: ", ";
+        }
+        &:last-child:after {
+          content: "";
+        }
+      }
+    }
+  }
+}

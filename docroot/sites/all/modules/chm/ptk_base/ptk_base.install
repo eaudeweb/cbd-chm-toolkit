@@ -36,7 +36,7 @@ function ptk_base_update_7003() {
 }
 
 /**
- * Fix term.name for badly migrated terms.
+ * Update information menu attributes classes
  */
 function ptk_base_update_7004() {
   $query = new EntityFieldQuery();
@@ -53,4 +53,20 @@ function ptk_base_update_7004() {
     $term->name_field[$term->language][0]['value'] = $term->name;
     taxonomy_term_save($term);
   }
+}
+
+/**
+ * Update information menu block
+ */
+function ptk_base_update_7005() {
+  db_delete('block')->condition('delta', 'menu-information-menu')->execute();
+  db_insert('domain_blocks')
+    ->fields(array(
+      'module' => 'ptk_base',
+      'delta' => 'chm_information_page',
+      'realm' => 'domain_site',
+      'domain_id' => 1,
+    ))
+    ->execute();
+  ptk_base_update_information_menus();
 }

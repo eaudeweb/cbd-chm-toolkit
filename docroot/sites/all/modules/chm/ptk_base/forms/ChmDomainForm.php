@@ -328,7 +328,8 @@ class ChmDomainForm {
             node_save($node);
             if (!empty($node->nid)) {
               // Show the Information block on this page
-              PTK::showBlockOnPage('menu-information-menu', 'node/' . $node->nid);
+              PTK::showBlockOnPage('chm_information_page', 'node/' . $node->nid);
+              PTK::showBlockOnPage('chm_information_page', 'node/' . $node->nid, 'bootstrap' );
             }
             break;
           case 'participate':
@@ -378,12 +379,19 @@ class ChmDomainForm {
             'p1' => $link['mlid'],
             'customized' => 1,
           );
+          $info_settings = ptk_base_get_information_settings();
           foreach($level2_information_links as $link_path => $link_title) {
             $new_link = $menu_link_default + [
               'link_title' => $link_title,
               'link_path' => $link_path,
               'weight' => $i++,
             ];
+
+            $new_link['options']['attributes']['class'] = $info_settings[$link_path]['class'];
+            if (@$info_settings[$link_path]['accesskey']) {
+              $new_link['options']['attributes']['accesskey'] = $info_settings[$link_path]['accesskey'];
+            }
+
             menu_link_save($new_link);
           }
         }
