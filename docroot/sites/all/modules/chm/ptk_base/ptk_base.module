@@ -761,7 +761,7 @@ function ptk_base_site_information_settings() {
     '#type' => 'checkbox',
     '#title' => t('Enable popup'),
     '#default_value' => variable_get('popup_enabled'),
-    '#description' => t('Cookie enable popup per domain'),
+    '#description' => t('Show the EU cookie compliance popup on this website.'),
   );
 
   return system_settings_form($form);
