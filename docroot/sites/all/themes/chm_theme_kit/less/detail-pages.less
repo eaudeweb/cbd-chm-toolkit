@@ -2,6 +2,16 @@
 	.field {
 		margin-bottom: 1em;
 	}
+	.field-label {
+		> .fa {
+			font-size: 1.1em;
+		}
+    > .glyphicon,
+    > .fa {
+      float: left;
+      margin-right: .5em;
+    }
+	}
 	.field-name-field-event-address {
 		.field-item {
 			div {
@@ -16,9 +26,6 @@
 				content: "";
 			}
 		}
-	}
-	.field-label {
-		margin-right: .5em;
 	}
 	.field-name-field-organization-type,
 	.field-name-field-document-type,
@@ -45,8 +52,7 @@
 	}
 	.field-name-field-dates,
 	.field-name-field-event-address,
-	.field-name-field-url
-	{
+	.field-name-field-url {
 		color: @text-color-green;
 	}
 	.field-name-field-geolocation {

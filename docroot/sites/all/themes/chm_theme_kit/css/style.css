@@ -11170,6 +11170,14 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
 .node-details-page .field {
   margin-bottom: 1em;
 }
+.node-details-page .field-label > .fa {
+  font-size: 1.1em;
+}
+.node-details-page .field-label > .glyphicon,
+.node-details-page .field-label > .fa {
+  float: left;
+  margin-right: .5em;
+}
 .node-details-page .field-name-field-event-address .field-item div {
   display: inline;
   float: none;
@@ -11180,9 +11188,6 @@ body.logged-in #block-chm-search-chm-search:hover input[type="text"] {
 }
 .node-details-page .field-name-field-event-address .field-item span:last-child:after {
   content: "";
-}
-.node-details-page .field-label {
-  margin-right: .5em;
 }
 .node-details-page .field-name-field-organization-type,
 .node-details-page .field-name-field-document-type,
