@@ -37,6 +37,17 @@ function bootstrap_preprocess_page(&$variables) {
   if ($variables['main_menu']) {
     // Build links.
     $variables['primary_nav'] = menu_tree(variable_get('menu_main_links_source', 'main-menu'));
+    foreach($variables['primary_nav'] as $menu_id => $item) {
+      if (@$item['#title'] == 'Information') {
+        $settings = ptk_base_get_information_settings();
+        foreach($item['#below'] as $sub_menu_id => $sub_item) {
+          if (@$settings[$sub_item['#href']]) {
+            $variables['primary_nav'][$menu_id]['#below'][$sub_menu_id]['#localized_options']['attributes']['class'] = [];
+            unset($variables['primary_nav'][$menu_id]['#below'][$sub_menu_id]['#localized_options']['attributes']['accesskey']);
+          }
+        }
+      }
+    }
     // Provide default theme wrapper function.
     $variables['primary_nav']['#theme_wrappers'] = array('menu_tree__primary');
   }
