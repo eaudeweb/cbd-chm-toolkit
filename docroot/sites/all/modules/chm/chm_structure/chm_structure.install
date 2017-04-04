@@ -14,7 +14,10 @@ function chm_structure_update_7001() {
 
 /**
  * Geo map for news and gallery
+ * Expire date for events
  */
 function chm_structure_update_7002() {
+  module_enable(['date_views']);
   features_revert_module('chm_structure');
+  features_revert_module('chm_views');
 }

@@ -4,6 +4,7 @@ require_once dirname(__FILE__) . '/ptk_base.inc';
 require_once dirname(__FILE__) . '/ptk_base.cache.inc';
 require_once dirname(__FILE__) . '/ptk_base.domain.inc';
 require_once dirname(__FILE__) . '/blocks/AbstractBlock.php';
+require_once dirname(__FILE__) . '/blocks/ChmInformationPageBlock.php';
 require_once dirname(__FILE__) . '/blocks/ChmContentStatisticsBlock.php';
 require_once dirname(__FILE__) . '/blocks/ChmFooterQuickLinksRootBlock.php';
 require_once dirname(__FILE__) . '/blocks/ChmFooterQuickLinksBlock.php';
@@ -15,6 +16,66 @@ define('USER_WALLE', 43);
 define('ROLE_ADMINISTRATOR', 'administrator');
 define('PROTECTED_PLANET_AREA_CSV_UPLOAD_DIR', 'public://protected-areas/');
 define('PROTECTED_PLANET_AREA_CSV_VAR', 'ptk_protected_planet_areas_csv_path');
+
+function ptk_base_taxonomy_get_parents_tids($tid) {
+  $parents = &drupal_static(__FUNCTION__, array());
+  if ($tid && !isset($parents[$tid])) {
+    $query = db_select('taxonomy_term_data', 't');
+    $query->join('taxonomy_term_hierarchy', 'h', 'h.parent = t.tid');
+    $query->addField('t', 'tid');
+    $query->condition('h.tid', $tid);
+    $query->addTag('taxonomy_term_access');
+    $query->orderBy('t.weight');
+    $query->orderBy('t.name');
+    $tids = $query->execute()->fetchCol();
+    $parents[$tid] = $tids;
+  }
+  return isset($parents[$tid]) ? $parents[$tid] : array();
+}
+
+function ptk_base_taxonomy_get_parents_all_tids($tid) {
+  $parents = array($tid);
+  $n = 0;
+  while ($parent = ptk_base_taxonomy_get_parents_tids($parents[$n])) {
+    $parents = array_merge($parents, $parent);
+    $n++;
+  }
+  return $parents;
+}
+
+function ptk_base_add_aichi_targets_parents($node) {
+  $map = [];
+  foreach($node->field_aichi_targets['und'] as $targets) {
+    $parents = ptk_base_taxonomy_get_parents_all_tids($targets['tid']);
+    if (count($parents) < 2) {
+      continue;
+    }
+    $parent_tid = $parents[1];
+    if (count($parents) == 2) {
+      $parent_tid = 0;
+    }
+    $map[$targets['tid']] = $parent_tid;
+  }
+  foreach($map as $tid => $parent_tid) {
+    if (!$parent_tid) {
+      continue;
+    }
+    if (isset($map[$parent_tid])) {
+      continue;
+    }
+    $map[$parent_tid] = 0;
+    $node->field_aichi_targets['und'][] = ['tid' => $parent_tid];
+  }
+}
+
+/**
+ * Implements hook_node_presave().
+ */
+function ptk_base_node_presave($node) {
+  if (property_exists($node, 'field_aichi_targets') && $node->field_aichi_targets) {
+    ptk_base_add_aichi_targets_parents($node);
+  }
+}
 
 /**
  * Implements hook_init().
@@ -143,6 +204,17 @@ function ptk_base_menu() {
       'type' => MENU_LOCAL_TASK,
       'description' => 'Protected Planet integration',
     ],
+
+    'admin/config/system/chm_website_settings' => [
+      'title' => 'Site details',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => ['ptk_base_site_information_settings'],
+      'access arguments' => ['configure chm website settings'],
+      'description' => 'Change site name, slogan.',
+      'weight' => -19,
+    ],
+
+/*
     'admin/config/system/chm_website_settings' => [
       'title' => 'CHM website settings',
       'page callback' => 'ptk_base_admin_variables',
@@ -152,6 +224,7 @@ function ptk_base_menu() {
       'type' => MENU_NORMAL_ITEM,
       'description' => 'Configure parameters specific to this website.',
     ],
+*/
   ];
   return $items;
 }
@@ -628,13 +701,110 @@ function theme_ptk_base_chm_content_statistics_block_config_form($variables) {
 /**
  * Variables settings form
  */
+/*
 function ptk_base_admin_variables() {
   $domain = domain_get_domain();
   $realm_key = _domain_variable_realm_key($domain);
   module_load_include('form.inc', 'variable_realm');
-  return drupal_get_form('variable_realm_edit_variables_form', 'domain', $realm_key);
+  $build = drupal_get_form('variable_realm_edit_variables_form', 'domain', $realm_key);
+  return $build;
+}
+*/
+
+/**
+ * Site name and Slogan settings form
+ */
+function ptk_base_site_information_settings() {
+  $form['site_information'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Site details'),
+  );
+  $form['site_information']['site_name'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Site name'),
+    '#default_value' => variable_get('site_name', 'Drupal'),
+    '#required' => TRUE
+  );
+  $form['site_information']['site_slogan'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Slogan'),
+    '#default_value' => variable_get('site_slogan', ''),
+    '#description' => t("How this is used depends on your site's theme."),
+  );
+
+  $form['site_information']['popup_enabled'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Enable popup'),
+    '#default_value' => variable_get('popup_enabled'),
+    '#description' => t('Cookie enable popup per domain'),
+  );
+
+  return system_settings_form($form);
 }
 
+/**
+ * Implements hook_variable_settings_form_alter().
+ */
+function ptk_base_variable_settings_form_alter(&$form, &$form_state, $form_id) {
+  global $_domain, $user;
+  $user_domains = domain_get_user_domains($user);
+
+  $role = user_role_load_by_name('administrator');
+  // no check for admin and dev
+  if (user_has_role($role->rid) || $user->uid == 1) {
+    return;
+  }
+
+  // current domain not in user domains
+  if (!isset($user_domains[$_domain['domain_id']])) {
+    drupal_access_denied();
+    drupal_exit();
+  }
+
+  // restrict access to current domain only
+  if (isset($_REQUEST['variable_realm_key_domain'])) {
+    $uri = request_path();
+    $params = drupal_get_query_parameters($_GET, array('q', 'page'));
+    if ( $_domain['machine_name'] != $_REQUEST['variable_realm_key_domain'] ) {
+      unset($params['variable_realm_key_domain']);
+      if ($params) {
+        drupal_goto($uri, array('query' => array($params)) );
+      }
+      else {
+        drupal_goto($uri);
+      }
+    }
+  }
+  // hide attached domains block
+  unset($form['variable_realm_selector_domain']);
+}
+
+function ptk_base_variable_info_alter(&$variables, $options) {
+  $list = array(
+    'popup_enabled',
+  );
+  foreach ($list as $name) {
+    if (isset($variables[$name])) {
+      $variables[$name]['multidomain'] = TRUE;
+    }
+  }
+}
+
+/**
+ * Implements hook_init()
+ *
+ * Let realms be overriden by query string parameters, but only for:
+ * - Admin paths (not variable realm admin pages)
+ * - add realm for users with 'configure chm website settings' permissions
+ */
+function ptk_base_init() {
+  if (arg(0) == 'admin' && (arg(3) == 'chm_website_settings') && ($params = variable_realm_params()) && !user_access('administer site configuration') && user_access('configure chm website settings') ) {
+    foreach ($params as $realm_name => $realm_key) {
+      variable_realm_switch($realm_name, $realm_key, FALSE);
+    }
+    variable_realm_rebuild();
+  }
+}
 
 /**
  * Implements hook_user_is_administrator().
@@ -656,4 +826,78 @@ function ptk_base_facet_items_alter(&$build, &$settings) {
     $build[$key]["#html"] = TRUE;
     $build[$key]["#markup"] = '<span>' . $item["#markup"] . '</span>';
   }
+}
+
+function ptk_base_get_information_block_pages() {
+  $query = db_select('node', 'n')
+    ->fields('n', array('nid', 'title'))
+    ->condition('title', 'Information')
+    ->condition('type', 'page');
+  $result = $query->execute();
+  $rs = [];
+  foreach ($result as $item) {
+    $rs[] = 'node/' . $item->nid;
+  }
+  return implode(PHP_EOL, $rs);
+}
+
+function ptk_base_update_information_menus() {
+  $custom_menus = menu_load_all();
+  foreach($custom_menus as $menu_name => $menu) {
+    if (strpos($menu_name, 'menu-main-menu-') !== 0) {
+      continue;
+    }
+    ptk_base_add_update_information_menu_items($menu_name);
+  }
+}
+
+function ptk_base_add_update_information_menu_items($menu_name) {
+  $info_settings = ptk_base_get_information_settings();
+  $data = menu_load_links($menu_name);
+  foreach($data as $menu_item) {
+    if ($menu_item['link_title'] == 'Information') {
+      $information_mlid = $menu_item['mlid'];
+      break;
+    }
+  }
+  if (!empty($information_mlid)) {
+    foreach($data as $menu_item) {
+      if ($menu_item['plid'] == $information_mlid) {
+        $link_path = $menu_item['link_path'];
+        if (!$menu_item['options']['attributes']['class']) { // Require to update
+          $mlid = $menu_item['mlid'];
+          $item = menu_link_load($mlid);
+          $item['options']['attributes']['class'] = $info_settings[$link_path]['class'];
+          if (@$info_settings[$link_path]['accesskey']) {
+            $item['options']['attributes']['accesskey'] = $info_settings[$link_path]['accesskey'];
+          }
+          menu_link_save($item);
+        }
+        if (@$info_settings[$link_path]) {
+          unset($info_settings[$link_path]);
+        }
+      }
+    }
+  }
+}
+
+function ptk_base_get_information_settings() {
+  $info_settings = [
+    'news' => ['class' => ["fa", "fa-newspaper-o", "fa-4x"], 'accesskey' => 'n'],
+    'events' => ['class' => ["fa", "fa-calendar", "fa-4x"], 'accesskey' => 'e'],
+    'national-targets' => ['class' => ["fa", "fa-dot-circle-o", "fa-4x"], 'accesskey' => ''],
+    'facts' => ['class' => ["fa", "fa-info-circle", "fa-4x"], 'accesskey' => ''],
+    'faq' => ['class' => ["fa", "fa-question-circle-o", "fa-4x"], 'accesskey' => ''],
+    'ecosystems' => ['class' => ["fa", "fa-recycle", "fa-4x"], 'accesskey' => 'c'],
+    'protected-areas' => ['class' => ["fa", "fa-globe", "fa-4x"], 'accesskey' => ''],
+    'projects' => ['class' => ["fa", "fa-sitemap", "fa-4x"], 'accesskey' => 'p'],
+    'species' => ['class' => ["fa", "fa-bug", "fa-4x"], 'accesskey' => 's'],
+    'organizations' => ['class' => ["fa", "fa-building-o", "fa-4x"], 'accesskey' => ''],
+    'network-directory' => ['class' => ["fa", "fa-users", "fa-4x"], 'accesskey' => ''],
+    'library' => ['class' => ["fa", "fa-folder-open-o", "fa-4x"], 'accesskey' => ''],
+    'videos' => ['class' => ["fa", "fa-video-camera", "fa-4x"], 'accesskey' => ''],
+    'photo-galleries' => ['class' => ["fa", "fa-picture-o", "fa-4x"], 'accesskey' => 'i'],
+    'links' => ['class' => ["fa", "fa-link", "fa-4x"], 'accesskey' => ''],
+  ];
+  return $info_settings;
 }
