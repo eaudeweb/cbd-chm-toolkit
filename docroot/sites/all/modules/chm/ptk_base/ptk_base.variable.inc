@@ -62,6 +62,7 @@ function ptk_base_variable_info($options) {
   $variables['popup_enabled'] = array(
     'type' => 'string',
     'title' => t('Enable popup', array(), $options),
+    'group' => 'site_information',
     'description' => t('Show the EU cookie compliance popup on this website.'),
     'default' => '',
     'required' => TRUE,
