@@ -692,6 +692,16 @@ function ptk_base_admin_variables() {
 }
 */
 
+function ptk_base_site_information_settings_popup_update_submit($form, &$form_state) {
+  $list = domain_variable_locale_language_list(NULL, NULL);
+  foreach($list as $lang => $title) {
+    $popup_settings = variable_get('eu_cookie_compliance_' . $lang, array());
+    if ($popup_settings) {
+      $popup_settings['popup_enabled'] = $form_state['input']['popup_enabled'];
+      variable_set('eu_cookie_compliance_' . $lang, $popup_settings);
+    }
+  }
+}
 /**
  * Site name and Slogan settings form
  */
@@ -764,6 +774,7 @@ function ptk_base_site_information_settings() {
     '#description' => t('Show the EU cookie compliance popup on this website.'),
   );
 
+  $form['#submit'][] = 'ptk_base_site_information_settings_popup_update_submit';
   return system_settings_form($form);
 }
 
