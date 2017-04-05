@@ -34,7 +34,11 @@ function chm_theme_kit_preprocess_page(&$vars) {
     unset($vars['navbar_classes_array']['container']);
   }
   // @todo improve this check for default logo files/chm-logo-new-web-en.png
-  if (preg_match('/chm-logo-new-web-en\.png/', $vars['logo'])) {
+  // Domain Theme module - creates sites/all/themes/chm_theme_kit/logo.png logo
+  if (
+      preg_match('/chm-logo-new-web-en\.png/', $vars['logo']) ||
+      preg_match('/sites\/all\/themes\/chm_theme_kit\/logo\.png/', $vars['logo'])
+    ) {
     if ($country = PTKDomain::getPortalCountry()) {
       if ($flag = PTK::getCountryFlag($country)) {
         $vars['logo'] = image_style_url('header_flag', $flag);

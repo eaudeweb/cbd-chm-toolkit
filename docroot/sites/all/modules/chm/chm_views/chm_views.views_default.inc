@@ -3464,6 +3464,10 @@ function chm_views_views_default_views() {
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -3479,11 +3483,27 @@ function chm_views_views_default_views() {
     'event' => 'event',
     'news' => 'news',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Domain Access: Available on current domain */
   $handler->display->display_options['filters']['current_all']['id'] = 'current_all';
   $handler->display->display_options['filters']['current_all']['table'] = 'domain_access';
   $handler->display->display_options['filters']['current_all']['field'] = 'current_all';
   $handler->display->display_options['filters']['current_all']['value'] = '1';
+  $handler->display->display_options['filters']['current_all']['group'] = 1;
+  /* Filter criterion: Content: Expire (field_expire) */
+  $handler->display->display_options['filters']['field_expire_value']['id'] = 'field_expire_value';
+  $handler->display->display_options['filters']['field_expire_value']['table'] = 'field_data_field_expire';
+  $handler->display->display_options['filters']['field_expire_value']['field'] = 'field_expire_value';
+  $handler->display->display_options['filters']['field_expire_value']['operator'] = '>';
+  $handler->display->display_options['filters']['field_expire_value']['group'] = 2;
+  $handler->display->display_options['filters']['field_expire_value']['granularity'] = 'minute';
+  $handler->display->display_options['filters']['field_expire_value']['default_date'] = 'now';
+  /* Filter criterion: Content: Expire (field_expire) */
+  $handler->display->display_options['filters']['field_expire_value_1']['id'] = 'field_expire_value_1';
+  $handler->display->display_options['filters']['field_expire_value_1']['table'] = 'field_data_field_expire';
+  $handler->display->display_options['filters']['field_expire_value_1']['field'] = 'field_expire_value';
+  $handler->display->display_options['filters']['field_expire_value_1']['operator'] = 'empty';
+  $handler->display->display_options['filters']['field_expire_value_1']['group'] = 2;
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
@@ -3716,6 +3736,10 @@ function chm_views_views_default_views() {
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -3729,6 +3753,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['filters']['current_all']['table'] = 'domain_access';
   $handler->display->display_options['filters']['current_all']['field'] = 'current_all';
   $handler->display->display_options['filters']['current_all']['value'] = '1';
+  $handler->display->display_options['filters']['current_all']['group'] = 1;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -3737,11 +3762,27 @@ function chm_views_views_default_views() {
     'event' => 'event',
     'news' => 'news',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Content: Promoted to front page */
   $handler->display->display_options['filters']['promote']['id'] = 'promote';
   $handler->display->display_options['filters']['promote']['table'] = 'node';
   $handler->display->display_options['filters']['promote']['field'] = 'promote';
   $handler->display->display_options['filters']['promote']['value'] = '1';
+  $handler->display->display_options['filters']['promote']['group'] = 1;
+  /* Filter criterion: Content: Expire (field_expire) */
+  $handler->display->display_options['filters']['field_expire_value']['id'] = 'field_expire_value';
+  $handler->display->display_options['filters']['field_expire_value']['table'] = 'field_data_field_expire';
+  $handler->display->display_options['filters']['field_expire_value']['field'] = 'field_expire_value';
+  $handler->display->display_options['filters']['field_expire_value']['operator'] = '>';
+  $handler->display->display_options['filters']['field_expire_value']['group'] = 2;
+  $handler->display->display_options['filters']['field_expire_value']['granularity'] = 'minute';
+  $handler->display->display_options['filters']['field_expire_value']['default_date'] = 'now';
+  /* Filter criterion: Content: Expire (field_expire) */
+  $handler->display->display_options['filters']['field_expire_value_1']['id'] = 'field_expire_value_1';
+  $handler->display->display_options['filters']['field_expire_value_1']['table'] = 'field_data_field_expire';
+  $handler->display->display_options['filters']['field_expire_value_1']['field'] = 'field_expire_value';
+  $handler->display->display_options['filters']['field_expire_value_1']['operator'] = 'empty';
+  $handler->display->display_options['filters']['field_expire_value_1']['group'] = 2;
 
   /* Display: News page */
   $handler = $view->new_display('page', 'News page', 'page_news');
@@ -3816,6 +3857,10 @@ function chm_views_views_default_views() {
     'image_link' => 'content',
   );
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -3829,6 +3874,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['filters']['current_all']['table'] = 'domain_access';
   $handler->display->display_options['filters']['current_all']['field'] = 'current_all';
   $handler->display->display_options['filters']['current_all']['value'] = '1';
+  $handler->display->display_options['filters']['current_all']['group'] = 1;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -3836,6 +3882,21 @@ function chm_views_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'news' => 'news',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Expire (field_expire) */
+  $handler->display->display_options['filters']['field_expire_value']['id'] = 'field_expire_value';
+  $handler->display->display_options['filters']['field_expire_value']['table'] = 'field_data_field_expire';
+  $handler->display->display_options['filters']['field_expire_value']['field'] = 'field_expire_value';
+  $handler->display->display_options['filters']['field_expire_value']['operator'] = '>';
+  $handler->display->display_options['filters']['field_expire_value']['group'] = 2;
+  $handler->display->display_options['filters']['field_expire_value']['granularity'] = 'minute';
+  $handler->display->display_options['filters']['field_expire_value']['default_date'] = 'now';
+  /* Filter criterion: Content: Expire (field_expire) */
+  $handler->display->display_options['filters']['field_expire_value_1']['id'] = 'field_expire_value_1';
+  $handler->display->display_options['filters']['field_expire_value_1']['table'] = 'field_data_field_expire';
+  $handler->display->display_options['filters']['field_expire_value_1']['field'] = 'field_expire_value';
+  $handler->display->display_options['filters']['field_expire_value_1']['operator'] = 'empty';
+  $handler->display->display_options['filters']['field_expire_value_1']['group'] = 2;
   $handler->display->display_options['path'] = 'news';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'News';
@@ -3926,12 +3987,16 @@ function chm_views_views_default_views() {
     'trim_length' => '300',
   );
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Content: Project dates (field_dates) */
+  /* Sort criterion: Content: Project dates -  start date (field_dates) */
   $handler->display->display_options['sorts']['field_dates_value']['id'] = 'field_dates_value';
   $handler->display->display_options['sorts']['field_dates_value']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value']['field'] = 'field_dates_value';
   $handler->display->display_options['sorts']['field_dates_value']['order'] = 'DESC';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -3945,6 +4010,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['filters']['current_all']['table'] = 'domain_access';
   $handler->display->display_options['filters']['current_all']['field'] = 'current_all';
   $handler->display->display_options['filters']['current_all']['value'] = '1';
+  $handler->display->display_options['filters']['current_all']['group'] = 1;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -3952,6 +4018,21 @@ function chm_views_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'event' => 'event',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Expire (field_expire) */
+  $handler->display->display_options['filters']['field_expire_value']['id'] = 'field_expire_value';
+  $handler->display->display_options['filters']['field_expire_value']['table'] = 'field_data_field_expire';
+  $handler->display->display_options['filters']['field_expire_value']['field'] = 'field_expire_value';
+  $handler->display->display_options['filters']['field_expire_value']['operator'] = '>';
+  $handler->display->display_options['filters']['field_expire_value']['group'] = 2;
+  $handler->display->display_options['filters']['field_expire_value']['granularity'] = 'minute';
+  $handler->display->display_options['filters']['field_expire_value']['default_date'] = 'now';
+  /* Filter criterion: Content: Expire (field_expire) */
+  $handler->display->display_options['filters']['field_expire_value_1']['id'] = 'field_expire_value_1';
+  $handler->display->display_options['filters']['field_expire_value_1']['table'] = 'field_data_field_expire';
+  $handler->display->display_options['filters']['field_expire_value_1']['field'] = 'field_expire_value';
+  $handler->display->display_options['filters']['field_expire_value_1']['operator'] = 'empty';
+  $handler->display->display_options['filters']['field_expire_value_1']['group'] = 2;
   $handler->display->display_options['path'] = 'events';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Events';

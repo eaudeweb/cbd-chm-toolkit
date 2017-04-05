@@ -30,6 +30,34 @@ function ptk_base_menu_link_update($link) {
   _ptk_base_menu_link_check_expanded($link);
 }
 
+function ptk_base_domain_menu_options(&$form) {
+  global $user;
+  $is_administrator = FALSE;
+  drupal_alter('user_is_administrator', $is_administrator);
+  $menus = [];
+  $result = db_query("SELECT * FROM {menu_custom} ORDER BY title", array(), array('fetch' => PDO::FETCH_ASSOC));
+  foreach($result as $menu) {
+    $menu_domain = domain_menu_admin_assignment($menu['menu_name']);
+    if ($user->uid == 1  || $is_administrator || in_array($menu_domain, $user->domain_user)) {
+      $menus[$menu['menu_name']] = $menu['menu_name'];
+    }
+  }
+  $item = NULL;
+  $mlid = $form['mlid']['#value'];
+  if ($mlid) {
+    $item = menu_link_load($mlid);
+  }
+  if (!is_array($item)) {
+    $item = array('mlid' => 0);
+  }
+  $options = _menu_get_options(menu_get_menus(), $menus, $item);
+  // If no possible parent menu items were found, there is nothing to display.
+  if (empty($options)) {
+    return;
+  }
+  $form['parent']['#options'] = $options;
+}
+
 /**
  * This function is altering the node form. In the form tab at the bottom called
  * "Menu settings", when checked, it replaces the menu links provided by Drupal
@@ -128,6 +156,11 @@ function ptk_base_node_prepare($node) {
  * @inheritdoc
  */
 function ptk_base_form_alter(&$form, &$form_state, $form_id) {
+
+  if ($form_id == 'menu_edit_item') {
+    ptk_base_domain_menu_options($form);
+  }
+
   if (strpos($form_id, '_node_form')) {
     ptk_base_add_domain_menu($form, $form_state);
   }
