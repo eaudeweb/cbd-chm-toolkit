@@ -5039,9 +5039,11 @@ function chm_views_views_default_views() {
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Projects';
   $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['group_by'] = TRUE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
@@ -5050,7 +5052,6 @@ function chm_views_views_default_views() {
   $handler->display->display_options['style_options']['heading_field'] = 'title_field';
   $handler->display->display_options['style_options']['body_field'] = 'body';
   $handler->display->display_options['row_plugin'] = 'fields';
-  $handler->display->display_options['row_options']['hide_empty'] = TRUE;
   /* Field: Field: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
@@ -5061,6 +5062,10 @@ function chm_views_views_default_views() {
   $handler->display->display_options['fields']['field_image']['settings'] = array(
     'image_style' => 'image_listing',
     'image_link' => 'content',
+  );
+  $handler->display->display_options['fields']['field_image']['group_column'] = 'entity_id';
+  $handler->display->display_options['fields']['field_image']['group_columns'] = array(
+    'entity_id' => 'entity_id',
   );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
@@ -5076,6 +5081,7 @@ function chm_views_views_default_views() {
     'title_link' => 'content',
     'title_class' => '',
   );
+  $handler->display->display_options['fields']['title_field']['group_column'] = 'entity_id';
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
   /* Field: Content: Project dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
@@ -5090,6 +5096,7 @@ function chm_views_views_default_views() {
     'multiple_to' => '',
     'show_remaining_days' => 0,
   );
+  $handler->display->display_options['fields']['field_dates']['group_column'] = 'entity_id';
   /* Field: Content: Link */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
@@ -5109,6 +5116,7 @@ function chm_views_views_default_views() {
   $handler->display->display_options['fields']['body']['settings'] = array(
     'trim_length' => '300',
   );
+  $handler->display->display_options['fields']['body']['group_column'] = 'entity_id';
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
