@@ -692,13 +692,139 @@ function ptk_base_admin_variables() {
 }
 */
 
+function ptk_base_site_information_settings_logo_submit($form, &$form_state) {
+  $theme = 'chm_theme_kit';
+  $domain = domain_get_domain();
+  $domain_id = $domain['domain_id'];
+
+  $domain_theme = db_query("SELECT theme, settings FROM {domain_theme} WHERE domain_id = :domain_id AND theme = :theme", array(':domain_id' => $domain['domain_id'], ':theme' => $theme))->fetchAssoc();
+  $settings = [];
+  if (!empty($domain_theme['settings'])) {
+    $settings = domain_unserialize($domain_theme['settings']);
+    domain_theme_set_variables($settings);
+  }
+
+  $values = $form_state['values'];
+  ptk_base_logo_file_upload($values);
+
+  $check = domain_theme_lookup($domain_id, $theme);
+  if ($check == -1) {
+    $settings = variable_get('theme_' . $theme . '_settings');
+  }
+
+  $vars = ['logo_upload', 'default_logo', 'logo_path', 'toggle_logo'];
+  foreach($vars as $var) {
+    $settings[$var] = @$values[$var];
+  }
+  // We aren't using $filepath in Drupal 7; this can probably be removed.
+  $filepath = file_default_scheme() . ':/' . '/domain-' . $domain['domain_id'];
+
+  $settings = serialize($settings);
+
+  // Update.
+  if ($check != -1) {
+    db_update('domain_theme')
+      ->fields(array(
+        'settings' => $settings,
+        'filepath' => $filepath,
+      ))
+      ->condition('domain_id', $domain_id)
+      ->condition('theme', $theme)
+      ->execute();
+  }
+  // Insert.
+  else {
+    db_insert('domain_theme')
+      ->fields(array(
+        'domain_id' => $domain_id,
+        'theme' => $theme,
+        'settings' => $settings,
+        'status' => 0,
+        'filepath' => $filepath,
+      ))
+      ->execute();
+  }
+
+  // If nothing is active, then we make this one active.
+  $active = db_query("SELECT COUNT(domain_id) FROM {domain_theme} WHERE domain_id = :domain_id AND status = 1", array(':domain_id' => $domain_id))->fetchField();
+  if (empty($active)) {
+    db_update('domain_theme')
+      ->fields(array(
+        'status' => 1,
+      ))
+      ->condition('domain_id', $domain_id)
+      ->condition('theme', $theme)
+      ->execute();
+    drupal_set_message(t('%theme has been set as the default theme for %domain', array('%theme' => $theme, '%domain' => $domain['sitename'])));
+  }
+
+  // Clear the cache.
+  cache_clear_all();
+}
+
+function ptk_base_logo_file_upload(&$values) {
+  include_once(drupal_get_path('module', 'system') . '/system.admin.inc');
+  // If the user uploaded a new logo or favicon, save it to a permanent location
+  // and use it in place of the default theme-provided file.
+  if ($file = $values['logo_upload']) {
+    drupal_set_message(__FUNCTION__);
+    unset($values['logo_upload']);
+    $filename = file_unmanaged_copy($file->uri);
+    $values['default_logo'] = 0;
+    $values['logo_path'] = $filename;
+    $values['toggle_logo'] = 1;
+  }
+  // If the user entered a path relative to the system files directory for
+  // a logo or favicon, store a public:// URI so the theme system can handle it.
+  if (!empty($values['logo_path'])) {
+    $values['logo_path'] = _system_theme_settings_validate_path($values['logo_path']);
+  }
+}
+
+function ptk_base_site_information_settings_validate($form, &$form_state) {
+  // Handle file uploads.
+  $validators = array('file_validate_is_image' => array());
+
+  // Check for a new uploaded logo.
+  $file = file_save_upload('logo_upload', $validators);
+  if (isset($file)) {
+    // File upload was attempted.
+    if ($file) {
+      // Put the temporary file in form_values so we can save it on submit.
+      $form_state['values']['logo_upload'] = $file;
+    }
+    else {
+      // File upload failed.
+      form_set_error('logo_upload', t('The logo could not be uploaded.'));
+    }
+  }
+
+  // If the user provided a path for a logo or favicon file, make sure a file
+  // exists at that path.
+  if (!empty($form_state['values']['logo_path'])) {
+    $path = _system_theme_settings_validate_path($form_state['values']['logo_path']);
+    if (!$path) {
+      form_set_error('logo_path', t('The custom logo path is invalid.'));
+    }
+  }
+}
+
 /**
  * Site name and Slogan settings form
  */
 function ptk_base_site_information_settings() {
+  $theme = 'chm_theme_kit';
+  $domain = domain_get_domain();
+  include_once(drupal_get_path('module', 'system') . '/system.admin.inc');
   module_load_include('inc', 'domain_variable_locale', 'domain_variable_locale.variable');
 
   $form = [];
+  $settings = db_query("SELECT theme, settings FROM {domain_theme} WHERE domain_id = :domain_id AND theme = :theme", array(':domain_id' => $domain['domain_id'], ':theme' => $theme))->fetchAssoc();
+
+  if (!empty($settings)) {
+    // Not allowed to call in admin theme theme_get_setting function before domain_theme_set_variables!
+    domain_theme_set_variables($settings);
+  }
 
   $form['regional_settings'] = array(
     '#type' => 'fieldset',
@@ -764,6 +890,42 @@ function ptk_base_site_information_settings() {
     '#description' => t('Show the EU cookie compliance popup on this website.'),
   );
 
+  $form['#submit'][] = 'ptk_base_site_information_settings_logo_submit';
+  $form['logo'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Logo image settings'),
+    '#description' => t('If toggled on, the following logo will be displayed.'),
+    '#attributes' => array('class' => array('theme-settings-bottom')),
+  );
+
+  $form['logo']['default_logo'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Use the default logo'),
+    '#default_value' => theme_get_setting('default_logo', $theme),
+    '#tree' => FALSE,
+    '#description' => t('Check here if you want the theme to use the logo supplied with it.')
+  );
+  $form['logo']['settings'] = array(
+    '#type' => 'container',
+    '#states' => array(
+      // Hide the logo settings when using the default logo.
+      'invisible' => array(
+        'input[name="default_logo"]' => array('checked' => TRUE),
+      ),
+    ),
+  );
+  $form['logo']['settings']['logo_path'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Path to custom logo'),
+    '#description' => t('The path to the file you would like to use as your logo file instead of the default logo.'),
+    '#default_value' => theme_get_setting('logo_path', $theme),
+  );
+  $form['logo']['settings']['logo_upload'] = array(
+    '#type' => 'file',
+    '#title' => t('Upload logo image'),
+    '#maxlength' => 40,
+    '#description' => t("If you don't have direct file access to the server, use this field to upload your logo.")
+  );
   return system_settings_form($form);
 }
 
