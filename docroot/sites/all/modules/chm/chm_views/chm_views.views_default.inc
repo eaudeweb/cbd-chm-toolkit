@@ -2626,15 +2626,73 @@ function chm_views_views_default_views() {
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['search_api_bypass_access'] = 0;
+  $handler->display->display_options['query']['options']['entity_access'] = 1;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
-  $handler->display->display_options['style_plugin'] = 'views_bootstrap_media_plugin_style';
+  $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'entity';
+  $handler->display->display_options['row_options']['view_mode'] = 'teaser';
   /* Field: Indexed Multilingual Node: Multilingual ID */
   $handler->display->display_options['fields']['search_api_et_id']['id'] = 'search_api_et_id';
   $handler->display->display_options['fields']['search_api_et_id']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['search_api_et_id']['field'] = 'search_api_et_id';
+  /* Sort criterion: Indexed Multilingual Node: Date created */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Filter criterion: Indexed Multilingual Node: Status */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  /* Filter criterion: Indexed Multilingual Node: Content type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'document' => 'document',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Search: Fulltext search */
+  $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['field'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['group'] = 1;
+  $handler->display->display_options['filters']['search_api_views_fulltext']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator_id'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['label'] = 'Search';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['identifier'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+  );
+  /* Filter criterion: Indexed Multilingual Node: Type */
+  $handler->display->display_options['filters']['field_document_type']['id'] = 'field_document_type';
+  $handler->display->display_options['filters']['field_document_type']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['field_document_type']['field'] = 'field_document_type';
+  $handler->display->display_options['filters']['field_document_type']['value'] = array();
+  $handler->display->display_options['filters']['field_document_type']['group'] = 1;
+  $handler->display->display_options['filters']['field_document_type']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_document_type']['expose']['operator_id'] = 'field_document_type_op';
+  $handler->display->display_options['filters']['field_document_type']['expose']['label'] = 'Type';
+  $handler->display->display_options['filters']['field_document_type']['expose']['operator'] = 'field_document_type_op';
+  $handler->display->display_options['filters']['field_document_type']['expose']['identifier'] = 'field_document_type';
+  $handler->display->display_options['filters']['field_document_type']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+  );
+  $handler->display->display_options['filters']['field_document_type']['expose']['reduce'] = 0;
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -2663,6 +2721,8 @@ function chm_views_views_default_views() {
     t('next ›'),
     t('last »'),
     t('Multilingual ID'),
+    t('Search'),
+    t('Type'),
     t('Page'),
     t('Latest NBSAP'),
     t('Latest published NBSAPs documents for the current domain'),

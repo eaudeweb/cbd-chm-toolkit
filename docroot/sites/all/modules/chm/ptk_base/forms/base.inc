@@ -216,7 +216,7 @@ class PTKFormDocumentTypeField {
       }
 
       foreach ($element['#options'] as $k => $v) {
-        if (in_array($k, $allowed) || $k == '_none') {
+        if (in_array($k, $allowed) || $k == '_none' || $k == 'All') {
           $options[$k] = $v;
         }
       }
