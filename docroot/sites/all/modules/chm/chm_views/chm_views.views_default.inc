@@ -2643,6 +2643,12 @@ function chm_views_views_default_views() {
   $handler->display->display_options['sorts']['created']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Sort criterion: Indexed Multilingual Node: Title (aggregated) */
+  $handler->display->display_options['sorts']['search_api_aggregation_1']['id'] = 'search_api_aggregation_1';
+  $handler->display->display_options['sorts']['search_api_aggregation_1']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['sorts']['search_api_aggregation_1']['field'] = 'search_api_aggregation_1';
+  $handler->display->display_options['sorts']['search_api_aggregation_1']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['search_api_aggregation_1']['expose']['label'] = 'Title';
   /* Filter criterion: Indexed Multilingual Node: Status */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -2721,6 +2727,7 @@ function chm_views_views_default_views() {
     t('next ›'),
     t('last »'),
     t('Multilingual ID'),
+    t('Title'),
     t('Search'),
     t('Type'),
     t('Page'),
