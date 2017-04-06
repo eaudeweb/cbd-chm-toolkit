@@ -5479,9 +5479,11 @@ function chm_views_views_default_views() {
   $handler->display->display_options['title'] = 'Species';
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['group_by'] = TRUE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '20';
@@ -5702,6 +5704,10 @@ function chm_views_views_default_views() {
   $handler->display->display_options['fields']['field_images']['settings'] = array(
     'image_style' => 'thumbnail',
     'image_link' => '',
+  );
+  $handler->display->display_options['fields']['field_images']['group_column'] = 'entity_id';
+  $handler->display->display_options['fields']['field_images']['group_columns'] = array(
+    'entity_id' => 'entity_id',
   );
   $handler->display->display_options['fields']['field_images']['delta_offset'] = '0';
   /* Field: Content: Title */
