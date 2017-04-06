@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * Fix documents library page
+ */
+function chm_views_update_7001() {
+  features_revert(array('chm_views' => ['views_view']));
+}

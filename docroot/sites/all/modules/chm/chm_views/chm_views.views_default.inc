@@ -2276,14 +2276,20 @@ function chm_views_views_default_views() {
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['style_plugin'] = 'views_bootstrap_media_plugin_style';
-  $handler->display->display_options['style_options']['image_field'] = 'field_image';
-  $handler->display->display_options['style_options']['heading_field'] = 'title';
+  $handler->display->display_options['style_options']['image_field'] = 'field_image_et';
+  $handler->display->display_options['style_options']['heading_field'] = 'title_field_et';
   $handler->display->display_options['style_options']['body_field'] = 'body';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Content: Entity translation: translations */
+  $handler->display->display_options['relationships']['entity_translations']['id'] = 'entity_translations';
+  $handler->display->display_options['relationships']['entity_translations']['table'] = 'node';
+  $handler->display->display_options['relationships']['entity_translations']['field'] = 'entity_translations';
+  $handler->display->display_options['relationships']['entity_translations']['required'] = TRUE;
   /* Field: Field: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
@@ -2413,24 +2419,25 @@ function chm_views_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Field: Image */
-  $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
-  $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
-  $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
-  $handler->display->display_options['fields']['field_image']['label'] = '';
-  $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_image']['settings'] = array(
+  /* Field: Entity translation: Image: translated */
+  $handler->display->display_options['fields']['field_image_et']['id'] = 'field_image_et';
+  $handler->display->display_options['fields']['field_image_et']['table'] = 'field_data_field_image';
+  $handler->display->display_options['fields']['field_image_et']['field'] = 'field_image_et';
+  $handler->display->display_options['fields']['field_image_et']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_image_et']['settings'] = array(
     'image_style' => 'portrait_image_listing',
     'image_link' => 'content',
   );
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Entity translation: Title: translated */
+  $handler->display->display_options['fields']['title_field_et']['id'] = 'title_field_et';
+  $handler->display->display_options['fields']['title_field_et']['table'] = 'field_data_title_field';
+  $handler->display->display_options['fields']['title_field_et']['field'] = 'title_field_et';
+  $handler->display->display_options['fields']['title_field_et']['type'] = 'title_linked';
+  $handler->display->display_options['fields']['title_field_et']['settings'] = array(
+    'title_style' => '_none',
+    'title_link' => 'content',
+    'title_class' => '',
+  );
   /* Field: Content: Link */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
@@ -2579,6 +2586,15 @@ function chm_views_views_default_views() {
   );
   $handler->display->display_options['filters']['field_document_type_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_document_type_tid']['vocabulary'] = 'document_type';
+  /* Filter criterion: Content: Type (field_document_type) */
+  $handler->display->display_options['filters']['field_document_type_tid_1']['id'] = 'field_document_type_tid_1';
+  $handler->display->display_options['filters']['field_document_type_tid_1']['table'] = 'field_data_field_document_type';
+  $handler->display->display_options['filters']['field_document_type_tid_1']['field'] = 'field_document_type_tid';
+  $handler->display->display_options['filters']['field_document_type_tid_1']['value'] = array(
+    2219 => '2219',
+  );
+  $handler->display->display_options['filters']['field_document_type_tid_1']['type'] = 'select';
+  $handler->display->display_options['filters']['field_document_type_tid_1']['vocabulary'] = 'document_type';
   $translatables['documents'] = array(
     t('Master'),
     t('Document library'),
@@ -2595,6 +2611,7 @@ function chm_views_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
+    t('Translations'),
     t('Read more »'),
     t('[body] [view_node]'),
     t('Title'),
@@ -2602,6 +2619,8 @@ function chm_views_views_default_views() {
     t('Type'),
     t('Type (field_document_type)'),
     t('Page'),
+    t('Image: translated'),
+    t('Title: translated'),
     t('<div class="field-dates">[field_publication_date]</div>[body] [view_node]'),
     t('Latest NBSAP'),
     t('Latest published NBSAPs documents for the current domain'),
@@ -3726,10 +3745,6 @@ function chm_views_views_default_views() {
   $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['view_node']['text'] = 'Read more »';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Content: Weight (field_weight) */
-  $handler->display->display_options['sorts']['field_weight_value']['id'] = 'field_weight_value';
-  $handler->display->display_options['sorts']['field_weight_value']['table'] = 'field_data_field_weight';
-  $handler->display->display_options['sorts']['field_weight_value']['field'] = 'field_weight_value';
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
