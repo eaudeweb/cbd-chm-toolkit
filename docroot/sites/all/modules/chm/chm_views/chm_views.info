@@ -29,7 +29,6 @@ features[views_view][] = administrative_content
 features[views_view][] = aichi_biodiversity_targets
 features[views_view][] = cbd_national_targets
 features[views_view][] = chm_sites
-features[views_view][] = documents
 features[views_view][] = documents_solr
 features[views_view][] = ecosystems
 features[views_view][] = eu_targets
