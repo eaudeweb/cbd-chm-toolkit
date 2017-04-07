@@ -5423,6 +5423,27 @@ function chm_views_views_default_views() {
   $handler->display->display_options['filters']['current_all']['field'] = 'current_all';
   $handler->display->display_options['filters']['current_all']['value'] = '1';
   $handler->display->display_options['filters']['current_all']['group'] = 1;
+  /* Filter criterion: Global: Combine fields filter */
+  $handler->display->display_options['filters']['combine']['id'] = 'combine';
+  $handler->display->display_options['filters']['combine']['table'] = 'views';
+  $handler->display->display_options['filters']['combine']['field'] = 'combine';
+  $handler->display->display_options['filters']['combine']['operator'] = 'contains';
+  $handler->display->display_options['filters']['combine']['group'] = 1;
+  $handler->display->display_options['filters']['combine']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['combine']['expose']['operator_id'] = 'combine_op';
+  $handler->display->display_options['filters']['combine']['expose']['label'] = 'Search';
+  $handler->display->display_options['filters']['combine']['expose']['operator'] = 'combine_op';
+  $handler->display->display_options['filters']['combine']['expose']['identifier'] = 'combine';
+  $handler->display->display_options['filters']['combine']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+  );
+  $handler->display->display_options['filters']['combine']['fields'] = array(
+    'title_field' => 'title_field',
+    'field_species_main_common_name' => 'field_species_main_common_name',
+  );
   /* Filter criterion: Content: Class (field_species_class) */
   $handler->display->display_options['filters']['field_species_class_tid']['id'] = 'field_species_class_tid';
   $handler->display->display_options['filters']['field_species_class_tid']['table'] = 'field_data_field_species_class';
@@ -5627,6 +5648,7 @@ function chm_views_views_default_views() {
     t('Block'),
     t('Page'),
     t('IUCN Status'),
+    t('Search'),
     t('IUCN status'),
     t('Family related species'),
     t('[title_field]
