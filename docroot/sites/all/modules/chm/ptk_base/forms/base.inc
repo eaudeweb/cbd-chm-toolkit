@@ -207,12 +207,20 @@ class PTKFormDocumentTypeField {
         ->condition('bundle', 'document_type')
         ->condition('deleted', 0)->execute()->fetchCol();
       $options = array();
-      foreach ($form['field_document_type'][LANGUAGE_NONE]['#options'] as $k => $v) {
-        if (in_array($k, $allowed) || $k == '_none') {
+
+      if (!empty($form['field_document_type'][LANGUAGE_NONE])) {
+        $element = &$form['field_document_type'][LANGUAGE_NONE];
+      }
+      else {
+        $element = &$form['field_document_type'];
+      }
+
+      foreach ($element['#options'] as $k => $v) {
+        if (in_array($k, $allowed) || $k == '_none' || $k == 'All') {
           $options[$k] = $v;
         }
       }
-      $form['field_document_type'][LANGUAGE_NONE]['#options'] = $options;
+      $element['#options'] = $options;
     }
   }
 
