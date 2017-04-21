@@ -104,6 +104,9 @@ class IUCNRedListSpeciesMigration extends Migration {
 
   public function getOrCreateTermByMachineName($machine_name, $vocabulary_machine_name) {
     $query = new EntityFieldQuery();
+    if ($machine_name == 'LR/nt') {
+      $machine_name = 'NT';
+    }
     $query->entityCondition('entity_type', 'taxonomy_term')
       ->entityCondition('bundle', array($vocabulary_machine_name))
       ->fieldCondition('field_machine_name', 'value', $machine_name, '=');
