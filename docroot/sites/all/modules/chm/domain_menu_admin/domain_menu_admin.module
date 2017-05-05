@@ -40,6 +40,7 @@ function domain_menu_admin_form_menu_edit_menu_alter(&$form, &$form_state) {
   global $user;
   domain_user_set($user);
   $options = array();
+  $format = domain_select_format();
   foreach (domain_domains() as $data) {
     // The domain must be valid.
     if ($data['valid'] || user_access('access inactive domains')) {
