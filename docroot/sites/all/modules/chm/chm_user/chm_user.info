@@ -1,0 +1,8 @@
+name = CHM User
+core = 7.x
+package = CHM
+dependencies[] = features
+dependencies[] = text
+features[features_api][] = api:2
+features[field_base][] = field_register_domain
+features[field_instance][] = user-user-field_register_domain
