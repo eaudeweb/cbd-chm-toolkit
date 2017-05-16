@@ -1,13 +1,15 @@
 diff --git a/docroot/sites/all/modules/contrib/eu_cookie_compliance/eu_cookie_compliance.module b/docroot/sites/all/modules/contrib/eu_cookie_compliance/eu_cookie_compliance.module
-index 5bcb200..048aff2 100755
+index 5bcb200c..5989ce30 100755
 --- a/docroot/sites/all/modules/contrib/eu_cookie_compliance/eu_cookie_compliance.module
 +++ b/docroot/sites/all/modules/contrib/eu_cookie_compliance/eu_cookie_compliance.module
-@@ -68,7 +68,7 @@ function eu_cookie_compliance_page_build(&$page) {
-   } else {
+@@ -69,6 +69,10 @@ function eu_cookie_compliance_page_build(&$page) {
      $geoip_match = true;
    }
--
-+  $popup_settings['popup_enabled'] = variable_get('popup_enabled',0);
+ 
++  if ($popup_settings) {
++    $popup_settings['popup_enabled'] = variable_get('popup_enabled',0);
++  }
++  
    if (!empty($popup_settings['popup_enabled']) && user_access('display EU Cookie Compliance popup') && $geoip_match && $domain_allow && !$path_match) {
      global $language;
      // Array storage for caching full client data.

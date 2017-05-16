@@ -69,6 +69,10 @@ function eu_cookie_compliance_page_build(&$page) {
     $geoip_match = true;
   }
 
+  if ($popup_settings) {
+    $popup_settings['popup_enabled'] = variable_get('popup_enabled',0);
+  }
+  
   if (!empty($popup_settings['popup_enabled']) && user_access('display EU Cookie Compliance popup') && $geoip_match && $domain_allow && !$path_match) {
     global $language;
     // Array storage for caching full client data.
