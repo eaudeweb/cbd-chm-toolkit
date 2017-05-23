@@ -20,7 +20,7 @@ class ChmNodeForm {
     }
 
     // Pre-fill field_countries to all nodes with domain's configured country.
-    if (isset($form['field_countries'])) {
+    if (isset($form['field_countries']) && !$form['nid']['#value']) {
       if ($country = PTKDomain::getPortalCountry()) {
         $form['field_countries'][LANGUAGE_NONE]['#default_value'] = array($country->tid);
       }
