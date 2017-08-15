@@ -1,0 +1,4 @@
+name = chm_export_views
+core = 7.x
+package = EDW
+version = 7.x-1.0

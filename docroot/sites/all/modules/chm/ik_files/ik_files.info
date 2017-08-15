@@ -1,0 +1,4 @@
+name = files helper sync
+description = files helper sync
+core = 7.x
+version = 7.x-1.0
