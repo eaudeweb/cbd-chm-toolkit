@@ -1,0 +1,9 @@
+name = CHM SDG export
+core = 7.x
+package = CHM
+version = 7.x-1.0
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[views_view][] = sdg_taxonomy_export
+features_exclude[dependencies][views] = views
+features_exclude[dependencies][views_json] = views_json

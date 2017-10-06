@@ -70,3 +70,11 @@ function ptk_base_update_7005() {
     ->execute();
   ptk_base_update_information_menus();
 }
+
+/**
+ * SDG taxonomy export.
+ */
+function ptk_base_update_7006() {
+  module_enable(array('taxonomy_changed', 'views_datasource'));
+  module_enable(array('chm_sdg_export'));
+}
