@@ -1,0 +1,6 @@
+name = CHM data expose as service
+description = data expose as service (JSON endpoint)
+core = 7.x
+package = CHM
+version = 7.x-1.0
+files[] = views/plugins/views_plugin_style_chm_export.inc
