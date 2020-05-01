@@ -474,7 +474,21 @@ class ChmDomainForm {
       'customized' => 1,
     ];
     menu_link_save($home_link);
+    self::assignMenuToDomain($menu['menu_name'], $domain);
     return $menu;
+  }
+
+  public static function assignMenuToDomain($menu_name, $domain) {
+    db_merge('domain_menu_admin')
+      ->key(array(
+        'menu_name' => $menu_name,
+        'domain_id' => $domain['domain_id']
+      ))
+      ->fields(array(
+        'menu_name' => $menu_name,
+        'domain_id' => $domain['domain_id']
+      ))
+      ->execute();
   }
 
   public static function createWebsiteFooterMenu($country, $domain, $populate_footer_menu) {
@@ -577,6 +591,7 @@ class ChmDomainForm {
       }
     }
 
+    self::assignMenuToDomain($menu['menu_name'], $domain);
     PTKDomain::variable_set('populate_footer_menu', TRUE, $domain);
     return $menu;
   }
