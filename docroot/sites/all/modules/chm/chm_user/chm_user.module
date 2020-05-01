@@ -1,0 +1,15 @@
+<?php
+/**
+ * @file
+ * Drupal needs this blank file.
+ */
+
+function chm_user_form_alter(&$form, &$form_state, $form_id) {
+
+  if ($form_id === 'user_register_form') {
+    $domain = domain_get_domain();
+    $form['field_register_domain']['#attributes']['class'][] = 'element-hidden';
+    $form['field_register_domain']['und'][0]['value']['#default_value'] = $domain['sitename'];
+  }
+
+}
