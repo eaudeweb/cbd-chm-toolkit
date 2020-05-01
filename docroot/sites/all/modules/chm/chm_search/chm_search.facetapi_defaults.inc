@@ -19,7 +19,7 @@ function chm_search_facetapi_default_facet_settings() {
   $facet->facet = 'domains';
   $facet->enabled = FALSE;
   $facet->settings = array(
-    'operator' => 'and',
+    'operator' => 'or',
     'hard_limit' => '50',
     'dependencies' => array(
       'bundle' => 'none',

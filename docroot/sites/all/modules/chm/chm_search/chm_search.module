@@ -10,15 +10,17 @@ include_once 'chm_search.features.inc';
  * Implements hook_search_api_solr_query_alter().
  */
 function chm_search_search_api_solr_query_alter(array &$call_args, SearchApiQueryInterface $query) {
+
+  $domain = domain_get_domain();
+  $domain_filter = '';
   foreach($call_args['params']['fq'] as $k => $v) {
-    if (strpos('.' . $v, 'im_domains:')) { // remove unclear error filter
-      $val = explode(":", str_replace('"', '', $v));
-      if (!is_numeric($val[1])) {
-        unset($call_args['params']['fq'][$k]);
-        continue;
-      }
-      $call_args['params']['fq'][$k] = '(({!tag=facet:domains}' . $v . ') OR ({!tag=facet:domains}is_domain_site:"1"))';
+    if (strpos($v, 'im_domains:') === 0) { // Fix error filter
+      unset($call_args['params']['fq'][$k]);
+      $domain_filter = '(({!tag=facet:domains}im_domains:"' . $domain['domain_id'] . '") OR ({!tag=facet:domains}is_domain_site:"1"))';
     }
+  }
+  if ($domain_filter) {
+    $call_args['params']['fq'][] = $domain_filter;
   }
 }
 
